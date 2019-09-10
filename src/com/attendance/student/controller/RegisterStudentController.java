@@ -70,9 +70,6 @@ public class RegisterStudentController extends AnchorPane {
     @FXML
     private Label department;
 
-    @FXML
-    private TextField honourssubject;
-
     private FXMLLoader fxml;
     private Student student;
     private StudentDao dao;
@@ -119,18 +116,6 @@ public class RegisterStudentController extends AnchorPane {
                 pass.setSelected(true);
             }
             honours.setSelected(false);
-        });
-
-        honours.selectedProperty().addListener((ol, o, n) -> {
-            if (n) {
-                honourssubject.setText(SystemUtils.getDepartment());
-            }
-        });
-
-        pass.selectedProperty().addListener((ol, o, n) -> {
-            if (n) {
-                honourssubject.setText("N/A");
-            }
         });
 
         cancel.setOnAction(evt -> ((Node) evt.getSource()).getScene().getWindow().hide());
