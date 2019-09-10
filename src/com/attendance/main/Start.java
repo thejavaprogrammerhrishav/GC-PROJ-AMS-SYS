@@ -33,6 +33,7 @@ public class Start extends Application {
     public static void main(String[] args) throws Exception {
         //initApp();
         SystemUtils.setDepartment("Computer Science");
+        System.out.println("Department Set");
         initContext();
         launch(args);
 
