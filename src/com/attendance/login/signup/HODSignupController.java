@@ -83,6 +83,7 @@ public class HODSignupController extends AnchorPane{
     @FXML
     private void initialize(){
         abort.setOnAction(e->SwitchRoot.switchRoot(Start.st, parent));
+        loginbutton.setOnAction(this::loginaction);
         signup.setOnAction(e->{
             if(login.isUsernameExists(username.getText())>0){
                 Alert al=new Alert(Alert.AlertType.ERROR);
