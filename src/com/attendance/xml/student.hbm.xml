@@ -10,6 +10,6 @@
     <property column="acadamicyear" name="acadamicyear" not-null="true"/>
     <property column="gender" name="gender" not-null="true"/>
     <property column="coursetype" name="courseType" not-null="true"/>
-    <property column="honours" name="honoursSubject" not-null="true"/>
+    <property column="department" name="department" not-null="true"/>
   </class>
 </hibernate-mapping>

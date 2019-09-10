@@ -189,7 +189,7 @@ public class StudentUpdateController extends AnchorPane {
             honours.setSelected(false);
             pass.setSelected(true);
         }
-        honourssubject.setText(searchStudent.getHonoursSubject());
+        honourssubject.setText(searchStudent.getDepartment());
     }
 
     private void updateStudent(ActionEvent e) {
@@ -213,7 +213,7 @@ public class StudentUpdateController extends AnchorPane {
         } else {
             updateStudent.setCourseType("UNKNOWN");
         }
-        updateStudent.setHonoursSubject(honourssubject.getText());
+        updateStudent.setDepartment(honourssubject.getText());
         boolean updateDetails = dao.updateStudent(updateStudent);
         updateStudent.setId(studentRollNumber.getText() + "_" + acadamicyear.getSelectionModel().getSelectedItem() + "@" + studentYear.getText()+"#"+updateStudent.getCourseType().charAt(0));
         boolean updateId = dao.updateStudentId(updateStudent.getId(), searchStudent.getId());

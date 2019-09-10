@@ -201,7 +201,7 @@ public class DeleteStudentController extends AnchorPane {
 
     private void populateTable(ActionEvent evt) {
         List<Student> list = studentdao.findByAcadamicYear(acadamicyear);
-         list.stream().forEach(c->System.out.println(c.getHonoursSubject()));
+         list.stream().forEach(c->System.out.println(c.getDepartment()));
         table.getItems().setAll(list);
     }
 
@@ -263,8 +263,8 @@ public class DeleteStudentController extends AnchorPane {
         scontactnumber.setText(student.getContact());
         sgender.setText(student.getGender());
         coursetype.setText(student.getCourseType());
-        System.out.println(student.getHonoursSubject());
-        honoursubject.setText(student.getHonoursSubject());
+        
+        honoursubject.setText(student.getDepartment());
     }
 
     private void cancel(ActionEvent evt) {

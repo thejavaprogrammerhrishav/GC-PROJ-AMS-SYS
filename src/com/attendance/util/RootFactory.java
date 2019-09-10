@@ -5,7 +5,7 @@
  */
 package com.attendance.util;
 
-import com.attendance.dashboard.AdminDashboardController;
+import com.attendance.dashboard.HODDashboardController;
 import com.attendance.dashboard.FacultyDashboardController;
 import com.attendance.dashboard.LoginActivityController;
 import com.attendance.faculty.controller.RegisterFacultyController;
@@ -80,7 +80,7 @@ public class RootFactory {
     }
 
     public static Parent getAdminDashboardRoot(User admin, LoginActivity activity) {
-        return new AdminDashboardController(admin, activity);
+        return new HODDashboardController(admin, activity);
     }
 
     public static Parent getLoginActivityRoot(LoginActivity activity) {

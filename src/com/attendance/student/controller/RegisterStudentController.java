@@ -154,8 +154,8 @@ public class RegisterStudentController extends AnchorPane {
             } else {
                 student.setCourseType("UNKNOWN");
             }
-            student.setId(rollno.getText() + "_" + acadamicyear.getSelectionModel().getSelectedItem() + "@" + year.getText()+"#"+student.getCourseType().charAt(0));
-            student.setHonoursSubject(honourssubject.getText());
+            student.setId("GC"+acadamicyear.getSelectionModel().getSelectedItem().charAt(0)+"_"+year.getText()+"_"+rollno.getText()+student.getCourseType().charAt(0)+"_"+SystemUtils.getDepartmentCode());
+            student.setDepartment(department.getText());
             String id = dao.saveStudent(student);
             MessageUtil.showInformation(Message.INFORMATION, "Student Registration", "Student Registered Successfully\nStudent Id: " + id, ((Node) evt.getSource()).getScene().getWindow());
         });

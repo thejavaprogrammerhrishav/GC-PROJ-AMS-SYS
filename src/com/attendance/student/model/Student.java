@@ -21,12 +21,12 @@ public class Student implements Serializable {
     private String contact;
     private String acadamicyear;
     private String courseType;
-    private String honoursSubject;
+    private String department;
 
     public Student() {
     }
 
-    public Student(String id, String name, int rollno, int year, String gender, String contact, String acadamicyear, String courseType, String honoursSubject) {
+    public Student(String id, String name, int rollno, int year, String gender, String contact, String acadamicyear, String courseType, String department) {
         this.id = id;
         this.name = name;
         this.rollno = rollno;
@@ -35,7 +35,7 @@ public class Student implements Serializable {
         this.contact = contact;
         this.acadamicyear = acadamicyear;
         this.courseType = courseType;
-        this.honoursSubject = honoursSubject;
+        this.department =department;
     }
 
     public String getId() {
@@ -102,12 +102,12 @@ public class Student implements Serializable {
         return courseType;
     }
 
-    public void setHonoursSubject(String honoursSubject) {
-        this.honoursSubject = honoursSubject;
+    public void setDepartment(String department) {
+        this.department = department;
     }
 
-    public String getHonoursSubject() {
-        return honoursSubject;
+    public String getDepartment() {
+        return department;
     }
 
     @Override

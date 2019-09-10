@@ -44,7 +44,7 @@ import javafx.stage.StageStyle;
  *
  * @author Programmer Hrishav
  */
-public class AdminDashboardController extends AnchorPane {
+public class HODDashboardController extends AnchorPane {
 
     @FXML
     private Label time;
@@ -139,16 +139,16 @@ public class AdminDashboardController extends AnchorPane {
     private StudentDao dao;
     private Activity act;
 
-    public AdminDashboardController(User user, LoginActivity activity) {
+    public HODDashboardController(User user, LoginActivity activity) {
         this.user = user;
         this.activity = activity;
         fxml = Fxml.getAdminDashboardFXML();
-        fxml.setRoot(AdminDashboardController.this);
-        fxml.setController(AdminDashboardController.this);
+        fxml.setRoot(HODDashboardController.this);
+        fxml.setController(HODDashboardController.this);
         try {
             fxml.load();
         } catch (IOException ex) {
-            Logger.getLogger(AdminDashboardController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HODDashboardController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

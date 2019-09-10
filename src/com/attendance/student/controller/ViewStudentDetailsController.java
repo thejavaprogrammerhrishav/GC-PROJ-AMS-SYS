@@ -263,7 +263,7 @@ public class ViewStudentDetailsController extends AnchorPane {
                 genMale.setSelected(false);
             }
             curcoursetype.setText(s.getCourseType());
-            curhonsub.setText(s.getHonoursSubject());
+            curhonsub.setText(s.getDepartment());
         }
     }
 

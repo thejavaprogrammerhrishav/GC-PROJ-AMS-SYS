@@ -167,7 +167,7 @@ public class UploadUnitTestMarksController extends AnchorPane {
             test.setUnitTest(ut.getSelectionModel().getSelectedItem());
             test.setYear(yyear);
             test.setCoursetype(coursetype.getSelectionModel().getSelectedItem());
-            test.setHonoursSubject(it.getStudent().getHonoursSubject());
+            test.setHonoursSubject(it.getStudent().getDepartment());
             return test;
         }).forEach(dao::save);
         String t = "Marks Uploaded Successfully\nUnit Test:  " + ut.getSelectionModel().getSelectedItem() + "\nSemester:   " + sem.getSelectionModel().getSelectedItem();
