@@ -1,0 +1,48 @@
+.text-area .scroll-pane {
+    -fx-background-color: #fff;
+    -fx-display-caret: true;
+}
+
+.text-area .scroll-pane .viewport{
+    -fx-background-color: #fff;
+}
+
+
+.text-area .scroll-pane .content{
+    -fx-background-color: #fff;
+}
+
+
+.text-area .scroll-pane,
+.text-area .scroll-pane .corner,
+.text-area .scroll-pane .scroll-bar:vertical .track-background,
+.text-area .scroll-pane .scroll-bar:vertical .track,
+.text-area .scroll-pane .scroll-bar:vertical .increment-button,
+.text-area .scroll-pane .scroll-bar:vertical .decrement-button,
+.text-area .scroll-pane .scroll-bar:vertical .increment-button .increment-arrow,
+.text-area .scroll-pane .scroll-bar:vertical .decrement-button .decrement-arrow{
+	 -fx-background-color:  #fff;
+    -fx-border-color: transparent;
+    -fx-fill: #fff;
+    -fx-pref-width: 8px;
+}
+.text-area .scroll-pane .scroll-bar:horizontal .track-background,
+.text-area .scroll-pane .scroll-bar:horizontal .track,
+.text-area .scroll-pane .scroll-bar:horizontal .increment-button,
+.text-area .scroll-pane .scroll-bar:horizontal .decrement-button,
+.text-area .scroll-pane .scroll-bar:horizontal .increment-button .increment-arrow,
+.text-area .scroll-pane .scroll-bar:horizontal .decrement-button .decrement-arrow{
+    -fx-background-color:  #fff;
+    -fx-border-color: transparent;
+    -fx-fill: #fff;
+    -fx-pref-height: 8px;
+}
+
+.text-area .scroll-pane .scroll-bar:vertical .thumb{
+   -fx-background-color:  rgb(200,200,200);
+    -fx-pref-width: 5px;
+}
+.text-area .scroll-pane .scroll-bar:horizontal .thumb{
+    -fx-background-color:  rgb(200,200,200);
+    -fx-pref-height: 5px;
+}

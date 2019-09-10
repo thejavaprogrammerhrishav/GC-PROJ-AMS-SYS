@@ -1,0 +1,153 @@
+Mon Jul 01 21:07:37 IST 2019
+=========================================================================Jul 01, 2019 9:07:37 PM org.springframework.context.support.ClassPathXmlApplicationContext prepareRefresh
+INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@2a3046da: startup date [Mon Jul 01 21:07:37 IST 2019]; root of context hierarchy
+Jul 01, 2019 9:07:37 PM org.springframework.beans.factory.xml.XmlBeanDefinitionReader loadBeanDefinitions
+INFO: Loading XML bean definitions from class path resource [com/attendance/xml/Application.xml]
+Jul 01, 2019 9:07:38 PM org.springframework.jdbc.datasource.DriverManagerDataSource setDriverClassName
+INFO: Loaded JDBC driver: com.mysql.cj.jdbc.Driver
+Jul 01, 2019 9:07:38 PM org.hibernate.annotations.common.reflection.java.JavaReflectionManager <clinit>
+INFO: HCANN000001: Hibernate Commons Annotations {4.0.5.Final}
+Jul 01, 2019 9:07:38 PM org.hibernate.Version logVersion
+INFO: HHH000412: Hibernate Core {4.3.9.Final}
+Jul 01, 2019 9:07:38 PM org.hibernate.cfg.Environment <clinit>
+INFO: HHH000206: hibernate.properties not found
+Jul 01, 2019 9:07:38 PM org.hibernate.cfg.Environment buildBytecodeProvider
+INFO: HHH000021: Bytecode provider name : javassist
+Jul 01, 2019 9:07:38 PM org.hibernate.dialect.Dialect <init>
+INFO: HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+Jul 01, 2019 9:07:38 PM org.hibernate.engine.transaction.internal.TransactionFactoryInitiator initiateService
+INFO: HHH000399: Using default transaction strategy (direct JDBC transactions)
+Jul 01, 2019 9:07:38 PM org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory <init>
+INFO: HHH000397: Using ASTQueryTranslatorFactory
+Jul 01, 2019 9:07:39 PM org.hibernate.tool.hbm2ddl.SchemaUpdate execute
+INFO: HHH000228: Running hbm2ddl schema update
+Jul 01, 2019 9:07:39 PM org.hibernate.tool.hbm2ddl.SchemaUpdate execute
+INFO: HHH000102: Fetching database metadata
+Jul 01, 2019 9:07:39 PM org.hibernate.tool.hbm2ddl.SchemaUpdate execute
+INFO: HHH000396: Updating schema
+Jul 01, 2019 9:07:39 PM org.hibernate.tool.hbm2ddl.TableMetadata <init>
+INFO: HHH000261: Table found: attendance.loginuser
+Jul 01, 2019 9:07:39 PM org.hibernate.tool.hbm2ddl.TableMetadata <init>
+INFO: HHH000037: Columns: [password, contact, name, id, type, email, username]
+Jul 01, 2019 9:07:39 PM org.hibernate.tool.hbm2ddl.TableMetadata <init>
+INFO: HHH000108: Foreign keys: []
+Jul 01, 2019 9:07:39 PM org.hibernate.tool.hbm2ddl.TableMetadata <init>
+INFO: HHH000126: Indexes: [primary]
+Jul 01, 2019 9:07:39 PM org.hibernate.tool.hbm2ddl.TableMetadata <init>
+INFO: HHH000261: Table found: attendance.student
+Jul 01, 2019 9:07:39 PM org.hibernate.tool.hbm2ddl.TableMetadata <init>
+INFO: HHH000037: Columns: [gender, year, contact, name, rollno, semester, id]
+Jul 01, 2019 9:07:39 PM org.hibernate.tool.hbm2ddl.TableMetadata <init>
+INFO: HHH000108: Foreign keys: []
+Jul 01, 2019 9:07:39 PM org.hibernate.tool.hbm2ddl.TableMetadata <init>
+INFO: HHH000126: Indexes: [primary]
+Jul 01, 2019 9:07:39 PM org.hibernate.tool.hbm2ddl.TableMetadata <init>
+INFO: HHH000261: Table found: attendance.loginactivity
+Jul 01, 2019 9:07:39 PM org.hibernate.tool.hbm2ddl.TableMetadata <init>
+INFO: HHH000037: Columns: [logintime, logouttime, name, usertype, logindate, id, username, status]
+Jul 01, 2019 9:07:39 PM org.hibernate.tool.hbm2ddl.TableMetadata <init>
+INFO: HHH000108: Foreign keys: []
+Jul 01, 2019 9:07:39 PM org.hibernate.tool.hbm2ddl.TableMetadata <init>
+INFO: HHH000126: Indexes: [primary]
+Jul 01, 2019 9:07:39 PM org.hibernate.tool.hbm2ddl.SchemaUpdate execute
+INFO: HHH000232: Schema update complete
+Jul 01, 2019 9:07:39 PM org.springframework.orm.hibernate4.HibernateTransactionManager afterPropertiesSet
+INFO: Using DataSource [org.springframework.jdbc.datasource.DriverManagerDataSource@1af146] of Hibernate SessionFactory for HibernateTransactionManager
+Mon Jul 01 21:07:59 IST 2019
+=========================================================================Jul 01, 2019 9:07:59 PM org.springframework.context.support.ClassPathXmlApplicationContext prepareRefresh
+INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@2a3046da: startup date [Mon Jul 01 21:07:59 IST 2019]; root of context hierarchy
+Jul 01, 2019 9:07:59 PM org.springframework.beans.factory.xml.XmlBeanDefinitionReader loadBeanDefinitions
+INFO: Loading XML bean definitions from class path resource [com/attendance/xml/Application.xml]
+Jul 01, 2019 9:07:59 PM org.springframework.jdbc.datasource.DriverManagerDataSource setDriverClassName
+INFO: Loaded JDBC driver: com.mysql.cj.jdbc.Driver
+Jul 01, 2019 9:07:59 PM org.hibernate.annotations.common.reflection.java.JavaReflectionManager <clinit>
+INFO: HCANN000001: Hibernate Commons Annotations {4.0.5.Final}
+Jul 01, 2019 9:07:59 PM org.hibernate.Version logVersion
+INFO: HHH000412: Hibernate Core {4.3.9.Final}
+Jul 01, 2019 9:07:59 PM org.hibernate.cfg.Environment <clinit>
+INFO: HHH000206: hibernate.properties not found
+Jul 01, 2019 9:07:59 PM org.hibernate.cfg.Environment buildBytecodeProvider
+INFO: HHH000021: Bytecode provider name : javassist
+Jul 01, 2019 9:08:00 PM org.hibernate.dialect.Dialect <init>
+INFO: HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+Jul 01, 2019 9:08:00 PM org.hibernate.engine.transaction.internal.TransactionFactoryInitiator initiateService
+INFO: HHH000399: Using default transaction strategy (direct JDBC transactions)
+Jul 01, 2019 9:08:00 PM org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory <init>
+INFO: HHH000397: Using ASTQueryTranslatorFactory
+Jul 01, 2019 9:08:00 PM org.hibernate.tool.hbm2ddl.SchemaUpdate execute
+INFO: HHH000228: Running hbm2ddl schema update
+Jul 01, 2019 9:08:00 PM org.hibernate.tool.hbm2ddl.SchemaUpdate execute
+INFO: HHH000102: Fetching database metadata
+Jul 01, 2019 9:08:00 PM org.hibernate.tool.hbm2ddl.SchemaUpdate execute
+INFO: HHH000396: Updating schema
+Jul 01, 2019 9:08:00 PM org.hibernate.tool.hbm2ddl.TableMetadata <init>
+INFO: HHH000261: Table found: attendance.loginuser
+Jul 01, 2019 9:08:00 PM org.hibernate.tool.hbm2ddl.TableMetadata <init>
+INFO: HHH000037: Columns: [password, contact, name, id, type, email, username]
+Jul 01, 2019 9:08:00 PM org.hibernate.tool.hbm2ddl.TableMetadata <init>
+INFO: HHH000108: Foreign keys: []
+Jul 01, 2019 9:08:00 PM org.hibernate.tool.hbm2ddl.TableMetadata <init>
+INFO: HHH000126: Indexes: [primary]
+Jul 01, 2019 9:08:00 PM org.hibernate.tool.hbm2ddl.TableMetadata <init>
+INFO: HHH000261: Table found: attendance.student
+Jul 01, 2019 9:08:00 PM org.hibernate.tool.hbm2ddl.TableMetadata <init>
+INFO: HHH000037: Columns: [gender, year, contact, name, rollno, semester, id]
+Jul 01, 2019 9:08:00 PM org.hibernate.tool.hbm2ddl.TableMetadata <init>
+INFO: HHH000108: Foreign keys: []
+Jul 01, 2019 9:08:00 PM org.hibernate.tool.hbm2ddl.TableMetadata <init>
+INFO: HHH000126: Indexes: [primary]
+Jul 01, 2019 9:08:00 PM org.hibernate.tool.hbm2ddl.TableMetadata <init>
+INFO: HHH000261: Table found: attendance.loginactivity
+Jul 01, 2019 9:08:00 PM org.hibernate.tool.hbm2ddl.TableMetadata <init>
+INFO: HHH000037: Columns: [logintime, logouttime, name, usertype, logindate, id, username, status]
+Jul 01, 2019 9:08:00 PM org.hibernate.tool.hbm2ddl.TableMetadata <init>
+INFO: HHH000108: Foreign keys: []
+Jul 01, 2019 9:08:00 PM org.hibernate.tool.hbm2ddl.TableMetadata <init>
+INFO: HHH000126: Indexes: [primary]
+Jul 01, 2019 9:08:00 PM org.hibernate.tool.hbm2ddl.SchemaUpdate execute
+INFO: HHH000232: Schema update complete
+Jul 01, 2019 9:08:00 PM org.springframework.orm.hibernate4.HibernateTransactionManager afterPropertiesSet
+INFO: Using DataSource [org.springframework.jdbc.datasource.DriverManagerDataSource@1af146] of Hibernate SessionFactory for HibernateTransactionManager
+Hibernate: 
+    insert 
+    into
+        loginactivity
+        (name, username, usertype, status, logindate, logintime, logouttime) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    select
+        this_.id as id1_2_0_,
+        this_.name as name2_2_0_,
+        this_.username as username3_2_0_,
+        this_.usertype as usertype4_2_0_,
+        this_.status as status5_2_0_,
+        this_.logindate as logindat6_2_0_,
+        this_.logintime as logintim7_2_0_,
+        this_.logouttime as logoutti8_2_0_ 
+    from
+        loginactivity this_
+Hibernate: 
+    select
+        this_.id as id1_1_0_,
+        this_.rollno as rollno2_1_0_,
+        this_.name as name3_1_0_,
+        this_.year as year4_1_0_,
+        this_.contact as contact5_1_0_,
+        this_.semester as semester6_1_0_,
+        this_.gender as gender7_1_0_ 
+    from
+        attendance.student this_
+Hibernate: 
+    update
+        loginactivity 
+    set
+        name=?,
+        username=?,
+        usertype=?,
+        status=?,
+        logindate=?,
+        logintime=?,
+        logouttime=? 
+    where
+        id=?

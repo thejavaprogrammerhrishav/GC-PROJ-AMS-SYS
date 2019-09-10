@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" stylesheets="@../../resources/subsettings.css" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane prefHeight="89.0" prefWidth="367.0" style="-fx-background-color: #262627;">
+         <children>
+            <ImageView fitHeight="63.0" fitWidth="58.0" layoutX="21.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../resources/LogoMakr_1wJdNX.png" />
+               </image>
+            </ImageView>
+            <Label alignment="CENTER" layoutX="85.0" layoutY="13.0" prefHeight="63.0" prefWidth="261.0" text="Attendance Management System" textFill="WHITE" wrapText="true">
+               <font>
+                  <Font name="Segoe UI" size="23.0" />
+               </font>
+               <padding>
+                  <Insets left="15.0" right="15.0" />
+               </padding>
+            </Label>
+         </children>
+      </AnchorPane>
+      <BorderPane fx:id="pane" layoutY="89.0" prefHeight="679.0" prefWidth="1366.0" style="-fx-background-color: #0F0F0F;">
+         <top>
+            <AnchorPane prefHeight="72.0" prefWidth="1366.0" style="-fx-background-color: #050300;" BorderPane.alignment="CENTER">
+               <children>
+                  <JFXButton fx:id="semester1" buttonType="RAISED" graphicTextGap="20.0" layoutX="39.0" layoutY="16.0" prefHeight="40.0" prefWidth="190.0" ripplerFill="BLACK" style="-fx-alignment: center_left;" styleClass="node" text="1st Year" textFill="WHITE">
+                     <font>
+                        <Font name="Segoe UI" size="16.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="GROUP" size="1.7em" />
+                     </graphic>
+                     <padding>
+                        <Insets left="25.0" />
+                     </padding>
+                  </JFXButton>
+                  <JFXButton fx:id="semester2" buttonType="RAISED" graphicTextGap="20.0" layoutX="246.0" layoutY="16.0" prefHeight="40.0" prefWidth="190.0" ripplerFill="BLACK" style="-fx-alignment: center_left;" styleClass="node" text="2nd Year" textFill="WHITE">
+                     <font>
+                        <Font name="Segoe UI" size="16.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="GROUP" size="1.7em" />
+                     </graphic>
+                     <padding>
+                        <Insets left="25.0" />
+                     </padding>
+                  </JFXButton>
+                  <JFXButton fx:id="semester3" buttonType="RAISED" graphicTextGap="20.0" layoutX="454.0" layoutY="16.0" prefHeight="40.0" prefWidth="190.0" ripplerFill="BLACK" style="-fx-alignment: center_left;" styleClass="node" text="3rd Year" textFill="WHITE">
+                     <font>
+                        <Font name="Segoe UI" size="16.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="GROUP" size="1.7em" />
+                     </graphic>
+                     <padding>
+                        <Insets left="25.0" />
+                     </padding>
+                  </JFXButton>
+                  <JFXButton fx:id="close" buttonType="RAISED" graphicTextGap="20.0" layoutX="1164.0" layoutY="16.0" prefHeight="40.0" prefWidth="190.0" ripplerFill="BLACK" style="-fx-alignment: center_left;" styleClass="node" text="Close" textFill="WHITE">
+                     <font>
+                        <Font name="Segoe UI" size="16.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="CLOSE" size="1.7em" />
+                     </graphic>
+                     <padding>
+                        <Insets left="25.0" />
+                     </padding>
+                  </JFXButton>
+               </children>
+            </AnchorPane>
+         </top>
+      </BorderPane>
+      <AnchorPane layoutX="367.0" prefHeight="89.0" prefWidth="999.0" style="-fx-background-color: #050300;">
+         <children>
+            <ImageView fitHeight="50.0" fitWidth="80.0" layoutX="54.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../resources/student.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="128.0" layoutY="24.0" prefHeight="42.0" prefWidth="246.0" text="Delete Student Details" textFill="WHITE">
+               <font>
+                  <Font name="Segoe UI" size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="department" layoutX="729.0" layoutY="25.0" prefHeight="42.0" prefWidth="246.0" text="Delete Student Details" textFill="WHITE">
+               <font>
+                  <Font name="Segoe UI" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</fx:root>

@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" stylesheets="@../../resources/fdstyle.css" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane prefHeight="768.0" prefWidth="274.0" style="-fx-background-color: #242336;">
+         <children>
+            <AnchorPane prefHeight="97.0" prefWidth="298.0" style="-fx-background-color: #171745;">
+               <children>
+                  <Label layoutX="16.0" layoutY="53.0" prefHeight="33.0" prefWidth="265.0" text="Attendance Managment System" textFill="WHITE">
+                     <font>
+                        <Font name="Tw Cen MT" size="21.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="41.0" fitWidth="55.0" layoutX="129.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../resources/LogoMakr_1wJdNX.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <Label layoutX="25.0" layoutY="131.0" prefHeight="32.0" prefWidth="124.0" text="Student Section" textFill="#675c72">
+               <font>
+                  <Font name="Calibri" size="18.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="registernewstudent" buttonType="RAISED" graphicTextGap="15.0" layoutX="29.0" layoutY="182.0" prefHeight="35.0" prefWidth="230.0" ripplerFill="#121325" styleClass="node" text="Register New Student" textFill="WHITE">
+               <font>
+                  <Font name="Calibri" size="18.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView glyphName="USER_PLUS" size="18" />
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="updatestudent" buttonType="RAISED" graphicTextGap="15.0" layoutX="29.0" layoutY="234.0" prefHeight="35.0" prefWidth="230.0" ripplerFill="#121325" styleClass="node" text="Update Student Details" textFill="WHITE">
+               <font>
+                  <Font name="Calibri" size="18.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView glyphName="EDIT" size="18" />
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="viewstudentdetails" buttonType="RAISED" graphicTextGap="15.0" layoutX="29.0" layoutY="287.0" prefHeight="35.0" prefWidth="230.0" ripplerFill="#121325" styleClass="node" text="View Student Details" textFill="WHITE">
+               <font>
+                  <Font name="Calibri" size="18.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView glyphName="EYE" size="18" />
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="logout" buttonType="RAISED" graphicTextGap="15.0" layoutX="29.0" layoutY="702.0" prefHeight="37.0" prefWidth="230.0" ripplerFill="#121325" styleClass="node" text="Log Out" textFill="WHITE">
+               <font>
+                  <Font name="Calibri" size="18.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView glyphName="POWER_OFF" size="18" />
+               </graphic>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="298.0" layoutY="-1.0" prefHeight="49.0" prefWidth="1069.0" style="-fx-background-color: #2f2969;">
+         <children>
+            <Label layoutX="29.0" layoutY="9.0" prefHeight="32.0" prefWidth="242.0" text="Faculty Dashboard" textFill="WHITE">
+               <font>
+                  <Font name="Century Gothic" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="userlabel" alignment="CENTER_RIGHT" layoutX="677.0" layoutY="13.0" prefHeight="23.0" prefWidth="380.0" text="Welcome   @User" textFill="WHITE">
+               <font>
+                  <Font name="Century Gothic" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="298.0" layoutY="96.0" prefHeight="672.0" prefWidth="1069.0" style="-fx-background-color: #171745;">
+         <children>
+            <AnchorPane layoutX="30.0" layoutY="101.0" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(#47d283 0%,#56ab2f 100%);">
+               <children>
+                  <Label fx:id="sem1" alignment="CENTER" layoutY="70.0" prefHeight="55.0" prefWidth="200.0" text="36209" textFill="WHITE">
+                     <font>
+                        <Font name="Consolas" size="23.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </Label>
+                  <Label alignment="CENTER" layoutY="23.0" prefWidth="200.0" text="1st Year" textFill="#ffffffc6">
+                     <font>
+                        <Font name="Segoe UI" size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="252.0" layoutY="101.0" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(#0a73c2 0%,#032b4c 100% );">
+               <children>
+                  <Label fx:id="sem2" alignment="CENTER" layoutY="70.0" prefHeight="55.0" prefWidth="200.0" text="36209" textFill="WHITE">
+                     <font>
+                        <Font name="Consolas" size="23.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </Label>
+                  <Label alignment="CENTER" layoutY="21.0" prefWidth="200.0" text="2nd year" textFill="#ffffff91">
+                     <font>
+                        <Font name="Segoe UI" size="24.0" />
+                     </font>
+                  </Label>
+               </children></AnchorPane>
+            <AnchorPane layoutX="474.0" layoutY="101.0" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(#8633d6 0%,#1c88f1 100%);">
+               <children>
+                  <Label fx:id="sem3" alignment="CENTER" layoutY="70.0" prefHeight="55.0" prefWidth="200.0" text="36209" textFill="WHITE">
+                     <font>
+                        <Font name="Consolas" size="23.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </Label>
+                  <Label alignment="CENTER" layoutY="23.0" prefWidth="200.0" text="3rd Year" textFill="#ffffff91">
+                     <font>
+                        <Font name="Segoe UI" size="24.0" />
+                     </font>
+                  </Label>
+               </children></AnchorPane>
+            <Label layoutX="44.0" layoutY="37.0" prefHeight="32.0" prefWidth="287.0" text="Total Year Wise Enrollment" textFill="#615f8d">
+               <font>
+                  <Font name="Century Gothic" size="18.0" />
+               </font>
+            </Label>
+            <JFXComboBox fx:id="acadamicyear" focusColor="WHITE" layoutX="377.0" layoutY="41.0" prefHeight="29.0" prefWidth="230.0" promptText="Select Year" style="-fx-font-family: 'Century Gothic', arial; -fx-font-size: 15; -fx-prompt-text-fill: #615f8d;" styleClass="combo" unFocusColor="#615f8d" />
+            <JFXButton fx:id="refresh" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" graphicTextGap="15.0" layoutX="622.0" layoutY="36.0" prefHeight="35.0" prefWidth="31.0" styleClass="node" textFill="WHITE">
+               <font>
+                  <Font name="Calibri" size="17.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView glyphName="REFRESH" size="18" />
+               </graphic>
+            </JFXButton>
+            <Label layoutX="692.0" layoutY="38.0" prefHeight="32.0" prefWidth="329.0" text="Server Status" textFill="#615f8d">
+               <font>
+                  <Font name="Century Gothic" size="18.0" />
+               </font>
+               <padding>
+                  <Insets left="15.0" />
+               </padding>
+            </Label>
+            <AnchorPane layoutX="692.0" layoutY="101.0" prefHeight="150.0" prefWidth="362.0" style="-fx-background-color: rgba(28,136,241,0.4);">
+               <children>
+                  <Label layoutX="15.0" layoutY="23.0" text="Server Product" textFill="WHITE">
+                     <font>
+                        <Font name="Calibri" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="15.0" layoutY="63.0" text="Server Username" textFill="WHITE">
+                     <font>
+                        <Font name="Calibri" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="15.0" layoutY="103.0" text="Status" textFill="WHITE">
+                     <font>
+                        <Font name="Calibri" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="serverproduct" layoutX="172.0" layoutY="23.0" prefHeight="22.0" prefWidth="190.0" text="Server Product" textFill="WHITE">
+                     <font>
+                        <Font name="Calibri" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="serverusername" layoutX="172.0" layoutY="65.0" prefHeight="22.0" prefWidth="190.0" text="MySQL Connector/J" textFill="WHITE">
+                     <font>
+                        <Font name="Calibri" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="serverstatus" layoutX="163.0" layoutY="98.0" prefHeight="22.0" prefWidth="185.0" style="-fx-background-color: forestgreen;" text="Connected" textFill="WHITE">
+                     <font>
+                        <Font name="Calibri" size="18.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="5.0" left="8.0" right="8.0" top="5.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <Label layoutX="692.0" layoutY="290.0" prefHeight="32.0" prefWidth="287.0" text="Faculty Section" textFill="#615f8d">
+               <font>
+                  <Font name="Century Gothic" size="18.0" />
+               </font>
+               <padding>
+                  <Insets left="15.0" />
+               </padding>
+            </Label>
+            <JFXButton fx:id="viewfacultydetails" buttonType="RAISED" layoutX="716.0" layoutY="350.0" prefHeight="25.0" prefWidth="314.0" ripplerFill="BLACK" style="-fx-background-color: navy;" text="View Faculty Details" textFill="WHITE">
+               <font>
+                  <Font name="Tw Cen MT" size="20.0" />
+               </font>
+            </JFXButton>
+            <AnchorPane layoutX="30.0" layoutY="273.0" prefHeight="166.0" prefWidth="644.0" style="-fx-background-color: linear-gradient(#cc2b5e  0%, #753a88 100%);">
+               <children>
+                  <Label alignment="CENTER" layoutY="17.0" prefHeight="41.0" prefWidth="644.0" text="Notes, Materials, Question Papers, etc..." textFill="WHITE">
+                     <font>
+                        <Font name="Century Gothic" size="22.0" />
+                     </font>
+                  </Label>
+                  <JFXButton fx:id="uploadnotes" buttonType="RAISED" layoutX="36.0" layoutY="91.0" prefHeight="37.0" prefWidth="250.0" ripplerFill="BLACK" style="-fx-background-color: red;" text="Upload Notes" textFill="WHITE">
+                     <font>
+                        <Font name="Tw Cen MT" size="20.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton fx:id="downloadnotes" buttonType="RAISED" layoutX="350.0" layoutY="91.0" prefHeight="37.0" prefWidth="250.0" ripplerFill="BLACK" style="-fx-background-color: forestgreen;" text="Download Notes" textFill="WHITE">
+                     <font>
+                        <Font name="Tw Cen MT" size="20.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+            </AnchorPane>
+            <Label layoutX="692.0" layoutY="480.0" prefHeight="32.0" prefWidth="287.0" text="Attendance Section" textFill="#615f8d">
+               <font>
+                  <Font name="Century Gothic" size="18.0" />
+               </font>
+               <padding>
+                  <Insets left="15.0" />
+               </padding>
+            </Label>
+            <JFXButton fx:id="studentattendance" buttonType="RAISED" layoutX="716.0" layoutY="540.0" prefHeight="25.0" prefWidth="314.0" ripplerFill="BLACK" style="-fx-background-color: #31ae1f;" text="Student Attendance" textFill="WHITE">
+               <font>
+                  <Font name="Tw Cen MT" size="20.0" />
+               </font>
+            </JFXButton>
+            <AnchorPane layoutX="30.0" layoutY="461.0" prefHeight="166.0" prefWidth="644.0" style="-fx-background-color: linear-gradient(#cc2b5e  0%, #753a88 100%);">
+               <children>
+                  <Label alignment="CENTER" layoutY="17.0" prefHeight="41.0" prefWidth="644.0" text="Unit Test" textFill="WHITE">
+                     <font>
+                        <Font name="Century Gothic" size="22.0" />
+                     </font>
+                  </Label>
+                  <JFXButton fx:id="uploadnotes1" buttonType="RAISED" layoutX="36.0" layoutY="91.0" prefHeight="37.0" prefWidth="250.0" ripplerFill="BLACK" style="-fx-background-color: red;" text="Upload Unit Test Marks" textFill="WHITE">
+                     <font>
+                        <Font name="Tw Cen MT" size="20.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton fx:id="downloadnotes1" buttonType="RAISED" layoutX="350.0" layoutY="91.0" prefHeight="37.0" prefWidth="250.0" ripplerFill="BLACK" style="-fx-background-color: forestgreen;" text="Unit Test Report" textFill="WHITE">
+                     <font>
+                        <Font name="Tw Cen MT" size="20.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+            </AnchorPane>
+         </children></AnchorPane>
+      <AnchorPane layoutX="298.0" layoutY="48.0" prefHeight="49.0" prefWidth="1069.0" style="-fx-background-color: #064e85;">
+         <children>
+            <Label fx:id="date" layoutX="28.0" layoutY="16.0" text="Thrusday, 29 september 2019" textFill="WHITE">
+               <font>
+                  <Font name="Century Gothic" size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="time" layoutX="936.0" layoutY="15.0" text="12 : 00 :05 AM" textFill="WHITE">
+               <font>
+                  <Font name="Century Gothic" size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</fx:root>

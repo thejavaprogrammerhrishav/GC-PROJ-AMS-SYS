@@ -1,0 +1,45 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jun 28, 2019, 3:00:44 PM
+    Author     : Programmer Hrishav
+*/
+
+.vbox{
+	-fx-background-color:  #191947;
+}
+
+.scroll-pane,
+.scroll-pane >.viewport,
+.scroll-pane >.corner,
+.scroll-pane >.scroll-bar:vertical .track-background,
+.scroll-pane >.scroll-bar:vertical .track,
+.scroll-pane> .scroll-bar:vertical .increment-button,
+.scroll-pane> .scroll-bar:vertical .decrement-button,
+.scroll-pane> .scroll-bar:vertical .increment-button .increment-arrow,
+.scroll-pane> .scroll-bar:vertical .decrement-button .decrement-arrow,
+.scroll-pane> .scroll-bar:horizontal .track-background,
+.scroll-pane> .scroll-bar:horizontal .track,
+.scroll-pane> .scroll-bar:horizontal .increment-button,
+.scroll-pane> .scroll-bar:horizontal .decrement-button,
+.scroll-pane> .scroll-bar:horizontal .increment-button .increment-arrow,
+.scroll-pane> .scroll-bar:horizontal .decrement-button .decrement-arrow{
+	-fx-background-color:   #191947;
+	-fx-border-color: transparent;
+}
+
+.scroll-pane> .scroll-bar:vertical .thumb,
+.scroll-pane> .scroll-bar:horizontal .thumb{
+    -fx-background-color:  #272262;
+    -fx-pref-width: 10px;
+	-fx-border-color: transparent;
+}
+
+.time > .time-picker-display-node{
+	-fx-prompt-text-fill: #fff;
+	-fx-text-fill: #fff;
+	-jfx-unfocus-color: #fff;
+}

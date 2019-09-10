@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.attendance.studentattendance.model.ClassDetails" table="classdetails" catalog="attendance">
+        <id column="classId" name="classId"/>
+        <property column="facultyname" name="facultyName" not-null="true"/>
+        <property column="subjecttaught" name="subjectTaught" not-null="true"/>
+        <property column="classdate" name="date" not-null="true"/>
+        <property column="classtime" name="time" not-null="true"/>
+        <property column="semester" name="semester" not-null="true"/>
+        <property column="acadamicyear" name="acadamicyear" not-null="true"/>
+        <property column="year" name="year" not-null="true"/>
+        <property column="papercode" name="paper" not-null="true"/>
+        <property column="department" name="department" not-null="true"/>
+        <property column="coursetype" name="coursetype" not-null="true"/>
+    </class>
+</hibernate-mapping>
+

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="678.0" prefWidth="1000.0" style="-fx-background-color: linear-gradient(#232323 0%, #493939 50%,#232323 100%);" stylesheets="@../../resources/combo.css" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="46.0" layoutY="147.0" text="Paper Code" textFill="WHITE">
+         <font>
+            <Font name="Tw Cen MT" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="46.0" layoutY="220.0" text="Paper Name" textFill="WHITE">
+         <font>
+            <Font name="Tw Cen MT" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="46.0" layoutY="288.0" text="Semester" textFill="WHITE">
+         <font>
+            <Font name="Tw Cen MT" size="20.0" />
+         </font>
+      </Label>
+      <TextField fx:id="papercode" layoutX="199.0" layoutY="144.0" promptText="Enter Paper Code">
+         <font>
+            <Font name="Tw Cen MT" size="16.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="papername" layoutX="199.0" layoutY="217.0" prefHeight="30.0" prefWidth="446.0" promptText="Enter Paper Name">
+         <font>
+            <Font name="Tw Cen MT" size="16.0" />
+         </font>
+      </TextField>
+      <JFXComboBox fx:id="semester" layoutX="199.0" layoutY="285.0" prefHeight="30.0" prefWidth="212.0" promptText="Select Semester" style="-fx-prompt-text-fill: #fff; -fx-font-family: 'Tw Cen MT',arial; -fx-font-size: 16;" unFocusColor="WHITE" />
+      <JFXButton fx:id="savepaper" buttonType="RAISED" layoutX="44.0" layoutY="608.0" prefHeight="33.0" prefWidth="151.0" ripplerFill="BLACK" style="-fx-background-color: forestgreen;" text="Save Paper" textFill="WHITE">
+         <font>
+            <Font name="Tw Cen MT" size="18.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="cancel" buttonType="RAISED" layoutX="236.0" layoutY="608.0" prefHeight="33.0" prefWidth="151.0" ripplerFill="BLACK" style="-fx-background-color: #780052;" text="Cancel" textFill="WHITE">
+         <font>
+            <Font name="Tw Cen MT" size="18.0" />
+         </font>
+      </JFXButton>
+      <Label layoutX="46.0" layoutY="38.0" text="Add New Paper" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI" size="35.0" />
+         </font>
+      </Label>
+      <Label layoutX="44.0" layoutY="353.0" text="Department" textFill="WHITE">
+         <font>
+            <Font name="Tw Cen MT" size="20.0" />
+         </font>
+      </Label>
+      <JFXComboBox fx:id="department" layoutX="197.0" layoutY="350.0" prefHeight="30.0" prefWidth="212.0" promptText="Select Department" style="-fx-prompt-text-fill: #fff; -fx-font-family: 'Tw Cen MT',arial; -fx-font-size: 16;" unFocusColor="WHITE" />
+      <Label layoutX="44.0" layoutY="412.0" text="Course Type" textFill="WHITE">
+         <font>
+            <Font name="Tw Cen MT" size="20.0" />
+         </font>
+      </Label>
+      <JFXComboBox fx:id="coursetype" layoutX="197.0" layoutY="409.0" prefHeight="30.0" prefWidth="212.0" promptText="Select Course Type" style="-fx-prompt-text-fill: #fff; -fx-font-family: 'Tw Cen MT',arial; -fx-font-size: 16;" unFocusColor="WHITE" />
+   </children>
+</fx:root>

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="678.0" prefWidth="1000.0" style="-fx-background-color: #292222;" stylesheets="@../../resources/newreport.css" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane layoutY="-5.0" prefHeight="76.0" prefWidth="1000.0" style="-fx-background-color: rgba(00,0,0,0.6);">
+         <children>
+            <Label layoutX="21.0" layoutY="23.0" text="Delete Faculty Details" textFill="WHITE">
+               <font>
+                  <Font name="Century Gothic" size="27.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <AnchorPane layoutY="69.0" prefHeight="82.0" prefWidth="1000.0" style="-fx-background-color: #292222;">
+         <children>
+            <Label layoutX="23.0" layoutY="32.0" text="Search Faculty Here :" textFill="WHITE">
+               <font>
+                  <Font name="Segoe UI" size="16.0" />
+               </font>
+            </Label>
+            <TextField fx:id="searchfaculty" layoutX="206.0" layoutY="26.0" prefHeight="31.0" prefWidth="265.0" promptText="Enter Faculty Id">
+               <font>
+                  <Font name="Segoe UI" size="14.0" />
+               </font>
+            </TextField>
+            <JFXButton fx:id="search" buttonType="RAISED" layoutX="518.0" layoutY="25.0" prefHeight="33.0" prefWidth="136.0" ripplerFill="BLACK" style="-fx-background-color: #1d890d;" text="Search" textFill="WHITE">
+               <font>
+                  <Font name="Tw Cen MT" size="16.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="clear" buttonType="RAISED" layoutX="682.0" layoutY="25.0" prefHeight="33.0" prefWidth="116.0" ripplerFill="BLACK" style="-fx-background-color: #720056;" text="Clear" textFill="WHITE">
+               <font>
+                  <Font name="Tw Cen MT" size="16.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="refresh" buttonType="RAISED" layoutX="825.0" layoutY="25.0" prefHeight="33.0" prefWidth="116.0" ripplerFill="BLACK" style="-fx-background-color: blue;" text="Refresh" textFill="WHITE">
+               <font>
+                  <Font name="Tw Cen MT" size="18.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutY="151.0" prefHeight="529.0" prefWidth="1000.0" style="-fx-background-color: #292222;">
+         <children>
+            <Label alignment="CENTER" layoutX="513.0" layoutY="33.0" prefHeight="45.0" prefWidth="462.0" text="Faculty Details" textFill="WHITE">
+               <font>
+                  <Font name="Tw Cen MT" size="40.0" />
+               </font>
+            </Label>
+            <TableView fx:id="table" layoutX="19.0" layoutY="24.0" prefHeight="494.0" prefWidth="468.0" styleClass="mytable">
+              <columns>
+                <TableColumn fx:id="name" editable="false" prefWidth="280.0" sortable="false" text="Faculty Name" />
+                  <TableColumn fx:id="contact" editable="false" prefWidth="184.0" sortable="false" text="Contact" />
+              </columns>
+            </TableView>
+            <Text layoutX="861.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+            <Label layoutX="513.0" layoutY="98.0" text="Faculty Name" textFill="WHITE">
+               <font>
+                  <Font name="Tw Cen MT" size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="fname" editable="false" layoutX="513.0" layoutY="128.0" prefHeight="32.0" prefWidth="308.0" promptText="Faculty's Name">
+               <font>
+                  <Font name="Segoe UI" size="14.0" />
+               </font>
+            </TextField>
+            <Label layoutX="513.0" layoutY="176.0" text="Email Id" textFill="WHITE">
+               <font>
+                  <Font name="Tw Cen MT" size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="femail" editable="false" layoutX="513.0" layoutY="210.0" prefHeight="32.0" prefWidth="453.0" promptText=" Faculty's Email Address">
+               <font>
+                  <Font name="Segoe UI" size="14.0" />
+               </font>
+            </TextField>
+            <Label layoutX="513.0" layoutY="264.0" text="Contact" textFill="WHITE">
+               <font>
+                  <Font name="Tw Cen MT" size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="fcontact" editable="false" layoutX="513.0" layoutY="297.0" prefHeight="32.0" prefWidth="206.0" promptText="Contact Number">
+               <font>
+                  <Font name="Segoe UI" size="14.0" />
+               </font>
+            </TextField>
+            <Label layoutX="771.0" layoutY="267.0" text="Gender" textFill="WHITE">
+               <font>
+                  <Font name="Tw Cen MT" size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="fgender" editable="false" layoutX="768.0" layoutY="298.0" prefHeight="32.0" prefWidth="194.0" promptText="Gender">
+               <font>
+                  <Font name="Segoe UI" size="14.0" />
+               </font>
+            </TextField>
+            <JFXButton fx:id="deletefaculty" buttonType="RAISED" layoutX="512.0" layoutY="468.0" prefHeight="30.0" prefWidth="206.0" ripplerFill="BLACK" style="-fx-background-color: forestgreen;" text="Delete Faculty" textFill="WHITE">
+               <font>
+                  <Font name="Tw Cen MT" size="16.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="cancel" buttonType="RAISED" layoutX="745.0" layoutY="468.0" prefHeight="30.0" prefWidth="136.0" ripplerFill="BLACK" style="-fx-background-color: #720056;" text="Cancel" textFill="WHITE">
+               <font>
+                  <Font name="Tw Cen MT" size="16.0" />
+               </font>
+            </JFXButton>
+            <Label layoutX="515.0" layoutY="355.0" text="Department" textFill="WHITE">
+               <font>
+                  <Font name="Tw Cen MT" size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="department" editable="false" layoutX="515.0" layoutY="388.0" prefHeight="32.0" prefWidth="283.0" promptText="Department">
+               <font>
+                  <Font name="Segoe UI" size="14.0" />
+               </font>
+            </TextField>
+         </children>
+      </AnchorPane>
+   </children>
+</fx:root>

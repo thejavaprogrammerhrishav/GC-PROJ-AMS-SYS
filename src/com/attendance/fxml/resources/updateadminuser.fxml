@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import java.lang.String?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<fx:root hbarPolicy="NEVER" prefHeight="678.0" prefWidth="1000.0" styleClass="scroll1" stylesheets="@../../resources/newreport.css" type="ScrollPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+   <content>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="825.0" prefWidth="1000.0" style="-fx-background-color: #292222;">
+         <children>
+            <AnchorPane prefHeight="57.0" prefWidth="1000.0" style="-fx-background-color: rgba(0,0,0,0.15);">
+               <children>
+                  <Label alignment="CENTER" layoutY="7.0" prefHeight="42.0" prefWidth="994.0" text="Update Administrator User" textFill="#fcf3f3">
+                     <font>
+                        <Font name="Century Gothic" size="27.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <JFXTextField fx:id="name" focusColor="#f5f5f5" labelFloat="true" layoutX="40.0" layoutY="264.0" prefHeight="28.0" prefWidth="327.0" promptText="Name" style="-fx-prompt-text-fill: rgba(255,255,255,0.6); -fx-text-fill: #fff;" unFocusColor="WHITE">
+               <font>
+                  <Font name="Segoe UI" size="14.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="email" focusColor="#f5f5f5" labelFloat="true" layoutX="40.0" layoutY="332.0" prefHeight="28.0" prefWidth="395.0" promptText="Email" style="-fx-prompt-text-fill: rgba(255,255,255,0.6); -fx-text-fill: #fff;" unFocusColor="WHITE">
+               <font>
+                  <Font name="Segoe UI" size="14.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="contact" focusColor="#f5f5f5" labelFloat="true" layoutX="40.0" layoutY="400.0" prefHeight="28.0" prefWidth="327.0" promptText="Contact " style="-fx-prompt-text-fill: rgba(255,255,255,0.6); -fx-text-fill: #fff;" unFocusColor="WHITE">
+               <font>
+                  <Font name="Segoe UI" size="14.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="username" focusColor="#f5f5f5" labelFloat="true" layoutX="40.0" layoutY="473.0" prefHeight="28.0" prefWidth="327.0" promptText="Username " style="-fx-prompt-text-fill: rgba(255,255,255,0.6); -fx-text-fill: #fff;" unFocusColor="WHITE">
+               <font>
+                  <Font name="Segoe UI" size="14.0" />
+               </font>
+            </JFXTextField>
+            <TextField fx:id="search" layoutX="43.0" layoutY="80.0" prefHeight="37.0" prefWidth="914.0" promptText="Enter Name or Contact or Username">
+               <font>
+                  <Font name="Tw Cen MT" size="16.0" />
+               </font>
+            </TextField>
+            <JFXButton fx:id="searchbyname" buttonType="RAISED" layoutX="43.0" layoutY="144.0" prefHeight="33.0" prefWidth="142.0" ripplerFill="BLACK" style="-fx-background-color: #ff3aaa;" text="Search By Name" textFill="WHITE">
+               <font>
+                  <Font name="Tw Cen MT" size="17.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="searchbycontact" buttonType="RAISED" layoutX="204.0" layoutY="144.0" prefHeight="33.0" prefWidth="158.0" ripplerFill="BLACK" style="-fx-background-color: forestgreen;" text="Search By Contact" textFill="WHITE">
+               <font>
+                  <Font name="Tw Cen MT" size="17.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="searchbyusername" buttonType="RAISED" layoutX="381.0" layoutY="144.0" prefHeight="33.0" prefWidth="170.0" ripplerFill="BLACK" style="-fx-background-color: blue;" text="Search By Username" textFill="WHITE">
+               <font>
+                  <Font name="Tw Cen MT" size="17.0" />
+               </font>
+            </JFXButton>
+            <JFXCheckBox fx:id="changepassword" layoutX="40.0" layoutY="559.0" text="Change Current Password" textFill="WHITE" unCheckedColor="WHITE">
+               <font>
+                  <Font name="Tw Cen MT" size="18.0" />
+               </font>
+            </JFXCheckBox>
+            <JFXPasswordField fx:id="newpassword" labelFloat="true" layoutX="40.0" layoutY="607.0" prefHeight="37.0" prefWidth="327.0" promptText="New Password " style="-fx-prompt-text-fill: rgba(255,255,255,0.6); -fx-text-fill: #fff;" unFocusColor="WHITE">
+               <font>
+                  <Font name="Segoe UI" size="14.0" />
+               </font>
+            </JFXPasswordField>
+            <JFXPasswordField fx:id="confirmpassword" labelFloat="true" layoutX="408.0" layoutY="607.0" prefHeight="37.0" prefWidth="327.0" promptText="Confirm Password " style="-fx-prompt-text-fill: rgba(255,255,255,0.6); -fx-text-fill: #fff;" unFocusColor="WHITE">
+               <font>
+                  <Font name="Segoe UI" size="14.0" />
+               </font>
+            </JFXPasswordField>
+            <JFXButton fx:id="updateadmin" buttonType="RAISED" layoutX="40.0" layoutY="760.0" prefHeight="37.0" prefWidth="283.0" ripplerFill="BLACK" style="-fx-background-color: blue;" text="Update Administrator User" textFill="WHITE">
+               <font>
+                  <Font name="Tw Cen MT" size="17.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="close" buttonType="RAISED" layoutX="381.0" layoutY="760.0" prefHeight="37.0" prefWidth="131.0" ripplerFill="BLACK" style="-fx-background-color: #7a0190;" text="Close" textFill="WHITE">
+               <font>
+                  <Font name="Tw Cen MT" size="17.0" />
+               </font>
+            </JFXButton>
+            <Label alignment="CENTER" layoutX="3.0" layoutY="215.0" prefHeight="42.0" prefWidth="994.0" text="User Account Details" textFill="#fcf3f3">
+               <font>
+                  <Font name="Segoe UI" size="25.0" />
+               </font>
+            </Label>
+            <TableView fx:id="table" layoutX="544.0" layoutY="271.0" prefHeight="342.0" prefWidth="407.0">
+              <columns>
+                <TableColumn fx:id="nameofuser" editable="false" prefWidth="403.0" resizable="false" sortable="false" text="Name Of User" />
+              </columns>
+               <styleClass>
+                  <String fx:value="mytable" />
+                  <String fx:value="mytablee" />
+               </styleClass>
+            </TableView>
+            <JFXButton fx:id="refresh" buttonType="RAISED" layoutX="723.0" layoutY="144.0" prefHeight="33.0" prefWidth="102.0" ripplerFill="BLACK" style="-fx-background-color: #702563;" text="Refresh" textFill="WHITE">
+               <font>
+                  <Font name="Tw Cen MT" size="17.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="clear" buttonType="RAISED" layoutX="849.0" layoutY="144.0" prefHeight="33.0" prefWidth="102.0" ripplerFill="BLACK" style="-fx-background-color: #107053;" text="Clear" textFill="WHITE">
+               <font>
+                  <Font name="Tw Cen MT" size="17.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+   </content>
+</fx:root>

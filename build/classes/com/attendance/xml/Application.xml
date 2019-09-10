@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+                   
+<beans xmlns="http://www.springframework.org/schema/beans"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"   xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation=" http://www.springframework.org/schema/beans  http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/tx   http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/aop  http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/context   http://www.springframework.org/schema/context/spring-context-3.0.xsd"
+       xmlns:context="http://www.springframework.org/schema/context">
+    
+    <tx:annotation-driven/>
+
+    <context:property-placeholder location="file:db.properties"/> 
+    
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+        <property name="url" value="${db.url}"/>
+        <property name="username" value="hrishav"/>
+        <property name="password" value="hrishav"/>
+    </bean>
+
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="mappingResources">
+            <list>
+                <value>/com/attendance/xml/User.hbm.xml</value>
+                <value>/com/attendance/xml/LoginActivity.hbm.xml</value>
+                <value>/com/attendance/xml/student.hbm.xml</value>
+                <value>/com/attendance/xml/faculty.hbm.xml</value>
+                <value>/com/attendance/xml/Attendance.hbm.xml</value>
+                <value>/com/attendance/xml/DailyStats.hbm.xml</value>
+                <value>/com/attendance/xml/ClassDetails.hbm.xml</value>
+                <value>/com/attendance/xml/paper.hbm.xml</value>
+                <value>/com/attendance/xml/notes.hbm.xml</value>
+                <value>/com/attendance/xml/unittest.hbm.xml</value>
+            </list>
+        </property>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.format_sql">true</prop>
+            </props>
+        </property>
+    </bean>
+    
+    <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    
+    <bean id="hibernateTemplate" class="org.springframework.orm.hibernate4.HibernateTemplate">
+        <property name="sessionFactory" ref="sessionFactory"/>
+        <property name="checkWriteOperations" value="false"/>
+    </bean>
+    
+    <bean id="userlogin" class="com.attendance.login.dao.impl.UserLogin">
+        <property name="hibernateTemplate" ref="hibernateTemplate"/>
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+    </bean>
+       
+    <bean id="loginactivity" class="com.attendance.login.activity.dao.impl.UserLoginActivity">
+        <property name="hibernateTemplate" ref="hibernateTemplate"/>
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>        
+    </bean>
+    
+    <bean id="studentregistration" class="com.attendance.student.dao.impl.StudentDaoImpl">
+        <property name="hibernateTemplate" ref="hibernateTemplate"/>
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>        
+    </bean>
+    
+    <bean id="facultyregistration" class="com.attendance.faculty.dao.impl.FacultyDaoImpl">
+        <property name="hibernateTemplate" ref="hibernateTemplate"/>
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>        
+    </bean>
+    
+    <bean id="attendance" class="com.attendance.studentattendance.dao.impl.AttendanceDaoImpl">
+        <property name="hibernateTemplate" ref="hibernateTemplate"/>
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>        
+    </bean>
+    
+    <bean id="classdetails" class="com.attendance.studentattendance.dao.impl.ClassDetailsDaoImpl">
+        <property name="hibernateTemplate" ref="hibernateTemplate"/>
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>        
+    </bean>
+    
+    <bean id="dailystats" class="com.attendance.studentattendance.dao.impl.DailyStatsDaoImpl">
+        <property name="hibernateTemplate" ref="hibernateTemplate"/>
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>        
+    </bean>
+    
+    <bean id="papers" class="com.attendance.papers.dao.impl.PapersDaoImpl">
+        <property name="hibernateTemplate" ref="hibernateTemplate"/>   
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>  
+    </bean>
+    
+    <bean id="notes" class="com.attendance.notes.dao.impl.NotesDaoImpl">
+        <property name="hibernateTemplate" ref="hibernateTemplate"/>   
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>  
+    </bean>
+    
+    <bean id="unittest" class="com.attendance.marks.dao.impl.UnitTestDaoImpl">
+        <property name="hibernateTemplate" ref="hibernateTemplate"/>   
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>  
+    </bean>
+</beans>
