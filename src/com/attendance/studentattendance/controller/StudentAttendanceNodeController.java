@@ -100,7 +100,7 @@ public class StudentAttendanceNodeController extends AnchorPane {
         gender.setText(stud.getGender());
         acayear.setText(stud.getAcadamicyear());
         coursetype.setText(stud.getCourseType());
-        honourssubject.setText(stud.getHonoursSubject());
+        honourssubject.setText(stud.getDepartment());
     }
 
     public String getStudentId() {
