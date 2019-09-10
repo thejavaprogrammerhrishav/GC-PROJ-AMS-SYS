@@ -18,6 +18,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
@@ -61,9 +62,11 @@ public class HODSignupController extends AnchorPane{
     private FXMLLoader fxml;
     private User user;
     private Login login;
+    private Parent parent;
 
-    public HODSignupController() {
-        fxml=Fxml.getHodSignUpFXML();
+    public HODSignupController(Parent parent) {
+        this.parent = parent;
+        fxml=Fxml.getHODSignUpFXML();
         fxml.setController(this);
         fxml.setRoot(this);
         
@@ -79,7 +82,7 @@ public class HODSignupController extends AnchorPane{
     
     @FXML
     private void initialize(){
-        abort.setOnAction(e->((Node)e.getSource()).getScene().getWindow().hide());
+        abort.setOnAction(e->SwitchRoot.switchRoot(Start.st, parent));
         signup.setOnAction(e->{
             if(login.isUsernameExists(username.getText())>0){
                 Alert al=new Alert(Alert.AlertType.ERROR);

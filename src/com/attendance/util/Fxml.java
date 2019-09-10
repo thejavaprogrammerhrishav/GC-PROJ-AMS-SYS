@@ -41,7 +41,7 @@ public class Fxml {
         return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/addnewstudent.fxml"));
     }
 
-    public static FXMLLoader getHodSignUpFXML() {
+    public static FXMLLoader getHODSignUpFXML() {
         return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/hodsignup.fxml"));
     }
 
