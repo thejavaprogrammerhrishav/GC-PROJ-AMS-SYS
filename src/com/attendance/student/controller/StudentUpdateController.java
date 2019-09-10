@@ -79,9 +79,6 @@ public class StudentUpdateController extends AnchorPane {
     @FXML
     private Label department;
 
-    @FXML
-    private TextField honourssubject;
-
     private FXMLLoader fxml;
     private StudentDao dao;
     private Student searchStudent;
@@ -134,18 +131,6 @@ public class StudentUpdateController extends AnchorPane {
             }
             honours.setSelected(false);
         });
-
-        honours.selectedProperty().addListener((ol, o, n) -> {
-            if (n) {
-                honourssubject.setText(SystemUtils.getDepartment());
-            }
-        });
-
-        pass.selectedProperty().addListener((ol, o, n) -> {
-            if (n) {
-                honourssubject.setText("N/A");
-            }
-        });
     }
 
     private void buttonInit() {
@@ -170,26 +155,29 @@ public class StudentUpdateController extends AnchorPane {
 
     private void searchStudent(ActionEvent e) {
         searchStudent = dao.findById(searchid.getText());
-        studentContact.setText(searchStudent.getContact());
-        studentName.setText(searchStudent.getName());
-        studentRollNumber.setText("" + searchStudent.getRollno());
-        acadamicyear.getSelectionModel().select(searchStudent.getAcadamicyear());
-        studentYear.setText("" + searchStudent.getYear());
-        if (searchStudent.getGender().equalsIgnoreCase("male")) {
-            genMale.setSelected(true);
-            genFemale.setSelected(false);
+        if (searchStudent.getDepartment().equalsIgnoreCase(department.getText())) {
+            studentContact.setText(searchStudent.getContact());
+            studentName.setText(searchStudent.getName());
+            studentRollNumber.setText("" + searchStudent.getRollno());
+            acadamicyear.getSelectionModel().select(searchStudent.getAcadamicyear());
+            studentYear.setText("" + searchStudent.getYear());
+            if (searchStudent.getGender().equalsIgnoreCase("male")) {
+                genMale.setSelected(true);
+                genFemale.setSelected(false);
+            } else {
+                genMale.setSelected(false);
+                genFemale.setSelected(true);
+            }
+            if (searchStudent.getCourseType().equalsIgnoreCase("Honours")) {
+                honours.setSelected(true);
+                pass.setSelected(false);
+            } else {
+                honours.setSelected(false);
+                pass.setSelected(true);
+            }
         } else {
-            genMale.setSelected(false);
-            genFemale.setSelected(true);
+            //TODO:  add error message dialog ====> Not Belongs To This Department
         }
-        if (searchStudent.getCourseType().equalsIgnoreCase("Honours")) {
-            honours.setSelected(true);
-            pass.setSelected(false);
-        } else {
-            honours.setSelected(false);
-            pass.setSelected(true);
-        }
-        honourssubject.setText(searchStudent.getDepartment());
     }
 
     private void updateStudent(ActionEvent e) {
@@ -199,6 +187,7 @@ public class StudentUpdateController extends AnchorPane {
         updateStudent.setRollno(Integer.parseInt(studentRollNumber.getText()));
         updateStudent.setAcadamicyear(acadamicyear.getSelectionModel().getSelectedItem());
         updateStudent.setYear(Integer.parseInt(studentYear.getText()));
+        updateStudent.setDepartment(searchStudent.getDepartment());
         if (genMale.isSelected()) {
             updateStudent.setGender("Male");
         } else {
@@ -213,9 +202,11 @@ public class StudentUpdateController extends AnchorPane {
         } else {
             updateStudent.setCourseType("UNKNOWN");
         }
-        updateStudent.setDepartment(honourssubject.getText());
+
         boolean updateDetails = dao.updateStudent(updateStudent);
-        updateStudent.setId(studentRollNumber.getText() + "_" + acadamicyear.getSelectionModel().getSelectedItem() + "@" + studentYear.getText()+"#"+updateStudent.getCourseType().charAt(0));
+        updateStudent.setId("GC" + acadamicyear.getSelectionModel().getSelectedItem().charAt(0) + "_" + studentYear.getText() + "_" + studentRollNumber.getText() + updateStudent.getCourseType().charAt(0) + "_" + SystemUtils.getDepartmentCode());
+
+        // updateStudent.setId(studentRollNumber.getText() + "_" + acadamicyear.getSelectionModel().getSelectedItem() + "@" + studentYear.getText() + "#" + updateStudent.getCourseType().charAt(0));
         boolean updateId = dao.updateStudentId(updateStudent.getId(), searchStudent.getId());
         if (updateDetails && updateId) {
             MessageUtil.showInformation(Message.INFORMATION, "Student Details Updation", "Updated Successfully", ((Node) e.getSource()).getScene().getWindow());
