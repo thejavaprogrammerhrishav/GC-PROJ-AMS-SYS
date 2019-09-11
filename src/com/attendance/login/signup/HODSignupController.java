@@ -100,14 +100,14 @@ public class HODSignupController extends AnchorPane{
                 user.setEmail(email.getText());
                 user.setContact(contact.getText());
                 user.setPassword(password.getText());
-                user.setType("Admin");
+                user.setType("HOD");
                 user.setUsername(username.getText());
                 
                 login.save(user);
                 
                 Alert al=new Alert(Alert.AlertType.INFORMATION);
-                al.setHeaderText("Administrator Sign Up");
-                al.setContentText("Sign Up Successful\nAdministrator account created successfully");
+                al.setHeaderText("HOD Sign Up");
+                al.setContentText("Sign Up Successful\nHOD account created successfully");
                 al.initOwner(((Node)e.getSource()).getScene().getWindow());
                 al.initModality(Modality.WINDOW_MODAL);
                 al.initStyle(StageStyle.UNDECORATED);
@@ -115,7 +115,7 @@ public class HODSignupController extends AnchorPane{
             }
             else{
                 Alert al=new Alert(Alert.AlertType.ERROR);
-                al.setHeaderText("Administrator Sign Up");
+                al.setHeaderText("HOD Sign Up");
                 al.setContentText("Passwords don't match\nCheck passwords again");
                 al.initOwner(((Node)e.getSource()).getScene().getWindow());
                 al.initModality(Modality.WINDOW_MODAL);

@@ -58,7 +58,7 @@ public class HODLoginController extends AnchorPane {
 
     private FXMLLoader fxml;
 
-    private final String userRole = "ADMIN";
+    private final String userRole = "HOD";
     private Thread thread;
     private Task<Void> blink;
 
@@ -119,8 +119,9 @@ public class HODLoginController extends AnchorPane {
                 new Thread(() -> {
                     try {
                         Thread.sleep(500);
-                        activity = new LoginActivity(user.getName(), user.getUsername(), "ADMIN", "ACTIVE", DateTime.now().toString(DateTimeFormat.forPattern("dd-MM-yyyy")), DateTime.now().toString(DateTimeFormat.forPattern("hh:mm:ss a")), "");
+                        activity = new LoginActivity(user.getName(), user.getUsername(), "HOD", "ACTIVE", DateTime.now().toString(DateTimeFormat.forPattern("dd-MM-yyyy")), DateTime.now().toString(DateTimeFormat.forPattern("hh:mm:ss a")), "");
                         loginActivity.save(activity);
+                        SystemUtils.setActivity(activity);
                         for (int i = 3; i >= 0; i--) {
                             final int x = i;
                             Platform.runLater(() -> result.setText("Redirecting to Dashboard in " + x + " Sec"));

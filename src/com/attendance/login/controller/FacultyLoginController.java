@@ -126,6 +126,7 @@ public class FacultyLoginController extends AnchorPane {
                         }
                         activity = new LoginActivity(user.getName(), user.getUsername(), "FACULTY", "ACTIVE", DateTime.now().toString(DateTimeFormat.forPattern("dd-MM-yyyy")), DateTime.now().toString(DateTimeFormat.forPattern("hh:mm:ss a")), "");
                         loginActivity.save(activity);
+                        SystemUtils.setActivity(activity);
                         Platform.runLater(() -> SwitchRoot.switchRoot(Start.st, RootFactory.getFacultyDashboardRoot(user, activity)));
                     } catch (InterruptedException ex) {
                         Logger.getLogger(FacultyLoginController.class.getName()).log(Level.SEVERE, null, ex);

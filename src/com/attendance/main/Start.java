@@ -32,9 +32,9 @@ public class Start extends Application {
     
     public static void main(String[] args) throws Exception {
         //initApp();
-        SystemUtils.init();
         SystemUtils.setDepartment("Computer Science");
         initContext();
+        SystemUtils.init();
         launch(args);
 
     }
