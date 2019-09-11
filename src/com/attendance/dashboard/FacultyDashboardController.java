@@ -24,7 +24,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -66,7 +65,6 @@ public class FacultyDashboardController extends AnchorPane {
 
     @FXML
     private Label sem3;
-
 
     @FXML
     private JFXComboBox<String> acadamicyear;
@@ -126,7 +124,7 @@ public class FacultyDashboardController extends AnchorPane {
 
     @FXML
     private void initialize() {
-        server=new ConnectionThread(serverproduct, serverusername, serverstatus);
+        server = new ConnectionThread(serverproduct, serverusername, serverstatus);
         server.start();
         act = (Activity) Start.app.getBean("loginactivity");
         dao = (StudentDao) Start.app.getBean("studentregistration");
@@ -152,7 +150,7 @@ public class FacultyDashboardController extends AnchorPane {
 
         studentattendance.setOnAction(new StudentAttendance());
         serverstatus.textProperty().addListener(this::statusListener);
-        
+
         uploadnotes.setOnAction(new Upload());
         downloadnotes.setOnAction(new Download());
     }
@@ -175,12 +173,11 @@ public class FacultyDashboardController extends AnchorPane {
         sem2.setText("" + Sem2);
         sem3.setText("" + Sem3);
     }
-    
+
     public void statusListener(ObservableValue<? extends String> ov, String t, String t1) {
-        if(t1.equalsIgnoreCase("Connected")){
+        if (t1.equalsIgnoreCase("Connected")) {
             serverstatus.setStyle("-fx-background-color: forestgreen;");
-        }
-        else{
+        } else {
             serverstatus.setStyle("-fx-background-color: red;");
         }
     }
@@ -240,7 +237,7 @@ public class FacultyDashboardController extends AnchorPane {
             SwitchRoot.switchRoot(Start.st, RootFactory.getStudentAttendanceRoot(Start.st.getScene().getRoot(), user.getName()));
         }
     }
-    
+
     private class Upload implements EventHandler<ActionEvent> {
 
         @Override
@@ -248,7 +245,7 @@ public class FacultyDashboardController extends AnchorPane {
             SwitchRoot.switchRoot(Start.st, RootFactory.getUploadNotesRoot(Start.st.getScene().getRoot(), user.getName()));
         }
     }
-    
+
     private class Download implements EventHandler<ActionEvent> {
 
         @Override

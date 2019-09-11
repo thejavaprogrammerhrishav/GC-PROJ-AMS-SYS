@@ -17,6 +17,7 @@ public class Faculty {
     private String department;
 
     public Faculty() {
+        this("","","","","");
     }
 
     public Faculty(String name, String emailId, String contact, String gender, String department) {

@@ -77,14 +77,8 @@ public class FacultyDaoImpl implements FacultyDao {
 
     @Override
     @Transactional
-    public List<Faculty> findByFirstName(String firstname) {
-        return (List<Faculty>) hibernateTemplate.find("from Faculty where firstName like ?", "%" + firstname + "%");
-    }
-
-    @Override
-    @Transactional
-    public List<Faculty> findByLastName(String lastname) {
-        return (List<Faculty>) hibernateTemplate.find("from Faculty where lastName like ?", "%" + lastname + "%");
+    public List<Faculty> findByName(String name) {
+        return (List<Faculty>) hibernateTemplate.find("from Faculty where name like ?", "%" + name + "%");
     }
 
     @Override

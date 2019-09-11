@@ -26,9 +26,7 @@ public interface FacultyDao {
 
     public abstract List<Faculty> findAll();
 
-    public abstract List<Faculty> findByFirstName(String firstname);
-
-    public abstract List<Faculty> findByLastName(String lastname);
+    public abstract List<Faculty> findByName(String name);
     
     public abstract List<Faculty> findByDepartment(String department);
 

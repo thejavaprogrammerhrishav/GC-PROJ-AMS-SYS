@@ -5,7 +5,12 @@
  */
 package com.attendance.util;
 
+import com.attendance.login.activity.dao.Activity;
+import com.attendance.login.activity.model.LoginActivity;
+import com.attendance.main.Start;
 import java.util.HashMap;
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
 
 /**
  *
@@ -13,6 +18,8 @@ import java.util.HashMap;
  */
 public class SystemUtils {
 
+    private static Activity act;
+    private static LoginActivity activity;
     private static String department;
     private static String[] departments = {"Anthropology", "Assamese", "Bengali", "Biotechnology", "Botany", "Business Administration", "Chemistry", "Commerce",
         "Computer Science", "Ecology & Environmental Science", "Economics", "English", "Geology", "Hindi", "History", "Mathematics", "Manipuri", "Mass Communication",
@@ -36,7 +43,8 @@ public class SystemUtils {
         return deptcodes.get(department);
     }
 
-    public static void initDepartmentCodes() {
+    public static void init() {
+        act=(Activity) Start.app.getBean("loginactivity");
         deptcodes=new HashMap<>();
         deptcodes.put("Anthropology", "ANTH");
         deptcodes.put("Assamese", "ASSM");
@@ -65,4 +73,23 @@ public class SystemUtils {
         deptcodes.put("Zoology", "ZOO");
 
     }
+
+    public static void setActivity(LoginActivity activity) {
+        SystemUtils.activity = activity;
+    }
+
+    public static LoginActivity getActivity() {
+        return activity;
+    }
+
+    public static HashMap<String, String> getDeptcodes() {
+        return deptcodes;
+    }
+    
+    public static void logout(){
+        activity.setStatus("NOT ACTIVE");
+        activity.setLogouttime(DateTime.now().toString(DateTimeFormat.forPattern("hh:mm:ss a")));
+        act.update(activity);
+    }
+    
 }

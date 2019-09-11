@@ -59,7 +59,7 @@ public class FacultySignUpController extends AnchorPane {
 
     @FXML
     private JFXButton abort;
-    
+
     @FXML
     private JFXButton loginbutton;
 
@@ -91,7 +91,7 @@ public class FacultySignUpController extends AnchorPane {
         fdao = (FacultyDao) Start.app.getBean("facultyregistration");
         faculty = new Faculty();
         loginbutton.setOnAction(this::loginAction);
-        abort.setOnAction(e->SwitchRoot.switchRoot(Start.st, parent));
+        abort.setOnAction(e -> SwitchRoot.switchRoot(Start.st, parent));
         signup.setOnAction(e -> {
             if (login.isUsernameExists(username.getText()) > 0) {
                 Alert al = new Alert(Alert.AlertType.ERROR);
@@ -108,13 +108,12 @@ public class FacultySignUpController extends AnchorPane {
                 user.setPassword(password.getText());
                 user.setType("Faculty");
                 user.setUsername(username.getText());
-                
+
                 faculty.setName(fullname.getText());
                 faculty.setContact(contact.getText());
                 faculty.setEmailId(email.getText());
                 faculty.setGender("Unknown");
                 faculty.setDepartment(SystemUtils.getDepartment());
-                
 
                 login.save(user);
                 fdao.saveFaculty(faculty);
@@ -138,7 +137,8 @@ public class FacultySignUpController extends AnchorPane {
         });
     }
 
-    private void loginAction(ActionEvent evt){
-         SwitchRoot.switchRoot(Start.st, RootFactory.getFacultyLoginRoot());
+    private void loginAction(ActionEvent evt) {
+        SystemUtils.logout();
+        SwitchRoot.switchRoot(Start.st, RootFactory.getFacultyLoginRoot());
     }
 }

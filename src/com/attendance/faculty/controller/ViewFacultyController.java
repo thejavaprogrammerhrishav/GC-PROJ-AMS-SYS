@@ -60,9 +60,6 @@ public class ViewFacultyController extends AnchorPane {
     private TextField firstName;
 
     @FXML
-    private TextField lastName;
-
-    @FXML
     private TextField emailId;
 
     @FXML
@@ -79,7 +76,7 @@ public class ViewFacultyController extends AnchorPane {
 
     @FXML
     private Button refresh;
-    
+
     @FXML
     private Label department;
 
@@ -101,7 +98,7 @@ public class ViewFacultyController extends AnchorPane {
     @FXML
     private void initialize() {
         dao = (FacultyDao) Start.app.getBean("facultyregistration");
-        department.setText(SystemUtils.getDepartment());
+        department.setText("Department: " + SystemUtils.getDepartment());
         facultyListName.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Faculty, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TableColumn.CellDataFeatures<Faculty, String> p) {
@@ -122,29 +119,26 @@ public class ViewFacultyController extends AnchorPane {
     }
 
     private void loadAllFaculty(ActionEvent e) {
-        List<Faculty> faculties = new ArrayList<Faculty>(dao.findByDepartment(department.getText()));
+        List<Faculty> faculties = new ArrayList<Faculty>(dao.findByDepartment(SystemUtils.getDepartment()));
         facultyList.setItems(FXCollections.observableArrayList(faculties));
     }
 
     private void searchFaculty(ActionEvent e) {
-        List<Faculty> searchList = dao.findByFirstName(searchFaculty.getText());
-        searchList=searchList.stream().filter(p->p.getDepartment().equals(department.getText())).collect(Collectors.toList());
+        List<Faculty> searchList = dao.findByDepartment(SystemUtils.getDepartment());
+        searchList = searchList.stream().filter(p -> p.getName().contains(searchFaculty.getText())).collect(Collectors.toList());
         facultyList.setItems(FXCollections.observableArrayList(searchList));
     }
 
     private void displayFacultyDetails(MouseEvent evt) {
         Faculty selected = facultyList.getSelectionModel().getSelectedItem();
         firstName.setText(selected.getName());
-        lastName.setText(selected.getName());
         emailId.setText(selected.getEmailId());
         contact.setText(selected.getContact());
-        if(selected.getGender().equalsIgnoreCase("Male")){
+        if (selected.getGender().equalsIgnoreCase("Male")) {
             male.setSelected(true);
-        }
-        else if(selected.getGender().equalsIgnoreCase("Female")){
+        } else if (selected.getGender().equalsIgnoreCase("Female")) {
             female.setSelected(true);
-        }
-        else{
+        } else {
             male.setSelected(false);
             female.setSelected(false);
         }

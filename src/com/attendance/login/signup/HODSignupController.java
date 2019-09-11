@@ -11,6 +11,7 @@ import com.attendance.main.Start;
 import com.attendance.util.Fxml;
 import com.attendance.util.RootFactory;
 import com.attendance.util.SwitchRoot;
+import com.attendance.util.SystemUtils;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -125,6 +126,7 @@ public class HODSignupController extends AnchorPane{
     }
     
     private void loginaction(ActionEvent evt){
+        SystemUtils.logout();
         SwitchRoot.switchRoot(Start.st, RootFactory.getHODLoginRoot());
     }
 }

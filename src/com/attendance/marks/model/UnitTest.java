@@ -22,13 +22,13 @@ public class UnitTest {
     private String semester;
     private int year;
     private String coursetype;
-    private String honoursSubject;
+    private String department;
 
     public UnitTest() {
         this(-1, "", -1, 0, 0, 0, "", "", "", -1,"","");
     }
 
-    public UnitTest(int id, String name, int rollno, int marksObtained, int passingMarks, int totalMarks, String unitTest, String acadamicYear, String semester, int year, String coursetype, String honoursSubject) {
+    public UnitTest(int id, String name, int rollno, int marksObtained, int passingMarks, int totalMarks, String unitTest, String acadamicYear, String semester, int year, String coursetype, String department) {
         this.id = id;
         this.name = name;
         this.rollno = rollno;
@@ -40,7 +40,7 @@ public class UnitTest {
         this.semester = semester;
         this.year = year;
         this.coursetype = coursetype;
-        this.honoursSubject = honoursSubject;
+        this.department = department;
     }
 
     public int getId() {
@@ -131,12 +131,12 @@ public class UnitTest {
         return coursetype;
     }
 
-    public void setHonoursSubject(String honoursSubject) {
-        this.honoursSubject = honoursSubject;
+    public void setDepartment(String department) {
+        this.department = department;
     }
 
-    public String getHonoursSubject() {
-        return honoursSubject;
+    public String getDepartment() {
+        return department;
     }
 
 }
