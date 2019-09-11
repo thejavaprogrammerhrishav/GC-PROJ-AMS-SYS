@@ -124,9 +124,6 @@ public class DeleteStudentController extends AnchorPane {
     @FXML
     private TextField coursetype;
 
-    @FXML
-    private TextField honoursubject;
-
     private final String acadamicyear;
 
     private FXMLLoader fxml;
@@ -149,7 +146,7 @@ public class DeleteStudentController extends AnchorPane {
 
     @FXML
     private void initialize() {
-        department.setText(SystemUtils.getDepartment());
+        department.setText("Department: "+SystemUtils.getDepartment());
         studentdao = (StudentDao) Start.app.getBean("studentregistration");
         sem.setText(acadamicyear + " Year");
         student = new Student();
@@ -178,16 +175,16 @@ public class DeleteStudentController extends AnchorPane {
 
         List<String> years = studentdao.get("select distinct(year) from student order by year", String.class);
         studentyear.getItems().setAll(years);
-        
-        honours.selectedProperty().addListener((ol,o,n)->{
-            if(n){
+
+        honours.selectedProperty().addListener((ol, o, n) -> {
+            if (n) {
                 honours.setSelected(true);
                 pass.setSelected(false);
             }
         });
-        
-         pass.selectedProperty().addListener((ol,o,n)->{
-            if(n){
+
+        pass.selectedProperty().addListener((ol, o, n) -> {
+            if (n) {
                 pass.setSelected(true);
                 honours.setSelected(false);
             }
@@ -201,14 +198,16 @@ public class DeleteStudentController extends AnchorPane {
 
     private void populateTable(ActionEvent evt) {
         List<Student> list = studentdao.findByAcadamicYear(acadamicyear);
-         list.stream().forEach(c->System.out.println(c.getDepartment()));
+        list = list.stream().filter(p -> p.getDepartment().equals(SystemUtils.getDepartment())).collect(Collectors.toList());
+
         table.getItems().setAll(list);
     }
 
     private void search(ActionEvent evt) {
         List<Student> list = studentdao.findByAcadamicYear(acadamicyear);
-       
-        if (filterbyid.isSelected()){
+        list = list.stream().filter(p -> p.getDepartment().equals(SystemUtils.getDepartment())).collect(Collectors.toList());
+
+        if (filterbyid.isSelected()) {
             list = list.stream().filter(s -> s.getId().startsWith(studentid.getText())).collect(Collectors.toList());
         }
         if (filterbyname.isSelected()) {
@@ -247,7 +246,6 @@ public class DeleteStudentController extends AnchorPane {
         syear.setText("");
         srollno.setText("");
         coursetype.setText("");
-        honoursubject.setText("");
     }
 
     private void refresh(ActionEvent evt) {
@@ -263,8 +261,7 @@ public class DeleteStudentController extends AnchorPane {
         scontactnumber.setText(student.getContact());
         sgender.setText(student.getGender());
         coursetype.setText(student.getCourseType());
-        
-        honoursubject.setText(student.getDepartment());
+
     }
 
     private void cancel(ActionEvent evt) {

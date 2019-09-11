@@ -105,7 +105,7 @@ public class ViewFacultyController extends AnchorPane {
         facultyListName.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Faculty, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TableColumn.CellDataFeatures<Faculty, String> p) {
-                return new SimpleStringProperty(p.getValue().getFullName());
+                return new SimpleStringProperty(p.getValue().getName());
             }
         });
 
@@ -134,8 +134,8 @@ public class ViewFacultyController extends AnchorPane {
 
     private void displayFacultyDetails(MouseEvent evt) {
         Faculty selected = facultyList.getSelectionModel().getSelectedItem();
-        firstName.setText(selected.getFirstName());
-        lastName.setText(selected.getLastName());
+        firstName.setText(selected.getName());
+        lastName.setText(selected.getName());
         emailId.setText(selected.getEmailId());
         contact.setText(selected.getContact());
         if(selected.getGender().equalsIgnoreCase("Male")){

@@ -62,7 +62,7 @@ public class SelectFacultyController extends AnchorPane {
     private void initialize() {
         dao = (FacultyDao) Start.app.getBean("facultyregistration");
         List<Faculty> list = new ArrayList<>(dao.findByDepartment(SystemUtils.getDepartment()));
-        list.stream().map(f -> f.getFullName()).forEach(facultylist.getItems()::add);
+        list.stream().map(f -> f.getName()).forEach(facultylist.getItems()::add);
 
         proceed.setOnAction(this::proceed);
         cancel.setOnAction(this::close);

@@ -173,7 +173,7 @@ public class ExportClassDetailsListController extends AnchorPane {
         List<String> years = studentdao.get("select distinct(year) from student order by year", String.class);
         year.getItems().setAll(years);
 
-        List<String> faculties = facultydao.findAll().stream().map(f -> f.getFullName()).collect(Collectors.toList());
+        List<String> faculties = facultydao.findAll().stream().map(f -> f.getName()).collect(Collectors.toList());
         facultyname.getItems().setAll(faculties);
 
         filterbypaper.selectedProperty().addListener((ol, o, n) -> {

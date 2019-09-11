@@ -5,12 +5,15 @@
  */
 package com.attendance.login.signup;
 
+import com.attendance.faculty.dao.FacultyDao;
+import com.attendance.faculty.model.Faculty;
 import com.attendance.login.dao.Login;
 import com.attendance.login.user.model.User;
 import com.attendance.main.Start;
 import com.attendance.util.Fxml;
 import com.attendance.util.RootFactory;
 import com.attendance.util.SwitchRoot;
+import com.attendance.util.SystemUtils;
 import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -64,6 +67,8 @@ public class FacultySignUpController extends AnchorPane {
     private Login login;
     private User user;
     private Parent parent;
+    private Faculty faculty;
+    private FacultyDao fdao;
 
     public FacultySignUpController(Parent parent) {
         this.parent = parent;
@@ -83,6 +88,8 @@ public class FacultySignUpController extends AnchorPane {
 
     @FXML
     private void initialize() {
+        fdao = (FacultyDao) Start.app.getBean("facultyregistration");
+        faculty = new Faculty();
         loginbutton.setOnAction(this::loginAction);
         abort.setOnAction(e->SwitchRoot.switchRoot(Start.st, parent));
         signup.setOnAction(e -> {
@@ -101,12 +108,20 @@ public class FacultySignUpController extends AnchorPane {
                 user.setPassword(password.getText());
                 user.setType("Faculty");
                 user.setUsername(username.getText());
+                
+                faculty.setName(fullname.getText());
+                faculty.setContact(contact.getText());
+                faculty.setEmailId(email.getText());
+                faculty.setGender("Unknown");
+                faculty.setDepartment(SystemUtils.getDepartment());
+                
 
                 login.save(user);
+                fdao.saveFaculty(faculty);
 
                 Alert al = new Alert(Alert.AlertType.INFORMATION);
                 al.setHeaderText("Faculty Sign Up");
-                al.setContentText("Sign Up Successful\nFaculty account created successfully");
+                al.setContentText("Sign Up Successful\nFaculty account created successfully with faculty details");
                 al.initOwner(((Node) e.getSource()).getScene().getWindow());
                 al.initModality(Modality.WINDOW_MODAL);
                 al.initStyle(StageStyle.UNDECORATED);

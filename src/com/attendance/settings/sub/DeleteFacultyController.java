@@ -143,7 +143,7 @@ public class DeleteFacultyController extends AnchorPane {
 
     private void tableClick(MouseEvent evt) {
         faculty = table.getSelectionModel().getSelectedItem();
-        fname.setText(faculty.getFullName());
+        fname.setText(faculty.getName());
         fcontact.setText(faculty.getContact());
         fgender.setText(faculty.getGender());
         femail.setText(faculty.getEmailId());

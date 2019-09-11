@@ -185,16 +185,6 @@
             <Font name="Segoe UI" size="14.0" />
          </font>
       </TextField>
-      <Label layoutX="835.0" layoutY="489.0" prefHeight="20.0" text="Honours Subject" textFill="WHITE">
-         <font>
-            <Font name="Segoe UI" size="15.0" />
-         </font>
-      </Label>
-      <TextField fx:id="honoursubject" editable="false" layoutX="835.0" layoutY="516.0" prefHeight="30.0" prefWidth="277.0" promptText="Honours Subject">
-         <font>
-            <Font name="Segoe UI" size="14.0" />
-         </font>
-      </TextField>
    </children>
    <stylesheets>
       <URL value="@../../resources/newreport.css" />

@@ -8,9 +8,7 @@ package com.attendance.util;
 import com.attendance.dashboard.HODDashboardController;
 import com.attendance.dashboard.FacultyDashboardController;
 import com.attendance.dashboard.LoginActivityController;
-import com.attendance.faculty.controller.RegisterFacultyController;
 import com.attendance.faculty.controller.SelectFacultyController;
-import com.attendance.faculty.controller.UpdateFacultyController;
 import com.attendance.faculty.controller.ViewFacultyController;
 import com.attendance.login.activity.model.LoginActivity;
 import com.attendance.login.controller.HODLoginController;
@@ -109,14 +107,6 @@ public class RootFactory {
 
     public static Parent getFacultyLoginRoot() {
         return new FacultyLoginController();
-    }
-
-    public static Parent getRegisterFacultyRoot() {
-        return new RegisterFacultyController();
-    }
-
-    public static Parent getUpdateFacultyRoot() {
-        return new UpdateFacultyController();
     }
 
     public static Parent getViewFacultyRoot() {

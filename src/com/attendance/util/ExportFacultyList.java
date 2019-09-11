@@ -86,7 +86,7 @@ public class ExportFacultyList {
 
         list.getItems().stream().forEach(at -> {
             r = Excel.createRow(sheet, RowCount++, 25);
-            c = Excel.createCell(r, 0, at.getFullName(), body);
+            c = Excel.createCell(r, 0, at.getName(), body);
             c = Excel.createCell(r, 1, ""+at.getGender(), body);
             c = Excel.createCell(r, 2, ""+at.getContact(), body);
             c = Excel.createCell(r, 3, ""+at.getEmailId(), body);

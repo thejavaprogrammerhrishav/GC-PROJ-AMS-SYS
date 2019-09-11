@@ -222,19 +222,6 @@
             <Font name="Century Gothic" size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="curhonsub" editable="false" layoutX="330.0" layoutY="607.0" prefHeight="40.0" prefWidth="258.0" promptText="Current Honours Type" style="-fx-text-fill: #000; -fx-background-color: transparent; -fx-background-radius: 10; -fx-border-width: 1px; -fx-border-radius: 10; -fx-border-style: solid; -fx-border-color: rgb(220,220,220);">
-         <font>
-            <Font name="Century Gothic" size="15.0" />
-         </font>
-         <padding>
-            <Insets bottom="7.0" left="15.0" right="10.0" top="7.0" />
-         </padding>
-      </TextField>
-      <Label layoutX="348.0" layoutY="579.0" text="Current Honours Subject">
-         <font>
-            <Font name="Century Gothic" size="15.0" />
-         </font>
-      </Label>
    </children>
    <stylesheets>
       <URL value="@../../resources/studet.css" />

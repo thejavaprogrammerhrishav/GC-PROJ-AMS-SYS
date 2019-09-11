@@ -3,8 +3,7 @@
 <hibernate-mapping>
   <class name="com.attendance.faculty.model.Faculty" table="faculty" catalog="attendance">
     <id column="contact" name="contact"/>
-    <property column="firstName" name="firstName" not-null="true"/>
-    <property column="lastName" name="lastName" not-null="true"/>
+    <property column="name" name="name" not-null="true"/>
     <property column="emailId" name="emailId" not-null="true"/>
     <property column="gender" name="gender" not-null="true"/>
     <property column="department" name="department" not-null="true"/>

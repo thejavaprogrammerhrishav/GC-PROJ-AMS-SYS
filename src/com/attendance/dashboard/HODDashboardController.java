@@ -181,8 +181,7 @@ public class HODDashboardController extends AnchorPane {
         refresh.setOnAction(this::countStudents);
         activityrefresh.setOnAction(this::initLoginActivity);
 
-        addnewfaculty.setOnAction(new RegisterFaculty());
-        updatefaculty.setOnAction(new UpdateFaculty());
+       
         viewfacultydetails.setOnAction(new ViewFaculty());
 
         studentattendance.setOnAction(new StudentAttendance());
@@ -275,29 +274,6 @@ public class HODDashboardController extends AnchorPane {
         }
     }
 
-    private class RegisterFaculty implements EventHandler<ActionEvent> {
-
-        @Override
-        public void handle(ActionEvent t) {
-            Stage st = StageUtil.newStage().centerOnScreen().fullScreen(false).fullScreenExitHint("").fullScreenExitKeyCombination(null)
-                    .initModality(Modality.WINDOW_MODAL).initOwner(((Node) t.getSource()).getScene().getWindow()).initStyle(StageStyle.UNDECORATED)
-                    .build();
-            st.getScene().setRoot(RootFactory.getRegisterFacultyRoot());
-            st.show();
-        }
-    }
-
-    private class UpdateFaculty implements EventHandler<ActionEvent> {
-
-        @Override
-        public void handle(ActionEvent t) {
-            Stage st = StageUtil.newStage().centerOnScreen().fullScreen(false).fullScreenExitHint("").fullScreenExitKeyCombination(null)
-                    .initModality(Modality.WINDOW_MODAL).initOwner(((Node) t.getSource()).getScene().getWindow()).initStyle(StageStyle.UNDECORATED)
-                    .build();
-            st.getScene().setRoot(RootFactory.getUpdateFacultyRoot());
-            st.show();
-        }
-    }
 
     private class ViewFaculty implements EventHandler<ActionEvent> {
 

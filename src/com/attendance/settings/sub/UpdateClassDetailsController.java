@@ -248,7 +248,7 @@ public class UpdateClassDetailsController extends ScrollPane {
         List<String> years = sdao.get("select distinct(year) from student order by year", String.class);
         year.getItems().setAll(years);
 
-        List<String> faculties = fdao.findAll().stream().map(f -> f.getFullName()).collect(Collectors.toList());
+        List<String> faculties = fdao.findAll().stream().map(f -> f.getName()).collect(Collectors.toList());
         facultyname.getItems().setAll(faculties);
 
         filterbypaper.selectedProperty().addListener((ol, o, n) -> {
@@ -367,7 +367,7 @@ public class UpdateClassDetailsController extends ScrollPane {
     private void tableClick(MouseEvent evt) {
         details = table.getSelectionModel().getSelectedItem();
 
-        List<String> faculties = fdao.findAll().stream().map(f -> f.getFullName()).collect(Collectors.toList());
+        List<String> faculties = fdao.findAll().stream().map(f -> f.getName()).collect(Collectors.toList());
         cdfaculty.getItems().setAll(faculties);
 
         List<String> years = sdao.get("select distinct(year) from student order by year", String.class);

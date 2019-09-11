@@ -10,40 +10,29 @@ package com.attendance.faculty.model;
  * @author Programmer Hrishav
  */
 public class Faculty {
-    private String firstName;
-    private String lastName;
+    private String name;
     private String emailId;
     private String contact;
     private String gender;
     private String department;
 
     public Faculty() {
-        this("","","","","","");
     }
 
-    public Faculty(String firstName, String lastName, String emailId, String contact, String gender, String department) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public Faculty(String name, String emailId, String contact, String gender, String department) {
+        this.name = name;
         this.emailId = emailId;
         this.contact = contact;
         this.gender = gender;
         this.department = department;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getName() {
+        return name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getEmailId() {
@@ -70,15 +59,13 @@ public class Faculty {
         this.gender = gender;
     }
 
+    public String getDepartment() {
+        return department;
+    }
+
     public void setDepartment(String department) {
         this.department = department;
     }
 
-    public String getDepartment() {
-        return department;
-    }
-    
-    public String getFullName(){
-        return getFirstName()+" "+getLastName();
-    }
+   
 }

@@ -194,7 +194,7 @@ public class AttendanceReportController extends AnchorPane {
         List<String> years = studentdao.get("select distinct(year) from student order by year", String.class);
         year.getItems().setAll(years);
 
-        List<String> faculties = facultydao.findAll().stream().map(f -> f.getFullName()).collect(Collectors.toList());
+        List<String> faculties = facultydao.findAll().stream().map(f -> f.getName()).collect(Collectors.toList());
         name.getItems().setAll(faculties);
 
         semester.getSelectionModel().selectedItemProperty().addListener((ol, o, n) -> {

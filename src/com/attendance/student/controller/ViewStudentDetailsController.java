@@ -126,9 +126,6 @@ public class ViewStudentDetailsController extends AnchorPane {
     @FXML
     private TextField curcoursetype;
 
-    @FXML
-    private TextField curhonsub;
-
     private FXMLLoader fxml;
     private StudentDao dao;
 
@@ -148,7 +145,7 @@ public class ViewStudentDetailsController extends AnchorPane {
     @FXML
     private void initialize() {
         dao = (StudentDao) Start.app.getBean("studentregistration");
-        department.setText("Department:   "+SystemUtils.getDepartment());
+        department.setText("Department:   " + SystemUtils.getDepartment());
         studentColumnName.setCellValueFactory(new PropertyValueFactory<Student, String>("name"));
         studentColumnYear.setCellValueFactory(new PropertyValueFactory<Student, Integer>("year"));
         studentacadamicyear.setCellValueFactory(new PropertyValueFactory<Student, String>("acadamicyear"));
@@ -232,7 +229,6 @@ public class ViewStudentDetailsController extends AnchorPane {
         studentYear.setText("");
         studentContact.setText("");
         curcoursetype.setText("");
-        curhonsub.setText("");
         genFemale.setSelected(false);
         genMale.setSelected(false);
 
@@ -263,12 +259,12 @@ public class ViewStudentDetailsController extends AnchorPane {
                 genMale.setSelected(false);
             }
             curcoursetype.setText(s.getCourseType());
-            curhonsub.setText(s.getDepartment());
         }
     }
 
     private void searchUsingFilter(ActionEvent e) {
         List<Student> list = new ArrayList<>(dao.findAll());
+        list = list.stream().filter(p -> p.getDepartment().equals(SystemUtils.getDepartment())).collect(Collectors.toList());
         if (filterbyid.isSelected()) {
             list = list.stream().filter(s -> s.getId().contains(fstudentid.getText())).collect(Collectors.toList());
         }
@@ -307,6 +303,8 @@ public class ViewStudentDetailsController extends AnchorPane {
 
     private void listStudents(ActionEvent e) {
         List<Student> list = new ArrayList<>(dao.findAll());
+        list = list.stream().filter(p -> p.getDepartment().equals(SystemUtils.getDepartment())).collect(Collectors.toList());
+
         UpdateTable(list);
     }
 

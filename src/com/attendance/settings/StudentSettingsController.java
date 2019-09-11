@@ -59,6 +59,7 @@ public class StudentSettingsController extends AnchorPane{
   
     @FXML
     private void initialize(){
+        pane.setCenter(new DeleteStudentController("1st"));
         close.setOnAction(e->SwitchRoot.switchRoot(Start.st, parent));
         
         semester1.setOnAction(e->pane.setCenter(new DeleteStudentController("1st")));
