@@ -29,29 +29,9 @@ public class StudentAttendanceNodeController extends AnchorPane {
     private Label rollno;
 
     @FXML
-    private Label contact;
-
-    @FXML
-    private Label sid;
-
-    @FXML
-    private Label gender;
-
-    @FXML
-    private Label acayear;
-
-    @FXML
-    private Label year;
-
-    @FXML
     private JFXCheckBox present;
     
-    @FXML
-    private Label coursetype;
-
-    @FXML
-    private Label honourssubject;
-
+  
     @FXML
     private JFXCheckBox absent;
 
@@ -94,17 +74,10 @@ public class StudentAttendanceNodeController extends AnchorPane {
     private void init() {
         name.setText(stud.getName());
         rollno.setText("" + stud.getRollno());
-        contact.setText(stud.getContact());
-        sid.setText(stud.getId());
-        year.setText("" + stud.getYear());
-        gender.setText(stud.getGender());
-        acayear.setText(stud.getAcadamicyear());
-        coursetype.setText(stud.getCourseType());
-        honourssubject.setText(stud.getDepartment());
     }
 
     public String getStudentId() {
-        return sid.getText();
+        return stud.getId();
     }
 
     public String getAttendanceStatus() {

@@ -65,9 +65,9 @@
          </font>
       </TextField>
       <JFXComboBox fx:id="ut" layoutX="248.0" layoutY="284.0" prefHeight="30.0" prefWidth="196.0" promptText="Select Unit Test" style="-fx-font-family: Segoe UI; -fx-font-size: 14; -fx-prompt-text-fill: #fff;" unFocusColor="WHITE" />
-      <ScrollPane hbarPolicy="NEVER" layoutX="615.0" layoutY="209.0" prefHeight="532.0" prefWidth="697.0" styleClass="scroll">
+      <ScrollPane hbarPolicy="NEVER" layoutX="615.0" layoutY="256.0" prefHeight="485.0" prefWidth="697.0" styleClass="scroll">
          <content>
-            <VBox fx:id="studentlist" prefHeight="530.0" prefWidth="680.0" style="-fx-background-color: navy;" />
+            <VBox fx:id="studentlist" prefHeight="482.0" prefWidth="680.0" style="-fx-background-color: navy;" />
          </content>
       </ScrollPane>
       <JFXComboBox fx:id="sem" layoutX="241.0" layoutY="436.0" prefHeight="30.0" prefWidth="205.0" promptText="Select Semester" style="-fx-font-family: Segoe UI; -fx-font-size: 14; -fx-prompt-text-fill: #fff;" unFocusColor="WHITE" />
@@ -79,7 +79,7 @@
       <JFXComboBox fx:id="acayear" layoutX="210.0" layoutY="116.0" prefHeight="30.0" prefWidth="205.0" promptText="Select Acadamic Year" style="-fx-font-family: Segoe UI; -fx-font-size: 14; -fx-prompt-text-fill: #fff;" unFocusColor="WHITE" />
       <JFXComboBox fx:id="year" layoutX="450.0" layoutY="116.0" prefHeight="30.0" prefWidth="121.0" promptText="Select Year" style="-fx-font-family: Segoe UI; -fx-font-size: 14; -fx-prompt-text-fill: #fff;" unFocusColor="WHITE" />
       <JFXComboBox fx:id="coursetype" layoutX="596.0" layoutY="116.0" prefHeight="30.0" prefWidth="164.0" promptText="Select Course Type" style="-fx-font-family: Segoe UI; -fx-font-size: 14; -fx-prompt-text-fill: #fff;" unFocusColor="WHITE" />
-      <Label layoutX="38.0" layoutY="222.0" prefHeight="23.0" prefWidth="553.0" text="Enter The Details  -------------------------------------------------" textFill="WHITE">
+      <Label alignment="CENTER" layoutX="38.0" layoutY="222.0" prefHeight="23.0" prefWidth="553.0" text="-------------------------  Enter The Details  -------------------------" textFill="WHITE">
          <font>
             <Font name="Segoe UI" size="18.0" />
          </font>
@@ -109,6 +109,30 @@
             <Font name="Segoe UI" size="18.0" />
          </font>
       </Label>
+      <Pane layoutX="615.0" layoutY="223.0" prefHeight="37.0" prefWidth="697.0" style="-fx-background-color: navy;">
+         <children>
+            <Label layoutX="14.0" layoutY="10.0" text="Sl. No" textFill="WHITE">
+               <font>
+                  <Font name="Tw Cen MT" size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="108.0" layoutY="10.0" text="Name" textFill="WHITE">
+               <font>
+                  <Font name="Tw Cen MT" size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="437.0" layoutY="10.0" text="Roll No." textFill="WHITE">
+               <font>
+                  <Font name="Tw Cen MT" size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="533.0" layoutY="10.0" text="Marks Obtained" textFill="WHITE">
+               <font>
+                  <Font name="Tw Cen MT" size="16.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
    </children>
    <stylesheets>
       <URL value="@../../resources/combo.css" />

@@ -96,7 +96,12 @@ public class UploadUnitTestMarksController extends AnchorPane {
         dao = (UnitTestDao) Start.app.getBean("unittest");
         sdao = (StudentDao) Start.app.getBean("studentregistration");
         ut.getItems().setAll("Unit Test 1", "Unit Test 2");
+        acayear.getItems().setAll("1st","2nd","3rd");
+        coursetype.getItems().setAll("Honours","Pass");
 
+        List<String> years = sdao.get("select distinct (year) from student",String.class);
+        year.getItems().setAll(years);
+        
         load.setOnAction(this::loadStudents);
         cancel.setOnAction(evt -> ((Node) evt.getSource()).getScene().getWindow().hide());
         clear.setOnAction(this::clear);
