@@ -247,11 +247,7 @@ public class HODDashboardController extends AnchorPane {
 
         @Override
         public void handle(ActionEvent t) {
-            Stage st = StageUtil.newStage().centerOnScreen().fullScreen(false).fullScreenExitHint("").fullScreenExitKeyCombination(null)
-                    .initModality(Modality.WINDOW_MODAL).initOwner(((Node) t.getSource()).getScene().getWindow()).initStyle(StageStyle.UNDECORATED)
-                    .build();
-            st.getScene().setRoot(RootFactory.getFacultySignupRoot());
-            st.show();
+           SwitchRoot.switchRoot(Start.st, RootFactory.getFacultySignupRoot(Start.st.getScene().getRoot()));
         }
     }
 

@@ -9,16 +9,20 @@ import com.attendance.login.dao.Login;
 import com.attendance.login.user.model.User;
 import com.attendance.main.Start;
 import com.attendance.util.Fxml;
+import com.attendance.util.RootFactory;
+import com.attendance.util.SwitchRoot;
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXPasswordField;
-import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.StageStyle;
@@ -30,34 +34,39 @@ import javafx.stage.StageStyle;
 public class FacultySignUpController extends AnchorPane {
 
     @FXML
-    private JFXTextField fullname;
+    private TextField fullname;
 
     @FXML
-    private JFXTextField email;
+    private TextField email;
 
     @FXML
-    private JFXTextField contact;
+    private TextField contact;
 
     @FXML
-    private JFXTextField username;
+    private TextField username;
 
     @FXML
-    private JFXPasswordField password;
+    private PasswordField password;
 
     @FXML
-    private JFXPasswordField confirmpassword;
+    private PasswordField confirmpassword;
 
     @FXML
     private JFXButton signup;
 
     @FXML
     private JFXButton abort;
+    
+    @FXML
+    private JFXButton loginbutton;
 
     private FXMLLoader fxml;
     private Login login;
     private User user;
+    private Parent parent;
 
-    public FacultySignUpController() {
+    public FacultySignUpController(Parent parent) {
+        this.parent = parent;
         fxml = Fxml.getFacultySignupFXML();
         fxml.setController(this);
         fxml.setRoot(this);
@@ -74,7 +83,8 @@ public class FacultySignUpController extends AnchorPane {
 
     @FXML
     private void initialize() {
-        abort.setOnAction(e -> ((Node) e.getSource()).getScene().getWindow().hide());
+        loginbutton.setOnAction(this::loginAction);
+        abort.setOnAction(e->SwitchRoot.switchRoot(Start.st, parent));
         signup.setOnAction(e -> {
             if (login.isUsernameExists(username.getText()) > 0) {
                 Alert al = new Alert(Alert.AlertType.ERROR);
@@ -113,4 +123,7 @@ public class FacultySignUpController extends AnchorPane {
         });
     }
 
+    private void loginAction(ActionEvent evt){
+         SwitchRoot.switchRoot(Start.st, RootFactory.getFacultyLoginRoot());
+    }
 }

@@ -95,8 +95,8 @@ public class RootFactory {
         return new HODSignupController(parent);
     }
 
-    public static Parent getFacultySignupRoot() {
-        return new FacultySignUpController();
+    public static Parent getFacultySignupRoot(Parent parent) {
+        return new FacultySignUpController(parent);
     }
 
     public static Parent getViewStudentDetailsRoot() {
