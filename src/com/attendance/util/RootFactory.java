@@ -24,7 +24,6 @@ import com.attendance.report.controller.AttendanceReportController;
 import com.attendance.settings.ClassAndDetailsSettingsController;
 import com.attendance.settings.DatabaseServerSettingsController;
 import com.attendance.settings.ExportSettingsController;
-import com.attendance.settings.FacultySettingsController;
 import com.attendance.settings.LoginUserSettingsController;
 import com.attendance.settings.PaperSettingsController;
 import com.attendance.settings.SettingsController;
@@ -34,7 +33,6 @@ import com.attendance.settings.sub.AttendanceController;
 import com.attendance.settings.sub.ClassDetailsController;
 import com.attendance.settings.sub.DailyStatsController;
 import com.attendance.settings.sub.DeleteAdminUserController;
-import com.attendance.settings.sub.DeleteFacultyController;
 import com.attendance.settings.sub.DeleteFacultyUserController;
 import com.attendance.settings.sub.DeletePaperController;
 import com.attendance.settings.sub.DeleteStudentController;
@@ -142,7 +140,7 @@ public class RootFactory {
     }
 
     public static Parent getSettingsFacultyRoot(Parent parent) {
-        return new FacultySettingsController(parent);
+        return new DeleteFacultyUserController(parent);
     }
 
     public static Parent getSettingsLoginUserRoot(Parent parent) {
@@ -159,10 +157,6 @@ public class RootFactory {
 
     public static Parent getDeleteStudentRoot(String sem) {
         return new DeleteStudentController(sem);
-    }
-
-    public static Parent getDeleteFacultyRoot() {
-        return new DeleteFacultyController();
     }
 
     public static Parent getNewPaperRoot() {
@@ -215,10 +209,6 @@ public class RootFactory {
 
     public static Parent getUpdateFacultyUserRoot() {
         return new UpdateFacultyUserController();
-    }
-
-    public static Parent getDeleteFacultyUserRoot() {
-        return new DeleteFacultyUserController();
     }
 
     public static Parent getUserLoginActivitySettingsRoot(Parent parent) {

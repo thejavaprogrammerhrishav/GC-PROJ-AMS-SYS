@@ -5,12 +5,15 @@
  */
 package com.attendance.settings.sub;
 
+import com.attendance.faculty.dao.FacultyDao;
+import com.attendance.faculty.model.Faculty;
 import com.attendance.login.dao.Login;
 import com.attendance.login.user.model.User;
 import com.attendance.main.Start;
 import com.attendance.util.Fxml;
 import com.attendance.util.Message;
 import com.attendance.util.MessageUtil;
+import com.attendance.util.SwitchRoot;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
@@ -21,19 +24,20 @@ import java.util.stream.Collectors;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 
 /**
  *
  * @author Programmer Hrishav
  */
-public class DeleteFacultyUserController extends AnchorPane{
+public class DeleteFacultyUserController extends AnchorPane {
+
     @FXML
     private TextField search;
 
@@ -65,7 +69,7 @@ public class DeleteFacultyUserController extends AnchorPane{
     private TableColumn<User, String> nameofuser;
 
     @FXML
-    private TableColumn<User,String> username;
+    private TableColumn<User, String> username;
 
     @FXML
     private JFXButton clear;
@@ -79,24 +83,29 @@ public class DeleteFacultyUserController extends AnchorPane{
     private List<User> list;
     private User user;
     private Login dao;
-    
-    private FXMLLoader fxml;
+    private FacultyDao fdao;
 
-    public DeleteFacultyUserController() {
-        fxml=Fxml.getDeleteFacultyUserFXML();
+    private FXMLLoader fxml;
+    private Parent parent;
+
+    public DeleteFacultyUserController(Parent parent) {
+        this.parent = parent;
+        fxml = Fxml.getDeleteFacultyUserFXML();
         fxml.setRoot(this);
         fxml.setController(this);
-        
+
         try {
             fxml.load();
         } catch (IOException ex) {
             Logger.getLogger(DeleteFacultyUserController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     @FXML
-    private void initialize(){
-      dao = (Login) Start.app.getBean("userlogin");
+    private void initialize() {
+        dao = (Login) Start.app.getBean("userlogin");
+        fdao = (FacultyDao) Start.app.getBean("facultyregistration");
+
         list = dao.findByType("Faculty");
 
         nameofuser.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -105,7 +114,7 @@ public class DeleteFacultyUserController extends AnchorPane{
 
         table.setOnMouseClicked(this::tableClick);
 
-        cancel.setOnAction(e -> ((BorderPane) this.getParent()).setCenter(null));
+        cancel.setOnAction(e -> SwitchRoot.switchRoot(Start.st, parent));
         searchbycontact.setOnAction(this::searchContact);
         searchbyname.setOnAction(this::searchName);
         searchbyusername.setOnAction(this::searchUsername);
@@ -153,8 +162,10 @@ public class DeleteFacultyUserController extends AnchorPane{
     }
 
     private void delete(ActionEvent evt) {
+        Faculty del = fdao.findById(user.getContact());
         boolean d = dao.delete(user);
-        if (d) {
+        boolean e = fdao.deleteFaculty(del);
+        if (d && e) {
             MessageUtil.showInformation(Message.INFORMATION, "Faculty Login Account", "Account Updated Successfully", DeleteFacultyUserController.this.getScene().getWindow());
         } else {
             MessageUtil.showError(Message.ERROR, "Faculty Login Account", "Account Updation Failed", DeleteFacultyUserController.this.getScene().getWindow());

@@ -65,7 +65,6 @@ public class LoginUserSettingsController extends AnchorPane {
         updateadmin.setOnAction(e->pane.setCenter(RootFactory.getUpdateAdminUserRoot()));
         deleteadmin.setOnAction(e->pane.setCenter(RootFactory.getDeleteAdminUserRoot()));
         updatefaculty.setOnAction(e->pane.setCenter(RootFactory.getUpdateFacultyUserRoot()));
-        deletefaculty.setOnAction(e->pane.setCenter(RootFactory.getDeleteFacultyUserRoot()));
     }
 
 }
