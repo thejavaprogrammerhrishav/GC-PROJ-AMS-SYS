@@ -46,6 +46,6 @@ public interface StudentDao {
 
     public abstract List<Student> findByCourseType(String courseType);
 
-    public abstract List<Student> findByHonoursSubject(String honoursSubject);
+    public abstract List<Student> findByDepartment(String department);
 
 }

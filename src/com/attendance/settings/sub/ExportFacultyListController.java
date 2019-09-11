@@ -140,7 +140,7 @@ public class ExportFacultyListController extends AnchorPane {
     }
 
     private void reinit() {
-        list = dao.findByDepartment(department.getText());
+        list = dao.findByDepartment(SystemUtils.getDepartment());
     }
 
     private void populate(ActionEvent evt) {

@@ -163,7 +163,7 @@ public class ExportStudentListController extends AnchorPane {
     }
 
     private void reinit() {
-        list = dao.findAll();
+        list = dao.findByDepartment(SystemUtils.getDepartment());
     }
 
     private void populate(ActionEvent evt) {

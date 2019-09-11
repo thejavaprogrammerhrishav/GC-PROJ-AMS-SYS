@@ -189,6 +189,7 @@ public class ExportDailyStatsListController extends AnchorPane {
 
     private void populateTable(ActionEvent evt) {
         List<DailyStats> list = dao.findAll();
+        list=list.stream().filter(p->p.getClassId().startsWith(SystemUtils.getDepartmentCode())).collect(Collectors.toList());
         List<DailyStatsUtilModel> nlist = list.stream().map(a -> {
             DailyStatsUtilModel at = new DailyStatsUtilModel();
             at.setTotalStudent(a.getTotalStudent());
@@ -229,6 +230,7 @@ public class ExportDailyStatsListController extends AnchorPane {
 
     private void applyfilters(ActionEvent evt) {
         List<DailyStats> list = dao.findAll();
+        list=list.stream().filter(p->p.getClassId().startsWith(SystemUtils.getDepartmentCode())).collect(Collectors.toList());
         List<DailyStatsUtilModel> nlist = list.stream().map(a -> {
             DailyStatsUtilModel at = new DailyStatsUtilModel();
             at.setTotalStudent(a.getTotalStudent());

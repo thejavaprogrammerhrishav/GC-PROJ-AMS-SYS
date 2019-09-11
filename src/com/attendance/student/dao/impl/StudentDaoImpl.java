@@ -138,7 +138,7 @@ public class StudentDaoImpl implements StudentDao {
 
     @Override
     @Transactional
-    public List<Student> findByHonoursSubject(String honoursSubject) {
-        return (List<Student>) hibernateTemplate.find("from Student where honoursSubject=?", honoursSubject);
+    public List<Student> findByDepartment(String department) {
+        return (List<Student>) hibernateTemplate.find("from Student where department=?", department                    );
     }
 }
