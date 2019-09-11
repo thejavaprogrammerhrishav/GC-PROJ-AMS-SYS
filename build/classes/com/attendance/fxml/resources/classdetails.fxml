@@ -63,7 +63,7 @@
                   <Font name="Segoe UI" size="15.0" />
                </font>
             </Label>
-            <Label layoutX="449.0" layoutY="604.0" text="Faculty Name" textFill="WHITE">
+            <Label layoutX="504.0" layoutY="604.0" text="Faculty Name" textFill="WHITE">
                <font>
                   <Font name="Segoe UI" size="15.0" />
                </font>
@@ -103,17 +103,17 @@
                   <Font name="Segoe UI" size="24.0" />
                </font>
             </Label>
-            <TextField fx:id="classId" editable="false" layoutX="156.0" layoutY="600.0" prefHeight="28.0" prefWidth="266.0">
+            <TextField fx:id="classId" editable="false" layoutX="156.0" layoutY="600.0" prefHeight="28.0" prefWidth="325.0">
                <font>
                   <Font name="Segoe UI" size="14.0" />
                </font>
             </TextField>
-            <TextField fx:id="faculty" editable="false" layoutX="561.0" layoutY="600.0" prefHeight="28.0" prefWidth="257.0" text="aaaaaaaaaaaaaaaaaaaaaaaaaaaaa">
+            <TextField fx:id="faculty" editable="false" layoutX="616.0" layoutY="600.0" prefHeight="28.0" prefWidth="257.0" text="aaaaaaaaaaaaaaaaaaaaaaaaaaaaa">
                <font>
                   <Font name="Segoe UI" size="14.0" />
                </font>
             </TextField>
-            <TextField fx:id="subtaught" editable="false" layoutX="156.0" layoutY="653.0" prefHeight="28.0" prefWidth="663.0">
+            <TextField fx:id="subtaught" editable="false" layoutX="156.0" layoutY="653.0" prefHeight="28.0" prefWidth="718.0">
                <font>
                   <Font name="Segoe UI" size="14.0" />
                </font>
@@ -143,12 +143,12 @@
                   <Font name="Segoe UI" size="14.0" />
                </font>
             </TextField>
-            <Label layoutX="836.0" layoutY="657.0" text="Acadamic Year" textFill="WHITE">
+            <Label layoutX="890.0" layoutY="657.0" text="Acadamic Year" textFill="WHITE">
                <font>
                   <Font name="Segoe UI" size="15.0" />
                </font>
             </Label>
-            <TextField fx:id="cacadamicyear" editable="false" layoutX="955.0" layoutY="653.0" prefHeight="28.0" prefWidth="152.0">
+            <TextField fx:id="cacadamicyear" editable="false" layoutX="1009.0" layoutY="653.0" prefHeight="28.0" prefWidth="110.0">
                <font>
                   <Font name="Segoe UI" size="14.0" />
                </font>
@@ -204,12 +204,12 @@
                   <Font name="Segoe UI" size="20.0" />
                </font>
             </Label>
-            <Label layoutX="844.0" layoutY="604.0" text="Course Type" textFill="WHITE">
+            <Label layoutX="898.0" layoutY="604.0" text="Course Type" textFill="WHITE">
                <font>
                   <Font name="Segoe UI" size="15.0" />
                </font>
             </Label>
-            <TextField fx:id="coursetype" editable="false" layoutX="956.0" layoutY="600.0" prefHeight="28.0" prefWidth="151.0">
+            <TextField fx:id="coursetype" editable="false" layoutX="1010.0" layoutY="600.0" prefHeight="28.0" prefWidth="110.0">
                <font>
                   <Font name="Segoe UI" size="14.0" />
                </font>

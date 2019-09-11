@@ -396,7 +396,7 @@ public class UpdateClassDetailsController extends ScrollPane {
             cd.setFacultyName(cdfaculty.getSelectionModel().getSelectedItem());
             cd.setSubjectTaught(cdsubjecttaught.getText());
             cd.setDate(cdclassdate.getValue().format(DateTimeFormatter.ofPattern("EEEE, dd MMMM yyyy")));
-            cd.setTime(cdclasstime.getValue().format(DateTimeFormatter.ofPattern("h:m a")));
+            cd.setTime(cdclasstime.getValue().format(DateTimeFormatter.ofPattern("hh:mm a")));
             cd.setSemester(cdsemester.getSelectionModel().getSelectedItem().replace(" Semester", ""));
             cd.setYear(Integer.parseInt(cdyear.getSelectionModel().getSelectedItem()));
             cd.setPaper(cdpapercode.getSelectionModel().getSelectedItem());
@@ -413,7 +413,7 @@ public class UpdateClassDetailsController extends ScrollPane {
 
             boolean b1 = dao.update(cd);
 
-            String id = cdclassdate.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) + "@" + cdclasstime.getValue().format(DateTimeFormatter.ofPattern("h:m"))
+            String id =SystemUtils.getDepartmentCode()+"/"+ cdclassdate.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")) + "@" + cdclasstime.getValue().format(DateTimeFormatter.ofPattern("hh:mm"))
                     + "#" + cdacadamicyear.getSelectionModel().getSelectedItem() + "__" + cdsemester.getSelectionModel().getSelectedItem().replace(" Semester", "") + "_" + cdyear.getSelectionModel().getSelectedItem() + "&" + cd.getCoursetype().charAt(0);
             cd.setClassId(id);
 

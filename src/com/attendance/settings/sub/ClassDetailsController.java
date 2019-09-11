@@ -264,12 +264,12 @@ public class ClassDetailsController extends ScrollPane {
     }
 
     private void populateTable(ActionEvent evt) {
-        List<ClassDetails> list = dao.findByDepartment(department.getText());
+        List<ClassDetails> list = dao.findByDepartment(SystemUtils.getDepartment());
         table.getItems().setAll(list);
     }
 
     private void filters(ActionEvent evt) {
-        List<ClassDetails> list = dao.findByDepartment(department.getText());
+        List<ClassDetails> list = dao.findByDepartment(SystemUtils.getDepartment());
 
         if (filterbyacadamicyear.isSelected()) {
             list = list.stream().filter(s -> s.getAcadamicyear().equals(acadamicyear.getSelectionModel().getSelectedItem())).collect(Collectors.toList());

@@ -214,7 +214,7 @@ public class StudentAttendanceController extends BorderPane {
             if (t.contains("PM")) {
                 t = t.replace(" PM", "");
             }
-            String classId = DateTime.now().toString(DateTimeFormat.forPattern("dd/MM/yyyy")) + "@" + t + "#" + acadamicyear + "__" + semester.getSelectionModel().getSelectedItem() + "_" + yyear+"&"+ccoursetype.charAt(0);
+            String classId = SystemUtils.getDepartmentCode()+"/"+DateTime.now().toString(DateTimeFormat.forPattern("dd-MM-yyyy")) + "@" + t + "#" + acadamicyear + "__" + semester.getSelectionModel().getSelectedItem() + "_" + yyear+"&"+ccoursetype.charAt(0);
             classDetails = new ClassDetails();
             classDetails.setClassId(classId);
             classDetails.setDate(date.getText());
@@ -225,7 +225,7 @@ public class StudentAttendanceController extends BorderPane {
             classDetails.setTime(time.getEditor().getText());
             classDetails.setYear(yyear);
             classDetails.setPaper(papers.getSelectionModel().getSelectedItem());
-            classDetails.setDepartment(department.getText());
+            classDetails.setDepartment(SystemUtils.getDepartment());
             classDetails.setCoursetype(ccoursetype);
             
             String cid = classdao.save(classDetails);
@@ -273,7 +273,7 @@ public class StudentAttendanceController extends BorderPane {
                 yyear = Integer.parseInt(year.getSelectionModel().getSelectedItem());
                 ccoursetype=coursetype.getSelectionModel().getSelectedItem();
                 List<Student> list = new ArrayList<>(dao.findByAcadamicYearAndYear(acadamicyear, yyear));
-                list=list.stream().filter(p->p.getCourseType().equals(ccoursetype)).collect(Collectors.toList());
+                list=list.stream().filter(p->p.getCourseType().equals(ccoursetype)).filter(p->p.getDepartment().equals(SystemUtils.getDepartment())).collect(Collectors.toList());
                 List<StudentAttendanceNodeController> nodes = list.stream().map(StudentAttendanceNodeController::new).collect(Collectors.toList());
                 vb.getChildren().setAll(nodes);
                 sortStudentList(vb);

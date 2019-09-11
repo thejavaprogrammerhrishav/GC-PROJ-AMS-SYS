@@ -103,13 +103,13 @@ public class AttendanceController extends AnchorPane {
 
     @FXML
     private JFXComboBox<String> acadamicyear;
-    
-       @FXML
+
+    @FXML
     private JFXCheckBox filterbycoursetype;
 
     @FXML
     private JFXComboBox<String> coursetype;
-    
+
     private AttendanceDao dao;
     private StudentDao sdao;
 
@@ -162,15 +162,15 @@ public class AttendanceController extends AnchorPane {
             }
         });
 
-          filterbyacadamicyear.selectedProperty().addListener((ol, o, n) -> {
+        filterbyacadamicyear.selectedProperty().addListener((ol, o, n) -> {
             if (!n) {
                 filterbysemester.setSelected(false);
             }
         });
-          
+
         status.getItems().setAll("Present", "Absent");
         month.getItems().setAll("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
-        coursetype.getItems().setAll("Honours","Pass");
+        coursetype.getItems().setAll("Honours", "Pass");
         List<String> years = sdao.get("select distinct(year) from student order by year", String.class);
         year.getItems().setAll(years);
     }
@@ -193,16 +193,17 @@ public class AttendanceController extends AnchorPane {
             at.setStudentId(a.getStudentId());
 
             String s = a.getClassId();
-            String[] ss = s.split("@");
+            String[] sa = s.split("/");
+            String[] ss = sa[1].split("@");
             at.setDate(ss[0]);
 
             ss = ss[1].split("#");
             at.setTime(ss[0]);
-            
+
             ss = ss[1].split("__");
             at.setAcadamicyear(ss[0]);
 
- ss = ss[1].split("_");
+            ss = ss[1].split("_");
             at.setSemester(ss[0] + " Semester");
             System.out.println(ss[1]);
             ss = ss[1].split("&");
@@ -222,12 +223,13 @@ public class AttendanceController extends AnchorPane {
             at.setStudentId(a.getStudentId());
 
             String s = a.getClassId();
-            String[] ss = s.split("@");
+            String[] sa = s.split("/");
+            String[] ss = sa[1].split("@");
             at.setDate(ss[0]);
 
             ss = ss[1].split("#");
             at.setTime(ss[0]);
-            
+
             ss = ss[1].split("__");
             at.setAcadamicyear(ss[0]);
 
@@ -235,17 +237,17 @@ public class AttendanceController extends AnchorPane {
             at.setSemester(ss[0] + " Semester");
             ss = ss[1].split("&");
             at.setYear(ss[0]);
-            
-             if (a.getClassId().charAt(a.getClassId().length()-1)=='H') {
+
+            if (a.getClassId().charAt(a.getClassId().length() - 1) == 'H') {
                 at.setCoursetype("Honours");
             }
-            if (a.getClassId().charAt(a.getClassId().length()-1)=='P') {
+            if (a.getClassId().charAt(a.getClassId().length() - 1) == 'P') {
                 at.setCoursetype("Pass");
             }
             return at;
         }).collect(Collectors.toList());
 
-         if (filterbyacadamicyear.isSelected()) {
+        if (filterbyacadamicyear.isSelected()) {
             nlist = nlist.stream().filter(s -> s.getAcadamicyear().equals(acadamicyear.getSelectionModel().getSelectedItem())).collect(Collectors.toList());
         }
         if (filterbyid.isSelected()) {
@@ -268,9 +270,9 @@ public class AttendanceController extends AnchorPane {
         if (filterbyyear.isSelected()) {
             nlist = nlist.stream().filter(s -> s.getYear().equals(year.getSelectionModel().getSelectedItem())).collect(Collectors.toList());
         }
-        
-        if (filterbycoursetype.isSelected()){
-            nlist= nlist.stream().filter(s-> s.getCoursetype().equals(coursetype.getSelectionModel().getSelectedItem())).collect(Collectors.toList());
+
+        if (filterbycoursetype.isSelected()) {
+            nlist = nlist.stream().filter(s -> s.getCoursetype().equals(coursetype.getSelectionModel().getSelectedItem())).collect(Collectors.toList());
         }
 
         table.getItems().setAll(nlist);

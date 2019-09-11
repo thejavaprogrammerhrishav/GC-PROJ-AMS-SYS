@@ -205,7 +205,8 @@ public class DailyStatsController extends AnchorPane {
             at.setAbsentPercentage(a.getAbsentPercentage());
             
             String s = a.getClassId();
-            String[] ss = s.split("@");
+            String[] sa=s.split("/");
+            String[] ss = sa[1].split("@");
             at.setDate(ss[0]);
             
             ss = ss[1].split("#");
@@ -245,7 +246,8 @@ public class DailyStatsController extends AnchorPane {
             at.setAbsentPercentage(a.getAbsentPercentage());
             
             String s = a.getClassId();
-            String[] ss = s.split("@");
+            String[] sa=s.split("/");
+            String[] ss = sa[1].split("@");
             at.setDate(ss[0]);
             
             ss = ss[1].split("#");

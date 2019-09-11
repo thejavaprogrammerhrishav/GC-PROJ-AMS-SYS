@@ -18,7 +18,7 @@ public class SystemUtils {
         "Computer Science", "Ecology & Environmental Science", "Economics", "English", "Geology", "Hindi", "History", "Mathematics", "Manipuri", "Mass Communication",
         "Persian", "Philosophy", "Physics", "Political Science", "Sanskrit", "Statistics", "Zoology"};
 
-    public static HashMap<String, String> deptcodes;
+    private static HashMap<String, String> deptcodes;
 
     public static String getDepartment() {
         return department;

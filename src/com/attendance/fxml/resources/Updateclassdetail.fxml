@@ -32,12 +32,12 @@
                <content>
                   <TableView fx:id="table" prefHeight="308.0" prefWidth="1895.0" styleClass="mytable">
                     <columns>
-                      <TableColumn fx:id="tclassid" editable="false" prefWidth="280.0" resizable="false" sortable="false" text="Class ID" />
-                      <TableColumn fx:id="tfacultyname" editable="false" prefWidth="274.0" resizable="false" sortable="false" text="Faculty Name" />
-                        <TableColumn fx:id="tsubjecttaught" editable="false" prefWidth="311.0" resizable="false" sortable="false" text="Subject Taught" />
-                        <TableColumn fx:id="tdate" editable="false" prefWidth="237.0" resizable="false" sortable="false" text="Class Date" />
-                        <TableColumn fx:id="ttime" editable="false" minWidth="7.0" prefWidth="128.0" resizable="false" sortable="false" text="Class Time" />
-                        <TableColumn fx:id="tsemester" editable="false" minWidth="0.0" prefWidth="101.0" resizable="false" sortable="false" text="Semester" />
+                      <TableColumn fx:id="tclassid" editable="false" prefWidth="313.0" resizable="false" sortable="false" text="Class ID" />
+                      <TableColumn fx:id="tfacultyname" editable="false" prefWidth="269.0" resizable="false" sortable="false" text="Faculty Name" />
+                        <TableColumn fx:id="tsubjecttaught" editable="false" prefWidth="283.0" resizable="false" sortable="false" text="Subject Taught" />
+                        <TableColumn fx:id="tdate" editable="false" prefWidth="246.0" resizable="false" sortable="false" text="Class Date" />
+                        <TableColumn fx:id="ttime" editable="false" minWidth="7.0" prefWidth="138.0" resizable="false" sortable="false" text="Class Time" />
+                        <TableColumn fx:id="tsemester" editable="false" minWidth="0.0" prefWidth="82.0" resizable="false" sortable="false" text="Semester" />
                         <TableColumn fx:id="tyear" editable="false" minWidth="0.0" prefWidth="86.0" resizable="false" sortable="false" text="Year" />
                         <TableColumn fx:id="tpapercode" editable="false" minWidth="0.0" prefWidth="152.0" resizable="false" sortable="false" text="Paper Code" />
                         <TableColumn fx:id="tacadamicyear" editable="false" minWidth="0.0" prefWidth="158.0" resizable="false" sortable="false" text="Acadamic Year" />

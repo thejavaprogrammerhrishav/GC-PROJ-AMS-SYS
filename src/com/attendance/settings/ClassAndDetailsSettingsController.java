@@ -70,6 +70,7 @@ public class ClassAndDetailsSettingsController extends AnchorPane {
     @FXML
     private void initialize() {
         department.setText(SystemUtils.getDepartment());
+        pane.setCenter(new ClassDetailsController());
         close.setOnAction(e -> SwitchRoot.switchRoot(Start.st, parent));
         classdetails.setOnAction(e->pane.setCenter(new ClassDetailsController()));
         updateclassdetails.setOnAction(e->pane.setCenter(new UpdateClassDetailsController()));

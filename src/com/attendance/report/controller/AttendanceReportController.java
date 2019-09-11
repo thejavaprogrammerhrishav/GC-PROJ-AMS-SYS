@@ -218,9 +218,9 @@ public class AttendanceReportController extends AnchorPane {
     }
 
     private void generate(ActionEvent evt) {
-        String fsql = "select group_concat(distinct(facultyname) separator ',') as faculty from classdetails where 1";
-        String sql = "select *,count(*) as countpresent from attendance,classdetails where attendance.classId=classdetails.classId ";
-        String csql = "select count(*) from classdetails where 1";
+        String fsql = "select group_concat(distinct(facultyname) separator ',') as faculty from classdetails where department='"+SystemUtils.getDepartment()+"'";
+        String sql = "select *,count(*) as countpresent from attendance,classdetails where attendance.classId=classdetails.classId and department='"+SystemUtils.getDepartment()+"'";
+        String csql = "select count(*) from classdetails where department='"+SystemUtils.getDepartment()+"'";
 
         boolean b = acadamicyear.getSelectionModel().getSelectedIndex() > -1 && semester.getSelectionModel().getSelectedIndex() > -1
                 && year.getSelectionModel().getSelectedIndex() > -1 && paper.getSelectionModel().getSelectedIndex() > -1
