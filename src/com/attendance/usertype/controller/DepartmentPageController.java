@@ -5,7 +5,10 @@
  */
 package com.attendance.usertype.controller;
 
+import com.attendance.main.Start;
 import com.attendance.util.Fxml;
+import com.attendance.util.RootFactory;
+import com.attendance.util.SwitchRoot;
 import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -39,6 +42,6 @@ public class DepartmentPageController extends AnchorPane{
     
     @FXML
     private void initialize(){
-        back.setOnAction(e-> System.exit(0));
+        back.setOnAction(e-> SwitchRoot.switchRoot(Start.st, RootFactory.getPrincipalSignUpRoot(Start.st.getScene().getRoot())));
     }
 }

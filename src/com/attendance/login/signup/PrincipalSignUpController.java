@@ -103,6 +103,7 @@ public class PrincipalSignUpController extends AnchorPane {
 
             }
         });
+        loginbutton.setOnAction(this::LoginAction);
     }
     
     private void LoginAction(ActionEvent evt) {

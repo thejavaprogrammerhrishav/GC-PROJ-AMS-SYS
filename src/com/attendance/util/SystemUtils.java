@@ -87,9 +87,11 @@ public class SystemUtils {
     }
     
     public static void logout(){
-        activity.setStatus("NOT ACTIVE");
+        if (activity != null) {
+            activity.setStatus("NOT ACTIVE");
         activity.setLogouttime(DateTime.now().toString(DateTimeFormat.forPattern("hh:mm:ss a")));
         act.update(activity);
+        }
     }
     
 }
