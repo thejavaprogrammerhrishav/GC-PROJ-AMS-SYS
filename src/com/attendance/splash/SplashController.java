@@ -67,7 +67,7 @@ public class SplashController extends AnchorPane {
                 return 0;
             }
         };
-        worker.setOnSucceeded(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getUserTypeRoot()));
+        worker.setOnSucceeded(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getUserType1Root()));
         progress.progressProperty().bind(worker.progressProperty());
         thread = new Thread(worker);
         thread.start();

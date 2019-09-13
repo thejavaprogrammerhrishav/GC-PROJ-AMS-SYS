@@ -203,4 +203,20 @@ public class Fxml {
     public static FXMLLoader getUploadMarksNodeFXML() {
         return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/Unittestnode.fxml"));
     }
+    
+    public static FXMLLoader getUserType1FXML() {
+        return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/usertype1.fxml"));
+    }
+    
+    public static FXMLLoader getPrincipalSignUpFXML() {
+        return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/principalsignup.fxml"));
+    }
+    
+    public static FXMLLoader getPrincipalLoginFXML() {
+        return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/principal login.fxml"));
+    }
+    
+    public static FXMLLoader getDepartmentFXML() {
+        return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/DepartmentSelection.fxml"));
+    }
 }

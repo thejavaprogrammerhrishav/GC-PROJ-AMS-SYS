@@ -13,9 +13,11 @@ import com.attendance.faculty.controller.ViewFacultyController;
 import com.attendance.login.activity.model.LoginActivity;
 import com.attendance.login.controller.HODLoginController;
 import com.attendance.login.controller.FacultyLoginController;
+import com.attendance.login.controller.PrincipalLoginController;
 import com.attendance.login.forgot.ForgotPasswordController;
 import com.attendance.login.signup.HODSignupController;
 import com.attendance.login.signup.FacultySignUpController;
+import com.attendance.login.signup.PrincipalSignUpController;
 import com.attendance.login.user.model.User;
 import com.attendance.marks.controller.UploadUnitTestMarksController;
 import com.attendance.notes.controller.DownloadNotesController;
@@ -50,6 +52,8 @@ import com.attendance.student.controller.RegisterStudentController;
 import com.attendance.student.controller.StudentUpdateController;
 import com.attendance.student.controller.ViewStudentDetailsController;
 import com.attendance.studentattendance.controller.StudentAttendanceController;
+import com.attendance.usertype.controller.DepartmentPageController;
+import com.attendance.usertype.controller.UserType1Controller;
 import com.attendance.usertype.controller.UserTypeController;
 import javafx.scene.Parent;
 
@@ -241,5 +245,26 @@ public class RootFactory {
     
     public static Parent getUploadMarksRoot() {
         return new UploadUnitTestMarksController();
+    }
+    
+    public static Parent getUserType1Root() {
+        return new UserType1Controller();
+    }
+    
+    public static Parent getDepartmentRoot() {
+        return new DepartmentPageController();
+    }
+    
+    public static Parent getPrincipalLoginRoot() {
+        return new PrincipalLoginController();
+    }
+    
+    public static Parent getPrincipalSignUpRoot(Parent parent) {
+        return new PrincipalSignUpController(parent);
+    }
+    
+    public static Parent getPrincipalDashboardRoot(User user , LoginActivity activity){
+        System.exit(0);
+        return null;
     }
 }
