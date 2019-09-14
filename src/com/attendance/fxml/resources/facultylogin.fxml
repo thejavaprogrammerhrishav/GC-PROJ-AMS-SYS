@@ -3,13 +3,14 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<fx:root prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: #7a97ff;" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: #7a97ff;" stylesheets="@../../resources/Close.css" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane layoutX="93.0" layoutY="74.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="620.0" prefWidth="1180.0" style="-fx-background-color: #fff;">
          <children>
@@ -60,6 +61,16 @@
                         <Image url="@../../resources/teacher.png" />
                      </image>
                   </ImageView>
+                  <Label fx:id="result1" layoutX="185.0" layoutY="546.0" prefHeight="36.0" prefWidth="179.0" text="New to the system?">
+                     <font>
+                        <Font name="Tw Cen MT" size="22.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="signup" alignment="CENTER" layoutX="364.0" layoutY="546.0" prefHeight="36.0" prefWidth="94.0" text="Sign Up" textFill="#1a00ff">
+                     <font>
+                        <Font name="Tw Cen MT Bold" size="16.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
             <Label fx:id="department" alignment="CENTER" layoutX="690.0" layoutY="220.0" prefHeight="32.0" prefWidth="423.0" text="Department:">
@@ -67,6 +78,11 @@
                   <Font name="Tw Cen MT" size="25.0" />
                </font>
             </Label>
+            <JFXButton fx:id="close" contentDisplay="GRAPHIC_ONLY" layoutX="1140.0" layoutY="8.0" ripplerFill="BLACK" styleClass="close">
+               <graphic>
+                  <FontAwesomeIconView glyphName="CLOSE" size="1.5em" />
+               </graphic>
+            </JFXButton>
          </children>
       </AnchorPane>
    </children>

@@ -22,10 +22,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javax.swing.JOptionPane;
 import org.joda.time.DateTime;
@@ -51,6 +53,12 @@ public class PrincipalLoginController extends AnchorPane {
 
     @FXML
     private Label result;
+    
+    @FXML
+    private Label signup;
+    
+    @FXML
+    private JFXButton close;
 
     private FXMLLoader fxml;
     private final String userRole = "Principal";
@@ -138,5 +146,18 @@ public class PrincipalLoginController extends AnchorPane {
             ForgotPasswordController.LoginType = userRole;
             SwitchRoot.switchRoot(Start.st, RootFactory.getForgotPasswordRoot());
         });
+        
+        signup.setOnMouseClicked(this::signupAction);
+        close.setOnAction(this::closeAction);
+    }
+
+    private void signupAction(MouseEvent evt) {
+        SwitchRoot.switchRoot(Start.st, RootFactory.getPrincipalSignUpRoot(Start.st.getScene().getRoot()));
+    }
+    
+    private void closeAction(ActionEvent evt) {
+        SystemUtils.setDepartment("");
+        SystemUtils.logout();
+        SwitchRoot.switchRoot(Start.st, RootFactory.getUserType1Root());
     }
 }

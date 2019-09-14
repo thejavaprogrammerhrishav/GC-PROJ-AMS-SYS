@@ -32,7 +32,8 @@ import javafx.stage.StageStyle;
  *
  * @author Programmer Hrishav
  */
-public class HODSignupController extends AnchorPane{
+public class HODSignupController extends AnchorPane {
+
     @FXML
     private TextField fullname;
 
@@ -55,11 +56,8 @@ public class HODSignupController extends AnchorPane{
     private Button signup;
 
     @FXML
-    private Button abort;
-    
-    @FXML 
     private Button loginbutton;
-    
+
     private FXMLLoader fxml;
     private User user;
     private Login login;
@@ -67,65 +65,62 @@ public class HODSignupController extends AnchorPane{
 
     public HODSignupController(Parent parent) {
         this.parent = parent;
-        fxml=Fxml.getHODSignUpFXML();
+        fxml = Fxml.getHODSignUpFXML();
         fxml.setController(this);
         fxml.setRoot(this);
-        
+
         try {
             fxml.load();
         } catch (IOException ex) {
             Logger.getLogger(HODSignupController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         user = new User();
         login = (Login) Start.app.getBean("userlogin");
     }
-    
+
     @FXML
-    private void initialize(){
-        abort.setOnAction(e->SwitchRoot.switchRoot(Start.st, parent));
+    private void initialize() {
         loginbutton.setOnAction(this::loginaction);
-        signup.setOnAction(e->{
-            if(login.isUsernameExists(username.getText())>0){
-                Alert al=new Alert(Alert.AlertType.ERROR);
+        signup.setOnAction(e -> {
+            if (login.isUsernameExists(username.getText()) > 0) {
+                Alert al = new Alert(Alert.AlertType.ERROR);
                 al.setHeaderText("Administrator Sign Up");
                 al.setContentText("Username already taken");
-                al.initOwner(((Node)e.getSource()).getScene().getWindow());
+                al.initOwner(((Node) e.getSource()).getScene().getWindow());
                 al.initModality(Modality.WINDOW_MODAL);
                 al.initStyle(StageStyle.UNDECORATED);
                 al.show();
-            }
-            else if(password.getText().equals(confirmpassword.getText())){
+            } else if (password.getText().equals(confirmpassword.getText())) {
                 user.setName(fullname.getText());
                 user.setEmail(email.getText());
                 user.setContact(contact.getText());
                 user.setPassword(password.getText());
                 user.setType("HOD");
                 user.setUsername(username.getText());
-                
+
                 login.save(user);
-                
-                Alert al=new Alert(Alert.AlertType.INFORMATION);
+
+                Alert al = new Alert(Alert.AlertType.INFORMATION);
                 al.setHeaderText("HOD Sign Up");
                 al.setContentText("Sign Up Successful\nHOD account created successfully");
-                al.initOwner(((Node)e.getSource()).getScene().getWindow());
+                al.initOwner(((Node) e.getSource()).getScene().getWindow());
                 al.initModality(Modality.WINDOW_MODAL);
                 al.initStyle(StageStyle.UNDECORATED);
                 al.show();
-            }
-            else{
-                Alert al=new Alert(Alert.AlertType.ERROR);
+            } else {
+                Alert al = new Alert(Alert.AlertType.ERROR);
                 al.setHeaderText("HOD Sign Up");
                 al.setContentText("Passwords don't match\nCheck passwords again");
-                al.initOwner(((Node)e.getSource()).getScene().getWindow());
+                al.initOwner(((Node) e.getSource()).getScene().getWindow());
                 al.initModality(Modality.WINDOW_MODAL);
                 al.initStyle(StageStyle.UNDECORATED);
                 al.show();
             }
         });
     }
-    
-    private void loginaction(ActionEvent evt){
+
+    private void loginaction(ActionEvent evt) {
         SystemUtils.logout();
         SwitchRoot.switchRoot(Start.st, RootFactory.getHODLoginRoot());
     }

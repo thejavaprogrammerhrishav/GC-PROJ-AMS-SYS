@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -29,7 +30,7 @@
             <Font name="Tw Cen MT" size="30.0" />
          </font>
       </Label>
-      <Pane layoutX="154.0" layoutY="179.0" prefHeight="474.0" prefWidth="352.0">
+      <Pane layoutX="176.0" layoutY="227.0" prefHeight="474.0" prefWidth="352.0">
          <children>
             <ImageView fitHeight="244.0" fitWidth="349.0" layoutX="2.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -48,7 +49,7 @@
             </JFXButton>
          </children>
       </Pane>
-      <Pane layoutX="811.0" layoutY="179.0" prefHeight="474.0" prefWidth="360.0">
+      <Pane layoutX="774.0" layoutY="217.0" prefHeight="474.0" prefWidth="360.0">
          <children>
             <ImageView fitHeight="218.0" fitWidth="224.0" layoutX="71.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -60,12 +61,17 @@
                   <Font name="Tw Cen MT" size="30.0" />
                </font>
             </Label>
-            <JFXButton fx:id="department" buttonType="RAISED" layoutX="83.0" layoutY="360.0" prefHeight="33.0" prefWidth="195.0" style="-fx-background-color: #cfb307;" text="Continue" textFill="WHITE">
+            <JFXButton fx:id="department" buttonType="RAISED" layoutX="83.0" layoutY="368.0" prefHeight="33.0" prefWidth="195.0" style="-fx-background-color: #cfb307;" text="Continue" textFill="WHITE">
                <font>
                   <Font name="Tw Cen MT" size="24.0" />
                </font>
             </JFXButton>
          </children>
       </Pane>
+      <JFXButton fx:id="exit" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" layoutX="1317.0" layoutY="727.0">
+         <graphic>
+            <FontAwesomeIconView glyphName="POWER_OFF" size="1.8em" />
+         </graphic>
+      </JFXButton>
    </children>
 </fx:root>

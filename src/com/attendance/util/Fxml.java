@@ -17,12 +17,12 @@ public class Fxml {
         return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/splash.fxml"));
     }
 
-    public static FXMLLoader getUserTypeFXML() {
-        return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/Usertype.fxml"));
+    public static FXMLLoader getUserType2FXML() {
+        return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/usertype2.fxml"));
     }
 
     public static FXMLLoader getHODLoginFXML() {
-        return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/adminlogin.fxml"));
+        return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/hodlogin.fxml"));
     }
 
     public static FXMLLoader getForgotPasswordFXML() {

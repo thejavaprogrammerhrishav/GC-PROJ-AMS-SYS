@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: #7303c0;" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: #7303c0;" stylesheets="@../../resources/Close.css" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane layoutX="191.0" layoutY="121.0" prefHeight="513.0" prefWidth="985.0" style="-fx-background-color: white;">
          <children>
@@ -43,11 +45,11 @@
                         <Image url="@../../resources/lock-512.png" />
                      </image>
                   </ImageView>
-                  <TextField fx:id="password" layoutX="60.0" layoutY="8.0" prefHeight="40.0" prefWidth="361.0" promptText="Password" style="-fx-background-color: transparent; -fx-prompt-text-fill: #4C4C4C;">
+                  <PasswordField fx:id="password" layoutX="60.0" layoutY="8.0" prefHeight="40.0" prefWidth="361.0" promptText="Password" style="-fx-background-color: transparent; -fx-prompt-text-fill: #4C4C4C;">
                      <font>
                         <Font size="15.0" />
                      </font>
-                  </TextField>
+                  </PasswordField>
                </children>
             </AnchorPane>
             <JFXButton fx:id="login" buttonType="RAISED" layoutX="487.0" layoutY="313.0" prefHeight="45.0" prefWidth="209.0" ripplerFill="BLACK" style="-fx-background-color: #007300; -fx-background-radius: 35;" text="Login" textFill="WHITE">
@@ -65,6 +67,21 @@
                   <Font name="Tw Cen MT" size="22.0" />
                </font>
             </Label>
+            <Label fx:id="result1" layoutX="42.0" layoutY="452.0" prefHeight="36.0" prefWidth="179.0" text="New to the system?">
+               <font>
+                  <Font name="Tw Cen MT" size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="signup" alignment="CENTER" layoutX="214.0" layoutY="452.0" prefHeight="36.0" prefWidth="94.0" text="Sign Up" textFill="#1a00ff">
+               <font>
+                  <Font name="Tw Cen MT Bold" size="16.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="close" contentDisplay="GRAPHIC_ONLY" layoutX="942.0" layoutY="12.0" ripplerFill="BLACK" styleClass="close">
+               <graphic>
+                  <FontAwesomeIconView glyphName="CLOSE" size="1.5em" />
+               </graphic>
+            </JFXButton>
          </children>
       </AnchorPane>
    </children>

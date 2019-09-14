@@ -10,6 +10,7 @@ import com.attendance.login.activity.model.LoginActivity;
 import com.attendance.main.Start;
 import com.attendance.util.RootFactory;
 import com.attendance.util.SwitchRoot;
+import com.attendance.util.SystemUtils;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import org.joda.time.DateTime;
@@ -34,7 +35,10 @@ public class Logout implements EventHandler<ActionEvent>{
         activity.setStatus("NOT ACTIVE");
         activity.setLogouttime(DateTime.now().toString(DateTimeFormat.forPattern("hh:mm:ss a")));
         act.update(activity);
-        SwitchRoot.switchRoot(Start.st, RootFactory.getUserTypeRoot());
+        SystemUtils.setDepartment("");
+        SystemUtils.logout();
+        SystemUtils.setActivity(null);
+        SwitchRoot.switchRoot(Start.st, RootFactory.getUserType1Root());
     }
     
 }

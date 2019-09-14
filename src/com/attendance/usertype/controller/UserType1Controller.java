@@ -29,6 +29,9 @@ public class UserType1Controller extends AnchorPane{
     @FXML
     private JFXButton department;
     
+    @FXML
+    private JFXButton exit;
+    
     
     private FXMLLoader fxml ;
 
@@ -48,6 +51,7 @@ public class UserType1Controller extends AnchorPane{
     private void initialize(){
         principal.setOnAction(this::principalAction);
         department.setOnAction(this::departmentAction);
+        exit.setOnAction(e->System.exit(0));
     }
     
     private void principalAction(ActionEvent evt){

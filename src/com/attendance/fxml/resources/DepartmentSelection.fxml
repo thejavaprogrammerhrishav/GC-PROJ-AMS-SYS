@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -24,7 +25,7 @@
             <Font name="Segoe UI Light" size="22.0" />
          </font>
       </Label>
-      <JFXButton buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" layoutX="40.0" layoutY="226.0" prefHeight="110.0" prefWidth="120.0" ripplerFill="BLACK" styleClass="node">
+      <JFXButton fx:id="anthropology" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" layoutX="40.0" layoutY="226.0" prefHeight="110.0" prefWidth="120.0" ripplerFill="BLACK" styleClass="node">
          <graphic>
             <AnchorPane layoutX="8.0" layoutY="79.0" prefHeight="116.0" prefWidth="117.0">
                <children>
@@ -41,7 +42,7 @@
             </AnchorPane>
          </graphic>
       </JFXButton>
-      <JFXButton buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" layoutX="40.0" layoutY="362.0" prefHeight="110.0" prefWidth="120.0" ripplerFill="BLACK" styleClass="node">
+      <JFXButton fx:id="assamese" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" layoutX="40.0" layoutY="362.0" prefHeight="110.0" prefWidth="120.0" ripplerFill="BLACK" styleClass="node">
          <graphic>
             <AnchorPane prefHeight="124.0" prefWidth="83.0">
                <children>
@@ -58,7 +59,7 @@
             </AnchorPane>
          </graphic>
       </JFXButton>
-      <JFXButton buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" layoutX="40.0" layoutY="496.0" prefHeight="110.0" prefWidth="120.0" ripplerFill="BLACK" styleClass="node" text="Button">
+      <JFXButton fx:id="bengali" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" layoutX="40.0" layoutY="496.0" prefHeight="110.0" prefWidth="120.0" ripplerFill="BLACK" styleClass="node" text="Button">
          <graphic>
             <AnchorPane prefHeight="124.0" prefWidth="83.0">
                <children>
@@ -75,7 +76,7 @@
             </AnchorPane>
          </graphic>
       </JFXButton>
-      <JFXButton buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" layoutX="190.0" layoutY="226.0" prefHeight="110.0" prefWidth="120.0" ripplerFill="BLACK" styleClass="node">
+      <JFXButton fx:id="biotechnology" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" layoutX="190.0" layoutY="226.0" prefHeight="110.0" prefWidth="120.0" ripplerFill="BLACK" styleClass="node">
          <graphic>
             <AnchorPane prefHeight="110.0" prefWidth="120.0">
                <children>
@@ -92,7 +93,7 @@
             </AnchorPane>
          </graphic>
       </JFXButton>
-      <JFXButton buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" layoutX="338.0" layoutY="226.0" prefHeight="110.0" prefWidth="120.0" ripplerFill="BLACK" styleClass="node">
+      <JFXButton fx:id="botany" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" layoutX="338.0" layoutY="226.0" prefHeight="110.0" prefWidth="120.0" ripplerFill="BLACK" styleClass="node">
          <graphic>
             <AnchorPane prefHeight="110.0" prefWidth="120.0">
                <children>
@@ -109,7 +110,7 @@
             </AnchorPane>
          </graphic>
       </JFXButton>
-      <JFXButton buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" layoutX="488.0" layoutY="496.0" prefHeight="110.0" prefWidth="179.0" ripplerFill="BLACK" styleClass="node" text="Button">
+      <JFXButton fx:id="businessadministration" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" layoutX="488.0" layoutY="496.0" prefHeight="110.0" prefWidth="179.0" ripplerFill="BLACK" styleClass="node" text="Button">
          <graphic>
             <AnchorPane prefHeight="110.0" prefWidth="120.0">
                <children>
@@ -127,7 +128,7 @@
             </AnchorPane>
          </graphic>
       </JFXButton>
-      <JFXButton buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" layoutX="338.0" layoutY="362.0" prefHeight="110.0" prefWidth="120.0" ripplerFill="BLACK" styleClass="node">
+      <JFXButton fx:id="chemistry" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" layoutX="338.0" layoutY="362.0" prefHeight="110.0" prefWidth="120.0" ripplerFill="BLACK" styleClass="node">
          <graphic>
             <AnchorPane prefHeight="110.0" prefWidth="120.0">
                <children>
@@ -144,7 +145,7 @@
             </AnchorPane>
          </graphic>
       </JFXButton>
-      <JFXButton buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" layoutX="694.0" layoutY="496.0" prefHeight="110.0" prefWidth="152.0" ripplerFill="BLACK" styleClass="node" text="Button">
+      <JFXButton fx:id="computerscience" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" layoutX="694.0" layoutY="496.0" prefHeight="110.0" prefWidth="152.0" ripplerFill="BLACK" styleClass="node" text="Button">
          <graphic>
             <AnchorPane prefHeight="110.0" prefWidth="120.0">
                <children>
@@ -161,7 +162,7 @@
             </AnchorPane>
          </graphic>
       </JFXButton>
-      <JFXButton buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" layoutX="190.0" layoutY="362.0" prefHeight="110.0" prefWidth="120.0" ripplerFill="BLACK" styleClass="node">
+      <JFXButton fx:id="economics" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" layoutX="190.0" layoutY="362.0" prefHeight="110.0" prefWidth="120.0" ripplerFill="BLACK" styleClass="node">
          <graphic>
             <AnchorPane prefHeight="110.0" prefWidth="120.0">
                <children>
@@ -178,7 +179,7 @@
             </AnchorPane>
          </graphic>
       </JFXButton>
-      <JFXButton buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" layoutX="338.0" layoutY="496.0" prefHeight="110.0" prefWidth="120.0" ripplerFill="BLACK" styleClass="node">
+      <JFXButton fx:id="english" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" layoutX="338.0" layoutY="496.0" prefHeight="110.0" prefWidth="120.0" ripplerFill="BLACK" styleClass="node">
          <graphic>
             <AnchorPane prefHeight="110.0" prefWidth="120.0">
                <children>
@@ -195,7 +196,7 @@
             </AnchorPane>
          </graphic>
       </JFXButton>
-      <JFXButton buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" layoutX="1216.0" layoutY="226.0" prefHeight="110.0" prefWidth="120.0" ripplerFill="BLACK" styleClass="node">
+      <JFXButton fx:id="geology" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" layoutX="1216.0" layoutY="226.0" prefHeight="110.0" prefWidth="120.0" ripplerFill="BLACK" styleClass="node">
          <graphic>
             <AnchorPane prefHeight="124.0" prefWidth="83.0">
                <children>
@@ -212,7 +213,7 @@
             </AnchorPane>
          </graphic>
       </JFXButton>
-      <JFXButton buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" layoutX="488.0" layoutY="226.0" prefHeight="110.0" prefWidth="120.0" ripplerFill="BLACK" styleClass="node">
+      <JFXButton fx:id="hindi" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" layoutX="488.0" layoutY="226.0" prefHeight="110.0" prefWidth="120.0" ripplerFill="BLACK" styleClass="node">
          <graphic>
             <AnchorPane prefHeight="110.0" prefWidth="120.0">
                <children>
@@ -229,7 +230,7 @@
             </AnchorPane>
          </graphic>
       </JFXButton>
-      <JFXButton buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" layoutX="1072.0" layoutY="226.0" prefHeight="110.0" prefWidth="120.0" ripplerFill="BLACK" styleClass="node">
+      <JFXButton fx:id="manipuri" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" layoutX="1072.0" layoutY="226.0" prefHeight="110.0" prefWidth="120.0" ripplerFill="BLACK" styleClass="node">
          <graphic>
             <AnchorPane prefHeight="124.0" prefWidth="83.0">
                <children>
@@ -246,7 +247,7 @@
             </AnchorPane>
          </graphic>
       </JFXButton>
-      <JFXButton buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" layoutX="488.0" layoutY="362.0" prefHeight="110.0" prefWidth="120.0" ripplerFill="BLACK" styleClass="node" text="Button">
+      <JFXButton fx:id="mathematics" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" layoutX="488.0" layoutY="362.0" prefHeight="110.0" prefWidth="120.0" ripplerFill="BLACK" styleClass="node" text="Button">
          <graphic>
             <AnchorPane prefHeight="110.0" prefWidth="120.0">
                <children>
@@ -263,7 +264,7 @@
             </AnchorPane>
          </graphic>
       </JFXButton>
-      <JFXButton buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" layoutX="634.0" layoutY="226.0" prefHeight="110.0" prefWidth="120.0" ripplerFill="BLACK" styleClass="node">
+      <JFXButton fx:id="history" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" layoutX="634.0" layoutY="226.0" prefHeight="110.0" prefWidth="120.0" ripplerFill="BLACK" styleClass="node">
          <graphic>
             <AnchorPane prefHeight="110.0" prefWidth="120.0">
                <children>
@@ -280,7 +281,7 @@
             </AnchorPane>
          </graphic>
       </JFXButton>
-      <JFXButton buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" layoutX="634.0" layoutY="362.0" prefHeight="110.0" prefWidth="120.0" ripplerFill="BLACK" styleClass="node">
+      <JFXButton fx:id="persian" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" layoutX="634.0" layoutY="362.0" prefHeight="110.0" prefWidth="120.0" ripplerFill="BLACK" styleClass="node">
          <graphic>
             <AnchorPane prefHeight="110.0" prefWidth="120.0">
                <children>
@@ -297,7 +298,7 @@
             </AnchorPane>
          </graphic>
       </JFXButton>
-      <JFXButton buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" layoutX="1143.0" layoutY="496.0" prefHeight="110.0" prefWidth="152.0" ripplerFill="BLACK" styleClass="node">
+      <JFXButton fx:id="masscommunication" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" layoutX="1143.0" layoutY="496.0" prefHeight="110.0" prefWidth="152.0" ripplerFill="BLACK" styleClass="node">
          <graphic>
             <AnchorPane prefHeight="110.0" prefWidth="120.0">
                <children>
@@ -314,7 +315,7 @@
             </AnchorPane>
          </graphic>
       </JFXButton>
-      <JFXButton buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" layoutX="928.0" layoutY="362.0" prefHeight="110.0" prefWidth="120.0" ripplerFill="BLACK" styleClass="node" text="Button">
+      <JFXButton fx:id="philosophy" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" layoutX="928.0" layoutY="362.0" prefHeight="110.0" prefWidth="120.0" ripplerFill="BLACK" styleClass="node" text="Button">
          <graphic>
             <AnchorPane prefHeight="110.0" prefWidth="120.0">
                <children>
@@ -331,7 +332,7 @@
             </AnchorPane>
          </graphic>
       </JFXButton>
-      <JFXButton buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" layoutX="1072.0" layoutY="362.0" prefHeight="110.0" prefWidth="120.0" ripplerFill="BLACK" styleClass="node" text="Button">
+      <JFXButton fx:id="physics" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" layoutX="1072.0" layoutY="362.0" prefHeight="110.0" prefWidth="120.0" ripplerFill="BLACK" styleClass="node" text="Button">
          <graphic>
             <AnchorPane prefHeight="110.0" prefWidth="120.0">
                <children>
@@ -348,7 +349,7 @@
             </AnchorPane>
          </graphic>
       </JFXButton>
-      <JFXButton buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" layoutX="1215.0" layoutY="362.0" prefHeight="110.0" prefWidth="120.0" ripplerFill="BLACK" styleClass="node" text="Button">
+      <JFXButton fx:id="politicalscience" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" layoutX="1215.0" layoutY="362.0" prefHeight="110.0" prefWidth="120.0" ripplerFill="BLACK" styleClass="node" text="Button">
          <graphic>
             <AnchorPane prefHeight="110.0" prefWidth="120.0">
                <children>
@@ -365,7 +366,7 @@
             </AnchorPane>
          </graphic>
       </JFXButton>
-      <JFXButton buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" layoutX="781.0" layoutY="226.0" prefHeight="110.0" prefWidth="120.0" ripplerFill="BLACK" styleClass="node">
+      <JFXButton fx:id="sanskrit" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" layoutX="781.0" layoutY="226.0" prefHeight="110.0" prefWidth="120.0" ripplerFill="BLACK" styleClass="node">
          <graphic>
             <AnchorPane prefHeight="110.0" prefWidth="120.0">
                <children>
@@ -383,7 +384,7 @@
             </AnchorPane>
          </graphic>
       </JFXButton>
-      <JFXButton buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" layoutX="928.0" layoutY="226.0" prefHeight="110.0" prefWidth="120.0" ripplerFill="BLACK" styleClass="node">
+      <JFXButton fx:id="statistics" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" layoutX="928.0" layoutY="226.0" prefHeight="110.0" prefWidth="120.0" ripplerFill="BLACK" styleClass="node">
          <graphic>
             <AnchorPane prefHeight="110.0" prefWidth="120.0">
                <children>
@@ -392,7 +393,7 @@
                         <Image url="@../../resources/52abd3e155fcd67d30cf9693e6ada8af.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="28.0" layoutY="77.0" text="Statistic" textFill="WHITE">
+                  <Label layoutX="28.0" layoutY="77.0" text="Statistics" textFill="WHITE">
                      <font>
                         <Font name="Segoe UI" size="14.0" />
                      </font>
@@ -401,7 +402,7 @@
             </AnchorPane>
          </graphic>
       </JFXButton>
-      <JFXButton buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" layoutX="781.0" layoutY="362.0" prefHeight="110.0" prefWidth="120.0" ripplerFill="BLACK" styleClass="node" text="Button">
+      <JFXButton fx:id="zoology" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" layoutX="781.0" layoutY="362.0" prefHeight="110.0" prefWidth="120.0" ripplerFill="BLACK" styleClass="node" text="Button">
          <graphic>
             <AnchorPane prefHeight="110.0" prefWidth="120.0">
                <children>
@@ -419,7 +420,7 @@
             </AnchorPane>
          </graphic>
       </JFXButton>
-      <JFXButton buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" layoutX="190.0" layoutY="496.0" prefHeight="110.0" prefWidth="120.0" ripplerFill="BLACK" styleClass="node">
+      <JFXButton fx:id="commerce" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" layoutX="190.0" layoutY="496.0" prefHeight="110.0" prefWidth="120.0" ripplerFill="BLACK" styleClass="node">
          <graphic>
             <AnchorPane prefHeight="110.0" prefWidth="120.0">
                <children>
@@ -437,7 +438,7 @@
             </AnchorPane>
          </graphic>
       </JFXButton>
-      <JFXButton buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" layoutX="874.0" layoutY="496.0" prefHeight="110.0" prefWidth="218.0" ripplerFill="BLACK" styleClass="node">
+      <JFXButton fx:id="evs" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" layoutX="874.0" layoutY="496.0" prefHeight="110.0" prefWidth="218.0" ripplerFill="BLACK" styleClass="node">
          <graphic>
             <AnchorPane prefHeight="124.0" prefWidth="83.0">
                <children>
@@ -455,6 +456,9 @@
             </AnchorPane>
          </graphic>
       </JFXButton>
-      <JFXButton fx:id="back" buttonType="RAISED" layoutX="14.0" layoutY="14.0" text="Back" textFill="WHITE" />
+      <JFXButton fx:id="back" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" layoutX="14.0" layoutY="14.0" text="Back" textFill="WHITE">
+         <graphic>
+            <FontAwesomeIconView fill="WHITE" glyphName="ARROW_LEFT" size="1.5em" />
+         </graphic></JFXButton>
    </children>
 </fx:root>

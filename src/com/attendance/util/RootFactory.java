@@ -54,7 +54,7 @@ import com.attendance.student.controller.ViewStudentDetailsController;
 import com.attendance.studentattendance.controller.StudentAttendanceController;
 import com.attendance.usertype.controller.DepartmentPageController;
 import com.attendance.usertype.controller.UserType1Controller;
-import com.attendance.usertype.controller.UserTypeController;
+import com.attendance.usertype.controller.UserType2Controller;
 import javafx.scene.Parent;
 
 /**
@@ -67,8 +67,8 @@ public class RootFactory {
         return new SplashController();
     }
 
-    public static Parent getUserTypeRoot() {
-        return new UserTypeController();
+    public static Parent getUserType2Root() {
+        return new UserType2Controller();
     }
 
     public static Parent getForgotPasswordRoot() {

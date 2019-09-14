@@ -26,7 +26,7 @@
             <Font name="Tw Cen MT" size="30.0" />
          </font>
       </Label>
-      <Label layoutX="910.0" layoutY="168.0" prefHeight="33.0" prefWidth="169.0" text="Fill Up The Details" textFill="#ea6a1c">
+      <Label layoutX="931.0" layoutY="167.0" prefHeight="33.0" prefWidth="169.0" text="Fill Up The Details" textFill="#ea6a1c">
          <font>
             <Font name="Tw Cen MT" size="23.0" />
          </font>
@@ -66,11 +66,6 @@
             <Font name="Tw Cen MT" size="18.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="abort" buttonType="RAISED" layoutX="1047.0" layoutY="556.0" prefHeight="33.0" prefWidth="146.0" ripplerFill="BLACK" style="-fx-background-color: brown;" text="Abort" textFill="WHITE">
-         <font>
-            <Font name="Tw Cen MT" size="18.0" />
-         </font>
-      </JFXButton>
       <ImageView fitHeight="359.0" fitWidth="530.0" layoutX="62.0" layoutY="256.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../resources/undraw_press_play_bx2d.png" />
@@ -86,7 +81,7 @@
             <Font name="Tw Cen MT" size="20.0" />
          </font>
       </Label>
-      <JFXButton fx:id="loginbutton" buttonType="RAISED" layoutX="910.0" layoutY="636.0" prefHeight="33.0" prefWidth="132.0" ripplerFill="BLACK" style="-fx-background-color: #200122;" text="Login" textFill="#00b2ff">
+      <JFXButton fx:id="loginbutton" buttonType="RAISED" layoutX="886.0" layoutY="636.0" prefHeight="33.0" prefWidth="70.0" ripplerFill="BLACK" style="-fx-background-color: #200122;" text="Login" textFill="#00b2ff">
          <font>
             <Font name="Tw Cen MT" size="18.0" />
          </font>

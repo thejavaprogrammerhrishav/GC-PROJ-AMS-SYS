@@ -58,9 +58,6 @@ public class FacultySignUpController extends AnchorPane {
     private JFXButton signup;
 
     @FXML
-    private JFXButton abort;
-
-    @FXML
     private JFXButton loginbutton;
 
     private FXMLLoader fxml;
@@ -91,7 +88,6 @@ public class FacultySignUpController extends AnchorPane {
         fdao = (FacultyDao) Start.app.getBean("facultyregistration");
         faculty = new Faculty();
         loginbutton.setOnAction(this::loginAction);
-        abort.setOnAction(e -> SwitchRoot.switchRoot(Start.st, parent));
         signup.setOnAction(e -> {
             if (login.isUsernameExists(username.getText()) > 0) {
                 Alert al = new Alert(Alert.AlertType.ERROR);

@@ -3,6 +3,8 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -11,7 +13,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" stylesheets="@../../resources/style.css" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fitHeight="768.0" fitWidth="1366.0" pickOnBounds="true">
          <image>
@@ -72,7 +74,35 @@
                   </Label>
                </children>
             </Pane>
+            <AnchorPane layoutX="484.0" layoutY="78.0" prefHeight="626.0" prefWidth="805.0" style="-fx-background-color: #f8fafb;">
+               <children>
+                  <ImageView fitHeight="546.0" fitWidth="608.0" layoutX="99.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../resources/crop.jpg" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="result1" layoutX="266.0" layoutY="557.0" prefHeight="36.0" prefWidth="179.0" text="New to the system?">
+                     <font>
+                        <Font name="Tw Cen MT" size="22.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="signup" alignment="CENTER" layoutX="445.0" layoutY="557.0" prefHeight="36.0" prefWidth="94.0" text="Sign Up" textFill="#1a00ff">
+                     <font>
+                        <Font name="Tw Cen MT Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <JFXButton fx:id="close" contentDisplay="GRAPHIC_ONLY" layoutX="768.0" layoutY="6.0" ripplerFill="BLACK" styleClass="close">
+                     <graphic>
+                        <FontAwesomeIconView glyphName="CLOSE" size="1.5em" />
+                     </graphic>
+                  </JFXButton>
+               </children>
+            </AnchorPane>
          </children>
       </AnchorPane>
    </children>
+   <stylesheets>
+      <URL value="@../../resources/style.css" />
+      <URL value="@../../resources/Close.css" />
+   </stylesheets>
 </fx:root>

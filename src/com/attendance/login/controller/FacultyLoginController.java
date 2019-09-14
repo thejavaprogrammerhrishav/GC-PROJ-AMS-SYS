@@ -24,9 +24,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javax.swing.JOptionPane;
 import org.joda.time.DateTime;
@@ -52,15 +54,21 @@ public class FacultyLoginController extends AnchorPane {
 
     @FXML
     private Label result;
-    
+
     @FXML
     private Label department;
+
+    @FXML
+    private Label signup;
+    
+    @FXML
+    private JFXButton close;
 
     private Thread thread;
     private FXMLLoader fxml;
     private Task<Void> blink;
-    private final String ROLE="FACULTY";
-    
+    private final String ROLE = "FACULTY";
+
     private final Login faculty;
     private final Activity loginActivity;
     private LoginAuthenticator authenticator;
@@ -82,9 +90,9 @@ public class FacultyLoginController extends AnchorPane {
     }
 
     @FXML
-    private void initialize(){
+    private void initialize() {
         result.setText("");
-        department.setText("Department:  "+SystemUtils.getDepartment());
+        department.setText("Department:  " + SystemUtils.getDepartment());
         blink = new Task<Void>() {
             @Override
             protected Void call() throws Exception {
@@ -103,11 +111,11 @@ public class FacultyLoginController extends AnchorPane {
         };
         thread = new Thread(blink);
         thread.start();
-        
-        authenticator=new LoginAuthenticator() {
+
+        authenticator = new LoginAuthenticator() {
             @Override
             protected boolean authenticate(String username, String password) {
-                user = faculty.findByUsernameAndType(username,ROLE);
+                user = faculty.findByUsernameAndType(username, ROLE);
                 return username.equals(user.getUsername()) && password.equals(user.getPassword());
             }
         };
@@ -141,6 +149,18 @@ public class FacultyLoginController extends AnchorPane {
             ForgotPasswordController.LoginType = ROLE;
             SwitchRoot.switchRoot(Start.st, RootFactory.getForgotPasswordRoot());
         });
+        signup.setOnMouseClicked(this::signupAction);
+        close.setOnAction(this::closeAction);
+    }
+
+    private void signupAction(MouseEvent evt) {
+        SwitchRoot.switchRoot(Start.st, RootFactory.getPrincipalSignUpRoot(Start.st.getScene().getRoot()));
     }
     
+    private void closeAction(ActionEvent evt) {
+        SystemUtils.setDepartment("");
+        SystemUtils.logout();
+        SwitchRoot.switchRoot(Start.st, RootFactory.getUserType1Root());
+    }
+
 }

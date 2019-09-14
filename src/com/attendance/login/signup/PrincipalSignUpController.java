@@ -49,9 +49,6 @@ public class PrincipalSignUpController extends AnchorPane {
     private JFXButton signup;
 
     @FXML
-    private JFXButton abort;
-
-    @FXML
     private JFXButton loginbutton;
 
     @FXML
@@ -83,7 +80,6 @@ public class PrincipalSignUpController extends AnchorPane {
         user = new User();
         login = (Login) Start.app.getBean("userlogin");
 
-        abort.setOnAction(E -> SwitchRoot.switchRoot(Start.st, parent));
         signup.setOnAction(E -> {
             if (login.isUsernameExists(username.getText()) > 0) {
                 MessageUtil.showError(Message.ERROR, "Principal SignUp", "Username already taken", ((Node) E.getSource()).getScene().getWindow());
@@ -105,10 +101,10 @@ public class PrincipalSignUpController extends AnchorPane {
         });
         loginbutton.setOnAction(this::LoginAction);
     }
-    
+
     private void LoginAction(ActionEvent evt) {
         SystemUtils.logout();
         SwitchRoot.switchRoot(Start.st, RootFactory.getPrincipalLoginRoot());
     }
-            
+
 }
