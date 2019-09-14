@@ -154,7 +154,7 @@ public class HODLoginController extends AnchorPane {
     }
 
     private void signupAction(MouseEvent evt) {
-        SwitchRoot.switchRoot(Start.st, RootFactory.getPrincipalSignUpRoot(Start.st.getScene().getRoot()));
+        SwitchRoot.switchRoot(Start.st, RootFactory.getHODSignupRoot(Start.st.getScene().getRoot()));
     }
     
     private void closeAction(ActionEvent evt) {

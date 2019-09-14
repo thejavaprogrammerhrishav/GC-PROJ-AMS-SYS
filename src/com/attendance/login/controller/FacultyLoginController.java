@@ -154,7 +154,7 @@ public class FacultyLoginController extends AnchorPane {
     }
 
     private void signupAction(MouseEvent evt) {
-        SwitchRoot.switchRoot(Start.st, RootFactory.getPrincipalSignUpRoot(Start.st.getScene().getRoot()));
+        SwitchRoot.switchRoot(Start.st, RootFactory.getFacultySignupRoot(Start.st.getScene().getRoot()));
     }
     
     private void closeAction(ActionEvent evt) {
