@@ -11,7 +11,7 @@ import com.attendance.student.model.Student;
 import com.attendance.util.Fxml;
 import com.attendance.util.Message;
 import com.attendance.util.MessageUtil;
-import com.attendance.util.SystemUtils;
+import com.attendance.util.SwitchRoot;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
@@ -27,6 +27,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -128,8 +129,12 @@ public class ViewStudentDetailsController extends AnchorPane {
 
     private FXMLLoader fxml;
     private StudentDao dao;
+    private String cdepartment;
+    private Parent parent ;
 
-    public ViewStudentDetailsController() {
+    public ViewStudentDetailsController(String cdepartment,Parent parent) {
+        this.cdepartment = cdepartment; 
+        this.parent = parent;
         fxml = Fxml.getViewStudentDetailsFXML();
         fxml.setController(this);
         fxml.setRoot(this);
@@ -145,7 +150,7 @@ public class ViewStudentDetailsController extends AnchorPane {
     @FXML
     private void initialize() {
         dao = (StudentDao) Start.app.getBean("studentregistration");
-        department.setText("Department:   " + SystemUtils.getDepartment());
+        department.setText("Department:   " + cdepartment);
         studentColumnName.setCellValueFactory(new PropertyValueFactory<Student, String>("name"));
         studentColumnYear.setCellValueFactory(new PropertyValueFactory<Student, Integer>("year"));
         studentacadamicyear.setCellValueFactory(new PropertyValueFactory<Student, String>("acadamicyear"));
@@ -214,7 +219,7 @@ public class ViewStudentDetailsController extends AnchorPane {
     }
 
     private void buttonInit() {
-        close.setOnAction(e -> ((Node) e.getSource()).getScene().getWindow().hide());
+        close.setOnAction(e -> SwitchRoot.switchRoot(Start.st, parent));
         studentTable.setOnMouseClicked(this::LoadStudentDetails);
         allstudents.setOnAction(this::listStudents);
         clear.setOnAction(this::clearData);
@@ -264,7 +269,7 @@ public class ViewStudentDetailsController extends AnchorPane {
 
     private void searchUsingFilter(ActionEvent e) {
         List<Student> list = new ArrayList<>(dao.findAll());
-        list = list.stream().filter(p -> p.getDepartment().equals(SystemUtils.getDepartment())).collect(Collectors.toList());
+        list = list.stream().filter(p -> p.getDepartment().equals(cdepartment)).collect(Collectors.toList());
         if (filterbyid.isSelected()) {
             list = list.stream().filter(s -> s.getId().contains(fstudentid.getText())).collect(Collectors.toList());
         }
@@ -303,7 +308,7 @@ public class ViewStudentDetailsController extends AnchorPane {
 
     private void listStudents(ActionEvent e) {
         List<Student> list = new ArrayList<>(dao.findAll());
-        list = list.stream().filter(p -> p.getDepartment().equals(SystemUtils.getDepartment())).collect(Collectors.toList());
+        list = list.stream().filter(p -> p.getDepartment().equals(cdepartment)).collect(Collectors.toList());
 
         UpdateTable(list);
     }

@@ -16,6 +16,7 @@ import com.attendance.util.Fxml;
 import com.attendance.util.RootFactory;
 import com.attendance.util.StageUtil;
 import com.attendance.util.SwitchRoot;
+import com.attendance.util.SystemUtils;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import java.io.IOException;
@@ -201,7 +202,7 @@ public class FacultyDashboardController extends AnchorPane {
             Stage st = StageUtil.newStage().centerOnScreen().fullScreen(false).fullScreenExitHint("").fullScreenExitKeyCombination(null)
                     .initModality(Modality.WINDOW_MODAL).initOwner(((Node) t.getSource()).getScene().getWindow()).initStyle(StageStyle.UNDECORATED)
                     .build();
-            st.getScene().setRoot(RootFactory.getViewStudentDetailsRoot());
+            st.getScene().setRoot(RootFactory.getViewStudentDetailsRoot(SystemUtils.getDepartment(),FacultyDashboardController.this.getScene().getRoot()));
             st.show();
         }
     }
@@ -225,7 +226,7 @@ public class FacultyDashboardController extends AnchorPane {
             Stage st = StageUtil.newStage().centerOnScreen().fullScreen(false).fullScreenExitHint("").fullScreenExitKeyCombination(null)
                     .initModality(Modality.WINDOW_MODAL).initOwner(((Node) t.getSource()).getScene().getWindow()).initStyle(StageStyle.UNDECORATED)
                     .build();
-            st.getScene().setRoot(RootFactory.getViewFacultyRoot());
+            st.getScene().setRoot(RootFactory.getViewFacultyRoot(SystemUtils.getDepartment(),FacultyDashboardController.this.getScene().getRoot()));
             st.show();
         }
     }

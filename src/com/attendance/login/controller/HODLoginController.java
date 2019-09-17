@@ -135,7 +135,7 @@ public class HODLoginController extends AnchorPane {
                             Platform.runLater(() -> result.setText("Redirecting to Dashboard in " + x + " Sec"));
                             Thread.sleep(1000);
                         }
-                        Platform.runLater(() -> SwitchRoot.switchRoot(Start.st, RootFactory.getAdminDashboardRoot(user, activity)));
+                        Platform.runLater(() -> SwitchRoot.switchRoot(Start.st, RootFactory.getHODDashboardRoot(user, activity)));
                     } catch (InterruptedException ex) {
                         Logger.getLogger(HODLoginController.class.getName()).log(Level.SEVERE, null, ex);
                     }

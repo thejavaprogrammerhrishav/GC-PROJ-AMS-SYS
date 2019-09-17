@@ -76,6 +76,10 @@ public class Fxml {
     public static FXMLLoader getSelectFacultyFXML() {
         return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/selectfaculty.fxml"));
     }
+    
+     public static FXMLLoader getSelectDepartmentFXML() {
+        return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/selectdepartment.fxml"));
+    }
 
     public static FXMLLoader getFacultyDashboardFXML() {
         return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/facultydashboard.fxml"));
@@ -218,5 +222,9 @@ public class Fxml {
     
     public static FXMLLoader getDepartmentFXML() {
         return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/DepartmentSelection.fxml"));
+    }
+    
+    public static FXMLLoader getPrincipalDashboardFXML() {
+        return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/principaldashboard.fxml"));
     }
 }

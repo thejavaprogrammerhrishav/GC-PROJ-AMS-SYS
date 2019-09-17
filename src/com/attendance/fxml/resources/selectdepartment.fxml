@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="225.0" prefWidth="517.0" style="-fx-background-color: #603;" stylesheets="@../../resources/combo.css" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="47.0" layoutY="102.0" text="Department : " textFill="WHITE">
+         <font>
+            <Font name="Century Gothic" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="85.0" layoutY="30.0" text="Attendance Management System" textFill="WHITE">
+         <font>
+            <Font name="Tw Cen MT" size="30.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="71.0" fitWidth="41.0" layoutX="26.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../resources/LogoMakr_1wJdNX.png" />
+         </image>
+      </ImageView>
+      <JFXComboBox fx:id="department" focusColor="#429aff" layoutX="166.0" layoutY="98.0" prefHeight="29.0" prefWidth="300.0" promptText="Select Department" style="-fx-prompt-text-fill: #429aff; -fx-font-family: 'Segoe UI',arial; -fx-font-size: 14;" unFocusColor="#429aff" />
+      <JFXButton fx:id="proceed" layoutX="260.0" layoutY="177.0" prefHeight="30.0" prefWidth="121.0" style="-fx-background-color: #059605;" text="Continue" textFill="WHITE">
+         <font>
+            <Font name="Tw Cen MT" size="16.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="cancel" layoutX="403.0" layoutY="177.0" prefHeight="30.0" prefWidth="83.0" style="-fx-background-color: #a16504;" text="Cancel" textFill="WHITE">
+         <font>
+            <Font name="Tw Cen MT" size="16.0" />
+         </font>
+      </JFXButton>
+   </children>
+</fx:root>

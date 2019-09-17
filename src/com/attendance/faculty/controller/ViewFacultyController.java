@@ -9,7 +9,7 @@ import com.attendance.faculty.dao.FacultyDao;
 import com.attendance.faculty.model.Faculty;
 import com.attendance.main.Start;
 import com.attendance.util.Fxml;
-import com.attendance.util.SystemUtils;
+import com.attendance.util.SwitchRoot;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import java.io.IOException;
@@ -25,6 +25,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -82,8 +83,13 @@ public class ViewFacultyController extends AnchorPane {
 
     private FXMLLoader fxml;
     private FacultyDao dao;
-
-    public ViewFacultyController() {
+    private String cdepartment;
+    private Parent parent;
+    
+    
+    public ViewFacultyController(String cdepartment,Parent parent) {
+        this.parent = parent;
+        this.cdepartment = cdepartment;
         fxml = Fxml.getViewFacultyDetailsFXML();
         fxml.setRoot(ViewFacultyController.this);
         fxml.setController(ViewFacultyController.this);
@@ -98,7 +104,7 @@ public class ViewFacultyController extends AnchorPane {
     @FXML
     private void initialize() {
         dao = (FacultyDao) Start.app.getBean("facultyregistration");
-        department.setText("Department: " + SystemUtils.getDepartment());
+        department.setText("Department: " + cdepartment);
         facultyListName.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Faculty, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TableColumn.CellDataFeatures<Faculty, String> p) {
@@ -112,19 +118,19 @@ public class ViewFacultyController extends AnchorPane {
 
         refresh.setOnAction(this::loadAllFaculty);
 
-        close.setOnAction(e -> ((Node) e.getSource()).getScene().getWindow().hide());
+        close.setOnAction(e -> SwitchRoot.switchRoot(Start.st, parent));
 
         search.setOnAction(this::searchFaculty);
         facultyList.setOnMouseClicked(this::displayFacultyDetails);
     }
 
     private void loadAllFaculty(ActionEvent e) {
-        List<Faculty> faculties = new ArrayList<Faculty>(dao.findByDepartment(SystemUtils.getDepartment()));
+        List<Faculty> faculties = new ArrayList<Faculty>(dao.findByDepartment(cdepartment));
         facultyList.setItems(FXCollections.observableArrayList(faculties));
     }
 
     private void searchFaculty(ActionEvent e) {
-        List<Faculty> searchList = dao.findByDepartment(SystemUtils.getDepartment());
+        List<Faculty> searchList = dao.findByDepartment(cdepartment);
         searchList = searchList.stream().filter(p -> p.getName().contains(searchFaculty.getText())).collect(Collectors.toList());
         facultyList.setItems(FXCollections.observableArrayList(searchList));
     }

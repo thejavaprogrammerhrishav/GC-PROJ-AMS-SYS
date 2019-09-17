@@ -8,6 +8,7 @@ package com.attendance.util;
 import com.attendance.dashboard.HODDashboardController;
 import com.attendance.dashboard.FacultyDashboardController;
 import com.attendance.dashboard.LoginActivityController;
+import com.attendance.dashboard.PrincipalDashboardController;
 import com.attendance.faculty.controller.SelectFacultyController;
 import com.attendance.faculty.controller.ViewFacultyController;
 import com.attendance.login.activity.model.LoginActivity;
@@ -53,6 +54,7 @@ import com.attendance.student.controller.StudentUpdateController;
 import com.attendance.student.controller.ViewStudentDetailsController;
 import com.attendance.studentattendance.controller.StudentAttendanceController;
 import com.attendance.usertype.controller.DepartmentPageController;
+import com.attendance.usertype.controller.SelectDepartmentController;
 import com.attendance.usertype.controller.UserType1Controller;
 import com.attendance.usertype.controller.UserType2Controller;
 import javafx.scene.Parent;
@@ -79,8 +81,12 @@ public class RootFactory {
         return new HODLoginController();
     }
 
-    public static Parent getAdminDashboardRoot(User admin, LoginActivity activity) {
-        return new HODDashboardController(admin, activity);
+    public static Parent getHODDashboardRoot(User hod, LoginActivity activity) {
+        return new HODDashboardController(hod, activity);
+    }
+    
+    public static Parent getPrincipalDashboardRoot(User principal, LoginActivity activity) {
+        return new PrincipalDashboardController(principal, activity);
     }
 
     public static Parent getLoginActivityRoot(LoginActivity activity) {
@@ -99,8 +105,8 @@ public class RootFactory {
         return new FacultySignUpController(parent);
     }
 
-    public static Parent getViewStudentDetailsRoot() {
-        return new ViewStudentDetailsController();
+    public static Parent getViewStudentDetailsRoot(String department,Parent parent) {
+        return new ViewStudentDetailsController(department,parent);
     }
 
     public static Parent getStudentUpdateRoot() {
@@ -111,8 +117,8 @@ public class RootFactory {
         return new FacultyLoginController();
     }
 
-    public static Parent getViewFacultyRoot() {
-        return new ViewFacultyController();
+    public static Parent getViewFacultyRoot(String department , Parent parent) {
+        return new ViewFacultyController(department,parent);
     }
 
     public static Parent getStudentAttendanceRoot(Parent sc, String faculty) {
@@ -121,6 +127,10 @@ public class RootFactory {
 
     public static Parent getSelectFacultyRoot(String type) {
         return new SelectFacultyController(type);
+    }
+    
+     public static Parent getSelectDepartmentRoot(String type,Parent parent) {
+        return new SelectDepartmentController(type,parent);
     }
 
     public static Parent getFacultyDashboardRoot(User faculty, LoginActivity activity) {
@@ -263,8 +273,5 @@ public class RootFactory {
         return new PrincipalSignUpController(parent);
     }
     
-    public static Parent getPrincipalDashboardRoot(User user , LoginActivity activity){
-        System.exit(0);
-        return null;
-    }
+   
 }
