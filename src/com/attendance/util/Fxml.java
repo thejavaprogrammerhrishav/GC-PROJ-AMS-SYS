@@ -227,4 +227,12 @@ public class Fxml {
     public static FXMLLoader getPrincipalDashboardFXML() {
         return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/principaldashboard.fxml"));
     }
+    
+     public static FXMLLoader getPrincipalDashboardStudentNodeFXML() {
+        return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/principaldashboardstudentnode.fxml"));
+    }
+     
+      public static FXMLLoader getPrincipalDashboardFacultyNodeFXML() {
+        return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/principaldashboardfacultynode.fxml"));
+    }
 }

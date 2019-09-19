@@ -9,6 +9,8 @@ import com.attendance.dashboard.HODDashboardController;
 import com.attendance.dashboard.FacultyDashboardController;
 import com.attendance.dashboard.LoginActivityController;
 import com.attendance.dashboard.PrincipalDashboardController;
+import com.attendance.dashboard.node.PrincipalDashboardFacultyNodeController;
+import com.attendance.dashboard.node.PrincipalDashboardStudentNodeController;
 import com.attendance.faculty.controller.SelectFacultyController;
 import com.attendance.faculty.controller.ViewFacultyController;
 import com.attendance.login.activity.model.LoginActivity;
@@ -185,8 +187,8 @@ public class RootFactory {
         return new DeletePaperController();
     }
 
-    public static Parent getClassDetailsRoot() {
-        return new ClassDetailsController();
+    public static Parent getClassDetailsRoot(Parent parent) {
+        return new ClassDetailsController(parent);
     }
 
     public static Parent getUpdateClassDetailsRoot() {
@@ -197,8 +199,8 @@ public class RootFactory {
         return new AttendanceController();
     }
 
-    public static Parent getDailyStatsRoot() {
-        return new DailyStatsController();
+    public static Parent getDailyStatsRoot(Parent parent) {
+        return new DailyStatsController(parent);
     }
 
     public static Parent getUpdateAdminUserRoot() {
@@ -273,5 +275,11 @@ public class RootFactory {
         return new PrincipalSignUpController(parent);
     }
     
+    public static Parent getPrincipalDashboardStudentNodeRoot() {
+        return new PrincipalDashboardStudentNodeController();
+    }
    
+       public static Parent getPrincipalDashboardFacultyNodeRoot() {
+        return new PrincipalDashboardFacultyNodeController();
+    }
 }

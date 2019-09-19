@@ -13,6 +13,7 @@ import com.attendance.student.dao.StudentDao;
 import com.attendance.studentattendance.dao.ClassDetailsDao;
 import com.attendance.studentattendance.model.ClassDetails;
 import com.attendance.util.Fxml;
+import com.attendance.util.SwitchRoot;
 import com.attendance.util.SystemUtils;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
@@ -25,6 +26,7 @@ import java.util.stream.Collectors;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableColumn;
@@ -152,10 +154,13 @@ public class ClassDetailsController extends ScrollPane {
     private PapersDao paperdao;
     private FacultyDao facultydao;
     private StudentDao studentdao;
+    
+    private Parent parent;
 
     private FXMLLoader fxml;
 
-    public ClassDetailsController() {
+    public ClassDetailsController(Parent parent) {
+        this.parent = parent;
         fxml = Fxml.getClassDetailsFXML();
         fxml.setRoot(this);
         fxml.setController(this);
@@ -177,7 +182,7 @@ public class ClassDetailsController extends ScrollPane {
         initTable();
         initFilters();
 
-        close.setOnAction(e -> ((BorderPane) this.getParent()).setCenter(null));
+        close.setOnAction(e -> SwitchRoot.switchRoot(Start.st, parent));
         refresh.setOnAction(this::populateTable);
         applyfilters.setOnAction(this::filters);
 

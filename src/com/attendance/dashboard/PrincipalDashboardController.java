@@ -1,4 +1,4 @@
- /*
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -7,9 +7,11 @@ package com.attendance.dashboard;
 
 import com.attendance.login.activity.model.LoginActivity;
 import com.attendance.login.user.model.User;
+import com.attendance.main.Start;
 import com.attendance.util.Fxml;
 import com.attendance.util.RootFactory;
 import com.attendance.util.StageUtil;
+import com.attendance.util.SwitchRoot;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
@@ -32,8 +34,6 @@ import javafx.stage.StageStyle;
  *
  * @author pc
  */
-
-
 public class PrincipalDashboardController extends AnchorPane {
 
     @FXML
@@ -133,6 +133,11 @@ public class PrincipalDashboardController extends AnchorPane {
         student.setOnAction(new ShowDepartmentPage("Student"));
         logout.setOnAction(new Logout(activity));
         faculty.setOnAction(new ShowDepartmentPage("Faculty"));
+        classdetails.setOnAction(new ShowDepartmentPage("Class Details"));
+        dailyclassreport.setOnAction(new ShowDepartmentPage("Daily Class Details"));
+        totalstudents.setOnAction(e -> pane.getChildren().setAll(RootFactory.getPrincipalDashboardStudentNodeRoot()));
+        totalfaculties.setOnAction(e -> pane.getChildren().setAll(RootFactory.getPrincipalDashboardFacultyNodeRoot()));
+
     }
 
     private class ShowDepartmentPage implements EventHandler<ActionEvent> {
@@ -153,6 +158,12 @@ public class PrincipalDashboardController extends AnchorPane {
 
             } else if (type.equals("Faculty")) {
                 st.getScene().setRoot(RootFactory.getSelectDepartmentRoot("Faculty", PrincipalDashboardController.this.getScene().getRoot()));
+
+            } else if (type.equals("Class Details")) {
+                st.getScene().setRoot(RootFactory.getSelectDepartmentRoot("Class Details", PrincipalDashboardController.this.getScene().getRoot()));
+
+            } else if (type.equals("Daily Class Details")) {
+                st.getScene().setRoot(RootFactory.getSelectDepartmentRoot("Daily Class Details", PrincipalDashboardController.this.getScene().getRoot()));
 
             }
             st.show();
