@@ -248,4 +248,8 @@ public class Fxml {
     public static FXMLLoader getPrincipalDashboardHODAccountNodeFXML() {
         return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/principaldashboardhodaccount.fxml"));
     }
+    
+    public static FXMLLoader getProfileFXML() {
+        return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/profile.fxml"));
+    }
 }

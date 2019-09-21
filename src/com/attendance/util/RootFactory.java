@@ -58,6 +58,7 @@ import com.attendance.student.controller.RegisterStudentController;
 import com.attendance.student.controller.StudentUpdateController;
 import com.attendance.student.controller.ViewStudentDetailsController;
 import com.attendance.studentattendance.controller.StudentAttendanceController;
+import com.attendance.user.UserProfileController;
 import com.attendance.usertype.controller.DepartmentPageController;
 import com.attendance.usertype.controller.SelectDepartmentController;
 import com.attendance.usertype.controller.UserType1Controller;
@@ -297,5 +298,9 @@ public class RootFactory {
       public static Parent getPrincipalDashboardHODAccountNodeRoot() {
         return new PrincipalDashboardHODAccountNodeController(); 
     }
+      
+      public static Parent getUserProfileRoot(User user , Parent parent){
+          return new UserProfileController(user, parent);
+      }
           
 }

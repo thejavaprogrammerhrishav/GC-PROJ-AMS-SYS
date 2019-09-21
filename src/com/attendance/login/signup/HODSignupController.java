@@ -5,6 +5,8 @@
  */
 package com.attendance.login.signup;
 
+import com.attendance.faculty.dao.FacultyDao;
+import com.attendance.faculty.model.Faculty;
 import com.attendance.login.dao.Login;
 import com.attendance.login.user.model.User;
 import com.attendance.main.Start;
@@ -62,6 +64,9 @@ public class HODSignupController extends AnchorPane {
     private User user;
     private Login login;
     private Parent parent;
+    
+    private Faculty faculty;
+    private FacultyDao fdao;
 
     public HODSignupController(Parent parent) {
         this.parent = parent;
@@ -81,6 +86,8 @@ public class HODSignupController extends AnchorPane {
 
     @FXML
     private void initialize() {
+          fdao = (FacultyDao) Start.app.getBean("facultyregistration");
+        faculty = new Faculty();
         loginbutton.setOnAction(this::loginaction);
         signup.setOnAction(e -> {
             if (login.isUsernameExists(username.getText()) > 0) {
@@ -98,8 +105,15 @@ public class HODSignupController extends AnchorPane {
                 user.setPassword(password.getText());
                 user.setType("HOD");
                 user.setUsername(username.getText());
+                
+                 faculty.setName(fullname.getText());
+                faculty.setContact(contact.getText());
+                faculty.setEmailId(email.getText());
+                faculty.setGender("Unknown");
+                faculty.setDepartment(SystemUtils.getDepartment());
 
                 login.save(user);
+                fdao.saveFaculty(faculty);
 
                 Alert al = new Alert(Alert.AlertType.INFORMATION);
                 al.setHeaderText("HOD Sign Up");

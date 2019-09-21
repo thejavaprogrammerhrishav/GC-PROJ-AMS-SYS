@@ -61,10 +61,10 @@ public class PrincipalDashboardController extends AnchorPane {
     private JFXButton logout;
 
     @FXML
-    private JFXComboBox<?> department;
+    private JFXComboBox<String> department;
 
     @FXML
-    private JFXComboBox<?> year;
+    private JFXComboBox<String> year;
 
     @FXML
     private JFXButton open;
@@ -130,6 +130,7 @@ public class PrincipalDashboardController extends AnchorPane {
     }
 
     private void buttonActions() {
+        myprofile.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getUserProfileRoot(principal, Start.st.getScene().getRoot())));
         student.setOnAction(new ShowDepartmentPage("Student"));
         logout.setOnAction(new Logout(activity));
         faculty.setOnAction(new ShowDepartmentPage("Faculty"));
