@@ -76,8 +76,8 @@ public class Fxml {
     public static FXMLLoader getSelectFacultyFXML() {
         return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/selectfaculty.fxml"));
     }
-    
-     public static FXMLLoader getSelectDepartmentFXML() {
+
+    public static FXMLLoader getSelectDepartmentFXML() {
         return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/selectdepartment.fxml"));
     }
 
@@ -172,67 +172,80 @@ public class Fxml {
     public static FXMLLoader getDeleteFacultyUserFXML() {
         return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/deletefacultyuser.fxml"));
     }
-    
+
     public static FXMLLoader getUserLoginActivityTrackingFXML() {
         return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/userloginactivitysettings.fxml"));
     }
-    
+
     public static FXMLLoader getExportStudentListFXML() {
         return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/ExportStudentList.fxml"));
     }
-    
+
     public static FXMLLoader getExportFacultyListFXML() {
         return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/ExportFacultyexcel.fxml"));
     }
+
     public static FXMLLoader getExportClassDetailsListFXML() {
         return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/ExportClassDetails.fxml"));
     }
-    
+
     public static FXMLLoader getExportDailtStatsListFXML() {
         return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/ExportDailyStats.fxml"));
     }
-    
+
     public static FXMLLoader getUploadFilesFXML() {
         return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/uploadnotes.fxml"));
     }
-    
+
     public static FXMLLoader getDownloadFilesFXML() {
         return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/downloadnotes.fxml"));
     }
-    
+
     public static FXMLLoader getUploadMarksFXML() {
         return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/uploadmarks.fxml"));
     }
-    
+
     public static FXMLLoader getUploadMarksNodeFXML() {
         return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/Unittestnode.fxml"));
     }
-    
+
     public static FXMLLoader getUserType1FXML() {
         return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/usertype1.fxml"));
     }
-    
+
     public static FXMLLoader getPrincipalSignUpFXML() {
         return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/principalsignup.fxml"));
     }
-    
+
     public static FXMLLoader getPrincipalLoginFXML() {
         return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/principal login.fxml"));
     }
-    
+
     public static FXMLLoader getDepartmentFXML() {
         return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/DepartmentSelection.fxml"));
     }
-    
+
     public static FXMLLoader getPrincipalDashboardFXML() {
         return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/principaldashboard.fxml"));
     }
-    
-     public static FXMLLoader getPrincipalDashboardStudentNodeFXML() {
+
+    public static FXMLLoader getPrincipalDashboardStudentNodeFXML() {
         return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/principaldashboardstudentnode.fxml"));
     }
-     
-      public static FXMLLoader getPrincipalDashboardFacultyNodeFXML() {
+
+    public static FXMLLoader getPrincipalDashboardFacultyNodeFXML() {
         return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/principaldashboardfacultynode.fxml"));
+    }
+
+    public static FXMLLoader getPrincipalDashboardDepartmentNodeFXML() {
+        return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/principaldashboarddepartmentnode.fxml"));
+    }
+
+    public static FXMLLoader getPrincipalDashboardPrincipalAccountNodeFXML() {
+        return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/principaldashboardprincipalaccount.fxml"));
+    }
+    
+    public static FXMLLoader getPrincipalDashboardHODAccountNodeFXML() {
+        return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/principaldashboardhodaccount.fxml"));
     }
 }

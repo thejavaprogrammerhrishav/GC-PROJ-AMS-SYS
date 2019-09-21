@@ -9,7 +9,10 @@ import com.attendance.dashboard.HODDashboardController;
 import com.attendance.dashboard.FacultyDashboardController;
 import com.attendance.dashboard.LoginActivityController;
 import com.attendance.dashboard.PrincipalDashboardController;
+import com.attendance.dashboard.node.PrincipalDashboardDepartmentNodeController;
 import com.attendance.dashboard.node.PrincipalDashboardFacultyNodeController;
+import com.attendance.dashboard.node.PrincipalDashboardHODAccountNodeController;
+import com.attendance.dashboard.node.PrincipalDashboardPrincipalAccountNodeController;
 import com.attendance.dashboard.node.PrincipalDashboardStudentNodeController;
 import com.attendance.faculty.controller.SelectFacultyController;
 import com.attendance.faculty.controller.ViewFacultyController;
@@ -282,4 +285,17 @@ public class RootFactory {
        public static Parent getPrincipalDashboardFacultyNodeRoot() {
         return new PrincipalDashboardFacultyNodeController();
     }
+       
+          public static Parent getPrincipalDashboardDepartmentNodeRoot() {
+        return new PrincipalDashboardDepartmentNodeController(); 
+    }
+          
+      public static Parent getPrincipalDashboardPrincipalAccountNodeRoot() {
+        return new PrincipalDashboardPrincipalAccountNodeController(); 
+    }  
+      
+      public static Parent getPrincipalDashboardHODAccountNodeRoot() {
+        return new PrincipalDashboardHODAccountNodeController(); 
+    }
+          
 }

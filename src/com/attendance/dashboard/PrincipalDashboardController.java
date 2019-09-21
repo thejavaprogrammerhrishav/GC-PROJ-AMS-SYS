@@ -137,6 +137,9 @@ public class PrincipalDashboardController extends AnchorPane {
         dailyclassreport.setOnAction(new ShowDepartmentPage("Daily Class Details"));
         totalstudents.setOnAction(e -> pane.getChildren().setAll(RootFactory.getPrincipalDashboardStudentNodeRoot()));
         totalfaculties.setOnAction(e -> pane.getChildren().setAll(RootFactory.getPrincipalDashboardFacultyNodeRoot()));
+        totaldepartments.setOnAction(e -> pane.getChildren().setAll(RootFactory.getPrincipalDashboardDepartmentNodeRoot()));
+        principalaccounts.setOnAction(e -> pane.getChildren().setAll(RootFactory.getPrincipalDashboardPrincipalAccountNodeRoot()));
+        hodaccounts.setOnAction(e -> pane.getChildren().setAll(RootFactory.getPrincipalDashboardHODAccountNodeRoot()));
 
     }
 
