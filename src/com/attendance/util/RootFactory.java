@@ -87,12 +87,12 @@ public class RootFactory {
         return new HODLoginController();
     }
 
-    public static Parent getHODDashboardRoot(User hod, LoginActivity activity) {
-        return new HODDashboardController(hod, activity);
+    public static Parent getHODDashboardRoot() {
+        return new HODDashboardController();
     }
     
-    public static Parent getPrincipalDashboardRoot(User principal, LoginActivity activity) {
-        return new PrincipalDashboardController(principal, activity);
+    public static Parent getPrincipalDashboardRoot() {
+        return new PrincipalDashboardController();
     }
 
     public static Parent getLoginActivityRoot(LoginActivity activity) {
@@ -139,8 +139,8 @@ public class RootFactory {
         return new SelectDepartmentController(type,parent);
     }
 
-    public static Parent getFacultyDashboardRoot(User faculty, LoginActivity activity) {
-        return new FacultyDashboardController(faculty, activity);
+    public static Parent getFacultyDashboardRoot() {
+        return new FacultyDashboardController();
     }
 
     public static Parent getAttendanceReportRoot(Parent parent) {
@@ -299,8 +299,8 @@ public class RootFactory {
         return new PrincipalDashboardHODAccountNodeController(); 
     }
       
-      public static Parent getUserProfileRoot(User user , Parent parent){
-          return new UserProfileController(user, parent);
+      public static Parent getUserProfileRoot(Parent parent){
+          return new UserProfileController(parent);
       }
           
 }

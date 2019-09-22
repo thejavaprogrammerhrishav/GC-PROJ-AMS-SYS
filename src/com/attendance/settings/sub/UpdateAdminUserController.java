@@ -133,8 +133,7 @@ public class UpdateAdminUserController extends ScrollPane {
     }
 
     private void searchName(ActionEvent evt) {
-        List<User> namelist = list.stream().filter(u -> u.getName().startsWith(search.getText())).collect(Collectors.toList());
-        table.getItems().setAll(namelist);
+      
     }
 
     private void searchContact(ActionEvent evt) {
@@ -155,9 +154,7 @@ public class UpdateAdminUserController extends ScrollPane {
     private void tableClick(MouseEvent evt) {
         user = table.getSelectionModel().getSelectedItem();
 
-        name.setText(user.getName());
         contact.setText(user.getContact());
-        email.setText(user.getEmail());
         username.setText(user.getUsername());
     }
 
@@ -176,8 +173,6 @@ public class UpdateAdminUserController extends ScrollPane {
         newUser.setId(user.getId());
         newUser.setType("Admin");
         newUser.setContact(contact.getText());
-        newUser.setEmail(email.getText());
-        newUser.setName(name.getText());
 
         if (username.getText().equals(user.getUsername())) {
             newUser.setUsername(username.getText());

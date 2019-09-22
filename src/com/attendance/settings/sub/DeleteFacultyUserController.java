@@ -128,8 +128,7 @@ public class DeleteFacultyUserController extends AnchorPane {
     }
 
     private void searchName(ActionEvent evt) {
-        List<User> namelist = list.stream().filter(u -> u.getName().startsWith(search.getText())).collect(Collectors.toList());
-        table.getItems().setAll(namelist);
+       
     }
 
     private void searchContact(ActionEvent evt) {
@@ -150,9 +149,7 @@ public class DeleteFacultyUserController extends AnchorPane {
     private void tableClick(MouseEvent evt) {
         user = table.getSelectionModel().getSelectedItem();
 
-        name.setText(user.getName());
         contact.setText(user.getContact());
-        email.setText(user.getEmail());
     }
 
     private void clear(ActionEvent evt) {

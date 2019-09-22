@@ -99,6 +99,9 @@ public class FacultyDashboardController extends AnchorPane {
 
     @FXML
     private Label time;
+    
+    @FXML
+    private JFXButton prof;
 
     private FXMLLoader fxml;
     private Thread timer;
@@ -110,9 +113,9 @@ public class FacultyDashboardController extends AnchorPane {
     private Activity act;
     private Thread server;
 
-    public FacultyDashboardController(User user, LoginActivity activity) {
-        this.user = user;
-        this.activity = activity;
+    public FacultyDashboardController() {
+        this.user = SystemUtils.getCurrentUser();
+        this.activity = SystemUtils.getActivity();
         fxml = Fxml.getFacultyDashboardFXML();
         fxml.setRoot(FacultyDashboardController.this);
         fxml.setController(FacultyDashboardController.this);
@@ -129,7 +132,7 @@ public class FacultyDashboardController extends AnchorPane {
         server.start();
         act = (Activity) Start.app.getBean("loginactivity");
         dao = (StudentDao) Start.app.getBean("studentregistration");
-        userlabel.setText("Welcome back @ " + user.getName());
+        userlabel.setText("Welcome back @ " + user.getContact());
         countStudents(null);
         timer = DateTimerThread.newInstance().forLabel(DateTimerThread.TIME, time).init().thread();
         timer.start();
@@ -154,6 +157,8 @@ public class FacultyDashboardController extends AnchorPane {
 
         uploadnotes.setOnAction(new Upload());
         downloadnotes.setOnAction(new Download());
+        
+        prof.setOnAction(e->SwitchRoot.switchRoot(Start.st, RootFactory.getUserProfileRoot(Start.st.getScene().getRoot())));
     }
 
     private void countStudents(ActionEvent e) {
@@ -235,7 +240,7 @@ public class FacultyDashboardController extends AnchorPane {
 
         @Override
         public void handle(ActionEvent t) {
-            SwitchRoot.switchRoot(Start.st, RootFactory.getStudentAttendanceRoot(Start.st.getScene().getRoot(), user.getName()));
+            SwitchRoot.switchRoot(Start.st, RootFactory.getStudentAttendanceRoot(Start.st.getScene().getRoot(), user.getContact()));
         }
     }
 
@@ -243,7 +248,7 @@ public class FacultyDashboardController extends AnchorPane {
 
         @Override
         public void handle(ActionEvent t) {
-            SwitchRoot.switchRoot(Start.st, RootFactory.getUploadNotesRoot(Start.st.getScene().getRoot(), user.getName()));
+            SwitchRoot.switchRoot(Start.st, RootFactory.getUploadNotesRoot(Start.st.getScene().getRoot(), user.getContact()));
         }
     }
 

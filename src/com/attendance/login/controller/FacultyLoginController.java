@@ -5,6 +5,8 @@
  */
 package com.attendance.login.controller;
 
+import com.attendance.faculty.dao.FacultyDao;
+import com.attendance.faculty.model.Faculty;
 import com.attendance.login.actions.LoginAuthenticator;
 import com.attendance.login.activity.dao.Activity;
 import com.attendance.login.activity.model.LoginActivity;
@@ -69,11 +71,13 @@ public class FacultyLoginController extends AnchorPane {
     private Task<Void> blink;
     private final String ROLE = "FACULTY";
 
-    private final Login faculty;
-    private final Activity loginActivity;
+    private Login faculty;
+    private Activity loginActivity;
     private LoginAuthenticator authenticator;
     private User user;
     private LoginActivity activity;
+    private FacultyDao dao;
+    private Faculty search;
 
     public FacultyLoginController() {
         fxml = Fxml.getFacultyLoginFXML();
@@ -85,12 +89,14 @@ public class FacultyLoginController extends AnchorPane {
             Logger.getLogger(FacultyLoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        faculty = (Login) Start.app.getBean("userlogin");
-        loginActivity = (Activity) Start.app.getBean("loginactivity");
+        
     }
 
     @FXML
     private void initialize() {
+        faculty = (Login) Start.app.getBean("userlogin");
+        loginActivity = (Activity) Start.app.getBean("loginactivity");
+        dao=(FacultyDao) Start.app.getBean("facultyregistration");
         result.setText("");
         department.setText("Department:  " + SystemUtils.getDepartment());
         blink = new Task<Void>() {
@@ -132,10 +138,12 @@ public class FacultyLoginController extends AnchorPane {
                             Platform.runLater(() -> result.setText("Redirecting to Dashboard in " + x + " Sec"));
                             Thread.sleep(1000);
                         }
-                        activity = new LoginActivity(user.getName(), user.getUsername(), "FACULTY", "ACTIVE", DateTime.now().toString(DateTimeFormat.forPattern("dd-MM-yyyy")), DateTime.now().toString(DateTimeFormat.forPattern("hh:mm:ss a")), "");
+                        search=dao.findById(user.getContact());
+                        activity = new LoginActivity(search.getName(), user.getUsername(), "FACULTY", "ACTIVE", DateTime.now().toString(DateTimeFormat.forPattern("dd-MM-yyyy")), DateTime.now().toString(DateTimeFormat.forPattern("hh:mm:ss a")), "");
                         loginActivity.save(activity);
                         SystemUtils.setActivity(activity);
-                        Platform.runLater(() -> SwitchRoot.switchRoot(Start.st, RootFactory.getFacultyDashboardRoot(user, activity)));
+                        SystemUtils.setCurrentUser(user);
+                        Platform.runLater(() -> SwitchRoot.switchRoot(Start.st, RootFactory.getFacultyDashboardRoot()));
                     } catch (InterruptedException ex) {
                         Logger.getLogger(FacultyLoginController.class.getName()).log(Level.SEVERE, null, ex);
                     }

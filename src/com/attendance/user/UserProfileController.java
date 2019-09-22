@@ -10,10 +10,11 @@ import com.attendance.faculty.model.Faculty;
 import com.attendance.login.dao.Login;
 import com.attendance.login.user.model.User;
 import com.attendance.main.Start;
+import com.attendance.user.principal.dao.PrincipalDao;
+import com.attendance.user.principal.model.Principal;
 import com.attendance.util.Fxml;
-import com.attendance.util.Message;
-import com.attendance.util.MessageUtil;
 import com.attendance.util.SwitchRoot;
+import com.attendance.util.SystemUtils;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import java.io.File;
@@ -41,91 +42,93 @@ import javafx.stage.FileChooser.ExtensionFilter;
  * @author pc
  */
 public class UserProfileController extends AnchorPane {
-    
+
     @FXML
     private ImageView profilepic;
-    
+
     @FXML
     private Button profilepicture;
-    
+
     @FXML
     private Label result12;
-    
+
     @FXML
     private Label userrole;
-    
+
     @FXML
     private Label result121;
-    
+
     @FXML
     private Label department;
-    
+
     @FXML
     private Label result;
-    
+
     @FXML
     private JFXButton close;
-    
+
     @FXML
     private TextField name;
-    
+
     @FXML
     private JFXButton nameedit;
-    
+
     @FXML
     private JFXCheckBox male;
-    
+
     @FXML
     private JFXCheckBox female;
-    
+
     @FXML
     private Button updateprofile;
-    
+
     @FXML
     private TextField contact;
-    
+
     @FXML
     private JFXButton contactedit;
-    
+
     @FXML
     private TextField email;
-    
+
     @FXML
     private JFXButton emailedit;
-    
+
     @FXML
     private Label result1;
-    
+
     @FXML
     private Label result11;
-    
+
     @FXML
     private Label result14;
-    
+
     @FXML
     private TextField username;
-    
+
     @FXML
     private JFXButton usernameedit;
-    
+
     @FXML
     private Button changepassword;
-    
+
     private FXMLLoader fxml;
-    
+
     private User user;
     private Faculty faculty;
     private Login login;
     private FacultyDao dao;
+    private Principal principal;
+    private PrincipalDao pdao;
     private Parent parent;
-    
+
     private File file;
     private FileInputStream fin;
     private FileChooser chooser;
     private ExtensionFilter filter;
-    
-    public UserProfileController(User user, Parent parent) {
-        this.user = user;
+
+    public UserProfileController(Parent parent) {
+        this.user = SystemUtils.getCurrentUser();
         this.parent = parent;
         fxml = Fxml.getProfileFXML();
         fxml.setController(this);
@@ -135,19 +138,20 @@ public class UserProfileController extends AnchorPane {
         } catch (IOException ex) {
             Logger.getLogger(UserProfileController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
-    
+
     @FXML
     private void initialize() {
         login = (Login) Start.app.getBean("userlogin");
         dao = (FacultyDao) Start.app.getBean("facultyregistration");
+        pdao = (PrincipalDao) Start.app.getBean("principallogin");
         loadDetails();
         init();
         initGender();
         buttonActions();
     }
-    
+
     private void init() {
         name.setEditable(false);
         email.setEditable(false);
@@ -155,21 +159,42 @@ public class UserProfileController extends AnchorPane {
         contact.setEditable(false);
         result.setText("");
     }
-    
+
     private void loadDetails() {
-        name.setText(user.getName());
-        contact.setText(user.getContact());
-        email.setText(user.getEmail());
-        username.setText(user.getUsername());
-        userrole.setText(user.getType());
         if (user.getType().equals("Principal")) {
+            principal = pdao.findById(user.getContact());
+            name.setText(principal.getName());
+            contact.setText(principal.getContact());
+            email.setText(principal.getEmailId());
+            username.setText(user.getUsername());
             department.setText("N/A");
+            switch (principal.getGender()) {
+                case "Male":
+                    male.setSelected(true);
+                    break;
+                case "Female":
+                    female.setSelected(true);
+                    break;
+            }
         } else {
             faculty = dao.findById(user.getContact());
+            name.setText(faculty.getName());
+            contact.setText(faculty.getContact());
+            email.setText(faculty.getEmailId());
+            username.setText(user.getUsername());
             department.setText(faculty.getDepartment());
+             switch (faculty.getGender()) {
+                case "Male":
+                    male.setSelected(true);
+                    break;
+                case "Female":
+                    female.setSelected(true);
+                    break;
+            }
         }
+        userrole.setText(user.getType());
     }
-    
+
     private void buttonActions() {
         close.setOnAction(e -> SwitchRoot.switchRoot(Start.st, parent));
         nameedit.setOnAction(e -> name.setEditable(true));
@@ -179,7 +204,7 @@ public class UserProfileController extends AnchorPane {
         profilepicture.setOnAction(this::loadImage);
         updateprofile.setOnAction(this::update);
     }
-    
+
     private void loadImage(ActionEvent evt) {
         filter = new ExtensionFilter("Image Files", Arrays.asList("*.jpg", "*.png"));
         chooser = new FileChooser();
@@ -194,7 +219,7 @@ public class UserProfileController extends AnchorPane {
             Logger.getLogger(UserProfileController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     private void initGender() {
         male.selectedProperty().addListener((ol, o, n) -> {
             if (n) {
@@ -202,7 +227,7 @@ public class UserProfileController extends AnchorPane {
                 female.setSelected(false);
             }
         });
-        
+
         female.selectedProperty().addListener((ol, o, n) -> {
             if (n) {
                 male.setSelected(false);
@@ -210,30 +235,42 @@ public class UserProfileController extends AnchorPane {
             }
         });
     }
-    
+
     private void update(ActionEvent evt) {
         User updateuser = new User();
         Faculty updatefaculty = new Faculty();
-        
-        updateuser.setName(name.getText());
-        updateuser.setEmail(email.getText());
+        Principal updateprincipal = new Principal();
+
         updateuser.setContact(contact.getText());
         updateuser.setUsername(username.getText());
         updateuser.setPassword(user.getPassword());
         updateuser.setId(user.getId());
-        
+        updateuser.setType(user.getType());
+
         if (user.getType().equals("Principal")) {
-            updateuser.setType(user.getType());
+            updateprincipal.setName(name.getText());
+            updateprincipal.setEmailId(email.getText());
+            updateprincipal.setContact(principal.getContact());
+            if (male.isSelected()) {
+                updateprincipal.setGender("Male");
+            } else if (female.isSelected()) {
+                updateprincipal.setGender("Female");
+            } else {
+                updateprincipal.setGender("Unknown");
+            }
             boolean b1 = login.update(updateuser);
-            if(b1){
+            boolean b2 = pdao.updatePrincipal(updateprincipal);
+            boolean b3 = pdao.updatePrincipalId(contact.getText(), principal.getContact());
+            if (b1 && b2 && b3) {
                 result.setText("Profile Updated Successfully");
-            }else {
+                SystemUtils.setCurrentUser(updateuser);
+            } else {
                 result.setText("Profile Updation Failed");
             }
         } else {
             updatefaculty.setName(name.getText());
             updatefaculty.setEmailId(email.getText());
-            updatefaculty.setContact(contact.getText());
+            updatefaculty.setContact(faculty.getContact());
             updatefaculty.setDepartment(department.getText());
             if (male.isSelected()) {
                 updatefaculty.setGender("Male");
@@ -245,12 +282,13 @@ public class UserProfileController extends AnchorPane {
             boolean b1 = login.update(updateuser);
             boolean b2 = dao.updateFaculty(updatefaculty);
             boolean b3 = dao.updateFacultyId(contact.getText(), faculty.getContact());
-            if(b1 && b2 && b3){
+            if (b1 && b2 && b3) {
                 result.setText("Profile Updated Successfully");
-            }else {
+                SystemUtils.setCurrentUser(updateuser);
+            } else {
                 result.setText("Profile Updation Failed");
             }
         }
-        
+
     }
 }

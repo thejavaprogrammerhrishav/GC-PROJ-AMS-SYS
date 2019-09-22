@@ -140,9 +140,9 @@ public class HODDashboardController extends AnchorPane {
     private StudentDao dao;
     private Activity act;
 
-    public HODDashboardController(User user, LoginActivity activity) {
-        this.user = user;
-        this.activity = activity;
+    public HODDashboardController() {
+        this.user = SystemUtils.getCurrentUser();
+        this.activity = SystemUtils.getActivity();
         fxml = Fxml.getAdminDashboardFXML();
         fxml.setRoot(HODDashboardController.this);
         fxml.setController(HODDashboardController.this);
@@ -157,7 +157,7 @@ public class HODDashboardController extends AnchorPane {
     private void initialize() {
         act = (Activity) Start.app.getBean("loginactivity");
         dao = (StudentDao) Start.app.getBean("studentregistration");
-        userlabel.setText("Welcome back @  " + user.getName());
+        userlabel.setText("Welcome back @  " + user.getContact());
         initLoginActivity(null);
         countStudents(null);
         timer = DateTimerThread.newInstance().forLabel(DateTimerThread.TIME, time).init().thread();
@@ -194,6 +194,8 @@ public class HODDashboardController extends AnchorPane {
         downloadnotes.setOnAction(new DownloadNotes());
         
         uploadunittestmarks.setOnAction(new UploadUnitTest());
+        
+        addnewfaculty.setOnAction(e->SwitchRoot.switchRoot(Start.st, RootFactory.getUserProfileRoot(Start.st.getScene().getRoot())));
     }
 
     private void countStudents(ActionEvent e) {

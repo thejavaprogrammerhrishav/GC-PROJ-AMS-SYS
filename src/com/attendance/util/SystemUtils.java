@@ -7,6 +7,7 @@ package com.attendance.util;
 
 import com.attendance.login.activity.dao.Activity;
 import com.attendance.login.activity.model.LoginActivity;
+import com.attendance.login.user.model.User;
 import com.attendance.main.Start;
 import java.util.HashMap;
 import org.joda.time.DateTime;
@@ -26,6 +27,8 @@ public class SystemUtils {
         "Persian", "Philosophy", "Physics", "Political Science", "Sanskrit", "Statistics", "Zoology"};
 
     private static HashMap<String, String> deptcodes;
+    
+    private static User currentUser;
 
     public static String getDepartment() {
         return department;
@@ -93,5 +96,14 @@ public class SystemUtils {
         act.update(activity);
         }
     }
+
+    public static void setCurrentUser(User currentUser) {
+        SystemUtils.currentUser = currentUser;
+    }
+
+    public static User getCurrentUser() {
+        return currentUser;
+    }
+    
     
 }

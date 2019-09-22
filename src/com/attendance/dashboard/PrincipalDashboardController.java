@@ -12,6 +12,7 @@ import com.attendance.util.Fxml;
 import com.attendance.util.RootFactory;
 import com.attendance.util.StageUtil;
 import com.attendance.util.SwitchRoot;
+import com.attendance.util.SystemUtils;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
@@ -107,9 +108,9 @@ public class PrincipalDashboardController extends AnchorPane {
 
     private FXMLLoader fxml;
 
-    public PrincipalDashboardController(User principal, LoginActivity activity) {
-        this.principal = principal;
-        this.activity = activity;
+    public PrincipalDashboardController() {
+        this.principal = SystemUtils.getCurrentUser();
+        this.activity = SystemUtils.getActivity();
 
         fxml = Fxml.getPrincipalDashboardFXML();
         fxml.setController(this);
@@ -130,7 +131,7 @@ public class PrincipalDashboardController extends AnchorPane {
     }
 
     private void buttonActions() {
-        myprofile.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getUserProfileRoot(principal, Start.st.getScene().getRoot())));
+        myprofile.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getUserProfileRoot(Start.st.getScene().getRoot())));
         student.setOnAction(new ShowDepartmentPage("Student"));
         logout.setOnAction(new Logout(activity));
         faculty.setOnAction(new ShowDepartmentPage("Faculty"));

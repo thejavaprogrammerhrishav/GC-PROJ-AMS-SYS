@@ -98,8 +98,6 @@ public class FacultySignUpController extends AnchorPane {
                 al.initStyle(StageStyle.UNDECORATED);
                 al.show();
             } else if (password.getText().equals(confirmpassword.getText())) {
-                user.setName(fullname.getText());
-                user.setEmail(email.getText());
                 user.setContact(contact.getText());
                 user.setPassword(password.getText());
                 user.setType("Faculty");

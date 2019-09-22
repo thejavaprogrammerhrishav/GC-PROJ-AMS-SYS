@@ -65,6 +65,14 @@
                   <FontAwesomeIconView glyphName="POWER_OFF" size="18" />
                </graphic>
             </JFXButton>
+            <JFXButton fx:id="prof" buttonType="RAISED" graphicTextGap="15.0" layoutX="29.0" layoutY="342.0" prefHeight="35.0" prefWidth="230.0" ripplerFill="#121325" styleClass="node" text="Profile" textFill="WHITE">
+               <font>
+                  <Font name="Calibri" size="18.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView glyphName="EYE" size="18" />
+               </graphic>
+            </JFXButton>
          </children>
       </AnchorPane>
       <AnchorPane layoutX="298.0" layoutY="-1.0" prefHeight="49.0" prefWidth="1069.0" style="-fx-background-color: #2f2969;">

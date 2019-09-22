@@ -5,6 +5,8 @@
  */
 package com.attendance.login.controller;
 
+import com.attendance.faculty.dao.FacultyDao;
+import com.attendance.faculty.model.Faculty;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
@@ -60,7 +62,7 @@ public class HODLoginController extends AnchorPane {
 
     @FXML
     private Label signup;
-    
+
     @FXML
     private JFXButton close;
 
@@ -70,11 +72,13 @@ public class HODLoginController extends AnchorPane {
     private Thread thread;
     private Task<Void> blink;
 
-    private final Login admin;
-    private final Activity loginActivity;
+    private Login admin;
+    private Activity loginActivity;
     private LoginAuthenticator authenticator;
     private User user;
     private LoginActivity activity;
+    private Faculty search;
+    private FacultyDao dao;
 
     public HODLoginController() {
         fxml = Fxml.getHODLoginFXML();
@@ -86,12 +90,13 @@ public class HODLoginController extends AnchorPane {
             Logger.getLogger(HODLoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        admin = (Login) Start.app.getBean("userlogin");
-        loginActivity = (Activity) Start.app.getBean("loginactivity");
     }
 
     @FXML
     private void initialize() {
+        admin = (Login) Start.app.getBean("userlogin");
+        loginActivity = (Activity) Start.app.getBean("loginactivity");
+        dao=(FacultyDao) Start.app.getBean("facultyregistration");
         result.setText("");
         department.setText("Department: " + SystemUtils.getDepartment());
         blink = new Task<Void>() {
@@ -127,7 +132,8 @@ public class HODLoginController extends AnchorPane {
                 new Thread(() -> {
                     try {
                         Thread.sleep(500);
-                        activity = new LoginActivity(user.getName(), user.getUsername(), "HOD", "ACTIVE", DateTime.now().toString(DateTimeFormat.forPattern("dd-MM-yyyy")), DateTime.now().toString(DateTimeFormat.forPattern("hh:mm:ss a")), "");
+                        search=dao.findById(user.getContact());
+                        activity = new LoginActivity(search.getName(), user.getUsername(), "HOD", "ACTIVE", DateTime.now().toString(DateTimeFormat.forPattern("dd-MM-yyyy")), DateTime.now().toString(DateTimeFormat.forPattern("hh:mm:ss a")), "");
                         loginActivity.save(activity);
                         SystemUtils.setActivity(activity);
                         for (int i = 3; i >= 0; i--) {
@@ -135,7 +141,8 @@ public class HODLoginController extends AnchorPane {
                             Platform.runLater(() -> result.setText("Redirecting to Dashboard in " + x + " Sec"));
                             Thread.sleep(1000);
                         }
-                        Platform.runLater(() -> SwitchRoot.switchRoot(Start.st, RootFactory.getHODDashboardRoot(user, activity)));
+                        SystemUtils.setCurrentUser(user);
+                        Platform.runLater(() -> SwitchRoot.switchRoot(Start.st, RootFactory.getHODDashboardRoot()));
                     } catch (InterruptedException ex) {
                         Logger.getLogger(HODLoginController.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -156,7 +163,7 @@ public class HODLoginController extends AnchorPane {
     private void signupAction(MouseEvent evt) {
         SwitchRoot.switchRoot(Start.st, RootFactory.getHODSignupRoot(Start.st.getScene().getRoot()));
     }
-    
+
     private void closeAction(ActionEvent evt) {
         SystemUtils.setDepartment("");
         SystemUtils.logout();

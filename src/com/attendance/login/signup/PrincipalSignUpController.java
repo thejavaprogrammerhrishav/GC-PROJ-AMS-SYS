@@ -8,6 +8,8 @@ package com.attendance.login.signup;
 import com.attendance.login.dao.Login;
 import com.attendance.login.user.model.User;
 import com.attendance.main.Start;
+import com.attendance.user.principal.dao.PrincipalDao;
+import com.attendance.user.principal.model.Principal;
 import com.attendance.util.Fxml;
 import com.attendance.util.Message;
 import com.attendance.util.MessageUtil;
@@ -61,6 +63,9 @@ public class PrincipalSignUpController extends AnchorPane {
     private User user;
     private Login login;
     private Parent parent;
+    
+    private Principal principal;
+    private PrincipalDao pdao;
 
     public PrincipalSignUpController(Parent parent) {
         this.parent = parent;
@@ -78,20 +83,26 @@ public class PrincipalSignUpController extends AnchorPane {
     @FXML
     private void initialize() {
         user = new User();
+        principal=new Principal();
         login = (Login) Start.app.getBean("userlogin");
-
+        pdao=(PrincipalDao) Start.app.getBean("principallogin");
         signup.setOnAction(E -> {
             if (login.isUsernameExists(username.getText()) > 0) {
                 MessageUtil.showError(Message.ERROR, "Principal SignUp", "Username already taken", ((Node) E.getSource()).getScene().getWindow());
             } else if (password.getText().equals(confirmpassword.getText())) {
-                user.setName(fullname.getText());
-                user.setEmail(email.getText());
                 user.setContact(contact.getText());
                 user.setType("Principal");
                 user.setUsername(username.getText());
                 user.setPassword(password.getText());
 
+                principal.setName(fullname.getText());
+                principal.setContact(contact.getText());
+                principal.setEmailId(email.getText());
+                principal.setGender("Unknown");
+
                 login.save(user);
+                pdao.savePrincipal(principal);
+
                 MessageUtil.showError(Message.INFORMATION, "Principal SignUp", "User signup successful\nPrincipal account created successfully", ((Node) E.getSource()).getScene().getWindow());
 
             } else {

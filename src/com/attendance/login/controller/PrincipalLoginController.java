@@ -12,6 +12,8 @@ import com.attendance.login.dao.Login;
 import com.attendance.login.forgot.ForgotPasswordController;
 import com.attendance.login.user.model.User;
 import com.attendance.main.Start;
+import com.attendance.user.principal.dao.PrincipalDao;
+import com.attendance.user.principal.model.Principal;
 import com.attendance.util.Fxml;
 import com.attendance.util.RootFactory;
 import com.attendance.util.SwitchRoot;
@@ -70,6 +72,8 @@ public class PrincipalLoginController extends AnchorPane {
     private LoginAuthenticator authenticator;
     private User user;
     private LoginActivity activity;
+    private Principal search;
+    private PrincipalDao dao;
 
     public PrincipalLoginController() {
         fxml = Fxml.getPrincipalLoginFXML();
@@ -86,7 +90,7 @@ public class PrincipalLoginController extends AnchorPane {
     private void initialize() {
         principal = (Login) Start.app.getBean("userlogin");
         loginActivity = (Activity) Start.app.getBean("loginactivity");
-
+        dao=(PrincipalDao) Start.app.getBean("principallogin");
         result.setText("");
         blink = new Task<Void>() {
             @Override
@@ -123,7 +127,8 @@ public class PrincipalLoginController extends AnchorPane {
                 new Thread(() -> {
                     try {
                         Thread.sleep(500);
-                        activity = new LoginActivity(user.getName(), user.getUsername(), "Principal", "ACTIVE", DateTime.now().toString(DateTimeFormat.forPattern("dd-MM-yyyy")), DateTime.now().toString(DateTimeFormat.forPattern("hh:mm:ss a")), "");
+                        search=dao.findById(user.getContact());
+                        activity = new LoginActivity(search.getName(), user.getUsername(), "Principal", "ACTIVE", DateTime.now().toString(DateTimeFormat.forPattern("dd-MM-yyyy")), DateTime.now().toString(DateTimeFormat.forPattern("hh:mm:ss a")), "");
                         loginActivity.save(activity);
                         SystemUtils.setActivity(activity);
                         for (int i = 3; i >= 0; i--) {
@@ -131,7 +136,8 @@ public class PrincipalLoginController extends AnchorPane {
                             Platform.runLater(() -> result.setText("Redirecting to Dashboard in " + x + " Sec"));
                             Thread.sleep(1000);
                         }
-                        Platform.runLater(() -> SwitchRoot.switchRoot(Start.st, RootFactory.getPrincipalDashboardRoot(user, activity)));
+                        SystemUtils.setCurrentUser(user);
+                        Platform.runLater(() -> SwitchRoot.switchRoot(Start.st, RootFactory.getPrincipalDashboardRoot()));
                     } catch (InterruptedException ex) {
                         Logger.getLogger(PrincipalLoginController.class.getName()).log(Level.SEVERE, null, ex);
                     }
