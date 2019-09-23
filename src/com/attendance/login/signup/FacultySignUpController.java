@@ -102,6 +102,7 @@ public class FacultySignUpController extends AnchorPane {
                 user.setPassword(password.getText());
                 user.setType("Faculty");
                 user.setUsername(username.getText());
+                user.setImage(SystemUtils.getDefaultAccountIcon());
 
                 faculty.setName(fullname.getText());
                 faculty.setContact(contact.getText());

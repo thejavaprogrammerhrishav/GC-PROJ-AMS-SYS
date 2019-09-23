@@ -94,6 +94,7 @@ public class PrincipalSignUpController extends AnchorPane {
                 user.setType("Principal");
                 user.setUsername(username.getText());
                 user.setPassword(password.getText());
+                user.setImage(SystemUtils.getDefaultAccountIcon());
 
                 principal.setName(fullname.getText());
                 principal.setContact(contact.getText());

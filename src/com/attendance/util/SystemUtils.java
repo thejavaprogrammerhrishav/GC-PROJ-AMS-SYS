@@ -9,7 +9,18 @@ import com.attendance.login.activity.dao.Activity;
 import com.attendance.login.activity.model.LoginActivity;
 import com.attendance.login.user.model.User;
 import com.attendance.main.Start;
+import java.awt.image.BufferedImage;
+import java.awt.image.DataBufferByte;
+import java.io.BufferedInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.sql.Blob;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.embed.swing.SwingFXUtils;
+import javafx.scene.image.Image;
+import javax.imageio.ImageIO;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 
@@ -27,8 +38,10 @@ public class SystemUtils {
         "Persian", "Philosophy", "Physics", "Political Science", "Sanskrit", "Statistics", "Zoology"};
 
     private static HashMap<String, String> deptcodes;
-    
+
     private static User currentUser;
+
+    private static byte[] accountImage;
 
     public static String getDepartment() {
         return department;
@@ -47,8 +60,8 @@ public class SystemUtils {
     }
 
     public static void init() {
-        act=(Activity) Start.app.getBean("loginactivity");
-        deptcodes=new HashMap<>();
+        act = (Activity) Start.app.getBean("loginactivity");
+        deptcodes = new HashMap<>();
         deptcodes.put("Anthropology", "ANTH");
         deptcodes.put("Assamese", "ASSM");
         deptcodes.put("Bengali", "BENG");
@@ -75,6 +88,14 @@ public class SystemUtils {
         deptcodes.put("Statistics", "STATS");
         deptcodes.put("Zoology", "ZOO");
 
+        try {
+            BufferedInputStream bin = (BufferedInputStream) SystemUtils.class.getResourceAsStream("/com/attendance/resources/account.png");
+            accountImage = new byte[bin.available()];
+            bin.read(accountImage);
+            bin.close();
+        } catch (IOException e) {
+            System.out.println("Error Loading Default Account Image");
+        }
     }
 
     public static void setActivity(LoginActivity activity) {
@@ -88,12 +109,12 @@ public class SystemUtils {
     public static HashMap<String, String> getDeptcodes() {
         return deptcodes;
     }
-    
-    public static void logout(){
+
+    public static void logout() {
         if (activity != null) {
             activity.setStatus("NOT ACTIVE");
-        activity.setLogouttime(DateTime.now().toString(DateTimeFormat.forPattern("hh:mm:ss a")));
-        act.update(activity);
+            activity.setLogouttime(DateTime.now().toString(DateTimeFormat.forPattern("hh:mm:ss a")));
+            act.update(activity);
         }
     }
 
@@ -104,6 +125,20 @@ public class SystemUtils {
     public static User getCurrentUser() {
         return currentUser;
     }
-    
-    
+
+    public static byte[] getDefaultAccountIcon() {
+        return accountImage;
+    }
+
+    public static byte[] getByteArrayFromImage(Image img) {
+        BufferedImage image = SwingFXUtils.fromFXImage(img, null);
+        ByteArrayOutputStream bout=new ByteArrayOutputStream();
+        try {
+            ImageIO.write(image, "png", bout);
+        } catch (IOException ex) {
+            Logger.getLogger(SystemUtils.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return bout.toByteArray();
+    }
+
 }

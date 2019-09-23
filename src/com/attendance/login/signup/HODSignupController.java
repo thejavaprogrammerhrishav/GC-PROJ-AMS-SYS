@@ -103,6 +103,7 @@ public class HODSignupController extends AnchorPane {
                 user.setPassword(password.getText());
                 user.setType("HOD");
                 user.setUsername(username.getText());
+                user.setImage(SystemUtils.getDefaultAccountIcon());
                 
                  faculty.setName(fullname.getText());
                 faculty.setContact(contact.getText());
