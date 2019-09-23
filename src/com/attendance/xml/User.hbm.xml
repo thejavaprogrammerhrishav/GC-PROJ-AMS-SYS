@@ -10,8 +10,8 @@
         <property name="username" column="username" not-null="true"/>
         <property name="password" column="password" not-null="true"/>
         <property name="type" column="type" not-null="true"/>
-        <property name="image" not-null="true">
-            <column name="image" sql-type="longblob"/>
+        <property name="image">
+            <column name="image" sql-type="longblob" not-null="true"/>
         </property>
     </class>
 </hibernate-mapping>
