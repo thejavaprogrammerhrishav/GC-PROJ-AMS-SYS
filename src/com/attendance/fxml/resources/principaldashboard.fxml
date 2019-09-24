@@ -133,7 +133,7 @@
                         <Font name="Tw Cen MT" size="18.0" />
                      </font>
                      <graphic>
-                        <FontAwesomeIconView fx:id="refr" fill="WHITE" glyphName="REFRESH" size="1.8em" />
+                        <FontAwesomeIconView fill="WHITE" glyphName="REFRESH" size="1.8em" />
                      </graphic>
                   </JFXButton>
                   <Label layoutX="38.0" layoutY="21.0" text="Login Activity" textFill="WHITE">
@@ -143,9 +143,12 @@
                   </Label>
                </children>
             </Pane>
-            <ScrollPane layoutY="62.0" prefHeight="578.0" prefWidth="320.0">
+            <ScrollPane hbarPolicy="NEVER" layoutY="62.0" prefHeight="578.0" prefWidth="320.0" style="-fx-border-color: transparent;">
                <content>
-                  <VBox fx:id="list" prefHeight="578.0" prefWidth="304.0" />
+                  <VBox fx:id="list" prefHeight="578.0" prefWidth="304.0" spacing="20.0" style="-fx-background-color: #fff;">
+                     <padding>
+                        <Insets bottom="15.0" left="10.0" top="15.0" />
+                     </padding></VBox>
                </content>
             </ScrollPane>
          </children>
