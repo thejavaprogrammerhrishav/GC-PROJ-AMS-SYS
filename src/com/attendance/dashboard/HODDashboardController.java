@@ -195,7 +195,7 @@ public class HODDashboardController extends AnchorPane {
         
         uploadunittestmarks.setOnAction(new UploadUnitTest());
         
-        addnewfaculty.setOnAction(e->SwitchRoot.switchRoot(Start.st, RootFactory.getUserProfileRoot(Start.st.getScene().getRoot())));
+        addnewfaculty.setOnAction(e->SwitchRoot.switchRoot(Start.st, RootFactory.getUserProfileRoot("hod")));
     }
 
     private void countStudents(ActionEvent e) {

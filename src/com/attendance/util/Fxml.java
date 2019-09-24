@@ -252,4 +252,8 @@ public class Fxml {
     public static FXMLLoader getProfileFXML() {
         return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/profile.fxml"));
     }
+    
+    public static FXMLLoader getChangePasswordFXML() {
+        return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/changepassword.fxml"));
+    }
 }

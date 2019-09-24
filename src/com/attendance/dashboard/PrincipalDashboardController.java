@@ -16,15 +16,20 @@ import com.attendance.util.SystemUtils;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
@@ -102,10 +107,12 @@ public class PrincipalDashboardController extends AnchorPane {
 
     @FXML
     private Label pending;
+    
+    @FXML
+    private ImageView profilepic; 
 
     private User principal;
     private LoginActivity activity;
-
     private FXMLLoader fxml;
 
     public PrincipalDashboardController() {
@@ -127,11 +134,12 @@ public class PrincipalDashboardController extends AnchorPane {
     @FXML
     private void initialize() {
         buttonActions();
-
+        profilepic.setImage(new Image(new ByteArrayInputStream(principal.getImage())));
     }
 
     private void buttonActions() {
-        myprofile.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getUserProfileRoot(Start.st.getScene().getRoot())));
+        myprofile.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getUserProfileRoot("principal")));
+        changepassword.setOnAction(e-> SwitchRoot.switchRoot(Start.st, RootFactory.getChangePasswordRoot(Start.st.getScene().getRoot())));
         student.setOnAction(new ShowDepartmentPage("Student"));
         logout.setOnAction(new Logout(activity));
         faculty.setOnAction(new ShowDepartmentPage("Faculty"));

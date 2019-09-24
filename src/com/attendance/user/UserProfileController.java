@@ -13,6 +13,7 @@ import com.attendance.main.Start;
 import com.attendance.user.principal.dao.PrincipalDao;
 import com.attendance.user.principal.model.Principal;
 import com.attendance.util.Fxml;
+import com.attendance.util.RootFactory;
 import com.attendance.util.SwitchRoot;
 import com.attendance.util.SystemUtils;
 import com.jfoenix.controls.JFXButton;
@@ -43,94 +44,94 @@ import javafx.stage.FileChooser.ExtensionFilter;
  * @author pc
  */
 public class UserProfileController extends AnchorPane {
-    
+
     @FXML
     private ImageView profilepic;
-    
+
     @FXML
     private Button profilepicture;
-    
+
     @FXML
     private Label result12;
-    
+
     @FXML
     private Label userrole;
-    
+
     @FXML
     private Label result121;
-    
+
     @FXML
     private Label department;
-    
+
     @FXML
     private Label result;
-    
+
     @FXML
     private JFXButton close;
-    
+
     @FXML
     private TextField name;
-    
+
     @FXML
     private JFXButton nameedit;
-    
+
     @FXML
     private JFXCheckBox male;
-    
+
     @FXML
     private JFXCheckBox female;
-    
+
     @FXML
     private Button updateprofile;
-    
+
     @FXML
     private TextField contact;
-    
+
     @FXML
     private JFXButton contactedit;
-    
+
     @FXML
     private TextField email;
-    
+
     @FXML
     private JFXButton emailedit;
-    
+
     @FXML
     private Label result1;
-    
+
     @FXML
     private Label result11;
-    
+
     @FXML
     private Label result14;
-    
+
     @FXML
     private TextField username;
-    
+
     @FXML
     private JFXButton usernameedit;
-    
+
     @FXML
     private Button changepassword;
-    
+
     private FXMLLoader fxml;
-    
+
     private User user;
     private Faculty faculty;
     private Login login;
     private FacultyDao dao;
     private Principal principal;
     private PrincipalDao pdao;
-    private Parent parent;
-    
+    private String parent;
+
     private File file;
     private FileInputStream fin;
     private FileChooser chooser;
     private ExtensionFilter filter;
-    
+
     private boolean imageChanged = false;
-    
-    public UserProfileController(Parent parent) {
+
+    public UserProfileController(String parent) {
         this.user = SystemUtils.getCurrentUser();
         this.parent = parent;
         fxml = Fxml.getProfileFXML();
@@ -141,9 +142,9 @@ public class UserProfileController extends AnchorPane {
         } catch (IOException ex) {
             Logger.getLogger(UserProfileController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
-    
+
     @FXML
     private void initialize() {
         login = (Login) Start.app.getBean("userlogin");
@@ -154,7 +155,7 @@ public class UserProfileController extends AnchorPane {
         initGender();
         buttonActions();
     }
-    
+
     private void init() {
         name.setEditable(false);
         email.setEditable(false);
@@ -162,7 +163,7 @@ public class UserProfileController extends AnchorPane {
         contact.setEditable(false);
         result.setText("");
     }
-    
+
     private void loadDetails() {
         if (user.getType().equals("Principal")) {
             principal = pdao.findById(user.getContact());
@@ -198,9 +199,20 @@ public class UserProfileController extends AnchorPane {
         userrole.setText(user.getType());
         profilepic.setImage(new Image(new ByteArrayInputStream(user.getImage())));
     }
-    
+
     private void buttonActions() {
-        close.setOnAction(e -> SwitchRoot.switchRoot(Start.st, parent));
+        switch (parent) {
+            case "principal":
+                close.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getPrincipalDashboardRoot()));
+                break;
+            case "hod":
+                close.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getHODDashboardRoot()));
+                break;
+            case "faculty":
+                close.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getFacultyDashboardRoot()));
+                break;
+        }
+        changepassword.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getChangePasswordRoot(Start.st.getScene().getRoot())));
         nameedit.setOnAction(e -> name.setEditable(true));
         contactedit.setOnAction(e -> contact.setEditable(true));
         emailedit.setOnAction(e -> email.setEditable(true));
@@ -208,14 +220,14 @@ public class UserProfileController extends AnchorPane {
         profilepicture.setOnAction(this::loadImage);
         updateprofile.setOnAction(this::update);
     }
-    
+
     private void loadImage(ActionEvent evt) {
         filter = new ExtensionFilter("Image Files", Arrays.asList("*.jpg", "*.png"));
         chooser = new FileChooser();
         chooser.getExtensionFilters().add(filter);
         chooser.setSelectedExtensionFilter(filter);
         chooser.setTitle("Select your profile picture");
-        
+
         try {
             file = chooser.showOpenDialog(this.getScene().getWindow());
             fin = new FileInputStream(file);
@@ -228,7 +240,7 @@ public class UserProfileController extends AnchorPane {
         }
         System.out.println("Image Changed: " + imageChanged);
     }
-    
+
     private void initGender() {
         male.selectedProperty().addListener((ol, o, n) -> {
             if (n) {
@@ -236,7 +248,7 @@ public class UserProfileController extends AnchorPane {
                 female.setSelected(false);
             }
         });
-        
+
         female.selectedProperty().addListener((ol, o, n) -> {
             if (n) {
                 male.setSelected(false);
@@ -244,24 +256,24 @@ public class UserProfileController extends AnchorPane {
             }
         });
     }
-    
+
     private void update(ActionEvent evt) {
         User updateuser = new User();
         Faculty updatefaculty = new Faculty();
         Principal updateprincipal = new Principal();
-        
+
         updateuser.setContact(contact.getText());
         updateuser.setUsername(username.getText());
         updateuser.setPassword(user.getPassword());
         updateuser.setId(user.getId());
         updateuser.setType(user.getType());
-        
+
         if (imageChanged) {
             updateuser.setImage(SystemUtils.getByteArrayFromImage(profilepic.getImage()));
         } else {
             updateuser.setImage(SystemUtils.getDefaultAccountIcon());
         }
-        
+
         if (user.getType().equals("Principal")) {
             updateprincipal.setName(name.getText());
             updateprincipal.setEmailId(email.getText());
@@ -304,6 +316,6 @@ public class UserProfileController extends AnchorPane {
                 result.setText("Profile Updation Failed");
             }
         }
-        
+
     }
 }

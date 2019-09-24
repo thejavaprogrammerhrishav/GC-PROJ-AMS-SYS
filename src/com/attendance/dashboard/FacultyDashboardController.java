@@ -158,7 +158,7 @@ public class FacultyDashboardController extends AnchorPane {
         uploadnotes.setOnAction(new Upload());
         downloadnotes.setOnAction(new Download());
         
-        prof.setOnAction(e->SwitchRoot.switchRoot(Start.st, RootFactory.getUserProfileRoot(Start.st.getScene().getRoot())));
+        prof.setOnAction(e->SwitchRoot.switchRoot(Start.st, RootFactory.getUserProfileRoot("faculty")));
     }
 
     private void countStudents(ActionEvent e) {

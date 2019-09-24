@@ -87,7 +87,7 @@
                   <Font name="Tw Cen MT" size="18.0" />
                </font>
             </JFXButton>
-            <ImageView fitHeight="42.0" fitWidth="51.0" layoutX="1005.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="profilepic" fitHeight="42.0" fitWidth="43.0" layoutX="1005.0" layoutY="12.0" pickOnBounds="true">
                <image>
                   <Image url="@../../resources/admin_1246350_BLACK.png" />
                </image></ImageView>

@@ -20,6 +20,7 @@ import com.attendance.login.activity.model.LoginActivity;
 import com.attendance.login.controller.HODLoginController;
 import com.attendance.login.controller.FacultyLoginController;
 import com.attendance.login.controller.PrincipalLoginController;
+import com.attendance.login.forgot.ChangePasswordController;
 import com.attendance.login.forgot.ForgotPasswordController;
 import com.attendance.login.signup.HODSignupController;
 import com.attendance.login.signup.FacultySignUpController;
@@ -299,8 +300,11 @@ public class RootFactory {
         return new PrincipalDashboardHODAccountNodeController(); 
     }
       
-      public static Parent getUserProfileRoot(Parent parent){
+      public static Parent getUserProfileRoot(String parent){
           return new UserProfileController(parent);
       }
-          
+        
+      public static Parent getChangePasswordRoot(Parent parent){
+          return new ChangePasswordController(parent);
+      }
 }
