@@ -52,7 +52,7 @@ public class PrincipalLoginActivityController extends AnchorPane {
         try {
             fxml.load();
         } catch (IOException ex) {
-            Logger.getLogger(LoginActivityController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HODLoginActivityController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

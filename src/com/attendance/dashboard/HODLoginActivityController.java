@@ -7,6 +7,7 @@ package com.attendance.dashboard;
 
 import com.attendance.login.activity.model.LoginActivity;
 import com.attendance.util.Fxml;
+import com.attendance.util.SystemUtils;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,16 +20,16 @@ import javafx.scene.layout.AnchorPane;
  *
  * @author Programmer Hrishav
  */
-public class LoginActivityController extends AnchorPane {
+public class HODLoginActivityController extends AnchorPane {
 
-    @FXML
+     @FXML
     private Label name;
 
     @FXML
-    private Label username;
+    private Label department;
 
     @FXML
-    private Label logindate;
+    private Label username;
 
     @FXML
     private Label logintime;
@@ -40,32 +41,33 @@ public class LoginActivityController extends AnchorPane {
     private Label status;
 
     @FXML
-    private Label usertype;
+    private Label date;
 
     private FXMLLoader fxml;
     private LoginActivity activity;
 
-    public LoginActivityController(LoginActivity activity) {
+    public HODLoginActivityController(LoginActivity activity) {
         this.activity = activity;
-        fxml = Fxml.getLoginActivityFXML();
+        fxml = Fxml.getHODLoginActivityFXML();
         fxml.setRoot(this);
         fxml.setController(this);
 
         try {
             fxml.load();
         } catch (IOException ex) {
-            Logger.getLogger(LoginActivityController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HODLoginActivityController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @FXML
     private void initialize() {
         name.setText(activity.getName());
-        usertype.setText(activity.getUserType());
-        logindate.setText(activity.getLogindate());
+       // usertype.setText(activity.getUserType());
+        date.setText(activity.getLogindate());
         logintime.setText(activity.getLogintime());
         logouttime.setText(activity.getLogouttime());
         status.setText(activity.getStatus());
+        department.setText(SystemUtils.getDepartment());
         username.setText("@" + activity.getUsername());
 
         if (status.getText().equalsIgnoreCase("ACTIVE")) {

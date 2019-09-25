@@ -7,7 +7,7 @@ package com.attendance.util;
 
 import com.attendance.dashboard.HODDashboardController;
 import com.attendance.dashboard.FacultyDashboardController;
-import com.attendance.dashboard.LoginActivityController;
+import com.attendance.dashboard.HODLoginActivityController;
 import com.attendance.dashboard.PrincipalDashboardController;
 import com.attendance.dashboard.node.PrincipalDashboardDepartmentNodeController;
 import com.attendance.dashboard.node.PrincipalDashboardFacultyNodeController;
@@ -97,11 +97,11 @@ public class RootFactory {
     }
 
     public static Parent getLoginActivityRoot(LoginActivity activity) {
-        return new LoginActivityController(activity);
+        return new HODLoginActivityController(activity);
     }
 
-    public static Parent getRegisterStudentRoot() {
-        return new RegisterStudentController();
+    public static Parent getRegisterStudentRoot(Parent parent) {
+        return new RegisterStudentController(parent);
     }
 
     public static Parent getHODSignupRoot(Parent parent) {
@@ -116,8 +116,8 @@ public class RootFactory {
         return new ViewStudentDetailsController(department,parent);
     }
 
-    public static Parent getStudentUpdateRoot() {
-        return new StudentUpdateController();
+    public static Parent getStudentUpdateRoot(Parent parent) {
+        return new StudentUpdateController(parent);
     }
 
     public static Parent getFacultyLoginRoot() {
@@ -260,8 +260,8 @@ public class RootFactory {
         return new DownloadNotesController(p);
     }
     
-    public static Parent getUploadMarksRoot() {
-        return new UploadUnitTestMarksController();
+    public static Parent getUploadMarksRoot(Parent parent) {
+        return new UploadUnitTestMarksController(parent);
     }
     
     public static Parent getUserType1Root() {

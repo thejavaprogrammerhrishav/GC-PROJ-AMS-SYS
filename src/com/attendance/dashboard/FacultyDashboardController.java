@@ -143,7 +143,8 @@ public class FacultyDashboardController extends AnchorPane {
         Collections.sort(years);
         years.stream().forEach(acadamicyear.getItems()::add);
 
-        logout.setOnAction(new Logout(activity));
+        logout.setOnAction(e-> SystemUtils.logout()
+        );
 
         registernewstudent.setOnAction(new StudentRegister());
         viewstudentdetails.setOnAction(new ViewStudentDetails());
@@ -165,14 +166,14 @@ public class FacultyDashboardController extends AnchorPane {
         int Sem1, Sem2, Sem3;
 
         if (acadamicyear.getSelectionModel().getSelectedIndex() <= 0) {
-            Sem1 = dao.countStudents("1st");
-            Sem2 = dao.countStudents("2nd");
-            Sem3 = dao.countStudents("3rd");
+            Sem1 = dao.countStudents("1st",SystemUtils.getDepartment());
+            Sem2 = dao.countStudents("2nd",SystemUtils.getDepartment());
+            Sem3 = dao.countStudents("3rd",SystemUtils.getDepartment());
         } else {
             String year = acadamicyear.getSelectionModel().getSelectedItem();
-            Sem1 = dao.countStudents("1st", year);
-            Sem2 = dao.countStudents("2nd", year);
-            Sem3 = dao.countStudents("3rd", year);
+            Sem1 = dao.countStudents("1st", year,SystemUtils.getDepartment());
+            Sem2 = dao.countStudents("2nd", year,SystemUtils.getDepartment());
+            Sem3 = dao.countStudents("3rd", year,SystemUtils.getDepartment());
         }
 
         sem1.setText("" + Sem1);
@@ -195,7 +196,7 @@ public class FacultyDashboardController extends AnchorPane {
             Stage st = StageUtil.newStage().centerOnScreen().fullScreen(false).fullScreenExitHint("").fullScreenExitKeyCombination(null)
                     .initModality(Modality.WINDOW_MODAL).initOwner(((Node) t.getSource()).getScene().getWindow()).initStyle(StageStyle.UNDECORATED)
                     .build();
-            st.getScene().setRoot(RootFactory.getRegisterStudentRoot());
+            st.getScene().setRoot(RootFactory.getRegisterStudentRoot(st.getScene().getRoot()));
             st.show();
         }
     }
@@ -219,7 +220,7 @@ public class FacultyDashboardController extends AnchorPane {
             Stage st = StageUtil.newStage().centerOnScreen().fullScreen(false).fullScreenExitHint("").fullScreenExitKeyCombination(null)
                     .initModality(Modality.WINDOW_MODAL).initOwner(((Node) t.getSource()).getScene().getWindow()).initStyle(StageStyle.UNDECORATED)
                     .build();
-            st.getScene().setRoot(RootFactory.getStudentUpdateRoot());
+            st.getScene().setRoot(RootFactory.getStudentUpdateRoot(st.getScene().getRoot()));
             st.show();
         }
     }

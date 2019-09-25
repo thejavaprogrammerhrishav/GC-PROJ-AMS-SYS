@@ -29,12 +29,12 @@ public class Fxml {
         return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/Forgetpassword.fxml"));
     }
 
-    public static FXMLLoader getAdminDashboardFXML() {
-        return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/admindashboard.fxml"));
+    public static FXMLLoader getHODDashboardFXML() {
+        return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/hoddashboard.fxml"));
     }
 
-    public static FXMLLoader getLoginActivityFXML() {
-        return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/useractivity.fxml"));
+    public static FXMLLoader getHODLoginActivityFXML() {
+        return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/loginactivitynode.fxml"));
     }
 
     public static FXMLLoader getRegisterStudentFXML() {

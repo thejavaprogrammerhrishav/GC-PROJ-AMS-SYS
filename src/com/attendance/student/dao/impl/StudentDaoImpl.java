@@ -115,13 +115,13 @@ public class StudentDaoImpl implements StudentDao {
     }
 
     @Override
-    public int countStudents(String acadamicyear) {
-        return jdbcTemplate.queryForObject("select count(*) from student where acadamicyear='" + acadamicyear + "'", Integer.class);
+    public int countStudents(String acadamicyear, String department) {
+        return jdbcTemplate.queryForObject("select count(*) from student where acadamicyear='" + acadamicyear + "' and department = '"+department+ "'", Integer.class);
     }
 
     @Override
-    public int countStudents(String acadamicyear, String year) {
-        return jdbcTemplate.queryForObject("select count(*) from student where acadamicyear='" + acadamicyear + "' and year='" + year + "'", Integer.class);
+    public int countStudents(String acadamicyear, String year, String department) {
+        return jdbcTemplate.queryForObject("select count(*) from student where acadamicyear='" + acadamicyear + "' and year=" + year + " and department = '"+department+ "'", Integer.class);
     }
 
     @Override

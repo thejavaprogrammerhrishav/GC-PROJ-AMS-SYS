@@ -11,6 +11,7 @@ import com.attendance.student.model.Student;
 import com.attendance.util.Fxml;
 import com.attendance.util.Message;
 import com.attendance.util.MessageUtil;
+import com.attendance.util.SwitchRoot;
 import com.attendance.util.SystemUtils;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
@@ -20,13 +21,11 @@ import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
+import javafx.scene.Parent;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Modality;
 
 /**
  *
@@ -73,8 +72,10 @@ public class RegisterStudentController extends AnchorPane {
     private FXMLLoader fxml;
     private Student student;
     private StudentDao dao;
+    private Parent parent;
 
-    public RegisterStudentController() {
+    public RegisterStudentController(Parent parent) {
+        this.parent = parent;
         fxml = Fxml.getRegisterStudentFXML();
         fxml.setController(RegisterStudentController.this);
         fxml.setRoot(RegisterStudentController.this);
@@ -118,7 +119,7 @@ public class RegisterStudentController extends AnchorPane {
             honours.setSelected(false);
         });
 
-        cancel.setOnAction(evt -> ((Node) evt.getSource()).getScene().getWindow().hide());
+        cancel.setOnAction(evt -> SwitchRoot.switchRoot(Start.st, parent));
         register.setOnAction(evt -> {
             student.setName(name.getText());
             student.setRollno(Integer.parseInt(rollno.getText()));

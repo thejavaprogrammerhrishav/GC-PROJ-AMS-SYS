@@ -40,9 +40,9 @@ public interface StudentDao {
 
     public abstract <T> List<T> get(String query, Class<T> t);
 
-    public abstract int countStudents(String acadamicyear);
+    public abstract int countStudents(String acadamicyear, String department);
 
-    public abstract int countStudents(String acadamicyear, String year);
+    public abstract int countStudents(String acadamicyear, String year, String department);
 
     public abstract List<Student> findByCourseType(String courseType);
 

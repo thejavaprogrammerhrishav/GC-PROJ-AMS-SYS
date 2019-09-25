@@ -13,6 +13,7 @@ import com.attendance.student.model.Student;
 import com.attendance.util.Fxml;
 import com.attendance.util.Message;
 import com.attendance.util.MessageUtil;
+import com.attendance.util.SwitchRoot;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import java.io.IOException;
@@ -26,6 +27,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -78,8 +80,10 @@ public class UploadUnitTestMarksController extends AnchorPane {
 
     private String acadamicyear;
     private int yyear;
+    private Parent parent;
 
-    public UploadUnitTestMarksController() {
+    public UploadUnitTestMarksController(Parent parent) {
+        this.parent = parent;
         fxml = Fxml.getUploadMarksFXML();
         fxml.setRoot(this);
         fxml.setController(this);
@@ -103,7 +107,7 @@ public class UploadUnitTestMarksController extends AnchorPane {
         year.getItems().setAll(years);
         
         load.setOnAction(this::loadStudents);
-        cancel.setOnAction(evt -> ((Node) evt.getSource()).getScene().getWindow().hide());
+        cancel.setOnAction(evt -> SwitchRoot.switchRoot(Start.st, parent));
         clear.setOnAction(this::clear);
         save.setOnAction(this::save);
     }

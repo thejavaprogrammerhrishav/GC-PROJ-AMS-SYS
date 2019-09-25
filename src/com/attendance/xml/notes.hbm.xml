@@ -9,6 +9,8 @@
         <property column="filename" name="fileName" not-null="true"/>
         <property column="filesize" name="fileSize" not-null="true"/>
         <property column="uploaddate" name="uploadDate" not-null="true"/>
-        <property column="file" name="file" not-null="true"/>
+        <property name="file">
+            <column name="file" sql-type="longblob" not-null="true"/>
+        </property>
     </class>
 </hibernate-mapping>

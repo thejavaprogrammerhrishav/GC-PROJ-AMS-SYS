@@ -11,6 +11,7 @@ import com.attendance.student.model.Student;
 import com.attendance.util.Fxml;
 import com.attendance.util.Message;
 import com.attendance.util.MessageUtil;
+import com.attendance.util.SwitchRoot;
 import com.attendance.util.SystemUtils;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
@@ -21,12 +22,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.control.Alert;
+import javafx.scene.Parent;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Modality;
 
 /**
  *
@@ -83,8 +83,10 @@ public class StudentUpdateController extends AnchorPane {
     private StudentDao dao;
     private Student searchStudent;
     private Student updateStudent;
+    private Parent parent;
 
-    public StudentUpdateController() {
+    public StudentUpdateController(Parent parent) {
+        this.parent = parent;
         fxml = Fxml.getStudentUpdateFXML();
         fxml.setRoot(this);
         fxml.setController(this);
@@ -134,7 +136,7 @@ public class StudentUpdateController extends AnchorPane {
     }
 
     private void buttonInit() {
-        cancel.setOnAction(e -> ((Node) e.getSource()).getScene().getWindow().hide());
+        cancel.setOnAction(e -> SwitchRoot.switchRoot(Start.st, parent));
         clear.setOnAction(this::clearAll);
         search.setOnAction(this::searchStudent);
         update.setOnAction(this::updateStudent);
