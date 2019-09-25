@@ -16,6 +16,7 @@
         <property name="logindate" column="logindate" not-null="true"/>
         <property name="logintime" column="logintime" not-null="true"/>
         <property name="logouttime" column="logouttime" not-null="true"/>
+        <property name="department" column="department" not-null="true"/>
     </class>
 
 </hibernate-mapping>

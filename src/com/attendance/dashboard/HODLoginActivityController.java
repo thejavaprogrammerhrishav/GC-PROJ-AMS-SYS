@@ -42,6 +42,10 @@ public class HODLoginActivityController extends AnchorPane {
 
     @FXML
     private Label date;
+    
+    @FXML
+    private Label usertype;
+    
 
     private FXMLLoader fxml;
     private LoginActivity activity;
@@ -62,18 +66,20 @@ public class HODLoginActivityController extends AnchorPane {
     @FXML
     private void initialize() {
         name.setText(activity.getName());
-       // usertype.setText(activity.getUserType());
+        usertype.setText(activity.getUserType());
         date.setText(activity.getLogindate());
         logintime.setText(activity.getLogintime());
         logouttime.setText(activity.getLogouttime());
         status.setText(activity.getStatus());
-        department.setText(SystemUtils.getDepartment());
+        department.setText(activity.getDepartment());
         username.setText("@" + activity.getUsername());
 
         if (status.getText().equalsIgnoreCase("ACTIVE")) {
-            status.setStyle("-fx-background-color: green; -fx-text-fill: #fff;");
+            status.setStyle("-fx-background-color: green; -fx-text-fill: #fff;"
+                    + "-fx-font-size: 16; -fx-background-radius: 50;");
         } else {
-            status.setStyle("-fx-background-color: red; -fx-text-fill: #fff;");
+            status.setStyle("-fx-background-color: red; -fx-text-fill: #fff;"
+                     + "-fx-font-size: 16; -fx-background-radius: 50;");
         }
     }
 }

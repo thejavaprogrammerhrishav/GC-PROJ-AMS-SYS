@@ -160,7 +160,7 @@ public class PrincipalDashboardController extends AnchorPane {
     }
     
     private void initLoginActivity(ActionEvent e) {
-        List<LoginActivity> allLogins = new ArrayList<>(act.findAll());
+        List<LoginActivity> allLogins = new ArrayList<>(act.findByDepartment("N/A"));
         allLogins = allLogins.stream().filter(p -> p.getUserType().equals("Principal")).collect(Collectors.toList());
         Collections.reverse(allLogins);
         List<PrincipalLoginActivityController> activityControllers = allLogins.stream().map(c -> new PrincipalLoginActivityController(c)).collect(Collectors.toList());

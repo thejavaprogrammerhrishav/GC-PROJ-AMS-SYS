@@ -34,6 +34,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
 
 /**
  *
@@ -198,7 +200,9 @@ public class HODDashboardController extends AnchorPane {
     }
 
     private void initLoginActivity(ActionEvent e) {
-        List<LoginActivity> allLogins = new ArrayList<>(act.findAll());
+        String time = DateTime.now().toString(DateTimeFormat.forPattern("hh : mm : ss a"));
+        lastupdated.setText("Last Updated :- "+time);
+        List<LoginActivity> allLogins = new ArrayList<>(act.findByDepartment(SystemUtils.getDepartment()));
         Collections.reverse(allLogins);
         List<HODLoginActivityController> activityControllers = allLogins.stream().map(c -> new HODLoginActivityController(c)).collect(Collectors.toList());
         list.getChildren().setAll(activityControllers);

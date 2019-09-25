@@ -1,45 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="914.0" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="125.0" prefWidth="908.0" style="-fx-background-radius: 20; -fx-background-color: #fff;" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label fx:id="name" layoutX="33.0" layoutY="17.0" prefHeight="33.0" prefWidth="867.0" text="Name :-">
+      <Label fx:id="name" layoutX="33.0" layoutY="15.0" prefHeight="33.0" prefWidth="867.0" text="Name :-">
          <font>
             <Font name="Tw Cen MT" size="30.0" />
          </font>
       </Label>
-      <Label fx:id="department" alignment="CENTER" layoutX="306.0" layoutY="59.0" prefHeight="18.0" prefWidth="232.0" text="Department :-">
+      <Label fx:id="department" alignment="CENTER" layoutX="400.0" layoutY="54.0" prefHeight="18.0" prefWidth="232.0" text="Department :-">
          <font>
             <Font name="Tw Cen MT" size="16.0" />
          </font>
       </Label>
-      <Label fx:id="username" layoutX="33.0" layoutY="59.0" prefHeight="18.0" prefWidth="273.0" text="Username :-">
+      <Label fx:id="username" layoutX="33.0" layoutY="52.0" prefHeight="18.0" prefWidth="273.0" text="Username :-">
          <font>
             <Font name="Tw Cen MT" size="16.0" />
          </font>
       </Label>
-      <Label fx:id="logintime" alignment="CENTER" layoutX="306.0" layoutY="108.0" prefHeight="18.0" prefWidth="273.0" text="Login time :-">
+      <Label fx:id="logintime" alignment="CENTER" layoutX="375.0" layoutY="87.0" prefHeight="18.0" prefWidth="141.0" text="12 : 22 : 20 am">
          <font>
             <Font name="Tw Cen MT" size="16.0" />
          </font>
       </Label>
-      <Label fx:id="logouttime" alignment="CENTER" layoutX="598.0" layoutY="108.0" prefHeight="18.0" prefWidth="273.0" text="Logout time :-">
+      <Label fx:id="logouttime" alignment="CENTER" layoutX="516.0" layoutY="87.0" prefHeight="18.0" prefWidth="149.0" text="12 : 22 : 20 am">
          <font>
             <Font name="Tw Cen MT" size="16.0" />
          </font>
       </Label>
-      <Label fx:id="status" alignment="CENTER" layoutX="646.0" layoutY="54.0" prefHeight="42.0" prefWidth="254.0" style="-fx-background-color: green;" text="Active" textFill="WHITE">
+      <Label fx:id="status" alignment="CENTER" layoutX="699.0" layoutY="47.0" prefHeight="33.0" prefWidth="185.0" style="-fx-background-color: green;" text="Active" textFill="WHITE">
          <font>
             <Font name="Tw Cen MT" size="25.0" />
          </font>
       </Label>
-      <Label fx:id="date" alignment="CENTER" layoutX="33.0" layoutY="108.0" prefHeight="18.0" prefWidth="273.0" text="Date :-">
+      <Label fx:id="date" alignment="CENTER" layoutX="210.0" layoutY="87.0" prefHeight="18.0" prefWidth="141.0" text="12/09/2019">
+         <font>
+            <Font name="Tw Cen MT" size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="usertype" layoutX="33.0" layoutY="87.0" prefHeight="18.0" prefWidth="162.0" text="usertype">
          <font>
             <Font name="Tw Cen MT" size="16.0" />
          </font>
       </Label>
    </children>
+   <effect>
+      <DropShadow color="#7c7c7c" spread="0.3" />
+   </effect>
 </fx:root>

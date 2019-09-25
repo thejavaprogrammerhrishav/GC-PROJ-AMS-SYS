@@ -20,11 +20,12 @@ public class LoginActivity implements Serializable{
     private String logindate;
     private String logintime;
     private String logouttime;
+    private String department;
 
     public LoginActivity() {
     }
 
-    public LoginActivity(String name, String username, String userType, String status, String logindate, String logintime, String logouttime) {
+    public LoginActivity(String name, String username, String userType, String status, String logindate, String logintime, String logouttime,String department) {
         this.name = name;
         this.username = username;
         this.userType = userType;
@@ -32,6 +33,7 @@ public class LoginActivity implements Serializable{
         this.logindate = logindate;
         this.logintime = logintime;
         this.logouttime = logouttime;
+        this.department = department;
     }
 
     public int getId() {
@@ -96,6 +98,14 @@ public class LoginActivity implements Serializable{
 
     public void setLogouttime(String logouttime) {
         this.logouttime = logouttime;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
     }
 
 }

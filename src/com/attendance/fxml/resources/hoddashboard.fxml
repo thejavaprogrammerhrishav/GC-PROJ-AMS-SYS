@@ -368,7 +368,7 @@
                         </Pane>
                         <ScrollPane layoutY="53.0" prefHeight="280.0" prefWidth="944.0" styleClass="user-log-scroll">
                            <content>
-                              <VBox fx:id="list" prefHeight="280.0" prefWidth="928.0" spacing="10.0" style="-fx-background-color: white;">
+                              <VBox fx:id="list" prefHeight="280.0" prefWidth="928.0" spacing="20.0" style="-fx-background-color: white;">
                                  <padding>
                                     <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
                                  </padding>

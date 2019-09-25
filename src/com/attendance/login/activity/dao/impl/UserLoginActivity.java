@@ -78,4 +78,11 @@ public class UserLoginActivity implements Activity {
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<LoginActivity>(LoginActivity.class));
     }
 
+    @Override
+    @Transactional
+    public List<LoginActivity> findByDepartment(String department) {
+        return (List<LoginActivity>) hibernateTemplate.find("from LoginActivity where department = ?", department);
+    }
+
+    
 }

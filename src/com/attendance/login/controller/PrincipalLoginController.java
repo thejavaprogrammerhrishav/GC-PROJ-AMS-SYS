@@ -128,7 +128,7 @@ public class PrincipalLoginController extends AnchorPane {
                     try {
                         Thread.sleep(500);
                         search=dao.findById(user.getContact());
-                        activity = new LoginActivity(search.getName(), user.getUsername(), "Principal", "ACTIVE", DateTime.now().toString(DateTimeFormat.forPattern("dd-MM-yyyy")), DateTime.now().toString(DateTimeFormat.forPattern("hh:mm:ss a")), "");
+                        activity = new LoginActivity(search.getName(), user.getUsername(), "Principal", "ACTIVE", DateTime.now().toString(DateTimeFormat.forPattern("dd-MM-yyyy")), DateTime.now().toString(DateTimeFormat.forPattern("hh:mm:ss a")), "","N/A");
                         loginActivity.save(activity);
                         SystemUtils.setActivity(activity);
                         for (int i = 3; i >= 0; i--) {

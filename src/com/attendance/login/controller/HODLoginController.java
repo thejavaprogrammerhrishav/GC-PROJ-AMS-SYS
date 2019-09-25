@@ -133,7 +133,7 @@ public class HODLoginController extends AnchorPane {
                     try {
                         Thread.sleep(500);
                         search=dao.findById(user.getContact());
-                        activity = new LoginActivity(search.getName(), user.getUsername(), "HOD", "ACTIVE", DateTime.now().toString(DateTimeFormat.forPattern("dd-MM-yyyy")), DateTime.now().toString(DateTimeFormat.forPattern("hh:mm:ss a")), "");
+                        activity = new LoginActivity(search.getName(), user.getUsername(), "HOD", "ACTIVE", DateTime.now().toString(DateTimeFormat.forPattern("dd-MM-yyyy")), DateTime.now().toString(DateTimeFormat.forPattern("hh:mm:ss a")), "",SystemUtils.getDepartment());
                         loginActivity.save(activity);
                         SystemUtils.setActivity(activity);
                         for (int i = 3; i >= 0; i--) {

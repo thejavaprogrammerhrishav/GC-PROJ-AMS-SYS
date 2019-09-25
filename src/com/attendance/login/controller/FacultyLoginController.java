@@ -139,7 +139,7 @@ public class FacultyLoginController extends AnchorPane {
                             Thread.sleep(1000);
                         }
                         search=dao.findById(user.getContact());
-                        activity = new LoginActivity(search.getName(), user.getUsername(), "FACULTY", "ACTIVE", DateTime.now().toString(DateTimeFormat.forPattern("dd-MM-yyyy")), DateTime.now().toString(DateTimeFormat.forPattern("hh:mm:ss a")), "");
+                        activity = new LoginActivity(search.getName(), user.getUsername(), "FACULTY", "ACTIVE", DateTime.now().toString(DateTimeFormat.forPattern("dd-MM-yyyy")), DateTime.now().toString(DateTimeFormat.forPattern("hh:mm:ss a")), "",SystemUtils.getDepartment());
                         loginActivity.save(activity);
                         SystemUtils.setActivity(activity);
                         SystemUtils.setCurrentUser(user);
