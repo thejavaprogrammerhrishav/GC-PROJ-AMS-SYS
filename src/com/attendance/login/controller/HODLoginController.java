@@ -5,8 +5,6 @@
  */
 package com.attendance.login.controller;
 
-import com.attendance.faculty.dao.FacultyDao;
-import com.attendance.faculty.model.Faculty;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
@@ -17,6 +15,8 @@ import com.attendance.login.dao.Login;
 import com.attendance.login.forgot.ForgotPasswordController;
 import com.attendance.main.Start;
 import com.attendance.login.user.model.User;
+import com.attendance.personal.dao.PersonalDetailsDao;
+import com.attendance.personal.model.PersonalDetails;
 import com.attendance.util.Fxml;
 import com.attendance.util.RootFactory;
 import com.attendance.util.SwitchRoot;
@@ -77,8 +77,8 @@ public class HODLoginController extends AnchorPane {
     private LoginAuthenticator authenticator;
     private User user;
     private LoginActivity activity;
-    private Faculty search;
-    private FacultyDao dao;
+    private PersonalDetails search;
+    private PersonalDetailsDao dao;
 
     public HODLoginController() {
         fxml = Fxml.getHODLoginFXML();
@@ -96,7 +96,7 @@ public class HODLoginController extends AnchorPane {
     private void initialize() {
         admin = (Login) Start.app.getBean("userlogin");
         loginActivity = (Activity) Start.app.getBean("loginactivity");
-        dao=(FacultyDao) Start.app.getBean("facultyregistration");
+        dao = (PersonalDetailsDao) Start.app.getBean("personal");
         result.setText("");
         department.setText("Department: " + SystemUtils.getDepartment());
         blink = new Task<Void>() {
@@ -120,7 +120,7 @@ public class HODLoginController extends AnchorPane {
         authenticator = new LoginAuthenticator() {
             @Override
             protected boolean authenticate(String username, String password) {
-                user = admin.findByUsernameAndType(username, userRole);
+                user = admin.findByUsernameDepartmentType(username, SystemUtils.getDepartment(), userRole);
                 return username.equals(user.getUsername()) && password.equals(user.getPassword());
             }
         };
@@ -132,8 +132,8 @@ public class HODLoginController extends AnchorPane {
                 new Thread(() -> {
                     try {
                         Thread.sleep(500);
-                        search=dao.findById(user.getContact());
-                        activity = new LoginActivity(search.getName(), user.getUsername(), "HOD", "ACTIVE", DateTime.now().toString(DateTimeFormat.forPattern("dd-MM-yyyy")), DateTime.now().toString(DateTimeFormat.forPattern("hh:mm:ss a")), "",SystemUtils.getDepartment());
+                        search = dao.findById(user.getPersonalid());
+                        activity = new LoginActivity(search.getName(), user.getUsername(), "HOD", "Active", DateTime.now().toString(DateTimeFormat.forPattern("dd-MM-yyyy")), DateTime.now().toString(DateTimeFormat.forPattern("hh:mm:ss a")), "", SystemUtils.getDepartment());
                         loginActivity.save(activity);
                         SystemUtils.setActivity(activity);
                         for (int i = 3; i >= 0; i--) {
@@ -147,9 +147,7 @@ public class HODLoginController extends AnchorPane {
                         Logger.getLogger(HODLoginController.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }).start();
-            } else {
-                JOptionPane.showMessageDialog(null, username + " " + password.getText());
-            }
+            } 
         });
 
         forgotpassword.setOnMouseClicked(e -> {

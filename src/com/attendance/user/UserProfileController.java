@@ -5,13 +5,11 @@
  */
 package com.attendance.user;
 
-import com.attendance.faculty.dao.FacultyDao;
-import com.attendance.faculty.model.Faculty;
 import com.attendance.login.dao.Login;
 import com.attendance.login.user.model.User;
 import com.attendance.main.Start;
-import com.attendance.user.principal.dao.PrincipalDao;
-import com.attendance.user.principal.model.Principal;
+import com.attendance.personal.dao.PersonalDetailsDao;
+import com.attendance.personal.model.PersonalDetails;
 import com.attendance.util.Fxml;
 import com.attendance.util.RootFactory;
 import com.attendance.util.SwitchRoot;
@@ -117,11 +115,9 @@ public class UserProfileController extends AnchorPane {
     private FXMLLoader fxml;
 
     private User user;
-    private Faculty faculty;
+    private PersonalDetails details;
     private Login login;
-    private FacultyDao dao;
-    private Principal principal;
-    private PrincipalDao pdao;
+    private PersonalDetailsDao dao;
     private String parent;
 
     private File file;
@@ -148,8 +144,7 @@ public class UserProfileController extends AnchorPane {
     @FXML
     private void initialize() {
         login = (Login) Start.app.getBean("userlogin");
-        dao = (FacultyDao) Start.app.getBean("facultyregistration");
-        pdao = (PrincipalDao) Start.app.getBean("principallogin");
+        dao = (PersonalDetailsDao) Start.app.getBean("personal");
         loadDetails();
         init();
         initGender();
@@ -165,36 +160,19 @@ public class UserProfileController extends AnchorPane {
     }
 
     private void loadDetails() {
-        if (user.getType().equals("Principal")) {
-            principal = pdao.findById(user.getContact());
-            name.setText(principal.getName());
-            contact.setText(principal.getContact());
-            email.setText(principal.getEmailId());
-            username.setText(user.getUsername());
-            department.setText("N/A");
-            switch (principal.getGender()) {
-                case "Male":
-                    male.setSelected(true);
-                    break;
-                case "Female":
-                    female.setSelected(true);
-                    break;
-            }
-        } else {
-            faculty = dao.findById(user.getContact());
-            name.setText(faculty.getName());
-            contact.setText(faculty.getContact());
-            email.setText(faculty.getEmailId());
-            username.setText(user.getUsername());
-            department.setText(faculty.getDepartment());
-            switch (faculty.getGender()) {
-                case "Male":
-                    male.setSelected(true);
-                    break;
-                case "Female":
-                    female.setSelected(true);
-                    break;
-            }
+        details = dao.findById(user.getPersonalid());
+        name.setText(details.getName());
+        contact.setText(details.getContact());
+        email.setText(details.getEmailId());
+        username.setText(user.getUsername());
+        department.setText(user.getDepartment());
+        switch (details.getGender()) {
+            case "Male":
+                male.setSelected(true);
+                break;
+            case "Female":
+                female.setSelected(true);
+                break;
         }
         userrole.setText(user.getType());
         profilepic.setImage(new Image(new ByteArrayInputStream(user.getImage())));
@@ -259,14 +237,14 @@ public class UserProfileController extends AnchorPane {
 
     private void update(ActionEvent evt) {
         User updateuser = new User();
-        Faculty updatefaculty = new Faculty();
-        Principal updateprincipal = new Principal();
+        PersonalDetails updatedetails = new PersonalDetails();
 
-        updateuser.setContact(contact.getText());
         updateuser.setUsername(username.getText());
         updateuser.setPassword(user.getPassword());
         updateuser.setId(user.getId());
         updateuser.setType(user.getType());
+        updateuser.setDepartment(user.getDepartment());
+        updateuser.setPersonalid(details.getId());
 
         if (imageChanged) {
             updateuser.setImage(SystemUtils.getByteArrayFromImage(profilepic.getImage()));
@@ -274,48 +252,25 @@ public class UserProfileController extends AnchorPane {
             updateuser.setImage(SystemUtils.getDefaultAccountIcon());
         }
 
-        if (user.getType().equals("Principal")) {
-            updateprincipal.setName(name.getText());
-            updateprincipal.setEmailId(email.getText());
-            updateprincipal.setContact(principal.getContact());
-            if (male.isSelected()) {
-                updateprincipal.setGender("Male");
-            } else if (female.isSelected()) {
-                updateprincipal.setGender("Female");
-            } else {
-                updateprincipal.setGender("Unknown");
-            }
-            boolean b1 = login.update(updateuser);
-            boolean b2 = pdao.updatePrincipal(updateprincipal);
-            boolean b3 = pdao.updatePrincipalId(contact.getText(), principal.getContact());
-            if (b1 && b2 && b3) {
-                result.setText("Profile Updated Successfully");
-                SystemUtils.setCurrentUser(updateuser);
-            } else {
-                result.setText("Profile Updation Failed");
-            }
+        updatedetails.setId(details.getId());
+        updatedetails.setName(name.getText());
+        updatedetails.setEmailId(email.getText());
+        updatedetails.setContact(contact.getText());
+        if (male.isSelected()) {
+            updatedetails.setGender("Male");
+        } else if (female.isSelected()) {
+            updatedetails.setGender("Female");
         } else {
-            updatefaculty.setName(name.getText());
-            updatefaculty.setEmailId(email.getText());
-            updatefaculty.setContact(faculty.getContact());
-            updatefaculty.setDepartment(department.getText());
-            if (male.isSelected()) {
-                updatefaculty.setGender("Male");
-            } else if (female.isSelected()) {
-                updatefaculty.setGender("Female");
-            } else {
-                updatefaculty.setGender("Unknown");
-            }
-            boolean b1 = login.update(updateuser);
-            boolean b2 = dao.updateFaculty(updatefaculty);
-            boolean b3 = dao.updateFacultyId(contact.getText(), faculty.getContact());
-            if (b1 && b2 && b3) {
-                result.setText("Profile Updated Successfully");
-                SystemUtils.setCurrentUser(updateuser);
-            } else {
-                result.setText("Profile Updation Failed");
-            }
+            updatedetails.setGender("Unknown");
         }
-
+        boolean b1 = login.update(updateuser);
+        boolean b2 = dao.update(updatedetails);
+        if (b1 && b2) {
+            result.setText("Profile Updated Successfully");
+            SystemUtils.setCurrentUser(updateuser);
+        } else {
+            result.setText("Profile Updation Failed");
+        }
     }
+
 }

@@ -5,10 +5,13 @@
  */
 package com.attendance.settings.sub;
 
-import com.attendance.faculty.dao.FacultyDao;
+import com.attendance.login.dao.Login;
+import com.attendance.login.user.model.User;
 import com.attendance.main.Start;
 import com.attendance.papers.dao.PapersDao;
 import com.attendance.papers.model.Paper;
+import com.attendance.personal.dao.PersonalDetailsDao;
+import com.attendance.personal.model.PersonalDetails;
 import com.attendance.student.dao.StudentDao;
 import com.attendance.studentattendance.dao.ClassDetailsDao;
 import com.attendance.studentattendance.model.ClassDetails;
@@ -19,6 +22,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -110,10 +114,11 @@ public class ExportClassDetailsListController extends AnchorPane {
 
     @FXML
     private JFXComboBox<String> coursetype;
-    
-    private ClassDetailsDao dao;
+
+    private ClassDetailsDao cdao;
+    private Login dao;
     private PapersDao paperdao;
-    private FacultyDao facultydao;
+    private PersonalDetailsDao pdao;
     private StudentDao studentdao;
 
     private FXMLLoader fxml;
@@ -134,9 +139,10 @@ public class ExportClassDetailsListController extends AnchorPane {
     private void initialize() {
         department.setText(SystemUtils.getDepartment());
         paperdao = (PapersDao) Start.app.getBean("papers");
-        dao = (ClassDetailsDao) Start.app.getBean("classdetails");
-        facultydao = (FacultyDao) Start.app.getBean("facultyregistration");
+        cdao = (ClassDetailsDao) Start.app.getBean("classdetails");
+        pdao = (PersonalDetailsDao) Start.app.getBean("personal");
         studentdao = (StudentDao) Start.app.getBean("studentregistration");
+        dao = (Login) Start.app.getBean("userlogin");
         initTable();
         initFilters();
 
@@ -156,9 +162,9 @@ public class ExportClassDetailsListController extends AnchorPane {
         paper.disableProperty().bind(filterbypaper.selectedProperty().not());
         acadamicyear.disableProperty().bind(filterbyacadamicyear.selectedProperty().not());
         coursetype.disableProperty().bind(filterbycoursetype.selectedProperty().not());
-        
+
         acadamicyear.getItems().setAll("1st", "2nd", "3rd");
-        coursetype.getItems().setAll("Honours","Pass");
+        coursetype.getItems().setAll("Honours", "Pass");
 
         acadamicyear.getSelectionModel().selectedItemProperty().addListener((ol, o, n) -> {
             if (n.equals("1st")) {
@@ -173,7 +179,9 @@ public class ExportClassDetailsListController extends AnchorPane {
         List<String> years = studentdao.get("select distinct(year) from student order by year", String.class);
         year.getItems().setAll(years);
 
-        List<String> faculties = facultydao.findAll().stream().map(f -> f.getName()).collect(Collectors.toList());
+        List<User> list = new ArrayList<>(dao.findByDepartment(SystemUtils.getDepartment()));
+        List<PersonalDetails> facultylist = list.stream().map(l -> pdao.findById(l.getPersonalid())).collect(Collectors.toList());
+        List<String> faculties = facultylist.stream().map(p -> p.getName()).collect(Collectors.toList());
         facultyname.getItems().setAll(faculties);
 
         filterbypaper.selectedProperty().addListener((ol, o, n) -> {
@@ -213,12 +221,12 @@ public class ExportClassDetailsListController extends AnchorPane {
     }
 
     private void populateTable(ActionEvent evt) {
-        List<ClassDetails> list = dao.findByDepartment(SystemUtils.getDepartment());
+        List<ClassDetails> list = cdao.findByDepartment(SystemUtils.getDepartment());
         table.getItems().setAll(list);
     }
 
     private void filters(ActionEvent evt) {
-        List<ClassDetails> list = dao.findByDepartment(SystemUtils.getDepartment());
+        List<ClassDetails> list = cdao.findByDepartment(SystemUtils.getDepartment());
 
         if (filterbyacadamicyear.isSelected()) {
             list = list.stream().filter(s -> s.getAcadamicyear().equals(acadamicyear.getSelectionModel().getSelectedItem())).collect(Collectors.toList());
@@ -235,7 +243,7 @@ public class ExportClassDetailsListController extends AnchorPane {
         if (filterbypaper.isSelected()) {
             list = list.stream().filter(s -> s.getPaper().equals(paper.getSelectionModel().getSelectedItem())).collect(Collectors.toList());
         }
-        
+
         if (filterbycoursetype.isSelected()) {
             list = list.stream().filter(s -> s.getCoursetype().equals(coursetype.getSelectionModel().getSelectedItem())).collect(Collectors.toList());
         }

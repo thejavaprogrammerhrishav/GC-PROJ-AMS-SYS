@@ -17,7 +17,6 @@ import org.springframework.transaction.annotation.Transactional;
  *
  * @author Programmer Hrishav
  */
-
 public class UserLogin implements Login {
 
     private HibernateTemplate hibernateTemplate;
@@ -25,7 +24,7 @@ public class UserLogin implements Login {
 
     public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
         this.hibernateTemplate = hibernateTemplate;
-        
+
     }
 
     public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
@@ -35,7 +34,7 @@ public class UserLogin implements Login {
     @Override
     @Transactional
     public int save(User user) {
-        Integer id=(Integer) hibernateTemplate.save(user);
+        Integer id = (Integer) hibernateTemplate.save(user);
         return id;
     }
 
@@ -60,50 +59,44 @@ public class UserLogin implements Login {
     }
 
     @Override
-    public List<User> findByName(String userName) {
-        return jdbcTemplate.queryForList("select * from loginuser where name='" + userName + "'", User.class);
-    }
-
-    @Override
-    public List<User> findByEmail(String userEmail) {
-        return jdbcTemplate.queryForList("select * from loginuser where email='" + userEmail + "'", User.class);
-    }
-
-    @Override
     public User findByUsername(String username) {
-        return jdbcTemplate.queryForObject("select * from loginuser where username=?",new Object[] {username}, new BeanPropertyRowMapper<User>(User.class));
+        return jdbcTemplate.queryForObject("select * from loginuser where username=?", new Object[]{username}, new BeanPropertyRowMapper<User>(User.class));
     }
 
     @Override
     @Transactional
-    public List<User> findByAll() {
+    public List<User> findAll() {
         return (List<User>) hibernateTemplate.loadAll(User.class);
     }
 
     @Override
-    public User findByUsernameAndEmail(String username, String userEmail) {
-        return jdbcTemplate.queryForObject("select * from loginuser where username=? and email=?",new Object[] {username,userEmail}, new BeanPropertyRowMapper<User>(User.class));
-    }
-
-    @Override
+    @Transactional
     public List<User> findByType(String type) {
         return (List<User>) hibernateTemplate.find("from User where type=?", type);
-        
-    }
 
-    @Override
-    public User findByUsernameAndType(String username, String type) {
-        return jdbcTemplate.queryForObject("select *from loginuser where username=? and type=?",new Object[] {username,type}, new BeanPropertyRowMapper<User>(User.class));
     }
 
     @Override
     public int isUsernameExists(String username) {
-        return (Integer)jdbcTemplate.queryForObject("select count(*) from loginuser where username=?", new Object[]{username}, Integer.class);
-    }   
+        return (Integer) jdbcTemplate.queryForObject("select count(*) from loginuser where username=?", new Object[]{username}, Integer.class);
+    }
 
     @Override
-    public User findByUsernameTypeEmail(String username, String type, String email) {
-        return jdbcTemplate.queryForObject("select *from loginuser where username=? and type=? and email=?",new Object[] {username,type,email}, new BeanPropertyRowMapper<User>(User.class));
+    @Transactional
+    public List<User> findByDepartment(String department) {
+        return (List<User>) hibernateTemplate.find("from User where department=?", department);
+    }
+
+    @Override
+    @Transactional
+    public User findByUsernameDepartmentType(String username, String department, String type) {
+        return ((List<User>) hibernateTemplate.find("from User where username=? and department=? and type=?", username, department, type)).get(0);
+
+    }
+
+    @Override
+    public int count(String sql) {
+        return jdbcTemplate.queryForObject(sql, Integer.class);
     }
 
 }

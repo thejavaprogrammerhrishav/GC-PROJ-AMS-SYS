@@ -5,11 +5,11 @@
  */
 package com.attendance.login.signup;
 
-import com.attendance.faculty.dao.FacultyDao;
-import com.attendance.faculty.model.Faculty;
 import com.attendance.login.dao.Login;
 import com.attendance.login.user.model.User;
 import com.attendance.main.Start;
+import com.attendance.personal.dao.PersonalDetailsDao;
+import com.attendance.personal.model.PersonalDetails;
 import com.attendance.util.Fxml;
 import com.attendance.util.RootFactory;
 import com.attendance.util.SwitchRoot;
@@ -64,8 +64,8 @@ public class FacultySignUpController extends AnchorPane {
     private Login login;
     private User user;
     private Parent parent;
-    private Faculty faculty;
-    private FacultyDao fdao;
+    private PersonalDetails faculty;
+    private PersonalDetailsDao pdao;
 
     public FacultySignUpController(Parent parent) {
         this.parent = parent;
@@ -85,8 +85,8 @@ public class FacultySignUpController extends AnchorPane {
 
     @FXML
     private void initialize() {
-        fdao = (FacultyDao) Start.app.getBean("facultyregistration");
-        faculty = new Faculty();
+        pdao = (PersonalDetailsDao) Start.app.getBean("personal");
+        faculty = new PersonalDetails();
         loginbutton.setOnAction(this::loginAction);
         signup.setOnAction(e -> {
             if (login.isUsernameExists(username.getText()) > 0) {
@@ -98,20 +98,22 @@ public class FacultySignUpController extends AnchorPane {
                 al.initStyle(StageStyle.UNDECORATED);
                 al.show();
             } else if (password.getText().equals(confirmpassword.getText())) {
-                user.setContact(contact.getText());
                 user.setPassword(password.getText());
                 user.setType("Faculty");
                 user.setUsername(username.getText());
                 user.setImage(SystemUtils.getDefaultAccountIcon());
-
+                user.setDepartment(SystemUtils.getDepartment());
+                
                 faculty.setName(fullname.getText());
                 faculty.setContact(contact.getText());
                 faculty.setEmailId(email.getText());
                 faculty.setGender("Unknown");
-                faculty.setDepartment(SystemUtils.getDepartment());
-
+                
+                int save = pdao.save(faculty);
+                
+                user.setPersonalid(save);
                 login.save(user);
-                fdao.saveFaculty(faculty);
+                
 
                 Alert al = new Alert(Alert.AlertType.INFORMATION);
                 al.setHeaderText("Faculty Sign Up");

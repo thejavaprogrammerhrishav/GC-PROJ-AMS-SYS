@@ -137,7 +137,7 @@ public class UpdateAdminUserController extends ScrollPane {
     }
 
     private void searchContact(ActionEvent evt) {
-        List<User> contactlist = list.stream().filter(u -> u.getContact().startsWith(search.getText())).collect(Collectors.toList());
+        List<User> contactlist = list.stream().filter(u -> u.getDepartment().startsWith(search.getText())).collect(Collectors.toList());
         table.getItems().setAll(contactlist);
     }
 
@@ -154,7 +154,7 @@ public class UpdateAdminUserController extends ScrollPane {
     private void tableClick(MouseEvent evt) {
         user = table.getSelectionModel().getSelectedItem();
 
-        contact.setText(user.getContact());
+        contact.setText(user.getDepartment());
         username.setText(user.getUsername());
     }
 
@@ -172,7 +172,6 @@ public class UpdateAdminUserController extends ScrollPane {
         User newUser = new User();
         newUser.setId(user.getId());
         newUser.setType("Admin");
-        newUser.setContact(contact.getText());
 
         if (username.getText().equals(user.getUsername())) {
             newUser.setUsername(username.getText());

@@ -5,14 +5,12 @@
  */
 package com.attendance.dashboard.node;
 
-import com.attendance.faculty.dao.FacultyDao;
+import com.attendance.login.dao.Login;
 import com.attendance.main.Start;
-import com.attendance.student.dao.StudentDao;
 import com.attendance.util.Fxml;
 import com.attendance.util.SystemUtils;
 import com.jfoenix.controls.JFXComboBox;
 import java.io.IOException;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.fxml.FXML;
@@ -34,7 +32,7 @@ public class PrincipalDashboardFacultyNodeController extends AnchorPane {
 
     private FXMLLoader fxml;
 
-    private FacultyDao dao;
+    private Login dao;
 
     public PrincipalDashboardFacultyNodeController() {
         fxml = Fxml.getPrincipalDashboardFacultyNodeFXML();
@@ -50,15 +48,14 @@ public class PrincipalDashboardFacultyNodeController extends AnchorPane {
 
     @FXML
     private void initialize() {
-        dao = (FacultyDao) Start.app.getBean("facultyregistration");
+        dao = (Login) Start.app.getBean("userlogin");
 
         department.getItems().setAll(SystemUtils.getDepartments());
 
         department.getSelectionModel().selectedItemProperty().addListener((ol, o, n) -> {
-            String SQL = "Select count(*) from faculty where department = '" + department.getSelectionModel().getSelectedItem() + "'";
-
-            List<Integer> get = dao.get(SQL, Integer.class);
-            total.setText("" + get.get(0));
+            String SQL = "Select count(*) from loginuser where department = '" + department.getSelectionModel().getSelectedItem() + "' and type='HOD' or type='Faculty'";
+            int get = dao.count(SQL);
+            total.setText("" + get);
         });
 
     }

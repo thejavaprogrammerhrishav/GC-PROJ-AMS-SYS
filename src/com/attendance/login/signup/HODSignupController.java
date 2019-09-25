@@ -5,11 +5,11 @@
  */
 package com.attendance.login.signup;
 
-import com.attendance.faculty.dao.FacultyDao;
-import com.attendance.faculty.model.Faculty;
 import com.attendance.login.dao.Login;
 import com.attendance.login.user.model.User;
 import com.attendance.main.Start;
+import com.attendance.personal.dao.PersonalDetailsDao;
+import com.attendance.personal.model.PersonalDetails;
 import com.attendance.util.Fxml;
 import com.attendance.util.RootFactory;
 import com.attendance.util.SwitchRoot;
@@ -64,9 +64,9 @@ public class HODSignupController extends AnchorPane {
     private User user;
     private Login login;
     private Parent parent;
-    
-    private Faculty faculty;
-    private FacultyDao fdao;
+
+    private PersonalDetails hod;
+    private PersonalDetailsDao pdao;
 
     public HODSignupController(Parent parent) {
         this.parent = parent;
@@ -86,8 +86,8 @@ public class HODSignupController extends AnchorPane {
 
     @FXML
     private void initialize() {
-          fdao = (FacultyDao) Start.app.getBean("facultyregistration");
-        faculty = new Faculty();
+        pdao = (PersonalDetailsDao) Start.app.getBean("personal");
+        hod = new PersonalDetails();
         loginbutton.setOnAction(this::loginaction);
         signup.setOnAction(e -> {
             if (login.isUsernameExists(username.getText()) > 0) {
@@ -99,20 +99,21 @@ public class HODSignupController extends AnchorPane {
                 al.initStyle(StageStyle.UNDECORATED);
                 al.show();
             } else if (password.getText().equals(confirmpassword.getText())) {
-                user.setContact(contact.getText());
                 user.setPassword(password.getText());
                 user.setType("HOD");
                 user.setUsername(username.getText());
                 user.setImage(SystemUtils.getDefaultAccountIcon());
-                
-                 faculty.setName(fullname.getText());
-                faculty.setContact(contact.getText());
-                faculty.setEmailId(email.getText());
-                faculty.setGender("Unknown");
-                faculty.setDepartment(SystemUtils.getDepartment());
+                user.setDepartment(SystemUtils.getDepartment());
 
+                hod.setName(fullname.getText());
+                hod.setContact(contact.getText());
+                hod.setEmailId(email.getText());
+                hod.setGender("Unknown");
+
+                int save = pdao.save(hod);
+
+                user.setPersonalid(save);
                 login.save(user);
-                fdao.saveFaculty(faculty);
 
                 Alert al = new Alert(Alert.AlertType.INFORMATION);
                 al.setHeaderText("HOD Sign Up");

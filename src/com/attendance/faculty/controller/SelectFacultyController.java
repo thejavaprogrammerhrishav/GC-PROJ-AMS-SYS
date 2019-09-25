@@ -5,9 +5,11 @@
  */
 package com.attendance.faculty.controller;
 
-import com.attendance.faculty.dao.FacultyDao;
-import com.attendance.faculty.model.Faculty;
+import com.attendance.login.dao.Login;
+import com.attendance.login.user.model.User;
 import com.attendance.main.Start;
+import com.attendance.personal.dao.PersonalDetailsDao;
+import com.attendance.personal.model.PersonalDetails;
 import com.attendance.util.Fxml;
 import com.attendance.util.RootFactory;
 import com.attendance.util.SwitchRoot;
@@ -19,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -41,7 +44,8 @@ public class SelectFacultyController extends AnchorPane {
     private JFXButton cancel;
 
     private FXMLLoader fxml;
-    private FacultyDao dao;
+    private Login dao;
+    private PersonalDetailsDao pdao;
 
     private String type;
 
@@ -60,9 +64,11 @@ public class SelectFacultyController extends AnchorPane {
 
     @FXML
     private void initialize() {
-        dao = (FacultyDao) Start.app.getBean("facultyregistration");
-        List<Faculty> list = new ArrayList<>(dao.findByDepartment(SystemUtils.getDepartment()));
-        list.stream().map(f -> f.getName()).forEach(facultylist.getItems()::add);
+        dao = (Login) Start.app.getBean("userlogin");
+        pdao=(PersonalDetailsDao) Start.app.getBean("personal");
+        List<User> list = new ArrayList<>(dao.findByDepartment(SystemUtils.getDepartment()));
+        List<PersonalDetails> faculties = list.stream().map(l->pdao.findById(l.getPersonalid())).collect(Collectors.toList());
+        faculties.stream().map(f -> f.getName()).forEach(facultylist.getItems()::add);
 
         proceed.setOnAction(this::proceed);
         cancel.setOnAction(this::close);

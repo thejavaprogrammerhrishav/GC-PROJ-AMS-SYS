@@ -3,29 +3,36 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.attendance.faculty.model;
+package com.attendance.personal.model;
 
 /**
  *
  * @author Programmer Hrishav
  */
-public class Faculty {
+public class PersonalDetails {
+    private int id;
     private String name;
     private String emailId;
     private String contact;
     private String gender;
-    private String department;
 
-    public Faculty() {
-        this("","","","","");
+    public PersonalDetails() {
     }
 
-    public Faculty(String name, String emailId, String contact, String gender, String department) {
+    public PersonalDetails(int id, String name, String emailId, String contact, String gender) {
+        this.id = id;
         this.name = name;
         this.emailId = emailId;
         this.contact = contact;
         this.gender = gender;
-        this.department = department;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -59,14 +66,6 @@ public class Faculty {
     public void setGender(String gender) {
         this.gender = gender;
     }
-
-    public String getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(String department) {
-        this.department = department;
-    }
-
-   
+    
+    
 }

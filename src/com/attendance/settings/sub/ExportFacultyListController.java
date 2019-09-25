@@ -5,15 +5,18 @@
  */
 package com.attendance.settings.sub;
 
-import com.attendance.faculty.dao.FacultyDao;
-import com.attendance.faculty.model.Faculty;
+import com.attendance.login.dao.Login;
+import com.attendance.login.user.model.User;
 import com.attendance.main.Start;
+import com.attendance.personal.dao.PersonalDetailsDao;
+import com.attendance.personal.model.PersonalDetails;
 import com.attendance.util.ExportFacultyList;
 import com.attendance.util.Fxml;
 import com.attendance.util.SystemUtils;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -56,28 +59,29 @@ public class ExportFacultyListController extends AnchorPane {
     private JFXButton refresh;
 
     @FXML
-    private TableView<Faculty> table;
+    private TableView<PersonalDetails> table;
 
     @FXML
-    private TableColumn<Faculty, String> name;
+    private TableColumn<PersonalDetails, String> name;
 
     @FXML
-    private TableColumn<Faculty, String> contact;
+    private TableColumn<PersonalDetails, String> contact;
 
     @FXML
-    private TableColumn<Faculty, String> gender;
+    private TableColumn<PersonalDetails, String> gender;
 
     @FXML
-    private TableColumn<Faculty, String> email;
+    private TableColumn<PersonalDetails, String> email;
     
     @FXML
     private Label department;
 
     private FXMLLoader fxml;
 
-    private List<Faculty> list;
+    private List<PersonalDetails> list;
 
-    private FacultyDao dao;
+    private PersonalDetailsDao dao;
+    private Login user;
 
     public ExportFacultyListController() {
         fxml = Fxml.getExportFacultyListFXML();
@@ -94,9 +98,10 @@ public class ExportFacultyListController extends AnchorPane {
     @FXML
     private void initialize() {
         department.setText(SystemUtils.getDepartment());
-        dao = (FacultyDao) Start.app.getBean("facultyregistration");
+        dao = (PersonalDetailsDao) Start.app.getBean("personal");
+        user=(Login) Start.app.getBean("userlogin");
 
-        name.setCellValueFactory(new PropertyValueFactory<>("fullName"));
+        name.setCellValueFactory(new PropertyValueFactory<>("name"));
         contact.setCellValueFactory(new PropertyValueFactory<>("contact"));
         email.setCellValueFactory(new PropertyValueFactory<>("emailId"));
         gender.setCellValueFactory(new PropertyValueFactory<>("gender"));
@@ -127,7 +132,7 @@ public class ExportFacultyListController extends AnchorPane {
     }
 
     private void apply(ActionEvent evt) {
-        List<Faculty> filter = table.getItems();
+        List<PersonalDetails> filter = table.getItems();
         if (filterbygender.isSelected()) {
             if (male.isSelected()) {
                 filter = filter.stream().filter(f -> f.getGender().equalsIgnoreCase("male")).collect(Collectors.toList());
@@ -140,7 +145,8 @@ public class ExportFacultyListController extends AnchorPane {
     }
 
     private void reinit() {
-        list = dao.findByDepartment(SystemUtils.getDepartment());
+        List<User> lists = new ArrayList<>(user.findByDepartment(SystemUtils.getDepartment()));
+        list = lists.stream().map(l -> dao.findById(l.getPersonalid())).collect(Collectors.toList());
     }
 
     private void populate(ActionEvent evt) {

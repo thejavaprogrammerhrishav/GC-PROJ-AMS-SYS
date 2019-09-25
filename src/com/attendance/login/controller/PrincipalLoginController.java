@@ -12,8 +12,8 @@ import com.attendance.login.dao.Login;
 import com.attendance.login.forgot.ForgotPasswordController;
 import com.attendance.login.user.model.User;
 import com.attendance.main.Start;
-import com.attendance.user.principal.dao.PrincipalDao;
-import com.attendance.user.principal.model.Principal;
+import com.attendance.personal.dao.PersonalDetailsDao;
+import com.attendance.personal.model.PersonalDetails;
 import com.attendance.util.Fxml;
 import com.attendance.util.RootFactory;
 import com.attendance.util.SwitchRoot;
@@ -55,10 +55,10 @@ public class PrincipalLoginController extends AnchorPane {
 
     @FXML
     private Label result;
-    
+
     @FXML
     private Label signup;
-    
+
     @FXML
     private JFXButton close;
 
@@ -72,8 +72,8 @@ public class PrincipalLoginController extends AnchorPane {
     private LoginAuthenticator authenticator;
     private User user;
     private LoginActivity activity;
-    private Principal search;
-    private PrincipalDao dao;
+    private PersonalDetails search;
+    private PersonalDetailsDao dao;
 
     public PrincipalLoginController() {
         fxml = Fxml.getPrincipalLoginFXML();
@@ -90,7 +90,7 @@ public class PrincipalLoginController extends AnchorPane {
     private void initialize() {
         principal = (Login) Start.app.getBean("userlogin");
         loginActivity = (Activity) Start.app.getBean("loginactivity");
-        dao=(PrincipalDao) Start.app.getBean("principallogin");
+        dao = (PersonalDetailsDao) Start.app.getBean("personal");
         result.setText("");
         blink = new Task<Void>() {
             @Override
@@ -114,7 +114,7 @@ public class PrincipalLoginController extends AnchorPane {
         authenticator = new LoginAuthenticator() {
             @Override
             protected boolean authenticate(String username, String password) {
-                user = principal.findByUsernameAndType(username, userRole);
+                user = principal.findByUsernameDepartmentType(username, "N/A", userRole);
                 return username.equals(user.getUsername()) && password.equals(user.getPassword());
             }
         };
@@ -127,8 +127,8 @@ public class PrincipalLoginController extends AnchorPane {
                 new Thread(() -> {
                     try {
                         Thread.sleep(500);
-                        search=dao.findById(user.getContact());
-                        activity = new LoginActivity(search.getName(), user.getUsername(), "Principal", "ACTIVE", DateTime.now().toString(DateTimeFormat.forPattern("dd-MM-yyyy")), DateTime.now().toString(DateTimeFormat.forPattern("hh:mm:ss a")), "","N/A");
+                        search = dao.findById(user.getPersonalid());
+                        activity = new LoginActivity(search.getName(), user.getUsername(), "Principal", "ACTIVE", DateTime.now().toString(DateTimeFormat.forPattern("dd-MM-yyyy")), DateTime.now().toString(DateTimeFormat.forPattern("hh:mm:ss a")), "", "N/A");
                         loginActivity.save(activity);
                         SystemUtils.setActivity(activity);
                         for (int i = 3; i >= 0; i--) {
@@ -143,16 +143,14 @@ public class PrincipalLoginController extends AnchorPane {
                     }
 
                 }).start();
-            } else {
-                JOptionPane.showMessageDialog(null, "Password doesn't match");
-            }
+            } 
         });
-        
-        forgotpassword.setOnMouseClicked(e->{
+
+        forgotpassword.setOnMouseClicked(e -> {
             ForgotPasswordController.LoginType = userRole;
             SwitchRoot.switchRoot(Start.st, RootFactory.getForgotPasswordRoot());
         });
-        
+
         signup.setOnMouseClicked(this::signupAction);
         close.setOnAction(this::closeAction);
     }
@@ -160,7 +158,7 @@ public class PrincipalLoginController extends AnchorPane {
     private void signupAction(MouseEvent evt) {
         SwitchRoot.switchRoot(Start.st, RootFactory.getPrincipalSignUpRoot(Start.st.getScene().getRoot()));
     }
-    
+
     private void closeAction(ActionEvent evt) {
         SystemUtils.setDepartment("");
         SystemUtils.logout();

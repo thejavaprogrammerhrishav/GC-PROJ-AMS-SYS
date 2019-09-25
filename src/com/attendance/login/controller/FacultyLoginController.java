@@ -5,8 +5,6 @@
  */
 package com.attendance.login.controller;
 
-import com.attendance.faculty.dao.FacultyDao;
-import com.attendance.faculty.model.Faculty;
 import com.attendance.login.actions.LoginAuthenticator;
 import com.attendance.login.activity.dao.Activity;
 import com.attendance.login.activity.model.LoginActivity;
@@ -14,6 +12,8 @@ import com.attendance.login.dao.Login;
 import com.attendance.login.forgot.ForgotPasswordController;
 import com.attendance.login.user.model.User;
 import com.attendance.main.Start;
+import com.attendance.personal.dao.PersonalDetailsDao;
+import com.attendance.personal.model.PersonalDetails;
 import com.attendance.util.Fxml;
 import com.attendance.util.RootFactory;
 import com.attendance.util.SwitchRoot;
@@ -69,15 +69,15 @@ public class FacultyLoginController extends AnchorPane {
     private Thread thread;
     private FXMLLoader fxml;
     private Task<Void> blink;
-    private final String ROLE = "FACULTY";
+    private final String ROLE = "Faculty";
 
     private Login faculty;
     private Activity loginActivity;
     private LoginAuthenticator authenticator;
     private User user;
     private LoginActivity activity;
-    private FacultyDao dao;
-    private Faculty search;
+    private PersonalDetails search;
+    private PersonalDetailsDao dao;
 
     public FacultyLoginController() {
         fxml = Fxml.getFacultyLoginFXML();
@@ -96,7 +96,7 @@ public class FacultyLoginController extends AnchorPane {
     private void initialize() {
         faculty = (Login) Start.app.getBean("userlogin");
         loginActivity = (Activity) Start.app.getBean("loginactivity");
-        dao=(FacultyDao) Start.app.getBean("facultyregistration");
+        dao=(PersonalDetailsDao) Start.app.getBean("personal");
         result.setText("");
         department.setText("Department:  " + SystemUtils.getDepartment());
         blink = new Task<Void>() {
@@ -121,7 +121,7 @@ public class FacultyLoginController extends AnchorPane {
         authenticator = new LoginAuthenticator() {
             @Override
             protected boolean authenticate(String username, String password) {
-                user = faculty.findByUsernameAndType(username, ROLE);
+                user = faculty.findByUsernameDepartmentType(username, SystemUtils.getDepartment(), ROLE);
                 return username.equals(user.getUsername()) && password.equals(user.getPassword());
             }
         };
@@ -138,8 +138,8 @@ public class FacultyLoginController extends AnchorPane {
                             Platform.runLater(() -> result.setText("Redirecting to Dashboard in " + x + " Sec"));
                             Thread.sleep(1000);
                         }
-                        search=dao.findById(user.getContact());
-                        activity = new LoginActivity(search.getName(), user.getUsername(), "FACULTY", "ACTIVE", DateTime.now().toString(DateTimeFormat.forPattern("dd-MM-yyyy")), DateTime.now().toString(DateTimeFormat.forPattern("hh:mm:ss a")), "",SystemUtils.getDepartment());
+                        search=dao.findById(user.getPersonalid());
+                        activity = new LoginActivity(search.getName(), user.getUsername(), "Faculty", "Active", DateTime.now().toString(DateTimeFormat.forPattern("dd-MM-yyyy")), DateTime.now().toString(DateTimeFormat.forPattern("hh:mm:ss a")), "",SystemUtils.getDepartment());
                         loginActivity.save(activity);
                         SystemUtils.setActivity(activity);
                         SystemUtils.setCurrentUser(user);
@@ -148,9 +148,7 @@ public class FacultyLoginController extends AnchorPane {
                         Logger.getLogger(FacultyLoginController.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }).start();
-            } else {
-                JOptionPane.showMessageDialog(null, username + " " + password.getText());
-            }
+            } 
         });
 
         forgotpassword.setOnMouseClicked(e -> {

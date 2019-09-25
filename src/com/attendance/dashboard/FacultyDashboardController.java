@@ -132,7 +132,7 @@ public class FacultyDashboardController extends AnchorPane {
         server.start();
         act = (Activity) Start.app.getBean("loginactivity");
         dao = (StudentDao) Start.app.getBean("studentregistration");
-        userlabel.setText("Welcome back @ " + user.getContact());
+        //userlabel.setText("Welcome back @ " + user.getContact());
         countStudents(null);
         timer = DateTimerThread.newInstance().forLabel(DateTimerThread.TIME, time).init().thread();
         timer.start();
@@ -143,8 +143,7 @@ public class FacultyDashboardController extends AnchorPane {
         Collections.sort(years);
         years.stream().forEach(acadamicyear.getItems()::add);
 
-        logout.setOnAction(e-> SystemUtils.logout()
-        );
+        logout.setOnAction(new Logout(activity));
 
         registernewstudent.setOnAction(new StudentRegister());
         viewstudentdetails.setOnAction(new ViewStudentDetails());
@@ -241,7 +240,7 @@ public class FacultyDashboardController extends AnchorPane {
 
         @Override
         public void handle(ActionEvent t) {
-            SwitchRoot.switchRoot(Start.st, RootFactory.getStudentAttendanceRoot(Start.st.getScene().getRoot(), user.getContact()));
+            SwitchRoot.switchRoot(Start.st, RootFactory.getStudentAttendanceRoot(Start.st.getScene().getRoot(), user.getDepartment()));
         }
     }
 
@@ -249,7 +248,7 @@ public class FacultyDashboardController extends AnchorPane {
 
         @Override
         public void handle(ActionEvent t) {
-            SwitchRoot.switchRoot(Start.st, RootFactory.getUploadNotesRoot(Start.st.getScene().getRoot(), user.getContact()));
+            SwitchRoot.switchRoot(Start.st, RootFactory.getUploadNotesRoot(Start.st.getScene().getRoot(), user.getDepartment()));
         }
     }
 

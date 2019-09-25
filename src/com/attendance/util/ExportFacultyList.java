@@ -5,7 +5,7 @@
  */
 package com.attendance.util;
 
-import com.attendance.faculty.model.Faculty;
+import com.attendance.personal.model.PersonalDetails;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -40,9 +40,9 @@ public class ExportFacultyList {
 
     private int RowCount;
 
-    private TableView<Faculty> list;
+    private TableView<PersonalDetails> list;
 
-    public ExportFacultyList(TableView<Faculty> list) {
+    public ExportFacultyList(TableView<PersonalDetails> list) {
         this.list = list;
         RowCount = 0;
     }

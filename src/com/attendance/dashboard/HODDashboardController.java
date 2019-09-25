@@ -5,12 +5,12 @@
  */
 package com.attendance.dashboard;
 
-import com.attendance.faculty.dao.FacultyDao;
-import com.attendance.faculty.model.Faculty;
 import com.attendance.login.activity.dao.Activity;
 import com.attendance.login.activity.model.LoginActivity;
 import com.attendance.login.user.model.User;
 import com.attendance.main.Start;
+import com.attendance.personal.dao.PersonalDetailsDao;
+import com.attendance.personal.model.PersonalDetails;
 import com.attendance.student.dao.StudentDao;
 import com.attendance.util.Fxml;
 import com.attendance.util.RootFactory;
@@ -124,13 +124,13 @@ public class HODDashboardController extends AnchorPane {
     private FXMLLoader fxml;
     private Thread timer;
     private Thread dater;
-    private Faculty faculty;
+    private PersonalDetails details;
 
     private User user;
     private LoginActivity activity;
     private StudentDao dao;
     private Activity act;
-    private FacultyDao fdao;
+    private PersonalDetailsDao pdao;
 
     public HODDashboardController() {
         this.user = SystemUtils.getCurrentUser();
@@ -149,9 +149,9 @@ public class HODDashboardController extends AnchorPane {
     private void initialize() {
         act = (Activity) Start.app.getBean("loginactivity");
         dao = (StudentDao) Start.app.getBean("studentregistration");
-        fdao = (FacultyDao) Start.app.getBean("facultyregistration");
+        pdao = (PersonalDetailsDao) Start.app.getBean("personal");
         department.setText("Department :- " + SystemUtils.getDepartment());
-        faculty = fdao.findById(user.getContact());
+        details = pdao.findById(user.getPersonalid());
         initLoginActivity(null);
         countStudents(null);
         profilepic.setImage(new Image(new ByteArrayInputStream(user.getImage())));
@@ -172,11 +172,11 @@ public class HODDashboardController extends AnchorPane {
         viewstudent.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getViewStudentDetailsRoot(SystemUtils.getDepartment(), Start.st.getScene().getRoot())));
         viewfaculty.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getViewFacultyRoot(SystemUtils.getDepartment(), Start.st.getScene().getRoot())));
         settings.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getSettingsRoot(Start.st.getScene().getRoot())));
-        dailyattendance.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getStudentAttendanceRoot(Start.st.getScene().getRoot(), faculty.getName())));
+        dailyattendance.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getStudentAttendanceRoot(Start.st.getScene().getRoot(), details.getName())));
         attendancereport.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getAttendanceReportRoot(Start.st.getScene().getRoot())));
         uploadmarks.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getUploadMarksRoot(Start.st.getScene().getRoot())));
 
-        uploadnotes.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getUploadNotesRoot(Start.st.getScene().getRoot(), faculty.getName())));
+        uploadnotes.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getUploadNotesRoot(Start.st.getScene().getRoot(), details.getName())));
         downloadnotes.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getDownloadNotesRoot(Start.st.getScene().getRoot())));
 
     }

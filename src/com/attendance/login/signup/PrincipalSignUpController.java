@@ -8,8 +8,8 @@ package com.attendance.login.signup;
 import com.attendance.login.dao.Login;
 import com.attendance.login.user.model.User;
 import com.attendance.main.Start;
-import com.attendance.user.principal.dao.PrincipalDao;
-import com.attendance.user.principal.model.Principal;
+import com.attendance.personal.dao.PersonalDetailsDao;
+import com.attendance.personal.model.PersonalDetails;
 import com.attendance.util.Fxml;
 import com.attendance.util.Message;
 import com.attendance.util.MessageUtil;
@@ -18,6 +18,7 @@ import com.attendance.util.SwitchRoot;
 import com.attendance.util.SystemUtils;
 import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
+import java.security.Principal;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
@@ -63,9 +64,9 @@ public class PrincipalSignUpController extends AnchorPane {
     private User user;
     private Login login;
     private Parent parent;
-    
-    private Principal principal;
-    private PrincipalDao pdao;
+
+    private PersonalDetails principal;
+    private PersonalDetailsDao pdao;
 
     public PrincipalSignUpController(Parent parent) {
         this.parent = parent;
@@ -83,26 +84,28 @@ public class PrincipalSignUpController extends AnchorPane {
     @FXML
     private void initialize() {
         user = new User();
-        principal=new Principal();
+        principal = new PersonalDetails();
         login = (Login) Start.app.getBean("userlogin");
-        pdao=(PrincipalDao) Start.app.getBean("principallogin");
+        pdao = (PersonalDetailsDao) Start.app.getBean("personal");
         signup.setOnAction(E -> {
             if (login.isUsernameExists(username.getText()) > 0) {
                 MessageUtil.showError(Message.ERROR, "Principal SignUp", "Username already taken", ((Node) E.getSource()).getScene().getWindow());
             } else if (password.getText().equals(confirmpassword.getText())) {
-                user.setContact(contact.getText());
                 user.setType("Principal");
                 user.setUsername(username.getText());
                 user.setPassword(password.getText());
                 user.setImage(SystemUtils.getDefaultAccountIcon());
+                user.setDepartment("N/A");
 
                 principal.setName(fullname.getText());
                 principal.setContact(contact.getText());
                 principal.setEmailId(email.getText());
                 principal.setGender("Unknown");
 
+                int save = pdao.save(principal);
+
+                user.setPersonalid(save);
                 login.save(user);
-                pdao.savePrincipal(principal);
 
                 MessageUtil.showError(Message.INFORMATION, "Principal SignUp", "User signup successful\nPrincipal account created successfully", ((Node) E.getSource()).getScene().getWindow());
 

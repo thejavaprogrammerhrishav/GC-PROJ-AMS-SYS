@@ -13,22 +13,24 @@ import java.io.Serializable;
  */
 public class User implements Serializable{
     private int id;
-    private String contact;
+    private int personalid;
     private String username;
     private String password;
     private String type;
+    private String department;
     private byte[] image;
 
     public User() {
     }
 
-    public User(int id, String contact, String username, String password, String type,byte[] image) {
+    public User(int id, int personalid, String username, String password, String type, String department, byte[] image) {
         this.id = id;
-        this.contact = contact;
+        this.personalid = personalid;
         this.username = username;
         this.password = password;
         this.type = type;
-        this.image=image;
+        this.department = department;
+        this.image = image;
     }
 
     public int getId() {
@@ -39,12 +41,12 @@ public class User implements Serializable{
         this.id = id;
     }
 
-    public String getContact() {
-        return contact;
+    public int getPersonalid() {
+        return personalid;
     }
 
-    public void setContact(String contact) {
-        this.contact = contact;
+    public void setPersonalid(int personalid) {
+        this.personalid = personalid;
     }
 
     public String getUsername() {
@@ -71,6 +73,14 @@ public class User implements Serializable{
         this.type = type;
     }
 
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
     public byte[] getImage() {
         return image;
     }
@@ -78,9 +88,6 @@ public class User implements Serializable{
     public void setImage(byte[] image) {
         this.image = image;
     }
-
-    @Override
-    public String toString() {
-        return super.toString(); 
-    }   
+    
+    
 }

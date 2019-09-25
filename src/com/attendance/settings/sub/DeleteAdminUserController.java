@@ -123,7 +123,7 @@ public class DeleteAdminUserController extends AnchorPane{
     }
 
     private void searchContact(ActionEvent evt) {
-        List<User> contactlist = list.stream().filter(u -> u.getContact().startsWith(search.getText())).collect(Collectors.toList());
+        List<User> contactlist = list.stream().filter(u -> u.getDepartment().startsWith(search.getText())).collect(Collectors.toList());
         table.getItems().setAll(contactlist);
     }
 
@@ -140,7 +140,7 @@ public class DeleteAdminUserController extends AnchorPane{
     private void tableClick(MouseEvent evt) {
         user = table.getSelectionModel().getSelectedItem();
 
-        contact.setText(user.getContact());
+        contact.setText(user.getDepartment());
     }
 
     private void clear(ActionEvent evt) {

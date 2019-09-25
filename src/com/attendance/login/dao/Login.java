@@ -22,21 +22,18 @@ public interface Login {
 
     public abstract User findById(int userId);
 
-    public abstract List<User> findByName(String userName);
-
-    public abstract List<User> findByEmail(String userEmail);
-
     public abstract User findByUsername(String username);
 
-    public abstract User findByUsernameAndEmail(String username, String userEmail);
+    public abstract List<User> findAll();
 
-    public abstract List<User> findByAll();
+    public abstract List<User> findByDepartment(String department);
 
     public abstract List<User> findByType(String type);
 
-    public abstract User findByUsernameAndType(String username, String type);
-    
+    public abstract User findByUsernameDepartmentType(String username, String department, String type);
+
     public abstract int isUsernameExists(String username);
     
-    public abstract User findByUsernameTypeEmail(String username,String type,String email);
+    public abstract int count(String sql);
+
 }

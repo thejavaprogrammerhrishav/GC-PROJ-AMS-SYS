@@ -5,11 +5,11 @@
  */
 package com.attendance.settings.sub;
 
-import com.attendance.faculty.dao.FacultyDao;
-import com.attendance.faculty.model.Faculty;
 import com.attendance.login.dao.Login;
 import com.attendance.login.user.model.User;
 import com.attendance.main.Start;
+import com.attendance.personal.dao.PersonalDetailsDao;
+import com.attendance.personal.model.PersonalDetails;
 import com.attendance.util.Fxml;
 import com.attendance.util.Message;
 import com.attendance.util.MessageUtil;
@@ -83,7 +83,7 @@ public class DeleteFacultyUserController extends AnchorPane {
     private List<User> list;
     private User user;
     private Login dao;
-    private FacultyDao fdao;
+    private PersonalDetailsDao fdao;
 
     private FXMLLoader fxml;
     private Parent parent;
@@ -104,7 +104,7 @@ public class DeleteFacultyUserController extends AnchorPane {
     @FXML
     private void initialize() {
         dao = (Login) Start.app.getBean("userlogin");
-        fdao = (FacultyDao) Start.app.getBean("facultyregistration");
+        fdao = (PersonalDetailsDao) Start.app.getBean("facultyregistration");
 
         list = dao.findByType("Faculty");
 
@@ -132,7 +132,7 @@ public class DeleteFacultyUserController extends AnchorPane {
     }
 
     private void searchContact(ActionEvent evt) {
-        List<User> contactlist = list.stream().filter(u -> u.getContact().startsWith(search.getText())).collect(Collectors.toList());
+        List<User> contactlist = list.stream().filter(u -> u.getDepartment().startsWith(search.getText())).collect(Collectors.toList());
         table.getItems().setAll(contactlist);
     }
 
@@ -149,7 +149,7 @@ public class DeleteFacultyUserController extends AnchorPane {
     private void tableClick(MouseEvent evt) {
         user = table.getSelectionModel().getSelectedItem();
 
-        contact.setText(user.getContact());
+        contact.setText(user.getDepartment());
     }
 
     private void clear(ActionEvent evt) {
@@ -159,9 +159,9 @@ public class DeleteFacultyUserController extends AnchorPane {
     }
 
     private void delete(ActionEvent evt) {
-        Faculty del = fdao.findById(user.getContact());
+        PersonalDetails del = fdao.findById(user.getPersonalid());
         boolean d = dao.delete(user);
-        boolean e = fdao.deleteFaculty(del);
+        boolean e = fdao.delete(del);
         if (d && e) {
             MessageUtil.showInformation(Message.INFORMATION, "Faculty Login Account", "Account Updated Successfully", DeleteFacultyUserController.this.getScene().getWindow());
         } else {

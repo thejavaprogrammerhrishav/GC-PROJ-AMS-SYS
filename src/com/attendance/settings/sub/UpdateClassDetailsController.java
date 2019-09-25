@@ -5,10 +5,13 @@
  */
 package com.attendance.settings.sub;
 
-import com.attendance.faculty.dao.FacultyDao;
+import com.attendance.login.dao.Login;
+import com.attendance.login.user.model.User;
 import com.attendance.main.Start;
 import com.attendance.papers.dao.PapersDao;
 import com.attendance.papers.model.Paper;
+import com.attendance.personal.dao.PersonalDetailsDao;
+import com.attendance.personal.model.PersonalDetails;
 import com.attendance.student.dao.StudentDao;
 import com.attendance.studentattendance.dao.ClassDetailsDao;
 import com.attendance.studentattendance.model.ClassDetails;
@@ -23,6 +26,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -172,10 +176,11 @@ public class UpdateClassDetailsController extends ScrollPane {
     private JFXCheckBox upass;
 
     private ClassDetails details;
-    private ClassDetailsDao dao;
-    private FacultyDao fdao;
+    private ClassDetailsDao cdao;
+    private PersonalDetailsDao perdao;
     private StudentDao sdao;
     private PapersDao pdao;
+    private Login dao;
 
     private FXMLLoader fxml;
 
@@ -194,10 +199,11 @@ public class UpdateClassDetailsController extends ScrollPane {
     @FXML
     private void initialize() {
         department.setText(SystemUtils.getDepartment());
-        dao = (ClassDetailsDao) Start.app.getBean("classdetails");
-        fdao = (FacultyDao) Start.app.getBean("facultyregistration");
+        cdao = (ClassDetailsDao) Start.app.getBean("classdetails");
+        perdao = (PersonalDetailsDao) Start.app.getBean("personal");
         sdao = (StudentDao) Start.app.getBean("studentregistration");
         pdao = (PapersDao) Start.app.getBean("papers");
+        dao=(Login) Start.app.getBean("userlogin");
 
         initFilters();
         initTable();
@@ -248,7 +254,9 @@ public class UpdateClassDetailsController extends ScrollPane {
         List<String> years = sdao.get("select distinct(year) from student order by year", String.class);
         year.getItems().setAll(years);
 
-        List<String> faculties = fdao.findAll().stream().map(f -> f.getName()).collect(Collectors.toList());
+        List<User> list = new ArrayList<>(dao.findByDepartment(SystemUtils.getDepartment()));
+        List<PersonalDetails> facultieslist = list.stream().map(l -> perdao.findById(l.getPersonalid())).collect(Collectors.toList());
+        List<String> faculties=facultieslist.stream().map(p->p.getName()).collect(Collectors.toList());
         facultyname.getItems().setAll(faculties);
 
         filterbypaper.selectedProperty().addListener((ol, o, n) -> {
@@ -327,12 +335,12 @@ public class UpdateClassDetailsController extends ScrollPane {
     }
 
     private void populateTable(ActionEvent evt) {
-        List<ClassDetails> list = dao.findByDepartment(department.getText());
+        List<ClassDetails> list = cdao.findByDepartment(department.getText());
         table.getItems().setAll(list);
     }
 
     private void filters(ActionEvent evt) {
-        List<ClassDetails> list = dao.findByDepartment(department.getText());
+        List<ClassDetails> list = cdao.findByDepartment(department.getText());
 
         if (filterbyacadamicyear.isSelected()) {
             list = list.stream().filter(s -> s.getAcadamicyear().equals(acadamicyear.getSelectionModel().getSelectedItem())).collect(Collectors.toList());
@@ -367,7 +375,7 @@ public class UpdateClassDetailsController extends ScrollPane {
     private void tableClick(MouseEvent evt) {
         details = table.getSelectionModel().getSelectedItem();
 
-        List<String> faculties = fdao.findAll().stream().map(f -> f.getName()).collect(Collectors.toList());
+        List<String> faculties = perdao.findAll().stream().map(f -> f.getName()).collect(Collectors.toList());
         cdfaculty.getItems().setAll(faculties);
 
         List<String> years = sdao.get("select distinct(year) from student order by year", String.class);
@@ -411,13 +419,13 @@ public class UpdateClassDetailsController extends ScrollPane {
 
             cd.setClassId(details.getClassId());
 
-            boolean b1 = dao.update(cd);
+            boolean b1 = cdao.update(cd);
 
             String id =SystemUtils.getDepartmentCode()+"/"+ cdclassdate.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")) + "@" + cdclasstime.getValue().format(DateTimeFormatter.ofPattern("hh:mm"))
                     + "#" + cdacadamicyear.getSelectionModel().getSelectedItem() + "__" + cdsemester.getSelectionModel().getSelectedItem().replace(" Semester", "") + "_" + cdyear.getSelectionModel().getSelectedItem() + "&" + cd.getCoursetype().charAt(0);
             cd.setClassId(id);
 
-            boolean b2 = dao.updateClassId(cd.getClassId(), details.getClassId());
+            boolean b2 = cdao.updateClassId(cd.getClassId(), details.getClassId());
             if (b1 && b2) {
                 Alert al = new Alert(AlertType.INFORMATION);
                 al.initModality(Modality.WINDOW_MODAL);

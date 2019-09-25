@@ -15,6 +15,7 @@ import com.attendance.login.dao.Login;
 import com.attendance.login.user.model.User;
 import com.attendance.util.RootFactory;
 import com.attendance.util.SwitchRoot;
+import com.attendance.util.SystemUtils;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -78,7 +79,7 @@ public class ForgotPasswordController extends AnchorPane {
     private void initialize() {
         result.setText("");
         resetPassword.setOnAction(evt -> {
-            user = login.findByUsernameTypeEmail(username.getText(), LoginType, email.getText());
+            user = login.findByUsernameDepartmentType(username.getText(), SystemUtils.getDepartment(),LoginType);
             if (user != null) {
                 resetpane.setVisible(true);
             } else {
@@ -100,11 +101,14 @@ public class ForgotPasswordController extends AnchorPane {
                                 Platform.runLater(() -> result.setText("Redirecting To Login Page In " + x + " Sec"));
                                 Thread.sleep(1000);
                             }
-                            if (LoginType.equals("ADMIN")) {
+                            if (LoginType.equals("HOD")) {
                                 Platform.runLater(() -> SwitchRoot.switchRoot(Start.st, RootFactory.getHODLoginRoot()));
                             }
                             if (LoginType.equals("FACULTY")) {
                                 Platform.runLater(() -> SwitchRoot.switchRoot(Start.st, RootFactory.getFacultyLoginRoot()));
+                            }
+                             if (LoginType.equals("PRINCIPAL")) {
+                                Platform.runLater(() -> SwitchRoot.switchRoot(Start.st, RootFactory.getPrincipalLoginRoot()));
                             }
                         } catch (InterruptedException ex) {
                             Logger.getLogger(HODLoginController.class.getName()).log(Level.SEVERE, null, ex);
