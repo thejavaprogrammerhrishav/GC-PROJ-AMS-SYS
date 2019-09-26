@@ -6,12 +6,9 @@
 package com.attendance.report.controller;
 
 import com.attendance.login.dao.Login;
-import com.attendance.login.user.model.User;
 import com.attendance.main.Start;
 import com.attendance.papers.dao.PapersDao;
 import com.attendance.papers.model.Paper;
-import com.attendance.personal.dao.PersonalDetailsDao;
-import com.attendance.personal.model.PersonalDetails;
 import com.attendance.report.model.AttendanceDetails;
 import com.attendance.report.model.StudentCount;
 import com.attendance.student.dao.StudentDao;
@@ -24,13 +21,13 @@ import com.attendance.util.Message;
 import com.attendance.util.MessageUtil;
 import com.attendance.util.SwitchRoot;
 import com.attendance.util.SystemUtils;
+import com.attendance.util.Utils;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -139,7 +136,6 @@ public class AttendanceReportController extends AnchorPane {
     private PapersDao paperdao;
     private AttendanceDao attendancedao;
     private ClassDetailsDao classdao;
-    private PersonalDetailsDao personalDao;
     private Login dao;
 
     public AttendanceReportController(Parent parent) {
@@ -164,7 +160,6 @@ public class AttendanceReportController extends AnchorPane {
         paperdao = (PapersDao) Start.app.getBean("papers");
         attendancedao = (AttendanceDao) Start.app.getBean("attendance");
         classdao = (ClassDetailsDao) Start.app.getBean("classdetails");
-        personalDao = (PersonalDetailsDao) Start.app.getBean("personal");
         dao=(Login) Start.app.getBean("userlogin");
         cancel.setOnAction(this::proceed);
         initFilters();
@@ -200,10 +195,7 @@ public class AttendanceReportController extends AnchorPane {
         List<String> years = studentdao.get("select distinct(year) from student order by year", String.class);
         year.getItems().setAll(years);
 
-        List<User> list = new ArrayList<>(dao.findByDepartment(SystemUtils.getDepartment()));
-        List<PersonalDetails> facultieslist = list.stream().map(l -> personalDao.findById(l.getPersonalid())).collect(Collectors.toList());
-        List<String> faculties=facultieslist.stream().map(p->p.getName()).collect(Collectors.toList());
-        name.getItems().setAll(faculties);
+        name.getItems().setAll(Utils.util.getDetails(SystemUtils.getDepartment()).stream().map(p->p.getName()).collect(Collectors.toList()));
 
         semester.getSelectionModel().selectedItemProperty().addListener((ol, o, n) -> {
             String sem = n.replace(" Semester", "");

@@ -6,17 +6,14 @@
 package com.attendance.faculty.controller;
 
 import com.attendance.login.dao.Login;
-import com.attendance.login.user.model.User;
 import com.attendance.main.Start;
-import com.attendance.personal.dao.PersonalDetailsDao;
 import com.attendance.personal.model.PersonalDetails;
 import com.attendance.util.Fxml;
 import com.attendance.util.SwitchRoot;
-import com.attendance.util.SystemUtils;
+import com.attendance.util.Utils;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -82,10 +79,8 @@ public class ViewFacultyController extends AnchorPane {
 
     private FXMLLoader fxml;
     private Login dao;
-    private PersonalDetailsDao pdao;
     private String cdepartment;
     private Parent parent;
-    
     
     public ViewFacultyController(String cdepartment,Parent parent) {
         this.parent = parent;
@@ -104,7 +99,6 @@ public class ViewFacultyController extends AnchorPane {
     @FXML
     private void initialize() {
         dao = (Login) Start.app.getBean("userlogin");
-        pdao=(PersonalDetailsDao) Start.app.getBean("personal");
         department.setText("Department: " + cdepartment);
         facultyListName.setCellValueFactory(new PropertyValueFactory<PersonalDetails, String>("name"));
         facultyListContact.setCellValueFactory(new PropertyValueFactory<PersonalDetails, String>("contact"));
@@ -120,14 +114,11 @@ public class ViewFacultyController extends AnchorPane {
     }
 
     private void loadAllFaculty(ActionEvent e) {
-         List<User> list = new ArrayList<>(dao.findByDepartment(cdepartment));
-        List<PersonalDetails> faculties = list.stream().map(l->pdao.findById(l.getPersonalid())).collect(Collectors.toList());
-        facultyList.setItems(FXCollections.observableArrayList(faculties));
+        facultyList.setItems(FXCollections.observableArrayList(Utils.util.getDetails(cdepartment)));
     }
 
     private void searchFaculty(ActionEvent e) {
-         List<User> list = new ArrayList<>(dao.findByDepartment(SystemUtils.getDepartment()));
-        List<PersonalDetails> searchList = list.stream().map(l->pdao.findById(l.getPersonalid())).collect(Collectors.toList());
+        List<PersonalDetails> searchList = Utils.util.getDetails(cdepartment);
         searchList = searchList.stream().filter(p -> p.getName().contains(searchFaculty.getText())).collect(Collectors.toList());
         facultyList.setItems(FXCollections.observableArrayList(searchList));
     }

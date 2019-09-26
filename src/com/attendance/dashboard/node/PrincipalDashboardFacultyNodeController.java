@@ -53,7 +53,7 @@ public class PrincipalDashboardFacultyNodeController extends AnchorPane {
         department.getItems().setAll(SystemUtils.getDepartments());
 
         department.getSelectionModel().selectedItemProperty().addListener((ol, o, n) -> {
-            String SQL = "Select count(*) from loginuser where department = '" + department.getSelectionModel().getSelectedItem() + "' and type='HOD' or type='Faculty'";
+            String SQL = "Select count(*) from loginuser where department = '" + department.getSelectionModel().getSelectedItem() + "' and (type='HOD' or type='Faculty')";
             int get = dao.count(SQL);
             total.setText("" + get);
         });

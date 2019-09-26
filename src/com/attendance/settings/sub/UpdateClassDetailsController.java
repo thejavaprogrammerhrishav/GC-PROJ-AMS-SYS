@@ -6,17 +6,15 @@
 package com.attendance.settings.sub;
 
 import com.attendance.login.dao.Login;
-import com.attendance.login.user.model.User;
 import com.attendance.main.Start;
 import com.attendance.papers.dao.PapersDao;
 import com.attendance.papers.model.Paper;
-import com.attendance.personal.dao.PersonalDetailsDao;
-import com.attendance.personal.model.PersonalDetails;
 import com.attendance.student.dao.StudentDao;
 import com.attendance.studentattendance.dao.ClassDetailsDao;
 import com.attendance.studentattendance.model.ClassDetails;
 import com.attendance.util.Fxml;
 import com.attendance.util.SystemUtils;
+import com.attendance.util.Utils;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
@@ -26,7 +24,6 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -177,7 +174,6 @@ public class UpdateClassDetailsController extends ScrollPane {
 
     private ClassDetails details;
     private ClassDetailsDao cdao;
-    private PersonalDetailsDao perdao;
     private StudentDao sdao;
     private PapersDao pdao;
     private Login dao;
@@ -200,7 +196,6 @@ public class UpdateClassDetailsController extends ScrollPane {
     private void initialize() {
         department.setText(SystemUtils.getDepartment());
         cdao = (ClassDetailsDao) Start.app.getBean("classdetails");
-        perdao = (PersonalDetailsDao) Start.app.getBean("personal");
         sdao = (StudentDao) Start.app.getBean("studentregistration");
         pdao = (PapersDao) Start.app.getBean("papers");
         dao=(Login) Start.app.getBean("userlogin");
@@ -253,11 +248,8 @@ public class UpdateClassDetailsController extends ScrollPane {
 
         List<String> years = sdao.get("select distinct(year) from student order by year", String.class);
         year.getItems().setAll(years);
-
-        List<User> list = new ArrayList<>(dao.findByDepartment(SystemUtils.getDepartment()));
-        List<PersonalDetails> facultieslist = list.stream().map(l -> perdao.findById(l.getPersonalid())).collect(Collectors.toList());
-        List<String> faculties=facultieslist.stream().map(p->p.getName()).collect(Collectors.toList());
-        facultyname.getItems().setAll(faculties);
+        
+        facultyname.getItems().setAll(Utils.util.getDetails(SystemUtils.getDepartment()).stream().map(p->p.getName()).collect(Collectors.toList()));
 
         filterbypaper.selectedProperty().addListener((ol, o, n) -> {
             if (filterbysemester.isSelected()) {
@@ -335,7 +327,7 @@ public class UpdateClassDetailsController extends ScrollPane {
     }
 
     private void populateTable(ActionEvent evt) {
-        List<ClassDetails> list = cdao.findByDepartment(department.getText());
+        List<ClassDetails> list = cdao.findByDepartment(SystemUtils.getDepartment());
         table.getItems().setAll(list);
     }
 
@@ -375,8 +367,7 @@ public class UpdateClassDetailsController extends ScrollPane {
     private void tableClick(MouseEvent evt) {
         details = table.getSelectionModel().getSelectedItem();
 
-        List<String> faculties = perdao.findAll().stream().map(f -> f.getName()).collect(Collectors.toList());
-        cdfaculty.getItems().setAll(faculties);
+        cdfaculty.getItems().setAll(Utils.util.getDetails(SystemUtils.getDepartment()).stream().map(p->p.getName()).collect(Collectors.toList()));
 
         List<String> years = sdao.get("select distinct(year) from student order by year", String.class);
         cdyear.getItems().setAll(years);

@@ -5,20 +5,15 @@
  */
 package com.attendance.faculty.controller;
 
-import com.attendance.login.dao.Login;
-import com.attendance.login.user.model.User;
 import com.attendance.main.Start;
-import com.attendance.personal.dao.PersonalDetailsDao;
-import com.attendance.personal.model.PersonalDetails;
 import com.attendance.util.Fxml;
 import com.attendance.util.RootFactory;
 import com.attendance.util.SwitchRoot;
 import com.attendance.util.SystemUtils;
+import com.attendance.util.Utils;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -44,9 +39,6 @@ public class SelectFacultyController extends AnchorPane {
     private JFXButton cancel;
 
     private FXMLLoader fxml;
-    private Login dao;
-    private PersonalDetailsDao pdao;
-
     private String type;
 
     public SelectFacultyController(String type) {
@@ -64,11 +56,7 @@ public class SelectFacultyController extends AnchorPane {
 
     @FXML
     private void initialize() {
-        dao = (Login) Start.app.getBean("userlogin");
-        pdao=(PersonalDetailsDao) Start.app.getBean("personal");
-        List<User> list = new ArrayList<>(dao.findByDepartment(SystemUtils.getDepartment()));
-        List<PersonalDetails> faculties = list.stream().map(l->pdao.findById(l.getPersonalid())).collect(Collectors.toList());
-        faculties.stream().map(f -> f.getName()).forEach(facultylist.getItems()::add);
+        facultylist.getItems().setAll(Utils.util.getFacultyDetails(SystemUtils.getDepartment()).stream().map(f->f.getName()).collect(Collectors.toList()));
 
         proceed.setOnAction(this::proceed);
         cancel.setOnAction(this::close);
