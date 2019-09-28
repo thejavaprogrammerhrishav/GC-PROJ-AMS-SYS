@@ -19,12 +19,12 @@
                   <Font name="Century Gothic" size="35.0" />
                </font>
             </Label>
-            <ImageView fitHeight="249.0" fitWidth="259.0" layoutX="131.0" layoutY="132.0" pickOnBounds="true" smooth="false">
+            <ImageView fitHeight="249.0" fitWidth="259.0" layoutX="106.0" layoutY="117.0" pickOnBounds="true" smooth="false">
                <image>
                   <Image url="@../../resources/images.png" />
                </image>
             </ImageView>
-            <AnchorPane layoutX="484.0" layoutY="155.0" prefHeight="55.0" prefWidth="446.0" style="-fx-background-color: rgb(200,200,200); -fx-background-radius: 50;">
+            <AnchorPane layoutX="484.0" layoutY="155.0" prefHeight="55.0" prefWidth="446.0" style="-fx-background-color: rgb(225,225,225); -fx-background-radius: 50;">
                <children>
                   <ImageView fitHeight="45.0" fitWidth="33.0" layoutX="20.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -33,12 +33,12 @@
                   </ImageView>
                   <TextField fx:id="username" layoutX="60.0" layoutY="8.0" pickOnBounds="false" prefHeight="40.0" prefWidth="361.0" promptText="Username" style="-fx-background-color: transparent; -fx-prompt-text-fill: #4C4C4C;">
                      <font>
-                        <Font name="Segoe UI" size="15.0" />
+                        <Font name="Segoe UI" size="17.0" />
                      </font>
                   </TextField>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="484.0" layoutY="233.0" prefHeight="55.0" prefWidth="446.0" style="-fx-background-color: rgb(200,200,200); -fx-background-radius: 50;">
+            <AnchorPane layoutX="484.0" layoutY="233.0" prefHeight="55.0" prefWidth="446.0" style="-fx-background-color: rgb(225,225,225); -fx-background-radius: 50;">
                <children>
                   <ImageView fitHeight="45.0" fitWidth="33.0" layoutX="20.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -47,19 +47,19 @@
                   </ImageView>
                   <PasswordField fx:id="password" layoutX="60.0" layoutY="8.0" prefHeight="40.0" prefWidth="361.0" promptText="Password" style="-fx-background-color: transparent; -fx-prompt-text-fill: #4C4C4C;">
                      <font>
-                        <Font size="15.0" />
+                        <Font name="Segoe UI" size="17.0" />
                      </font>
                   </PasswordField>
                </children>
             </AnchorPane>
-            <JFXButton fx:id="login" buttonType="RAISED" layoutX="487.0" layoutY="313.0" prefHeight="45.0" prefWidth="209.0" ripplerFill="BLACK" style="-fx-background-color: #007300; -fx-background-radius: 35;" text="Login" textFill="WHITE">
+            <JFXButton fx:id="login" buttonType="RAISED" layoutX="487.0" layoutY="313.0" prefHeight="35.0" prefWidth="163.0" ripplerFill="BLACK" style="-fx-background-color: #007300; -fx-background-radius: 25;" text="Login" textFill="WHITE">
                <font>
-                  <Font name="Century Gothic" size="18.0" />
+                  <Font name="Century Gothic" size="16.0" />
                </font>
             </JFXButton>
-            <Label fx:id="forgotpassword" alignment="CENTER" layoutX="749.0" layoutY="318.0" prefHeight="36.0" prefWidth="163.0" text="Forgot Password">
+            <Label fx:id="forgotpassword" alignment="CENTER" layoutX="783.0" layoutY="318.0" prefHeight="27.0" prefWidth="129.0" text="Forgot Password">
                <font>
-                  <Font name="Tw Cen MT" size="22.0" />
+                  <Font name="Tw Cen MT" size="17.0" />
                </font>
             </Label>
             <Label fx:id="result" alignment="CENTER" layoutX="484.0" layoutY="416.0" prefHeight="36.0" prefWidth="446.0" text="Redirecting to Dashboard in 2 Sec">

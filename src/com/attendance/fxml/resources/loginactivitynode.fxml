@@ -49,6 +49,6 @@
       </Label>
    </children>
    <effect>
-      <DropShadow color="#7c7c7c" spread="0.3" />
+      <DropShadow color="#aeaeae" spread="0.3" />
    </effect>
 </fx:root>
