@@ -6,14 +6,15 @@
 package com.attendance.faculty.controller;
 
 import com.attendance.login.dao.Login;
+import com.attendance.login.user.model.User;
 import com.attendance.main.Start;
 import com.attendance.personal.model.PersonalDetails;
 import com.attendance.util.Fxml;
 import com.attendance.util.SwitchRoot;
 import com.attendance.util.Utils;
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXCheckBox;
 import java.io.IOException;
+import static java.time.zone.ZoneRulesProvider.refresh;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,14 +24,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 
 /**
  *
@@ -39,40 +38,19 @@ import javafx.scene.layout.AnchorPane;
 public class ViewFacultyController extends AnchorPane {
 
     @FXML
-    private TableView<PersonalDetails> facultyList;
+    private JFXButton close;
 
     @FXML
-    private TableColumn<PersonalDetails, String> facultyListName;
+    private JFXButton allfaculties;
 
     @FXML
-    private TableColumn<PersonalDetails, String> facultyListContact;
-
-    @FXML
-    private TextField searchFaculty;
+    private TextField searchinput;
 
     @FXML
     private JFXButton search;
 
     @FXML
-    private TextField firstName;
-
-    @FXML
-    private TextField emailId;
-
-    @FXML
-    private TextField contact;
-
-    @FXML
-    private JFXCheckBox male;
-
-    @FXML
-    private JFXCheckBox female;
-
-    @FXML
-    private Button close;
-
-    @FXML
-    private Button refresh;
+    private VBox list;
 
     @FXML
     private Label department;
@@ -81,8 +59,8 @@ public class ViewFacultyController extends AnchorPane {
     private Login dao;
     private String cdepartment;
     private Parent parent;
-    
-    public ViewFacultyController(String cdepartment,Parent parent) {
+
+    public ViewFacultyController(String cdepartment, Parent parent) {
         this.parent = parent;
         this.cdepartment = cdepartment;
         fxml = Fxml.getViewFacultyDetailsFXML();
@@ -100,44 +78,27 @@ public class ViewFacultyController extends AnchorPane {
     private void initialize() {
         dao = (Login) Start.app.getBean("userlogin");
         department.setText("Department: " + cdepartment);
-        facultyListName.setCellValueFactory(new PropertyValueFactory<PersonalDetails, String>("name"));
-        facultyListContact.setCellValueFactory(new PropertyValueFactory<PersonalDetails, String>("contact"));
 
         loadAllFaculty(null);
 
-        refresh.setOnAction(this::loadAllFaculty);
+        allfaculties.setOnAction(this::loadAllFaculty);
 
         close.setOnAction(e -> SwitchRoot.switchRoot(Start.st, parent));
 
         search.setOnAction(this::searchFaculty);
-        facultyList.setOnMouseClicked(this::displayFacultyDetails);
+        list.setOnMouseClicked(this::displayFacultyDetails);
     }
 
     private void loadAllFaculty(ActionEvent e) {
-        facultyList.setItems(FXCollections.observableArrayList(Utils.util.getDetails(cdepartment)));
+        List<User> details = Utils.util.getFacultyUsers(cdepartment);
+        List<ViewFacultyNodeController> collect = details.stream().map(ViewFacultyNodeController::new).collect(Collectors.toList());
+        list.getChildren().setAll(collect);
     }
 
     private void searchFaculty(ActionEvent e) {
-        List<PersonalDetails> searchList = Utils.util.getDetails(cdepartment);
-        searchList = searchList.stream().filter(p -> p.getName().contains(searchFaculty.getText())).collect(Collectors.toList());
-        facultyList.setItems(FXCollections.observableArrayList(searchList));
-    }
-
-    private void displayFacultyDetails(MouseEvent evt) {
-        PersonalDetails selected = facultyList.getSelectionModel().getSelectedItem();
-        firstName.setText(selected.getName());
-        emailId.setText(selected.getEmailId());
-        contact.setText(selected.getContact());
-        if (selected.getGender().equalsIgnoreCase("Male")) {
-            male.setSelected(true);
-            female.setSelected(false);
-        } else if (selected.getGender().equalsIgnoreCase("Female")) {
-            female.setSelected(true);
-            male.setSelected(false);
-        } else {
-            male.setSelected(false);
-            female.setSelected(false);
-        }
+        List<User> details = Utils.util.getFacultyUsers(cdepartment);
+        List<ViewFacultyNodeController> collect = details.stream().map(ViewFacultyNodeController::new).filter(f -> f.getName().equals(searchinput.getText())).collect(Collectors.toList());
+        list.getChildren().setAll(collect);
     }
 
 }

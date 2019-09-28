@@ -264,4 +264,12 @@ public class Fxml {
       public static FXMLLoader getFacultyLoginActivityFXML() {
         return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/facultyloginactivitynode.fxml"));
     }
+      
+        public static FXMLLoader getViewFacultyNodeFXML() {
+        return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/vfnode.fxml"));
+    }
+        
+             public static FXMLLoader getViewFacultyDetailsFXML() {
+        return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/viewfacultynode.fxml"));
+    }
 }

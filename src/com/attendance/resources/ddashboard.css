@@ -1,0 +1,39 @@
+.user-log-scroll,
+.user-log-scroll > .view-port,
+.user-log-scroll > .scroll-bar:vertical > .track,
+.user-log-scroll > .scroll-bar:vertical > .increment-button,
+.user-log-scroll > .scroll-bar:vertical > .increment-button > .increment-arrow,
+.user-log-scroll > .scroll-bar:vertical > .decrement-button,
+.user-log-scroll > .scroll-bar:vertical > .decrement-button > .decrement-arrow,
+.user-log-scroll > .scroll-bar:vertical > .track-background{
+    -fx-background-color: #fff;
+    -fx-fill: #cd3;
+    -fx-background-radius: 0;
+}
+
+.user-log-scroll > .scroll-bar:vertical > .thumb{
+    -fx-background-color:  #a29bff;
+    -fx-background-radius: 0;
+}
+
+.vbox{
+    -fx-background-color: #fff;
+}
+
+.main-log-scroll,
+.main-log-scroll > .view-port,
+.main-log-scroll > .scroll-bar:vertical > .track,
+.main-log-scroll > .scroll-bar:vertical > .increment-button,
+.main-log-scroll > .scroll-bar:vertical > .increment-button > .increment-arrow,
+.main-log-scroll > .scroll-bar:vertical > .decrement-button,
+.main-log-scroll > .scroll-bar:vertical > .decrement-button > .decrement-arrow,
+.main-log-scroll > .scroll-bar:vertical > .track-background{
+    -fx-background-color:  #f5f5f5;
+    -fx-fill: #cd3;
+    -fx-background-radius: 0;
+}
+
+.main-log-scroll > .scroll-bar:vertical > .thumb{
+    -fx-background-color:  #d0d0d0;
+    -fx-background-radius: 0;
+}
