@@ -22,6 +22,8 @@ public interface Activity {
 
     public abstract List<LoginActivity> findByDate(String date);
     
+    public abstract List<LoginActivity> findByName(String name);
+    
     public abstract List<LoginActivity> findByDepartment(String department);
 
     public abstract List<LoginActivity> findByStatus(String status);

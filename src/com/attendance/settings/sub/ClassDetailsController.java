@@ -156,11 +156,13 @@ public class ClassDetailsController extends ScrollPane {
     private StudentDao studentdao;
 
     private Parent parent;
+    private String currentfaculty;
 
     private FXMLLoader fxml;
 
-    public ClassDetailsController(Parent parent) {
+    public ClassDetailsController(Parent parent,String currentfaculty) {
         this.parent = parent;
+        this.currentfaculty = currentfaculty;
         fxml = Fxml.getClassDetailsFXML();
         fxml.setRoot(this);
         fxml.setController(this);
@@ -192,6 +194,10 @@ public class ClassDetailsController extends ScrollPane {
     }
 
     private void initFilters() {
+        if(!currentfaculty.equals("N/A")) {
+            filterbyname.setDisable(true);
+            facultyname.setDisable(true);
+        }
         facultyname.disableProperty().bind(filterbyname.selectedProperty().not());
         semester.disableProperty().bind(filterbysemester.selectedProperty().not());
         year.disableProperty().bind(filterbyyear.selectedProperty().not());
@@ -214,7 +220,7 @@ public class ClassDetailsController extends ScrollPane {
         year.getItems().setAll(years);
 
         facultyname.getItems().setAll(Utils.util.getDetails(SystemUtils.getDepartment()).stream().map(p->p.getName()).collect(Collectors.toList()));
-
+        
         filterbypaper.selectedProperty().addListener((ol, o, n) -> {
             if (filterbysemester.isSelected()) {
                 filterbypaper.setSelected(n);
@@ -269,11 +275,17 @@ public class ClassDetailsController extends ScrollPane {
 
     private void populateTable(ActionEvent evt) {
         List<ClassDetails> list = cdao.findByDepartment(SystemUtils.getDepartment());
+        if(!currentfaculty.equals("N/A")) {
+            list = list.stream().filter(p -> p.getFacultyName().equals(currentfaculty)).collect(Collectors.toList());
+        }
         table.getItems().setAll(list);
     }
 
     private void filters(ActionEvent evt) {
-        List<ClassDetails> list = cdao.findByDepartment(SystemUtils.getDepartment());
+       List<ClassDetails> list = cdao.findByDepartment(SystemUtils.getDepartment());
+        if(!currentfaculty.equals("N/A")) {
+            list = list.stream().filter(p -> p.getFacultyName().equals(currentfaculty)).collect(Collectors.toList());
+        }
 
         if (filterbyacadamicyear.isSelected()) {
             list = list.stream().filter(s -> s.getAcadamicyear().equals(acadamicyear.getSelectionModel().getSelectedItem())).collect(Collectors.toList());

@@ -84,5 +84,11 @@ public class UserLoginActivity implements Activity {
         return (List<LoginActivity>) hibernateTemplate.find("from LoginActivity where department = ?", department);
     }
 
+    @Override
+    @Transactional
+    public List<LoginActivity> findByName(String name) {
+        return (List<LoginActivity>) hibernateTemplate.find("from LoginActivity where name=?", name);
+    }
+
     
 }

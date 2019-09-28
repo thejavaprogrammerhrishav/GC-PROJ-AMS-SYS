@@ -192,8 +192,8 @@ public class RootFactory {
         return new DeletePaperController();
     }
 
-    public static Parent getClassDetailsRoot(Parent parent) {
-        return new ClassDetailsController(parent);
+    public static Parent getClassDetailsRoot(Parent parent,String name) {
+        return new ClassDetailsController(parent,name);
     }
 
     public static Parent getUpdateClassDetailsRoot() {

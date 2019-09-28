@@ -260,4 +260,8 @@ public class Fxml {
      public static FXMLLoader getPrincipalLoginActivityFXML() {
         return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/principalloginactivity.fxml"));
     }
+     
+      public static FXMLLoader getFacultyLoginActivityFXML() {
+        return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/facultyloginactivitynode.fxml"));
+    }
 }
