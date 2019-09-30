@@ -22,6 +22,8 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.paint.Color;
 
 /**
  *
@@ -76,10 +78,10 @@ public class ViewFacultyDetailsController extends AnchorPane {
     private void initialize() {
         dao = (PersonalDetailsDao) Start.app.getBean("personal");
         details = dao.findById(user.getPersonalid());
-        
+                
         icon.setImage(new Image(new ByteArrayInputStream(user.getImage())));
-        type.setText(user.getType());
-        created.setText("DUMMY");
+        type.setText("User Type: "+user.getType());
+        created.setText("Account Created: DUMMY");
         name.setText(details.getName());       
         gender.setText(details.getGender());     
         number.setText(details.getContact());     

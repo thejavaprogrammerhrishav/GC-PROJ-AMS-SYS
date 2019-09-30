@@ -82,6 +82,7 @@ public class ViewFacultyNodeController extends AnchorPane{
                     .initModality(Modality.WINDOW_MODAL).initOwner(((Node)e.getSource()).getScene().getWindow()).initStyle(StageStyle.UNDECORATED)
                     .build();
             sst.setScene(new Scene(new ViewFacultyDetailsController(user)));
+            sst.setOnHiding(ee->initialize());
             sst.show();
         });
     }

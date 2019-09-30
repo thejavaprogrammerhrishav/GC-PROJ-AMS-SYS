@@ -7,9 +7,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: rgba(0,0,0,0.5);" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root prefHeight="769.0" prefWidth="1366.0" style="-fx-background-color: rgba(0,0,0,0.2);" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <AnchorPane layoutX="185.0" layoutY="96.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="997.0" style="-fx-background-color: #fff;">
+      <AnchorPane layoutX="185.0" layoutY="97.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="997.0" style="-fx-background-color: #fff;">
          <children>
             <AnchorPane prefHeight="576.0" prefWidth="311.0" style="-fx-background-color: #fff; -fx-border-color: #f0f0f0; -fx-border-width: 0 2 0 0;">
                <children>
