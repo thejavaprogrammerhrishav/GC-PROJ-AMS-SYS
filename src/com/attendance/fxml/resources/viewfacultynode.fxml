@@ -13,7 +13,7 @@
          <children>
             <AnchorPane prefHeight="576.0" prefWidth="311.0" style="-fx-background-color: #fff; -fx-border-color: #f0f0f0; -fx-border-width: 0 2 0 0;">
                <children>
-                  <ImageView fitHeight="119.0" fitWidth="118.0" layoutX="97.0" layoutY="65.0" pickOnBounds="true">
+                  <ImageView fx:id="icon" fitHeight="119.0" fitWidth="118.0" layoutX="97.0" layoutY="65.0" pickOnBounds="true">
                      <image>
                         <Image url="@LogoMakr_1wJdNX.png" />
                      </image>

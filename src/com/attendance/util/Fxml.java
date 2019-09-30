@@ -244,32 +244,32 @@ public class Fxml {
     public static FXMLLoader getPrincipalDashboardPrincipalAccountNodeFXML() {
         return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/principaldashboardprincipalaccount.fxml"));
     }
-    
+
     public static FXMLLoader getPrincipalDashboardHODAccountNodeFXML() {
         return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/principaldashboardhodaccount.fxml"));
     }
-    
+
     public static FXMLLoader getProfileFXML() {
         return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/profile.fxml"));
     }
-    
+
     public static FXMLLoader getChangePasswordFXML() {
         return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/changepassword.fxml"));
     }
-    
-     public static FXMLLoader getPrincipalLoginActivityFXML() {
+
+    public static FXMLLoader getPrincipalLoginActivityFXML() {
         return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/principalloginactivity.fxml"));
     }
-     
-      public static FXMLLoader getFacultyLoginActivityFXML() {
+
+    public static FXMLLoader getFacultyLoginActivityFXML() {
         return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/facultyloginactivitynode.fxml"));
     }
-      
-        public static FXMLLoader getViewFacultyNodeFXML() {
+
+    public static FXMLLoader getViewFacultyNodeFXML() {
         return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/vfnode.fxml"));
     }
-        
-             public static FXMLLoader getViewFacultyDetailsFXML() {
+
+    public static FXMLLoader getViewFacultyDetailsNodeFXML() {
         return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/viewfacultynode.fxml"));
     }
 }
