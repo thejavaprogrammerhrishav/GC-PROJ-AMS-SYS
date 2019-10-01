@@ -148,6 +148,7 @@ public class PrincipalDashboardController extends AnchorPane {
         faculty.setOnAction(new ShowDepartmentPage("Faculty"));
         classdetails.setOnAction(new ShowDepartmentPage("Class Details"));
         dailyclassreport.setOnAction(new ShowDepartmentPage("Daily Class Details"));
+        verifyhod.setOnAction(new ShowDepartmentPage("verifyhod"));
         totalstudents.setOnAction(e -> pane.getChildren().setAll(RootFactory.getPrincipalDashboardStudentNodeRoot()));
         totalfaculties.setOnAction(e -> pane.getChildren().setAll(RootFactory.getPrincipalDashboardFacultyNodeRoot()));
         totaldepartments.setOnAction(e -> pane.getChildren().setAll(RootFactory.getPrincipalDashboardDepartmentNodeRoot()));
@@ -188,6 +189,10 @@ public class PrincipalDashboardController extends AnchorPane {
                 
             } else if (type.equals("Daily Class Details")) {
                 st.getScene().setRoot(RootFactory.getSelectDepartmentRoot("Daily Class Details", PrincipalDashboardController.this.getScene().getRoot()));
+                
+            }
+            else if (type.equals("verifyhod")) {
+                st.getScene().setRoot(RootFactory.getSelectDepartmentRoot("verifyhod", PrincipalDashboardController.this.getScene().getRoot()));
                 
             }
             st.show();

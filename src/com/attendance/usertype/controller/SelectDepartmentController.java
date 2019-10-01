@@ -84,6 +84,9 @@ public class SelectDepartmentController extends AnchorPane {
             SystemUtils.setDepartment(department.getSelectionModel().getSelectedItem());
             SwitchRoot.switchRoot(Start.st, RootFactory.getDailyStatsRoot(parent));
         } 
-
+        else if (department.getSelectionModel().getSelectedIndex() != -1 && type.equals("verifyhod")) {
+            SystemUtils.setDepartment(department.getSelectionModel().getSelectedItem());
+            SwitchRoot.switchRoot(Start.st, RootFactory.getPendingRequestRoot(parent, SystemUtils.getDepartment()));
+        }
     }
 }

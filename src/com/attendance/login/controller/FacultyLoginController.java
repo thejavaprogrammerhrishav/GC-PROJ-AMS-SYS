@@ -122,7 +122,7 @@ public class FacultyLoginController extends AnchorPane {
             @Override
             protected boolean authenticate(String username, String password) {
                 user = faculty.findByUsernameDepartmentType(username, SystemUtils.getDepartment(), ROLE);
-                boolean b = user.getStatus().equals("Accepted");
+                boolean b = user.getStatus().equals("Accept");
                 return username.equals(user.getUsername()) && password.equals(user.getPassword())&&b;
             }
         };
