@@ -272,4 +272,12 @@ public class Fxml {
     public static FXMLLoader getViewFacultyDetailsNodeFXML() {
         return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/viewfacultynode.fxml"));
     }
+    
+    public static FXMLLoader getPendingRequestFXML() {
+        return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/pendingrequests.fxml"));
+    }
+    
+    public static FXMLLoader getPendingRequestNodeNodeFXML() {
+        return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/requestnode.fxml"));
+    }
 }

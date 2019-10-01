@@ -11,6 +11,8 @@
         <property name="password" column="password" not-null="true"/>
         <property name="type" column="type" not-null="true"/>
         <property name="department" column="department" not-null="true"/>
+        <property name="date" column="cdate" not-null="true"/>
+        <property name="status" column="status" not-null="true"/>
         <property name="image">
             <column name="image" sql-type="longblob" not-null="true"/>
         </property>

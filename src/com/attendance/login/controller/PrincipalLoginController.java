@@ -115,7 +115,8 @@ public class PrincipalLoginController extends AnchorPane {
             @Override
             protected boolean authenticate(String username, String password) {
                 user = principal.findByUsernameDepartmentType(username, "N/A", userRole);
-                return username.equals(user.getUsername()) && password.equals(user.getPassword());
+                boolean b = user.getStatus().equals("Accepted");
+                return username.equals(user.getUsername()) && password.equals(user.getPassword())&&b;
             }
         };
 

@@ -22,6 +22,7 @@ import com.attendance.login.controller.FacultyLoginController;
 import com.attendance.login.controller.PrincipalLoginController;
 import com.attendance.login.forgot.ChangePasswordController;
 import com.attendance.login.forgot.ForgotPasswordController;
+import com.attendance.login.request.PendingRequestController;
 import com.attendance.login.signup.HODSignupController;
 import com.attendance.login.signup.FacultySignUpController;
 import com.attendance.login.signup.PrincipalSignUpController;
@@ -306,5 +307,9 @@ public class RootFactory {
         
       public static Parent getChangePasswordRoot(Parent parent){
           return new ChangePasswordController(parent);
+      }
+      
+      public static Parent getPendingRequestRoot(Parent parent,String department) {
+          return new PendingRequestController(parent, department);
       }
 }

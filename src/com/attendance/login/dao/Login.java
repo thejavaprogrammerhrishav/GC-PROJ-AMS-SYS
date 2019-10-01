@@ -35,5 +35,9 @@ public interface Login {
     public abstract int isUsernameExists(String username);
     
     public abstract int count(String sql);
+    
+    public abstract List<User> findByStatus(String status);
+    
+    public abstract List<User> findByStatusAndDepartment(String status, String department);
 
 }

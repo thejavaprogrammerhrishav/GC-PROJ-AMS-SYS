@@ -29,6 +29,8 @@ import javafx.scene.Parent;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
 
 /**
  *
@@ -96,6 +98,8 @@ public class PrincipalSignUpController extends AnchorPane {
                 user.setPassword(password.getText());
                 user.setImage(SystemUtils.getDefaultAccountIcon());
                 user.setDepartment("N/A");
+                user.setStatus("Pending");
+                user.setDate(DateTime.now().toString(DateTimeFormat.forPattern("dd MM yyyy")));
 
                 principal.setName(fullname.getText());
                 principal.setContact(contact.getText());
@@ -107,7 +111,7 @@ public class PrincipalSignUpController extends AnchorPane {
                 user.setPersonalid(save);
                 login.save(user);
 
-                MessageUtil.showError(Message.INFORMATION, "Principal SignUp", "User signup successful\nPrincipal account created successfully", ((Node) E.getSource()).getScene().getWindow());
+                MessageUtil.showError(Message.INFORMATION, "Principal SignUp", "User signup successful\nPrincipal account created successfully\nCurrent Account Status :"+user.getStatus(), ((Node) E.getSource()).getScene().getWindow());
 
             } else {
                 MessageUtil.showError(Message.ERROR, "Principal SignUp", "Passwords dont match \nCheck password again", ((Node) E.getSource()).getScene().getWindow());

@@ -18,18 +18,22 @@ public class User implements Serializable{
     private String password;
     private String type;
     private String department;
+    private String date;
+    private String status;
     private byte[] image;
 
     public User() {
     }
 
-    public User(int id, int personalid, String username, String password, String type, String department, byte[] image) {
+    public User(int id, int personalid, String username, String password, String type, String department, String date, String status, byte[] image) {
         this.id = id;
         this.personalid = personalid;
         this.username = username;
         this.password = password;
         this.type = type;
         this.department = department;
+        this.date = date;
+        this.status = status;
         this.image = image;
     }
 
@@ -81,6 +85,22 @@ public class User implements Serializable{
         this.department = department;
     }
 
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     public byte[] getImage() {
         return image;
     }
@@ -88,6 +108,6 @@ public class User implements Serializable{
     public void setImage(byte[] image) {
         this.image = image;
     }
-    
+
     
 }

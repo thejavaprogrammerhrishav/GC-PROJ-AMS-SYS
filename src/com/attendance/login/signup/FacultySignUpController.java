@@ -29,6 +29,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.StageStyle;
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
 
 /**
  *
@@ -103,6 +105,8 @@ public class FacultySignUpController extends AnchorPane {
                 user.setUsername(username.getText());
                 user.setImage(SystemUtils.getDefaultAccountIcon());
                 user.setDepartment(SystemUtils.getDepartment());
+                user.setStatus("Pending");
+                user.setDate(DateTime.now().toString(DateTimeFormat.forPattern("dd MM yyyy")));
                 
                 faculty.setName(fullname.getText());
                 faculty.setContact(contact.getText());
@@ -117,7 +121,7 @@ public class FacultySignUpController extends AnchorPane {
 
                 Alert al = new Alert(Alert.AlertType.INFORMATION);
                 al.setHeaderText("Faculty Sign Up");
-                al.setContentText("Sign Up Successful\nFaculty account created successfully with faculty details");
+                al.setContentText("Sign Up Successful\nFaculty account created successfully with faculty details\nCurrent Account Status :"+user.getStatus());
                 al.initOwner(((Node) e.getSource()).getScene().getWindow());
                 al.initModality(Modality.WINDOW_MODAL);
                 al.initStyle(StageStyle.UNDECORATED);

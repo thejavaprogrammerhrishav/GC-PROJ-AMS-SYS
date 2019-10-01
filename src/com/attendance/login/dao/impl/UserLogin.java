@@ -99,4 +99,16 @@ public class UserLogin implements Login {
         return jdbcTemplate.queryForObject(sql, Integer.class);
     }
 
+    @Override
+    @Transactional
+    public List<User> findByStatus(String status) {
+        return (List<User>) hibernateTemplate.find("From User where status = ?", status);
+    }
+
+    @Override
+    @Transactional
+    public List<User> findByStatusAndDepartment(String status, String department) {
+        return (List<User>) hibernateTemplate.find("From User where status = ? and department = ?", status , department);
+    }
+
 }
