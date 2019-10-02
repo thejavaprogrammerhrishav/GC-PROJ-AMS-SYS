@@ -11,6 +11,7 @@ import com.attendance.personal.dao.PersonalDetailsDao;
 import com.attendance.personal.model.PersonalDetails;
 import com.attendance.util.Fxml;
 import com.attendance.util.StageUtil;
+import com.attendance.util.SwitchRoot;
 import com.jfoenix.controls.JFXButton;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -33,9 +34,9 @@ import javafx.stage.StageStyle;
  *
  * @author pc
  */
-public class ViewFacultyNodeController extends AnchorPane{
-    
-        @FXML
+public class ViewFacultyNodeController extends AnchorPane {
+
+    @FXML
     private ImageView icon;
 
     @FXML
@@ -46,47 +47,40 @@ public class ViewFacultyNodeController extends AnchorPane{
 
     @FXML
     private JFXButton view;
-    
+
     private FXMLLoader fxml;
     private User user;
-    
+
     private PersonalDetails details;
     private PersonalDetailsDao dao;
 
     public ViewFacultyNodeController(User user) {
         this.user = user;
-        
+
         fxml = Fxml.getViewFacultyNodeFXML();
         fxml.setController(this);
         fxml.setRoot(this);
-            try {
-                fxml.load();
-            } catch (IOException ex) {
-                Logger.getLogger(ViewFacultyNodeController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        try {
+            fxml.load();
+        } catch (IOException ex) {
+            Logger.getLogger(ViewFacultyNodeController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
-    
+
     @FXML
     private void initialize() {
         dao = (PersonalDetailsDao) Start.app.getBean("personal");
         details = dao.findById(user.getPersonalid());
         setvalues();
     }
-    
+
     private void setvalues() {
         icon.setImage(new Image(new ByteArrayInputStream(user.getImage())));
         name.setText(details.getName());
         type.setText(user.getType());
-        view.setOnAction(e->{
-            Stage sst=StageUtil.newStage().centerOnScreen().fullScreen(true).fullScreenExitHint("").fullScreenExitKeyCombination(KeyCombination.NO_MATCH)
-                    .initModality(Modality.WINDOW_MODAL).initOwner(((Node)e.getSource()).getScene().getWindow()).initStyle(StageStyle.UNDECORATED)
-                    .build();
-            sst.setScene(new Scene(new ViewFacultyDetailsController(user)));
-            sst.setOnHiding(ee->initialize());
-            sst.show();
-        });
+        view.setOnAction(e->SwitchRoot.switchRoot(Start.st, new ViewFacultyDetailsController(user,Start.st.getScene().getRoot())));
     }
-    
+
     public String getName() {
         return details.getName();
     }

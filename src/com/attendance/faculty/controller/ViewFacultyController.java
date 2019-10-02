@@ -75,11 +75,8 @@ public class ViewFacultyController extends AnchorPane {
         department.setText("Department: " + cdepartment);
 
         loadAllFaculty(null);
-
         allfaculties.setOnAction(this::loadAllFaculty);
-
         close.setOnAction(e -> SwitchRoot.switchRoot(Start.st, parent));
-
         search.setOnAction(this::searchFaculty);
     }
 
