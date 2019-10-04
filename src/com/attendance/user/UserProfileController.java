@@ -245,6 +245,8 @@ public class UserProfileController extends AnchorPane {
         updateuser.setType(user.getType());
         updateuser.setDepartment(user.getDepartment());
         updateuser.setPersonalid(details.getId());
+        updateuser.setStatus(user.getStatus());
+        updateuser.setDate(user.getDate());
 
         if (imageChanged) {
             updateuser.setImage(SystemUtils.getByteArrayFromImage(profilepic.getImage()));

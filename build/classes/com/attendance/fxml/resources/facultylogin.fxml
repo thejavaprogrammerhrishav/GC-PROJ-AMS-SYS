@@ -24,12 +24,12 @@
                   <Font name="Tw Cen MT" size="25.0" />
                </font>
             </Label>
-            <JFXTextField fx:id="username" focusColor="#3e62d0" labelFloat="true" layoutX="710.0" layoutY="296.0" prefHeight="32.0" prefWidth="370.0" promptText="Enter username " style="-fx-prompt-text-fill: #4d4d4d; -fx-text-fill: #3e62d0;" text="cv">
+            <JFXTextField fx:id="username" focusColor="#3e62d0" labelFloat="true" layoutX="710.0" layoutY="296.0" prefHeight="32.0" prefWidth="370.0" promptText="Enter username " style="-fx-prompt-text-fill: #4d4d4d; -fx-text-fill: #3e62d0;">
                <font>
                   <Font name="Segoe UI" size="17.0" />
                </font>
             </JFXTextField>
-            <JFXPasswordField fx:id="password" focusColor="#3e62d0" labelFloat="true" layoutX="710.0" layoutY="384.0" prefHeight="31.0" prefWidth="370.0" promptText="Enter Password" style="-fx-prompt-text-fill: #4d4d4d; -fx-text-fill: #3e62d0;" text="cv">
+            <JFXPasswordField fx:id="password" focusColor="#3e62d0" labelFloat="true" layoutX="710.0" layoutY="384.0" prefHeight="31.0" prefWidth="370.0" promptText="Enter Password" style="-fx-prompt-text-fill: #4d4d4d; -fx-text-fill: #3e62d0;">
                <font>
                   <Font name="Segoe UI" size="17.0" />
                </font>
