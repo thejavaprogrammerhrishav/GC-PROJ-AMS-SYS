@@ -19,7 +19,7 @@
    <children>
       <Pane prefHeight="768.0" prefWidth="296.0" style="-fx-background-color: black;">
          <children>
-            <ImageView fitHeight="84.0" fitWidth="88.0" layoutX="106.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="84.0" fitWidth="88.0" layoutX="106.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../resources/LogoMakr_1wJdNX.png" />
                </image>
@@ -101,9 +101,9 @@
       </Pane>
       <Pane layoutX="314.0" layoutY="501.0" prefHeight="245.0" prefWidth="686.0" style="-fx-background-color: violet;">
          <children>
-            <Label alignment="CENTER" layoutX="202.0" layoutY="24.0" prefHeight="52.0" prefWidth="282.0" text="Today's Class Routine " textFill="WHITE">
+            <Label alignment="CENTER" layoutX="183.0" layoutY="21.0" prefHeight="52.0" prefWidth="320.0" text="Departmental Routine" textFill="WHITE">
                <font>
-                  <Font name="Tw Cen MT" size="20.0" />
+                  <Font name="Tw Cen MT" size="36.0" />
                </font>
             </Label>
             <Label layoutX="23.0" layoutY="107.0" text="Department" textFill="WHITE">
@@ -118,7 +118,7 @@
             </Label>
             <JFXComboBox fx:id="department" layoutX="132.0" layoutY="99.0" prefHeight="35.0" prefWidth="211.0" promptText="Select Department" style="-fx-font-family: 'Tw Cen MT',arial; -fx-font-size: 16; -fx-prompt-text-fill: white;" unFocusColor="WHITE" />
             <JFXComboBox fx:id="year" layoutX="566.0" layoutY="99.0" prefHeight="35.0" prefWidth="84.0" promptText="Year" style="-fx-font-family: 'Tw Cen MT',arial; -fx-font-size: 16; -fx-prompt-text-fill: white;" unFocusColor="WHITE" />
-            <JFXButton fx:id="open" buttonType="RAISED" layoutX="287.0" layoutY="180.0" prefHeight="25.0" prefWidth="112.0" style="-fx-background-color: red;" text="Open" textFill="WHITE">
+            <JFXButton fx:id="open" buttonType="RAISED" layoutX="248.0" layoutY="178.0" prefHeight="33.0" prefWidth="190.0" style="-fx-background-color: red;" text="View Routine" textFill="WHITE">
                <font>
                   <Font name="Tw Cen MT" size="18.0" />
                </font>
@@ -213,7 +213,7 @@
                   <Font name="Tw Cen MT" size="22.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="21.0" layoutY="44.0" prefHeight="68.0" prefWidth="162.0" text="Verify pending request for faulty accounts of your department" textFill="#907a7a" wrapText="true">
+            <Label alignment="CENTER" layoutX="21.0" layoutY="44.0" prefHeight="68.0" prefWidth="162.0" text="Verify pending request for HOD accounts of your department" textFill="#907a7a" wrapText="true">
                <font>
                   <Font name="Tw Cen MT" size="15.0" />
                </font>
@@ -223,7 +223,7 @@
                   <Font name="Tw Cen MT" size="15.0" />
                </font>
             </JFXButton>
-            <Label fx:id="pending" alignment="CENTER" layoutX="216.0" layoutY="29.0" prefHeight="30.0" prefWidth="162.0" style="-fx-background-color: #9DC735;" text="23 pending" textFill="WHITE" wrapText="true">
+            <Label fx:id="pending" alignment="CENTER" layoutX="216.0" layoutY="29.0" prefHeight="30.0" prefWidth="162.0" style="-fx-background-color: #3a8112;" text="23 pending" textFill="WHITE" wrapText="true">
                <font>
                   <Font name="Tw Cen MT Bold" size="16.0" />
                </font>
