@@ -99,7 +99,7 @@ public class PrincipalSignUpController extends AnchorPane {
                 user.setImage(SystemUtils.getDefaultAccountIcon());
                 user.setDepartment("N/A");
                 user.setStatus("Pending");
-                user.setDate(DateTime.now().toString(DateTimeFormat.forPattern("dd MM yyyy")));
+                user.setDate(DateTime.now().toString(DateTimeFormat.forPattern("dd-MM-yyyy")));
 
                 principal.setName(fullname.getText());
                 principal.setContact(contact.getText());

@@ -18,6 +18,7 @@ import java.util.function.Function;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -28,6 +29,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
+import org.joda.time.ReadableInstant;
+import org.joda.time.format.DateTimeFormat;
 
 /**
  *
@@ -88,6 +93,9 @@ public class PendingRequestController extends AnchorPane {
 
     private String reqtype;
 
+    private Thread thread;
+    private Runnable main, run;
+
     public PendingRequestController(Parent parent, String sdepartment) {
 
         this.parent = parent;
@@ -104,6 +112,22 @@ public class PendingRequestController extends AnchorPane {
 
     @FXML
     private void initialize() {
+        run = () -> {
+            int count = login.count("select count(*) from loginuser where status = 'Pending' and type = '" + reqtype + "' and department = '" + sdepartment + "'");
+            totalpendingrequest.setText("" + count);
+        };
+
+        main = () -> {
+            while (true) {
+                Platform.runLater(run);
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(PendingRequestController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        };
+
         login = (Login) Start.app.getBean("userlogin");
         department.setText(sdepartment);
         usertype.setText(SystemUtils.getCurrentUser().getType());
@@ -119,8 +143,8 @@ public class PendingRequestController extends AnchorPane {
         }
         requesttype.setText(reqtype);
 
-        int count = login.count("select count(*) from loginuser where status = 'Pending' and type = '" + reqtype + "' and department = '" + sdepartment + "'");
-        totalpendingrequest.setText("" + count);
+        thread = new Thread(main);
+        thread.start();
         pending(null);
         buttonActions();
     }
@@ -132,12 +156,16 @@ public class PendingRequestController extends AnchorPane {
         decline.setOnAction(this::decline);
         onhold.setOnAction(this::onhold);
         search.setOnAction(this::search);
+
+        today.setOnAction(this::today);
+        thismonth.setOnAction(this::month);
+        older.setOnAction(this::older);
     }
 
     private void pending(ActionEvent evt) {
         List<User> users = login.findByStatusAndDepartment("Pending", sdepartment).stream().filter(p -> p.getType().equals(reqtype)).collect(Collectors.toList());
         List<PendingRequestNodeController> collected = users.stream().map(new Function<User, PendingRequestNodeController>() {
-            int i = 1;
+            private int i = 1;
 
             @Override
             public PendingRequestNodeController apply(User t) {
@@ -147,7 +175,7 @@ public class PendingRequestController extends AnchorPane {
         }).collect(Collectors.toList());
         list.getChildren().setAll(collected);
     }
-    
+
     private void accept(ActionEvent evt) {
         List<User> users = login.findByStatusAndDepartment("Accept", sdepartment).stream().filter(p -> p.getType().equals(reqtype)).collect(Collectors.toList());
         List<PendingRequestNodeController> collected = users.stream().map(new Function<User, PendingRequestNodeController>() {
@@ -161,7 +189,7 @@ public class PendingRequestController extends AnchorPane {
         }).collect(Collectors.toList());
         list.getChildren().setAll(collected);
     }
-    
+
     private void onhold(ActionEvent evt) {
         List<User> users = login.findByStatusAndDepartment("OnHold", sdepartment).stream().filter(p -> p.getType().equals(reqtype)).collect(Collectors.toList());
         List<PendingRequestNodeController> collected = users.stream().map(new Function<User, PendingRequestNodeController>() {
@@ -175,7 +203,7 @@ public class PendingRequestController extends AnchorPane {
         }).collect(Collectors.toList());
         list.getChildren().setAll(collected);
     }
-    
+
     private void decline(ActionEvent evt) {
         List<User> users = login.findByStatusAndDepartment("Decline", sdepartment).stream().filter(p -> p.getType().equals(reqtype)).collect(Collectors.toList());
         List<PendingRequestNodeController> collected = users.stream().map(new Function<User, PendingRequestNodeController>() {
@@ -189,11 +217,64 @@ public class PendingRequestController extends AnchorPane {
         }).collect(Collectors.toList());
         list.getChildren().setAll(collected);
     }
-    
+
     private void search(ActionEvent evt) {
         ObservableList<Node> children = list.getChildren();
-        List<PendingRequestNodeController> items = children.stream().map(m-> (PendingRequestNodeController)m).collect(Collectors.toList());
-        List<PendingRequestNodeController> collected = items.stream().filter(f-> f.getName().contains(searchhere.getText())).collect(Collectors.toList());
+        List<PendingRequestNodeController> items = children.stream().map(m -> (PendingRequestNodeController) m).collect(Collectors.toList());
+        List<PendingRequestNodeController> collected = items.stream().filter(f -> f.getName().contains(searchhere.getText())).collect(Collectors.toList());
+        list.getChildren().setAll(collected);
+    }
+
+    private void today(ActionEvent evt) {
+        List<User> users = login.findByDepartment(sdepartment).stream().filter(p -> p.getType().equals(reqtype) && p.getDate().equals(DateTime.now().toString(DateTimeFormat.forPattern("dd-MM-yyyy")))).collect(Collectors.toList());
+        List<PendingRequestNodeController> collected = users.stream().map(new Function<User, PendingRequestNodeController>() {
+            int i = 1;
+
+            @Override
+            public PendingRequestNodeController apply(User t) {
+
+                return new PendingRequestNodeController(i++, t);
+            }
+        }).collect(Collectors.toList());
+        list.getChildren().setAll(collected);
+    }
+
+    private void month(ActionEvent evt) {
+        List<User> users = login.findByDepartment(sdepartment).stream().filter(p -> p.getType().equals(reqtype)).collect(Collectors.toList());
+        users = users.stream().filter(p -> {
+            DateTime dt = DateTimeFormat.forPattern("dd-MM-yyyy").parseDateTime(p.getDate());
+            return DateTime.now().toString(DateTimeFormat.forPattern("MM-yyyy")).equals(dt.toString(DateTimeFormat.forPattern("MM-yyyy")));
+        }).collect(Collectors.toList());
+
+        List<PendingRequestNodeController> collected = users.stream().map(new Function<User, PendingRequestNodeController>() {
+            private int i = 1;
+
+            @Override
+            public PendingRequestNodeController apply(User t) {
+
+                return new PendingRequestNodeController(i++, t);
+            }
+        }).collect(Collectors.toList());
+        list.getChildren().setAll(collected);
+    }
+
+    private void older(ActionEvent evt) {
+         List<User> users = login.findByDepartment(sdepartment).stream().filter(p -> p.getType().equals(reqtype)).collect(Collectors.toList());
+        users = users.stream().filter(p -> {
+            DateTime dt = DateTimeFormat.forPattern("dd-MM-yyyy").parseDateTime(p.getDate());
+            DateTime ndt=DateTimeFormat.forPattern("dd-MM-yyyy").parseDateTime("01-"+DateTime.now().toString(DateTimeFormat.forPattern("MM-yyyy")));
+            return dt.isBefore(ndt);
+        }).collect(Collectors.toList());
+
+        List<PendingRequestNodeController> collected = users.stream().map(new Function<User, PendingRequestNodeController>() {
+            private int i = 1;
+
+            @Override
+            public PendingRequestNodeController apply(User t) {
+
+                return new PendingRequestNodeController(i++, t);
+            }
+        }).collect(Collectors.toList());
         list.getChildren().setAll(collected);
     }
 

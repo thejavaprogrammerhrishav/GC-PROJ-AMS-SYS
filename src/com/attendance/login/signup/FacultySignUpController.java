@@ -106,7 +106,7 @@ public class FacultySignUpController extends AnchorPane {
                 user.setImage(SystemUtils.getDefaultAccountIcon());
                 user.setDepartment(SystemUtils.getDepartment());
                 user.setStatus("Pending");
-                user.setDate(DateTime.now().toString(DateTimeFormat.forPattern("dd MM yyyy")));
+                user.setDate(DateTime.now().toString(DateTimeFormat.forPattern("dd-MM-yyyy")));
                 
                 faculty.setName(fullname.getText());
                 faculty.setContact(contact.getText());

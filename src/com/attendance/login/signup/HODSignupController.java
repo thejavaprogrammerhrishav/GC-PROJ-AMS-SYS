@@ -107,7 +107,7 @@ public class HODSignupController extends AnchorPane {
                 user.setImage(SystemUtils.getDefaultAccountIcon());
                 user.setDepartment(SystemUtils.getDepartment());
                  user.setStatus("Pending");
-                user.setDate(DateTime.now().toString(DateTimeFormat.forPattern("dd MM yyyy")));
+                user.setDate(DateTime.now().toString(DateTimeFormat.forPattern("dd-MM-yyyy")));
 
                 hod.setName(fullname.getText());
                 hod.setContact(contact.getText());
