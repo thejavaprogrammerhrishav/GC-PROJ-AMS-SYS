@@ -8,6 +8,8 @@ package com.attendance.marks.controller;
 import com.attendance.main.Start;
 import com.attendance.marks.dao.UnitTestDao;
 import com.attendance.marks.model.UnitTest;
+import com.attendance.util.ExportUTReport;
+import com.attendance.util.ExportUTReportTable;
 import com.attendance.util.Fxml;
 import com.attendance.util.SwitchRoot;
 import com.attendance.util.SystemUtils;
@@ -115,6 +117,8 @@ public class UnitTestReportController extends AnchorPane {
         load.setOnAction(this::populateTable);
         clear.setOnAction(eh -> list.getItems().clear());
         close.setOnAction(e -> SwitchRoot.switchRoot(Start.st, parent));
+        report.setOnAction(this::exportReport);
+        table.setOnAction(this::exportTable);
     }
 
     private void initFilter() {
@@ -168,4 +172,20 @@ public class UnitTestReportController extends AnchorPane {
         list.getItems().setAll(collect);
     }
 
+    private void exportReport(ActionEvent evt) {
+        ExportUTReport exp = new ExportUTReport(list);
+        try {
+            exp.createFile().convertToExcel("Unit Test Report").exportToFile();
+        } catch (IOException ex) {
+            Logger.getLogger(UnitTestReportController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    private void exportTable(ActionEvent evt) {
+        ExportUTReportTable exp = new ExportUTReportTable(list);
+        try {
+            exp.createFile().convertToExcel("Unit Test Report Table").exportToFile();
+        } catch (IOException ex) {
+            Logger.getLogger(UnitTestReportController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }
