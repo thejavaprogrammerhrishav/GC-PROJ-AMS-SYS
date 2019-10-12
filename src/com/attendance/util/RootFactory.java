@@ -27,6 +27,7 @@ import com.attendance.login.signup.HODSignupController;
 import com.attendance.login.signup.FacultySignUpController;
 import com.attendance.login.signup.PrincipalSignUpController;
 import com.attendance.login.user.model.User;
+import com.attendance.marks.controller.UnitTestReportController;
 import com.attendance.marks.controller.UploadUnitTestMarksController;
 import com.attendance.notes.controller.DownloadNotesController;
 import com.attendance.notes.controller.UploadNotesController;
@@ -311,5 +312,9 @@ public class RootFactory {
       
       public static Parent getPendingRequestRoot(Parent parent,String department) {
           return new PendingRequestController(parent, department);
+      }
+      
+       public static Parent getUnitTestReportRoot(Parent parent){
+          return new UnitTestReportController(parent);
       }
 }

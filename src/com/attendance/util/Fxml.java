@@ -277,7 +277,11 @@ public class Fxml {
         return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/pendingrequests.fxml"));
     }
     
-    public static FXMLLoader getPendingRequestNodeNodeFXML() {
+    public static FXMLLoader getPendingRequestNodeFXML() {
         return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/requestnode.fxml"));
+    }
+    
+    public static FXMLLoader getUnitTestReportFXML() {
+        return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/unittestreport.fxml"));
     }
 }

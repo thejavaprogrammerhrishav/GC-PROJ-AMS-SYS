@@ -175,7 +175,8 @@ public class HODDashboardController extends AnchorPane {
         dailyattendance.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getStudentAttendanceRoot(Start.st.getScene().getRoot(), details.getName())));
         attendancereport.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getAttendanceReportRoot(Start.st.getScene().getRoot())));
         uploadmarks.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getUploadMarksRoot(Start.st.getScene().getRoot())));
-       verifyfaculty.setOnAction(e-> SwitchRoot.switchRoot(Start.st, RootFactory.getPendingRequestRoot(Start.st.getScene().getRoot(), SystemUtils.getDepartment())));
+       unittestreport.setOnAction(e-> SwitchRoot.switchRoot(Start.st, RootFactory.getUnitTestReportRoot(Start.st.getScene().getRoot())));
+        verifyfaculty.setOnAction(e-> SwitchRoot.switchRoot(Start.st, RootFactory.getPendingRequestRoot(Start.st.getScene().getRoot(), SystemUtils.getDepartment())));
         uploadnotes.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getUploadNotesRoot(Start.st.getScene().getRoot(), details.getName())));
         downloadnotes.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getDownloadNotesRoot(Start.st.getScene().getRoot())));
 

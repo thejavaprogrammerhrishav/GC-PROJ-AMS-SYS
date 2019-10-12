@@ -11,6 +11,7 @@ import java.util.List;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.orm.hibernate4.HibernateTemplate;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -30,35 +31,41 @@ public class UnitTestDaoImpl implements UnitTestDao {
     }
 
     @Override
+    @Transactional
     public int save(UnitTest ut) {
         return (int) hibernateTemplate.save(ut);
     }
 
     @Override
+    @Transactional
     public boolean update(UnitTest ut) {
         hibernateTemplate.update(ut);
         return true;
     }
 
     @Override
+    @Transactional
     public boolean delete(UnitTest ut) {
         hibernateTemplate.delete(ut);
         return true;
     }
 
     @Override
+    @Transactional
     public List<UnitTest> findAll() {
         return hibernateTemplate.loadAll(UnitTest.class);
     }
 
     @Override
+    @Transactional
     public List<UnitTest> findByUnitTest(String unitTest) {
-        return (List<UnitTest>) hibernateTemplate.find("from UnitTest where ut = ? ", unitTest);
+        return (List<UnitTest>) hibernateTemplate.find("from UnitTest where unitTest = ? ", unitTest);
     }
 
     @Override
+    @Transactional
     public List<UnitTest> findBySemesterAndAcademicyearAndYear(String semester, String academicyear, int year) {
-        return jdbcTemplate.query("select * from unittest where semester = '" + semester + "' and academicyear = '" + academicyear + "' and year = " + year, new BeanPropertyRowMapper<UnitTest>(UnitTest.class));
+        return (List<UnitTest>) hibernateTemplate.find("from UnitTest where semester = ? and acadamicYear = ? and year = ?", semester,academicyear,year);
     }
 
     @Override

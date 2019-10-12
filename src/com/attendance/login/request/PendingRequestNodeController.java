@@ -64,7 +64,7 @@ public class PendingRequestNodeController extends AnchorPane {
     public PendingRequestNodeController(int no, User user) {
         this.no = no;
         this.user = user;
-        fxml = Fxml.getPendingRequestNodeNodeFXML();
+        fxml = Fxml.getPendingRequestNodeFXML();
         fxml.setController(this);
         fxml.setRoot(this);
         try {
