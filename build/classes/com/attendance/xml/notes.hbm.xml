@@ -12,5 +12,6 @@
         <property name="file">
             <column name="file" sql-type="longblob" not-null="true"/>
         </property>
+        <property column="department" name="department" not-null="true"/>
     </class>
 </hibernate-mapping>

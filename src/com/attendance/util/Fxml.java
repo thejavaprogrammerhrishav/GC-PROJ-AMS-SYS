@@ -284,4 +284,12 @@ public class Fxml {
     public static FXMLLoader getUnitTestReportFXML() {
         return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/unittestreport.fxml"));
     }
+    
+    public static FXMLLoader getNotesDashboardFXML() {
+        return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/notes.fxml"));
+    }
+    
+    public static FXMLLoader getNotesNodeFXML() {
+        return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/notesnode.fxml"));
+    }
 }

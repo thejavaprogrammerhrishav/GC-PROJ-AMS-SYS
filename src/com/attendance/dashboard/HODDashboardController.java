@@ -104,10 +104,7 @@ public class HODDashboardController extends AnchorPane {
     private JFXButton unittestreport;
 
     @FXML
-    private JFXButton uploadnotes;
-
-    @FXML
-    private JFXButton downloadnotes;
+    private JFXButton notes;
 
     @FXML
     private JFXButton verifyfaculty;
@@ -175,10 +172,9 @@ public class HODDashboardController extends AnchorPane {
         dailyattendance.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getStudentAttendanceRoot(Start.st.getScene().getRoot(), details.getName())));
         attendancereport.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getAttendanceReportRoot(Start.st.getScene().getRoot())));
         uploadmarks.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getUploadMarksRoot(Start.st.getScene().getRoot())));
-       unittestreport.setOnAction(e-> SwitchRoot.switchRoot(Start.st, RootFactory.getUnitTestReportRoot(Start.st.getScene().getRoot())));
-        verifyfaculty.setOnAction(e-> SwitchRoot.switchRoot(Start.st, RootFactory.getPendingRequestRoot(Start.st.getScene().getRoot(), SystemUtils.getDepartment())));
-        uploadnotes.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getUploadNotesRoot(Start.st.getScene().getRoot(), details.getName())));
-        downloadnotes.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getDownloadNotesRoot(Start.st.getScene().getRoot())));
+        unittestreport.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getUnitTestReportRoot(Start.st.getScene().getRoot())));
+        verifyfaculty.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getPendingRequestRoot(Start.st.getScene().getRoot(), SystemUtils.getDepartment())));
+        notes.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getNotesDashboardRoot(Start.st.getScene().getRoot(), details.getName())));
 
     }
 
@@ -202,7 +198,7 @@ public class HODDashboardController extends AnchorPane {
 
     private void initLoginActivity(ActionEvent e) {
         String time = DateTime.now().toString(DateTimeFormat.forPattern("hh : mm : ss a"));
-        lastupdated.setText("Last Updated :- "+time);
+        lastupdated.setText("Last Updated :- " + time);
         List<LoginActivity> allLogins = new ArrayList<>(act.findByDepartment(SystemUtils.getDepartment()));
         Collections.reverse(allLogins);
         List<HODLoginActivityController> activityControllers = allLogins.stream().map(c -> new HODLoginActivityController(c)).collect(Collectors.toList());

@@ -73,17 +73,23 @@ public class NotesDaoImpl implements NotesDao {
 
     @Override
     public List<Notes> findByDateSorted(String uploadDate, String order) {
-        return jdbcTemplate.query("select * from notes where uploaddate='" + uploadDate + "' order by str_to_date(uploaddate,'%d-%M-%y') "+order, new BeanPropertyRowMapper<Notes>(Notes.class));
+        return jdbcTemplate.query("select * from notes where uploaddate='" + uploadDate + "' order by str_to_date(uploaddate,'%d-%M-%y') " + order, new BeanPropertyRowMapper<Notes>(Notes.class));
     }
 
     @Override
     public List<Notes> sortBydate(String order) {
-        return jdbcTemplate.query("select * from notes order by str_to_date(uploaddate,'%d-%M-%y') "+order, new BeanPropertyRowMapper<Notes>(Notes.class));
+        return jdbcTemplate.query("select * from notes order by str_to_date(uploaddate,'%d-%M-%y') " + order, new BeanPropertyRowMapper<Notes>(Notes.class));
     }
 
     @Override
     public List<Notes> sortByFileSize(String order) {
-        return jdbcTemplate.query("select * from notes order by filesize "+order, new BeanPropertyRowMapper<Notes>(Notes.class));
+        return jdbcTemplate.query("select * from notes order by filesize " + order, new BeanPropertyRowMapper<Notes>(Notes.class));
+    }
+
+    @Override
+    @Transactional
+    public List<Notes> findByDepartment(String department) {
+        return (List<Notes>) hibernateTemplate.find("from Notes where department =?", department);
     }
 
 }

@@ -30,6 +30,7 @@ import com.attendance.login.user.model.User;
 import com.attendance.marks.controller.UnitTestReportController;
 import com.attendance.marks.controller.UploadUnitTestMarksController;
 import com.attendance.notes.controller.DownloadNotesController;
+import com.attendance.notes.controller.NotesDashboardController;
 import com.attendance.notes.controller.UploadNotesController;
 import com.attendance.report.controller.AttendanceReportController;
 import com.attendance.settings.ClassAndDetailsSettingsController;
@@ -253,14 +254,6 @@ public class RootFactory {
     public static Parent getExportDailyStatsListRoot() {
         return new ExportDailyStatsListController();
     }
-
-    public static Parent getUploadNotesRoot(Parent p,String name) {
-        return new UploadNotesController(p,name);
-    }
-    
-    public static Parent getDownloadNotesRoot(Parent p) {
-        return new DownloadNotesController(p);
-    }
     
     public static Parent getUploadMarksRoot(Parent parent) {
         return new UploadUnitTestMarksController(parent);
@@ -317,4 +310,8 @@ public class RootFactory {
        public static Parent getUnitTestReportRoot(Parent parent){
           return new UnitTestReportController(parent);
       }
+       
+       public static Parent getNotesDashboardRoot(Parent parent, String facultyname) {
+           return new NotesDashboardController(parent , facultyname);
+       }
 }

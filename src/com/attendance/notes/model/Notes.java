@@ -16,18 +16,20 @@ public class Notes {
     private double fileSize;
     private String uploadDate;
     private byte[] file;
+    private String department;
 
     public Notes() {
-        this(-1,"","",-1,"",null);
+        this(-1,"","",-1,"",null,"");
     }
 
-    public Notes(int id, String facultyName, String fileName, double fileSize, String uploadDate,byte[] file) {
+    public Notes(int id, String facultyName, String fileName, double fileSize, String uploadDate,byte[] file,String department) {
         this.id=id;
         this.facultyName = facultyName;
         this.fileName = fileName;
         this.fileSize = fileSize;
         this.uploadDate = uploadDate;
         this.file=file;
+        this.department = department;
     }
 
     public void setId(int id) {
@@ -77,5 +79,12 @@ public class Notes {
     public byte[] getFile() {
         return file;
     }
-    
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
 }

@@ -71,7 +71,7 @@ public class SelectFacultyController extends AnchorPane {
         if (facultylist.getSelectionModel().getSelectedIndex() != -1 && type.equals("attendance")) {
             SwitchRoot.switchRoot(Start.st, RootFactory.getStudentAttendanceRoot(Start.st.getScene().getRoot(), facultylist.getSelectionModel().getSelectedItem()));
         } else if (facultylist.getSelectionModel().getSelectedIndex() != -1 && type.equals("uploadnotes")) {
-            SwitchRoot.switchRoot(Start.st, RootFactory.getUploadNotesRoot(Start.st.getScene().getRoot(), facultylist.getSelectionModel().getSelectedItem()));
+            SwitchRoot.switchRoot(Start.st, RootFactory.getNotesDashboardRoot(Start.st.getScene().getRoot(), facultylist.getSelectionModel().getSelectedItem()));
         }
     }
 }

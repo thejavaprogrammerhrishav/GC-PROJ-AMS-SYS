@@ -33,4 +33,6 @@ public interface NotesDao {
     public abstract List<Notes> sortBydate(String order);
 
     public abstract List<Notes> sortByFileSize(String order);
+    
+    public abstract List<Notes> findByDepartment(String department);
 }

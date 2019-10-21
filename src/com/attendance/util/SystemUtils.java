@@ -9,6 +9,7 @@ import com.attendance.login.activity.dao.Activity;
 import com.attendance.login.activity.model.LoginActivity;
 import com.attendance.login.user.model.User;
 import com.attendance.main.Start;
+import com.attendance.notes.controller.NotesNodeController;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
 import java.io.BufferedInputStream;
@@ -42,6 +43,8 @@ public class SystemUtils {
     private static User currentUser;
 
     private static byte[] accountImage;
+
+    private static final HashMap<String, Image> ICONS = new HashMap<>();
 
     public static String getDepartment() {
         return department;
@@ -96,6 +99,11 @@ public class SystemUtils {
         } catch (IOException e) {
             System.out.println("Error Loading Default Account Image");
         }
+        
+        ICONS.put("file", new Image(NotesNodeController.class.getResourceAsStream("/com/attendance/resources/file.png")));
+        ICONS.put("image", new Image(NotesNodeController.class.getResourceAsStream("/com/attendance/resources/image.png")));
+        ICONS.put("pdf", new Image(NotesNodeController.class.getResourceAsStream("/com/attendance/resources/pdf.png")));
+        ICONS.put("doc", new Image(NotesNodeController.class.getResourceAsStream("/com/attendance/resources/doc.png")));
     }
 
     public static void setActivity(LoginActivity activity) {
@@ -130,9 +138,13 @@ public class SystemUtils {
         return accountImage;
     }
 
+    public static HashMap<String, Image> getICONS() {
+        return ICONS;
+    }
+
     public static byte[] getByteArrayFromImage(Image img) {
         BufferedImage image = SwingFXUtils.fromFXImage(img, null);
-        ByteArrayOutputStream bout=new ByteArrayOutputStream();
+        ByteArrayOutputStream bout = new ByteArrayOutputStream();
         try {
             ImageIO.write(image, "png", bout);
         } catch (IOException ex) {
@@ -141,4 +153,5 @@ public class SystemUtils {
         return bout.toByteArray();
     }
 
+    
 }
