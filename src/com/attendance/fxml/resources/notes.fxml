@@ -106,7 +106,7 @@
                   <Font name="Tw Cen MT Bold" size="20.0" />
                </font>
             </Label>
-            <TextField fx:id="downloadpath" layoutX="25.0" layoutY="53.0" prefHeight="25.0" prefWidth="506.0" promptText="Enter Download Path..." style="-fx-background-radius: 15;">
+            <TextField fx:id="downloadpath" editable="false" layoutX="25.0" layoutY="53.0" prefHeight="25.0" prefWidth="506.0" promptText="Enter Download Path..." style="-fx-background-radius: 15;">
                <font>
                   <Font name="Tw Cen MT" size="16.0" />
                </font>
@@ -206,7 +206,7 @@
                   <Font name="Tw Cen MT Bold" size="20.0" />
                </font>
             </Label>
-            <TextField fx:id="uploadpath" layoutX="21.0" layoutY="61.0" prefHeight="30.0" prefWidth="368.0" promptText="Enter File Path..." style="-fx-background-radius: 15;">
+            <TextField fx:id="uploadpath" editable="false" layoutX="21.0" layoutY="61.0" prefHeight="30.0" prefWidth="368.0" promptText="Enter File Path..." style="-fx-background-radius: 15;">
                <font>
                   <Font name="Tw Cen MT" size="16.0" />
                </font>

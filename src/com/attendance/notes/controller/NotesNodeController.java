@@ -39,6 +39,9 @@ public class NotesNodeController extends AnchorPane {
     private Label size;
     
     @FXML
+    private Label date;
+    
+    @FXML
     private JFXCheckBox select;
 
     private FXMLLoader fxml;
@@ -61,10 +64,10 @@ public class NotesNodeController extends AnchorPane {
         filename.setText(notes.getFileName());
         size.setText(notes.getFileSize() + " MB");
         name.setText(notes.getFacultyName());
+        date.setText(notes.getUploadDate());
+        String ext = notes.getFileName().substring(notes.getFileName().lastIndexOf(".")+1);
 
-        String[] ext = notes.getFileName().split(".");
-
-        switch (ext[1]) {
+        switch (ext) {
             case "jpg":
             case "png":
             case "gif":
@@ -84,5 +87,9 @@ public class NotesNodeController extends AnchorPane {
 
     public boolean isSelected (){
         return select.isSelected();
+    }
+    
+    public Notes getNotes() {
+        return notes;
     }
 }
