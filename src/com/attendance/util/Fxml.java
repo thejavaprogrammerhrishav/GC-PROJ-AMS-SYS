@@ -292,4 +292,8 @@ public class Fxml {
     public static FXMLLoader getNotesNodeFXML() {
         return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/notesnode.fxml"));
     }
+    
+    public static FXMLLoader getNotesSearchFXML() {
+        return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/notesearch.fxml"));
+    }
 }

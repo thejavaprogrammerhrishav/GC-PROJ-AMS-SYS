@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: #f5f5f5;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane prefHeight="68.0" prefWidth="1366.0" style="-fx-background-color: #1458e7;">
+         <children>
+            <ImageView fitHeight="45.0" fitWidth="49.0" layoutX="36.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../resources/LogoMakr_1wJdNX.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="98.0" layoutY="17.0" text="Attendance Management System" textFill="WHITE">
+               <font>
+                  <Font name="Tw Cen MT" size="28.0" />
+               </font>
+            </Label>
+            <JFXButton contentDisplay="GRAPHIC_ONLY" layoutX="1310.0" layoutY="17.0" prefHeight="23.0" prefWidth="36.0">
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="CLOSE" size="1.8em" />
+               </graphic>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+      <Label layoutX="63.0" layoutY="87.0" text="Routine Mangement">
+         <font>
+            <Font name="Tw Cen MT" size="28.0" />
+         </font>
+      </Label>
+      <AnchorPane layoutX="31.0" layoutY="137.0" prefHeight="312.0" prefWidth="606.0" style="-fx-background-color: #fff;">
+         <children>
+            <ImageView fitHeight="101.0" fitWidth="92.0" layoutX="100.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../resources/LogoMakr_1wJdNX.png" />
+               </image>
+            </ImageView>
+            <Label alignment="CENTER" layoutX="22.0" layoutY="178.0" prefHeight="51.0" prefWidth="247.0" text="Hrishav Dhawaj PurkayasthaHrishav Dhawaj Purkayastha" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Tw Cen MT" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="303.0" layoutY="72.0" text="USER TYPE" textFill="#b2b2b2">
+               <font>
+                  <Font name="Tw Cen MT" size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="303.0" layoutY="93.0" prefHeight="32.0" prefWidth="273.0" style="-fx-border-color: #b1b1b1; -fx-border-width: 0 0 1 0;" text="Principal">
+               <font>
+                  <Font name="Tw Cen MT" size="17.0" />
+               </font>
+               <padding>
+                  <Insets bottom="7.0" top="7.0" />
+               </padding>
+            </Label>
+            <Label layoutX="303.0" layoutY="147.0" text="DEPARTMENT" textFill="#b2b2b2">
+               <font>
+                  <Font name="Tw Cen MT" size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="303.0" layoutY="168.0" prefHeight="32.0" prefWidth="273.0" style="-fx-border-color: #b1b1b1; -fx-border-width: 0 0 1 0;" text="Ecology &amp; Environmental Science">
+               <font>
+                  <Font name="Tw Cen MT" size="17.0" />
+               </font>
+               <padding>
+                  <Insets bottom="7.0" top="7.0" />
+               </padding>
+            </Label>
+            <Label layoutX="303.0" layoutY="224.0" text="ACCOUNT CREATION DATE" textFill="#b2b2b2">
+               <font>
+                  <Font name="Tw Cen MT" size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="303.0" layoutY="245.0" prefHeight="32.0" prefWidth="273.0" style="-fx-border-color: #b1b1b1; -fx-border-width: 0 0 1 0;" text="22 /09 / 2019">
+               <font>
+                  <Font name="Tw Cen MT" size="17.0" />
+               </font>
+               <padding>
+                  <Insets bottom="7.0" top="7.0" />
+               </padding>
+            </Label>
+            <Label alignment="CENTER" layoutX="22.0" layoutY="237.0" prefHeight="19.0" prefWidth="247.0" text="8811935123" textAlignment="CENTER" textFill="#838383" wrapText="true">
+               <font>
+                  <Font name="Tw Cen MT" size="15.0" />
+               </font>
+            </Label>
+            <AnchorPane layoutY="-1.0" prefHeight="51.0" prefWidth="606.0" style="-fx-background-color: #fff; -fx-border-color: #b1b1b1; -fx-border-width: 0 0 1 0;">
+               <children>
+                  <Label layoutX="29.0" layoutY="14.0" prefHeight="23.0" prefWidth="158.0" text="My Profile" textAlignment="CENTER" wrapText="true">
+                     <font>
+                        <Font name="Tw Cen MT" size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="31.0" layoutY="470.0" prefHeight="264.0" prefWidth="606.0" style="-fx-background-color: #fff;">
+         <children>
+            <Separator layoutX="300.0" layoutY="24.0" orientation="VERTICAL" prefHeight="220.0" />
+            <Separator layoutX="25.0" layoutY="131.0" prefWidth="550.0" />
+            <JFXButton contentDisplay="GRAPHIC_ONLY" layoutX="53.0" layoutY="31.0" prefHeight="87.0" prefWidth="190.0" />
+            <VBox alignment="TOP_CENTER" layoutX="53.0" layoutY="29.0" prefHeight="87.0" prefWidth="190.0" spacing="10.0">
+               <children>
+                  <FontAwesomeIconView glyphName="PLUS_CIRCLE" size="3.5em" />
+                  <Label text="Add New Routine">
+                     <font>
+                        <Font name="Tw Cen MT" size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </VBox>
+            <VBox alignment="TOP_CENTER" layoutX="345.0" layoutY="29.0" prefHeight="87.0" prefWidth="190.0" spacing="10.0">
+               <children>
+                  <FontAwesomeIconView glyphName="EDIT" size="3.5em" />
+                  <Label text="Update Active Routine">
+                     <font>
+                        <Font name="Tw Cen MT" size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </VBox>
+            <VBox alignment="TOP_CENTER" layoutX="53.0" layoutY="145.0" prefHeight="87.0" prefWidth="190.0" spacing="10.0">
+               <children>
+                  <FontAwesomeIconView glyphName="EYE" size="3.5em" />
+                  <Label text="View Active Routine">
+                     <font>
+                        <Font name="Tw Cen MT" size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </VBox>
+            <VBox alignment="TOP_CENTER" layoutX="345.0" layoutY="145.0" prefHeight="87.0" prefWidth="190.0" spacing="10.0">
+               <children>
+                  <FontAwesomeIconView glyphName="GLOBE" size="3.5em" />
+                  <Label text="View All Routine">
+                     <font>
+                        <Font name="Tw Cen MT" size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </VBox>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="664.0" layoutY="137.0" prefHeight="599.0" prefWidth="674.0" style="-fx-background-color: #fff;" />
+   </children>
+</AnchorPane>

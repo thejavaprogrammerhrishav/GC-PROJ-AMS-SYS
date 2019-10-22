@@ -26,6 +26,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -119,6 +121,21 @@ public class NotesDashboardController extends AnchorPane {
     @FXML
     private JFXButton refresh;
 
+    @FXML
+    private JFXButton searchbyimage;
+
+    @FXML
+    private JFXButton searchbyfile;
+
+    @FXML
+    private JFXButton selectall;
+
+    @FXML
+    private JFXButton searchbyfilename;
+    
+    @FXML
+    private JFXButton uncheck;
+
     private Parent parent;
     private String facultyName;
 
@@ -176,11 +193,19 @@ public class NotesDashboardController extends AnchorPane {
             file = directory("Download File");
             downloadpath.setText(file.getAbsolutePath());
         });
-        
+
         download.setOnAction(this::downloadFile);
         backup.setOnAction(this::backup);
         ascending.setOnAction(this::sortAscending);
         descending.setOnAction(this::sortDescending);
+
+        search.setOnAction(this::search);
+
+        searchbyfilename.setOnAction(this::fileNameSearch);
+        searchbyimage.setOnAction(this::imageSearch);
+        searchbyfile.setOnAction(this::fileSearch);
+        selectall.setOnAction(this::select);
+        uncheck.setOnAction(this::deselect);
     }
 
     private void loadData(ActionEvent evt) {
@@ -236,7 +261,7 @@ public class NotesDashboardController extends AnchorPane {
 
     private File directory(String title) {
         DirectoryChooser ch = new DirectoryChooser();
-        ch.setInitialDirectory(new File(System.getProperty("user.home")+"\\Downloads"));
+        ch.setInitialDirectory(new File(System.getProperty("user.home") + "\\Downloads"));
         ch.setTitle(title);
         return ch.showDialog(this.getScene().getWindow());
     }
@@ -297,9 +322,9 @@ public class NotesDashboardController extends AnchorPane {
         MessageUtil.showInformation(Message.INFORMATION, "Download Files", "File Successfully Downloaded\nFile directory:  " + downloadpath.getText(), this.getScene().getWindow());
 
     }
-    
+
     private void backup(ActionEvent evt) {
-        File backup =directory("Backup All Notes");
+        File backup = directory("Backup All Notes");
         List<NotesNodeController> nodes = list.getChildren().stream().map(f -> (NotesNodeController) f).collect(Collectors.toList());
         nodes.stream().forEach(c -> {
             try {
@@ -313,16 +338,71 @@ public class NotesDashboardController extends AnchorPane {
         });
         MessageUtil.showInformation(Message.INFORMATION, "Backup Files", "Backup Completed Successfully\nFile directory:  " + downloadpath.getText(), this.getScene().getWindow());
     }
-    
+
     private void sortAscending(ActionEvent evt) {
         List<Notes> data = dao.sortBydate("asc");
-        List<NotesNodeController> collect = data.stream().filter(f->f.getDepartment().equals(SystemUtils.getDepartment())).map(NotesNodeController::new).collect(Collectors.toList());
+        List<NotesNodeController> collect = data.stream().filter(f -> f.getDepartment().equals(SystemUtils.getDepartment())).map(NotesNodeController::new).collect(Collectors.toList());
+        list.getChildren().setAll(collect);
+    }
+
+    private void sortDescending(ActionEvent evt) {
+        List<Notes> data = dao.sortBydate("desc");
+        List<NotesNodeController> collect = data.stream().filter(f -> f.getDepartment().equals(SystemUtils.getDepartment())).map(NotesNodeController::new).collect(Collectors.toList());
+        list.getChildren().setAll(collect);
+    }
+
+    private void search(ActionEvent evt) {
+        List<Notes> data = dao.findByDepartment(SystemUtils.getDepartment());
+
+        if (searchbyname.isSelected()) {
+            data = data.stream().filter(f -> f.getFacultyName().equals(selectuploader.getSelectionModel().getSelectedItem())).collect(Collectors.toList());
+        }
+        if (searchbydate.isSelected()) {
+            data = data.stream().filter(f -> f.getUploadDate().equals(DateTimeFormatter.ofPattern("dd-MM-yyyy").format(enterdate.getValue()))).collect(Collectors.toList());
+        }
+
+        List<NotesNodeController> collect = data.stream().map(NotesNodeController::new).collect(Collectors.toList());
+        list.getChildren().setAll(collect);
+    }
+
+    private void fileNameSearch(ActionEvent evt) {
+        List<NotesNodeController> collect = NotesSearchController.show(this.getScene(), list.getChildren());
+        list.getChildren().setAll(collect);
+    }
+
+    private void imageSearch(ActionEvent evt) {
+        ObservableList<Node> children = list.getChildren();
+        List<NotesNodeController> collect = children.stream().map(m -> (NotesNodeController) m).collect(Collectors.toList());
+        collect = collect.stream().filter(f -> {
+            String name = f.getNotes().getFileName();
+            String ext = name.substring(name.lastIndexOf(".") + 1);
+            return (ext.equals("jpg") || ext.equals("png") || ext.equals("gif"));
+        }).collect(Collectors.toList());
+        list.getChildren().setAll(collect);
+    }
+
+    private void fileSearch(ActionEvent evt) {
+        ObservableList<Node> children = list.getChildren();
+        List<NotesNodeController> collect = children.stream().map(m -> (NotesNodeController) m).collect(Collectors.toList());
+        collect = collect.stream().filter(f -> {
+            String name = f.getNotes().getFileName();
+            String ext = name.substring(name.lastIndexOf(".") + 1);
+            return !(ext.equals("jpg") || ext.equals("png") || ext.equals("gif"));
+        }).collect(Collectors.toList());
+        list.getChildren().setAll(collect);
+    }
+
+    private void select(ActionEvent evt) {
+        ObservableList<Node> children = list.getChildren();
+        List<NotesNodeController> collect = children.stream().map(m -> (NotesNodeController) m).collect(Collectors.toList());
+        collect.stream().forEach(c->c.setSelected(true));
         list.getChildren().setAll(collect);
     }
     
-     private void sortDescending(ActionEvent evt) {
-        List<Notes> data = dao.sortBydate("desc");
-        List<NotesNodeController> collect = data.stream().filter(f->f.getDepartment().equals(SystemUtils.getDepartment())).map(NotesNodeController::new).collect(Collectors.toList());
+    private void deselect(ActionEvent evt) {
+        ObservableList<Node> children = list.getChildren();
+        List<NotesNodeController> collect = children.stream().map(m -> (NotesNodeController) m).collect(Collectors.toList());
+        collect.stream().forEach(c->c.setSelected(false));
         list.getChildren().setAll(collect);
     }
 }

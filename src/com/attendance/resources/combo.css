@@ -12,6 +12,6 @@ and open the template in the editor.
     -fx-fill: #FFF;
 }
 
-.combox > .list-cell:selected > .text {
+.combo-box > .list-cell:selected > .text {
     -fx-fill: #000;
 }

@@ -92,4 +92,9 @@ public class NotesNodeController extends AnchorPane {
     public Notes getNotes() {
         return notes;
     }
+    
+    public void setSelected(boolean val) {
+        select.setSelected(val);
+    }
+    
 }
