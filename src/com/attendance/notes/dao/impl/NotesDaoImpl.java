@@ -78,7 +78,7 @@ public class NotesDaoImpl implements NotesDao {
 
     @Override
     public List<Notes> sortBydate(String order) {
-        return jdbcTemplate.query("select * from notes order by str_to_date(uploaddate,'%d-%M-%y') " + order, new BeanPropertyRowMapper<Notes>(Notes.class));
+        return jdbcTemplate.query("select * from notes order by str_to_date(uploaddate,'%d-%m-%Y') " + order, new BeanPropertyRowMapper<Notes>(Notes.class));
     }
 
     @Override
