@@ -18,17 +18,21 @@ public class Routine {
     private String date;
     private String department;
     private byte[] image;
+    private String filename;
+    private String status;
 
     public Routine() {
     }
 
-    public Routine(int id, String name, String usertype, String date, String department, byte[] image) {
+    public Routine(int id, String name, String usertype, String date, String department, byte[] image, String filename, String status) {
         this.id = id;
         this.name = name;
         this.usertype = usertype;
         this.date = date;
         this.department = department;
         this.image = image;
+        this.filename = filename;
+        this.status = status;
     }
 
     public int getId() {
@@ -78,5 +82,23 @@ public class Routine {
     public void setImage(byte[] image) {
         this.image = image;
     }
+
+    public String getFilename() {
+        return filename;
+    }
+
+    public void setFilename(String filename) {
+        this.filename = filename;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    
     
 }

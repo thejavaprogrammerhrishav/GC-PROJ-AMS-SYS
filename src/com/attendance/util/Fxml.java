@@ -312,4 +312,21 @@ public class Fxml {
     public static FXMLLoader getUpdateActiveRoutineNodeFXML() {
         return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/updateroutinenode.fxml"));
     }
+    
+    public static FXMLLoader getViewAllRoutineFXML() {
+        return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/viewallroutine.fxml"));
+    }
+    
+    
+    public static FXMLLoader getViewAllRoutineNodeFXML() {
+        return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/viewallroutinenode.fxml"));
+    }
+    
+    public static FXMLLoader getViewRoutineFXML() {
+        return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/viewroutine.fxml"));
+    }
+    
+    public static FXMLLoader getViewActiveRoutineFXML() {
+        return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/viewactiveroutine.fxml"));
+    }
 }

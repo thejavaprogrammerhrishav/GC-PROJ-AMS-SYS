@@ -18,5 +18,7 @@ and open the template in the editor.
         <property name="image">
             <column name="image" sql-type="longblob" not-null="true"/>
         </property>
+         <property name="filename" column="filename" not-null="true"/>
+        <property name="status" column="status" not-null="true"/>
     </class>
 </hibernate-mapping>

@@ -9,6 +9,8 @@ import com.attendance.login.user.model.User;
 import com.attendance.main.Start;
 import com.attendance.personal.dao.PersonalDetailsDao;
 import com.attendance.personal.model.PersonalDetails;
+import com.attendance.routines.dao.RoutineDao;
+import com.attendance.routines.model.Routine;
 import com.attendance.util.Fxml;
 import com.attendance.util.SwitchRoot;
 import com.attendance.util.SystemUtils;
@@ -26,6 +28,9 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import org.apache.poi.hslf.record.CurrentUserAtom;
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
 
 /**
  *
@@ -73,7 +78,10 @@ public class RoutineDashboardController extends AnchorPane {
 
     private Parent parent;
     
+    private User currentUser;
+    
     private PersonalDetailsDao dao;
+    private RoutineDao rdao;
 
     public RoutineDashboardController(Parent parent) {
         this.parent = parent;
@@ -90,7 +98,8 @@ public class RoutineDashboardController extends AnchorPane {
     @FXML
     private void initialize() {
         dao = (PersonalDetailsDao) Start.app.getBean("personal");
-        User currentUser = SystemUtils.getCurrentUser();
+        rdao = (RoutineDao) Start.app.getBean("routine");
+        currentUser = SystemUtils.getCurrentUser();
         PersonalDetails personalDetails = dao.findById(currentUser.getPersonalid());
         
         image.setImage(new Image(new ByteArrayInputStream(currentUser.getImage())));
@@ -118,10 +127,18 @@ public class RoutineDashboardController extends AnchorPane {
     }
     
     private void viewactiveRoutine(ActionEvent evt) {
-        
+        if (rdao.hasActiveRoutine(currentUser.getDepartment(), DateTime.now().toString(DateTimeFormat.forPattern("yyyy")))== 1) {
+            Routine r = rdao.findByDepartmentAndDateAndStatus(currentUser.getDepartment(), DateTime.now().toString(DateTimeFormat.forPattern("yyyy")), "Active");
+        list.getChildren().setAll(Arrays.asList(new ViewActiveRoutineController(r)));
+        }else {
+            Routine rs = new Routine();
+            byte[] nor = SystemUtils.getByteArrayFromImage(SystemUtils.getICONS().get("noroutine"));
+            rs.setImage(nor);
+            list.getChildren().setAll(Arrays.asList(new ViewActiveRoutineController(rs)));
+        }
     }
     
     private void viewallRoutine(ActionEvent evt) {
-        
+        list.getChildren().setAll(Arrays.asList(new ViewAllRoutineController()));
     }
 }

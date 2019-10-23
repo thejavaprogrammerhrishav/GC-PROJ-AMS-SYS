@@ -100,10 +100,11 @@ public class SystemUtils {
             System.out.println("Error Loading Default Account Image");
         }
         
-        ICONS.put("file", new Image(NotesNodeController.class.getResourceAsStream("/com/attendance/resources/file.png")));
-        ICONS.put("image", new Image(NotesNodeController.class.getResourceAsStream("/com/attendance/resources/image.png")));
-        ICONS.put("pdf", new Image(NotesNodeController.class.getResourceAsStream("/com/attendance/resources/pdf.png")));
-        ICONS.put("doc", new Image(NotesNodeController.class.getResourceAsStream("/com/attendance/resources/doc.png")));
+        ICONS.put("file", new Image(SystemUtils.class.getResourceAsStream("/com/attendance/resources/file.png")));
+        ICONS.put("image", new Image(SystemUtils.class.getResourceAsStream("/com/attendance/resources/image.png")));
+        ICONS.put("pdf", new Image(SystemUtils.class.getResourceAsStream("/com/attendance/resources/pdf.png")));
+        ICONS.put("doc", new Image(SystemUtils.class.getResourceAsStream("/com/attendance/resources/doc.png")));
+        ICONS.put("noroutine",new Image(SystemUtils.class.getResourceAsStream("/com/attendance/resources/noroutinefound.png")));
     }
 
     public static void setActivity(LoginActivity activity) {
@@ -153,5 +154,4 @@ public class SystemUtils {
         return bout.toByteArray();
     }
 
-    
 }

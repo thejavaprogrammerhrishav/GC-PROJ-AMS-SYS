@@ -132,6 +132,8 @@ public class AddNewRoutineController extends AnchorPane {
                 fin.read(data);
                 fin.close();
                 routine.setImage(data);
+                routine.setFilename(file.getName());
+                routine.setStatus("Not Active");
                 Integer save = dao.save(routine);
                 if (save > 0) {
                     MessageUtil.showInformation(Message.INFORMATION, "Add New Routine ", "Routine Added Successfully ", this.getScene().getWindow());

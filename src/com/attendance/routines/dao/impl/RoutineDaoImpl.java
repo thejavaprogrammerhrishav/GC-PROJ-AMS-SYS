@@ -18,10 +18,10 @@ import org.springframework.transaction.annotation.Transactional;
  *
  * @author pc
  */
-public class RoutineDaoImpl implements RoutineDao{
-    
+public class RoutineDaoImpl implements RoutineDao {
+
     private HibernateTemplate hibernateTemplate;
-    
+
     private JdbcTemplate jdbcTemplate;
 
     public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
@@ -55,7 +55,7 @@ public class RoutineDaoImpl implements RoutineDao{
     @Override
     @Transactional
     public List<Routine> findAll() {
-      return   hibernateTemplate.loadAll(Routine.class);
+        return hibernateTemplate.loadAll(Routine.class);
     }
 
     @Override
@@ -79,7 +79,7 @@ public class RoutineDaoImpl implements RoutineDao{
     @Override
     @Transactional
     public List<Routine> findByDepartmentAndDate(String department, String date) {
-        return (List<Routine>) hibernateTemplate.find("from Routine where department =? and date = ?",department , date);
+        return (List<Routine>) hibernateTemplate.find("from Routine where department =? and date = ?", department, date);
     }
 
     @Override
@@ -89,8 +89,30 @@ public class RoutineDaoImpl implements RoutineDao{
 
     @Override
     public List<Routine> sortByDepartment(String department, String order) {
-        return jdbcTemplate.query("select * from routine where department = '"+department+"' order by str_to_date(date,'%d-%m-%Y') " + order, new BeanPropertyRowMapper<Routine>(Routine.class));
+        return jdbcTemplate.query("select * from routine where department = '" + department + "' order by str_to_date(date,'%d-%m-%Y') " + order, new BeanPropertyRowMapper<Routine>(Routine.class));
     }
-    
-    
+
+    @Override
+    @Transactional
+    public List<Routine> findByDepartmentAndYear(String department, String year) {
+        return (List<Routine>) hibernateTemplate.find("from Routine where department =? and date like ?", department, "%" + year);
+    }
+
+    @Override
+    @Transactional
+    public Routine findByDepartmentAndDateAndStatus(String department, String date, String status) {
+        return ((List<Routine>) hibernateTemplate.find("from Routine where department =? and date like ? and status = ?", department, "%" + date, status)).get(0);
+    }
+
+    @Override
+    @Transactional
+    public List<Routine> findByDepartmentAndStatus(String department, String status) {
+        return (List<Routine>) hibernateTemplate.find("from Routine where department =? and status = ?", department, status);
+    }
+
+    @Override
+    public Integer hasActiveRoutine(String department, String year) {
+        return jdbcTemplate.queryForObject("select count(*) from routine where department = '" + department + "' and date like '%" + year + "' and status = 'Active'", Integer.class);
+    }
+
 }

@@ -31,7 +31,7 @@ import org.joda.time.format.DateTimeFormat;
  *
  * @author pc
  */
-public class UpdateActiveRoutineController extends AnchorPane{
+public class ViewAllRoutineController extends AnchorPane{
     
     @FXML
     private JFXCheckBox filterbydate;
@@ -57,14 +57,14 @@ public class UpdateActiveRoutineController extends AnchorPane{
     private FXMLLoader fxml;
     private RoutineDao dao;
 
-    public UpdateActiveRoutineController() {
-        fxml = Fxml.getUpdateActiveRoutineFXML();
+    public ViewAllRoutineController() {
+        fxml = Fxml.getViewAllRoutineFXML();
         fxml.setController(this);
         fxml.setRoot(this);
         try {
             fxml.load();
         } catch (IOException ex) {
-            Logger.getLogger(UpdateActiveRoutineController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ViewAllRoutineController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -83,27 +83,27 @@ public class UpdateActiveRoutineController extends AnchorPane{
     }
     
     private void loadData(ActionEvent evt) {
-        List<Routine> nodes = dao.findByDepartmentAndYear(SystemUtils.getCurrentUser().getDepartment(),DateTime.now().toString(DateTimeFormat.forPattern("yyyy")));
-        List<UpdateActiveRoutineNodeController> collect = nodes.stream().map(UpdateActiveRoutineNodeController::new ).collect(Collectors.toList());
+        List<Routine> nodes = dao.findByDepartment(SystemUtils.getCurrentUser().getDepartment());
+        List<ViewAllRoutineNodeController> collect = nodes.stream().map(ViewAllRoutineNodeController::new ).collect(Collectors.toList());
         list.getChildren().setAll(collect);
     }
     
     private void filter(ActionEvent evt) {
         List<Routine> nodes = dao.findByDepartment(SystemUtils.getCurrentUser().getDepartment());
         nodes = nodes.stream().filter(f-> f.getDate().equals(DateTimeFormatter.ofPattern("dd-MM-yyyy").format(date.getValue()))).collect(Collectors.toList());
-        List<UpdateActiveRoutineNodeController> collect = nodes.stream().map(UpdateActiveRoutineNodeController::new ).collect(Collectors.toList());
+        List<ViewAllRoutineNodeController> collect = nodes.stream().map(ViewAllRoutineNodeController::new ).collect(Collectors.toList());
         list.getChildren().setAll(collect);
     }
     
     private void sortAscending(ActionEvent evt){
          List<Routine> nodes = dao.sortByDepartment(SystemUtils.getCurrentUser().getDepartment(),"asc");
-        List<UpdateActiveRoutineNodeController> collect = nodes.stream().map(UpdateActiveRoutineNodeController::new ).collect(Collectors.toList());
+        List<ViewAllRoutineNodeController> collect = nodes.stream().map(ViewAllRoutineNodeController::new ).collect(Collectors.toList());
         list.getChildren().setAll(collect);
     }
     
     private void sortDescending(ActionEvent evt) {
          List<Routine> nodes = dao.sortByDepartment(SystemUtils.getCurrentUser().getDepartment(),"desc");
-        List<UpdateActiveRoutineNodeController> collect = nodes.stream().map(UpdateActiveRoutineNodeController::new ).collect(Collectors.toList());
+        List<ViewAllRoutineNodeController> collect = nodes.stream().map(ViewAllRoutineNodeController::new ).collect(Collectors.toList());
         list.getChildren().setAll(collect);
     }
 }
