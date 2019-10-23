@@ -13,6 +13,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.net.ConnectException;
 import java.util.Date;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -28,11 +29,11 @@ public class Start extends Application {
     public static Stage st;
     public static ClassPathXmlApplicationContext app;
 
-    public static Stage loading; 
-    
+    public static Stage loading;
+
     public static void main(String[] args) throws Exception {
         //initApp();
-        
+
         initContext();
         SystemUtils.init();
         launch(args);
