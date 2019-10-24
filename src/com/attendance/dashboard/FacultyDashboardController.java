@@ -169,7 +169,7 @@ public class FacultyDashboardController extends AnchorPane {
         refresh.setOnAction(this::countStudents);
         uploadmarks.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getUploadMarksRoot(Start.st.getScene().getRoot())));
         viewfacultydetails.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getViewFacultyRoot(SystemUtils.getDepartment(), Start.st.getScene().getRoot())));
-
+        notesdashboard.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getNotesDashboardRoot(Start.st.getScene().getRoot(),details.getName())));
         studentattendance.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getStudentAttendanceRoot(Start.st.getScene().getRoot(), details.getName())));
         classdetails.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getClassDetailsRoot(Start.st.getScene().getRoot(), details.getName())));
         dailystatistics.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getDailyStatsRoot(Start.st.getScene().getRoot())));

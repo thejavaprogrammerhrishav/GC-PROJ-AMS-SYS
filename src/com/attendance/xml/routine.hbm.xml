@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.attendance.routines.model.Routine" table="routine" catalog="attendance">
+        <id name="id" column="id">
+            <generator class="identity"/>
+        </id>
+        <property name="name" column="name" not-null="true"/>
+        <property name="usertype" column="usertype" not-null="true"/>
+        <property name="date" column="date" not-null="true"/>
+        <property name="department" column="department" not-null="true"/>
+        <property name="image">
+            <column name="image" sql-type="longblob" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

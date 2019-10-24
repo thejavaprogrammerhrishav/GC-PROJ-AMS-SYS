@@ -37,6 +37,7 @@
                 <value>/com/attendance/xml/paper.hbm.xml</value>
                 <value>/com/attendance/xml/notes.hbm.xml</value>
                 <value>/com/attendance/xml/unittest.hbm.xml</value>
+                <value>/com/attendance/xml/routine.hbm.xml</value>
             </list>
         </property>
         <property name="hibernateProperties">
@@ -104,6 +105,11 @@
     </bean>
     
     <bean id="unittest" class="com.attendance.marks.dao.impl.UnitTestDaoImpl">
+        <property name="hibernateTemplate" ref="hibernateTemplate"/>   
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>  
+    </bean>
+    
+    <bean id="routine" class="com.attendance.routines.dao.impl.RoutineDaoImpl">
         <property name="hibernateTemplate" ref="hibernateTemplate"/>   
         <property name="jdbcTemplate" ref="jdbcTemplate"/>  
     </bean>

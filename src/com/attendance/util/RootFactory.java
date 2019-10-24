@@ -30,6 +30,7 @@ import com.attendance.marks.controller.UnitTestReportController;
 import com.attendance.marks.controller.UploadUnitTestMarksController;
 import com.attendance.notes.controller.NotesDashboardController;
 import com.attendance.report.controller.AttendanceReportController;
+import com.attendance.routines.controller.RoutineDashboardController;
 import com.attendance.settings.ClassAndDetailsSettingsController;
 import com.attendance.settings.DatabaseServerSettingsController;
 import com.attendance.settings.ExportSettingsController;
@@ -310,5 +311,9 @@ public class RootFactory {
        
        public static Parent getNotesDashboardRoot(Parent parent, String facultyname) {
            return new NotesDashboardController(parent , facultyname);
+       }
+       
+       public static Parent getRoutineDashboardRoot(Parent parent) {
+           return new RoutineDashboardController(parent);
        }
 }

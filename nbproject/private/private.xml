@@ -6,8 +6,8 @@
             <file>file:/D:/JAVA/GC-PROJ-AMS-SYS/src/com/attendance/util/Fxml.java</file>
             <file>file:/D:/JAVA/GC-PROJ-AMS-SYS/src/com/attendance/util/RootFactory.java</file>
             <file>file:/D:/JAVA/GC-PROJ-AMS-SYS/src/com/attendance/notes/controller/NotesNodeController.java</file>
-            <file>file:/D:/JAVA/GC-PROJ-AMS-SYS/src/com/attendance/notes/controller/DownloadNotesController.java</file>
             <file>file:/D:/JAVA/GC-PROJ-AMS-SYS/src/com/attendance/dashboard/HODDashboardController.java</file>
+            <file>file:/D:/JAVA/GC-PROJ-AMS-SYS/src/com/attendance/notes/controller/NotesSearchController.java</file>
             <file>file:/D:/JAVA/GC-PROJ-AMS-SYS/src/com/attendance/notes/controller/NotesDashboardController.java</file>
             <file>file:/D:/JAVA/GC-PROJ-AMS-SYS/src/com/attendance/notes/dao/impl/NotesDaoImpl.java</file>
             <file>file:/D:/JAVA/GC-PROJ-AMS-SYS/src/com/attendance/xml/notes.hbm.xml</file>

@@ -67,8 +67,8 @@ public class PapersDaoImpl implements PapersDao {
     public List<Paper> findBySemester(String sem) {
         return (List<Paper>) hibernateTemplate.find("from Paper where semester=?", sem);
     }
-    
-     @Override
+
+    @Override
     public boolean updatePaperId(String newId, String oldId) {
         try {
             jdbcTemplate.execute("update papers set code='" + newId + "' where code='" + oldId + "'");
@@ -81,17 +81,17 @@ public class PapersDaoImpl implements PapersDao {
     @Override
     @Transactional
     public List<Paper> findByDepartment(String department) {
-return (List<Paper>) hibernateTemplate.find("from Paper where department=?", department);
+        return (List<Paper>) hibernateTemplate.find("from Paper where department=?", department);
     }
 
     @Override
     public List<Paper> findByCourseType(String courseType) {
-return (List<Paper>) hibernateTemplate.find("from Paper where coursetype=?", courseType);
+        return (List<Paper>) hibernateTemplate.find("from Paper where coursetype=?", courseType);
     }
 
     @Override
     public List<Paper> findByDepartmentAndCourseType(String department, String courseType) {
-return (List<Paper>) hibernateTemplate.find("from Paper where department=? and courseType=?", department, courseType);
+        return (List<Paper>) hibernateTemplate.find("from Paper where department=? and courseType=?", department, courseType);
     }
 
 }

@@ -296,4 +296,20 @@ public class Fxml {
     public static FXMLLoader getNotesSearchFXML() {
         return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/notesearch.fxml"));
     }
+    
+    public static FXMLLoader getRoutineDashboardFXML() {
+        return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/routine.fxml"));
+    }
+    
+    public static FXMLLoader getAddNewRoutineFXML() {
+        return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/addnewroutine.fxml"));
+    }
+    
+    public static FXMLLoader getUpdateActiveRoutineFXML() {
+        return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/updateactiveroutine.fxml"));
+    }
+    
+    public static FXMLLoader getUpdateActiveRoutineNodeFXML() {
+        return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/updateroutinenode.fxml"));
+    }
 }
