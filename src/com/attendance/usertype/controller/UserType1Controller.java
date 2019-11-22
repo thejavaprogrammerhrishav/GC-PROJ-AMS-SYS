@@ -14,8 +14,11 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
+import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 
 /**
@@ -49,6 +52,11 @@ public class UserType1Controller extends AnchorPane{
     
     @FXML
     private void initialize(){
+        this.addEventHandler(KeyEvent.KEY_PRESSED, e->{
+            if(e.getCode().equals(KeyCode.ESCAPE)){
+                System.exit(0);
+            }
+        });
         principal.setOnAction(this::principalAction);
         department.setOnAction(this::departmentAction);
         exit.setOnAction(e->System.exit(0));
