@@ -24,6 +24,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -160,7 +161,7 @@ public class ClassDetailsController extends ScrollPane {
 
     private FXMLLoader fxml;
 
-    public ClassDetailsController(Parent parent,String currentfaculty) {
+    public ClassDetailsController(Parent parent, String currentfaculty) {
         this.parent = parent;
         this.currentfaculty = currentfaculty;
         fxml = Fxml.getClassDetailsFXML();
@@ -194,7 +195,7 @@ public class ClassDetailsController extends ScrollPane {
     }
 
     private void initFilters() {
-        if(!currentfaculty.equals("N/A")) {
+        if (!currentfaculty.equals("N/A")) {
             filterbyname.setDisable(true);
             facultyname.setDisable(true);
         }
@@ -219,8 +220,11 @@ public class ClassDetailsController extends ScrollPane {
         List<String> years = studentdao.get("select distinct(year) from student order by year", String.class);
         year.getItems().setAll(years);
 
-        facultyname.getItems().setAll(Utils.util.getDetails(SystemUtils.getDepartment()).stream().map(p->p.getName()).collect(Collectors.toList()));
-        
+        List<String> HODname = Utils.util.getHODUsers(SystemUtils.getDepartment()).stream().map(m -> m.getDetails().getName()).collect(Collectors.toList());
+        List<String> fname = Utils.util.getFacultyUsers(SystemUtils.getDepartment()).stream().map(m -> m.getDetails().getName()).collect(Collectors.toList());
+
+        List<String> names = Stream.concat(HODname.stream(), fname.stream()).collect(Collectors.toList());
+        facultyname.getItems().setAll(names);
         filterbypaper.selectedProperty().addListener((ol, o, n) -> {
             if (filterbysemester.isSelected()) {
                 filterbypaper.setSelected(n);
@@ -275,15 +279,15 @@ public class ClassDetailsController extends ScrollPane {
 
     private void populateTable(ActionEvent evt) {
         List<ClassDetails> list = cdao.findByDepartment(SystemUtils.getDepartment());
-        if(!currentfaculty.equals("N/A")) {
+        if (!currentfaculty.equals("N/A")) {
             list = list.stream().filter(p -> p.getFacultyName().equals(currentfaculty)).collect(Collectors.toList());
         }
         table.getItems().setAll(list);
     }
 
     private void filters(ActionEvent evt) {
-       List<ClassDetails> list = cdao.findByDepartment(SystemUtils.getDepartment());
-        if(!currentfaculty.equals("N/A")) {
+        List<ClassDetails> list = cdao.findByDepartment(SystemUtils.getDepartment());
+        if (!currentfaculty.equals("N/A")) {
             list = list.stream().filter(p -> p.getFacultyName().equals(currentfaculty)).collect(Collectors.toList());
         }
 

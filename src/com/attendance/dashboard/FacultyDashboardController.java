@@ -9,7 +9,6 @@ import com.attendance.login.activity.dao.Activity;
 import com.attendance.login.activity.model.LoginActivity;
 import com.attendance.login.user.model.User;
 import com.attendance.main.Start;
-import com.attendance.personal.dao.PersonalDetailsDao;
 import com.attendance.personal.model.PersonalDetails;
 import com.attendance.student.dao.StudentDao;
 import com.attendance.util.DateTimerThread;
@@ -126,7 +125,6 @@ public class FacultyDashboardController extends AnchorPane {
     private StudentDao dao;
     private Activity act;
     private PersonalDetails details;
-    private PersonalDetailsDao pdao;
 
     public FacultyDashboardController() {
         this.user = SystemUtils.getCurrentUser();
@@ -146,8 +144,7 @@ public class FacultyDashboardController extends AnchorPane {
         department.setText(SystemUtils.getDepartment());
         act = (Activity) Start.app.getBean("loginactivity");
         dao = (StudentDao) Start.app.getBean("studentregistration");
-        pdao = (PersonalDetailsDao) Start.app.getBean("personal");
-        details = pdao.findById(user.getPersonalid());
+        details = user.getDetails();
         profilepic.setImage(new Image(new ByteArrayInputStream(user.getImage())));
         countStudents(null);
         initLoginActivity(null);

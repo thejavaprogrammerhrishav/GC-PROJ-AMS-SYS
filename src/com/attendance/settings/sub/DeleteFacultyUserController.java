@@ -8,7 +8,6 @@ package com.attendance.settings.sub;
 import com.attendance.login.dao.Login;
 import com.attendance.login.user.model.User;
 import com.attendance.main.Start;
-import com.attendance.personal.dao.PersonalDetailsDao;
 import com.attendance.personal.model.PersonalDetails;
 import com.attendance.util.Fxml;
 import com.attendance.util.Message;
@@ -83,7 +82,6 @@ public class DeleteFacultyUserController extends AnchorPane {
     private List<User> list;
     private User user;
     private Login dao;
-    private PersonalDetailsDao fdao;
 
     private FXMLLoader fxml;
     private Parent parent;
@@ -104,7 +102,6 @@ public class DeleteFacultyUserController extends AnchorPane {
     @FXML
     private void initialize() {
         dao = (Login) Start.app.getBean("userlogin");
-        fdao = (PersonalDetailsDao) Start.app.getBean("facultyregistration");
 
         list = dao.findByType("Faculty");
 
@@ -159,10 +156,8 @@ public class DeleteFacultyUserController extends AnchorPane {
     }
 
     private void delete(ActionEvent evt) {
-        PersonalDetails del = fdao.findById(user.getPersonalid());
         boolean d = dao.delete(user);
-        boolean e = fdao.delete(del);
-        if (d && e) {
+        if (d) {
             MessageUtil.showInformation(Message.INFORMATION, "Faculty Login Account", "Account Updated Successfully", DeleteFacultyUserController.this.getScene().getWindow());
         } else {
             MessageUtil.showError(Message.ERROR, "Faculty Login Account", "Account Updation Failed", DeleteFacultyUserController.this.getScene().getWindow());

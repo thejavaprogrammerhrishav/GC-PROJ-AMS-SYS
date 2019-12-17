@@ -8,7 +8,6 @@ package com.attendance.user;
 import com.attendance.login.dao.Login;
 import com.attendance.login.user.model.User;
 import com.attendance.main.Start;
-import com.attendance.personal.dao.PersonalDetailsDao;
 import com.attendance.personal.model.PersonalDetails;
 import com.attendance.util.Fxml;
 import com.attendance.util.RootFactory;
@@ -117,7 +116,6 @@ public class UserProfileController extends AnchorPane {
     private User user;
     private PersonalDetails details;
     private Login login;
-    private PersonalDetailsDao dao;
     private String parent;
 
     private File file;
@@ -144,7 +142,6 @@ public class UserProfileController extends AnchorPane {
     @FXML
     private void initialize() {
         login = (Login) Start.app.getBean("userlogin");
-        dao = (PersonalDetailsDao) Start.app.getBean("personal");
         loadDetails();
         init();
         initGender();
@@ -160,7 +157,7 @@ public class UserProfileController extends AnchorPane {
     }
 
     private void loadDetails() {
-        details = dao.findById(user.getPersonalid());
+        details = user.getDetails();
         name.setText(details.getName());
         contact.setText(details.getContact());
         email.setText(details.getEmailId());
@@ -244,7 +241,6 @@ public class UserProfileController extends AnchorPane {
         updateuser.setId(user.getId());
         updateuser.setType(user.getType());
         updateuser.setDepartment(user.getDepartment());
-        updateuser.setPersonalid(details.getId());
         updateuser.setStatus(user.getStatus());
         updateuser.setDate(user.getDate());
 
@@ -265,9 +261,9 @@ public class UserProfileController extends AnchorPane {
         } else {
             updatedetails.setGender("Unknown");
         }
+        updateuser.setDetails(updatedetails);
         boolean b1 = login.update(updateuser);
-        boolean b2 = dao.update(updatedetails);
-        if (b1 && b2) {
+        if (b1) {
             result.setText("Profile Updated Successfully");
             SystemUtils.setCurrentUser(updateuser);
         } else {

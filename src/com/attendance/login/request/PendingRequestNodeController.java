@@ -8,7 +8,6 @@ package com.attendance.login.request;
 import com.attendance.login.dao.Login;
 import com.attendance.login.user.model.User;
 import com.attendance.main.Start;
-import com.attendance.personal.dao.PersonalDetailsDao;
 import com.attendance.personal.model.PersonalDetails;
 import com.attendance.util.Fxml;
 import com.jfoenix.controls.JFXButton;
@@ -59,7 +58,6 @@ public class PendingRequestNodeController extends AnchorPane {
     private int no;
 
     private PersonalDetails details;
-    private PersonalDetailsDao dao;
 
     public PendingRequestNodeController(int no, User user) {
         this.no = no;
@@ -78,8 +76,7 @@ public class PendingRequestNodeController extends AnchorPane {
     @FXML
     private void initialize() {
         login = (Login) Start.app.getBean("userlogin");
-        dao = (PersonalDetailsDao) Start.app.getBean("personal");
-        details = dao.findById(user.getId());
+        details = user.getDetails();
         disableButtons();
         slno.setText("" + no);
         name.setText(details.getName());

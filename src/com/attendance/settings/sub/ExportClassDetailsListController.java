@@ -10,7 +10,6 @@ import com.attendance.login.user.model.User;
 import com.attendance.main.Start;
 import com.attendance.papers.dao.PapersDao;
 import com.attendance.papers.model.Paper;
-import com.attendance.personal.dao.PersonalDetailsDao;
 import com.attendance.personal.model.PersonalDetails;
 import com.attendance.student.dao.StudentDao;
 import com.attendance.studentattendance.dao.ClassDetailsDao;
@@ -18,6 +17,7 @@ import com.attendance.studentattendance.model.ClassDetails;
 import com.attendance.util.ExportClassDetails;
 import com.attendance.util.Fxml;
 import com.attendance.util.SystemUtils;
+import com.attendance.util.Utils;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
@@ -27,6 +27,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -118,7 +119,6 @@ public class ExportClassDetailsListController extends AnchorPane {
     private ClassDetailsDao cdao;
     private Login dao;
     private PapersDao paperdao;
-    private PersonalDetailsDao pdao;
     private StudentDao studentdao;
 
     private FXMLLoader fxml;
@@ -140,7 +140,6 @@ public class ExportClassDetailsListController extends AnchorPane {
         department.setText(SystemUtils.getDepartment());
         paperdao = (PapersDao) Start.app.getBean("papers");
         cdao = (ClassDetailsDao) Start.app.getBean("classdetails");
-        pdao = (PersonalDetailsDao) Start.app.getBean("personal");
         studentdao = (StudentDao) Start.app.getBean("studentregistration");
         dao = (Login) Start.app.getBean("userlogin");
         initTable();
@@ -179,10 +178,11 @@ public class ExportClassDetailsListController extends AnchorPane {
         List<String> years = studentdao.get("select distinct(year) from student order by year", String.class);
         year.getItems().setAll(years);
 
-        List<User> list = new ArrayList<>(dao.findByDepartment(SystemUtils.getDepartment()));
-        List<PersonalDetails> facultylist = list.stream().map(l -> pdao.findById(l.getPersonalid())).collect(Collectors.toList());
-        List<String> faculties = facultylist.stream().map(p -> p.getName()).collect(Collectors.toList());
-        facultyname.getItems().setAll(faculties);
+          List<String> HODname = Utils.util.getHODUsers(SystemUtils.getDepartment()).stream().map(m -> m.getDetails().getName()).collect(Collectors.toList());
+        List<String> faculties = Utils.util.getFacultyUsers(SystemUtils.getDepartment()).stream().map(m -> m.getDetails().getName()).collect(Collectors.toList());
+
+        List<String> names = Stream.concat(HODname.stream(), faculties.stream()).collect(Collectors.toList());
+        facultyname.getItems().setAll(names);
 
         filterbypaper.selectedProperty().addListener((ol, o, n) -> {
             if (filterbysemester.isSelected()) {

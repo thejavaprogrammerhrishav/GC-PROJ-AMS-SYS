@@ -5,6 +5,7 @@
  */
 package com.attendance.login.user.model;
 
+import com.attendance.personal.model.PersonalDetails;
 import java.io.Serializable;
 
 /**
@@ -13,7 +14,6 @@ import java.io.Serializable;
  */
 public class User implements Serializable{
     private int id;
-    private int personalid;
     private String username;
     private String password;
     private String type;
@@ -21,13 +21,14 @@ public class User implements Serializable{
     private String date;
     private String status;
     private byte[] image;
+    
+    private PersonalDetails details;
 
     public User() {
     }
 
-    public User(int id, int personalid, String username, String password, String type, String department, String date, String status, byte[] image) {
+    public User(int id, String username, String password, String type, String department, String date, String status, byte[] image, PersonalDetails details) {
         this.id = id;
-        this.personalid = personalid;
         this.username = username;
         this.password = password;
         this.type = type;
@@ -35,6 +36,7 @@ public class User implements Serializable{
         this.date = date;
         this.status = status;
         this.image = image;
+        this.details = details;
     }
 
     public int getId() {
@@ -43,14 +45,6 @@ public class User implements Serializable{
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getPersonalid() {
-        return personalid;
-    }
-
-    public void setPersonalid(int personalid) {
-        this.personalid = personalid;
     }
 
     public String getUsername() {
@@ -107,6 +101,14 @@ public class User implements Serializable{
 
     public void setImage(byte[] image) {
         this.image = image;
+    }
+
+    public PersonalDetails getDetails() {
+        return details;
+    }
+
+    public void setDetails(PersonalDetails details) {
+        this.details = details;
     }
 
     

@@ -28,6 +28,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -198,7 +199,7 @@ public class UpdateClassDetailsController extends ScrollPane {
         cdao = (ClassDetailsDao) Start.app.getBean("classdetails");
         sdao = (StudentDao) Start.app.getBean("studentregistration");
         pdao = (PapersDao) Start.app.getBean("papers");
-        dao=(Login) Start.app.getBean("userlogin");
+        dao = (Login) Start.app.getBean("userlogin");
 
         initFilters();
         initTable();
@@ -248,9 +249,12 @@ public class UpdateClassDetailsController extends ScrollPane {
 
         List<String> years = sdao.get("select distinct(year) from student order by year", String.class);
         year.getItems().setAll(years);
-        
-        facultyname.getItems().setAll(Utils.util.getDetails(SystemUtils.getDepartment()).stream().map(p->p.getName()).collect(Collectors.toList()));
 
+        List<String> HODname = Utils.util.getHODUsers(SystemUtils.getDepartment()).stream().map(m -> m.getDetails().getName()).collect(Collectors.toList());
+        List<String> fname = Utils.util.getFacultyUsers(SystemUtils.getDepartment()).stream().map(m -> m.getDetails().getName()).collect(Collectors.toList());
+
+        List<String> names = Stream.concat(HODname.stream(), fname.stream()).collect(Collectors.toList());
+        facultyname.getItems().setAll(names);
         filterbypaper.selectedProperty().addListener((ol, o, n) -> {
             if (filterbysemester.isSelected()) {
                 filterbypaper.setSelected(n);
@@ -270,35 +274,34 @@ public class UpdateClassDetailsController extends ScrollPane {
                 filterbysemester.setSelected(false);
             }
         });
-        
-        honours.selectedProperty().addListener((ol,o,n)->{
-            if(n){
+
+        honours.selectedProperty().addListener((ol, o, n) -> {
+            if (n) {
                 honours.setSelected(true);
                 pass.setSelected(false);
             }
         });
-        
-         pass.selectedProperty().addListener((ol,o,n)->{
-            if(n){
+
+        pass.selectedProperty().addListener((ol, o, n) -> {
+            if (n) {
                 pass.setSelected(true);
                 honours.setSelected(false);
             }
         });
-         
-         uhonours.selectedProperty().addListener((ol,o,n)->{
-             if(uhonours.isSelected()){
-                 uhonours.setSelected(true);
-                 upass.setSelected(false);
-             }
-         });
-         
-           upass.selectedProperty().addListener((ol,o,n)->{
-             if(upass.isSelected()){
-                 upass.setSelected(true);
-                 uhonours.setSelected(false);
-             }
-         });
 
+        uhonours.selectedProperty().addListener((ol, o, n) -> {
+            if (uhonours.isSelected()) {
+                uhonours.setSelected(true);
+                upass.setSelected(false);
+            }
+        });
+
+        upass.selectedProperty().addListener((ol, o, n) -> {
+            if (upass.isSelected()) {
+                upass.setSelected(true);
+                uhonours.setSelected(false);
+            }
+        });
 
         semester.getSelectionModel().selectedItemProperty().addListener((ol, o, n) -> {
             String sem = n.replace(" Semester", "");
@@ -366,8 +369,11 @@ public class UpdateClassDetailsController extends ScrollPane {
 
     private void tableClick(MouseEvent evt) {
         details = table.getSelectionModel().getSelectedItem();
+        List<String> HODname = Utils.util.getHODUsers(SystemUtils.getDepartment()).stream().map(m -> m.getDetails().getName()).collect(Collectors.toList());
+        List<String> fname = Utils.util.getFacultyUsers(SystemUtils.getDepartment()).stream().map(m -> m.getDetails().getName()).collect(Collectors.toList());
 
-        cdfaculty.getItems().setAll(Utils.util.getDetails(SystemUtils.getDepartment()).stream().map(p->p.getName()).collect(Collectors.toList()));
+        List<String> names = Stream.concat(HODname.stream(), fname.stream()).collect(Collectors.toList());
+        cdfaculty.getItems().setAll(names);
 
         List<String> years = sdao.get("select distinct(year) from student order by year", String.class);
         cdyear.getItems().setAll(years);
@@ -412,7 +418,7 @@ public class UpdateClassDetailsController extends ScrollPane {
 
             boolean b1 = cdao.update(cd);
 
-            String id =SystemUtils.getDepartmentCode()+"/"+ cdclassdate.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")) + "@" + cdclasstime.getValue().format(DateTimeFormatter.ofPattern("hh:mm"))
+            String id = SystemUtils.getDepartmentCode() + "/" + cdclassdate.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")) + "@" + cdclasstime.getValue().format(DateTimeFormatter.ofPattern("hh:mm"))
                     + "#" + cdacadamicyear.getSelectionModel().getSelectedItem() + "__" + cdsemester.getSelectionModel().getSelectedItem().replace(" Semester", "") + "_" + cdyear.getSelectionModel().getSelectedItem() + "&" + cd.getCoursetype().charAt(0);
             cd.setClassId(id);
 

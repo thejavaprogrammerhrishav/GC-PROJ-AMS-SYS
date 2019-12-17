@@ -7,7 +7,6 @@ package com.attendance.routines.controller;
 
 import com.attendance.login.user.model.User;
 import com.attendance.main.Start;
-import com.attendance.personal.dao.PersonalDetailsDao;
 import com.attendance.personal.model.PersonalDetails;
 import com.attendance.routines.dao.RoutineDao;
 import com.attendance.routines.model.Routine;
@@ -80,7 +79,6 @@ public class RoutineDashboardController extends AnchorPane {
     
     private User currentUser;
     
-    private PersonalDetailsDao dao;
     private RoutineDao rdao;
 
     public RoutineDashboardController(Parent parent) {
@@ -97,10 +95,9 @@ public class RoutineDashboardController extends AnchorPane {
 
     @FXML
     private void initialize() {
-        dao = (PersonalDetailsDao) Start.app.getBean("personal");
         rdao = (RoutineDao) Start.app.getBean("routine");
         currentUser = SystemUtils.getCurrentUser();
-        PersonalDetails personalDetails = dao.findById(currentUser.getPersonalid());
+        PersonalDetails personalDetails = currentUser.getDetails();
         
         image.setImage(new Image(new ByteArrayInputStream(currentUser.getImage())));
         name.setText(personalDetails.getName());

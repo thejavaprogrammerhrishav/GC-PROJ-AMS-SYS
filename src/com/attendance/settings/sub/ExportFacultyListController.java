@@ -8,7 +8,6 @@ package com.attendance.settings.sub;
 import com.attendance.login.dao.Login;
 import com.attendance.login.user.model.User;
 import com.attendance.main.Start;
-import com.attendance.personal.dao.PersonalDetailsDao;
 import com.attendance.personal.model.PersonalDetails;
 import com.attendance.util.ExportFacultyList;
 import com.attendance.util.Fxml;
@@ -80,7 +79,6 @@ public class ExportFacultyListController extends AnchorPane {
 
     private List<PersonalDetails> list;
 
-    private PersonalDetailsDao dao;
     private Login user;
 
     public ExportFacultyListController() {
@@ -98,7 +96,6 @@ public class ExportFacultyListController extends AnchorPane {
     @FXML
     private void initialize() {
         department.setText(SystemUtils.getDepartment());
-        dao = (PersonalDetailsDao) Start.app.getBean("personal");
         user=(Login) Start.app.getBean("userlogin");
 
         name.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -146,7 +143,7 @@ public class ExportFacultyListController extends AnchorPane {
 
     private void reinit() {
         List<User> lists = new ArrayList<>(user.findByDepartment(SystemUtils.getDepartment()));
-        list = lists.stream().map(l -> dao.findById(l.getPersonalid())).collect(Collectors.toList());
+        list = lists.stream().map(l -> l.getDetails()).collect(Collectors.toList());
     }
 
     private void populate(ActionEvent evt) {

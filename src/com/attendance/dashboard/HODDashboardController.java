@@ -9,7 +9,6 @@ import com.attendance.login.activity.dao.Activity;
 import com.attendance.login.activity.model.LoginActivity;
 import com.attendance.login.user.model.User;
 import com.attendance.main.Start;
-import com.attendance.personal.dao.PersonalDetailsDao;
 import com.attendance.personal.model.PersonalDetails;
 import com.attendance.student.dao.StudentDao;
 import com.attendance.util.Fxml;
@@ -127,7 +126,6 @@ public class HODDashboardController extends AnchorPane {
     private LoginActivity activity;
     private StudentDao dao;
     private Activity act;
-    private PersonalDetailsDao pdao;
 
     public HODDashboardController() {
         this.user = SystemUtils.getCurrentUser();
@@ -146,9 +144,8 @@ public class HODDashboardController extends AnchorPane {
     private void initialize() {
         act = (Activity) Start.app.getBean("loginactivity");
         dao = (StudentDao) Start.app.getBean("studentregistration");
-        pdao = (PersonalDetailsDao) Start.app.getBean("personal");
         department.setText("Department :- " + SystemUtils.getDepartment());
-        details = pdao.findById(user.getPersonalid());
+        details = user.getDetails();
         initLoginActivity(null);
         countStudents(null);
         profilepic.setImage(new Image(new ByteArrayInputStream(user.getImage())));

@@ -12,7 +12,6 @@ import com.attendance.login.dao.Login;
 import com.attendance.login.forgot.ForgotPasswordController;
 import com.attendance.login.user.model.User;
 import com.attendance.main.Start;
-import com.attendance.personal.dao.PersonalDetailsDao;
 import com.attendance.personal.model.PersonalDetails;
 import com.attendance.util.Fxml;
 import com.attendance.util.RootFactory;
@@ -77,7 +76,6 @@ public class FacultyLoginController extends AnchorPane {
     private User user;
     private LoginActivity activity;
     private PersonalDetails search;
-    private PersonalDetailsDao dao;
 
     public FacultyLoginController() {
         fxml = Fxml.getFacultyLoginFXML();
@@ -96,7 +94,6 @@ public class FacultyLoginController extends AnchorPane {
     private void initialize() {
         faculty = (Login) Start.app.getBean("userlogin");
         loginActivity = (Activity) Start.app.getBean("loginactivity");
-        dao=(PersonalDetailsDao) Start.app.getBean("personal");
         result.setText("");
         department.setText("Department:  " + SystemUtils.getDepartment());
         blink = new Task<Void>() {
@@ -139,7 +136,7 @@ public class FacultyLoginController extends AnchorPane {
                             Platform.runLater(() -> result.setText("Redirecting to Dashboard in " + x + " Sec"));
                             Thread.sleep(1000);
                         }
-                        search=dao.findById(user.getPersonalid());
+                        search=user.getDetails();
                         activity = new LoginActivity(search.getName(), user.getUsername(), "Faculty", "Active", DateTime.now().toString(DateTimeFormat.forPattern("dd-MM-yyyy")), DateTime.now().toString(DateTimeFormat.forPattern("hh:mm:ss a")), "",SystemUtils.getDepartment());
                         loginActivity.save(activity);
                         SystemUtils.setActivity(activity);

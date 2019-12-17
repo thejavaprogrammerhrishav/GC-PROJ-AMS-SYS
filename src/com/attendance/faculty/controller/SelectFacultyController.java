@@ -56,7 +56,7 @@ public class SelectFacultyController extends AnchorPane {
 
     @FXML
     private void initialize() {
-        facultylist.getItems().setAll(Utils.util.getFacultyDetails(SystemUtils.getDepartment()).stream().map(f->f.getName()).collect(Collectors.toList()));
+        facultylist.getItems().setAll(Utils.util.getFacultyUsers(SystemUtils.getDepartment()).stream().map(p->p.getDetails().getName()).collect(Collectors.toList()));
 
         proceed.setOnAction(this::proceed);
         cancel.setOnAction(this::close);

@@ -32,6 +32,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -160,7 +161,7 @@ public class AttendanceReportController extends AnchorPane {
         paperdao = (PapersDao) Start.app.getBean("papers");
         attendancedao = (AttendanceDao) Start.app.getBean("attendance");
         classdao = (ClassDetailsDao) Start.app.getBean("classdetails");
-        dao=(Login) Start.app.getBean("userlogin");
+        dao = (Login) Start.app.getBean("userlogin");
         cancel.setOnAction(this::proceed);
         initFilters();
         initTable();
@@ -195,8 +196,11 @@ public class AttendanceReportController extends AnchorPane {
         List<String> years = studentdao.get("select distinct(year) from student order by year", String.class);
         year.getItems().setAll(years);
 
-        name.getItems().setAll(Utils.util.getDetails(SystemUtils.getDepartment()).stream().map(p->p.getName()).collect(Collectors.toList()));
+        List<String> HODname = Utils.util.getHODUsers(SystemUtils.getDepartment()).stream().map(m -> m.getDetails().getName()).collect(Collectors.toList());
+        List<String> facultyname = Utils.util.getFacultyUsers(SystemUtils.getDepartment()).stream().map(m -> m.getDetails().getName()).collect(Collectors.toList());
 
+        List<String> names = Stream.concat(HODname.stream(), facultyname.stream()).collect(Collectors.toList());
+        name.getItems().setAll(names);
         semester.getSelectionModel().selectedItemProperty().addListener((ol, o, n) -> {
             String sem = n.replace(" Semester", "");
             List<Paper> papers = paperdao.findBySemester(sem);

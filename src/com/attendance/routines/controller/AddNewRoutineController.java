@@ -7,7 +7,6 @@ package com.attendance.routines.controller;
 
 import com.attendance.login.user.model.User;
 import com.attendance.main.Start;
-import com.attendance.personal.dao.PersonalDetailsDao;
 import com.attendance.personal.model.PersonalDetails;
 import com.attendance.routines.dao.RoutineDao;
 import com.attendance.routines.model.Routine;
@@ -68,7 +67,6 @@ public class AddNewRoutineController extends AnchorPane {
     private FXMLLoader fxml;
     private Routine routine;
     private RoutineDao dao;
-    private PersonalDetailsDao pdao;
 
     private File file;
 
@@ -86,9 +84,8 @@ public class AddNewRoutineController extends AnchorPane {
     @FXML
     private void initialize() {
         dao = (RoutineDao) Start.app.getBean("routine");
-        pdao = (PersonalDetailsDao) Start.app.getBean("personal");
         User currentUser = SystemUtils.getCurrentUser();
-        PersonalDetails personalDetails = pdao.findById(currentUser.getPersonalid());
+        PersonalDetails personalDetails = currentUser.getDetails();
 
         date.setText(DateTime.now().toString(DateTimeFormat.forPattern("dd-MM-yyyy")));
         name.setText(personalDetails.getName());

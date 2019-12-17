@@ -7,7 +7,6 @@ package com.attendance.faculty.controller;
 
 import com.attendance.login.user.model.User;
 import com.attendance.main.Start;
-import com.attendance.personal.dao.PersonalDetailsDao;
 import com.attendance.personal.model.PersonalDetails;
 import com.attendance.util.Fxml;
 import com.attendance.util.SwitchRoot;
@@ -61,7 +60,6 @@ public class ViewFacultyDetailsController extends AnchorPane {
     private Parent parent;
     
     private PersonalDetails details;
-    private PersonalDetailsDao dao;
     
     public ViewFacultyDetailsController(User user,Parent parent) {
         this.user = user;   
@@ -78,8 +76,7 @@ public class ViewFacultyDetailsController extends AnchorPane {
     
     @FXML
     private void initialize() {
-        dao = (PersonalDetailsDao) Start.app.getBean("personal");
-        details = dao.findById(user.getPersonalid());
+        details = user.getDetails();
                 
         icon.setImage(new Image(new ByteArrayInputStream(user.getImage())));
         type.setText("User Type: "+user.getType());

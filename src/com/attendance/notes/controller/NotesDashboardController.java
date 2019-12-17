@@ -28,6 +28,7 @@ import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
+import java.util.Collections;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -132,7 +133,7 @@ public class NotesDashboardController extends AnchorPane {
 
     @FXML
     private JFXButton searchbyfilename;
-    
+
     @FXML
     private JFXButton uncheck;
 
@@ -172,8 +173,11 @@ public class NotesDashboardController extends AnchorPane {
         date.setText(DateTime.now().toString(DateTimeFormat.forPattern("EEEEE, dd MMMMM yyyy")));
         department.setText(SystemUtils.getDepartment());
 
-        List<PersonalDetails> details = Utils.util.getDetails(SystemUtils.getDepartment());
-        selectuploader.getItems().setAll(details.stream().map(f -> f.getName()).collect(Collectors.toList()));
+        List<String> HODname = Utils.util.getHODUsers(SystemUtils.getDepartment()).stream().map(m -> m.getDetails().getName()).collect(Collectors.toList());
+        List<String> facultyname = Utils.util.getFacultyUsers(SystemUtils.getDepartment()).stream().map(m -> m.getDetails().getName()).collect(Collectors.toList());
+
+        List<String> names = Stream.concat(HODname.stream(), facultyname.stream()).collect(Collectors.toList());
+        selectuploader.getItems().setAll(names); 
 
         selectuploader.disableProperty().bind(searchbyname.selectedProperty().not());
         enterdate.disableProperty().bind(searchbydate.selectedProperty().not());
@@ -395,14 +399,14 @@ public class NotesDashboardController extends AnchorPane {
     private void select(ActionEvent evt) {
         ObservableList<Node> children = list.getChildren();
         List<NotesNodeController> collect = children.stream().map(m -> (NotesNodeController) m).collect(Collectors.toList());
-        collect.stream().forEach(c->c.setSelected(true));
+        collect.stream().forEach(c -> c.setSelected(true));
         list.getChildren().setAll(collect);
     }
-    
+
     private void deselect(ActionEvent evt) {
         ObservableList<Node> children = list.getChildren();
         List<NotesNodeController> collect = children.stream().map(m -> (NotesNodeController) m).collect(Collectors.toList());
-        collect.stream().forEach(c->c.setSelected(false));
+        collect.stream().forEach(c -> c.setSelected(false));
         list.getChildren().setAll(collect);
     }
 }

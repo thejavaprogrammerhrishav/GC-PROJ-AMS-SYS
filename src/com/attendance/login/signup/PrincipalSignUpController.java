@@ -8,7 +8,6 @@ package com.attendance.login.signup;
 import com.attendance.login.dao.Login;
 import com.attendance.login.user.model.User;
 import com.attendance.main.Start;
-import com.attendance.personal.dao.PersonalDetailsDao;
 import com.attendance.personal.model.PersonalDetails;
 import com.attendance.util.Fxml;
 import com.attendance.util.Message;
@@ -26,9 +25,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
+import javafx.stage.StageStyle;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 
@@ -68,7 +70,6 @@ public class PrincipalSignUpController extends AnchorPane {
     private Parent parent;
 
     private PersonalDetails principal;
-    private PersonalDetailsDao pdao;
 
     public PrincipalSignUpController(Parent parent) {
         this.parent = parent;
@@ -88,7 +89,6 @@ public class PrincipalSignUpController extends AnchorPane {
         user = new User();
         principal = new PersonalDetails();
         login = (Login) Start.app.getBean("userlogin");
-        pdao = (PersonalDetailsDao) Start.app.getBean("personal");
         signup.setOnAction(E -> {
             if (login.isUsernameExists(username.getText()) > 0) {
                 MessageUtil.showError(Message.ERROR, "Principal SignUp", "Username already taken", ((Node) E.getSource()).getScene().getWindow());
@@ -106,16 +106,35 @@ public class PrincipalSignUpController extends AnchorPane {
                 principal.setEmailId(email.getText());
                 principal.setGender("Unknown");
 
-                int save = pdao.save(principal);
+                user.setDetails(principal);
+                int id = login.save(user);
 
-                user.setPersonalid(save);
-                login.save(user);
-
-                MessageUtil.showError(Message.INFORMATION, "Principal SignUp", "User signup successful\nPrincipal account created successfully\nCurrent Account Status :"+user.getStatus(), ((Node) E.getSource()).getScene().getWindow());
+                if (id > 0) {
+                    Alert al = new Alert(Alert.AlertType.INFORMATION);
+                    al.setHeaderText("HOD Sign Up");
+                    al.setContentText("Sign Up Successful\nPrincipal account created successfully\nCurrent Account Status :" + user.getStatus());
+                    al.initOwner(((Node) E.getSource()).getScene().getWindow());
+                    al.initModality(Modality.WINDOW_MODAL);
+                    al.initStyle(StageStyle.UNDECORATED);
+                    al.show();
+                } else {
+                    Alert al = new Alert(Alert.AlertType.ERROR);
+                    al.setHeaderText("HOD Sign Up");
+                    al.setContentText("Principal SignUp failed");
+                    al.initOwner(((Node) E.getSource()).getScene().getWindow());
+                    al.initModality(Modality.WINDOW_MODAL);
+                    al.initStyle(StageStyle.UNDECORATED);
+                    al.show();
+                }
 
             } else {
-                MessageUtil.showError(Message.ERROR, "Principal SignUp", "Passwords dont match \nCheck password again", ((Node) E.getSource()).getScene().getWindow());
-
+                Alert al = new Alert(Alert.AlertType.ERROR);
+                al.setHeaderText("HOD Sign Up");
+                al.setContentText("Password doesn't match");
+                al.initOwner(((Node) E.getSource()).getScene().getWindow());
+                al.initModality(Modality.WINDOW_MODAL);
+                al.initStyle(StageStyle.UNDECORATED);
+                al.show();
             }
         });
         loginbutton.setOnAction(this::LoginAction);

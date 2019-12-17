@@ -12,7 +12,6 @@ import com.attendance.login.dao.Login;
 import com.attendance.login.forgot.ForgotPasswordController;
 import com.attendance.login.user.model.User;
 import com.attendance.main.Start;
-import com.attendance.personal.dao.PersonalDetailsDao;
 import com.attendance.personal.model.PersonalDetails;
 import com.attendance.util.Fxml;
 import com.attendance.util.RootFactory;
@@ -73,7 +72,6 @@ public class PrincipalLoginController extends AnchorPane {
     private User user;
     private LoginActivity activity;
     private PersonalDetails search;
-    private PersonalDetailsDao dao;
 
     public PrincipalLoginController() {
         fxml = Fxml.getPrincipalLoginFXML();
@@ -90,7 +88,6 @@ public class PrincipalLoginController extends AnchorPane {
     private void initialize() {
         principal = (Login) Start.app.getBean("userlogin");
         loginActivity = (Activity) Start.app.getBean("loginactivity");
-        dao = (PersonalDetailsDao) Start.app.getBean("personal");
         result.setText("");
         blink = new Task<Void>() {
             @Override
@@ -128,7 +125,7 @@ public class PrincipalLoginController extends AnchorPane {
                 new Thread(() -> {
                     try {
                         Thread.sleep(500);
-                        search = dao.findById(user.getPersonalid());
+                        search = user.getDetails();
                         activity = new LoginActivity(search.getName(), user.getUsername(), "Principal", "ACTIVE", DateTime.now().toString(DateTimeFormat.forPattern("dd-MM-yyyy")), DateTime.now().toString(DateTimeFormat.forPattern("hh:mm:ss a")), "", "N/A");
                         loginActivity.save(activity);
                         SystemUtils.setActivity(activity);

@@ -7,7 +7,6 @@ package com.attendance.faculty.controller;
 
 import com.attendance.login.user.model.User;
 import com.attendance.main.Start;
-import com.attendance.personal.dao.PersonalDetailsDao;
 import com.attendance.personal.model.PersonalDetails;
 import com.attendance.util.Fxml;
 import com.attendance.util.StageUtil;
@@ -52,7 +51,6 @@ public class ViewFacultyNodeController extends AnchorPane {
     private User user;
 
     private PersonalDetails details;
-    private PersonalDetailsDao dao;
 
     public ViewFacultyNodeController(User user) {
         this.user = user;
@@ -69,8 +67,7 @@ public class ViewFacultyNodeController extends AnchorPane {
 
     @FXML
     private void initialize() {
-        dao = (PersonalDetailsDao) Start.app.getBean("personal");
-        details = dao.findById(user.getPersonalid());
+        details = user.getDetails();
         setvalues();
     }
 

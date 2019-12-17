@@ -8,7 +8,6 @@ package com.attendance.login.signup;
 import com.attendance.login.dao.Login;
 import com.attendance.login.user.model.User;
 import com.attendance.main.Start;
-import com.attendance.personal.dao.PersonalDetailsDao;
 import com.attendance.personal.model.PersonalDetails;
 import com.attendance.util.Fxml;
 import com.attendance.util.RootFactory;
@@ -67,7 +66,6 @@ public class FacultySignUpController extends AnchorPane {
     private User user;
     private Parent parent;
     private PersonalDetails faculty;
-    private PersonalDetailsDao pdao;
 
     public FacultySignUpController(Parent parent) {
         this.parent = parent;
@@ -87,7 +85,6 @@ public class FacultySignUpController extends AnchorPane {
 
     @FXML
     private void initialize() {
-        pdao = (PersonalDetailsDao) Start.app.getBean("personal");
         faculty = new PersonalDetails();
         loginbutton.setOnAction(this::loginAction);
         signup.setOnAction(e -> {
@@ -107,25 +104,32 @@ public class FacultySignUpController extends AnchorPane {
                 user.setDepartment(SystemUtils.getDepartment());
                 user.setStatus("Pending");
                 user.setDate(DateTime.now().toString(DateTimeFormat.forPattern("dd-MM-yyyy")));
-                
+
                 faculty.setName(fullname.getText());
                 faculty.setContact(contact.getText());
                 faculty.setEmailId(email.getText());
                 faculty.setGender("Unknown");
-                
-                int save = pdao.save(faculty);
-                
-                user.setPersonalid(save);
-                login.save(user);
-                
 
-                Alert al = new Alert(Alert.AlertType.INFORMATION);
-                al.setHeaderText("Faculty Sign Up");
-                al.setContentText("Sign Up Successful\nFaculty account created successfully with faculty details\nCurrent Account Status :"+user.getStatus());
-                al.initOwner(((Node) e.getSource()).getScene().getWindow());
-                al.initModality(Modality.WINDOW_MODAL);
-                al.initStyle(StageStyle.UNDECORATED);
-                al.show();
+                user.setDetails(faculty);
+                int id = login.save(user);
+
+                if (id > 0) {
+                    Alert al = new Alert(Alert.AlertType.INFORMATION);
+                    al.setHeaderText("Faculty Sign Up");
+                    al.setContentText("Sign Up Successful\nFaculty account created successfully with faculty details\nCurrent Account Status :" + user.getStatus());
+                    al.initOwner(((Node) e.getSource()).getScene().getWindow());
+                    al.initModality(Modality.WINDOW_MODAL);
+                    al.initStyle(StageStyle.UNDECORATED);
+                    al.show();
+                } else {
+                    Alert al = new Alert(Alert.AlertType.ERROR);
+                    al.setHeaderText("Faculty Sign Up");
+                    al.setContentText("Faculty Signup Failed");
+                    al.initOwner(((Node) e.getSource()).getScene().getWindow());
+                    al.initModality(Modality.WINDOW_MODAL);
+                    al.initStyle(StageStyle.UNDECORATED);
+                    al.show();
+                }
             } else {
                 Alert al = new Alert(Alert.AlertType.ERROR);
                 al.setHeaderText("Faculty Sign Up");

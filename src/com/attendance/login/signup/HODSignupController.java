@@ -8,7 +8,6 @@ package com.attendance.login.signup;
 import com.attendance.login.dao.Login;
 import com.attendance.login.user.model.User;
 import com.attendance.main.Start;
-import com.attendance.personal.dao.PersonalDetailsDao;
 import com.attendance.personal.model.PersonalDetails;
 import com.attendance.util.Fxml;
 import com.attendance.util.RootFactory;
@@ -68,7 +67,6 @@ public class HODSignupController extends AnchorPane {
     private Parent parent;
 
     private PersonalDetails hod;
-    private PersonalDetailsDao pdao;
 
     public HODSignupController(Parent parent) {
         this.parent = parent;
@@ -88,7 +86,6 @@ public class HODSignupController extends AnchorPane {
 
     @FXML
     private void initialize() {
-        pdao = (PersonalDetailsDao) Start.app.getBean("personal");
         hod = new PersonalDetails();
         loginbutton.setOnAction(this::loginaction);
         signup.setOnAction(e -> {
@@ -114,18 +111,27 @@ public class HODSignupController extends AnchorPane {
                 hod.setEmailId(email.getText());
                 hod.setGender("Unknown");
 
-                int save = pdao.save(hod);
 
-                user.setPersonalid(save);
-                login.save(user);
-
+                user.setDetails(hod);
+                int id = login.save(user);
+                
+                if(id>0) {
                 Alert al = new Alert(Alert.AlertType.INFORMATION);
                 al.setHeaderText("HOD Sign Up");
                 al.setContentText("Sign Up Successful\nHOD account created successfully\nCurrent Account Status :"+user.getStatus());
                 al.initOwner(((Node) e.getSource()).getScene().getWindow());
                 al.initModality(Modality.WINDOW_MODAL);
                 al.initStyle(StageStyle.UNDECORATED);
+                al.show();}
+                else {
+                    Alert al = new Alert(Alert.AlertType.ERROR);
+                al.setHeaderText("HOD Sign Up");
+                al.setContentText("HOD SignUp Failed");
+                al.initOwner(((Node) e.getSource()).getScene().getWindow());
+                al.initModality(Modality.WINDOW_MODAL);
+                al.initStyle(StageStyle.UNDECORATED);
                 al.show();
+                }
             } else {
                 Alert al = new Alert(Alert.AlertType.ERROR);
                 al.setHeaderText("HOD Sign Up");
