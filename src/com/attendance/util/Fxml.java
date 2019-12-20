@@ -109,8 +109,8 @@ public class Fxml {
         return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/settingsLoginUser.fxml"));
     }
 
-    public static FXMLLoader getSettingsPaperFXML() {
-        return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/settingsPaper.fxml"));
+    public static FXMLLoader getPaperFXML() {
+        return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/paper.fxml"));
     }
 
     public static FXMLLoader getSettingsStudentFXML() {
@@ -119,18 +119,6 @@ public class Fxml {
 
     public static FXMLLoader getDeleteStudentFXML() {
         return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/deletestudentdetails.fxml"));
-    }
-
-    public static FXMLLoader getNewPaperFXML() {
-        return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/addnewpaper.fxml"));
-    }
-
-    public static FXMLLoader getUpdatePaperFXML() {
-        return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/updatepaper.fxml"));
-    }
-
-    public static FXMLLoader getDeletePaperFXML() {
-        return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/deletepaper.fxml"));
     }
 
     public static FXMLLoader getClassDetailsFXML() {

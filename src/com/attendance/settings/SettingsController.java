@@ -74,7 +74,7 @@ public class SettingsController extends AnchorPane {
 
         student.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getSettingsStudentRoot(Start.st.getScene().getRoot())));
         faculty.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getSettingsFacultyRoot(Start.st.getScene().getRoot())));
-        papers.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getSettingsPaperRoot(Start.st.getScene().getRoot())));
+       // papers.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getSettingsPaperRoot(Start.st.getScene().getRoot())));
         classattendance.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getSettingsClassAndDetailsRoot(Start.st.getScene().getRoot())));
         importexport.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getSettingsExportRoot(Start.st.getScene().getRoot())));
         loginuser.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getSettingsLoginUserRoot(Start.st.getScene().getRoot())));

@@ -32,8 +32,8 @@ public class PapersDaoImpl implements PapersDao {
 
     @Override
     @Transactional
-    public String save(Paper p) {
-        return (String) hibernateTemplate.save(p);
+    public long save(Paper p) {
+        return (long) hibernateTemplate.save(p);
     }
 
     @Override
@@ -92,6 +92,12 @@ public class PapersDaoImpl implements PapersDao {
     @Override
     public List<Paper> findByDepartmentAndCourseType(String department, String courseType) {
         return (List<Paper>) hibernateTemplate.find("from Paper where department=? and courseType=?", department, courseType);
+    }
+
+    @Override
+    @Transactional
+    public boolean exists(String code) {
+        return hibernateTemplate.find("from Paper where paperCode =?", code).size()>0;
     }
 
 }

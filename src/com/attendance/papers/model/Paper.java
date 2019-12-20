@@ -1,4 +1,4 @@
-/*
+  /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -10,6 +10,7 @@ package com.attendance.papers.model;
  * @author Programmer Hrishav
  */
 public class Paper {
+    private long id;
     private String paperCode;
     private String paperName;
     private String semester;
@@ -17,10 +18,10 @@ public class Paper {
     private String coursetype;
 
     public Paper() {
-        this("","","","","");
     }
 
-    public Paper(String paperCode, String paperName, String semester, String department, String coursetype) {
+    public Paper(long id, String paperCode, String paperName, String semester, String department, String coursetype) {
+        this.id = id;
         this.paperCode = paperCode;
         this.paperName = paperName;
         this.semester = semester;
@@ -28,12 +29,12 @@ public class Paper {
         this.coursetype = coursetype;
     }
 
-    public String getSemester() {
-        return semester;
+    public long getId() {
+        return id;
     }
 
-    public void setSemester(String semester) {
-        this.semester = semester;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getPaperCode() {
@@ -52,20 +53,30 @@ public class Paper {
         this.paperName = paperName;
     }
 
-    public void setCoursetype(String coursetype) {
-        this.coursetype = coursetype;
+    public String getSemester() {
+        return semester;
     }
 
-    public String getCoursetype() {
-        return coursetype;
+    public void setSemester(String semester) {
+        this.semester = semester;
+    }
+
+    public String getDepartment() {
+        return department;
     }
 
     public void setDepartment(String department) {
         this.department = department;
     }
 
-    public String getDepartment() {
-        return department;
+    public String getCoursetype() {
+        return coursetype;
     }
+
+    public void setCoursetype(String coursetype) {
+        this.coursetype = coursetype;
+    }
+
+    
        
 }

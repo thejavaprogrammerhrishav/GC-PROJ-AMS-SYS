@@ -115,6 +115,9 @@ public class HODDashboardController extends AnchorPane {
     private Label lastupdated;
 
     @FXML
+    private JFXButton paper;
+
+    @FXML
     private VBox list;
 
     private FXMLLoader fxml;
@@ -173,6 +176,7 @@ public class HODDashboardController extends AnchorPane {
         verifyfaculty.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getPendingRequestRoot(Start.st.getScene().getRoot(), SystemUtils.getDepartment())));
         notes.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getNotesDashboardRoot(Start.st.getScene().getRoot(), details.getName())));
         routine.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getRoutineDashboardRoot(Start.st.getScene().getRoot())));
+        paper.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getPaperRoot(Start.st.getScene().getRoot())));
     }
 
     private void countStudents(ActionEvent e) {

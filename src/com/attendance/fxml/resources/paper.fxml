@@ -14,8 +14,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" stylesheets="@../../resources/combo.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" stylesheets="@../../resources/combo.css" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Pane prefHeight="72.0" prefWidth="1366.0" style="-fx-background-color: purple;">
          <children>
@@ -24,7 +23,7 @@
                   <Font name="Tw Cen MT" size="36.0" />
                </font>
             </Label>
-            <JFXButton contentDisplay="GRAPHIC_ONLY" layoutX="1300.0" layoutY="16.0">
+            <JFXButton fx:id="close" contentDisplay="GRAPHIC_ONLY" layoutX="1300.0" layoutY="16.0">
                <graphic>
                   <FontAwesomeIconView fill="WHITE" glyphName="CLOSE" size="1.5em" />
                </graphic>
@@ -53,73 +52,77 @@
                   <Font name="Tw Cen MT" size="18.0" />
                </font>
             </Label>
-            <TextField layoutX="187.0" layoutY="143.0" prefHeight="25.0" prefWidth="192.0" />
-            <TextField layoutX="187.0" layoutY="206.0" prefHeight="25.0" prefWidth="287.0" />
+            <TextField fx:id="papercode" layoutX="187.0" layoutY="143.0" prefHeight="25.0" prefWidth="192.0" promptText="Enter Code" />
+            <TextField fx:id="papername" layoutX="187.0" layoutY="206.0" prefHeight="25.0" prefWidth="287.0" promptText="Enter Paper Name" />
             <Label layoutX="23.0" layoutY="276.0" text="Semester">
                <font>
                   <Font name="Tw Cen MT" size="18.0" />
                </font>
             </Label>
-            <JFXComboBox layoutX="187.0" layoutY="265.0" prefHeight="25.0" prefWidth="192.0" style="-fx-font-family: 'Tw Cen MT',san-serif; -fx-font-size: 16;" />
+            <JFXComboBox fx:id="semester" layoutX="187.0" layoutY="265.0" prefHeight="25.0" prefWidth="192.0" promptText="Select Semester" style="-fx-font-family: 'Tw Cen MT',san-serif; -fx-font-size: 16;" />
             <Label layoutX="23.0" layoutY="344.0" text="Department">
                <font>
                   <Font name="Tw Cen MT" size="18.0" />
                </font>
             </Label>
-            <JFXComboBox layoutX="187.0" layoutY="332.0" prefHeight="25.0" prefWidth="281.0" promptText="Ecology &amp; Environmental Science" style="-fx-font-family: 'Tw Cen MT',san-serif; -fx-font-size: 16;" />
             <Label layoutX="23.0" layoutY="413.0" text="Course Type">
                <font>
                   <Font name="Tw Cen MT" size="18.0" />
                </font>
             </Label>
-            <JFXComboBox layoutX="187.0" layoutY="404.0" prefHeight="25.0" prefWidth="287.0" style="-fx-font-family: 'Tw Cen MT',san-serif; -fx-font-size: 16;" />
-            <JFXButton layoutX="25.0" layoutY="491.0" prefHeight="33.0" prefWidth="136.0" style="-fx-background-color: #a154c3;" text="Add Paper" textFill="WHITE">
+            <JFXComboBox fx:id="coursetype" layoutX="187.0" layoutY="404.0" prefHeight="25.0" prefWidth="287.0" promptText="Select Course Type" style="-fx-font-family: 'Tw Cen MT',san-serif; -fx-font-size: 16;" />
+            <JFXButton fx:id="addpaper" layoutX="25.0" layoutY="491.0" prefHeight="33.0" prefWidth="136.0" style="-fx-background-color: #a154c3;" text="Add Paper" textFill="WHITE">
                <font>
                   <Font name="Tw Cen MT" size="18.0" />
                </font>
             </JFXButton>
-            <JFXButton layoutX="182.0" layoutY="489.0" prefHeight="33.0" prefWidth="136.0" style="-fx-background-color: green;" text="Update Paper" textFill="WHITE">
+            <JFXButton fx:id="updatepaper" layoutX="182.0" layoutY="489.0" prefHeight="33.0" prefWidth="136.0" style="-fx-background-color: green;" text="Update Paper" textFill="WHITE">
                <font>
                   <Font name="Tw Cen MT" size="18.0" />
                </font>
             </JFXButton>
-            <JFXButton layoutX="341.0" layoutY="489.0" prefHeight="33.0" prefWidth="136.0" style="-fx-background-color: #ff1818;" text="Delete Paper" textFill="WHITE">
+            <JFXButton fx:id="deletepaper" layoutX="341.0" layoutY="489.0" prefHeight="33.0" prefWidth="136.0" style="-fx-background-color: #ff1818;" text="Delete Paper" textFill="WHITE">
                <font>
                   <Font name="Tw Cen MT" size="18.0" />
                </font>
             </JFXButton>
+            <Label fx:id="department" layoutX="187.0" layoutY="344.0" prefHeight="21.0" prefWidth="287.0" text="Department">
+               <font>
+                  <Font name="Tw Cen MT" size="18.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
       <Pane layoutY="72.0" prefHeight="122.0" prefWidth="1366.0" style="-fx-background-color: #ededed;">
          <children>
-            <TextField layoutX="26.0" layoutY="28.0" prefHeight="33.0" prefWidth="435.0" promptText="Enter Paper Code">
+            <TextField fx:id="searchbar" layoutX="26.0" layoutY="28.0" prefHeight="33.0" prefWidth="435.0" promptText="Enter Paper Code">
                <font>
                   <Font name="Tw Cen MT" size="18.0" />
                </font>
             </TextField>
-            <JFXButton layoutX="26.0" layoutY="74.0" prefHeight="33.0" prefWidth="84.0" style="-fx-background-color: green;" text="Search" textFill="WHITE">
+            <JFXButton fx:id="search" layoutX="26.0" layoutY="74.0" prefHeight="33.0" prefWidth="84.0" style="-fx-background-color: green;" text="Search" textFill="WHITE">
                <font>
                   <Font name="Tw Cen MT" size="18.0" />
                </font>
             </JFXButton>
-            <JFXCheckBox layoutX="553.0" layoutY="28.0" text="Filter By Course Type">
+            <JFXCheckBox fx:id="filterbycoursetype" layoutX="553.0" layoutY="28.0" text="Filter By Course Type">
                <font>
                   <Font name="Tw Cen MT" size="18.0" />
                </font>
             </JFXCheckBox>
-            <JFXCheckBox layoutX="785.0" layoutY="28.0" text="Filter By Semester">
+            <JFXCheckBox fx:id="filterbysemester" layoutX="785.0" layoutY="28.0" text="Filter By Semester">
                <font>
                   <Font name="Tw Cen MT" size="18.0" />
                </font>
             </JFXCheckBox>
-            <JFXComboBox layoutX="553.0" layoutY="61.0" prefHeight="30.0" prefWidth="176.0" style="-fx-font-family: 'Tw Cen MT',san-serif; -fx-font-size: 16;" />
-            <JFXComboBox layoutX="785.0" layoutY="60.0" prefHeight="25.0" prefWidth="192.0" style="-fx-font-family: 'Tw Cen MT',san-serif; -fx-font-size: 16;" />
-            <JFXButton layoutX="1033.0" layoutY="46.0" prefHeight="33.0" prefWidth="136.0" style="-fx-background-color: blue;" text="Apply Filter" textFill="WHITE">
+            <JFXComboBox fx:id="selecttype" layoutX="553.0" layoutY="61.0" prefHeight="30.0" prefWidth="176.0" promptText="Select Type" style="-fx-font-family: 'Tw Cen MT',san-serif; -fx-font-size: 16;" />
+            <JFXComboBox fx:id="selectsemester" layoutX="785.0" layoutY="60.0" prefHeight="25.0" prefWidth="192.0" promptText="Select Semester" style="-fx-font-family: 'Tw Cen MT',san-serif; -fx-font-size: 16;" />
+            <JFXButton fx:id="applyfilter" layoutX="1033.0" layoutY="46.0" prefHeight="33.0" prefWidth="136.0" style="-fx-background-color: blue;" text="Apply Filter" textFill="WHITE">
                <font>
                   <Font name="Tw Cen MT" size="18.0" />
                </font>
             </JFXButton>
-            <JFXButton layoutX="1197.0" layoutY="46.0" prefHeight="33.0" prefWidth="136.0" style="-fx-background-color: green;" text="Refresh" textFill="WHITE">
+            <JFXButton fx:id="refresh" layoutX="1197.0" layoutY="46.0" prefHeight="33.0" prefWidth="136.0" style="-fx-background-color: green;" text="Refresh" textFill="WHITE">
                <font>
                   <Font name="Tw Cen MT" size="18.0" />
                </font>
@@ -128,16 +131,16 @@
       </Pane>
       <Pane layoutX="525.0" layoutY="194.0" prefHeight="575.0" prefWidth="842.0">
          <children>
-            <TableView layoutX="18.0" layoutY="24.0" prefHeight="533.0" prefWidth="802.0" style="-fx-font-family: 'Tw Cen MT',san-serif; -fx-font-size: 14;">
+            <TableView fx:id="list" layoutX="18.0" layoutY="24.0" prefHeight="533.0" prefWidth="802.0" style="-fx-font-family: 'Tw Cen MT',san-serif; -fx-font-size: 14;">
               <columns>
-                <TableColumn prefWidth="133.0" text="Paper Code" />
-                <TableColumn prefWidth="286.0" text="Paper Name" />
-                  <TableColumn text="Semester" />
-                  <TableColumn minWidth="9.0" prefWidth="217.0" text="Department" />
-                  <TableColumn prefWidth="84.0" text="Course Type" />
+                <TableColumn fx:id="lpapercode" prefWidth="133.0" text="Paper Code" />
+                <TableColumn fx:id="lpapername" prefWidth="286.0" text="Paper Name" />
+                  <TableColumn fx:id="lsemester" text="Semester" />
+                  <TableColumn fx:id="ldepartment" minWidth="9.0" prefWidth="217.0" text="Department" />
+                  <TableColumn fx:id="lcoursetype" prefWidth="84.0" text="Course Type" />
               </columns>
             </TableView>
          </children>
       </Pane>
    </children>
-</AnchorPane>
+</fx:root>

@@ -14,7 +14,7 @@ import java.util.List;
  */
 public interface PapersDao {
 
-    public abstract String save(Paper p);
+    public abstract long save(Paper p);
 
     public abstract boolean update(Paper p);
 
@@ -33,5 +33,7 @@ public interface PapersDao {
     public abstract List<Paper> findByCourseType(String courseType);
 
     public abstract List<Paper> findByDepartmentAndCourseType(String department,String courseType);
+    
+    public abstract boolean exists(String code);
 
 }

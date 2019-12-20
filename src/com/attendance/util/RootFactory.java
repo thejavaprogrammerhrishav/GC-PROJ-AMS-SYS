@@ -29,13 +29,13 @@ import com.attendance.login.signup.PrincipalSignUpController;
 import com.attendance.marks.controller.UnitTestReportController;
 import com.attendance.marks.controller.UploadUnitTestMarksController;
 import com.attendance.notes.controller.NotesDashboardController;
+import com.attendance.papers.controller.PapersController;
 import com.attendance.report.controller.AttendanceReportController;
 import com.attendance.routines.controller.RoutineDashboardController;
 import com.attendance.settings.ClassAndDetailsSettingsController;
 import com.attendance.settings.DatabaseServerSettingsController;
 import com.attendance.settings.ExportSettingsController;
 import com.attendance.settings.LoginUserSettingsController;
-import com.attendance.settings.PaperSettingsController;
 import com.attendance.settings.SettingsController;
 import com.attendance.settings.StudentSettingsController;
 import com.attendance.settings.UserLoginActivitySettingsController;
@@ -44,17 +44,14 @@ import com.attendance.settings.sub.ClassDetailsController;
 import com.attendance.settings.sub.DailyStatsController;
 import com.attendance.settings.sub.DeleteAdminUserController;
 import com.attendance.settings.sub.DeleteFacultyUserController;
-import com.attendance.settings.sub.DeletePaperController;
 import com.attendance.settings.sub.DeleteStudentController;
 import com.attendance.settings.sub.ExportClassDetailsListController;
 import com.attendance.settings.sub.ExportDailyStatsListController;
 import com.attendance.settings.sub.ExportFacultyListController;
 import com.attendance.settings.sub.ExportStudentListController;
-import com.attendance.settings.sub.NewPaperController;
 import com.attendance.settings.sub.UpdateAdminUserController;
 import com.attendance.settings.sub.UpdateClassDetailsController;
 import com.attendance.settings.sub.UpdateFacultyUserController;
-import com.attendance.settings.sub.UpdatePaperController;
 import com.attendance.splash.SplashController;
 import com.attendance.student.controller.RegisterStudentController;
 import com.attendance.student.controller.StudentUpdateController;
@@ -169,8 +166,8 @@ public class RootFactory {
         return new LoginUserSettingsController(parent);
     }
 
-    public static Parent getSettingsPaperRoot(Parent parent) {
-        return new PaperSettingsController(parent);
+    public static Parent getPaperRoot(Parent parent) {
+        return new PapersController(parent);
     }
 
     public static Parent getSettingsStudentRoot(Parent parent) {
@@ -179,18 +176,6 @@ public class RootFactory {
 
     public static Parent getDeleteStudentRoot(String sem) {
         return new DeleteStudentController(sem);
-    }
-
-    public static Parent getNewPaperRoot() {
-        return new NewPaperController();
-    }
-
-    public static Parent getUpdatePaperRoot() {
-        return new UpdatePaperController();
-    }
-
-    public static Parent getDeletePaperRoot() {
-        return new DeletePaperController();
     }
 
     public static Parent getClassDetailsRoot(Parent parent,String name) {
