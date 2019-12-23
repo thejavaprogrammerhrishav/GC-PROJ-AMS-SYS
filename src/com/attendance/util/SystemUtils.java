@@ -91,14 +91,8 @@ public class SystemUtils {
         deptcodes.put("Statistics", "STATS");
         deptcodes.put("Zoology", "ZOO");
 
-        try {
-            BufferedInputStream bin = (BufferedInputStream) SystemUtils.class.getResourceAsStream("/com/attendance/resources/account.png");
-            accountImage = new byte[bin.available()];
-            bin.read(accountImage);
-            bin.close();
-        } catch (IOException e) {
-            System.out.println("Error Loading Default Account Image");
-        }
+        Image img=new Image(SystemUtils.class.getResourceAsStream("/com/attendance/resources/account.png"));
+        accountImage=getByteArrayFromImage(img);
         
         ICONS.put("file", new Image(SystemUtils.class.getResourceAsStream("/com/attendance/resources/file.png")));
         ICONS.put("image", new Image(SystemUtils.class.getResourceAsStream("/com/attendance/resources/image.png")));
