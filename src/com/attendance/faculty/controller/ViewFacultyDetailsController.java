@@ -80,7 +80,7 @@ public class ViewFacultyDetailsController extends AnchorPane {
                 
         icon.setImage(new Image(new ByteArrayInputStream(user.getImage())));
         type.setText("User Type: "+user.getType());
-        created.setText("Account Created: DUMMY");
+        created.setText("Account Created: "+user.getDate());
         name.setText(details.getName());       
         gender.setText(details.getGender());     
         number.setText(details.getContact());     

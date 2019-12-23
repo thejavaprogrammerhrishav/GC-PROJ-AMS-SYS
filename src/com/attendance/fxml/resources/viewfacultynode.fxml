@@ -3,7 +3,6 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
@@ -14,16 +13,7 @@
          <children>
             <AnchorPane prefHeight="576.0" prefWidth="311.0" style="-fx-background-color: #fff; -fx-border-color: #f0f0f0; -fx-border-width: 0 2 0 0; -fx-background-radius: 30 0 0 30;">
                <children>
-                  <ImageView fx:id="icon" fitHeight="119.0" fitWidth="118.0" layoutX="97.0" layoutY="65.0" pickOnBounds="true">
-                     <image>
-                        <Image url="@LogoMakr_1wJdNX.png" />
-                     </image>
-                  </ImageView>
-                  <Label alignment="CENTER" layoutX="21.0" layoutY="200.0" prefHeight="88.0" prefWidth="270.0" text="Hrishav Dhawaj PurkayasthaHrishav Dhawaj Purkayastha" textAlignment="CENTER" wrapText="true">
-                     <font>
-                        <Font name="Tw Cen MT" size="22.0" />
-                     </font>
-                  </Label>
+                  <ImageView fx:id="icon" fitHeight="167.0" fitWidth="170.0" layoutX="71.0" layoutY="109.0" pickOnBounds="true" />
                   <Label fx:id="type" layoutX="21.0" layoutY="302.0" prefHeight="24.0" prefWidth="270.0" text="User Type: HOD" textAlignment="CENTER" textFill="#838383" wrapText="true">
                      <font>
                         <Font name="Tw Cen MT" size="17.0" />
@@ -101,7 +91,7 @@
             </JFXButton>
          </children>
          <effect>
-            <DropShadow color="WHITE" height="83.27" radius="42.6175" spread="0.33" width="89.2" />
+            <DropShadow color="#bfbfbf" height="26.94" radius="21.8625" spread="0.33" width="62.51" />
          </effect>
       </AnchorPane>
    </children>
