@@ -79,29 +79,6 @@
                   </AnchorPane>
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="papers" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" prefHeight="110.0" prefWidth="260.0" ripplerFill="#83019a" styleClass="node" textFill="WHITE">
-               <graphic>
-                  <AnchorPane prefHeight="110.0" prefWidth="260.0">
-                     <children>
-                        <Label layoutX="90.0" layoutY="22.0" prefHeight="30.0" prefWidth="170.0" text="Routine" textFill="#63c8ff">
-                           <font>
-                              <Font name="Century Gothic Bold" size="16.0" />
-                           </font>
-                        </Label>
-                        <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="12.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../resources/answer.png" />
-                           </image>
-                        </ImageView>
-                        <Label layoutX="90.0" layoutY="46.0" prefHeight="39.0" prefWidth="142.0" text="Delete Uploaded Routines" textFill="#63c9ff60" wrapText="true">
-                           <font>
-                              <Font name="Century Gothic" size="13.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </AnchorPane>
-               </graphic>
-            </JFXButton>
             <JFXButton fx:id="classattendance" alignment="CENTER" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" prefHeight="110.0" prefWidth="260.0" ripplerFill="#83019a" styleClass="node" text="Button" textFill="WHITE">
                <graphic>
                   <AnchorPane prefHeight="110.0" prefWidth="260.0">

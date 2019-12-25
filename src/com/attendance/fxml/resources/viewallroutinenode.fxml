@@ -18,12 +18,20 @@
             <Font name="Tw Cen MT" size="16.0" />
          </font>
       </Label>
-      <JFXButton fx:id="view" contentDisplay="GRAPHIC_ONLY" layoutX="442.0" layoutY="13.0" prefHeight="33.0" prefWidth="48.0" style="-fx-background-color: blue;" textFill="WHITE">
+      <JFXButton fx:id="view" contentDisplay="GRAPHIC_ONLY" layoutX="408.0" layoutY="13.0" prefHeight="33.0" prefWidth="48.0" style="-fx-background-color: blue;" textFill="WHITE">
          <font>
             <Font name="Tw Cen MT" size="18.0" />
          </font>
          <graphic>
             <FontAwesomeIconView fill="WHITE" glyphName="EYE" size="1.5em" />
+         </graphic>
+      </JFXButton>
+      <JFXButton fx:id="delete" contentDisplay="GRAPHIC_ONLY" layoutX="476.0" layoutY="13.0" prefHeight="33.0" prefWidth="48.0" style="-fx-background-color: red;" textFill="WHITE">
+         <font>
+            <Font name="Tw Cen MT" size="18.0" />
+         </font>
+         <graphic>
+            <FontAwesomeIconView fill="WHITE" glyphName="TRASH" size="1.5em" />
          </graphic>
       </JFXButton>
    </children>
