@@ -7,7 +7,6 @@ package com.attendance.settings.sub;
 
 import com.attendance.main.Start;
 import com.attendance.student.dao.StudentDao;
-import com.attendance.studentattendance.dao.AttendanceDao;
 import com.attendance.studentattendance.model.Attendance;
 import com.attendance.util.AttendanceUtilModel;
 import com.attendance.util.Fxml;
@@ -110,7 +109,6 @@ public class AttendanceController extends AnchorPane {
     @FXML
     private JFXComboBox<String> coursetype;
 
-    private AttendanceDao dao;
     private StudentDao sdao;
 
     private FXMLLoader fxml;
@@ -129,7 +127,6 @@ public class AttendanceController extends AnchorPane {
 
     @FXML
     private void initialize() {
-        dao = (AttendanceDao) Start.app.getBean("attendance");
         sdao = (StudentDao) Start.app.getBean("studentregistration");
 
         initFilters();
@@ -186,29 +183,29 @@ public class AttendanceController extends AnchorPane {
     }
 
     private void populateTable(ActionEvent evt) {
-        List<Attendance> list = dao.findAll();
+        List<Attendance> list = null;
         List<AttendanceUtilModel> nlist = list.stream().map(a -> {
             AttendanceUtilModel at = new AttendanceUtilModel();
             at.setStatus(a.getStatus());
             at.setStudentId(a.getStudentId());
 
-            String s = a.getClassId();
-            String[] sa = s.split("/");
-            String[] ss = sa[1].split("@");
-            at.setDate(ss[0]);
-
-            ss = ss[1].split("#");
-            at.setTime(ss[0]);
-
-            ss = ss[1].split("__");
-            at.setAcadamicyear(ss[0]);
-
-            ss = ss[1].split("_");
-            at.setSemester(ss[0] + " Semester");
-            System.out.println(ss[1]);
-            ss = ss[1].split("&");
-            System.out.println(ss.length);
-            at.setYear(ss[0]);
+//            String s = a.getClassId();
+//            String[] sa = s.split("/");
+//            String[] ss = sa[1].split("@");
+//            at.setDate(ss[0]);
+//
+//            ss = ss[1].split("#");
+//            at.setTime(ss[0]);
+//
+//            ss = ss[1].split("__");
+//            at.setAcadamicyear(ss[0]);
+//
+//            ss = ss[1].split("_");
+//            at.setSemester(ss[0] + " Semester");
+//            System.out.println(ss[1]);
+//            ss = ss[1].split("&");
+//            System.out.println(ss.length);
+//            at.setYear(ss[0]);
 
             return at;
         }).collect(Collectors.toList());
@@ -216,34 +213,35 @@ public class AttendanceController extends AnchorPane {
     }
 
     private void applyfilters(ActionEvent evt) {
-        List<Attendance> list = dao.findAll();
+        List<Attendance> list = null;
         List<AttendanceUtilModel> nlist = list.stream().map(a -> {
             AttendanceUtilModel at = new AttendanceUtilModel();
             at.setStatus(a.getStatus());
             at.setStudentId(a.getStudentId());
 
-            String s = a.getClassId();
-            String[] sa = s.split("/");
-            String[] ss = sa[1].split("@");
-            at.setDate(ss[0]);
+//            String s = a.getClassId();
+//            String[] sa = s.split("/");
+//            String[] ss = sa[1].split("@");
+//            at.setDate(ss[0]);
+//
+//            ss = ss[1].split("#");
+//            at.setTime(ss[0]);
+//
+//            ss = ss[1].split("__");
+//            at.setAcadamicyear(ss[0]);
+//
+//            ss = ss[1].split("_");
+//            at.setSemester(ss[0] + " Semester");
+//            ss = ss[1].split("&");
+//            at.setYear(ss[0]);
+//
+//            if (a.getClassId().charAt(a.getClassId().length() - 1) == 'H') {
+//                at.setCoursetype("Honours");
+//            }
+//            if (a.getClassId().charAt(a.getClassId().length() - 1) == 'P') {
+//                at.setCoursetype("Pass");
+//            }
 
-            ss = ss[1].split("#");
-            at.setTime(ss[0]);
-
-            ss = ss[1].split("__");
-            at.setAcadamicyear(ss[0]);
-
-            ss = ss[1].split("_");
-            at.setSemester(ss[0] + " Semester");
-            ss = ss[1].split("&");
-            at.setYear(ss[0]);
-
-            if (a.getClassId().charAt(a.getClassId().length() - 1) == 'H') {
-                at.setCoursetype("Honours");
-            }
-            if (a.getClassId().charAt(a.getClassId().length() - 1) == 'P') {
-                at.setCoursetype("Pass");
-            }
             return at;
         }).collect(Collectors.toList());
 

@@ -5,6 +5,8 @@
  */
 package com.attendance.studentattendance.model;
 
+import java.util.List;
+
 /**
  *
  * @author Programmer Hrishav
@@ -22,6 +24,10 @@ public class ClassDetails {
     private String acadamicyear;
     private String department;
     private String coursetype;
+    
+    private DailyStats dailyStats;
+    
+    private List<Attendance> attendance;
 
     public ClassDetails() {
     }
@@ -127,5 +133,22 @@ public class ClassDetails {
     public String getDepartment() {
         return department;
     }
+
+    public DailyStats getDailyStats() {
+        return dailyStats;
+    }
+
+    public void setDailyStats(DailyStats dailyStats) {
+        this.dailyStats = dailyStats;
+    }
+
+    public List<Attendance> getAttendance() {
+        return attendance;
+    }
+
+    public void setAttendance(List<Attendance> attendance) {
+        this.attendance = attendance;
+    }
    
+    
 }

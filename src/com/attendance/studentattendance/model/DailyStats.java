@@ -11,8 +11,7 @@ package com.attendance.studentattendance.model;
  */
 public class DailyStats {
 
-    private int id;
-    private String classId;
+    private Long id;
     private int totalStudent;
     private int totalPresent;
     private int totalAbsent;
@@ -20,12 +19,11 @@ public class DailyStats {
     private double absentPercentage;
 
     public DailyStats() {
-        this(-1, "", -1, -1, -1, -1.1, -1.1);
+        this((long)-1, -1, -1, -1, -1.1, -1.1);
     }
 
-    public DailyStats(int id, String classId, int totalStudent, int totalPresent, int totalAbsent, double presentPercentage, double absentPercentage) {
+    public DailyStats(Long id,int totalStudent, int totalPresent, int totalAbsent, double presentPercentage, double absentPercentage) {
         this.id = id;
-        this.classId = classId;
         this.totalStudent = totalStudent;
         this.totalPresent = totalPresent;
         this.totalAbsent = totalAbsent;
@@ -33,20 +31,12 @@ public class DailyStats {
         this.absentPercentage = absentPercentage;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getClassId() {
-        return classId;
-    }
-
-    public void setClassId(String classId) {
-        this.classId = classId;
     }
 
     public int getTotalStudent() {

@@ -11,27 +11,25 @@ package com.attendance.studentattendance.model;
  */
 public class Attendance {
 
-    private int id;
+    private Long id;
     private String studentId;
     private String status;
-    private String classId;
 
     public Attendance() {
-        this(-1, "", "", "");
+        this((long)-1, "", "", "");
     }
 
-    public Attendance(int id, String studentId, String status, String classId) {
+    public Attendance(Long id, String studentId, String status, String classId) {
         this.id = id;
         this.studentId = studentId;
         this.status = status;
-        this.classId = classId;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -50,13 +48,4 @@ public class Attendance {
     public void setStatus(String status) {
         this.status = status;
     }
-
-    public String getClassId() {
-        return classId;
-    }
-
-    public void setClassId(String classId) {
-        this.classId = classId;
-    }
-
 }

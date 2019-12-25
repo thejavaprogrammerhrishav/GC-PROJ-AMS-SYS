@@ -17,6 +17,6 @@
         <property name="image">
             <column name="image" sql-type="longblob" not-null="true"/>
         </property>
-        <one-to-one name = "details" class = "com.attendance.personal.model.PersonalDetails" cascade = "all"></one-to-one>
+        <one-to-one name = "details" class = "com.attendance.personal.model.PersonalDetails" cascade = "all" fetch="join"></one-to-one>
     </class>
 </hibernate-mapping>

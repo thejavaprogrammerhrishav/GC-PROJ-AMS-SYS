@@ -74,17 +74,7 @@
         <property name="jdbcTemplate" ref="jdbcTemplate"/>        
     </bean>
     
-    <bean id="attendance" class="com.attendance.studentattendance.dao.impl.AttendanceDaoImpl">
-        <property name="hibernateTemplate" ref="hibernateTemplate"/>
-        <property name="jdbcTemplate" ref="jdbcTemplate"/>        
-    </bean>
-    
     <bean id="classdetails" class="com.attendance.studentattendance.dao.impl.ClassDetailsDaoImpl">
-        <property name="hibernateTemplate" ref="hibernateTemplate"/>
-        <property name="jdbcTemplate" ref="jdbcTemplate"/>        
-    </bean>
-    
-    <bean id="dailystats" class="com.attendance.studentattendance.dao.impl.DailyStatsDaoImpl">
         <property name="hibernateTemplate" ref="hibernateTemplate"/>
         <property name="jdbcTemplate" ref="jdbcTemplate"/>        
     </bean>

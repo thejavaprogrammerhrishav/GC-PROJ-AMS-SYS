@@ -13,7 +13,6 @@ and open the template in the editor.
     </id>
     <property column="studentid" name="studentId" not-null="true"/>
     <property column="status" name="status" not-null="true"/>
-    <property column="classid" name="classId" not-null="true"/>
   </class>
 </hibernate-mapping>
 

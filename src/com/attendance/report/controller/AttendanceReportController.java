@@ -13,7 +13,6 @@ import com.attendance.report.model.AttendanceDetails;
 import com.attendance.report.model.StudentCount;
 import com.attendance.student.dao.StudentDao;
 import com.attendance.student.model.Student;
-import com.attendance.studentattendance.dao.AttendanceDao;
 import com.attendance.studentattendance.dao.ClassDetailsDao;
 import com.attendance.util.ExportAttendancereport;
 import com.attendance.util.Fxml;
@@ -135,7 +134,6 @@ public class AttendanceReportController extends AnchorPane {
 
     private StudentDao studentdao;
     private PapersDao paperdao;
-    private AttendanceDao attendancedao;
     private ClassDetailsDao classdao;
     private Login dao;
 
@@ -159,7 +157,6 @@ public class AttendanceReportController extends AnchorPane {
         department.setText(SystemUtils.getDepartment());
         studentdao = (StudentDao) Start.app.getBean("studentregistration");
         paperdao = (PapersDao) Start.app.getBean("papers");
-        attendancedao = (AttendanceDao) Start.app.getBean("attendance");
         classdao = (ClassDetailsDao) Start.app.getBean("classdetails");
         dao = (Login) Start.app.getBean("userlogin");
         cancel.setOnAction(this::proceed);
@@ -267,7 +264,7 @@ public class AttendanceReportController extends AnchorPane {
 
         List<Student> stud = studentdao.findByAcadamicYearAndYear(acadamicyear.getSelectionModel().getSelectedItem(), Integer.parseInt(year.getSelectionModel().getSelectedItem()));
         List<Student> students = stud.stream().filter(p -> p.getCourseType().equals(coursetype.getSelectionModel().getSelectedItem())).collect(Collectors.toList());
-        List<StudentCount> vals = attendancedao.getCustom(sql, StudentCount.class);
+        List<StudentCount> vals=null ; //= attendancedao.getCustom(sql, StudentCount.class);
 
         int total = classdao.get(csql);
 

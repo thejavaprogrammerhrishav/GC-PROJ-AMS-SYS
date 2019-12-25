@@ -20,6 +20,16 @@ and open the template in the editor.
         <property column="papercode" name="paper" not-null="true"/>
         <property column="department" name="department" not-null="true"/>
         <property column="coursetype" name="coursetype" not-null="true"/>
+        
+        <many-to-one name="dailyStats" class="com.attendance.studentattendance.model.DailyStats"
+                     column="dailyStatId" unique="true" not-null="true" 
+                     cascade="all" fetch="join"/>
+        
+        <list name="attendance" cascade="all" fetch="join" table="attendance" catalog="attendance">
+            <key column="classId"/>
+            <list-index column="indx" base="1"/>
+            <one-to-many class="com.attendance.studentattendance.model.Attendance"/>
+        </list>
     </class>
 </hibernate-mapping>
 

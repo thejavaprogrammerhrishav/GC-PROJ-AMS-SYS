@@ -10,7 +10,6 @@ and open the template in the editor.
     <id column="id" name="id">
         <generator class="identity"/>
     </id>
-    <property column="classid" name="classId" not-null="true"/>
     <property column="totalstudent" name="totalStudent" not-null="true"/>
     <property column="totalpresent" name="totalPresent" not-null="true"/>
     <property column="totalabsent" name="totalAbsent" not-null="true"/>
