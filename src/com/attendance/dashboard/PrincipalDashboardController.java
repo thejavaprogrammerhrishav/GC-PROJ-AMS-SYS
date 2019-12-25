@@ -10,6 +10,7 @@ import com.attendance.login.activity.model.LoginActivity;
 import com.attendance.login.dao.Login;
 import com.attendance.login.user.model.User;
 import com.attendance.main.Start;
+import com.attendance.student.dao.StudentDao;
 import com.attendance.util.Fxml;
 import com.attendance.util.RootFactory;
 import com.attendance.util.StageUtil;
@@ -20,6 +21,7 @@ import com.jfoenix.controls.JFXComboBox;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.logging.Level;
@@ -121,6 +123,8 @@ public class PrincipalDashboardController extends AnchorPane {
 
     private Task<Integer> task;
     private Thread thread;
+    
+    private StudentDao dao;
 
     public PrincipalDashboardController() {
         this.principal = SystemUtils.getCurrentUser();
@@ -142,6 +146,12 @@ public class PrincipalDashboardController extends AnchorPane {
     private void initialize() {
         act = (Activity) Start.app.getBean("loginactivity");
         login = (Login) Start.app.getBean("userlogin");
+        dao = (StudentDao) Start.app.getBean("studentregistration");
+        department.getItems().setAll(Arrays.asList(SystemUtils.getDepartments()));
+
+        List<String> years = new ArrayList<>(dao.get("select distinct(year) from student order by year", String.class));
+        Collections.sort(years);
+        year.getItems().setAll(years);
         buttonActions();
         profilepic.setImage(new Image(new ByteArrayInputStream(principal.getImage())));
         initLoginActivity(null);
@@ -165,6 +175,7 @@ public class PrincipalDashboardController extends AnchorPane {
     }
 
     private void buttonActions() {
+        pane.getChildren().setAll(RootFactory.getPrincipalDashboardStudentNodeRoot());
         refresh.setOnAction(this::initLoginActivity);
         myprofile.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getUserProfileRoot("principal")));
         changepassword.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getChangePasswordRoot(Start.st.getScene().getRoot())));
@@ -179,7 +190,16 @@ public class PrincipalDashboardController extends AnchorPane {
         totaldepartments.setOnAction(e -> pane.getChildren().setAll(RootFactory.getPrincipalDashboardDepartmentNodeRoot()));
         principalaccounts.setOnAction(e -> pane.getChildren().setAll(RootFactory.getPrincipalDashboardPrincipalAccountNodeRoot()));
         hodaccounts.setOnAction(e -> pane.getChildren().setAll(RootFactory.getPrincipalDashboardHODAccountNodeRoot()));
+        open.setOnAction(this::routine);
+    }
 
+    private void routine(ActionEvent evt) {
+            String dept = department.getSelectionModel().getSelectedItem();
+            String yr = year.getSelectionModel().getSelectedItem();
+            System.out.println(dept+"\t"+yr);
+            if(dept!= null && yr != null) {
+                SwitchRoot.switchRoot(Start.st, RootFactory.getPrincipalRoutineDashboardRoot(Start.st.getScene().getRoot(), dept, yr));
+            }
     }
 
     private void init() {

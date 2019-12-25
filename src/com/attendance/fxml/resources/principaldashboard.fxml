@@ -99,7 +99,7 @@
             </Label>
          </children>
       </Pane>
-      <Pane layoutX="314.0" layoutY="501.0" prefHeight="245.0" prefWidth="686.0" style="-fx-background-color: violet;">
+      <Pane layoutX="314.0" layoutY="501.0" prefHeight="245.0" prefWidth="686.0" style="-fx-background-color: #CC00CC;">
          <children>
             <Label alignment="CENTER" layoutX="183.0" layoutY="21.0" prefHeight="52.0" prefWidth="320.0" text="Departmental Routine" textFill="WHITE">
                <font>

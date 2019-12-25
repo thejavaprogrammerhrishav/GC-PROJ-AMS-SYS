@@ -14,6 +14,7 @@ import com.attendance.dashboard.node.PrincipalDashboardFacultyNodeController;
 import com.attendance.dashboard.node.PrincipalDashboardHODAccountNodeController;
 import com.attendance.dashboard.node.PrincipalDashboardPrincipalAccountNodeController;
 import com.attendance.dashboard.node.PrincipalDashboardStudentNodeController;
+import com.attendance.dashboard.principal.PrincipalRoutineDashboardController;
 import com.attendance.faculty.controller.SelectFacultyController;
 import com.attendance.faculty.controller.ViewFacultyController;
 import com.attendance.login.activity.model.LoginActivity;
@@ -300,5 +301,9 @@ public class RootFactory {
        
        public static Parent getRoutineDashboardRoot(Parent parent) {
            return new RoutineDashboardController(parent);
+       }
+       
+       public static Parent getPrincipalRoutineDashboardRoot(Parent parent,String department,String year) {
+           return new PrincipalRoutineDashboardController(parent,department,year);
        }
 }
