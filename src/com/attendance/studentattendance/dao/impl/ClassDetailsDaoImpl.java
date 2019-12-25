@@ -8,7 +8,6 @@ package com.attendance.studentattendance.dao.impl;
 import com.attendance.studentattendance.dao.ClassDetailsDao;
 import com.attendance.studentattendance.model.ClassDetails;
 import java.util.List;
-import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.transaction.annotation.Transactional;
@@ -58,8 +57,14 @@ public class ClassDetailsDaoImpl implements ClassDetailsDao {
 
     @Override
     @Transactional
-    public List<ClassDetails> findByFaculty(String facultyName) {
-        return (List<ClassDetails>) hibernateTemplate.find("from ClassDetails where facultyName=?", facultyName);
+    public ClassDetails findById(String classId) {
+        return (ClassDetails) hibernateTemplate.get(ClassDetails.class, classId);
+    }
+
+    @Override
+    @Transactional
+    public List<ClassDetails> findByFacultyName(String facultyName) {
+        return (List<ClassDetails>) hibernateTemplate.find("from ClassDetails where facultyName=?", "%" + facultyName + "%");
     }
 
     @Override
@@ -76,13 +81,14 @@ public class ClassDetailsDaoImpl implements ClassDetailsDao {
 
     @Override
     @Transactional
-    public List<ClassDetails> findByDateAndTime(String date, String time) {
-        return (List<ClassDetails>) hibernateTemplate.find("from ClassDetails where date=? and time=?", date, time);
+    public List<ClassDetails> findBySemester(String semester) {
+        return (List<ClassDetails>) hibernateTemplate.find("from ClassDetails where semester=?", semester);
     }
 
     @Override
-    public List<ClassDetails> findBySemester(String semester) {
-        return (List<ClassDetails>) hibernateTemplate.find("from ClassDetails where semester=?", semester);
+    @Transactional
+    public List<ClassDetails> findByAcadamicYear(String acadamicYear) {
+        return (List<ClassDetails>) hibernateTemplate.find("from ClassDetails where acadamicyear=?", acadamicYear);
     }
 
     @Override
@@ -93,66 +99,20 @@ public class ClassDetailsDaoImpl implements ClassDetailsDao {
 
     @Override
     @Transactional
-    public ClassDetails findById(String classId) {
-        return (ClassDetails) hibernateTemplate.get(ClassDetails.class, classId);
-    }
-
-    @Override
-    @Transactional
-    public List<ClassDetails> findBySubjectTaught(String subjectTaught) {
-        return (List<ClassDetails>) hibernateTemplate.find("from ClassDetails where subjectTaught=?", subjectTaught);
-    }
-
-    @Override
-    public int countFacultyClasses(String facultyName) {
-        return jdbcTemplate.queryForObject("select * from classdetails where facultyName='" + facultyName + "'", Integer.class);
-    }
-
-    @Override
-    public int countFacultyClassesDateRange(String facultyName, String dateFrom, String dateTo) {
-        return jdbcTemplate.queryForObject("select * from classdetails where facultyName='" + facultyName + "' and date>='" + dateFrom + "' and date<=" + dateTo + "'", Integer.class);
-    }
-
-    @Override
-    public int countfacultyClassesSemesterAndYear(String facultyName, String semester, String year) {
-        return jdbcTemplate.queryForObject("select * from classdetails where facultyName='" + facultyName + "' and semester='" + semester + "' and year=" + year + "'", Integer.class);
-    }
-
-    @Override
-    public int countFacutlyClassesSemester(String facultyName, String semseter) {
-        return jdbcTemplate.queryForObject("select * from classdetails where facultyName='" + facultyName + "' and semester='" + semseter + "'", Integer.class);
-    }
-
-    @Override
-    public int countClassesInEntireSemester(String semester, int year) {
-        return jdbcTemplate.queryForObject("select * from classdetails where semester='" + semester + "' and year=" + year + "'", Integer.class);
-
-    }
-
-    @Override
-    public <T> List<T> get(String sql, Class<T> type) {
-        return jdbcTemplate.queryForList(sql, type);
-    }
-
-    @Override
-    public int get(String sql) {
-        return jdbcTemplate.queryForObject(sql, Integer.class);
-    }
-
-    @Override
-    @Transactional
     public List<ClassDetails> findBySemesterAndYear(String semester, int year) {
         return (List<ClassDetails>) hibernateTemplate.find("from ClassDetails where semester=? and year=?", semester, year);
     }
 
     @Override
-    public boolean updateClassId(String newId, String oldId) {
-        try {
-            jdbcTemplate.execute("update classdetails set classId='" + newId + "' where classId='" + oldId + "'");
-            return true;
-        } catch (DataAccessException e) {
-            return false;
-        }
+    @Transactional
+    public List<ClassDetails> findByAcadamicYearAndYear(String acadamicYear, int year) {
+        return (List<ClassDetails>) hibernateTemplate.find("from ClassDetails where acadamicyear=? and year=?", acadamicYear, year);
+    }
+
+    @Override
+    @Transactional
+    public List<ClassDetails> findByDepartmentAndSemesterAndPaperCodeAndYear(String department, String semester, String papercode, int year) {
+        return (List<ClassDetails>) hibernateTemplate.find("from ClassDetails where department=? and semester=? and paper=? and year=?", department, semester, papercode, year);
     }
 
     @Override
@@ -162,8 +122,55 @@ public class ClassDetailsDaoImpl implements ClassDetailsDao {
     }
 
     @Override
-    public List<ClassDetails> findByCourseType(int coursetype) {
-        return (List<ClassDetails>) hibernateTemplate.find("from ClassDetails where coursetype=?", coursetype);
+    @Transactional
+    public List<ClassDetails> findByDepartmentAndSemesterAndYear(String department, String semester, int year) {
+        return (List<ClassDetails>) hibernateTemplate.find("from ClassDetails where department=? and semester=? and year=?", department, semester, year);
     }
 
+    @Override
+    @Transactional
+    public List<ClassDetails> findByDepartmentAndAcadamicYearAndYear(String department, String acadamicYear, int year) {
+        return (List<ClassDetails>) hibernateTemplate.find("from ClassDetails where department=? and acadamicyear=? and year=?", department, acadamicYear, year);
+    }
+
+    @Override
+    @Transactional
+    public List<ClassDetails> findByDepartmentAndCourseType(String department, String courseType) {
+        return (List<ClassDetails>) hibernateTemplate.find("from ClassDetails where department=? and coursetype=?", department, courseType);
+    }
+
+    @Override
+    @Transactional
+    public List<ClassDetails> findByDepartmentAndCourseTypeAndYear(String department, String courseType, int year) {
+        return (List<ClassDetails>) hibernateTemplate.find("from ClassDetails where department=? and coursetype=? and year=?", department, courseType, year);
+    }
+
+    @Override
+    @Transactional
+    public List<ClassDetails> findByDepartmentAndCourseTypeAndAcadamicYearAndYear(String department, String courseType, String acadamicYear, int year) {
+        return (List<ClassDetails>) hibernateTemplate.find("from ClassDetails where department=? and coursetype=? and acadamicyear=? and year=?", department, courseType, acadamicYear, year);
+    }
+
+    @Override
+    @Transactional
+    public List<ClassDetails> findByDepartmentAndCourseTypeAndSemesterAndYear(String department, String courseType, String semester, int year) {
+        return (List<ClassDetails>) hibernateTemplate.find("from ClassDetails where department=? and coursetype=? and semester=? and year=?", department, courseType, semester, year);
+    }
+
+    @Override
+    @Transactional
+    public List<ClassDetails> findByFacultyAndDepartmentAndCourseTypeAndSemesterAndYear(String faculty, String department, String courseType, String semester, int year) {
+        return (List<ClassDetails>) hibernateTemplate.find("from ClassDetails where facultyName=? and department=? and coursetype=? and semester=? and year=?", "%" + faculty + "%", department, courseType, semester, year);
+    }
+
+    @Override
+    @Transactional
+    public List<ClassDetails> findByFacultyAndDepartmentAndCourseTypeAndAcadamicAndYear(String faculty, String department, String courseType, String acadamicYear, int year) {
+        return (List<ClassDetails>) hibernateTemplate.find("from ClassDetails where facultyName=? and department=? and coursetype=? and acadamicyear=? and year=?", "%" + faculty + "%", department, courseType, acadamicYear, year);
+    }
+
+    @Override
+    public List<ClassDetails> findAll(String department, String acadamicYear, String semester, int year, String papercode, String coursetype) {
+        return (List<ClassDetails>) hibernateTemplate.find("from ClassDetails where department=? and acadamicyear=? and semester=? and year=? and paper=? and coursetype?", department,acadamicYear,semester,year,papercode,coursetype);
+    }
 }

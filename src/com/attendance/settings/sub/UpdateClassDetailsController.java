@@ -422,7 +422,7 @@ public class UpdateClassDetailsController extends ScrollPane {
                     + "#" + cdacadamicyear.getSelectionModel().getSelectedItem() + "__" + cdsemester.getSelectionModel().getSelectedItem().replace(" Semester", "") + "_" + cdyear.getSelectionModel().getSelectedItem() + "&" + cd.getCoursetype().charAt(0);
             cd.setClassId(id);
 
-            boolean b2 = cdao.updateClassId(cd.getClassId(), details.getClassId());
+            boolean b2=false;// = cdao.updateClassId(cd.getClassId(), details.getClassId());
             if (b1 && b2) {
                 Alert al = new Alert(AlertType.INFORMATION);
                 al.initModality(Modality.WINDOW_MODAL);

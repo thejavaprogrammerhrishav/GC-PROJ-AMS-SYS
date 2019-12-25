@@ -219,102 +219,14 @@ public class AttendanceReportController extends AnchorPane {
     }
 
     private void generate(ActionEvent evt) {
-        String fsql = "select group_concat(distinct(facultyname) separator ',') as faculty from classdetails where department='" + SystemUtils.getDepartment() + "'";
-        String sql = "select *,count(*) as countpresent from attendance,classdetails where attendance.classId=classdetails.classId and department='" + SystemUtils.getDepartment() + "'";
-        String csql = "select count(*) from classdetails where department='" + SystemUtils.getDepartment() + "'";
-
-        boolean b = acadamicyear.getSelectionModel().getSelectedIndex() > -1 && semester.getSelectionModel().getSelectedIndex() > -1
-                && year.getSelectionModel().getSelectedIndex() > -1 && paper.getSelectionModel().getSelectedIndex() > -1
-                && coursetype.getSelectionModel().getSelectedIndex() > -1;
-        if (b) {
-            if (filterbyname.isSelected()) {
-                sql = sql + " and facultyname='" + name.getSelectionModel().getSelectedItem() + "'";
-                csql = csql + " and facultyname='" + name.getSelectionModel().getSelectedItem() + "'";
-            }
-            sql = sql + " and acadamicyear='" + acadamicyear.getSelectionModel().getSelectedItem() + "'";
-            fsql = fsql + " and acadamicyear='" + acadamicyear.getSelectionModel().getSelectedItem() + "'";
-            csql = csql + " and acadamicyear='" + acadamicyear.getSelectionModel().getSelectedItem() + "'";
-
-            sql = sql + " and semester='" + semester.getSelectionModel().getSelectedItem().replace(" Semester", "") + "'";
-            fsql = fsql + " and semester='" + semester.getSelectionModel().getSelectedItem().replace(" Semester", "") + "'";
-            csql = csql + " and semester='" + semester.getSelectionModel().getSelectedItem().replace(" Semester", "") + "'";
-
-            sql = sql + " and year=" + year.getSelectionModel().getSelectedItem();
-            fsql = fsql + " and year=" + year.getSelectionModel().getSelectedItem();
-            csql = csql + " and year=" + year.getSelectionModel().getSelectedItem();
-
-            sql = sql + " and papercode='" + paper.getSelectionModel().getSelectedItem() + "'";
-            fsql = fsql + " and papercode='" + paper.getSelectionModel().getSelectedItem() + "'";
-            csql = csql + " and papercode='" + paper.getSelectionModel().getSelectedItem() + "'";
-
-            sql = sql + " and coursetype='" + coursetype.getSelectionModel().getSelectedItem() + "'";
-            fsql = fsql + " and coursetype='" + coursetype.getSelectionModel().getSelectedItem() + "'";
-            csql = csql + " and coursetype='" + coursetype.getSelectionModel().getSelectedItem() + "'";
-
-            sql = sql + " and status='Present' group by studentid";
-
-        } else {
-            MessageUtil.showError(Message.INFORMATION, "Student Attendance Report", "Enter The Unfilled Values", ((Node) evt.getSource()).getScene().getWindow());
-        }
-        System.out.println("SQL:   " + sql);
-        System.out.println("CSQL:  " + csql);
-        System.out.println("FSQL:   " + fsql);
-
-        List<String> faculty_name = classdao.get(fsql, String.class);
-
-        List<Student> stud = studentdao.findByAcadamicYearAndYear(acadamicyear.getSelectionModel().getSelectedItem(), Integer.parseInt(year.getSelectionModel().getSelectedItem()));
-        List<Student> students = stud.stream().filter(p -> p.getCourseType().equals(coursetype.getSelectionModel().getSelectedItem())).collect(Collectors.toList());
-        List<StudentCount> vals=null ; //= attendancedao.getCustom(sql, StudentCount.class);
-
-        int total = classdao.get(csql);
-
-        List<AttendanceDetails> collect = vals.stream().map(c -> {
-            Student s = students.stream().filter(p -> p.getId().equals(c.getStudentid())).collect(Collectors.toList()).get(0);
-            AttendanceDetails attendance = new AttendanceDetails();
-            attendance.setStudentname(s.getName());
-            attendance.setRollno(s.getRollno());
-            attendance.setSemester(s.getAcadamicyear());
-            attendance.setYear(s.getYear());
-            attendance.setFacultyname(faculty_name.get(0));
-            attendance.setTotalclasses(total);
-            attendance.setTotalpresent(c.getCountpresent());
-            attendance.setTotalabsent(total - c.getCountpresent());
-
-            double pp, ap;
-            pp = ((double) c.getCountpresent() / total) * 100;
-            ap = ((double) (total - c.getCountpresent()) / total) * 100;
-
-            attendance.setPresentpercentage(Double.parseDouble(dec.format(pp)));
-            attendance.setAbsentpercentage(Double.parseDouble(dec.format(ap)));
-
-            return attendance;
-        }).collect(Collectors.toList());
-        table.getItems().setAll(collect);
-
-        List<String> ids = students.stream().map(e -> e.getId()).collect(Collectors.toList());
-        ids.removeAll(vals.stream().map(e -> e.getStudentid()).collect(Collectors.toList()));
-
-        ids.stream().map(c -> {
-            Student s = students.stream().filter(p -> p.getId().equals(c)).collect(Collectors.toList()).get(0);
-            AttendanceDetails attendance = new AttendanceDetails();
-            attendance.setStudentname(s.getName());
-            attendance.setRollno(s.getRollno());
-            attendance.setSemester(s.getAcadamicyear());
-            attendance.setYear(s.getYear());
-            attendance.setFacultyname(faculty_name.get(0));
-            attendance.setTotalclasses(total);
-            attendance.setTotalpresent(0);
-            attendance.setTotalabsent(total);
-
-            double pp, ap;
-            pp = 0.0;
-            ap = 100.0;
-
-            attendance.setPresentpercentage(Double.parseDouble(dec.format(pp)));
-            attendance.setAbsentpercentage(Double.parseDouble(dec.format(ap)));
-
-            return attendance;
-        }).forEach(table.getItems()::add);
+        String acayear=acadamicyear.getSelectionModel().getSelectedItem();
+        String sem=semester.getSelectionModel().getSelectedItem();
+        int yr=Integer.parseInt(year.getSelectionModel().getSelectedItem());
+        String papercode=paper.getSelectionModel().getSelectedItem();
+        String course=coursetype.getSelectionModel().getSelectedItem();
+        
+        classdao.findAll(SystemUtils.getDepartment(), acayear, sem, yr, papercode, course);
+        
     }
 
     private void clear(ActionEvent evt) {
