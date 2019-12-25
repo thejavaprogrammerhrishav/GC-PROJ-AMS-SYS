@@ -58,31 +58,31 @@ public class PrincipalRoutineDashboardController extends AnchorPane {
 
     @FXML
     private JFXButton viewroutine;
-    
+
     @FXML
     private JFXButton viewallroutine;
 
     @FXML
     private AnchorPane list;
-    
+
     @FXML
     private Label name;
-    
+
     @FXML
     private ImageView image;
 
     private FXMLLoader fxml;
 
     private Parent parent;
-    
+
     private User currentUser;
-    
+
     private RoutineDao rdao;
-    
+
     private String currentdepartment;
     private String year;
 
-    public PrincipalRoutineDashboardController(Parent parent,String currentdepartment,String year) {
+    public PrincipalRoutineDashboardController(Parent parent, String currentdepartment, String year) {
         this.parent = parent;
         this.currentdepartment = currentdepartment;
         this.year = year;
@@ -101,36 +101,35 @@ public class PrincipalRoutineDashboardController extends AnchorPane {
         rdao = (RoutineDao) Start.app.getBean("routine");
         currentUser = SystemUtils.getCurrentUser();
         PersonalDetails personalDetails = currentUser.getDetails();
-        
+
         image.setImage(new Image(new ByteArrayInputStream(currentUser.getImage())));
         name.setText(personalDetails.getName());
         contact.setText(personalDetails.getContact());
         department.setText(currentdepartment);
         usertype.setText(currentUser.getUsername());
         date.setText(currentUser.getDate());
-        
-        
-        close.setOnAction(e-> SwitchRoot.switchRoot(Start.st, parent));
-        
+
+        close.setOnAction(e -> SwitchRoot.switchRoot(Start.st, parent));
+
         addnewroutine.setDisable(true);
         updateroutine.setDisable(true);
         viewroutine.setOnAction(this::viewactiveRoutine);
         viewallroutine.setOnAction(this::viewallRoutine);
     }
-    
+
     private void viewactiveRoutine(ActionEvent evt) {
-        if (rdao.hasActiveRoutine(currentdepartment, year)== 1) {
+        if (rdao.hasActiveRoutine(currentdepartment, year) == 1) {
             Routine r = rdao.findByDepartmentAndDateAndStatus(currentdepartment, year, "Active");
-        list.getChildren().setAll(Arrays.asList(new ViewActiveRoutineController(r)));
-        }else {
+            list.getChildren().setAll(Arrays.asList(new ViewActiveRoutineController(r)));
+        } else {
             Routine rs = new Routine();
             byte[] nor = SystemUtils.getByteArrayFromImage(SystemUtils.getICONS().get("noroutine"));
             rs.setImage(nor);
             list.getChildren().setAll(Arrays.asList(new ViewActiveRoutineController(rs)));
         }
     }
-    
+
     private void viewallRoutine(ActionEvent evt) {
-        list.getChildren().setAll(Arrays.asList(new PrincipalViewAllRoutineController(currentdepartment,year)));
+        list.getChildren().setAll(Arrays.asList(new PrincipalViewAllRoutineController(currentdepartment, year)));
     }
 }

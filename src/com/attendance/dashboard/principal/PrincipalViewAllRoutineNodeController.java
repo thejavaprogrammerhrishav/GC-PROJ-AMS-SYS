@@ -14,7 +14,6 @@ import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
@@ -38,11 +37,9 @@ public class PrincipalViewAllRoutineNodeController extends AnchorPane{
     @FXML
     private JFXButton delete;
 
-    
     private FXMLLoader fxml;
     
-    private Routine routine;
-    
+    private Routine routine;    
     private RoutineDao dao;
 
     public PrincipalViewAllRoutineNodeController(Routine routine) {
@@ -59,7 +56,6 @@ public class PrincipalViewAllRoutineNodeController extends AnchorPane{
     
     @FXML
     private void initialize() {
-        
         dao = (RoutineDao) Start.app.getBean("routine");
         name.setText(routine.getFilename());
         date.setText(routine.getDate());

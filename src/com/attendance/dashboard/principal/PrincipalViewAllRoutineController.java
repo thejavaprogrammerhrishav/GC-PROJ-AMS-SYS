@@ -9,7 +9,6 @@ import com.attendance.main.Start;
 import com.attendance.routines.dao.RoutineDao;
 import com.attendance.routines.model.Routine;
 import com.attendance.util.Fxml;
-import com.attendance.util.SystemUtils;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXDatePicker;
@@ -24,8 +23,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-import org.joda.time.DateTime;
-import org.joda.time.format.DateTimeFormat;
 
 /**
  *

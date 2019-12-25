@@ -148,6 +148,7 @@ public class FacultyDashboardController extends AnchorPane {
         profilepic.setImage(new Image(new ByteArrayInputStream(user.getImage())));
         countStudents(null);
         initLoginActivity(null);
+        
         timer = DateTimerThread.newInstance().forLabel(DateTimerThread.TIME, time).init().thread();
         timer.start();
         dater = DateTimerThread.newInstance().forLabel(DateTimerThread.DATE, date).init().thread();
@@ -155,6 +156,7 @@ public class FacultyDashboardController extends AnchorPane {
         List<String> years = new ArrayList<>(dao.get("select distinct(year) from student", String.class));
         Collections.sort(years);
         year.getItems().setAll(years);
+        
         loginrefresh.setOnAction(this::initLoginActivity);
         logout.setOnAction(new Logout(activity));
         myprofile.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getUserProfileRoot("faculty")));

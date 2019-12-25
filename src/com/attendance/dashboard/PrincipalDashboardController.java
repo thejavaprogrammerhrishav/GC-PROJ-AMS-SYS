@@ -152,6 +152,7 @@ public class PrincipalDashboardController extends AnchorPane {
         List<String> years = new ArrayList<>(dao.get("select distinct(year) from student order by year", String.class));
         Collections.sort(years);
         year.getItems().setAll(years);
+        
         buttonActions();
         profilepic.setImage(new Image(new ByteArrayInputStream(principal.getImage())));
         initLoginActivity(null);
@@ -165,7 +166,6 @@ public class PrincipalDashboardController extends AnchorPane {
             protected Integer call() throws Exception {
                 while (true) {
                     Platform.runLater(() -> PrincipalDashboardController.this.init());
-
                     Thread.sleep(2000);
                 }
 
