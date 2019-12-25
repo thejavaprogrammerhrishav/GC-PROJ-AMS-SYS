@@ -5,10 +5,10 @@
  */
 package com.attendance.dashboard.principal;
 
-import com.attendance.routines.controller.*;
 import com.attendance.login.user.model.User;
 import com.attendance.main.Start;
 import com.attendance.personal.model.PersonalDetails;
+import com.attendance.routines.controller.ViewActiveRoutineController;
 import com.attendance.routines.dao.RoutineDao;
 import com.attendance.routines.model.Routine;
 import com.attendance.util.Fxml;
@@ -28,9 +28,6 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import org.apache.poi.hslf.record.CurrentUserAtom;
-import org.joda.time.DateTime;
-import org.joda.time.format.DateTimeFormat;
 
 /**
  *
@@ -108,7 +105,7 @@ public class PrincipalRoutineDashboardController extends AnchorPane {
         image.setImage(new Image(new ByteArrayInputStream(currentUser.getImage())));
         name.setText(personalDetails.getName());
         contact.setText(personalDetails.getContact());
-        department.setText("");
+        department.setText(currentdepartment);
         usertype.setText(currentUser.getUsername());
         date.setText(currentUser.getDate());
         

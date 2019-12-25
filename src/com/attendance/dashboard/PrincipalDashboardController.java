@@ -123,7 +123,7 @@ public class PrincipalDashboardController extends AnchorPane {
 
     private Task<Integer> task;
     private Thread thread;
-    
+
     private StudentDao dao;
 
     public PrincipalDashboardController() {
@@ -194,12 +194,12 @@ public class PrincipalDashboardController extends AnchorPane {
     }
 
     private void routine(ActionEvent evt) {
-            String dept = department.getSelectionModel().getSelectedItem();
-            String yr = year.getSelectionModel().getSelectedItem();
-            System.out.println(dept+"\t"+yr);
-            if(dept!= null && yr != null) {
-                SwitchRoot.switchRoot(Start.st, RootFactory.getPrincipalRoutineDashboardRoot(Start.st.getScene().getRoot(), dept, yr));
-            }
+        String dept = department.getSelectionModel().getSelectedItem();
+        String yr = year.getSelectionModel().getSelectedItem();
+        System.out.println(dept + "\t" + yr);
+        if (dept != null && yr != null) {
+            SwitchRoot.switchRoot(Start.st, RootFactory.getPrincipalRoutineDashboardRoot(Start.st.getScene().getRoot(), dept, yr));
+        }
     }
 
     private void init() {
