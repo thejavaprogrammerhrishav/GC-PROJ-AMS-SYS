@@ -55,8 +55,8 @@ public class ExportAttendancereport {
 
     public ExportAttendancereport createFile() {
         FileChooser fc = new FileChooser();
-        ExtensionFilter filter = new ExtensionFilter("Microsoft Excel Files [.xlsx]", "xlsx");
-        ExtensionFilter filter2 = new ExtensionFilter("Microsoft Excel Files 97 - 2003 [.xls]", "xls");
+        ExtensionFilter filter = new ExtensionFilter("Microsoft Excel Files [.xlsx]", "*.xlsx");
+        ExtensionFilter filter2 = new ExtensionFilter("Microsoft Excel Files 97 - 2003 [.xls]", "*.xls");
         fc.getExtensionFilters().addAll(filter, filter2);
         fc.setSelectedExtensionFilter(filter);
         File f = fc.showSaveDialog(list.getScene().getWindow());

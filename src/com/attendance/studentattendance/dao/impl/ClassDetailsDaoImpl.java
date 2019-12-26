@@ -171,6 +171,6 @@ public class ClassDetailsDaoImpl implements ClassDetailsDao {
 
     @Override
     public List<ClassDetails> findAll(String department, String acadamicYear, String semester, int year, String papercode, String coursetype) {
-        return (List<ClassDetails>) hibernateTemplate.find("from ClassDetails where department=? and acadamicyear=? and semester=? and year=? and paper=? and coursetype?", department,acadamicYear,semester,year,papercode,coursetype);
+        return (List<ClassDetails>) hibernateTemplate.find("from ClassDetails where department=? and acadamicyear=? and semester=? and year=? and paper=? and coursetype=?", department,acadamicYear,semester,year,papercode,coursetype);
     }
 }
