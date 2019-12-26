@@ -119,8 +119,9 @@ public class FacultyLoginController extends AnchorPane {
             @Override
             protected boolean authenticate(String username, String password) {
                 user = faculty.findByUsernameDepartmentType(username, SystemUtils.getDepartment(), ROLE);
+                setAccstatus(user.getStatus());
                 boolean b = user.getStatus().equals("Accept");
-                return username.equals(user.getUsername()) && password.equals(user.getPassword())&&b;
+                return username.equals(user.getUsername()) && password.equals(user.getPassword()) && b;
             }
         };
         authenticator.addLoginFailedListener(() -> Platform.runLater(() -> result.setText("Login Failed")));

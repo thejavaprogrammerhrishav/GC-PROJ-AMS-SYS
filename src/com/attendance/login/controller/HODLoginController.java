@@ -55,6 +55,9 @@ public class HODLoginController extends AnchorPane {
 
     @FXML
     private Label result;
+    
+     @FXML
+    private Label statlab;
 
     @FXML
     private Label department;
@@ -118,12 +121,14 @@ public class HODLoginController extends AnchorPane {
             @Override
             protected boolean authenticate(String username, String password) {
                 user = admin.findByUsernameDepartmentType(username, SystemUtils.getDepartment(), userRole);
+                setAccstatus(user.getStatus());
                 boolean b = user.getStatus().equals("Accept");
-                return username.equals(user.getUsername()) && password.equals(user.getPassword())&&b;
+                return username.equals(user.getUsername()) && password.equals(user.getPassword()) && b;
             }
         };
         authenticator.addLoginFailedListener(() -> Platform.runLater(() -> result.setText("Login Failed")));
         authenticator.addLoginSuccessListener(() -> Platform.runLater(() -> result.setText("Login Success")));
+        authenticator.addLoginStatusListener(status->Platform.runLater(() -> statlab.setText(status)));
 
         login.setOnAction(evt -> {
             if (authenticator.authenticateUser(username.getText(), password.getText())) {
@@ -145,7 +150,7 @@ public class HODLoginController extends AnchorPane {
                         Logger.getLogger(HODLoginController.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }).start();
-            } 
+            }
         });
 
         forgotpassword.setOnMouseClicked(e -> {

@@ -96,6 +96,11 @@
                         <FontAwesomeIconView glyphName="CLOSE" size="1.5em" />
                      </graphic>
                   </JFXButton>
+                  <Label fx:id="statlab" layoutX="85.0" layoutY="20.0" prefHeight="45.0" prefWidth="512.0" text="Label">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
          </children>

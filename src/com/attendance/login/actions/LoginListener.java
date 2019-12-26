@@ -15,15 +15,23 @@ public interface LoginListener {
 
     public abstract void addLoginFailedListener(LoginFailedListener failedListener);
 
+    public abstract void addLoginStatusListener(LoginStatusListener statusListener);
+
     public abstract void removeLoginSuccessListener(LoginSuccessListener successListener);
 
     public abstract void removeLoginFailedListener(LoginFailedListener failedListener);
+
+    public abstract void removeLoginStatusListener(LoginStatusListener statusListener);
 
     public abstract void fireLoginSuccessListeners();
 
     public abstract void fireLoginFailedListeners();
 
+    public abstract void fireLoginStatusListener(String status);
+
     public abstract void removeAllLoginSuccessListeners();
 
     public abstract void removeAllLoginFailedListeners();
+
+    public abstract void removeAllLoginStatusListener();
 }
