@@ -100,25 +100,8 @@ public class Fxml {
     public static FXMLLoader getSettingsExportFXML() {
         return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/settingsExport.fxml"));
     }
-
-    public static FXMLLoader getSettingsFacultyFXML() {
-        return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/settingsFaculty.fxml"));
-    }
-
-    public static FXMLLoader getSettingsLoginUserFXML() {
-        return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/settingsLoginUser.fxml"));
-    }
-
     public static FXMLLoader getPaperFXML() {
         return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/paper.fxml"));
-    }
-
-    public static FXMLLoader getSettingsStudentFXML() {
-        return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/settingsStudent.fxml"));
-    }
-
-    public static FXMLLoader getDeleteStudentFXML() {
-        return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/deletestudentdetails.fxml"));
     }
 
     public static FXMLLoader getClassDetailsFXML() {
@@ -136,29 +119,12 @@ public class Fxml {
     public static FXMLLoader getDailyStatsFXML() {
         return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/dailystats.fxml"));
     }
-
-    public static FXMLLoader getUpdateAdminFXML() {
-        return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/updateadminuser.fxml"));
-    }
-
     public static FXMLLoader getMessageFXML() {
         return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/message.fxml"));
     }
 
-    public static FXMLLoader getDeleteAdminUserFXML() {
-        return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/DeleteAdministratorUser.fxml"));
-    }
-
     public static FXMLLoader getDatabaseServerFXML() {
         return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/Database.fxml"));
-    }
-
-    public static FXMLLoader getUpdateFacultyUserFXML() {
-        return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/updatefaultyuser.fxml"));
-    }
-
-    public static FXMLLoader getDeleteFacultyUserFXML() {
-        return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/deletefacultyuser.fxml"));
     }
 
     public static FXMLLoader getUserLoginActivityTrackingFXML() {
@@ -316,5 +282,9 @@ public class Fxml {
     
     public static FXMLLoader getViewActiveRoutineFXML() {
         return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/viewactiveroutine.fxml"));
+    }
+    
+    public static FXMLLoader getNotesSettingsFXML() {
+        return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/deletenotes.fxml"));
     }
 }

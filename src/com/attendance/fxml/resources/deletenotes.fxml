@@ -45,19 +45,19 @@
                   <Font name="Tw Cen MT Bold" size="25.0" />
                </font>
             </Label>
-            <JFXCheckBox fx:id="searchbyname" layoutX="37.0" layoutY="77.0" text="Filter By Name" textFill="WHITE" unCheckedColor="WHITE">
+            <JFXCheckBox fx:id="filterbyname" layoutX="37.0" layoutY="77.0" text="Filter By Name" textFill="WHITE" unCheckedColor="WHITE">
                <font>
                   <Font name="Tw Cen MT" size="16.0" />
                </font>
             </JFXCheckBox>
             <JFXComboBox fx:id="selectuploader" layoutX="37.0" layoutY="105.0" prefHeight="25.0" prefWidth="291.0" promptText="Select Uploader's Name" style="-fx-prompt-text-fill: white; -fx-font-family: 'Tw Cen MT',arial; -fx-font-size: 16;" />
-            <JFXCheckBox fx:id="searchbydate" layoutX="409.0" layoutY="77.0" text="Filter By Date" textFill="WHITE" unCheckedColor="WHITE">
+            <JFXCheckBox fx:id="filterbydate" layoutX="409.0" layoutY="77.0" text="Filter By Date" textFill="WHITE" unCheckedColor="WHITE">
                <font>
                   <Font name="Tw Cen MT" size="16.0" />
                </font>
             </JFXCheckBox>
             <JFXDatePicker fx:id="enterdate" layoutX="409.0" layoutY="108.0" prefHeight="25.0" prefWidth="181.0" promptText="Enter Date" styleClass="time" />
-            <JFXButton fx:id="search" layoutX="635.0" layoutY="104.0" prefHeight="33.0" prefWidth="181.0" style="-fx-background-color: white; -fx-background-radius: 20;" text="Apply">
+            <JFXButton fx:id="apply" layoutX="635.0" layoutY="104.0" prefHeight="33.0" prefWidth="181.0" style="-fx-background-color: white; -fx-background-radius: 20;" text="Apply">
                <font>
                   <Font name="Tw Cen MT" size="18.0" />
                </font>
@@ -142,7 +142,7 @@
                   <Font name="Tw Cen MT" size="16.0" />
                </font>
             </Label>
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="104.0" layoutY="92.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="image" fitHeight="150.0" fitWidth="200.0" layoutX="104.0" layoutY="92.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../resources/140-1404461_free-icons-png-homework-transparent-png.png" />
                </image>
@@ -157,7 +157,7 @@
                   <Font name="Tw Cen MT" size="18.0" />
                </font>
             </Label>
-            <Label alignment="TOP_LEFT" layoutX="104.0" layoutY="366.0" prefHeight="73.0" prefWidth="291.0" text="Uploader :-" wrapText="true">
+            <Label fx:id="upload" alignment="TOP_LEFT" layoutX="104.0" layoutY="366.0" prefHeight="73.0" prefWidth="291.0" text="Uploader :-" wrapText="true">
                <font>
                   <Font name="Tw Cen MT" size="18.0" />
                </font>
@@ -167,7 +167,7 @@
                   <Font name="Tw Cen MT" size="18.0" />
                </font>
             </Label>
-            <Label layoutX="132.0" layoutY="439.0" prefHeight="33.0" prefWidth="252.0" text="Upload Date :-">
+            <Label fx:id="date" layoutX="132.0" layoutY="439.0" prefHeight="33.0" prefWidth="252.0" text="Upload Date :-">
                <font>
                   <Font name="Tw Cen MT" size="18.0" />
                </font>
@@ -177,12 +177,12 @@
                   <Font name="Tw Cen MT" size="18.0" />
                </font>
             </Label>
-            <Label layoutX="90.0" layoutY="488.0" prefHeight="33.0" prefWidth="144.0" text="Size :-">
+            <Label fx:id="size" layoutX="90.0" layoutY="488.0" prefHeight="33.0" prefWidth="144.0" text="Size :-">
                <font>
                   <Font name="Tw Cen MT" size="18.0" />
                </font>
             </Label>
-            <Label alignment="TOP_LEFT" layoutX="86.0" layoutY="252.0" prefHeight="97.0" prefWidth="291.0" text="Notes/Materials Details" wrapText="true">
+            <Label fx:id="name" alignment="TOP_LEFT" layoutX="86.0" layoutY="252.0" prefHeight="97.0" prefWidth="291.0" text="Notes/Materials Details" wrapText="true">
                <font>
                   <Font name="Tw Cen MT" size="18.0" />
                </font>
@@ -205,7 +205,7 @@
       </ScrollPane>
       <Pane layoutX="930.0" layoutY="665.0" prefHeight="89.0" prefWidth="407.0" style="-fx-background-color: linear-gradient(to right,#8A2387,#E94057,#F27121);">
          <children>
-            <JFXButton fx:id="backup" layoutX="226.0" layoutY="30.0" prefHeight="25.0" prefWidth="163.0" style="-fx-background-color: white; -fx-background-radius: 20;" text="Delete">
+            <JFXButton fx:id="delete" layoutX="226.0" layoutY="30.0" prefHeight="25.0" prefWidth="163.0" style="-fx-background-color: white; -fx-background-radius: 20;" text="Delete">
                <font>
                   <Font name="Tw Cen MT" size="16.0" />
                </font>
@@ -224,7 +224,7 @@
                   <Font name="Tw Cen MT Bold" size="20.0" />
                </font>
             </Label>
-            <TextField fx:id="downloadpath" editable="false" layoutX="23.0" layoutY="52.0" prefHeight="36.0" prefWidth="645.0" promptText="Enter Search Details" style="-fx-background-radius: 12;">
+            <TextField fx:id="searchpath" layoutX="23.0" layoutY="52.0" prefHeight="36.0" prefWidth="645.0" promptText="Enter Search Details" style="-fx-background-radius: 12;">
                <font>
                   <Font name="Tw Cen MT" size="16.0" />
                </font>
@@ -232,7 +232,7 @@
                   <Insets bottom="9.0" left="15.0" top="9.0" />
                </padding>
             </TextField>
-            <JFXButton fx:id="download" layoutX="679.0" layoutY="55.0" prefHeight="30.0" prefWidth="157.0" style="-fx-background-color: white; -fx-background-radius: 20;" text="Search">
+            <JFXButton fx:id="search" layoutX="679.0" layoutY="55.0" prefHeight="30.0" prefWidth="157.0" style="-fx-background-color: white; -fx-background-radius: 20;" text="Search">
                <font>
                   <Font name="Tw Cen MT" size="16.0" />
                </font>

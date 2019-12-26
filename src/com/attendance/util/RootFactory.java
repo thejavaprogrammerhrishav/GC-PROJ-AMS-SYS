@@ -36,23 +36,17 @@ import com.attendance.routines.controller.RoutineDashboardController;
 import com.attendance.settings.ClassAndDetailsSettingsController;
 import com.attendance.settings.DatabaseServerSettingsController;
 import com.attendance.settings.ExportSettingsController;
-import com.attendance.settings.LoginUserSettingsController;
+import com.attendance.settings.NotesSettingController;
 import com.attendance.settings.SettingsController;
-import com.attendance.settings.StudentSettingsController;
 import com.attendance.settings.UserLoginActivitySettingsController;
 import com.attendance.settings.sub.AttendanceController;
 import com.attendance.settings.sub.ClassDetailsController;
 import com.attendance.settings.sub.DailyStatsController;
-import com.attendance.settings.sub.DeleteAdminUserController;
-import com.attendance.settings.sub.DeleteFacultyUserController;
-import com.attendance.settings.sub.DeleteStudentController;
 import com.attendance.settings.sub.ExportClassDetailsListController;
 import com.attendance.settings.sub.ExportDailyStatsListController;
 import com.attendance.settings.sub.ExportFacultyListController;
 import com.attendance.settings.sub.ExportStudentListController;
-import com.attendance.settings.sub.UpdateAdminUserController;
 import com.attendance.settings.sub.UpdateClassDetailsController;
-import com.attendance.settings.sub.UpdateFacultyUserController;
 import com.attendance.splash.SplashController;
 import com.attendance.student.controller.RegisterStudentController;
 import com.attendance.student.controller.StudentUpdateController;
@@ -158,25 +152,8 @@ public class RootFactory {
     public static Parent getSettingsExportRoot(Parent parent) {
         return new ExportSettingsController(parent);
     }
-
-    public static Parent getSettingsFacultyRoot(Parent parent) {
-        return new DeleteFacultyUserController(parent);
-    }
-
-    public static Parent getSettingsLoginUserRoot(Parent parent) {
-        return new LoginUserSettingsController(parent);
-    }
-
     public static Parent getPaperRoot(Parent parent) {
         return new PapersController(parent);
-    }
-
-    public static Parent getSettingsStudentRoot(Parent parent) {
-        return new StudentSettingsController(parent);
-    }
-
-    public static Parent getDeleteStudentRoot(String sem) {
-        return new DeleteStudentController(sem);
     }
 
     public static Parent getClassDetailsRoot(Parent parent,String name) {
@@ -195,10 +172,6 @@ public class RootFactory {
         return new DailyStatsController(parent);
     }
 
-    public static Parent getUpdateAdminUserRoot() {
-        return new UpdateAdminUserController();
-    }
-
     public static Parent getMessageRoot(int type, String header, String content) {
         return new Message(type, header, content);
     }
@@ -206,17 +179,8 @@ public class RootFactory {
     public static Parent getMessageRoot(int type, String header, Exception content) {
         return new Message(type, header, content);
     }
-
-    public static Parent getDeleteAdminUserRoot() {
-        return new DeleteAdminUserController();
-    }
-
     public static Parent getDatabaseServerRoot(Parent parent) {
         return new DatabaseServerSettingsController(parent);
-    }
-
-    public static Parent getUpdateFacultyUserRoot() {
-        return new UpdateFacultyUserController();
     }
 
     public static Parent getUserLoginActivitySettingsRoot(Parent parent) {
@@ -305,5 +269,9 @@ public class RootFactory {
        
        public static Parent getPrincipalRoutineDashboardRoot(Parent parent,String department,String year) {
            return new PrincipalRoutineDashboardController(parent,department,year);
+       }
+       
+       public static Parent getNotesSettingsRoot(Parent parent) {
+           return new NotesSettingController(parent);
        }
 }

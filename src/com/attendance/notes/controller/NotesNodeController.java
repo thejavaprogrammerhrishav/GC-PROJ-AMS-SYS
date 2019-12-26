@@ -97,4 +97,8 @@ public class NotesNodeController extends AnchorPane {
         select.setSelected(val);
     }
     
+    public JFXCheckBox getSelect() {
+        return select;
+    }
+    
 }

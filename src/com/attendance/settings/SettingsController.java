@@ -25,19 +25,10 @@ import javafx.scene.layout.AnchorPane;
 public class SettingsController extends AnchorPane {
 
     @FXML
-    private JFXButton student;
-
-    @FXML
-    private JFXButton faculty;
-
-    @FXML
     private JFXButton loginactivity;
 
     @FXML
-    private JFXButton server;
-
-    @FXML
-    private JFXButton papers;
+    private JFXButton notes;
 
     @FXML
     private JFXButton classattendance;
@@ -46,7 +37,10 @@ public class SettingsController extends AnchorPane {
     private JFXButton importexport;
 
     @FXML
-    private JFXButton loginuser;
+    private JFXButton attendance;
+
+    @FXML
+    private JFXButton reports;
 
     @FXML
     private JFXButton back;
@@ -71,14 +65,13 @@ public class SettingsController extends AnchorPane {
     @FXML
     private void initialize() {
         back.setOnAction(e -> SwitchRoot.switchRoot(Start.st, parent));
+        loginactivity.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getUserLoginActivitySettingsRoot(Start.st.getScene().getRoot())));
 
-        student.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getSettingsStudentRoot(Start.st.getScene().getRoot())));
-        faculty.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getSettingsFacultyRoot(Start.st.getScene().getRoot())));
-       // papers.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getSettingsPaperRoot(Start.st.getScene().getRoot())));
         classattendance.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getSettingsClassAndDetailsRoot(Start.st.getScene().getRoot())));
         importexport.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getSettingsExportRoot(Start.st.getScene().getRoot())));
-        loginuser.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getSettingsLoginUserRoot(Start.st.getScene().getRoot())));
-        loginactivity.setOnAction(e->SwitchRoot.switchRoot(Start.st, RootFactory.getUserLoginActivitySettingsRoot(Start.st.getScene().getRoot())));
-        server.setOnAction(e->SwitchRoot.switchRoot(Start.st, RootFactory.getDatabaseServerRoot(Start.st.getScene().getRoot())));
+        attendance.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getUserLoginActivitySettingsRoot(Start.st.getScene().getRoot())));
+        
+        notes.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getNotesSettingsRoot(Start.st.getScene().getRoot())));
+        reports.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getDatabaseServerRoot(Start.st.getScene().getRoot())));
     }
 }

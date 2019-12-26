@@ -11,6 +11,7 @@ import com.attendance.main.Start;
 import com.attendance.util.ExportUserLoginActivity;
 import com.attendance.util.Fxml;
 import com.attendance.util.SwitchRoot;
+import com.attendance.util.SystemUtils;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
@@ -41,9 +42,6 @@ public class UserLoginActivitySettingsController extends AnchorPane {
 
     @FXML
     private JFXCheckBox filterbyname;
-
-    @FXML
-    private JFXCheckBox filterbyusername;
 
     @FXML
     private JFXCheckBox filterbydate;
@@ -80,9 +78,6 @@ public class UserLoginActivitySettingsController extends AnchorPane {
 
     @FXML
     private TableColumn<LoginActivity, String> logouttime;
-
-    @FXML
-    private TextField searchusername;
 
     @FXML
     private TextField searchname;
@@ -135,11 +130,10 @@ public class UserLoginActivitySettingsController extends AnchorPane {
     private void initialize() {
         dao = (Activity) Start.app.getBean("loginactivity");
         searchname.disableProperty().bind(filterbyname.selectedProperty().not());
-        searchusername.disableProperty().bind(filterbyusername.selectedProperty().not());
         searchdate.disableProperty().bind(filterbydate.selectedProperty().not());
         searchusertype.disableProperty().bind(filterbyusertype.selectedProperty().not());
 
-        searchusertype.getItems().setAll("ADMIN", "FACULTY");
+        searchusertype.getItems().setAll("HOD", "Faculty");
 
         ascending.disableProperty().bind(sortbydate.selectedProperty().not());
         descending.disableProperty().bind(sortbydate.selectedProperty().not());
@@ -170,7 +164,7 @@ public class UserLoginActivitySettingsController extends AnchorPane {
     }
 
     private void reinit() {
-        list = dao.findAll();
+        list = dao.findByDepartment(SystemUtils.getDepartment());
     }
 
     private void filters(ActionEvent evt) {
@@ -180,9 +174,6 @@ public class UserLoginActivitySettingsController extends AnchorPane {
         }
         if (filterbyname.isSelected()) {
             filterdList = filterdList.stream().filter(l -> l.getName().startsWith(searchname.getText())).collect(Collectors.toList());
-        }
-        if (filterbyusername.isSelected()) {
-            filterdList = filterdList.stream().filter(l -> l.getUsername().startsWith(searchusername.getText())).collect(Collectors.toList());
         }
         if (filterbyusertype.isSelected()) {
             filterdList = filterdList.stream().filter(l -> l.getUserType().equals(searchusertype.getSelectionModel().getSelectedItem())).collect(Collectors.toList());
@@ -204,14 +195,14 @@ public class UserLoginActivitySettingsController extends AnchorPane {
 
         if (sortbydate.isSelected()) {
             if (ascending.isSelected()) {
-                list = dao.get(" select * from loginactivity order by str_to_date(logindate, '%d-%m-%y') asc");
+                list = dao.get(" select * from loginactivity where department = '"+SystemUtils.getDepartment()+"' order by str_to_date(logindate, '%d-%m-%y') asc");
             } else if (descending.isSelected()) {
-                list = dao.get(" select * from loginactivity order by str_to_date(logindate, '%d-%m-%y') desc");
+                list = dao.get(" select * from loginactivity where department = '"+SystemUtils.getDepartment()+"' order by str_to_date(logindate, '%d-%m-%y') desc");
             } else {
-                list = dao.findAll();
+                list = dao.findByDepartment(SystemUtils.getDepartment());
             }
         } else {
-            list = dao.findAll();
+            list = dao.findByDepartment(SystemUtils.getDepartment());
         }
         table.getItems().setAll(list);
     }

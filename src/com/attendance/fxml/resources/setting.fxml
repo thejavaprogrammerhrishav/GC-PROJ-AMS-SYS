@@ -56,7 +56,7 @@
                   </AnchorPane>
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="server" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" prefHeight="110.0" prefWidth="260.0" ripplerFill="#83019a" styleClass="node" textFill="WHITE">
+            <JFXButton fx:id="notes" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" prefHeight="110.0" prefWidth="260.0" ripplerFill="#83019a" styleClass="node" textFill="WHITE">
                <graphic>
                   <AnchorPane layoutY="250.0" prefHeight="110.0" prefWidth="260.0">
                      <children>
@@ -125,7 +125,7 @@
                   </AnchorPane>
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="loginuser" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" prefHeight="110.0" prefWidth="260.0" ripplerFill="#83019a" styleClass="node" textFill="WHITE">
+            <JFXButton fx:id="attendance" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" prefHeight="110.0" prefWidth="260.0" ripplerFill="#83019a" styleClass="node" textFill="WHITE">
                <graphic>
                   <AnchorPane prefHeight="110.0" prefWidth="260.0">
                      <children>
@@ -140,6 +140,29 @@
                            </image>
                         </ImageView>
                         <Label layoutX="90.0" layoutY="46.0" prefHeight="30.0" prefWidth="160.0" text="View Daily attendance" textFill="#63c9ff60">
+                           <font>
+                              <Font name="Century Gothic" size="13.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="reports" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" layoutX="62.0" layoutY="200.0" prefHeight="110.0" prefWidth="260.0" ripplerFill="#83019a" styleClass="node" textFill="WHITE">
+               <graphic>
+                  <AnchorPane prefHeight="110.0" prefWidth="260.0">
+                     <children>
+                        <Label layoutX="90.0" layoutY="22.0" prefHeight="30.0" prefWidth="170.0" text="Reports" textFill="#63c8ff">
+                           <font>
+                              <Font name="Century Gothic Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="12.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../resources/LogoMakr_8dscRK.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="90.0" layoutY="46.0" prefHeight="30.0" prefWidth="160.0" text="Generate Reports" textFill="#63c9ff60">
                            <font>
                               <Font name="Century Gothic" size="13.0" />
                            </font>
