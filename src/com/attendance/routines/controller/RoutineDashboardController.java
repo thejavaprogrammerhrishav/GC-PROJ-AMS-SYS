@@ -106,6 +106,11 @@ public class RoutineDashboardController extends AnchorPane {
         usertype.setText(currentUser.getUsername());
         date.setText(currentUser.getDate());
         
+        if (currentUser.getType().equals("Faculty")) {
+            addnewroutine.setDisable(true);
+            updateroutine.setDisable(true);
+            viewallroutine.setDisable(true);
+        }
         
         close.setOnAction(e-> SwitchRoot.switchRoot(Start.st, parent));
         

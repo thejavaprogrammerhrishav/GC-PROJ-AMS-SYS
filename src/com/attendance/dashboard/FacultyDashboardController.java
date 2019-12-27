@@ -148,7 +148,7 @@ public class FacultyDashboardController extends AnchorPane {
         profilepic.setImage(new Image(new ByteArrayInputStream(user.getImage())));
         countStudents(null);
         initLoginActivity(null);
-        
+
         timer = DateTimerThread.newInstance().forLabel(DateTimerThread.TIME, time).init().thread();
         timer.start();
         dater = DateTimerThread.newInstance().forLabel(DateTimerThread.DATE, date).init().thread();
@@ -156,7 +156,7 @@ public class FacultyDashboardController extends AnchorPane {
         List<String> years = new ArrayList<>(dao.get("select distinct(year) from student", String.class));
         Collections.sort(years);
         year.getItems().setAll(years);
-        
+
         loginrefresh.setOnAction(this::initLoginActivity);
         logout.setOnAction(new Logout(activity));
         myprofile.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getUserProfileRoot("faculty")));
@@ -168,9 +168,10 @@ public class FacultyDashboardController extends AnchorPane {
         refresh.setOnAction(this::countStudents);
         uploadmarks.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getUploadMarksRoot(Start.st.getScene().getRoot())));
         viewfacultydetails.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getViewFacultyRoot(SystemUtils.getDepartment(), Start.st.getScene().getRoot())));
-        notesdashboard.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getNotesDashboardRoot(Start.st.getScene().getRoot(),details.getName())));
+        notesdashboard.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getNotesDashboardRoot(Start.st.getScene().getRoot(), details.getName())));
         studentattendance.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getStudentAttendanceRoot(Start.st.getScene().getRoot(), details.getName())));
         classdetails.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getClassDetailsRoot(Start.st.getScene().getRoot(), details.getName())));
+        routine.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getRoutineDashboardRoot(Start.st.getScene().getRoot())));
         dailystatistics.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getDailyStatsRoot(Start.st.getScene().getRoot())));
     }
 
@@ -195,7 +196,7 @@ public class FacultyDashboardController extends AnchorPane {
 
     private void initLoginActivity(ActionEvent e) {
         List<LoginActivity> allLogins = new ArrayList<>(act.findByName(details.getName()));
-        allLogins = allLogins.stream().filter(p->p.getDepartment().equals(SystemUtils.getDepartment())).collect(Collectors.toList());
+        allLogins = allLogins.stream().filter(p -> p.getDepartment().equals(SystemUtils.getDepartment())).collect(Collectors.toList());
         Collections.reverse(allLogins);
         List<FacultyLoginActivityController> activityControllers = allLogins.stream().map(c -> new FacultyLoginActivityController(c)).collect(Collectors.toList());
         list.getChildren().setAll(activityControllers);

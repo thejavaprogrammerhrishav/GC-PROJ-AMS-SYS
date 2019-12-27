@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.text.Font?>
+
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="738.0" prefWidth="1366.0" style="-fx-background-color: linear-gradient( rgba(103,3,255,1) 9.3%, rgba(254,3,104,1) 89.5% );" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane prefHeight="86.0" prefWidth="1366.0">
+         <children>
+            <Label layoutX="86.0" layoutY="27.0" prefHeight="38.0" prefWidth="370.0" text="Attendance Managment System" textFill="WHITE">
+               <font>
+                  <Font name="Tw Cen MT" size="28.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="49.0" fitWidth="67.0" layoutX="27.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../resources/LogoMakr_1wJdNX.png" />
+               </image>
+            </ImageView>
+            <JFXButton fx:id="close" contentDisplay="GRAPHIC_ONLY" layoutX="1312.0" layoutY="20.0" ripplerFill="BLACK" styleClass="close" textFill="WHITE">
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="CLOSE" size="1.5em" />
+               </graphic>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+      <Label layoutX="580.0" layoutY="111.0" prefHeight="33.0" prefWidth="206.0" text="Principal Settings" textFill="WHITE">
+         <font>
+            <Font name="Tw Cen MT" size="30.0" />
+         </font>
+      </Label>
+      <FlowPane alignment="TOP_CENTER" hgap="60.0" layoutX="14.0" layoutY="192.0" prefHeight="605.0" prefWidth="1350.0" vgap="50.0">
+         <children>
+            <JFXButton fx:id="deletefacultyuser" contentDisplay="GRAPHIC_ONLY" prefHeight="121.0" prefWidth="329.0">
+               <graphic>
+                  <AnchorPane prefHeight="75.0" prefWidth="165.0">
+                     <children>
+                        <ImageView fitHeight="60.0" fitWidth="83.0" layoutX="19.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../resources/icons8-denied-100.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="94.0" layoutY="40.0" prefHeight="21.0" prefWidth="199.0" text="Delete HOD/Facuilty User" textFill="WHITE">
+                           <font>
+                              <Font name="Tw Cen MT" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="94.0" layoutY="63.0" prefHeight="21.0" prefWidth="145.0" text="Remove A Faculty User" textFill="#ab9e9e">
+                           <font>
+                              <Font name="Tw Cen MT" size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="modifyusertype" contentDisplay="GRAPHIC_ONLY" prefHeight="121.0" prefWidth="281.0">
+               <graphic>
+                  <AnchorPane prefHeight="75.0" prefWidth="165.0">
+                     <children>
+                        <ImageView fitHeight="60.0" fitWidth="83.0" layoutX="19.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../resources/icons8-registration-100.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="94.0" layoutY="40.0" prefHeight="21.0" prefWidth="131.0" text="Modify Usertype" textFill="WHITE">
+                           <font>
+                              <Font name="Tw Cen MT" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="94.0" layoutY="63.0" prefHeight="21.0" prefWidth="145.0" text="Change Type Of User" textFill="#ab9e9e">
+                           <font>
+                              <Font name="Tw Cen MT" size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="blockfacultylogin" contentDisplay="GRAPHIC_ONLY" prefHeight="121.0" prefWidth="281.0">
+               <graphic>
+                  <AnchorPane layoutY="31.0" prefHeight="75.0" prefWidth="165.0">
+                     <children>
+                        <ImageView fitHeight="60.0" fitWidth="83.0" layoutX="16.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../resources/icons8-unfriend-100.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="94.0" layoutY="40.0" prefHeight="21.0" prefWidth="141.0" text="Block Faculty Login " textFill="WHITE">
+                           <font>
+                              <Font name="Tw Cen MT" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="94.0" layoutY="63.0" prefHeight="21.0" prefWidth="145.0" text="Restrict User Login" textFill="#ab9e9e">
+                           <font>
+                              <Font name="Tw Cen MT" size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="principalloginactivity" contentDisplay="GRAPHIC_ONLY" prefHeight="121.0" prefWidth="281.0">
+               <graphic>
+                  <AnchorPane prefHeight="75.0" prefWidth="165.0">
+                     <children>
+                        <ImageView fitHeight="60.0" fitWidth="83.0" layoutX="19.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../resources/icons8-activity-history-100.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="94.0" layoutY="40.0" prefHeight="21.0" prefWidth="167.0" text="Principal Login Activity" textFill="WHITE">
+                           <font>
+                              <Font name="Tw Cen MT" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="94.0" layoutY="63.0" prefHeight="21.0" prefWidth="145.0" text="Track Principal Activity" textFill="#ab9e9e">
+                           <font>
+                              <Font name="Tw Cen MT" size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="hodloginactivity" contentDisplay="GRAPHIC_ONLY" prefHeight="121.0" prefWidth="281.0">
+               <graphic>
+                  <AnchorPane prefHeight="75.0" prefWidth="165.0">
+                     <children>
+                        <ImageView fitHeight="60.0" fitWidth="83.0" layoutX="18.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../resources/icons8-application-shield-100.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="94.0" layoutY="40.0" prefHeight="21.0" prefWidth="140.0" text="HOD Login Activity" textFill="WHITE">
+                           <font>
+                              <Font name="Tw Cen MT" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="94.0" layoutY="63.0" prefHeight="21.0" prefWidth="145.0" text="Track HOD Activity" textFill="#ab9e9e">
+                           <font>
+                              <Font name="Tw Cen MT" size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </graphic>
+            </JFXButton>
+         </children>
+         <padding>
+            <Insets left="60.0" right="60.0" top="20.0" />
+         </padding>
+      </FlowPane>
+   </children>
+</fx:root>
