@@ -61,9 +61,18 @@ public class FacultyLoginController extends AnchorPane {
 
     @FXML
     private Label signup;
-    
+
     @FXML
     private JFXButton close;
+
+    @FXML
+    private AnchorPane message;
+
+    @FXML
+    private Label bigmessage;
+
+    @FXML
+    private Label smallmessage;
 
     private Thread thread;
     private FXMLLoader fxml;
@@ -87,7 +96,6 @@ public class FacultyLoginController extends AnchorPane {
             Logger.getLogger(FacultyLoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        
     }
 
     @FXML
@@ -115,6 +123,14 @@ public class FacultyLoginController extends AnchorPane {
         thread = new Thread(blink);
         thread.start();
 
+        Platform.runLater(() -> {
+            bigmessage.setText("");
+            smallmessage.setText("");
+            message.getStyleClass().clear();
+            bigmessage.getStyleClass().addAll("strong", "h4");
+            smallmessage.getStyleClass().add("h5");
+        });
+
         authenticator = new LoginAuthenticator() {
             @Override
             protected boolean authenticate(String username, String password) {
@@ -126,6 +142,54 @@ public class FacultyLoginController extends AnchorPane {
         };
         authenticator.addLoginFailedListener(() -> Platform.runLater(() -> result.setText("Login Failed")));
         authenticator.addLoginSuccessListener(() -> Platform.runLater(() -> result.setText("Login Success")));
+        authenticator.addLoginStatusListener(status -> {
+            if (status.equals("Accept")) {
+                Platform.runLater(() -> {
+                    bigmessage.setText("Login Success");
+                    smallmessage.setText("Your account is accepted");
+                    message.getStyleClass().clear();
+                    message.getStyleClass().addAll("alert", "alert-success");
+                    bigmessage.getStyleClass().addAll("strong", "h4");
+                    smallmessage.getStyleClass().add("h5");
+                });
+            } else if (status.equals("Pending")) {
+                Platform.runLater(() -> {
+                    bigmessage.setText("Request Pending");
+                    smallmessage.setText("Your account is pending, please contact your HOD");
+                    message.getStyleClass().clear();
+                    message.getStyleClass().addAll("alert", "alert-warning");
+                    bigmessage.getStyleClass().addAll("strong", "h4");
+                    smallmessage.getStyleClass().add("h5");
+                });
+            } else if (status.equals("OnHold")) {
+                Platform.runLater(() -> {
+                    bigmessage.setText("Request On - Hold");
+                    smallmessage.setText("Your account is suspended, please contact your HOD");
+                    message.getStyleClass().clear();
+                    message.getStyleClass().addAll("alert", "alert-warning");
+                    bigmessage.getStyleClass().addAll("strong", "h4");
+                    smallmessage.getStyleClass().add("h5");
+                });
+
+            } else if (status.equals("Decline")) {
+                Platform.runLater(() -> {
+                    bigmessage.setText("Login Failed");
+                    smallmessage.setText("Your account is declined, please contact your HOD");
+                    message.getStyleClass().clear();
+                    message.getStyleClass().addAll("alert", "alert-danger");
+                    bigmessage.getStyleClass().addAll("strong", "h4");
+                    smallmessage.getStyleClass().add("h5");
+                });
+            } else {
+                Platform.runLater(() -> {
+                    bigmessage.setText("");
+                    smallmessage.setText("");
+                    message.getStyleClass().clear();
+                    bigmessage.getStyleClass().addAll("strong", "h4");
+                    smallmessage.getStyleClass().add("h5");
+                });
+            }
+        });
 
         login.setOnAction(evt -> {
             if (authenticator.authenticateUser(username.getText(), password.getText())) {
@@ -137,8 +201,8 @@ public class FacultyLoginController extends AnchorPane {
                             Platform.runLater(() -> result.setText("Redirecting to Dashboard in " + x + " Sec"));
                             Thread.sleep(1000);
                         }
-                        search=user.getDetails();
-                        activity = new LoginActivity(search.getName(), user.getUsername(), "Faculty", "Active", DateTime.now().toString(DateTimeFormat.forPattern("dd-MM-yyyy")), DateTime.now().toString(DateTimeFormat.forPattern("hh:mm:ss a")), "",SystemUtils.getDepartment());
+                        search = user.getDetails();
+                        activity = new LoginActivity(search.getName(), user.getUsername(), "Faculty", "Active", DateTime.now().toString(DateTimeFormat.forPattern("dd-MM-yyyy")), DateTime.now().toString(DateTimeFormat.forPattern("hh:mm:ss a")), "", SystemUtils.getDepartment());
                         loginActivity.save(activity);
                         SystemUtils.setActivity(activity);
                         SystemUtils.setCurrentUser(user);
@@ -147,7 +211,7 @@ public class FacultyLoginController extends AnchorPane {
                         Logger.getLogger(FacultyLoginController.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }).start();
-            } 
+            }
         });
 
         forgotpassword.setOnMouseClicked(e -> {
@@ -161,7 +225,7 @@ public class FacultyLoginController extends AnchorPane {
     private void signupAction(MouseEvent evt) {
         SwitchRoot.switchRoot(Start.st, RootFactory.getFacultySignupRoot(Start.st.getScene().getRoot()));
     }
-    
+
     private void closeAction(ActionEvent evt) {
         SystemUtils.setDepartment("");
         SystemUtils.logout();

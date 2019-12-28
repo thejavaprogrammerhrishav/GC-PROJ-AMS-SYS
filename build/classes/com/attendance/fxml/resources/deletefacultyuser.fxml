@@ -12,19 +12,23 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: white;" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Pane prefHeight="75.0" prefWidth="1366.0" style="-fx-background-color: #330033;">
          <children>
-            <ImageView fitHeight="57.0" fitWidth="49.0" layoutX="364.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="57.0" fitWidth="49.0" layoutX="93.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../resources/LogoMakr_1wJdNX.png" />
                </image>
             </ImageView>
-            <Label layoutX="448.0" layoutY="17.0" text="Attendance Management System" textFill="WHITE">
+            <Label layoutX="164.0" layoutY="17.0" text="Attendance Management System" textFill="WHITE">
                <font>
                   <Font name="Tw Cen MT" size="36.0" />
+               </font>
+            </Label>
+            <Label layoutX="1001.0" layoutY="24.0" prefHeight="27.0" prefWidth="321.0" text="Department" textFill="WHITE">
+               <font>
+                  <Font name="Tw Cen MT" size="24.0" />
                </font>
             </Label>
          </children>

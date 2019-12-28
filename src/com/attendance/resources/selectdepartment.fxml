@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="315.0" prefWidth="600.0" style="-fx-background-color: linear-gradient( to bottom right,  rgba(205,5,32,1) 0.5%, rgba(205,10,90,1) 99.9% ); -fx-background-radius: 15;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="132.0" layoutY="41.0" text="Attendance Management System" textFill="WHITE">
+         <font>
+            <Font name="Tw Cen MT" size="28.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="52.0" fitWidth="50.0" layoutX="51.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@LogoMakr_1wJdNX.png" />
+         </image>
+      </ImageView>
+      <JFXButton layoutX="76.0" layoutY="125.0" prefHeight="33.0" prefWidth="429.0" style="-fx-background-color: green;" text="Search" textFill="WHITE">
+         <font>
+            <Font name="Tw Cen MT" size="18.0" />
+         </font>
+         <graphic>
+            <FontAwesomeIconView glyphName="ARROW_DOWN" />
+         </graphic>
+      </JFXButton>
+      <Pane layoutX="76.0" layoutY="158.0" prefHeight="130.0" prefWidth="429.0" style="-fx-background-color: white;">
+         <children>
+            <TextField layoutX="12.0" layoutY="14.0" prefHeight="25.0" prefWidth="408.0" />
+            <ListView layoutX="11.0" layoutY="49.0" prefHeight="70.0" prefWidth="408.0" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

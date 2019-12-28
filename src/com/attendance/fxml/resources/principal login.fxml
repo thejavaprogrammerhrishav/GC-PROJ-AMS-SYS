@@ -2,24 +2,27 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import java.lang.String?>
+<?import java.net.URL?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: #7303c0;" stylesheets="@../../resources/Close.css" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: #7303c0;" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <AnchorPane layoutX="191.0" layoutY="121.0" prefHeight="513.0" prefWidth="985.0" style="-fx-background-color: white;">
+      <AnchorPane layoutX="191.0" layoutY="101.0" prefHeight="567.0" prefWidth="985.0" style="-fx-background-color: white;">
          <children>
             <Label layoutX="585.0" layoutY="72.0" text="Principal Login">
                <font>
                   <Font name="Century Gothic" size="35.0" />
                </font>
             </Label>
-            <ImageView fitHeight="249.0" fitWidth="259.0" layoutX="106.0" layoutY="117.0" pickOnBounds="true" smooth="false">
+            <ImageView fitHeight="249.0" fitWidth="259.0" layoutX="108.0" layoutY="109.0" pickOnBounds="true" smooth="false">
                <image>
                   <Image url="@../../resources/images.png" />
                </image>
@@ -62,17 +65,17 @@
                   <Font name="Tw Cen MT" size="17.0" />
                </font>
             </Label>
-            <Label fx:id="result" alignment="CENTER" layoutX="484.0" layoutY="416.0" prefHeight="36.0" prefWidth="446.0" text="Redirecting to Dashboard in 2 Sec">
+            <Label fx:id="result" alignment="CENTER" layoutX="484.0" layoutY="404.0" prefHeight="36.0" prefWidth="446.0" text="Redirecting to Dashboard in 2 Sec">
                <font>
                   <Font name="Tw Cen MT" size="22.0" />
                </font>
             </Label>
-            <Label fx:id="result1" layoutX="42.0" layoutY="452.0" prefHeight="36.0" prefWidth="179.0" text="New to the system?">
+            <Label fx:id="result1" layoutX="103.0" layoutY="404.0" prefHeight="36.0" prefWidth="179.0" text="New to the system?">
                <font>
                   <Font name="Tw Cen MT" size="22.0" />
                </font>
             </Label>
-            <Label fx:id="signup" alignment="CENTER" layoutX="214.0" layoutY="452.0" prefHeight="36.0" prefWidth="94.0" text="Sign Up" textFill="#1a00ff">
+            <Label fx:id="signup" alignment="CENTER" layoutX="275.0" layoutY="404.0" prefHeight="36.0" prefWidth="94.0" text="Sign Up" textFill="#1a00ff">
                <font>
                   <Font name="Tw Cen MT Bold" size="16.0" />
                </font>
@@ -82,7 +85,30 @@
                   <FontAwesomeIconView glyphName="CLOSE" size="1.5em" />
                </graphic>
             </JFXButton>
+            <AnchorPane fx:id="message" layoutX="36.0" layoutY="479.0" prefHeight="60.0" prefWidth="911.0" style="-fx-padding: 5;">
+               <children>
+                  <HBox alignment="CENTER_LEFT" layoutX="27.0" layoutY="13.0" prefHeight="35.0" prefWidth="863.0" spacing="15.0">
+                     <children>
+                        <Label fx:id="bigmessage" prefHeight="27.0" text="Message">
+                           <styleClass>
+                              <String fx:value="h4" />
+                              <String fx:value="strong" />
+                           </styleClass>
+                        </Label>
+                        <Label fx:id="smallmessage" prefHeight="21.0" styleClass="h5" text="Message" />
+                     </children>
+                  </HBox>
+               </children>
+               <styleClass>
+                  <String fx:value="alert" />
+                  <String fx:value="alert-danger" />
+               </styleClass>
+            </AnchorPane>
          </children>
       </AnchorPane>
    </children>
+   <stylesheets>
+      <URL value="@../../resources/Close.css" />
+      <URL value="@../../resources/alert.css" />
+   </stylesheets>
 </fx:root>

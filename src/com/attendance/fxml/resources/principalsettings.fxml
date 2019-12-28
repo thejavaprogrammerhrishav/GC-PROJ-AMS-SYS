@@ -84,16 +84,16 @@
                   </AnchorPane>
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="blockfacultylogin" contentDisplay="GRAPHIC_ONLY" prefHeight="121.0" prefWidth="281.0">
+            <JFXButton fx:id="blockfacultylogin" contentDisplay="GRAPHIC_ONLY" prefHeight="121.0" prefWidth="317.0">
                <graphic>
-                  <AnchorPane layoutY="31.0" prefHeight="75.0" prefWidth="165.0">
+                  <AnchorPane layoutY="31.0" prefHeight="113.0" prefWidth="333.0">
                      <children>
                         <ImageView fitHeight="60.0" fitWidth="83.0" layoutX="16.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../resources/icons8-unfriend-100.png" />
                            </image>
                         </ImageView>
-                        <Label layoutX="94.0" layoutY="40.0" prefHeight="21.0" prefWidth="141.0" text="Block Faculty Login " textFill="WHITE">
+                        <Label layoutX="94.0" layoutY="40.0" prefHeight="21.0" prefWidth="192.0" text="Block HOD/Faculty Login " textFill="WHITE">
                            <font>
                               <Font name="Tw Cen MT" size="18.0" />
                            </font>

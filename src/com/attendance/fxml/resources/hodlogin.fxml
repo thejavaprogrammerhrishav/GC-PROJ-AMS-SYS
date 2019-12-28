@@ -4,12 +4,14 @@
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import java.lang.String?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
@@ -76,17 +78,17 @@
             </Pane>
             <AnchorPane layoutX="484.0" layoutY="78.0" prefHeight="626.0" prefWidth="805.0" style="-fx-background-color: #f8fafb;">
                <children>
-                  <ImageView fitHeight="546.0" fitWidth="608.0" layoutX="99.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="408.0" fitWidth="557.0" layoutX="124.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../resources/crop.jpg" />
                      </image>
                   </ImageView>
-                  <Label fx:id="result1" layoutX="266.0" layoutY="557.0" prefHeight="36.0" prefWidth="179.0" text="New to the system?">
+                  <Label fx:id="result1" layoutX="266.0" layoutY="572.0" prefHeight="36.0" prefWidth="179.0" text="New to the system?">
                      <font>
                         <Font name="Tw Cen MT" size="22.0" />
                      </font>
                   </Label>
-                  <Label fx:id="signup" alignment="CENTER" layoutX="445.0" layoutY="557.0" prefHeight="36.0" prefWidth="94.0" text="Sign Up" textFill="#1a00ff">
+                  <Label fx:id="signup" alignment="CENTER" layoutX="445.0" layoutY="572.0" prefHeight="36.0" prefWidth="94.0" text="Sign Up" textFill="#1a00ff">
                      <font>
                         <Font name="Tw Cen MT Bold" size="16.0" />
                      </font>
@@ -96,11 +98,25 @@
                         <FontAwesomeIconView glyphName="CLOSE" size="1.5em" />
                      </graphic>
                   </JFXButton>
-                  <Label fx:id="statlab" layoutX="85.0" layoutY="20.0" prefHeight="45.0" prefWidth="512.0" text="Label">
-                     <font>
-                        <Font size="30.0" />
-                     </font>
-                  </Label>
+                  <AnchorPane fx:id="message" layoutX="33.0" layoutY="54.0" prefHeight="60.0" prefWidth="749.0" style="-fx-padding: 5;">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" layoutX="27.0" layoutY="13.0" prefHeight="35.0" prefWidth="695.0" spacing="15.0">
+                           <children>
+                              <Label fx:id="bigmessage" prefHeight="27.0" text="Message">
+                                 <styleClass>
+                                    <String fx:value="h4" />
+                                    <String fx:value="strong" />
+                                 </styleClass>
+                              </Label>
+                              <Label fx:id="smallmessage" prefHeight="21.0" styleClass="h5" text="Message" />
+                           </children>
+                        </HBox>
+                     </children>
+                     <styleClass>
+                        <String fx:value="alert" />
+                        <String fx:value="alert-danger" />
+                     </styleClass>
+                  </AnchorPane>
                </children>
             </AnchorPane>
          </children>
@@ -109,5 +125,6 @@
    <stylesheets>
       <URL value="@../../resources/style.css" />
       <URL value="@../../resources/Close.css" />
+      <URL value="@../../resources/alert.css" />
    </stylesheets>
 </fx:root>
