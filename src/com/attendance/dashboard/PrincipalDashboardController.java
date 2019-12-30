@@ -152,12 +152,13 @@ public class PrincipalDashboardController extends AnchorPane {
         List<String> years = new ArrayList<>(dao.get("select distinct(year) from student order by year", String.class));
         Collections.sort(years);
         year.getItems().setAll(years);
-        
+
         buttonActions();
         profilepic.setImage(new Image(new ByteArrayInputStream(principal.getImage())));
         initLoginActivity(null);
         taskInit();
         thread.start();
+
     }
 
     private void taskInit() {
@@ -190,6 +191,8 @@ public class PrincipalDashboardController extends AnchorPane {
         totaldepartments.setOnAction(e -> pane.getChildren().setAll(RootFactory.getPrincipalDashboardDepartmentNodeRoot()));
         principalaccounts.setOnAction(e -> pane.getChildren().setAll(RootFactory.getPrincipalDashboardPrincipalAccountNodeRoot()));
         hodaccounts.setOnAction(e -> pane.getChildren().setAll(RootFactory.getPrincipalDashboardHODAccountNodeRoot()));
+        settings.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getPrincipalSettingsRoot(Start.st.getScene().getRoot())));
+
         open.setOnAction(this::routine);
     }
 
@@ -245,6 +248,7 @@ public class PrincipalDashboardController extends AnchorPane {
                 st.getScene().setRoot(RootFactory.getSelectDepartmentRoot("verifyhod", PrincipalDashboardController.this.getScene().getRoot()));
 
             }
+            
             st.show();
         }
     }

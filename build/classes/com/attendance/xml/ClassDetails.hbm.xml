@@ -23,7 +23,7 @@ and open the template in the editor.
         
         <many-to-one name="dailyStats" class="com.attendance.studentattendance.model.DailyStats"
                      column="dailyStatId" unique="true" not-null="true" 
-                     cascade="all" fetch="join"/>
+                     cascade="all" fetch="select"/>
         
         <list name="attendance" cascade="all" fetch="join" lazy="false" table="attendance" catalog="attendance">
             <key column="classId"/>

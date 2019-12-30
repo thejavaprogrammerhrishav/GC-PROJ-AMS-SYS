@@ -37,11 +37,13 @@ import com.attendance.settings.ClassAndDetailsSettingsController;
 import com.attendance.settings.DatabaseServerSettingsController;
 import com.attendance.settings.ExportSettingsController;
 import com.attendance.settings.NotesSettingController;
-import com.attendance.settings.SettingsController;
+import com.attendance.settings.HODSettingsController;
+import com.attendance.settings.PrincipalSettingsController;
 import com.attendance.settings.UserLoginActivitySettingsController;
 import com.attendance.settings.sub.AttendanceController;
 import com.attendance.settings.sub.ClassDetailsController;
 import com.attendance.settings.sub.DailyStatsController;
+import com.attendance.settings.sub.DeleteLoginUser;
 import com.attendance.settings.sub.ExportClassDetailsListController;
 import com.attendance.settings.sub.ExportDailyStatsListController;
 import com.attendance.settings.sub.ExportFacultyListController;
@@ -142,7 +144,7 @@ public class RootFactory {
     }
 
     public static Parent getSettingsRoot(Parent parent) {
-        return new SettingsController(parent);
+        return new HODSettingsController(parent);
     }
 
     public static Parent getSettingsClassAndDetailsRoot(Parent parent) {
@@ -273,5 +275,13 @@ public class RootFactory {
        
        public static Parent getNotesSettingsRoot(Parent parent) {
            return new NotesSettingController(parent);
+       }
+       
+       public static Parent getPrincipalSettingsRoot(Parent parent) {
+           return new PrincipalSettingsController(parent);
+       }
+       
+       public static Parent getDeleteLoginUserRoot(Parent parent,String department) {
+           return new DeleteLoginUser(parent,department);
        }
 }

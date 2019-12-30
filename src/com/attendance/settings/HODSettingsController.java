@@ -22,7 +22,7 @@ import javafx.scene.layout.AnchorPane;
  *
  * @author Programmer Hrishav
  */
-public class SettingsController extends AnchorPane {
+public class HODSettingsController extends AnchorPane {
 
     @FXML
     private JFXButton loginactivity;
@@ -49,7 +49,7 @@ public class SettingsController extends AnchorPane {
 
     private Parent parent;
 
-    public SettingsController(Parent parent) {
+    public HODSettingsController(Parent parent) {
         this.parent = parent;
         fxml = Fxml.getSettingsFXML();
         fxml.setController(this);
@@ -58,7 +58,7 @@ public class SettingsController extends AnchorPane {
         try {
             fxml.load();
         } catch (IOException ex) {
-            Logger.getLogger(SettingsController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HODSettingsController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

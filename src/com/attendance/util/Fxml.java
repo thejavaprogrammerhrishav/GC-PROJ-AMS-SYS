@@ -287,4 +287,16 @@ public class Fxml {
     public static FXMLLoader getNotesSettingsFXML() {
         return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/deletenotes.fxml"));
     }
+    
+    public static FXMLLoader getPrincipalSettingsFXML() {
+        return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/principalsettings.fxml"));
+    }
+    
+    public static FXMLLoader getDeleteLoginUserFXML() {
+        return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/deletefacultyuser.fxml"));
+    }
+    
+    public static FXMLLoader getDeleteLoginUserNodeFXML() {
+        return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/deletefacultyusernode.fxml"));
+    }
 }
