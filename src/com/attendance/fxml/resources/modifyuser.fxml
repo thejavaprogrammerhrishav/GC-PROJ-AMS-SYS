@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
@@ -13,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: linear-gradient(to bottom right, rgba(240,19,77,1) 22.2%, rgba(228,0,124,1) 88.7% )linear-gradient(to bottom right, rgba(240,19,77,1) 22.2%, rgba(228,0,124,1) 88.7% );" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: linear-gradient(rgba(255,200,69,1) -0.1%, rgba(48,195,158,1) 100.5% );" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Pane prefHeight="86.0" prefWidth="1366.0">
          <children>
@@ -22,14 +23,14 @@
                   <Image url="@../../resources/LogoMakr_1wJdNX.png" />
                </image>
             </ImageView>
-            <Label layoutX="448.0" layoutY="34.0" text="Attendance Management System" textFill="WHITE">
+            <Label layoutX="448.0" layoutY="34.0" text="Attendance Management System">
                <font>
                   <Font name="Tw Cen MT" size="36.0" />
                </font>
             </Label>
             <JFXButton fx:id="close" contentDisplay="GRAPHIC_ONLY" layoutX="1315.0" layoutY="30.0" ripplerFill="BLACK" styleClass="close" textFill="WHITE">
                <graphic>
-                  <FontAwesomeIconView fill="WHITE" glyphName="CLOSE" size="1.5em" />
+                  <FontAwesomeIconView fill="#2c2c2c" glyphName="CLOSE" size="1.5em" />
                </graphic>
             </JFXButton>
          </children>
@@ -52,10 +53,13 @@
       </JFXButton>
       <ScrollPane layoutX="45.0" layoutY="198.0" prefHeight="536.0" prefWidth="1278.0" style="-fx-background-color: transparent;">
          <content>
-            <VBox fx:id="list" prefHeight="618.0" prefWidth="1262.0" />
+            <VBox fx:id="list" alignment="TOP_CENTER" prefHeight="618.0" prefWidth="1262.0" spacing="25.0">
+               <padding>
+                  <Insets bottom="25.0" top="25.0" />
+               </padding></VBox>
          </content>
       </ScrollPane>
-      <JFXButton fx:id="refresh" contentDisplay="GRAPHIC_ONLY" layoutX="544.0" layoutY="126.0" prefHeight="33.0" prefWidth="70.0" ripplerFill="BLACK" style="-fx-background-color: Blue;" styleClass="close" textFill="WHITE">
+      <JFXButton fx:id="refresh" contentDisplay="GRAPHIC_ONLY" layoutX="536.0" layoutY="126.0" prefHeight="33.0" prefWidth="70.0" ripplerFill="BLACK" style="-fx-background-color: Blue;" styleClass="close" textFill="WHITE">
          <graphic>
             <FontAwesomeIconView fill="WHITE" glyphName="REFRESH" size="1.5em" />
          </graphic>

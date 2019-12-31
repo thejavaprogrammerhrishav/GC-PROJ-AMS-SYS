@@ -69,6 +69,7 @@ public class PrincipalSettingsController extends AnchorPane {
     private void initialize() {
         close.setOnAction(eh -> SwitchRoot.switchRoot(Start.st, parent));
         deletefacultyuser.setOnAction(new ShowDepartmentPage("settings"));
+        modifyusertype.setOnAction(e->SwitchRoot.switchRoot(Start.st, RootFactory.getModifyUsertypeRoot(Start.st.getScene().getRoot())));
 
     }
 

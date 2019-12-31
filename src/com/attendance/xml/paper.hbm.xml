@@ -5,7 +5,7 @@
       <id column="id" name="id">
           <generator class="identity"/>
       </id>
-    <property column="code" name="paperCode"/>
+    <property column="code" name="paperCode" not-null="true"/>
     <property column="name" name="paperName" not-null="true"/>
     <property column="semester" name="semester" not-null="true"/>
      <property column="department" name="department" not-null="true"/>

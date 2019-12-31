@@ -175,7 +175,6 @@ public class PapersController extends AnchorPane {
     private void refreshtable(ActionEvent evt) {
         List<Paper> allpapers = dao.findByDepartment(SystemUtils.getDepartment());
         list.getItems().setAll(allpapers);
-
     }
 
     private void search(ActionEvent evt) {
