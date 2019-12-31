@@ -181,9 +181,11 @@ public class StudentAttendanceController extends BorderPane {
         updateAttendance.setOnAction(this::updateAttendance);
 
         semester.getSelectionModel().selectedItemProperty().addListener((ol, o, n) -> {
-            List<Paper> paperlist = papersdao.findBySemester(n);
-            List<String> list = paperlist.stream().map(p -> p.getPaperCode()).collect(Collectors.toList());
-            papers.getItems().setAll(list);
+            if (n != null || !n.isEmpty()) {
+                List<Paper> paperlist = papersdao.findBySemester(n);
+                List<String> list = paperlist.stream().map(p -> p.getPaperCode()).collect(Collectors.toList());
+                papers.getItems().setAll(list);
+            }
         });
 
         acayear.getItems().setAll("1st", "2nd", "3rd");
@@ -254,6 +256,8 @@ public class StudentAttendanceController extends BorderPane {
             if (acayear.getSelectionModel().getSelectedIndex() < 0 || coursetype.getSelectionModel().getSelectedIndex() < 0 || year.getSelectionModel().getSelectedIndex() < 0) {
                 throw new NullPointerException();
             } else {
+                semester.getSelectionModel().clearSelection();
+                papers.getSelectionModel().clearSelection();
                 initThread();
                 acadamicyear = acayear.getSelectionModel().getSelectedItem();
                 if (acadamicyear.equals("1st")) {
@@ -294,6 +298,9 @@ public class StudentAttendanceController extends BorderPane {
         acayear.getSelectionModel().clearSelection();
         coursetype.getSelectionModel().clearSelection();
         year.getSelectionModel().clearSelection();
+        
+        semester.getSelectionModel().clearSelection();
+        papers.getSelectionModel().clearSelection();
     }
 
     private void searchStudent(ActionEvent evt) {

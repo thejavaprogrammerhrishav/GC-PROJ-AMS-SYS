@@ -99,6 +99,5 @@ public class ModifyUsertypeControllerNode extends AnchorPane {
         user.setType("HOD");
         dao.update(user);
         MessageUtil.showInformation(Message.INFORMATION, "Modify User Type", "User Type Changes Successfully", Start.st);
-
     }
 }

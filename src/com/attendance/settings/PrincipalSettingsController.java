@@ -5,7 +5,6 @@
  */
 package com.attendance.settings;
 
-import com.attendance.dashboard.PrincipalDashboardController;
 import com.attendance.main.Start;
 import com.attendance.util.Fxml;
 import com.attendance.util.RootFactory;
