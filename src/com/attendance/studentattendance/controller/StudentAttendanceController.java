@@ -182,7 +182,8 @@ public class StudentAttendanceController extends BorderPane {
 
         semester.getSelectionModel().selectedItemProperty().addListener((ol, o, n) -> {
             List<Paper> paperlist = papersdao.findBySemester(n);
-            paperlist.stream().map(p -> p.getPaperCode()).forEach(papers.getItems()::add);
+            List<String> list = paperlist.stream().map(p -> p.getPaperCode()).collect(Collectors.toList());
+            papers.getItems().setAll(list);
         });
 
         acayear.getItems().setAll("1st", "2nd", "3rd");

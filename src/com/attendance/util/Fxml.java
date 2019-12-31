@@ -299,4 +299,12 @@ public class Fxml {
     public static FXMLLoader getDeleteLoginUserNodeFXML() {
         return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/deletefacultyusernode.fxml"));
     }
+    
+    public static FXMLLoader getModifyUserFXML() {
+        return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/modifyuser.fxml"));
+    }
+    
+    public static FXMLLoader getModifyUserNodeFXML() {
+        return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/modifyusernode.fxml"));
+    }
 }

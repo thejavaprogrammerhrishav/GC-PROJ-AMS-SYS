@@ -48,6 +48,7 @@ import com.attendance.settings.sub.ExportClassDetailsListController;
 import com.attendance.settings.sub.ExportDailyStatsListController;
 import com.attendance.settings.sub.ExportFacultyListController;
 import com.attendance.settings.sub.ExportStudentListController;
+import com.attendance.settings.sub.ModifyUsertypeController;
 import com.attendance.settings.sub.UpdateClassDetailsController;
 import com.attendance.splash.SplashController;
 import com.attendance.student.controller.RegisterStudentController;
@@ -284,4 +285,8 @@ public class RootFactory {
        public static Parent getDeleteLoginUserRoot(Parent parent,String department) {
            return new DeleteLoginUser(parent,department);
        }
+       
+       public static Parent getModifyUsertypeRoot(Parent parent){
+          return new ModifyUsertypeController(parent);
+      }
 }
