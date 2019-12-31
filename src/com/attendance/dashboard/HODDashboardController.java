@@ -121,8 +121,6 @@ public class HODDashboardController extends AnchorPane {
     private VBox list;
 
     private FXMLLoader fxml;
-    private Thread timer;
-    private Thread dater;
     private PersonalDetails details;
 
     private User user;
@@ -152,7 +150,7 @@ public class HODDashboardController extends AnchorPane {
         initLoginActivity(null);
         countStudents(null);
         profilepic.setImage(new Image(new ByteArrayInputStream(user.getImage())));
-        List<String> years = new ArrayList<>(dao.get("select distinct(year) from student order by year", String.class));
+        List<String> years = dao.findAllYears();
         Collections.sort(years);
         year.getItems().setAll(years);
         buttonactions();

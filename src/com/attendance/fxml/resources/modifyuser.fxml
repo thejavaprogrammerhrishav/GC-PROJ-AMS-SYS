@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: linear-gradient(rgba(255,200,69,1) -0.1%, rgba(48,195,158,1) 100.5% );" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: linear-gradient(#0f0c29,#302b63,#24243e);" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Pane prefHeight="86.0" prefWidth="1366.0">
          <children>
@@ -23,14 +23,14 @@
                   <Image url="@../../resources/LogoMakr_1wJdNX.png" />
                </image>
             </ImageView>
-            <Label layoutX="448.0" layoutY="34.0" text="Attendance Management System">
+            <Label layoutX="448.0" layoutY="34.0" text="Attendance Management System" textFill="WHITE">
                <font>
                   <Font name="Tw Cen MT" size="36.0" />
                </font>
             </Label>
             <JFXButton fx:id="close" contentDisplay="GRAPHIC_ONLY" layoutX="1315.0" layoutY="30.0" ripplerFill="BLACK" styleClass="close" textFill="WHITE">
                <graphic>
-                  <FontAwesomeIconView fill="#2c2c2c" glyphName="CLOSE" size="1.5em" />
+                  <FontAwesomeIconView fill="WHITE" glyphName="CLOSE" size="1.5em" />
                </graphic>
             </JFXButton>
          </children>
@@ -40,26 +40,26 @@
             <Font name="Tw Cen MT" size="18.0" />
          </font>
       </TextField>
-      <JFXButton fx:id="search" layoutX="1188.0" layoutY="125.0" prefHeight="33.0" prefWidth="131.0" style="-fx-background-color: #336600;" text="Search" textFill="WHITE">
+      <JFXButton fx:id="search" layoutX="1188.0" layoutY="125.0" prefHeight="33.0" prefWidth="131.0" style="-fx-background-color: #009900;" text="Search" textFill="WHITE">
          <font>
             <Font name="Tw Cen MT" size="18.0" />
          </font>
       </JFXButton>
-      <JFXComboBox fx:id="selectdepartment" layoutX="45.0" layoutY="127.0" prefHeight="30.0" prefWidth="342.0" promptText="Select Department" style="-fx-font-size: 16; -fx-font-family: 'Tw Cen MT',arial;" unFocusColor="WHITE" />
-      <JFXButton fx:id="apply" layoutX="414.0" layoutY="126.0" prefHeight="33.0" prefWidth="104.0" style="-fx-background-color: #609;" text="Apply" textFill="WHITE">
+      <JFXComboBox fx:id="selectdepartment" layoutX="45.0" layoutY="127.0" prefHeight="30.0" prefWidth="342.0" promptText="Select Department" style="-fx-font-size: 16; -fx-font-family: 'Tw Cen MT',arial; -fx-prompt-text-fill: #fff;" unFocusColor="WHITE" />
+      <JFXButton fx:id="apply" layoutX="414.0" layoutY="126.0" prefHeight="33.0" prefWidth="104.0" style="-fx-background-color: #660066;" text="Apply" textFill="WHITE">
          <font>
             <Font name="Tw Cen MT" size="18.0" />
          </font>
       </JFXButton>
       <ScrollPane layoutX="45.0" layoutY="198.0" prefHeight="536.0" prefWidth="1278.0" style="-fx-background-color: transparent;">
          <content>
-            <VBox fx:id="list" alignment="TOP_CENTER" prefHeight="618.0" prefWidth="1262.0" spacing="25.0">
+            <VBox fx:id="list" alignment="TOP_CENTER" prefHeight="618.0" prefWidth="1262.0" spacing="25.0" style="-fx-background-color: transparent;">
                <padding>
                   <Insets bottom="25.0" top="25.0" />
                </padding></VBox>
          </content>
       </ScrollPane>
-      <JFXButton fx:id="refresh" contentDisplay="GRAPHIC_ONLY" layoutX="536.0" layoutY="126.0" prefHeight="33.0" prefWidth="70.0" ripplerFill="BLACK" style="-fx-background-color: Blue;" styleClass="close" textFill="WHITE">
+      <JFXButton fx:id="refresh" contentDisplay="GRAPHIC_ONLY" layoutX="536.0" layoutY="126.0" prefHeight="33.0" prefWidth="40.0" ripplerFill="BLACK" style="-fx-background-color: Blue;" styleClass="close" textFill="WHITE">
          <graphic>
             <FontAwesomeIconView fill="WHITE" glyphName="REFRESH" size="1.5em" />
          </graphic>

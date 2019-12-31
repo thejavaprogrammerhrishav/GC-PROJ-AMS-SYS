@@ -129,6 +129,7 @@ public class FacultyDashboardController extends AnchorPane {
     public FacultyDashboardController() {
         this.user = SystemUtils.getCurrentUser();
         this.activity = SystemUtils.getActivity();
+        
         fxml = Fxml.getFacultyDashboardFXML();
         fxml.setRoot(FacultyDashboardController.this);
         fxml.setController(FacultyDashboardController.this);
@@ -153,7 +154,8 @@ public class FacultyDashboardController extends AnchorPane {
         timer.start();
         dater = DateTimerThread.newInstance().forLabel(DateTimerThread.DATE, date).init().thread();
         dater.start();
-        List<String> years = new ArrayList<>(dao.get("select distinct(year) from student", String.class));
+        
+        List<String> years = dao.findAllYears();
         Collections.sort(years);
         year.getItems().setAll(years);
 

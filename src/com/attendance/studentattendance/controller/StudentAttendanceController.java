@@ -338,7 +338,7 @@ public class StudentAttendanceController extends BorderPane {
         @Override
         public void run() {
             while (true) {
-                DecimalFormat d = new DecimalFormat("#.##");
+                DecimalFormat d = new DecimalFormat("#0.##");
                 ObservableList<Node> list = vb.getChildren();
                 int tot = list.size();
 

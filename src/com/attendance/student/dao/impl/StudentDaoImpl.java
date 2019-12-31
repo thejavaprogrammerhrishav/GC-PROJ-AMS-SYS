@@ -116,12 +116,12 @@ public class StudentDaoImpl implements StudentDao {
 
     @Override
     public int countStudents(String acadamicyear, String department) {
-        return jdbcTemplate.queryForObject("select count(*) from student where acadamicyear='" + acadamicyear + "' and department = '"+department+ "'", Integer.class);
+        return jdbcTemplate.queryForObject("select count(*) from student where acadamicyear='" + acadamicyear + "' and department = '" + department + "'", Integer.class);
     }
 
     @Override
     public int countStudents(String acadamicyear, String year, String department) {
-        return jdbcTemplate.queryForObject("select count(*) from student where acadamicyear='" + acadamicyear + "' and year=" + year + " and department = '"+department+ "'", Integer.class);
+        return jdbcTemplate.queryForObject("select count(*) from student where acadamicyear='" + acadamicyear + "' and year=" + year + " and department = '" + department + "'", Integer.class);
     }
 
     @Override
@@ -139,6 +139,11 @@ public class StudentDaoImpl implements StudentDao {
     @Override
     @Transactional
     public List<Student> findByDepartment(String department) {
-        return (List<Student>) hibernateTemplate.find("from Student where department=?", department                    );
+        return (List<Student>) hibernateTemplate.find("from Student where department=?", department);
+    }
+
+    @Override
+    public List<String> findAllYears() {
+        return jdbcTemplate.queryForList("select distinct(year) from student", String.class);
     }
 }

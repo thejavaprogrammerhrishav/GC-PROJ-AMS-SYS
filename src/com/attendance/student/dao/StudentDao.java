@@ -47,5 +47,7 @@ public interface StudentDao {
     public abstract List<Student> findByCourseType(String courseType);
 
     public abstract List<Student> findByDepartment(String department);
+    
+    public abstract List<String> findAllYears();
 
 }

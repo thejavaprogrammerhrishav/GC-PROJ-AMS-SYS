@@ -223,6 +223,8 @@ public class PapersController extends AnchorPane {
                 MessageUtil.showInformation(Message.INFORMATION, "ADD NEW PAPER", "New Paper Added Successfully", Start.st);
                 refreshtable(evt);
             }
+        } else{
+            MessageUtil.showInformation(Message.ERROR, "ADD NEW PAPER", "Paper Code Already Exists", Start.st);
         }
     }
     

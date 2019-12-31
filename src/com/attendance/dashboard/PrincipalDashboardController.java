@@ -147,9 +147,10 @@ public class PrincipalDashboardController extends AnchorPane {
         act = (Activity) Start.app.getBean("loginactivity");
         login = (Login) Start.app.getBean("userlogin");
         dao = (StudentDao) Start.app.getBean("studentregistration");
+        
         department.getItems().setAll(Arrays.asList(SystemUtils.getDepartments()));
 
-        List<String> years = new ArrayList<>(dao.get("select distinct(year) from student order by year", String.class));
+        List<String> years = dao.findAllYears();
         Collections.sort(years);
         year.getItems().setAll(years);
 
@@ -199,7 +200,6 @@ public class PrincipalDashboardController extends AnchorPane {
     private void routine(ActionEvent evt) {
         String dept = department.getSelectionModel().getSelectedItem();
         String yr = year.getSelectionModel().getSelectedItem();
-        System.out.println(dept + "\t" + yr);
         if (dept != null && yr != null) {
             SwitchRoot.switchRoot(Start.st, RootFactory.getPrincipalRoutineDashboardRoot(Start.st.getScene().getRoot(), dept, yr));
         }
