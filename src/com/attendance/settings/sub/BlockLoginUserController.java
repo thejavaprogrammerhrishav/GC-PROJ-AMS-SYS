@@ -9,6 +9,8 @@ import com.attendance.login.dao.Login;
 import com.attendance.login.user.model.User;
 import com.attendance.main.Start;
 import com.attendance.util.Fxml;
+import com.attendance.util.Message;
+import com.attendance.util.MessageUtil;
 import com.attendance.util.SwitchRoot;
 import com.jfoenix.controls.JFXButton;
 import java.io.ByteArrayInputStream;
@@ -32,13 +34,13 @@ import javafx.scene.layout.VBox;
  *
  * @author Programmer Hrishav
  */
-public class DeleteLoginUser extends AnchorPane {
+public class BlockLoginUserController extends AnchorPane {
+    
+      @FXML
+    private Label department;
 
     @FXML
     private JFXButton close;
-
-    @FXML
-    private Label department;
 
     @FXML
     private TextField entername;
@@ -62,38 +64,40 @@ public class DeleteLoginUser extends AnchorPane {
     private ImageView image;
 
     @FXML
-    private JFXButton delete;
-
-    @FXML
-    private JFXButton refresh;
+    private JFXButton onhold;
 
     @FXML
     private Label usertype;
 
     @FXML
+    private JFXButton decline;
+
+    @FXML
     private VBox list;
 
+    @FXML
+    private JFXButton refresh;
+    
     private FXMLLoader fxml;
-    private Parent parent;
     private String currentdepartment;
-
+    private Parent parent;
     private Login dao;
     private User user;
 
-    public DeleteLoginUser(Parent parent, String currentdepartment) {
+    public BlockLoginUserController(Parent parent,String currentdepartment) {
         this.parent = parent;
         this.currentdepartment = currentdepartment;
-        fxml = Fxml.getDeleteLoginUserFXML();
-        fxml.setRoot(this);
+        fxml = Fxml.getBlockLoginUserFXML();
         fxml.setController(this);
-        try {
-            fxml.load();
-        } catch (IOException ex) {
-            Logger.getLogger(DeleteLoginUser.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        fxml.setRoot(this);
+          try {
+              fxml.load();
+          } catch (IOException ex) {
+              Logger.getLogger(BlockLoginUserController.class.getName()).log(Level.SEVERE, null, ex);
+          }
     }
-
-    @FXML
+    
+     @FXML
     private void initialize() {
         dao = (Login) Start.app.getBean("userlogin");
         close.setOnAction(eh -> SwitchRoot.switchRoot(Start.st, parent));
@@ -103,14 +107,15 @@ public class DeleteLoginUser extends AnchorPane {
 
         search.setOnAction(this::search);
         refresh.setOnAction(this::load);
-        delete.setOnAction(this::delete);
+        onhold.setOnAction(this::onhold);
+        decline.setOnAction(this::decline);
     }
 
     private void load(ActionEvent evt) {
         List<User> users = dao.findByDepartment(currentdepartment);
         List<User> departmentusers = users.stream().filter(f -> f.getType().equals("HOD") || f.getType().equals("Faculty")).collect(Collectors.toList());
 
-        List<DeleteLoginUserNode> nodes = departmentusers.stream().map(DeleteLoginUserNode::new).collect(Collectors.toList());
+        List<DeleteLoginUserNodeController> nodes = departmentusers.stream().map(DeleteLoginUserNodeController::new).collect(Collectors.toList());
         nodes.stream().forEach(c -> {
             c.getAction().setOnAction(e -> {
                 display(c.getUser());
@@ -130,13 +135,21 @@ public class DeleteLoginUser extends AnchorPane {
         image.setImage(new Image(new ByteArrayInputStream(user.getImage())));
     }
 
-    private void delete(ActionEvent evt) {
-        dao.delete(user);
+    private void onhold(ActionEvent evt) {
+        user.setStatus("OnHold");
+        dao.update(user);
+        MessageUtil.showInformation(Message.INFORMATION, "BLOCK LOGIN USER", "User status set to Onhold Successfully", Start.st);
+    }
+    
+    private void decline(ActionEvent evt) {
+        user.setStatus("Decline");
+        dao.update(user);
+        MessageUtil.showInformation(Message.INFORMATION, "BLOCK LOGIN USER", "User status set to Decline Successfully", Start.st);
     }
 
     private void search(ActionEvent evt) {
-        List<DeleteLoginUserNode> nodes = list.getChildren().stream().map(m -> (DeleteLoginUserNode) m).collect(Collectors.toList());
-        List<DeleteLoginUserNode> filtered = nodes.stream().filter(f -> f.getUser().getDetails().getName().contains(entername.getText())).collect(Collectors.toList());
+        List<DeleteLoginUserNodeController> nodes = list.getChildren().stream().map(m -> (DeleteLoginUserNodeController) m).collect(Collectors.toList());
+        List<DeleteLoginUserNodeController> filtered = nodes.stream().filter(f -> f.getUser().getDetails().getName().contains(entername.getText())).collect(Collectors.toList());
         list.getChildren().setAll(filtered);
     }
 }

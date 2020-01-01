@@ -307,4 +307,16 @@ public class Fxml {
     public static FXMLLoader getModifyUserNodeFXML() {
         return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/modifyusernode.fxml"));
     }
+    
+    public static FXMLLoader getBlockLoginUserFXML() {
+        return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/blockfacultyuser.fxml"));
+    }
+    
+    public static FXMLLoader getPrincipalLoginActivitySettingsFXML() {
+        return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/principalloginactivitysettings.fxml"));
+    }
+    
+    public static FXMLLoader getHODLoginActivitySettingsFXML() {
+        return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/hodloginactivitysetting.fxml"));
+    }
 }

@@ -20,7 +20,7 @@ import javafx.scene.layout.AnchorPane;
  *
  * @author Programmer Hrishav
  */
-public class DeleteLoginUserNode extends AnchorPane{
+public class DeleteLoginUserNodeController extends AnchorPane{
     
     @FXML
     private Label name;
@@ -32,7 +32,7 @@ public class DeleteLoginUserNode extends AnchorPane{
     private User user;
     
 
-    public DeleteLoginUserNode(User user) {
+    public DeleteLoginUserNodeController(User user) {
         this.user = user;
         fxml = Fxml.getDeleteLoginUserNodeFXML();
         fxml.setController(this);
@@ -40,7 +40,7 @@ public class DeleteLoginUserNode extends AnchorPane{
         try {
             fxml.load();
         } catch (IOException ex) {
-            Logger.getLogger(DeleteLoginUserNode.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DeleteLoginUserNodeController.class.getName()).log(Level.SEVERE, null, ex);
         }   
         
     }

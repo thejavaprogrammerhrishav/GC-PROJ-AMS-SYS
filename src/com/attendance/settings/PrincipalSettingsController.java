@@ -69,6 +69,10 @@ public class PrincipalSettingsController extends AnchorPane {
         close.setOnAction(eh -> SwitchRoot.switchRoot(Start.st, parent));
         deletefacultyuser.setOnAction(new ShowDepartmentPage("settings"));
         modifyusertype.setOnAction(e->SwitchRoot.switchRoot(Start.st, RootFactory.getModifyUsertypeRoot(Start.st.getScene().getRoot())));
+        blockfacultylogin.setOnAction(new ShowDepartmentPage("BlockLogin"));
+        principalloginactivity.setOnAction(e->SwitchRoot.switchRoot(Start.st, RootFactory.getPrincipalLoginUserActivityRoot(Start.st.getScene().getRoot())));
+        hodloginactivity.setOnAction(e->SwitchRoot.switchRoot(Start.st, RootFactory.getHODLoginUserActivityRoot(Start.st.getScene().getRoot())));
+
 
     }
 
@@ -87,6 +91,10 @@ public class PrincipalSettingsController extends AnchorPane {
                     .build();
             if (type.equals("settings")) {
                 st.getScene().setRoot(RootFactory.getSelectDepartmentRoot("settings", PrincipalSettingsController.this.getScene().getRoot()));
+
+            }
+             if (type.equals("BlockLogin")) {
+                st.getScene().setRoot(RootFactory.getSelectDepartmentRoot("BlockLogin", PrincipalSettingsController.this.getScene().getRoot()));
 
             }
             st.show();

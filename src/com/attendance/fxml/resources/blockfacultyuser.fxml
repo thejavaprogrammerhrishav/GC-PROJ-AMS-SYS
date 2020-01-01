@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
@@ -16,29 +18,34 @@
    <children>
       <Pane prefHeight="75.0" prefWidth="1366.0" style="-fx-background-color: #330033;">
          <children>
-            <ImageView fitHeight="57.0" fitWidth="49.0" layoutX="75.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="57.0" fitWidth="49.0" layoutX="96.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../resources/LogoMakr_1wJdNX.png" />
                </image>
             </ImageView>
-            <Label layoutX="158.0" layoutY="17.0" text="Attendance Management System" textFill="WHITE">
+            <Label layoutX="162.0" layoutY="17.0" text="Attendance Management System" textFill="WHITE">
                <font>
                   <Font name="Tw Cen MT" size="36.0" />
                </font>
             </Label>
-            <Label layoutX="1007.0" layoutY="24.0" prefHeight="27.0" prefWidth="321.0" text="Department" textFill="WHITE">
+            <Label fx:id="department" layoutX="1007.0" layoutY="24.0" prefHeight="27.0" prefWidth="321.0" text="Department" textFill="WHITE">
                <font>
                   <Font name="Tw Cen MT" size="24.0" />
                </font>
             </Label>
+            <JFXButton fx:id="close" contentDisplay="GRAPHIC_ONLY" layoutX="19.0" layoutY="24.0" ripplerFill="BLACK" styleClass="close" textFill="WHITE">
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="ARROW_LEFT" size="1.5em" />
+               </graphic>
+            </JFXButton>
          </children>
       </Pane>
-      <TextField fx:id="entername" layoutX="35.0" layoutY="119.0" prefHeight="33.0" prefWidth="382.0" promptText="Enter Name">
+      <TextField fx:id="entername" layoutX="35.0" layoutY="119.0" prefHeight="33.0" prefWidth="332.0" promptText="Enter Name">
          <font>
             <Font name="Tw Cen MT" size="15.0" />
          </font>
       </TextField>
-      <JFXButton fx:id="search" layoutX="448.0" layoutY="119.0" prefHeight="28.0" prefWidth="97.0" style="-fx-background-color: green;" text="Search" textFill="WHITE">
+      <JFXButton fx:id="search" layoutX="376.0" layoutY="119.0" prefHeight="28.0" prefWidth="97.0" style="-fx-background-color: green;" text="Search" textFill="WHITE">
          <font>
             <Font name="Tw Cen MT" size="18.0" />
          </font>
@@ -95,7 +102,7 @@
                   <Image url="@../../resources/52abd3e155fcd67d30cf9693e6ada8af.png" />
                </image>
             </ImageView>
-            <JFXButton fx:id="delete" layoutX="188.0" layoutY="536.0" prefHeight="33.0" prefWidth="137.0" style="-fx-background-color: #FFFF33;" text="On Hold">
+            <JFXButton fx:id="onhold" layoutX="188.0" layoutY="536.0" prefHeight="33.0" prefWidth="137.0" style="-fx-background-color: #FFFF33;" text="On Hold">
                <font>
                   <Font name="Tw Cen MT" size="18.0" />
                </font>
@@ -110,7 +117,7 @@
                   <Font name="Tw Cen MT" size="17.0" />
                </font>
             </Label>
-            <JFXButton fx:id="delete1" layoutX="350.0" layoutY="536.0" prefHeight="33.0" prefWidth="137.0" style="-fx-background-color: red;" text="Decline" textFill="WHITE">
+            <JFXButton fx:id="decline" layoutX="350.0" layoutY="536.0" prefHeight="33.0" prefWidth="137.0" style="-fx-background-color: red;" text="Decline" textFill="WHITE">
                <font>
                   <Font name="Tw Cen MT" size="18.0" />
                </font>
@@ -122,8 +129,16 @@
       </Pane>
       <ScrollPane layoutX="35.0" layoutY="195.0" prefHeight="523.0" prefWidth="508.0">
          <content>
-            <VBox fx:id="list" prefHeight="522.0" prefWidth="491.0" style="-fx-background-color: white;" />
+            <VBox fx:id="list" prefHeight="522.0" prefWidth="491.0" spacing="25.0" style="-fx-background-color: white;">
+               <padding>
+                  <Insets bottom="25.0" top="25.0" />
+               </padding></VBox>
          </content>
       </ScrollPane>
+      <JFXButton fx:id="refresh" contentDisplay="GRAPHIC_ONLY" layoutX="486.0" layoutY="119.0" prefHeight="33.0" prefWidth="49.0" ripplerFill="BLACK" style="-fx-background-color: Blue;" styleClass="close" text="Button" textFill="WHITE">
+         <graphic>
+            <FontAwesomeIconView fill="WHITE" glyphName="REFRESH" size="1.5em" />
+         </graphic>
+      </JFXButton>
    </children>
 </fx:root>

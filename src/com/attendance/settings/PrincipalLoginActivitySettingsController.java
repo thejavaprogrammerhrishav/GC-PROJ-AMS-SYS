@@ -17,6 +17,7 @@ import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.logging.Level;
@@ -31,12 +32,13 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import org.joda.time.DateTimeComparator;
 
 /**
  *
  * @author Programmer Hrishav
  */
-public class UserLoginActivitySettingsController extends AnchorPane {
+public class PrincipalLoginActivitySettingsController extends AnchorPane {
 
     @FXML
     private JFXCheckBox filterbyname;
@@ -44,8 +46,6 @@ public class UserLoginActivitySettingsController extends AnchorPane {
     @FXML
     private JFXCheckBox filterbydate;
 
-    @FXML
-    private JFXCheckBox filterbyusertype;
 
     @FXML
     private JFXCheckBox ascending;
@@ -61,9 +61,6 @@ public class UserLoginActivitySettingsController extends AnchorPane {
 
     @FXML
     private TableColumn<LoginActivity, String> username;
-
-    @FXML
-    private TableColumn<LoginActivity, String> usertype;
 
     @FXML
     private TableColumn<LoginActivity, String> status;
@@ -82,9 +79,6 @@ public class UserLoginActivitySettingsController extends AnchorPane {
 
     @FXML
     private JFXDatePicker searchdate;
-
-    @FXML
-    private JFXComboBox<String> searchusertype;
 
     @FXML
     private JFXCheckBox sortbydate;
@@ -111,16 +105,16 @@ public class UserLoginActivitySettingsController extends AnchorPane {
     private Activity dao;
     private List<LoginActivity> list;
 
-    public UserLoginActivitySettingsController(Parent parent) {
+    public PrincipalLoginActivitySettingsController(Parent parent) {
         this.parent = parent;
-        fxml = Fxml.getUserLoginActivityTrackingFXML();
+        fxml = Fxml.getPrincipalLoginActivitySettingsFXML();
         fxml.setRoot(this);
         fxml.setController(this);
 
         try {
             fxml.load();
         } catch (IOException ex) {
-            Logger.getLogger(UserLoginActivitySettingsController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PrincipalLoginActivitySettingsController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -129,22 +123,19 @@ public class UserLoginActivitySettingsController extends AnchorPane {
         dao = (Activity) Start.app.getBean("loginactivity");
         searchname.disableProperty().bind(filterbyname.selectedProperty().not());
         searchdate.disableProperty().bind(filterbydate.selectedProperty().not());
-        searchusertype.disableProperty().bind(filterbyusertype.selectedProperty().not());
-
-        searchusertype.getItems().setAll("HOD", "Faculty");
 
         ascending.disableProperty().bind(sortbydate.selectedProperty().not());
         descending.disableProperty().bind(sortbydate.selectedProperty().not());
-
-        ascending.selectedProperty().addListener((ol, o, n) -> {
-            if (n) {
+        
+        ascending.selectedProperty().addListener((ol,o,n)->{
+            if(n) {
                 ascending.setSelected(true);
                 descending.setSelected(false);
             }
         });
-
-        descending.selectedProperty().addListener((ol, o, n) -> {
-            if (n) {
+        
+        descending.selectedProperty().addListener((ol,o,n)->{
+            if(n) {
                 descending.setSelected(true);
                 ascending.setSelected(false);
             }
@@ -163,7 +154,6 @@ public class UserLoginActivitySettingsController extends AnchorPane {
     private void initTable() {
         name.setCellValueFactory(new PropertyValueFactory<>("name"));
         username.setCellValueFactory(new PropertyValueFactory<>("username"));
-        usertype.setCellValueFactory(new PropertyValueFactory<>("userType"));
         status.setCellValueFactory(new PropertyValueFactory<>("status"));
         date.setCellValueFactory(new PropertyValueFactory<>("logindate"));
         logintime.setCellValueFactory(new PropertyValueFactory<>("logintime"));
@@ -176,7 +166,7 @@ public class UserLoginActivitySettingsController extends AnchorPane {
     }
 
     private void reinit() {
-        list = dao.findByDepartment(SystemUtils.getDepartment());
+        list = dao.findByUserType("Principal");
     }
 
     private void filters(ActionEvent evt) {
@@ -187,9 +177,6 @@ public class UserLoginActivitySettingsController extends AnchorPane {
         if (filterbyname.isSelected()) {
             filterdList = filterdList.stream().filter(l -> l.getName().startsWith(searchname.getText())).collect(Collectors.toList());
         }
-        if (filterbyusertype.isSelected()) {
-            filterdList = filterdList.stream().filter(l -> l.getUserType().equals(searchusertype.getSelectionModel().getSelectedItem())).collect(Collectors.toList());
-        }
         table.getItems().setAll(filterdList);
     }
 
@@ -198,7 +185,7 @@ public class UserLoginActivitySettingsController extends AnchorPane {
         try {
             exp.createFile().convertToExcel("User Login Activity").exportToFile();
         } catch (IOException ex) {
-            Logger.getLogger(UserLoginActivitySettingsController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PrincipalLoginActivitySettingsController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -207,14 +194,14 @@ public class UserLoginActivitySettingsController extends AnchorPane {
 
         if (sortbydate.isSelected()) {
             if (ascending.isSelected()) {
-                list = dao.get(" select * from loginactivity where department = '" + SystemUtils.getDepartment() + "' order by str_to_date(logindate, '%d-%m-%y') asc");
+                list = dao.get(" select * from loginactivity where usertype = 'Principal' order by str_to_date(logindate, '%d-%m-%y') asc");
             } else if (descending.isSelected()) {
-                list = dao.get(" select * from loginactivity where department = '" + SystemUtils.getDepartment() + "' order by str_to_date(logindate, '%d-%m-%y') desc");
+                list = dao.get(" select * from loginactivity where usertype = 'Principal' order by str_to_date(logindate, '%d-%m-%y') desc");
             } else {
-                list = dao.findByDepartment(SystemUtils.getDepartment());
+                list = dao.findByUserType("Principal");
             }
         } else {
-            list = dao.findByDepartment(SystemUtils.getDepartment());
+            list = dao.findByUserType("Principal");
         }
         table.getItems().setAll(list);
     }

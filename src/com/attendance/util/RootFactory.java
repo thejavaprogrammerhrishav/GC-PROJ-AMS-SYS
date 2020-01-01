@@ -36,14 +36,17 @@ import com.attendance.routines.controller.RoutineDashboardController;
 import com.attendance.settings.ClassAndDetailsSettingsController;
 import com.attendance.settings.DatabaseServerSettingsController;
 import com.attendance.settings.ExportSettingsController;
+import com.attendance.settings.HODLoginActivitySettingsController;
 import com.attendance.settings.NotesSettingController;
 import com.attendance.settings.HODSettingsController;
+import com.attendance.settings.PrincipalLoginActivitySettingsController;
 import com.attendance.settings.PrincipalSettingsController;
 import com.attendance.settings.UserLoginActivitySettingsController;
 import com.attendance.settings.sub.AttendanceController;
+import com.attendance.settings.sub.BlockLoginUserController;
 import com.attendance.settings.sub.ClassDetailsController;
 import com.attendance.settings.sub.DailyStatsController;
-import com.attendance.settings.sub.DeleteLoginUser;
+import com.attendance.settings.sub.DeleteLoginUserController;
 import com.attendance.settings.sub.ExportClassDetailsListController;
 import com.attendance.settings.sub.ExportDailyStatsListController;
 import com.attendance.settings.sub.ExportFacultyListController;
@@ -283,10 +286,22 @@ public class RootFactory {
        }
        
        public static Parent getDeleteLoginUserRoot(Parent parent,String department) {
-           return new DeleteLoginUser(parent,department);
+           return new DeleteLoginUserController(parent,department);
+       }
+       
+       public static Parent getBlockLoginUserRoot(Parent parent,String department) {
+           return new BlockLoginUserController(parent,department);
        }
        
        public static Parent getModifyUsertypeRoot(Parent parent){
           return new ModifyUsertypeController(parent);
+      }
+       
+       public static Parent getPrincipalLoginUserActivityRoot(Parent parent){
+          return new PrincipalLoginActivitySettingsController(parent);
+      }
+       
+       public static Parent getHODLoginUserActivityRoot(Parent parent){
+          return new HODLoginActivitySettingsController(parent);
       }
 }

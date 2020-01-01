@@ -17,7 +17,9 @@ import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -31,12 +33,13 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import org.joda.time.DateTimeComparator;
 
 /**
  *
  * @author Programmer Hrishav
  */
-public class UserLoginActivitySettingsController extends AnchorPane {
+public class HODLoginActivitySettingsController extends AnchorPane {
 
     @FXML
     private JFXCheckBox filterbyname;
@@ -45,7 +48,7 @@ public class UserLoginActivitySettingsController extends AnchorPane {
     private JFXCheckBox filterbydate;
 
     @FXML
-    private JFXCheckBox filterbyusertype;
+    private JFXCheckBox filterbydepartment;
 
     @FXML
     private JFXCheckBox ascending;
@@ -84,7 +87,7 @@ public class UserLoginActivitySettingsController extends AnchorPane {
     private JFXDatePicker searchdate;
 
     @FXML
-    private JFXComboBox<String> searchusertype;
+    private JFXComboBox<String> searchdepartment;
 
     @FXML
     private JFXCheckBox sortbydate;
@@ -111,16 +114,16 @@ public class UserLoginActivitySettingsController extends AnchorPane {
     private Activity dao;
     private List<LoginActivity> list;
 
-    public UserLoginActivitySettingsController(Parent parent) {
+    public HODLoginActivitySettingsController(Parent parent) {
         this.parent = parent;
-        fxml = Fxml.getUserLoginActivityTrackingFXML();
+        fxml = Fxml.getHODLoginActivitySettingsFXML();
         fxml.setRoot(this);
         fxml.setController(this);
 
         try {
             fxml.load();
         } catch (IOException ex) {
-            Logger.getLogger(UserLoginActivitySettingsController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HODLoginActivitySettingsController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -129,22 +132,22 @@ public class UserLoginActivitySettingsController extends AnchorPane {
         dao = (Activity) Start.app.getBean("loginactivity");
         searchname.disableProperty().bind(filterbyname.selectedProperty().not());
         searchdate.disableProperty().bind(filterbydate.selectedProperty().not());
-        searchusertype.disableProperty().bind(filterbyusertype.selectedProperty().not());
+        searchdepartment.disableProperty().bind(filterbydepartment.selectedProperty().not());
 
-        searchusertype.getItems().setAll("HOD", "Faculty");
+        searchdepartment.getItems().setAll(Arrays.asList(SystemUtils.getDepartments()));
 
         ascending.disableProperty().bind(sortbydate.selectedProperty().not());
         descending.disableProperty().bind(sortbydate.selectedProperty().not());
-
-        ascending.selectedProperty().addListener((ol, o, n) -> {
-            if (n) {
+        
+         ascending.selectedProperty().addListener((ol,o,n)->{
+            if(n) {
                 ascending.setSelected(true);
                 descending.setSelected(false);
             }
         });
-
-        descending.selectedProperty().addListener((ol, o, n) -> {
-            if (n) {
+        
+        descending.selectedProperty().addListener((ol,o,n)->{
+            if(n) {
                 descending.setSelected(true);
                 ascending.setSelected(false);
             }
@@ -176,7 +179,7 @@ public class UserLoginActivitySettingsController extends AnchorPane {
     }
 
     private void reinit() {
-        list = dao.findByDepartment(SystemUtils.getDepartment());
+        list = dao.findByUserType("HOD");
     }
 
     private void filters(ActionEvent evt) {
@@ -187,8 +190,8 @@ public class UserLoginActivitySettingsController extends AnchorPane {
         if (filterbyname.isSelected()) {
             filterdList = filterdList.stream().filter(l -> l.getName().startsWith(searchname.getText())).collect(Collectors.toList());
         }
-        if (filterbyusertype.isSelected()) {
-            filterdList = filterdList.stream().filter(l -> l.getUserType().equals(searchusertype.getSelectionModel().getSelectedItem())).collect(Collectors.toList());
+        if (filterbydepartment.isSelected()) {
+            filterdList = filterdList.stream().filter(l -> l.getDepartment().equals(searchdepartment.getSelectionModel().getSelectedItem())).collect(Collectors.toList());
         }
         table.getItems().setAll(filterdList);
     }
@@ -198,7 +201,7 @@ public class UserLoginActivitySettingsController extends AnchorPane {
         try {
             exp.createFile().convertToExcel("User Login Activity").exportToFile();
         } catch (IOException ex) {
-            Logger.getLogger(UserLoginActivitySettingsController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HODLoginActivitySettingsController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -207,14 +210,14 @@ public class UserLoginActivitySettingsController extends AnchorPane {
 
         if (sortbydate.isSelected()) {
             if (ascending.isSelected()) {
-                list = dao.get(" select * from loginactivity where department = '" + SystemUtils.getDepartment() + "' order by str_to_date(logindate, '%d-%m-%y') asc");
+                list = dao.get(" select * from loginactivity where usertype = 'HOD' order by str_to_date(logindate, '%d-%m-%y') asc");
             } else if (descending.isSelected()) {
-                list = dao.get(" select * from loginactivity where department = '" + SystemUtils.getDepartment() + "' order by str_to_date(logindate, '%d-%m-%y') desc");
+                list = dao.get(" select * from loginactivity where usertype = 'HOD' order by str_to_date(logindate, '%d-%m-%y') desc");
             } else {
-                list = dao.findByDepartment(SystemUtils.getDepartment());
+                list = dao.findByUserType("HOD");
             }
         } else {
-            list = dao.findByDepartment(SystemUtils.getDepartment());
+            list = dao.findByUserType("HOD");
         }
         table.getItems().setAll(list);
     }

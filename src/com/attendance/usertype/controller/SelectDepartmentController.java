@@ -91,5 +91,9 @@ public class SelectDepartmentController extends AnchorPane {
         else if (department.getSelectionModel().getSelectedIndex() != -1 && type.equals("settings")) {
             SwitchRoot.switchRoot(Start.st, RootFactory.getDeleteLoginUserRoot(parent, department.getSelectionModel().getSelectedItem()));
         }
+        
+        else if (department.getSelectionModel().getSelectedIndex() != -1 && type.equals("BlockLogin")) {
+            SwitchRoot.switchRoot(Start.st, RootFactory.getBlockLoginUserRoot(parent, department.getSelectionModel().getSelectedItem()));
+        }
     }
 }
