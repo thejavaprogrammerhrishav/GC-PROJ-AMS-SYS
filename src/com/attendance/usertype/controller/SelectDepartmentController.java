@@ -11,25 +11,43 @@ import com.attendance.util.RootFactory;
 import com.attendance.util.SwitchRoot;
 import com.attendance.util.SystemUtils;
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXComboBox;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 
 /**
  *
  * @author Programmer Hrishav
  */
 public class SelectDepartmentController extends AnchorPane {
+    
+    @FXML
+    private Pane pane;
+
+     @FXML
+    private JFXButton department;
 
     @FXML
-    private JFXComboBox<String> department;
+    private Label selected;
+
+    @FXML
+    private TextField search;
+
+    @FXML
+    private ListView<String> list;
 
     @FXML
     private JFXButton proceed;
@@ -58,10 +76,48 @@ public class SelectDepartmentController extends AnchorPane {
 
     @FXML
     private void initialize() {
-        department.getItems().setAll(SystemUtils.getDepartments());
+        list.getItems().setAll(Arrays.asList(SystemUtils.getDepartments()));
+        
+        list.getSelectionModel().selectedItemProperty().addListener((ol,o,n)->{
+            if(n!=null || !n.isEmpty()) {
+                selected.setText(n);
+            }
+            pane.setVisible(false);
+             proceed.setVisible(true);
+            cancel.setVisible(true);
+        });
+        
+        pane.setVisible(false);
+        
+        search.textProperty().addListener((ol,o,n)->{
+            if(n.isEmpty()) {
+                list.getItems().setAll(Arrays.asList(SystemUtils.getDepartments()));
+            }
+            else {
+                List<String> filtered = Arrays.asList(SystemUtils.getDepartments()).stream().filter(f->f.toLowerCase().contains(n.toLowerCase())).collect(Collectors.toList());
+                list.getItems().setAll(filtered);
+            }
+        });
+        
+        department.setOnAction(e->{
+            proceed.setVisible(false);
+            cancel.setVisible(false);
+            pane.setVisible(true);
+        });
 
         proceed.setOnAction(this::proceed);
         cancel.setOnAction(this::close);
+    }
+    
+    private String getSelectedDepartment() {
+        if(selected.getText().equals("Select Department") && list.getSelectionModel().getSelectedIndex()<0) {
+            return "";
+        }else{
+            if(selected.getText().equals(list.getSelectionModel().getSelectedItem())){
+                return selected.getText();
+            }
+        }
+        return String.valueOf(null);
     }
 
     private void close(ActionEvent evt) {
@@ -70,30 +126,30 @@ public class SelectDepartmentController extends AnchorPane {
 
     private void proceed(ActionEvent evt) {
         close(evt);
-        if (department.getSelectionModel().getSelectedIndex() != -1 && type.equals("Student")) {
-            SwitchRoot.switchRoot(Start.st, RootFactory.getViewStudentDetailsRoot(department.getSelectionModel().getSelectedItem(),parent));
+        if (getSelectedDepartment()!=null && !getSelectedDepartment().isEmpty() && type.equals("Student")) {
+            SwitchRoot.switchRoot(Start.st, RootFactory.getViewStudentDetailsRoot(getSelectedDepartment(),parent));
         } 
-        else if (department.getSelectionModel().getSelectedIndex() != -1 && type.equals("Faculty")) {
-            SwitchRoot.switchRoot(Start.st, RootFactory.getViewFacultyRoot(department.getSelectionModel().getSelectedItem(),parent));
+        else if (getSelectedDepartment()!=null && !getSelectedDepartment().isEmpty() && type.equals("Faculty")) {
+            SwitchRoot.switchRoot(Start.st, RootFactory.getViewFacultyRoot(getSelectedDepartment(),parent));
         } 
-        else if (department.getSelectionModel().getSelectedIndex() != -1 && type.equals("Class Details")) {
-            SystemUtils.setDepartment(department.getSelectionModel().getSelectedItem());
+        else if (getSelectedDepartment()!=null && !getSelectedDepartment().isEmpty() && type.equals("Class Details")) {
+            SystemUtils.setDepartment(getSelectedDepartment());
             SwitchRoot.switchRoot(Start.st, RootFactory.getClassDetailsRoot(parent,"N/A"));
         } 
-        else if (department.getSelectionModel().getSelectedIndex() != -1 && type.equals("Daily Class Details")) {
-            SystemUtils.setDepartment(department.getSelectionModel().getSelectedItem());
+        else if (getSelectedDepartment()!=null && !getSelectedDepartment().isEmpty() && type.equals("Daily Class Details")) {
+            SystemUtils.setDepartment(getSelectedDepartment());
             SwitchRoot.switchRoot(Start.st, RootFactory.getDailyStatsRoot(parent));
         } 
-        else if (department.getSelectionModel().getSelectedIndex() != -1 && type.equals("verifyhod")) {
-            SystemUtils.setDepartment(department.getSelectionModel().getSelectedItem());
+        else if (getSelectedDepartment()!=null && !getSelectedDepartment().isEmpty() && type.equals("verifyhod")) {
+            SystemUtils.setDepartment(getSelectedDepartment());
             SwitchRoot.switchRoot(Start.st, RootFactory.getPendingRequestRoot(parent, SystemUtils.getDepartment()));
         }
-        else if (department.getSelectionModel().getSelectedIndex() != -1 && type.equals("settings")) {
-            SwitchRoot.switchRoot(Start.st, RootFactory.getDeleteLoginUserRoot(parent, department.getSelectionModel().getSelectedItem()));
+        else if (getSelectedDepartment()!=null && !getSelectedDepartment().isEmpty() && type.equals("settings")) {
+            SwitchRoot.switchRoot(Start.st, RootFactory.getDeleteLoginUserRoot(parent, getSelectedDepartment()));
         }
         
-        else if (department.getSelectionModel().getSelectedIndex() != -1 && type.equals("BlockLogin")) {
-            SwitchRoot.switchRoot(Start.st, RootFactory.getBlockLoginUserRoot(parent, department.getSelectionModel().getSelectedItem()));
+        else if (getSelectedDepartment()!=null && !getSelectedDepartment().isEmpty() && type.equals("BlockLogin")) {
+            SwitchRoot.switchRoot(Start.st, RootFactory.getBlockLoginUserRoot(parent, getSelectedDepartment()));
         }
     }
 }

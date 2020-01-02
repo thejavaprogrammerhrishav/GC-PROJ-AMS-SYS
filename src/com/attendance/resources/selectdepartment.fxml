@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="396.0" prefWidth="600.0" style="-fx-background-color: linear-gradient( to bottom right,  rgba(205,5,32,1) 0.5%, rgba(205,10,90,1) 99.9% ); -fx-background-radius: 15;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="396.0" prefWidth="600.0" style="-fx-background-color: linear-gradient(to bottom right, rgba(3,126,243,1) -0.3%, rgba(48,195,158,1) 100.2% ); -fx-background-radius: 15;" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="133.0" layoutY="37.0" text="Attendance Management System" textFill="WHITE">
          <font>
@@ -24,14 +24,14 @@
             <Image url="@LogoMakr_1wJdNX.png" />
          </image>
       </ImageView>
-      <JFXButton contentDisplay="GRAPHIC_ONLY" layoutX="86.0" layoutY="127.0" prefHeight="50.0" prefWidth="429.0" style="-fx-background-color: green; -fx-background-radius: 20;" text="Search" textFill="WHITE">
+      <JFXButton fx:id="department" contentDisplay="GRAPHIC_ONLY" layoutX="86.0" layoutY="127.0" prefHeight="50.0" prefWidth="429.0" style="-fx-background-color: green; -fx-background-radius: 20;" text="Search" textFill="WHITE">
          <font>
             <Font name="Tw Cen MT" size="18.0" />
          </font>
          <graphic>
             <HBox alignment="CENTER_LEFT" prefHeight="21.0" prefWidth="413.0">
                <children>
-                  <Label prefHeight="19.0" prefWidth="159.0" text="Select Department" textFill="WHITE">
+                  <Label fx:id="selected" prefHeight="19.0" prefWidth="159.0" text="Select Department" textFill="WHITE">
                      <font>
                         <Font name="Tw Cen MT" size="20.0" />
                      </font>
@@ -51,21 +51,21 @@
             </HBox>
          </graphic>
       </JFXButton>
-      <Pane layoutX="76.0" layoutY="177.0" prefHeight="197.0" prefWidth="429.0" style="-fx-background-color: white;" visible="false">
+      <Pane layoutX="100.0" layoutY="177.0" prefHeight="197.0" prefWidth="401.0" style="-fx-background-color: white;">
          <children>
-            <TextField layoutX="12.0" layoutY="14.0" prefHeight="25.0" prefWidth="408.0" promptText="Search" style="-fx-font-family: 'Tw Cen MT',arial; -fx-font-size: 15;" />
-            <ListView layoutX="11.0" layoutY="49.0" prefHeight="135.0" prefWidth="408.0" />
+            <TextField fx:id="search" layoutX="18.0" layoutY="14.0" prefHeight="28.0" prefWidth="367.0" promptText="Search" style="-fx-font-family: 'Tw Cen MT',arial; -fx-font-size: 15; -fx-background-color: transparent;" />
+            <ListView fx:id="list" layoutX="18.0" layoutY="48.0" prefHeight="135.0" prefWidth="367.0" style="-fx-background-color: transparent;" />
          </children>
       </Pane>
-      <JFXButton layoutX="159.0" layoutY="259.0" prefHeight="33.0" prefWidth="132.0" style="-fx-background-color: white;" text="Continue ">
+      <JFXButton fx:id="proceed" layoutX="159.0" layoutY="259.0" prefHeight="33.0" prefWidth="132.0" style="-fx-background-color: blue;" text="Continue " textFill="WHITE">
          <font>
             <Font name="Tw Cen MT" size="18.0" />
          </font>
       </JFXButton>
-      <JFXButton layoutX="316.0" layoutY="259.0" prefHeight="33.0" prefWidth="132.0" style="-fx-background-color: #993399;" text="Cancel" textFill="WHITE">
+      <JFXButton fx:id="cancel" layoutX="316.0" layoutY="259.0" prefHeight="33.0" prefWidth="132.0" style="-fx-background-color: #993399;" text="Cancel" textFill="WHITE">
          <font>
             <Font name="Tw Cen MT" size="18.0" />
          </font>
       </JFXButton>
    </children>
-</AnchorPane>
+</fx:root>
