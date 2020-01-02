@@ -93,7 +93,12 @@
       </JFXButton>
    </children>
    <stylesheets>
-      <URL value="@../../resources/combo.css" />
-      <URL value="@../../resources/newreport.css" />
+      <URL value="@../../resources/table.css" />
+      <URL value="@../../resources/darktable.css" />
+      <URL value="@../../resources/scrollpane.css" />
+      <URL value="@../../resources/darkscroll.css" />
+      <URL value="@../../resources/combolist.css" />
+      <URL value="@../../resources/darkcombo.css" />
+      <URL value="@../../resources/whitecombo.css" />
    </stylesheets>
 </fx:root>

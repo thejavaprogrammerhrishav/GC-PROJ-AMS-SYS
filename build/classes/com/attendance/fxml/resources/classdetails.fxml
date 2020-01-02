@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXCheckBox?>
 <?import com.jfoenix.controls.JFXComboBox?>
+<?import java.net.URL?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
@@ -11,7 +12,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<fx:root hbarPolicy="NEVER" prefHeight="584.0" prefWidth="1366.0" styleClass="scroll1" stylesheets="@../../resources/newreport.css" type="ScrollPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root hbarPolicy="NEVER" prefHeight="584.0" prefWidth="1366.0" style="-fx-background-color: #292222;" type="ScrollPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <content>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: #292222;">
          <children>
@@ -44,14 +45,14 @@
                </font>
             </Label>
             <JFXComboBox fx:id="facultyname" layoutX="51.0" layoutY="169.0" prefHeight="29.0" prefWidth="270.0" promptText="Select Faculty Name" style="-fx-font-size: 15; -fx-font-family: 'Segoe UI', arial; -fx-prompt-text-fill: #fff;" />
-            <TableView fx:id="table" layoutX="16.0" layoutY="279.0" prefHeight="255.0" prefWidth="1323.0" styleClass="mytable">
+            <TableView fx:id="table" layoutX="16.0" layoutY="279.0" prefHeight="255.0" prefWidth="1323.0" style="-fx-font-size: 10;">
               <columns>
                 <TableColumn fx:id="name" editable="false" prefWidth="317.0" resizable="false" sortable="false" text="Faculty Name" />
                   <TableColumn fx:id="date" editable="false" prefWidth="353.0" resizable="false" sortable="false" text="Date" />
                   <TableColumn fx:id="time" editable="false" prefWidth="117.0" resizable="false" sortable="false" text="Time" />
                   <TableColumn fx:id="tsemester" editable="false" prefWidth="135.0" resizable="false" sortable="false" text="Semester" />
-                  <TableColumn fx:id="tyear" editable="false" prefWidth="112.0" resizable="false" sortable="false" text="Year" />
-                  <TableColumn fx:id="akayear" editable="false" prefWidth="122.0" resizable="false" sortable="false" text="Acadamic Year" />
+                  <TableColumn fx:id="tyear" editable="false" prefWidth="89.0" resizable="false" sortable="false" text="Year" />
+                  <TableColumn fx:id="akayear" editable="false" prefWidth="145.0" resizable="false" sortable="false" text="Acadamic Year" />
                   <TableColumn fx:id="ccoursetype" editable="false" prefWidth="153.0" resizable="false" sortable="false" text="Course Type" />
               </columns>
                <columnResizePolicy>
@@ -108,7 +109,7 @@
                   <Font name="Segoe UI" size="14.0" />
                </font>
             </TextField>
-            <TextField fx:id="faculty" editable="false" layoutX="616.0" layoutY="600.0" prefHeight="28.0" prefWidth="257.0" text="aaaaaaaaaaaaaaaaaaaaaaaaaaaaa">
+            <TextField fx:id="faculty" editable="false" layoutX="616.0" layoutY="600.0" prefHeight="28.0" prefWidth="257.0">
                <font>
                   <Font name="Segoe UI" size="14.0" />
                </font>
@@ -227,4 +228,13 @@
          </children>
       </AnchorPane>
    </content>
+   <stylesheets>
+      <URL value="@../../resources/table.css" />
+      <URL value="@../../resources/darktable.css" />
+      <URL value="@../../resources/scrollpane.css" />
+      <URL value="@../../resources/darkscroll.css" />
+      <URL value="@../../resources/combolist.css" />
+      <URL value="@../../resources/darkcombo.css" />
+      <URL value="@../../resources/whitecombo.css" />
+   </stylesheets>
 </fx:root>

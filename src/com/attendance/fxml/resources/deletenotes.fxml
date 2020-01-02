@@ -50,7 +50,7 @@
                   <Font name="Tw Cen MT" size="16.0" />
                </font>
             </JFXCheckBox>
-            <JFXComboBox fx:id="selectuploader" layoutX="37.0" layoutY="105.0" prefHeight="25.0" prefWidth="291.0" promptText="Select Uploader's Name" style="-fx-prompt-text-fill: white; -fx-font-family: 'Tw Cen MT',arial; -fx-font-size: 16;" />
+            <JFXComboBox fx:id="selectuploader" layoutX="37.0" layoutY="105.0" prefHeight="25.0" prefWidth="291.0" promptText="Select Uploader's Name" style="-fx-font-family: 'Tw Cen MT',arial; -fx-font-size: 16; -fx-prompt-text-fill: #fff;" unFocusColor="WHITE" />
             <JFXCheckBox fx:id="filterbydate" layoutX="409.0" layoutY="77.0" text="Filter By Date" textFill="WHITE" unCheckedColor="WHITE">
                <font>
                   <Font name="Tw Cen MT" size="16.0" />
@@ -196,7 +196,7 @@
       </Pane>
       <ScrollPane layoutX="31.0" layoutY="440.0" prefHeight="319.0" prefWidth="858.0" vbarPolicy="NEVER">
          <content>
-            <HBox fx:id="list" alignment="CENTER_LEFT" prefHeight="302.0" prefWidth="857.0" spacing="15.0" style="-fx-background-color: white;">
+            <HBox fx:id="list" alignment="CENTER_LEFT" prefHeight="302.0" prefWidth="851.0" spacing="15.0" style="-fx-background-color: white;">
                <padding>
                   <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                </padding>
@@ -224,12 +224,12 @@
                   <Font name="Tw Cen MT Bold" size="20.0" />
                </font>
             </Label>
-            <TextField fx:id="searchpath" layoutX="23.0" layoutY="52.0" prefHeight="36.0" prefWidth="645.0" promptText="Enter Search Details" style="-fx-background-radius: 12;">
+            <TextField fx:id="searchpath" layoutX="23.0" layoutY="53.0" prefHeight="26.0" prefWidth="645.0" promptText="Enter Search Details" style="-fx-background-radius: 12;">
                <font>
                   <Font name="Tw Cen MT" size="16.0" />
                </font>
                <padding>
-                  <Insets bottom="9.0" left="15.0" top="9.0" />
+                  <Insets bottom="7.0" left="15.0" top="7.0" />
                </padding>
             </TextField>
             <JFXButton fx:id="search" layoutX="679.0" layoutY="55.0" prefHeight="30.0" prefWidth="157.0" style="-fx-background-color: white; -fx-background-radius: 20;" text="Search">
@@ -241,7 +241,10 @@
       </Pane>
    </children>
    <stylesheets>
-      <URL value="@../../resources/combo.css" />
-      <URL value="@../../resources/newreport.css" />
+      <URL value="@../../resources/scrollpane.css" />
+      <URL value="@../../resources/normalscroll.css" />
+      <URL value="@../../resources/whitecombo.css" />
+      <URL value="@../../resources/combolist.css" />
+      <URL value="@../../resources/combowhite.css" />
    </stylesheets>
 </fx:root>

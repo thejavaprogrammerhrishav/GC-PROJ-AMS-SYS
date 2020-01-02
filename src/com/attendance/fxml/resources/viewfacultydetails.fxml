@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
@@ -13,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: #f5f5f5;" stylesheets="@../../resources/ddashboard.css" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: #f5f5f5;" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="76.0" prefWidth="1366.0" style="-fx-background-color: #fff;">
          <children>
@@ -80,7 +81,7 @@
       </AnchorPane>
       <ScrollPane hbarPolicy="NEVER" layoutX="378.0" layoutY="150.0" prefHeight="590.0" prefWidth="954.0" styleClass="main-log-scroll">
          <content>
-            <VBox fx:id="list" alignment="TOP_CENTER" prefHeight="591.0" prefWidth="940.0" spacing="15.0" style="-fx-background-color: #f5f5f5;">
+            <VBox fx:id="list" alignment="TOP_CENTER" prefHeight="591.0" prefWidth="942.0" spacing="15.0" style="-fx-background-color: #fff;">
                <padding>
                   <Insets bottom="15.0" top="15.0" />
                </padding>
@@ -93,4 +94,8 @@
          </font>
       </Label>
    </children>
+   <stylesheets>
+      <URL value="@../../resources/scrollpane.css" />
+      <URL value="@../../resources/normalscroll.css" />
+   </stylesheets>
 </fx:root>

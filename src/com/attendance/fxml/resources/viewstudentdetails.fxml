@@ -19,9 +19,9 @@
    <children>
       <Pane prefHeight="65.0" prefWidth="1366.0" style="-fx-background-color: #3329b2;">
          <children>
-            <Label alignment="CENTER" layoutX="1001.0" layoutY="6.0" prefHeight="26.0" prefWidth="352.0" text="View Student Details" textFill="WHITE">
+            <Label alignment="CENTER" layoutX="1001.0" layoutY="12.0" prefHeight="26.0" prefWidth="352.0" text="View Student Details" textFill="WHITE">
                <font>
-                  <Font name="Century Gothic" size="22.0" />
+                  <Font name="Century Gothic" size="20.0" />
                </font>
             </Label>
             <ImageView fitHeight="40.0" fitWidth="42.0" layoutX="35.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
@@ -84,14 +84,14 @@
                   <Insets bottom="5.0" left="12.0" top="5.0" />
                </padding>
             </TextField>
-            <JFXButton fx:id="search" buttonType="RAISED" layoutX="1194.0" layoutY="20.0" prefHeight="30.0" prefWidth="147.0" ripplerFill="BLACK" style="-fx-background-color: #1f0767;" text="Search" textFill="WHITE">
+            <JFXButton fx:id="search" layoutX="1194.0" layoutY="20.0" prefHeight="30.0" prefWidth="147.0" ripplerFill="BLACK" style="-fx-background-color: #1f0767;" text="Search" textFill="WHITE">
                <font>
-                  <Font name="Tw Cen MT" size="16.0" />
+                  <Font name="Tw Cen MT" size="18.0" />
                </font>
             </JFXButton>
-            <JFXButton fx:id="clear" buttonType="RAISED" layoutX="1195.0" layoutY="68.0" prefHeight="30.0" prefWidth="147.0" ripplerFill="BLACK" style="-fx-background-color: #076467;" text="Clear" textFill="WHITE">
+            <JFXButton fx:id="clear" layoutX="1195.0" layoutY="68.0" prefHeight="30.0" prefWidth="147.0" ripplerFill="BLACK" style="-fx-background-color: #076467;" text="Clear" textFill="WHITE">
                <font>
-                  <Font name="Tw Cen MT" size="16.0" />
+                  <Font name="Tw Cen MT" size="18.0" />
                </font>
             </JFXButton>
             <JFXCheckBox fx:id="filterbycoursetype" layoutX="942.0" layoutY="29.0" text="Filter By Course Type">
@@ -187,26 +187,26 @@
             <Font name="Tw Cen MT" size="36.0" />
          </font>
       </Label>
-      <JFXButton fx:id="refresh" buttonType="RAISED" layoutX="251.0" layoutY="700.0" prefHeight="30.0" prefWidth="161.0" ripplerFill="BLACK" style="-fx-background-color: #c137ad;" text="Refresh" textFill="WHITE">
+      <JFXButton fx:id="refresh" layoutX="232.0" layoutY="690.0" prefHeight="30.0" prefWidth="161.0" ripplerFill="BLACK" style="-fx-background-color: #906;" text="Refresh" textFill="WHITE">
          <font>
-            <Font name="Tw Cen MT" size="16.0" />
+            <Font name="Tw Cen MT" size="18.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="close" buttonType="RAISED" layoutX="437.0" layoutY="700.0" prefHeight="30.0" prefWidth="125.0" ripplerFill="BLACK" style="-fx-background-color: #400d42;" text="Close" textFill="WHITE">
+      <JFXButton fx:id="close" layoutX="448.0" layoutY="690.0" prefHeight="30.0" prefWidth="125.0" ripplerFill="BLACK" style="-fx-background-color: #400d42;" text="Close" textFill="WHITE">
          <font>
-            <Font name="Tw Cen MT" size="16.0" />
+            <Font name="Tw Cen MT" size="18.0" />
          </font>
       </JFXButton>
-      <TableView fx:id="studentTable" layoutX="738.0" layoutY="191.0" prefHeight="555.0" prefWidth="606.0">
+      <TableView fx:id="studentTable" layoutX="635.0" layoutY="191.0" prefHeight="555.0" prefWidth="709.0">
         <columns>
-          <TableColumn fx:id="studentColumnName" editable="false" prefWidth="374.0" resizable="false" sortable="false" text="Name" />
-            <TableColumn fx:id="studentColumnYear" editable="false" prefWidth="86.0" resizable="false" sortable="false" text="Year" />
-            <TableColumn fx:id="studentacadamicyear" editable="false" prefWidth="133.0" resizable="false" sortable="false" text="Acadamic Year" />
+          <TableColumn fx:id="studentColumnName" editable="false" prefWidth="451.0" resizable="false" sortable="false" text="Name" />
+            <TableColumn fx:id="studentColumnYear" editable="false" prefWidth="97.0" resizable="false" sortable="false" text="Year" />
+            <TableColumn fx:id="studentacadamicyear" editable="false" prefWidth="143.0" resizable="false" sortable="false" text="Acadamic Year" />
         </columns>
       </TableView>
-      <JFXButton fx:id="allstudents" buttonType="RAISED" layoutX="63.0" layoutY="700.0" prefHeight="30.0" prefWidth="161.0" ripplerFill="BLACK" style="-fx-background-color: #28ce44;" text="All Students" textFill="WHITE">
+      <JFXButton fx:id="allstudents" layoutX="36.0" layoutY="690.0" prefHeight="30.0" prefWidth="161.0" ripplerFill="BLACK" style="-fx-background-color: green;" text="All Students" textFill="WHITE">
          <font>
-            <Font name="Tw Cen MT" size="16.0" />
+            <Font name="Tw Cen MT" size="18.0" />
          </font>
       </JFXButton>
       <TextField fx:id="curcoursetype" editable="false" layoutX="28.0" layoutY="607.0" prefHeight="40.0" prefWidth="250.0" promptText="Current Course Type" style="-fx-text-fill: #000; -fx-background-color: transparent; -fx-background-radius: 10; -fx-border-width: 1px; -fx-border-radius: 10; -fx-border-style: solid; -fx-border-color: rgb(220,220,220);">
@@ -224,7 +224,12 @@
       </Label>
    </children>
    <stylesheets>
-      <URL value="@../../resources/studet.css" />
-      <URL value="@../../resources/combo.css" />
+      <URL value="@../../resources/scrollpane.css" />
+      <URL value="@../../resources/whitebluescroll.css" />
+      <URL value="@../../resources/table.css" />
+      <URL value="@../../resources/normalTable.css" />
+      <URL value="@../../resources/combolist.css" />
+      <URL value="@../../resources/combowhite.css" />
+      <URL value="@../../resources/deepcombo.css" />
    </stylesheets>
 </fx:root>

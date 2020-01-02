@@ -18,16 +18,16 @@
    <children>
       <TableView fx:id="table" layoutX="22.0" layoutY="195.0" prefHeight="493.0" prefWidth="1320.0">
         <columns>
-          <TableColumn fx:id="studentname" prefWidth="214.0" text="Name" />
-          <TableColumn fx:id="studentrollno" prefWidth="112.0" text="Roll Number" />
-            <TableColumn fx:id="studentsemester" prefWidth="112.0" text="Semester" />
-            <TableColumn fx:id="studentyear" prefWidth="105.0" text="Year" />
-            <TableColumn fx:id="facultyname" prefWidth="214.0" text="Faculty Name" />
-            <TableColumn fx:id="totalclasses" prefWidth="112.0" text="Total Classes" />
-            <TableColumn fx:id="totalpresent" prefWidth="112.0" text="Total Present" />
-            <TableColumn fx:id="totalabsent" prefWidth="112.0" text="Total Absent" />
-            <TableColumn fx:id="presentpercentage" prefWidth="110.0" text="Present (%)" />
-            <TableColumn fx:id="absentpercentage" editable="false" prefWidth="113.0" resizable="false" sortable="false" text="Absent (%)" />
+          <TableColumn fx:id="studentname" prefWidth="203.0" text="Name" />
+          <TableColumn fx:id="studentrollno" prefWidth="92.0" text="Roll No" />
+            <TableColumn fx:id="studentsemester" prefWidth="107.0" text="Semester" />
+            <TableColumn fx:id="studentyear" prefWidth="72.0" text="Year" />
+            <TableColumn fx:id="facultyname" prefWidth="203.0" text="Faculty Name" />
+            <TableColumn fx:id="totalclasses" prefWidth="130.0" text="Total Classes" />
+            <TableColumn fx:id="totalpresent" prefWidth="132.0" text="Total Present" />
+            <TableColumn fx:id="totalabsent" prefWidth="129.0" text="Total Absent" />
+            <TableColumn fx:id="presentpercentage" prefWidth="121.0" text="Present (%)" />
+            <TableColumn fx:id="absentpercentage" editable="false" prefWidth="117.0" resizable="false" sortable="false" text="Absent (%)" />
         </columns>
       </TableView>
       <JFXCheckBox fx:id="filterbyname" layoutX="24.0" layoutY="108.0" text="Filter By Name" textFill="WHITE" unCheckedColor="WHITE">
@@ -37,7 +37,7 @@
       </JFXCheckBox>
       <Pane prefHeight="73.0" prefWidth="1366.0" style="-fx-background-color: rgba(0,0,0,0.15);">
          <children>
-            <Label layoutX="116.0" layoutY="21.0" text="Attendance management System" textFill="#00ff6e">
+            <Label layoutX="116.0" layoutY="21.0" text="Attendance management System" textFill="WHITE">
                <font>
                   <Font name="Century Gothic" size="24.0" />
                </font>
@@ -59,8 +59,8 @@
             </Label>
          </children>
       </Pane>
-      <JFXComboBox fx:id="semester" layoutX="504.0" layoutY="139.0" prefHeight="29.0" prefWidth="149.0" promptText="Select Semester" style="-fx-font-size: 15; -fx-font-family: 'Segoe UI', arial; -fx-prompt-text-fill: #fff;" />
-      <JFXComboBox fx:id="year" layoutX="668.0" layoutY="139.0" prefHeight="29.0" prefWidth="113.0" promptText="Select Year" style="-fx-font-size: 15; -fx-font-family: 'Segoe UI', arial; -fx-prompt-text-fill: #fff;" />
+      <JFXComboBox fx:id="semester" focusColor="WHITE" layoutX="504.0" layoutY="139.0" prefHeight="29.0" prefWidth="149.0" promptText="Select Semester" style="-fx-font-size: 15; -fx-font-family: 'Segoe UI', arial; -fx-prompt-text-fill: #fff;" unFocusColor="WHITE" />
+      <JFXComboBox fx:id="year" focusColor="WHITE" layoutX="668.0" layoutY="139.0" prefHeight="29.0" prefWidth="113.0" promptText="Select Year" style="-fx-font-size: 15; -fx-font-family: 'Segoe UI', arial; -fx-prompt-text-fill: #fff;" unFocusColor="WHITE" />
       <JFXButton fx:id="generatereport" buttonType="RAISED" layoutX="1173.0" layoutY="100.0" minHeight="-Infinity" prefHeight="30.0" prefWidth="182.0" ripplerFill="BLACK" style="-fx-background-color: #56b536;" text="Generate Report" textFill="WHITE">
          <font>
             <Font name="Tw Cen MT" size="18.0" />
@@ -71,7 +71,7 @@
             <Font name="Tw Cen MT" size="18.0" />
          </font>
       </JFXButton>
-      <JFXComboBox fx:id="paper" layoutX="801.0" layoutY="139.0" prefHeight="29.0" prefWidth="152.0" promptText="Select Paper" style="-fx-font-size: 15; -fx-font-family: 'Segoe UI', arial; -fx-prompt-text-fill: #fff;" />
+      <JFXComboBox fx:id="paper" focusColor="WHITE" layoutX="801.0" layoutY="139.0" prefHeight="29.0" prefWidth="152.0" promptText="Select Paper" style="-fx-font-size: 15; -fx-font-family: 'Segoe UI', arial; -fx-prompt-text-fill: #fff;" unFocusColor="WHITE" />
       <JFXButton fx:id="cancel" buttonType="RAISED" layoutX="1200.0" layoutY="712.0" prefHeight="33.0" prefWidth="139.0" ripplerFill="BLACK" style="-fx-background-color: #685741;" text="Cancel" textFill="WHITE">
          <font>
             <Font name="Tw Cen MT" size="18.0" />
@@ -82,7 +82,7 @@
             <Font name="Tw Cen MT" size="18.0" />
          </font>
       </JFXButton>
-      <JFXComboBox fx:id="name" layoutX="24.0" layoutY="139.0" prefHeight="29.0" prefWidth="249.0" promptText="Select Faculty Name" style="-fx-font-size: 15; -fx-font-family: 'Segoe UI', arial; -fx-prompt-text-fill: #fff;" />
+      <JFXComboBox fx:id="name" focusColor="WHITE" layoutX="24.0" layoutY="139.0" prefHeight="29.0" prefWidth="249.0" promptText="Select Faculty Name" style="-fx-font-size: 15; -fx-font-family: 'Segoe UI', arial; -fx-prompt-text-fill: #fff;" unFocusColor="WHITE" />
       <Label layoutX="24.0" layoutY="717.0" text="Enter Sheet Name: " textFill="WHITE">
          <font>
             <Font name="Segoe UI" size="18.0" />
@@ -93,13 +93,13 @@
             <Font name="Segoe UI" size="16.0" />
          </font>
       </TextField>
-      <JFXComboBox fx:id="acadamicyear" layoutX="292.0" layoutY="141.0" prefHeight="29.0" prefWidth="195.0" promptText="Select Acadamic Year" style="-fx-font-size: 15; -fx-font-family: 'Segoe UI', arial; -fx-prompt-text-fill: #fff;" />
+      <JFXComboBox fx:id="acadamicyear" focusColor="WHITE" layoutX="292.0" layoutY="141.0" prefHeight="29.0" prefWidth="195.0" promptText="Select Acadamic Year" style="-fx-font-size: 15; -fx-font-family: 'Segoe UI', arial; -fx-prompt-text-fill: #fff;" unFocusColor="WHITE" />
       <JFXButton fx:id="excelReport" buttonType="RAISED" layoutX="750.0" layoutY="712.0" prefHeight="33.0" prefWidth="195.0" ripplerFill="BLACK" style="-fx-background-color: #603b7b;" text="Export Report" textFill="WHITE">
          <font>
             <Font name="Tw Cen MT" size="18.0" />
          </font>
       </JFXButton>
-      <JFXComboBox fx:id="coursetype" layoutX="975.0" layoutY="139.0" prefHeight="29.0" prefWidth="166.0" promptText="Select Course Type" style="-fx-font-size: 15; -fx-font-family: 'Segoe UI', arial; -fx-prompt-text-fill: #fff;" />
+      <JFXComboBox fx:id="coursetype" focusColor="WHITE" layoutX="975.0" layoutY="139.0" prefHeight="29.0" prefWidth="166.0" promptText="Select Course Type" style="-fx-font-size: 15; -fx-font-family: 'Segoe UI', arial; -fx-prompt-text-fill: #fff;" unFocusColor="WHITE" />
       <Label alignment="CENTER" layoutX="293.0" layoutY="96.0" prefHeight="29.0" prefWidth="852.0" text="Enter The  Following Details" textFill="WHITE">
          <font>
             <Font name="Segoe UI" size="20.0" />
@@ -107,7 +107,12 @@
       </Label>
    </children>
    <stylesheets>
-      <URL value="@../../resources/report.css" />
-      <URL value="@../../resources/combo.css" />
+      <URL value="@../../resources/table.css" />
+      <URL value="@../../resources/navyTable.css" />
+      <URL value="@../../resources/scrollpane.css" />
+      <URL value="@../../resources/navyscroll.css" />
+      <URL value="@../../resources/combolist.css" />
+      <URL value="@../../resources/combowhite.css" />
+      <URL value="@../../resources/whitecombo.css" />
    </stylesheets>
 </fx:root>

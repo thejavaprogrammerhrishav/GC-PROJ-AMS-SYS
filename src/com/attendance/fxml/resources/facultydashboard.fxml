@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
@@ -13,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: #f2f2f2;" stylesheets="@../../resources/dashboard.css" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: #f2f2f2;" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane layoutX="308.0" prefHeight="54.0" prefWidth="1058.0" style="-fx-background-color: #fff;">
          <children>
@@ -22,20 +23,28 @@
                   <Image url="@../../resources/account.png" />
                </image>
             </ImageView>
-            <JFXButton fx:id="myprofile" layoutX="492.0" layoutY="10.0" prefHeight="33.0" prefWidth="118.0" text="My Profile" textFill="#0d0d0d">
+            <JFXButton fx:id="myprofile" layoutX="558.0" layoutY="10.0" prefHeight="33.0" prefWidth="108.0" text="My Profile" textFill="#0d0d0d">
                <font>
                   <Font name="Tw Cen MT" size="18.0" />
                </font>
             </JFXButton>
-            <JFXButton fx:id="changepassword" layoutX="635.0" layoutY="10.0" prefHeight="33.0" prefWidth="186.0" text="Change Password" textFill="#0d0d0d">
+            <JFXButton fx:id="changepassword" layoutX="684.0" layoutY="10.0" prefHeight="33.0" prefWidth="171.0" text="Change Password" textFill="#0d0d0d">
                <font>
                   <Font name="Tw Cen MT" size="18.0" />
                </font>
             </JFXButton>
-            <JFXButton fx:id="logout" layoutX="845.0" layoutY="10.0" prefHeight="33.0" prefWidth="107.0" text="Log Out" textFill="#0d0d0d">
+            <JFXButton fx:id="logout" layoutX="870.0" layoutY="10.0" prefHeight="33.0" prefWidth="94.0" text="Log Out" textFill="#0d0d0d">
                <font>
                   <Font name="Tw Cen MT" size="18.0" />
                </font>
+            </JFXButton>
+            <JFXButton fx:id="myprofile1" graphicTextGap="15.0" layoutX="368.0" layoutY="10.0" prefHeight="35.0" prefWidth="171.0" style="-fx-background-color: red;" text="Security Alert" textFill="WHITE">
+               <font>
+                  <Font name="Tw Cen MT" size="18.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="WARNING" size="1.8em" />
+               </graphic>
             </JFXButton>
          </children></AnchorPane>
       <AnchorPane layoutY="-1.0" prefHeight="768.0" prefWidth="308.0" style="-fx-background-color: black;">
@@ -208,13 +217,13 @@
       </AnchorPane>
       <AnchorPane layoutX="339.0" layoutY="156.0" prefHeight="69.0" prefWidth="660.0" style="-fx-background-color: linear-gradient(to right,#8A2387,#E94057,#F27121); -fx-background-radius: 10;">
          <children>
-            <Label layoutX="21.0" layoutY="26.0" prefHeight="21.0" prefWidth="215.0" text="Total Student Enrolment -" textFill="WHITE">
+            <Label layoutX="21.0" layoutY="26.0" prefHeight="21.0" prefWidth="215.0" text="Total Student Enrollment -" textFill="WHITE">
                <font>
                   <Font name="Tw Cen MT" size="18.0" />
                </font>
             </Label>
             <JFXComboBox fx:id="year" layoutX="369.0" layoutY="18.0" prefHeight="30.0" prefWidth="207.0" promptText="Select Year" style="-fx-prompt-text-fill: #fff; -fx-font-family: 'Tw Cen MT',arial; -fx-font-size: 16;" unFocusColor="WHITE" />
-            <JFXButton fx:id="refresh" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" layoutX="592.0" layoutY="14.0" prefHeight="39.0" prefWidth="41.0" ripplerFill="BLACK" text="Refresh" textFill="WHITE">
+            <JFXButton fx:id="refresh" contentDisplay="GRAPHIC_ONLY" layoutX="592.0" layoutY="14.0" prefHeight="39.0" prefWidth="41.0" ripplerFill="BLACK" text="Refresh" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
@@ -236,12 +245,12 @@
                   <Image url="@../../resources/140-1404461_free-icons-png-homework-transparent-png.png" />
                </image>
             </ImageView>
-            <Label graphicTextGap="1.0" layoutX="144.0" layoutY="66.0" prefHeight="21.0" prefWidth="84.0" text="Education" textAlignment="CENTER" textFill="#464646" textOverrun="CENTER_ELLIPSIS" wrapText="true">
+            <Label graphicTextGap="1.0" layoutX="144.0" layoutY="61.0" prefHeight="21.0" prefWidth="84.0" text="Education" textAlignment="CENTER" textFill="#464646" textOverrun="CENTER_ELLIPSIS" wrapText="true">
                <font>
                   <Font name="Tw Cen MT" size="17.0" />
                </font>
             </Label>
-            <JFXButton fx:id="notesdashboard" buttonType="RAISED" layoutX="412.0" layoutY="42.0" prefHeight="40.0" prefWidth="221.0" ripplerFill="BLACK" style="-fx-background-color: #6300ff; -fx-background-radius: 10;" text="Notes Dashboard" textFill="WHITE">
+            <JFXButton fx:id="notesdashboard" layoutX="412.0" layoutY="42.0" prefHeight="40.0" prefWidth="221.0" ripplerFill="BLACK" style="-fx-background-color: #6300ff; -fx-background-radius: 10;" text="Notes Dashboard" textFill="WHITE">
                <font>
                   <Font name="Tw Cen MT" size="16.0" />
                </font>
@@ -260,7 +269,7 @@
                         <Font name="Tw Cen MT" size="20.0" />
                      </font>
                   </Label>
-                  <JFXButton fx:id="loginrefresh" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" layoutX="281.0" layoutY="8.0" prefHeight="33.0" prefWidth="32.0" style="-fx-background-color: TRANSPARENT;" text="Refresh" textFill="WHITE">
+                  <JFXButton fx:id="loginrefresh" contentDisplay="GRAPHIC_ONLY" layoutX="281.0" layoutY="8.0" prefHeight="33.0" prefWidth="32.0" style="-fx-background-color: TRANSPARENT;" text="Refresh" textFill="WHITE">
                      <font>
                         <Font name="Tw Cen MT" size="18.0" />
                      </font>
@@ -272,7 +281,7 @@
             </AnchorPane>
             <ScrollPane hbarPolicy="NEVER" layoutY="49.0" prefHeight="551.0" prefWidth="331.0" styleClass="user-log-scroll">
                <content>
-                  <VBox fx:id="list" alignment="TOP_CENTER" prefHeight="556.0" prefWidth="318.0" spacing="15.0" style="-fx-background-color: #fff;">
+                  <VBox fx:id="list" alignment="TOP_CENTER" prefHeight="548.0" prefWidth="318.0" spacing="15.0" style="-fx-background-color: #fff;">
                      <padding>
                         <Insets bottom="20.0" top="20.0" />
                      </padding></VBox>
@@ -287,7 +296,7 @@
                   <Font name="Tw Cen MT" size="18.0" />
                </font>
             </Label>
-            <JFXButton fx:id="routine" buttonType="RAISED" layoutX="412.0" layoutY="19.0" prefHeight="33.0" prefWidth="221.0" ripplerFill="BLACK" style="-fx-background-color: #fff; -fx-background-radius: 10;" text="Routines Dashboard">
+            <JFXButton fx:id="routine" layoutX="412.0" layoutY="19.0" prefHeight="33.0" prefWidth="221.0" ripplerFill="BLACK" style="-fx-background-color: #fff; -fx-background-radius: 10;" text="Routines Dashboard">
                <font>
                   <Font name="Tw Cen MT" size="16.0" />
                </font>
@@ -306,12 +315,12 @@
                   <Image url="@../../resources/140-1404461_free-icons-png-homework-transparent-png.png" />
                </image>
             </ImageView>
-            <Label graphicTextGap="1.0" layoutX="144.0" layoutY="66.0" prefHeight="21.0" prefWidth="84.0" text="Examinaion" textAlignment="CENTER" textFill="#464646" textOverrun="CENTER_ELLIPSIS" wrapText="true">
+            <Label graphicTextGap="1.0" layoutX="144.0" layoutY="56.0" prefHeight="21.0" prefWidth="84.0" text="Examinaion" textAlignment="CENTER" textFill="#464646" textOverrun="CENTER_ELLIPSIS" wrapText="true">
                <font>
                   <Font name="Tw Cen MT" size="17.0" />
                </font>
             </Label>
-            <JFXButton fx:id="uploadmarks" buttonType="RAISED" layoutX="412.0" layoutY="42.0" prefHeight="40.0" prefWidth="221.0" ripplerFill="BLACK" style="-fx-background-color: #ff5a00; -fx-background-radius: 10;" text="Upload Marks" textFill="WHITE">
+            <JFXButton fx:id="uploadmarks" layoutX="412.0" layoutY="42.0" prefHeight="40.0" prefWidth="221.0" ripplerFill="BLACK" style="-fx-background-color: #ff5a00; -fx-background-radius: 10;" text="Upload Marks" textFill="WHITE">
                <font>
                   <Font name="Tw Cen MT" size="16.0" />
                </font>
@@ -322,4 +331,11 @@
          </effect>
       </AnchorPane>
    </children>
+   <stylesheets>
+      <URL value="@../../resources/scrollpane.css" />
+      <URL value="@../../resources/whitebluescroll.css" />
+      <URL value="@../../resources/combolist.css" />
+      <URL value="@../../resources/combowhite.css" />
+      <URL value="@../../resources/whitecombo.css" />
+   </stylesheets>
 </fx:root>

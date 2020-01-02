@@ -51,7 +51,7 @@
                   <Font name="Tw Cen MT" size="16.0" />
                </font>
             </JFXCheckBox>
-            <JFXComboBox fx:id="selectuploader" layoutX="37.0" layoutY="105.0" prefHeight="25.0" prefWidth="291.0" promptText="Select Uploader's Name" style="-fx-prompt-text-fill: white; -fx-font-family: 'Tw Cen MT',arial; -fx-font-size: 16;" />
+            <JFXComboBox fx:id="selectuploader" focusColor="WHITE" layoutX="37.0" layoutY="105.0" prefHeight="25.0" prefWidth="291.0" promptText="Select Uploader's Name" style="-fx-prompt-text-fill: white; -fx-font-family: 'Tw Cen MT',arial; -fx-font-size: 16;" unFocusColor="WHITE" />
             <JFXCheckBox fx:id="searchbydate" layoutX="409.0" layoutY="77.0" text="Search By Date" textFill="WHITE" unCheckedColor="WHITE">
                <font>
                   <Font name="Tw Cen MT" size="16.0" />
@@ -286,7 +286,10 @@
       </Pane>
    </children>
    <stylesheets>
-      <URL value="@../../resources/combo.css" />
-      <URL value="@../../resources/newreport.css" />
+      <URL value="@../../resources/scrollpane.css" />
+      <URL value="@../../resources/normalscroll.css" />
+      <URL value="@../../resources/combolist.css" />
+      <URL value="@../../resources/combowhite.css" />
+      <URL value="@../../resources/whitecombo.css" />
    </stylesheets>
 </fx:root>

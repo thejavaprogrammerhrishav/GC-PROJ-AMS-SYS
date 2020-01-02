@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: #f1f0ee;" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: #f5f5f5;" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Pane prefHeight="768.0" prefWidth="296.0" style="-fx-background-color: black;">
          <children>
@@ -73,17 +73,17 @@
       </Pane>
       <Pane layoutX="296.0" prefHeight="69.0" prefWidth="1070.0" style="-fx-background-color: white;">
          <children>
-            <JFXButton fx:id="myprofile" layoutX="485.0" layoutY="12.0" prefHeight="45.0" prefWidth="162.0" ripplerFill="#fffefe" text="My Profile">
+            <JFXButton fx:id="myprofile" layoutX="569.0" layoutY="13.0" prefHeight="45.0" prefWidth="123.0" ripplerFill="#fffefe" text="My Profile">
                <font>
                   <Font name="Tw Cen MT" size="18.0" />
                </font>
             </JFXButton>
-            <JFXButton fx:id="changepassword" layoutX="662.0" layoutY="12.0" prefHeight="45.0" prefWidth="199.0" ripplerFill="#fffefe" text="Change Password">
+            <JFXButton fx:id="changepassword" layoutX="710.0" layoutY="13.0" prefHeight="45.0" prefWidth="169.0" ripplerFill="#fffefe" text="Change Password">
                <font>
                   <Font name="Tw Cen MT" size="18.0" />
                </font>
             </JFXButton>
-            <JFXButton fx:id="logout" layoutX="876.0" layoutY="12.0" prefHeight="45.0" prefWidth="112.0" ripplerFill="#fffefe" text="Log Out">
+            <JFXButton fx:id="logout" layoutX="897.0" layoutY="13.0" prefHeight="45.0" prefWidth="91.0" ripplerFill="#fffefe" text="Log Out">
                <font>
                   <Font name="Tw Cen MT" size="18.0" />
                </font>
@@ -97,28 +97,36 @@
                   <Font name="Tw Cen MT" size="26.0" />
                </font>
             </Label>
+            <JFXButton fx:id="myprofile1" graphicTextGap="15.0" layoutX="379.0" layoutY="13.0" prefHeight="45.0" prefWidth="175.0" ripplerFill="#fffefe" style="-fx-background-color: red;" text="Security Alert" textFill="WHITE">
+               <font>
+                  <Font name="Tw Cen MT" size="18.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="WARNING" size="1.8em" />
+               </graphic>
+            </JFXButton>
          </children>
       </Pane>
-      <Pane layoutX="314.0" layoutY="501.0" prefHeight="245.0" prefWidth="686.0" style="-fx-background-color: #CC00CC;">
+      <Pane layoutX="314.0" layoutY="501.0" prefHeight="245.0" prefWidth="686.0" style="-fx-background-color: linear-gradient( to bottom right,  rgba(240,19,77,1) 22.2%, rgba(228,0,124,1) 88.7% );">
          <children>
-            <Label alignment="CENTER" layoutX="183.0" layoutY="21.0" prefHeight="52.0" prefWidth="320.0" text="Departmental Routine" textFill="WHITE">
+            <Label alignment="CENTER" layoutX="170.0" layoutY="14.0" prefHeight="52.0" prefWidth="346.0" text="Departmental Routine" textFill="WHITE">
                <font>
-                  <Font name="Tw Cen MT" size="36.0" />
+                  <Font name="Calibri" size="36.0" />
                </font>
             </Label>
-            <Label layoutX="23.0" layoutY="107.0" text="Department" textFill="WHITE">
-               <font>
-                  <Font name="Tw Cen MT" size="18.0" />
-               </font>
-            </Label>
-            <Label layoutX="399.0" layoutY="107.0" text="Year of Admission" textFill="WHITE">
+            <Label layoutX="23.0" layoutY="90.0" text="Department" textFill="WHITE">
                <font>
                   <Font name="Tw Cen MT" size="18.0" />
                </font>
             </Label>
-            <JFXComboBox fx:id="department" layoutX="132.0" layoutY="99.0" prefHeight="35.0" prefWidth="211.0" promptText="Select Department" style="-fx-font-family: 'Tw Cen MT',arial; -fx-font-size: 16; -fx-prompt-text-fill: white;" unFocusColor="WHITE" />
-            <JFXComboBox fx:id="year" layoutX="566.0" layoutY="99.0" prefHeight="35.0" prefWidth="84.0" promptText="Year" style="-fx-font-family: 'Tw Cen MT',arial; -fx-font-size: 16; -fx-prompt-text-fill: white;" unFocusColor="WHITE" />
-            <JFXButton fx:id="open" buttonType="RAISED" layoutX="248.0" layoutY="178.0" prefHeight="33.0" prefWidth="190.0" style="-fx-background-color: red;" text="View Routine" textFill="WHITE">
+            <Label layoutX="23.0" layoutY="146.0" text="Year of Admission" textFill="WHITE">
+               <font>
+                  <Font name="Tw Cen MT" size="18.0" />
+               </font>
+            </Label>
+            <JFXComboBox fx:id="department" layoutX="172.0" layoutY="86.0" prefHeight="30.0" prefWidth="244.0" promptText="Select Department" style="-fx-font-family: 'Tw Cen MT',arial; -fx-font-size: 16; -fx-prompt-text-fill: white;" unFocusColor="WHITE" />
+            <JFXComboBox fx:id="year" layoutX="172.0" layoutY="141.0" prefHeight="30.0" prefWidth="129.0" promptText="Year" style="-fx-font-family: 'Tw Cen MT',arial; -fx-font-size: 16; -fx-prompt-text-fill: white;" unFocusColor="WHITE" />
+            <JFXButton fx:id="open" layoutX="459.0" layoutY="189.0" prefHeight="33.0" prefWidth="190.0" style="-fx-background-color: #fff;" text="View Routine">
                <font>
                   <Font name="Tw Cen MT" size="18.0" />
                </font>
@@ -129,7 +137,7 @@
          <children>
             <Pane prefHeight="62.0" prefWidth="320.0" style="-fx-background-color: #6E69FF;">
                <children>
-                  <JFXButton fx:id="refresh" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" layoutX="268.0" layoutY="9.0" prefHeight="45.0" prefWidth="41.0" ripplerFill="#fffefe">
+                  <JFXButton fx:id="refresh" contentDisplay="GRAPHIC_ONLY" layoutX="268.0" layoutY="9.0" prefHeight="45.0" prefWidth="41.0" ripplerFill="#fffefe">
                      <font>
                         <Font name="Tw Cen MT" size="18.0" />
                      </font>
@@ -146,7 +154,7 @@
             </Pane>
             <ScrollPane hbarPolicy="NEVER" layoutY="62.0" prefHeight="578.0" prefWidth="320.0" style="-fx-border-color: transparent;" styleClass="user-log-scroll">
                <content>
-                  <VBox fx:id="list" prefHeight="578.0" prefWidth="304.0" spacing="20.0" style="-fx-background-color: #fff;">
+                  <VBox fx:id="list" prefHeight="570.0" prefWidth="304.0" spacing="20.0" style="-fx-background-color: #fff;">
                      <padding>
                         <Insets bottom="15.0" left="10.0" top="15.0" />
                      </padding></VBox>
@@ -156,7 +164,7 @@
       </Pane>
       <Pane layoutX="314.0" layoutY="104.0" prefHeight="377.0" prefWidth="244.0" style="-fx-background-color: white; -fx-background-radius: 20;">
          <effect>
-            <DropShadow blurType="ONE_PASS_BOX" color="#bcbcbc" height="104.02" radius="49.965" spread="0.32" width="97.84" />
+            <DropShadow blurType="ONE_PASS_BOX" color="#dadada" height="100.93" radius="49.1925" spread="0.32" width="97.84" />
          </effect>
          <children>
             <Label layoutX="96.0" layoutY="25.0" text="Select">
@@ -166,27 +174,27 @@
             </Label>
             <VBox layoutX="12.0" layoutY="62.0" prefHeight="304.0" prefWidth="220.0" spacing="15.0">
                <children>
-                  <JFXButton fx:id="totalstudents" prefHeight="45.0" prefWidth="220.0" ripplerFill="#49baea" style="-fx-background-radius: 20; -fx-border-size: 1;" styleClass="butnode" text=" Total Students">
+                  <JFXButton fx:id="totalstudents" prefHeight="45.0" prefWidth="220.0" ripplerFill="#49baea" style="-fx-border-size: 1;" styleClass="butnode" text=" Total Students">
                      <font>
                         <Font name="Tw Cen MT" size="15.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton fx:id="totalfaculties" layoutX="10.0" layoutY="10.0" prefHeight="45.0" prefWidth="220.0" ripplerFill="#49baea" style="-fx-background-radius: 20; -fx-border-size: 1;" styleClass="butnode" text="Total Faculties">
+                  <JFXButton fx:id="totalfaculties" layoutX="10.0" layoutY="10.0" prefHeight="45.0" prefWidth="220.0" ripplerFill="#49baea" style="-fx-border-size: 1;" styleClass="butnode" text="Total Faculties">
                      <font>
                         <Font name="Tw Cen MT" size="15.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton fx:id="totaldepartments" layoutX="10.0" layoutY="40.0" prefHeight="45.0" prefWidth="220.0" ripplerFill="#49baea" style="-fx-background-radius: 20; -fx-border-size: 1;" styleClass="butnode" text="Total Departments">
+                  <JFXButton fx:id="totaldepartments" layoutX="10.0" layoutY="40.0" prefHeight="45.0" prefWidth="220.0" ripplerFill="#49baea" style="-fx-border-size: 1;" styleClass="butnode" text="Total Departments">
                      <font>
                         <Font name="Tw Cen MT" size="15.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton fx:id="principalaccounts" layoutX="10.0" layoutY="70.0" prefHeight="45.0" prefWidth="220.0" ripplerFill="#49baea" style="-fx-background-radius: 20; -fx-border-size: 1;" styleClass="butnode" text="Principal Accounts">
+                  <JFXButton fx:id="principalaccounts" layoutX="10.0" layoutY="70.0" prefHeight="45.0" prefWidth="220.0" ripplerFill="#49baea" style="-fx-border-size: 1;" styleClass="butnode" text="Principal Accounts">
                      <font>
                         <Font name="Tw Cen MT" size="15.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton fx:id="hodaccounts" layoutX="10.0" layoutY="100.0" prefHeight="45.0" prefWidth="220.0" ripplerFill="#49baea" style="-fx-background-radius: 20; -fx-border-size: 1;" styleClass="butnode" text="HOD Accounts">
+                  <JFXButton fx:id="hodaccounts" layoutX="10.0" layoutY="100.0" prefHeight="45.0" prefWidth="220.0" ripplerFill="#49baea" style="-fx-border-size: 1;" styleClass="butnode" text="HOD Accounts">
                      <font>
                         <Font name="Tw Cen MT" size="15.0" />
                      </font>
@@ -200,12 +208,12 @@
       </Pane>
       <AnchorPane fx:id="pane" layoutX="589.0" layoutY="104.0" prefHeight="200.0" prefWidth="403.0" style="-fx-background-color: white; -fx-background-radius: 20;">
          <effect>
-            <DropShadow blurType="ONE_PASS_BOX" color="#dad8d8" height="66.85" radius="33.2625" spread="0.63" width="68.2" />
+            <DropShadow blurType="ONE_PASS_BOX" color="#dadada" height="100.93" radius="49.1925" spread="0.32" width="97.84" />
          </effect>
       </AnchorPane>
       <AnchorPane layoutX="589.0" layoutY="334.0" prefHeight="137.0" prefWidth="403.0" style="-fx-background-color: white; -fx-background-radius: 20;">
          <effect>
-            <DropShadow blurType="ONE_PASS_BOX" color="#dad8d8" height="66.85" radius="33.2625" spread="0.63" width="68.2" />
+            <DropShadow blurType="ONE_PASS_BOX" color="#dadada" height="100.93" radius="49.1925" spread="0.32" width="97.84" />
          </effect>
          <children>
             <Label layoutX="21.0" layoutY="17.0" prefHeight="30.0" prefWidth="210.0" text="HOD Verification" wrapText="true">
@@ -218,12 +226,12 @@
                   <Font name="Tw Cen MT" size="15.0" />
                </font>
             </Label>
-            <JFXButton fx:id="verifyhod" buttonType="RAISED" layoutX="216.0" layoutY="78.0" prefHeight="30.0" prefWidth="162.0" ripplerFill="#49baea" style="-fx-background-color: #ffecb8;" text="Verify HOD">
+            <JFXButton fx:id="verifyhod" layoutX="216.0" layoutY="80.0" prefHeight="30.0" prefWidth="162.0" ripplerFill="#49baea" style="-fx-background-color: #e8f26e;" text="Verify HOD">
                <font>
                   <Font name="Tw Cen MT" size="15.0" />
                </font>
             </JFXButton>
-            <Label fx:id="pending" alignment="CENTER" layoutX="216.0" layoutY="29.0" prefHeight="30.0" prefWidth="162.0" style="-fx-background-color: #3a8112;" text="23 pending" textFill="WHITE" wrapText="true">
+            <Label fx:id="pending" alignment="CENTER" layoutX="216.0" layoutY="29.0" prefHeight="30.0" prefWidth="162.0" style="-fx-background-color: rgba(58,129,18,0.95);" text="23 pending" textFill="WHITE" wrapText="true">
                <font>
                   <Font name="Tw Cen MT Bold" size="16.0" />
                </font>
@@ -233,6 +241,10 @@
    </children>
    <stylesheets>
       <URL value="@../../resources/button.css" />
-      <URL value="@../../resources/dashboard.css" />
+      <URL value="@../../resources/scrollpane.css" />
+      <URL value="@../../resources/whitebluescroll.css" />
+      <URL value="@../../resources/whitecombo.css" />
+      <URL value="@../../resources/combolist.css" />
+      <URL value="@../../resources/combowhite.css" />
    </stylesheets>
 </fx:root>

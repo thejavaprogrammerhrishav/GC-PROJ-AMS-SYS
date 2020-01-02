@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
@@ -14,11 +15,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" stylesheets="@../../resources/hoddashboard.css" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Pane layoutY="103.0" prefHeight="665.0" prefWidth="291.0" style="-fx-background-color: white;">
          <children>
-            <JFXButton fx:id="registerstudent" graphicTextGap="17.0" layoutX="20.0" layoutY="74.0" prefHeight="45.0" prefWidth="250.0" style="-fx-alignment: center_left;" text="Register Student">
+            <JFXButton fx:id="registerstudent" graphicTextGap="17.0" layoutX="20.0" layoutY="61.0" prefHeight="45.0" prefWidth="250.0" style="-fx-alignment: center_left;" text="Register Student">
                <font>
                   <Font name="Tw Cen MT" size="18.0" />
                </font>
@@ -26,7 +27,7 @@
                   <FontAwesomeIconView glyphName="GRADUATION_CAP" size="1.4em" />
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="updatestudent" graphicTextGap="17.0" layoutX="20.0" layoutY="136.0" prefHeight="45.0" prefWidth="250.0" style="-fx-alignment: center_left;" text="Update Student">
+            <JFXButton fx:id="updatestudent" graphicTextGap="17.0" layoutX="20.0" layoutY="123.0" prefHeight="45.0" prefWidth="250.0" style="-fx-alignment: center_left;" text="Update Student">
                <font>
                   <Font name="Tw Cen MT" size="18.0" />
                </font>
@@ -34,7 +35,7 @@
                   <FontAwesomeIconView glyphName="GRADUATION_CAP" size="1.4em" />
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="settings" graphicTextGap="22.0" layoutX="20.0" layoutY="575.0" prefHeight="45.0" prefWidth="250.0" style="-fx-alignment: center_left;" text="Settings">
+            <JFXButton fx:id="settings" graphicTextGap="22.0" layoutX="20.0" layoutY="562.0" prefHeight="45.0" prefWidth="250.0" style="-fx-alignment: center_left;" text="Settings">
                <font>
                   <Font name="Tw Cen MT" size="18.0" />
                </font>
@@ -45,7 +46,7 @@
                   <Insets left="14.0" />
                </padding>
             </JFXButton>
-            <JFXButton fx:id="viewstudent" graphicTextGap="22.0" layoutX="20.0" layoutY="196.0" prefHeight="45.0" prefWidth="250.0" style="-fx-alignment: center_left;" text="View Student ">
+            <JFXButton fx:id="viewstudent" graphicTextGap="22.0" layoutX="20.0" layoutY="183.0" prefHeight="45.0" prefWidth="250.0" style="-fx-alignment: center_left;" text="View Student ">
                <font>
                   <Font name="Tw Cen MT" size="18.0" />
                </font>
@@ -56,12 +57,12 @@
                   <Insets left="14.0" />
                </padding>
             </JFXButton>
-            <Label layoutX="20.0" layoutY="37.0" prefHeight="27.0" prefWidth="260.0" text="Student Section" textFill="#808080" wrapText="true">
+            <Label layoutX="20.0" layoutY="24.0" prefHeight="27.0" prefWidth="260.0" text="Student Section" textFill="#808080" wrapText="true">
                <font>
                   <Font name="Tw Cen MT" size="18.0" />
                </font>
             </Label>
-            <JFXButton fx:id="viewfaculty" graphicTextGap="22.0" layoutX="20.0" layoutY="293.0" prefHeight="45.0" prefWidth="250.0" style="-fx-alignment: center_left;" text="View Faculty Details">
+            <JFXButton fx:id="viewfaculty" graphicTextGap="22.0" layoutX="20.0" layoutY="280.0" prefHeight="45.0" prefWidth="250.0" style="-fx-alignment: center_left;" text="View Faculty Details">
                <font>
                   <Font name="Tw Cen MT" size="18.0" />
                </font>
@@ -72,12 +73,12 @@
                   <Insets left="14.0" />
                </padding>
             </JFXButton>
-            <Label layoutX="15.0" layoutY="257.0" prefHeight="27.0" prefWidth="260.0" text="Faculty Section" textFill="#808080" wrapText="true">
+            <Label layoutX="15.0" layoutY="244.0" prefHeight="27.0" prefWidth="260.0" text="Faculty Section" textFill="#808080" wrapText="true">
                <font>
                   <Font name="Tw Cen MT" size="18.0" />
                </font>
             </Label>
-            <JFXButton fx:id="routine" graphicTextGap="22.0" layoutX="20.0" layoutY="400.0" prefHeight="45.0" prefWidth="250.0" style="-fx-alignment: center_left;" text="Routines">
+            <JFXButton fx:id="routine" graphicTextGap="22.0" layoutX="20.0" layoutY="387.0" prefHeight="45.0" prefWidth="250.0" style="-fx-alignment: center_left;" text="Routines">
                <font>
                   <Font name="Tw Cen MT" size="18.0" />
                </font>
@@ -88,12 +89,12 @@
                   <Insets left="14.0" />
                </padding>
             </JFXButton>
-            <Label layoutX="15.0" layoutY="361.0" prefHeight="27.0" prefWidth="260.0" text="Routine Section" textFill="#808080" wrapText="true">
+            <Label layoutX="15.0" layoutY="348.0" prefHeight="27.0" prefWidth="260.0" text="Routine Section" textFill="#808080" wrapText="true">
                <font>
                   <Font name="Tw Cen MT" size="18.0" />
                </font>
             </Label>
-            <JFXButton fx:id="paper" graphicTextGap="22.0" layoutX="19.0" layoutY="493.0" prefHeight="45.0" prefWidth="250.0" style="-fx-alignment: center_left;" text="Papers">
+            <JFXButton fx:id="paper" graphicTextGap="22.0" layoutX="19.0" layoutY="480.0" prefHeight="45.0" prefWidth="250.0" style="-fx-alignment: center_left;" text="Papers">
                <font>
                   <Font name="Tw Cen MT" size="18.0" />
                </font>
@@ -104,7 +105,7 @@
                   <Insets left="14.0" />
                </padding>
             </JFXButton>
-            <Label layoutX="14.0" layoutY="454.0" prefHeight="27.0" prefWidth="260.0" text="Paper Section" textFill="#808080" wrapText="true">
+            <Label layoutX="14.0" layoutY="441.0" prefHeight="27.0" prefWidth="260.0" text="Paper Section" textFill="#808080" wrapText="true">
                <font>
                   <Font name="Tw Cen MT" size="18.0" />
                </font>
@@ -113,12 +114,12 @@
       </Pane>
       <Pane prefHeight="104.0" prefWidth="291.0" style="-fx-background-color: white;">
          <children>
-            <ImageView fitHeight="53.0" fitWidth="56.0" layoutX="23.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="53.0" fitWidth="56.0" layoutX="19.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../resources/LogoMakr_1wJdNX.png" />
                </image>
             </ImageView>
-            <Label layoutX="91.0" layoutY="14.0" prefHeight="68.0" prefWidth="185.0" text="Attendance Management System" wrapText="true">
+            <Label layoutX="86.0" layoutY="15.0" prefHeight="68.0" prefWidth="185.0" text="Attendance Management System" wrapText="true">
                <font>
                   <Font name="Tw Cen MT" size="22.0" />
                </font>
@@ -132,17 +133,17 @@
                   <Font name="Tw Cen MT" size="26.0" />
                </font>
             </Label>
-            <JFXButton fx:id="myprofile" layoutX="478.0" layoutY="19.0" prefHeight="45.0" prefWidth="162.0" ripplerFill="#fffefe" text="My Profile">
+            <JFXButton fx:id="myprofile" layoutX="561.0" layoutY="19.0" prefHeight="45.0" prefWidth="131.0" ripplerFill="#fffefe" text="My Profile">
                <font>
                   <Font name="Tw Cen MT" size="18.0" />
                </font>
             </JFXButton>
-            <JFXButton fx:id="changepassword" layoutX="655.0" layoutY="19.0" prefHeight="45.0" prefWidth="199.0" ripplerFill="#fffefe" text="Change Password">
+            <JFXButton fx:id="changepassword" layoutX="708.0" layoutY="19.0" prefHeight="45.0" prefWidth="170.0" ripplerFill="#fffefe" text="Change Password">
                <font>
                   <Font name="Tw Cen MT" size="18.0" />
                </font>
             </JFXButton>
-            <JFXButton fx:id="logout" layoutX="869.0" layoutY="19.0" prefHeight="45.0" prefWidth="112.0" ripplerFill="#fffefe" text="Log Out">
+            <JFXButton fx:id="logout" layoutX="892.0" layoutY="19.0" prefHeight="45.0" prefWidth="91.0" ripplerFill="#fffefe" text="Log Out">
                <font>
                   <Font name="Tw Cen MT" size="18.0" />
                </font>
@@ -157,15 +158,23 @@
                   <Font name="Tw Cen MT" size="16.0" />
                </font>
             </Label>
+            <JFXButton fx:id="myprofile1" graphicTextGap="15.0" layoutX="357.0" layoutY="19.0" prefHeight="45.0" prefWidth="185.0" ripplerFill="#fffefe" style="-fx-background-color: red;" text="Security Alert" textFill="WHITE">
+               <font>
+                  <Font name="Tw Cen MT" size="18.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="WARNING" size="1.8em" />
+               </graphic>
+            </JFXButton>
          </children>
       </Pane>
       <ScrollPane focusTraversable="false" hbarPolicy="NEVER" layoutX="291.0" layoutY="79.0" prefHeight="689.0" prefWidth="1076.0" styleClass="main-scroll">
          <content>
-            <AnchorPane prefHeight="934.0" prefWidth="1063.0" style="-fx-background-color: #e8edee;">
+            <AnchorPane prefHeight="934.0" prefWidth="1063.0" style="-fx-background-color: #f5f5f5;">
                <children>
-                  <Pane layoutX="64.0" layoutY="53.0" prefHeight="117.0" prefWidth="210.0" style="-fx-background-color: #fff; -fx-border-color: #bfbfbf; -fx-background-radius: 20; -fx-border-radius: 20;">
+                  <Pane layoutX="64.0" layoutY="53.0" prefHeight="117.0" prefWidth="210.0" style="-fx-background-color: #fff; -fx-border-color: #dadada; -fx-background-radius: 20; -fx-border-radius: 20;">
                      <effect>
-                        <DropShadow blurType="ONE_PASS_BOX" color="#bfbfbf" height="92.17" radius="46.325" spread="0.4" width="95.13" />
+                        <DropShadow blurType="ONE_PASS_BOX" color="#dadada" height="94.39" radius="46.879999999999995" spread="0.4" width="95.13" />
                      </effect>
                      <children>
                         <Label alignment="CENTER" layoutY="18.0" prefHeight="30.0" prefWidth="210.0" text="1st Year" textFill="#907a7a" wrapText="true">
@@ -180,9 +189,9 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane layoutX="308.0" layoutY="53.0" prefHeight="117.0" prefWidth="210.0" style="-fx-background-color: #fff; -fx-border-color: #bfbfbf; -fx-background-radius: 20; -fx-border-radius: 20;">
+                  <Pane layoutX="308.0" layoutY="53.0" prefHeight="117.0" prefWidth="210.0" style="-fx-background-color: #fff; -fx-border-color: #dadada; -fx-background-radius: 20; -fx-border-radius: 20;">
                      <effect>
-                        <DropShadow blurType="ONE_PASS_BOX" color="#bfbfbf" height="83.27" radius="44.099999999999994" spread="0.4" width="95.13" />
+                        <DropShadow blurType="ONE_PASS_BOX" color="#dadada" height="94.39" radius="46.879999999999995" spread="0.4" width="95.13" />
                      </effect>
                      <children>
                         <Label alignment="CENTER" layoutY="18.0" prefHeight="30.0" prefWidth="210.0" text="2nd Year" textFill="#907a7a" wrapText="true">
@@ -197,9 +206,9 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane layoutX="553.0" layoutY="53.0" prefHeight="117.0" prefWidth="210.0" style="-fx-background-color: #fff; -fx-border-color: #bfbfbf; -fx-background-radius: 20; -fx-border-radius: 20;">
+                  <Pane layoutX="553.0" layoutY="53.0" prefHeight="117.0" prefWidth="210.0" style="-fx-background-color: #fff; -fx-border-color: #dadada; -fx-background-radius: 20; -fx-border-radius: 20;">
                      <effect>
-                        <DropShadow blurType="ONE_PASS_BOX" color="#bfbfbf" height="83.27" radius="44.099999999999994" spread="0.4" width="95.13" />
+                        <DropShadow blurType="ONE_PASS_BOX" color="#dadada" height="94.39" radius="46.879999999999995" spread="0.4" width="95.13" />
                      </effect>
                      <children>
                         <Label alignment="CENTER" layoutY="18.0" prefHeight="30.0" prefWidth="210.0" text="3rd Year" textFill="#907a7a" wrapText="true">
@@ -214,9 +223,9 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane layoutX="794.0" layoutY="53.0" prefHeight="117.0" prefWidth="210.0" style="-fx-background-color: #fff; -fx-border-color: #bfbfbf; -fx-background-radius: 20; -fx-border-radius: 20;">
+                  <Pane layoutX="794.0" layoutY="53.0" prefHeight="117.0" prefWidth="210.0" style="-fx-background-color: #fff; -fx-border-color: #dadada; -fx-background-radius: 20; -fx-border-radius: 20;">
                      <effect>
-                        <DropShadow blurType="ONE_PASS_BOX" color="#bfbfbf" height="83.27" radius="44.099999999999994" spread="0.4" width="95.13" />
+                        <DropShadow blurType="ONE_PASS_BOX" color="#dadada" height="94.39" radius="46.879999999999995" spread="0.4" width="95.13" />
                      </effect>
                      <children>
                         <Label alignment="CENTER" layoutY="18.0" prefHeight="30.0" prefWidth="210.0" text="Select Year" textFill="#907a7a" wrapText="true">
@@ -225,7 +234,7 @@
                            </font>
                         </Label>
                         <JFXComboBox fx:id="year" layoutX="21.0" layoutY="59.0" prefHeight="30.0" prefWidth="120.0" promptText="Year" style="-fx-font-family: 'Tw Cen MT',arial; -fx-font-size: 16;" />
-                        <JFXButton fx:id="refresh" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" layoutX="153.0" layoutY="58.0" prefHeight="33.0" prefWidth="42.0" ripplerFill="#fffefe">
+                        <JFXButton fx:id="refresh" contentDisplay="GRAPHIC_ONLY" layoutX="154.0" layoutY="60.0" prefHeight="33.0" prefWidth="42.0" ripplerFill="#fffefe">
                            <font>
                               <Font name="Tw Cen MT" size="15.0" />
                            </font>
@@ -235,9 +244,9 @@
                         </JFXButton>
                      </children>
                   </Pane>
-                  <Pane layoutX="64.0" layoutY="223.0" prefHeight="302.0" prefWidth="210.0" style="-fx-background-color: #fff; -fx-border-color: #bfbfbf;">
+                  <Pane layoutX="64.0" layoutY="223.0" prefHeight="302.0" prefWidth="210.0" style="-fx-background-color: #fff; -fx-border-color: #dadada;">
                      <effect>
-                        <DropShadow blurType="ONE_PASS_BOX" color="#bfbfbf" height="83.27" radius="44.099999999999994" spread="0.4" width="95.13" />
+                        <DropShadow blurType="ONE_PASS_BOX" color="#dadada" height="94.39" radius="46.879999999999995" spread="0.4" width="95.13" />
                      </effect>
                      <children>
                         <Label alignment="CENTER" layoutX="15.0" layoutY="135.0" prefHeight="45.0" prefWidth="185.0" text="Take daily student Attendance and generate a report here " textFill="#907a7a" wrapText="true">
@@ -267,9 +276,9 @@
                         </JFXButton>
                      </children>
                   </Pane>
-                  <Pane layoutX="308.0" layoutY="223.0" prefHeight="302.0" prefWidth="210.0" style="-fx-background-color: #fff; -fx-border-color: #bfbfbf;">
+                  <Pane layoutX="308.0" layoutY="223.0" prefHeight="302.0" prefWidth="210.0" style="-fx-background-color: #fff; -fx-border-color: #dadada;">
                      <effect>
-                        <DropShadow blurType="ONE_PASS_BOX" color="#bfbfbf" height="83.27" radius="44.099999999999994" spread="0.4" width="95.13" />
+                        <DropShadow blurType="ONE_PASS_BOX" color="#dadada" height="94.39" radius="46.879999999999995" spread="0.4" width="95.13" />
                      </effect>
                      <children>
                         <Label alignment="CENTER" layoutY="103.0" prefHeight="30.0" prefWidth="210.0" text="Unit Test" wrapText="true">
@@ -299,9 +308,9 @@
                         </ImageView>
                      </children>
                   </Pane>
-                  <Pane layoutX="553.0" layoutY="223.0" prefHeight="302.0" prefWidth="210.0" style="-fx-background-color: #fff; -fx-border-color: #bfbfbf;">
+                  <Pane layoutX="553.0" layoutY="223.0" prefHeight="302.0" prefWidth="210.0" style="-fx-background-color: #fff; -fx-border-color: #dadada;">
                      <effect>
-                        <DropShadow blurType="ONE_PASS_BOX" color="#bfbfbf" height="83.27" radius="44.099999999999994" spread="0.4" width="95.13" />
+                        <DropShadow blurType="ONE_PASS_BOX" color="#dadada" height="94.39" radius="46.879999999999995" spread="0.4" width="95.13" />
                      </effect>
                      <children>
                         <Label alignment="CENTER" layoutY="103.0" prefHeight="30.0" prefWidth="210.0" text="Notes" wrapText="true">
@@ -326,9 +335,9 @@
                         </ImageView>
                      </children>
                   </Pane>
-                  <Pane layoutX="794.0" layoutY="223.0" prefHeight="302.0" prefWidth="210.0" style="-fx-background-color: #fff; -fx-border-color: #bfbfbf;">
+                  <Pane layoutX="794.0" layoutY="223.0" prefHeight="302.0" prefWidth="210.0" style="-fx-background-color: #fff; -fx-border-color: #dadada;">
                      <effect>
-                        <DropShadow blurType="ONE_PASS_BOX" color="#bfbfbf" height="83.27" radius="44.099999999999994" spread="0.4" width="95.13" />
+                        <DropShadow blurType="ONE_PASS_BOX" color="#dadada" height="94.39" radius="46.879999999999995" spread="0.4" width="95.13" />
                      </effect>
                      <children>
                         <Label alignment="CENTER" layoutY="103.0" prefHeight="30.0" prefWidth="210.0" text="Faculty Verification" wrapText="true">
@@ -341,7 +350,7 @@
                               <Font name="Tw Cen MT" size="15.0" />
                            </font>
                         </Label>
-                        <JFXButton fx:id="verifyfaculty" buttonType="RAISED" layoutX="27.0" layoutY="241.0" prefHeight="30.0" prefWidth="162.0" ripplerFill="WHITE" style="-fx-border-color: #eee; -fx-background-color: white;" text="Verify Faculty ">
+                        <JFXButton fx:id="verifyfaculty" buttonType="RAISED" layoutX="27.0" layoutY="246.0" prefHeight="30.0" prefWidth="162.0" ripplerFill="WHITE" style="-fx-border-color: #eee; -fx-background-color: white;" text="Verify Faculty ">
                            <font>
                               <Font name="Tw Cen MT" size="15.0" />
                            </font>
@@ -353,7 +362,7 @@
                         </ImageView>
                      </children>
                   </Pane>
-                  <AnchorPane layoutX="64.0" layoutY="564.0" prefHeight="334.0" prefWidth="942.0" style="-fx-border-color: #008aa2;">
+                  <AnchorPane layoutX="64.0" layoutY="564.0" prefHeight="334.0" prefWidth="942.0" style="-fx-border-color: #008aa2;" stylesheets="@../../resources/whitebluescroll.css">
                      <children>
                         <Pane prefHeight="53.0" prefWidth="944.0" style="-fx-background-color: #2b4eff;">
                            <children>
@@ -362,7 +371,7 @@
                                     <Font name="Tw Cen MT" size="20.0" />
                                  </font>
                               </Label>
-                              <JFXButton fx:id="loginrefresh" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" layoutX="853.0" layoutY="11.0" prefHeight="33.0" prefWidth="42.0" ripplerFill="#fffefe">
+                              <JFXButton fx:id="loginrefresh" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" layoutX="884.0" layoutY="11.0" prefHeight="33.0" prefWidth="42.0" ripplerFill="#fffefe">
                                  <font>
                                     <Font name="Tw Cen MT" size="15.0" />
                                  </font>
@@ -370,7 +379,7 @@
                                     <FontAwesomeIconView fill="WHITE" glyphName="REFRESH" size="1.5em" />
                                  </graphic>
                               </JFXButton>
-                              <Label fx:id="lastupdated" layoutX="535.0" layoutY="-7.0" prefHeight="68.0" prefWidth="306.0" text="Last Updated :-" textFill="WHITE" wrapText="true">
+                              <Label fx:id="lastupdated" layoutX="573.0" layoutY="-7.0" prefHeight="68.0" prefWidth="306.0" text="Last Updated :-" textFill="WHITE" wrapText="true">
                                  <font>
                                     <Font name="Tw Cen MT" size="16.0" />
                                  </font>
@@ -393,4 +402,11 @@
          </content>
       </ScrollPane>
    </children>
+   <stylesheets>
+      <URL value="@../../resources/scrollpane.css" />
+      <URL value="@../../resources/normalscroll.css" />
+      <URL value="@../../resources/combolist.css" />
+      <URL value="@../../resources/combowhite.css" />
+      <URL value="@../../resources/deepcombo.css" />
+   </stylesheets>
 </fx:root>

@@ -1,0 +1,7 @@
+.combo-box{
+	-fx-prompt-text-fill: #fff;
+}
+.combo-box > .list-cell:selected > .text{
+	-fx-fill: #fff;
+	-fx-text-fill: #fff;
+}

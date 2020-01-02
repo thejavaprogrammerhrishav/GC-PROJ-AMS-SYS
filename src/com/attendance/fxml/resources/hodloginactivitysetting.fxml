@@ -4,6 +4,7 @@
 <?import com.jfoenix.controls.JFXCheckBox?>
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXDatePicker?>
+<?import java.net.URL?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -74,13 +75,13 @@
       </Pane>
       <TableView fx:id="table" layoutX="30.0" layoutY="313.0" prefHeight="366.0" prefWidth="1306.0">
         <columns>
-          <TableColumn fx:id="name" editable="false" prefWidth="320.0" resizable="false" sortable="false" text="Name" />
-          <TableColumn fx:id="username" editable="false" prefWidth="230.0" sortable="false" text="Username" />
-            <TableColumn fx:id="usertype" editable="false" prefWidth="216.0" sortable="false" text="Department" />
-            <TableColumn fx:id="status" editable="false" prefWidth="157.0" sortable="false" text="Status" />
-            <TableColumn fx:id="date" editable="false" prefWidth="136.0" sortable="false" text="Login Date" />
-            <TableColumn fx:id="logintime" editable="false" prefWidth="114.0" sortable="false" text="Login Time" />
-            <TableColumn fx:id="logouttime" editable="false" prefWidth="133.0" sortable="false" text="Logout Time" />
+          <TableColumn fx:id="name" editable="false" prefWidth="291.0" resizable="false" sortable="false" text="Name" />
+          <TableColumn fx:id="username" editable="false" prefWidth="167.0" sortable="false" text="Username" />
+            <TableColumn fx:id="usertype" editable="false" prefWidth="300.0" sortable="false" text="Department" />
+            <TableColumn fx:id="status" editable="false" prefWidth="115.0" sortable="false" text="Status" />
+            <TableColumn fx:id="date" editable="false" prefWidth="133.0" sortable="false" text="Login Date" />
+            <TableColumn fx:id="logintime" editable="false" prefWidth="147.0" sortable="false" text="Login Time" />
+            <TableColumn fx:id="logouttime" editable="false" prefWidth="153.0" sortable="false" text="Logout Time" />
         </columns>
       </TableView>
       <JFXButton fx:id="export2excel" buttonType="RAISED" layoutX="943.0" layoutY="701.0" prefHeight="35.0" prefWidth="226.0" ripplerFill="BLACK" style="-fx-background-color: forestgreen;" text="Export to Excel" textFill="WHITE">
@@ -113,4 +114,13 @@
          </children>
       </Pane>
    </children>
+   <stylesheets>
+      <URL value="@../../resources/table.css" />
+      <URL value="@../../resources/normalTable.css" />
+      <URL value="@../../resources/scrollpane.css" />
+      <URL value="@../../resources/normalscroll.css" />
+      <URL value="@../../resources/combolist.css" />
+      <URL value="@../../resources/combowhite.css" />
+      <URL value="@../../resources/deepcombo.css" />
+   </stylesheets>
 </fx:root>

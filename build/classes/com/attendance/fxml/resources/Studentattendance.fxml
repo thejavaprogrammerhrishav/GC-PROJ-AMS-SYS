@@ -104,7 +104,7 @@
                   <Insets right="10.0" />
                </padding>
             </Label>
-            <AnchorPane layoutY="194.0" prefHeight="66.0" prefWidth="1366.0" style="-fx-background-color: #261975;">
+            <AnchorPane layoutY="194.0" prefHeight="66.0" prefWidth="1366.0" style="-fx-background-color: #261975;" stylesheets="@../../resources/normalscroll.css">
                <children>
                   <JFXButton fx:id="loadStudents" buttonType="RAISED" layoutX="944.0" layoutY="14.0" prefHeight="35.0" prefWidth="170.0" ripplerFill="RED" style="-fx-background-color: forestgreen;" text="Load Students" textFill="WHITE">
                      <font>
@@ -186,7 +186,7 @@
       </AnchorPane>
    </bottom>
    <left>
-      <AnchorPane prefHeight="445.0" prefWidth="367.0" style="-fx-background-color: #191947;" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="445.0" prefWidth="367.0" style="-fx-background-color: #191947;" stylesheets="@../../resources/normalscroll.css" BorderPane.alignment="CENTER">
          <children>
             <TextField fx:id="sid" layoutX="25.0" layoutY="20.0" prefHeight="35.0" prefWidth="320.0" promptText="Search Student" style="-fx-background-radius: 5; -fx-background-color: rgba(0,0,0,0.2); -fx-text-fill: #fff; -fx-prompt-text-fill: rgba(255,255,255,0.4);">
                <font>
@@ -232,9 +232,9 @@
       </AnchorPane>
    </left>
    <center>
-      <ScrollPane prefHeight="468.0" prefWidth="997.0" BorderPane.alignment="CENTER">
+      <ScrollPane prefHeight="468.0" prefWidth="997.0" style="-fx-background-color: navy;" BorderPane.alignment="CENTER">
          <content>
-            <VBox fx:id="vb" alignment="TOP_CENTER" prefHeight="442.0" prefWidth="978.0" spacing="10.0">
+            <VBox fx:id="vb" alignment="TOP_CENTER" prefHeight="442.0" prefWidth="978.0" spacing="10.0" style="-fx-background-color: transparent;">
                <padding>
                   <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
                </padding>
@@ -243,7 +243,10 @@
       </ScrollPane>
    </center>
    <stylesheets>
-      <URL value="@../../resources/attendance.css" />
-      <URL value="@../../resources/combo.css" />
+      <URL value="@../../resources/scrollpane.css" />
+      <URL value="@../../resources/navyscroll.css" />
+      <URL value="@../../resources/combolist.css" />
+      <URL value="@../../resources/combowhite.css" />
+      <URL value="@../../resources/whitecombo.css" />
    </stylesheets>
 </fx:root>

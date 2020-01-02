@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import java.net.URL?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -12,7 +13,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: #f0f0f0;" stylesheets="@../../resources/combo.css" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: #f0f0f0;" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane prefHeight="768.0" prefWidth="250.0" style="-fx-background-color: #732210;">
          <children>
@@ -36,9 +37,9 @@
             <JFXComboBox fx:id="year" layoutX="25.0" layoutY="415.0" prefHeight="30.0" prefWidth="201.0" promptText="Select Year" style="-fx-font-family: Segoe UI; -fx-font-size: 14; -fx-prompt-text-fill: #fff;" unFocusColor="WHITE" />
             <JFXComboBox fx:id="coursetype" layoutX="25.0" layoutY="481.0" prefHeight="30.0" prefWidth="201.0" promptText="Select Course Type" style="-fx-font-family: Segoe UI; -fx-font-size: 14; -fx-prompt-text-fill: #fff;" unFocusColor="WHITE" />
             <JFXComboBox fx:id="unittest" layoutX="25.0" layoutY="537.0" prefHeight="30.0" prefWidth="201.0" promptText="Select Unit Test" style="-fx-font-family: Segoe UI; -fx-font-size: 14; -fx-prompt-text-fill: #fff;" unFocusColor="WHITE" />
-            <JFXButton fx:id="load" buttonType="RAISED" layoutX="25.0" layoutY="606.0" prefHeight="27.0" prefWidth="201.0" style="-fx-background-color: #e5cc9c;" text="Load">
+            <JFXButton fx:id="load" layoutX="25.0" layoutY="606.0" prefHeight="27.0" prefWidth="201.0" style="-fx-background-color: #e17b09;" text="Load" textFill="WHITE">
                <font>
-                  <Font name="Tw Cen MT" size="14.0" />
+                  <Font name="Tw Cen MT" size="18.0" />
                </font>
             </JFXButton>
          </children>
@@ -80,7 +81,7 @@
             <Font name="Tw Cen MT" size="16.0" />
          </font>
       </JFXButton>
-      <TableView fx:id="list" layoutX="277.0" layoutY="138.0" prefHeight="608.0" prefWidth="1063.0">
+      <TableView fx:id="list" layoutX="277.0" layoutY="142.0" prefHeight="608.0" prefWidth="1063.0" style="-fx-font-size: 10;">
          <columns>
             <TableColumn fx:id="slno" prefWidth="86.0" text="SL.NO" />
             <TableColumn fx:id="roll" prefWidth="155.0" text="Roll No" />
@@ -91,4 +92,13 @@
          </columns>
       </TableView>
    </children>
+   <stylesheets>
+      <URL value="@../../resources/scrollpane.css" />
+      <URL value="@../../resources/normalscroll.css" />
+      <URL value="@../../resources/table.css" />
+      <URL value="@../../resources/normalTable.css" />
+      <URL value="@../../resources/combolist.css" />
+      <URL value="@../../resources/combowhite.css" />
+      <URL value="@../../resources/whitecombo.css" />
+   </stylesheets>
 </fx:root>

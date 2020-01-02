@@ -51,14 +51,14 @@
             </Label>
          </children>
       </Pane>
-      <JFXComboBox fx:id="semester" layoutX="392.0" layoutY="124.0" prefHeight="29.0" prefWidth="176.0" promptText="Select Semester" style="-fx-font-size: 14; -fx-font-family: 'Segoe UI', arial; -fx-prompt-text-fill: #fff;" />
-      <JFXComboBox fx:id="month" layoutX="611.0" layoutY="123.0" prefHeight="29.0" prefWidth="176.0" promptText="Select Month" style="-fx-font-size: 14; -fx-font-family: 'Segoe UI', arial; -fx-prompt-text-fill: #fff;" />
+      <JFXComboBox fx:id="semester" focusColor="WHITE" layoutX="392.0" layoutY="124.0" prefHeight="29.0" prefWidth="176.0" promptText="Select Semester" style="-fx-font-size: 14; -fx-font-family: 'Segoe UI', arial; -fx-prompt-text-fill: #fff;" unFocusColor="WHITE" />
+      <JFXComboBox fx:id="month" focusColor="WHITE" layoutX="611.0" layoutY="123.0" prefHeight="29.0" prefWidth="176.0" promptText="Select Month" style="-fx-font-size: 14; -fx-font-family: 'Segoe UI', arial; -fx-prompt-text-fill: #fff;" unFocusColor="WHITE" />
       <JFXCheckBox fx:id="filterbyyear" layoutX="826.0" layoutY="90.0" text="Filter By Year" textFill="WHITE" unCheckedColor="WHITE">
          <font>
             <Font size="15.0" />
          </font>
       </JFXCheckBox>
-      <JFXComboBox fx:id="year" layoutX="826.0" layoutY="123.0" prefHeight="29.0" prefWidth="176.0" promptText="Select Year" style="-fx-font-size: 14; -fx-font-family: 'Segoe UI', arial; -fx-prompt-text-fill: #fff;" />
+      <JFXComboBox fx:id="year" focusColor="WHITE" layoutX="826.0" layoutY="123.0" prefHeight="29.0" prefWidth="176.0" promptText="Select Year" style="-fx-font-size: 14; -fx-font-family: 'Segoe UI', arial; -fx-prompt-text-fill: #fff;" unFocusColor="WHITE" />
       <Pane layoutX="1.0" layoutY="180.0" prefHeight="63.0" prefWidth="1366.0" style="-fx-background-color: derive(#292222,30%);">
          <children>
             <JFXButton fx:id="applyfilters" buttonType="RAISED" layoutX="157.0" layoutY="15.0" prefHeight="33.0" prefWidth="138.0" ripplerFill="BLACK" style="-fx-background-color: #652069;" text="Apply Filters" textFill="WHITE">
@@ -88,16 +88,21 @@
             <Font size="15.0" />
          </font>
       </JFXCheckBox>
-      <JFXComboBox fx:id="acadamicyear" layoutX="160.0" layoutY="125.0" prefHeight="29.0" prefWidth="182.0" promptText="Select Acadamic Year" style="-fx-font-size: 14; -fx-font-family: 'Segoe UI', arial; -fx-prompt-text-fill: #fff;" />
+      <JFXComboBox fx:id="acadamicyear" focusColor="WHITE" layoutX="160.0" layoutY="125.0" prefHeight="29.0" prefWidth="182.0" promptText="Select Acadamic Year" style="-fx-font-size: 14; -fx-font-family: 'Segoe UI', arial; -fx-prompt-text-fill: #fff;" unFocusColor="WHITE" />
       <JFXCheckBox fx:id="filterbycoursetype" layoutX="1030.0" layoutY="90.0" text="Filter By Course Type" textFill="WHITE" unCheckedColor="WHITE">
          <font>
             <Font size="15.0" />
          </font>
       </JFXCheckBox>
-      <JFXComboBox fx:id="coursetype" layoutX="1030.0" layoutY="123.0" prefHeight="29.0" prefWidth="176.0" promptText="Select Course Type" style="-fx-font-size: 14; -fx-font-family: 'Segoe UI', arial; -fx-prompt-text-fill: #fff;" />
+      <JFXComboBox fx:id="coursetype" focusColor="WHITE" layoutX="1030.0" layoutY="123.0" prefHeight="29.0" prefWidth="176.0" promptText="Select Course Type" style="-fx-font-size: 14; -fx-font-family: 'Segoe UI', arial; -fx-prompt-text-fill: #fff;" unFocusColor="WHITE" />
    </children>
    <stylesheets>
-      <URL value="@../../resources/combo.css" />
-      <URL value="@../../resources/newreport.css" />
+      <URL value="@../../resources/table.css" />
+      <URL value="@../../resources/darktable.css" />
+      <URL value="@../../resources/scrollpane.css" />
+      <URL value="@../../resources/darkscroll.css" />
+      <URL value="@../../resources/combolist.css" />
+      <URL value="@../../resources/darkcombo.css" />
+      <URL value="@../../resources/whitecombo.css" />
    </stylesheets>
 </fx:root>

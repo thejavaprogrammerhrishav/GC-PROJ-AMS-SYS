@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
@@ -129,7 +130,7 @@
       </Pane>
       <ScrollPane layoutX="35.0" layoutY="195.0" prefHeight="523.0" prefWidth="508.0">
          <content>
-            <VBox fx:id="list" prefHeight="522.0" prefWidth="491.0" spacing="25.0" style="-fx-background-color: white;">
+            <VBox fx:id="list" prefHeight="507.0" prefWidth="491.0" spacing="25.0" style="-fx-background-color: white;">
                <padding>
                   <Insets bottom="25.0" top="25.0" />
                </padding></VBox>
@@ -141,4 +142,8 @@
          </graphic>
       </JFXButton>
    </children>
+   <stylesheets>
+      <URL value="@../../resources/scrollpane.css" />
+      <URL value="@../../resources/normalscroll.css" />
+   </stylesheets>
 </fx:root>

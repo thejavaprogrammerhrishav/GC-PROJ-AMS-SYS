@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<fx:root hbarPolicy="NEVER" prefHeight="584.0" prefWidth="1366.0" styleClass="scroll1" type="ScrollPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root hbarPolicy="NEVER" prefHeight="584.0" prefWidth="1366.0" style="-fx-background-color: #292222;" type="ScrollPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <content>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="933.0" prefWidth="1366.0" style="-fx-background-color: #3a3535;">
          <children>
@@ -33,11 +33,11 @@
                   <TableView fx:id="table" prefHeight="308.0" prefWidth="1895.0" styleClass="mytable">
                     <columns>
                       <TableColumn fx:id="tclassid" editable="false" prefWidth="313.0" resizable="false" sortable="false" text="Class ID" />
-                      <TableColumn fx:id="tfacultyname" editable="false" prefWidth="269.0" resizable="false" sortable="false" text="Faculty Name" />
-                        <TableColumn fx:id="tsubjecttaught" editable="false" prefWidth="283.0" resizable="false" sortable="false" text="Subject Taught" />
-                        <TableColumn fx:id="tdate" editable="false" prefWidth="246.0" resizable="false" sortable="false" text="Class Date" />
-                        <TableColumn fx:id="ttime" editable="false" minWidth="7.0" prefWidth="138.0" resizable="false" sortable="false" text="Class Time" />
-                        <TableColumn fx:id="tsemester" editable="false" minWidth="0.0" prefWidth="82.0" resizable="false" sortable="false" text="Semester" />
+                      <TableColumn fx:id="tfacultyname" editable="false" prefWidth="257.0" resizable="false" sortable="false" text="Faculty Name" />
+                        <TableColumn fx:id="tsubjecttaught" editable="false" prefWidth="273.0" resizable="false" sortable="false" text="Subject Taught" />
+                        <TableColumn fx:id="tdate" editable="false" prefWidth="247.0" resizable="false" sortable="false" text="Class Date" />
+                        <TableColumn fx:id="ttime" editable="false" minWidth="7.0" prefWidth="150.0" resizable="false" sortable="false" text="Class Time" />
+                        <TableColumn fx:id="tsemester" editable="false" minWidth="0.0" prefWidth="91.0" resizable="false" sortable="false" text="Semester" />
                         <TableColumn fx:id="tyear" editable="false" minWidth="0.0" prefWidth="86.0" resizable="false" sortable="false" text="Year" />
                         <TableColumn fx:id="tpapercode" editable="false" minWidth="0.0" prefWidth="152.0" resizable="false" sortable="false" text="Paper Code" />
                         <TableColumn fx:id="tacadamicyear" editable="false" minWidth="0.0" prefWidth="158.0" resizable="false" sortable="false" text="Acadamic Year" />
@@ -56,7 +56,7 @@
                   <Font name="Segoe UI" size="15.0" />
                </font>
             </JFXCheckBox>
-            <JFXComboBox fx:id="facultyname" layoutX="76.0" layoutY="160.0" prefHeight="29.0" prefWidth="216.0" promptText="Select Faculty" style="-fx-prompt-text-fill: #fff; -fx-font-family: 'Segoe UI',arial; -fx-font-size: 15;" unFocusColor="#ebebeb" />
+            <JFXComboBox fx:id="facultyname" focusColor="WHITE" layoutX="76.0" layoutY="160.0" prefHeight="29.0" prefWidth="216.0" promptText="Select Faculty" style="-fx-prompt-text-fill: #fff; -fx-font-family: 'Segoe UI',arial; -fx-font-size: 15;" unFocusColor="WHITE" />
             <JFXCheckBox fx:id="filterbydate" layoutX="315.0" layoutY="118.0" text="Filter By Date" textFill="#f2f2f2" unCheckedColor="WHITE">
                <font>
                   <Font name="Segoe UI" size="15.0" />
@@ -72,14 +72,14 @@
                   <Font name="Segoe UI" size="15.0" />
                </font>
             </JFXCheckBox>
-            <JFXComboBox fx:id="year" layoutX="555.0" layoutY="160.0" promptText="Select Year" style="-fx-prompt-text-fill: #fff; -fx-font-family: 'Segoe UI',arial; -fx-font-size: 15;" unFocusColor="#ebebeb" />
-            <JFXComboBox fx:id="semester" layoutX="705.0" layoutY="160.0" prefHeight="29.0" prefWidth="176.0" promptText="Select Semester" style="-fx-prompt-text-fill: #fff; -fx-font-family: 'Segoe UI',arial; -fx-font-size: 15;" unFocusColor="#ebebeb" />
+            <JFXComboBox fx:id="year" focusColor="WHITE" layoutX="555.0" layoutY="160.0" promptText="Select Year" style="-fx-prompt-text-fill: #fff; -fx-font-family: 'Segoe UI',arial; -fx-font-size: 15;" unFocusColor="WHITE" />
+            <JFXComboBox fx:id="semester" focusColor="WHITE" layoutX="705.0" layoutY="160.0" prefHeight="29.0" prefWidth="176.0" promptText="Select Semester" style="-fx-prompt-text-fill: #fff; -fx-font-family: 'Segoe UI',arial; -fx-font-size: 15;" unFocusColor="WHITE" />
             <JFXCheckBox fx:id="filterbypaper" layoutX="1115.0" layoutY="118.0" text="Filter By Paper Code" textFill="#f2f2f2" unCheckedColor="WHITE">
                <font>
                   <Font name="Segoe UI" size="15.0" />
                </font>
             </JFXCheckBox>
-            <JFXComboBox fx:id="paper" layoutX="1115.0" layoutY="160.0" prefHeight="29.0" prefWidth="176.0" promptText="Select Paper Code" style="-fx-prompt-text-fill: #fff; -fx-font-family: 'Segoe UI',arial; -fx-font-size: 15;" unFocusColor="#ebebeb" />
+            <JFXComboBox fx:id="paper" focusColor="WHITE" layoutX="1115.0" layoutY="160.0" prefHeight="29.0" prefWidth="176.0" promptText="Select Paper Code" style="-fx-prompt-text-fill: #fff; -fx-font-family: 'Segoe UI',arial; -fx-font-size: 15;" unFocusColor="WHITE" />
             <Label layoutX="32.0" layoutY="693.0" text="Enter Faculty Name" textFill="#f2f2f2">
                <font>
                   <Font name="Segoe UI" size="14.0" />
@@ -152,7 +152,7 @@
                   <Font name="Segoe UI" size="15.0" />
                </font>
             </JFXCheckBox>
-            <JFXComboBox fx:id="acadamicyear" layoutX="903.0" layoutY="160.0" prefHeight="29.0" prefWidth="176.0" promptText="Select Acadamic Year" style="-fx-prompt-text-fill: #fff; -fx-font-family: 'Segoe UI',arial; -fx-font-size: 15;" unFocusColor="#ebebeb" />
+            <JFXComboBox fx:id="acadamicyear" focusColor="WHITE" layoutX="903.0" layoutY="160.0" prefHeight="29.0" prefWidth="176.0" promptText="Select Acadamic Year" style="-fx-prompt-text-fill: #fff; -fx-font-family: 'Segoe UI',arial; -fx-font-size: 15;" unFocusColor="WHITE" />
             <Label layoutX="452.0" layoutY="694.0" text="Enter Acadamic Year" textFill="#f2f2f2">
                <font>
                   <Font name="Segoe UI" size="14.0" />
@@ -203,7 +203,12 @@
       </AnchorPane>
    </content>
    <stylesheets>
-      <URL value="@../../resources/newreport.css" />
-      <URL value="@../../resources/combo.css" />
+      <URL value="@../../resources/table.css" />
+      <URL value="@../../resources/darktable.css" />
+      <URL value="@../../resources/scrollpane.css" />
+      <URL value="@../../resources/darkscroll.css" />
+      <URL value="@../../resources/combolist.css" />
+      <URL value="@../../resources/darkcombo.css" />
+      <URL value="@../../resources/whitecombo.css" />
    </stylesheets>
 </fx:root>
