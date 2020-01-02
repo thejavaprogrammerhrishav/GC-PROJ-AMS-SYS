@@ -71,7 +71,7 @@ public class PapersController extends AnchorPane {
 
     @FXML
     private JFXButton search;
-    
+
     @FXML
     private JFXButton clear;
 
@@ -118,7 +118,7 @@ public class PapersController extends AnchorPane {
     private Paper paper;
 
     private Parent parent;
-    
+
     private long id;
 
     public PapersController(Parent parent) {
@@ -147,10 +147,10 @@ public class PapersController extends AnchorPane {
         semester.getItems().addAll("1st", "2nd", "3rd", "4th", "5th", "6th");
 
         department.setText(SystemUtils.getDepartment());
-        
+
         initializetable();
         refreshtable(null);
-        
+
         list.setOnMouseClicked(this::tableclick);
 
         close.setOnAction(e -> SwitchRoot.switchRoot(Start.st, parent));
@@ -195,21 +195,21 @@ public class PapersController extends AnchorPane {
         list.getItems().setAll(items);
 
     }
-    
+
     private void tableclick(MouseEvent evt) {
         Paper item = list.getSelectionModel().getSelectedItem();
-        if(item!= null) {
+        if (item != null) {
             papercode.setText(item.getPaperCode());
             papername.setText(item.getPaperName());
             semester.getSelectionModel().select(item.getSemester());
             coursetype.getSelectionModel().select(item.getCoursetype());
             id = item.getId();
         }
-        
+
     }
-    
+
     private void addpaper(ActionEvent evt) {
-        if(!dao.exists(papercode.getText())) {
+        if (!dao.exists(papercode.getText())) {
             paper = new Paper();
             id = -1;
             paper.setPaperCode(papercode.getText());
@@ -217,68 +217,62 @@ public class PapersController extends AnchorPane {
             paper.setSemester(semester.getSelectionModel().getSelectedItem());
             paper.setDepartment(department.getText());
             paper.setCoursetype(coursetype.getSelectionModel().getSelectedItem());
-            
+
             long id = dao.save(paper);
-            if(id>0) {
+            if (id > 0) {
                 MessageUtil.showInformation(Message.INFORMATION, "ADD NEW PAPER", "New Paper Added Successfully", Start.st);
                 refreshtable(evt);
             }
-        } else{
+        } else {
             MessageUtil.showInformation(Message.ERROR, "ADD NEW PAPER", "Paper Code Already Exists", Start.st);
         }
     }
-    
+
     private void updatepaper(ActionEvent evt) {
-        if(dao.exists(papercode.getText())) {
-            paper = new Paper();
-            paper.setId(id);
-            paper.setPaperCode(papercode.getText());
-            paper.setPaperName(papername.getText());
-            paper.setSemester(semester.getSelectionModel().getSelectedItem());
-            paper.setDepartment(department.getText());
-            paper.setCoursetype(coursetype.getSelectionModel().getSelectedItem());
-            
-            boolean id = dao.update(paper);
-            if(id) {
-                MessageUtil.showInformation(Message.INFORMATION, "UPDATE PAPER", "Updated Paper Successfully", Start.st);
-                refreshtable(evt);
-            }
-            else {
-                MessageUtil.showInformation(Message.ERROR, "UPDATE PAPER", "Updation Paper Failed", Start.st);
-            }
+        paper = new Paper();
+        paper.setId(id);
+        paper.setPaperCode(papercode.getText());
+        paper.setPaperName(papername.getText());
+        paper.setSemester(semester.getSelectionModel().getSelectedItem());
+        paper.setDepartment(department.getText());
+        paper.setCoursetype(coursetype.getSelectionModel().getSelectedItem());
+
+        boolean id = dao.update(paper);
+        if (id) {
+            MessageUtil.showInformation(Message.INFORMATION, "UPDATE PAPER", "Updated Paper Successfully", Start.st);
+            refreshtable(evt);
+        } else {
+            MessageUtil.showInformation(Message.ERROR, "UPDATE PAPER", "Updation Paper Failed", Start.st);
         }
     }
-    
+
     private void deletepaper(ActionEvent evt) {
-        if(dao.exists(papercode.getText())) {
-            paper = new Paper();
-            paper.setId(id);
-            paper.setPaperCode(papercode.getText());
-            paper.setPaperName(papername.getText());
-            paper.setSemester(semester.getSelectionModel().getSelectedItem());
-            paper.setDepartment(department.getText());
-            paper.setCoursetype(coursetype.getSelectionModel().getSelectedItem());
-            
-            boolean id = dao.delete(paper);
-            if(id) {
-                MessageUtil.showInformation(Message.INFORMATION, "DELETE PAPER", "Deleted Paper Successfully", Start.st);
-                refreshtable(evt);
-            }
-            else {
-                MessageUtil.showInformation(Message.ERROR, "Delete PAPER", "Delete Paper Failed", Start.st);
-            }
+        paper = new Paper();
+        paper.setId(id);
+        paper.setPaperCode(papercode.getText());
+        paper.setPaperName(papername.getText());
+        paper.setSemester(semester.getSelectionModel().getSelectedItem());
+        paper.setDepartment(department.getText());
+        paper.setCoursetype(coursetype.getSelectionModel().getSelectedItem());
+
+        boolean id = dao.delete(paper);
+        if (id) {
+            MessageUtil.showInformation(Message.INFORMATION, "DELETE PAPER", "Deleted Paper Successfully", Start.st);
+            refreshtable(evt);
+        } else {
+            MessageUtil.showInformation(Message.ERROR, "Delete PAPER", "Delete Paper Failed", Start.st);
         }
     }
-    
+
     private void clear(ActionEvent evt) {
         papercode.setText("");
         papername.setText("");
         semester.getSelectionModel().clearSelection();
         coursetype.getSelectionModel().clearSelection();
-        
+
         filterbycoursetype.setSelected(false);
         filterbysemester.setSelected(false);
-        
+
         selectsemester.getSelectionModel().clearSelection();
         selecttype.getSelectionModel().clearSelection();
     }
