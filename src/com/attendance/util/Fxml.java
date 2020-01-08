@@ -24,11 +24,7 @@ public class Fxml {
     public static FXMLLoader getHODLoginFXML() {
         return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/hodlogin.fxml"));
     }
-
-    public static FXMLLoader getForgotPasswordFXML() {
-        return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/Forgetpassword.fxml"));
-    }
-
+    
     public static FXMLLoader getHODDashboardFXML() {
         return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/hoddashboard.fxml"));
     }
@@ -318,5 +314,21 @@ public class Fxml {
     
     public static FXMLLoader getHODLoginActivitySettingsFXML() {
         return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/hodloginactivitysetting.fxml"));
+    }
+    
+    public static FXMLLoader getResetPassword1FXML() {
+        return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/resetpassword1.fxml"));
+    }
+    
+    public static FXMLLoader getSecurityQuestionFXML() {
+        return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/securityquestion.fxml"));
+    }
+    
+    public static FXMLLoader getResetPassword3FXML() {
+        return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/resetpassword3.fxml"));
+    }
+    
+    public static FXMLLoader getResetPasswordResultFXML() {
+        return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/resetpasswordresult.fxml"));
     }
 }

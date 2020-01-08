@@ -97,7 +97,7 @@
                   <Font name="Tw Cen MT" size="26.0" />
                </font>
             </Label>
-            <JFXButton fx:id="myprofile1" graphicTextGap="15.0" layoutX="379.0" layoutY="13.0" prefHeight="45.0" prefWidth="175.0" ripplerFill="#fffefe" style="-fx-background-color: red;" text="Security Alert" textFill="WHITE">
+            <JFXButton fx:id="security" graphicTextGap="15.0" layoutX="379.0" layoutY="13.0" prefHeight="45.0" prefWidth="175.0" ripplerFill="#fffefe" style="-fx-background-color: red;" text="Security Alert" textFill="WHITE">
                <font>
                   <Font name="Tw Cen MT" size="18.0" />
                </font>

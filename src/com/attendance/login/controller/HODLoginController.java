@@ -12,7 +12,6 @@ import com.attendance.login.actions.LoginAuthenticator;
 import com.attendance.login.activity.dao.Activity;
 import com.attendance.login.activity.model.LoginActivity;
 import com.attendance.login.dao.Login;
-import com.attendance.login.forgot.ForgotPasswordController;
 import com.attendance.main.Start;
 import com.attendance.login.user.model.User;
 import com.attendance.personal.model.PersonalDetails;
@@ -31,7 +30,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javax.swing.JOptionPane;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 
@@ -216,8 +214,10 @@ public class HODLoginController extends AnchorPane {
         });
 
         forgotpassword.setOnMouseClicked(e -> {
-            ForgotPasswordController.LoginType = userRole;
-            SwitchRoot.switchRoot(Start.st, RootFactory.getForgotPasswordRoot());
+            User user = new User();
+            user.setType("HOD");
+            SystemUtils.setCurrentUser(user);
+            SwitchRoot.switchRoot(Start.st, RootFactory.getResetPassword1Root(Start.st.getScene().getRoot()));
         });
         signup.setOnMouseClicked(this::signupAction);
         close.setOnAction(this::closeAction);

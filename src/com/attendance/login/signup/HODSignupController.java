@@ -6,6 +6,7 @@
 package com.attendance.login.signup;
 
 import com.attendance.login.dao.Login;
+import com.attendance.login.user.model.SecurityQuestion;
 import com.attendance.login.user.model.User;
 import com.attendance.main.Start;
 import com.attendance.personal.model.PersonalDetails;
@@ -67,6 +68,7 @@ public class HODSignupController extends AnchorPane {
     private Parent parent;
 
     private PersonalDetails hod;
+    private SecurityQuestion question;
 
     public HODSignupController(Parent parent) {
         this.parent = parent;
@@ -80,13 +82,14 @@ public class HODSignupController extends AnchorPane {
             Logger.getLogger(HODSignupController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        user = new User();
-        login = (Login) Start.app.getBean("userlogin");
     }
 
     @FXML
     private void initialize() {
+        user = new User();
+        login = (Login) Start.app.getBean("userlogin");
         hod = new PersonalDetails();
+        question = new SecurityQuestion();
         loginbutton.setOnAction(this::loginaction);
         signup.setOnAction(e -> {
             if (login.isUsernameExists(username.getText()) > 0) {
@@ -103,7 +106,7 @@ public class HODSignupController extends AnchorPane {
                 user.setUsername(username.getText());
                 user.setImage(SystemUtils.getDefaultAccountIcon());
                 user.setDepartment(SystemUtils.getDepartment());
-                 user.setStatus("Pending");
+                user.setStatus("Pending");
                 user.setDate(DateTime.now().toString(DateTimeFormat.forPattern("dd-MM-yyyy")));
 
                 hod.setName(fullname.getText());
@@ -111,26 +114,34 @@ public class HODSignupController extends AnchorPane {
                 hod.setEmailId(email.getText());
                 hod.setGender("Unknown");
 
+                question.setQuestion1("");
+                question.setQuestion2("");
+                question.setQuestion3("");
+                question.setAnswer1("");
+                question.setAnswer2("");
+                question.setAnswer3("");
 
                 user.setDetails(hod);
+                user.setSecurityquestion(question);
+
                 int id = login.save(user);
-                
-                if(id>0) {
-                Alert al = new Alert(Alert.AlertType.INFORMATION);
-                al.setHeaderText("HOD Sign Up");
-                al.setContentText("Sign Up Successful\nHOD account created successfully\nCurrent Account Status :"+user.getStatus());
-                al.initOwner(((Node) e.getSource()).getScene().getWindow());
-                al.initModality(Modality.WINDOW_MODAL);
-                al.initStyle(StageStyle.UNDECORATED);
-                al.show();}
-                else {
+
+                if (id > 0) {
+                    Alert al = new Alert(Alert.AlertType.INFORMATION);
+                    al.setHeaderText("HOD Sign Up");
+                    al.setContentText("Sign Up Successful\nHOD account created successfully\nCurrent Account Status :" + user.getStatus());
+                    al.initOwner(((Node) e.getSource()).getScene().getWindow());
+                    al.initModality(Modality.WINDOW_MODAL);
+                    al.initStyle(StageStyle.UNDECORATED);
+                    al.show();
+                } else {
                     Alert al = new Alert(Alert.AlertType.ERROR);
-                al.setHeaderText("HOD Sign Up");
-                al.setContentText("HOD SignUp Failed");
-                al.initOwner(((Node) e.getSource()).getScene().getWindow());
-                al.initModality(Modality.WINDOW_MODAL);
-                al.initStyle(StageStyle.UNDECORATED);
-                al.show();
+                    al.setHeaderText("HOD Sign Up");
+                    al.setContentText("HOD SignUp Failed");
+                    al.initOwner(((Node) e.getSource()).getScene().getWindow());
+                    al.initModality(Modality.WINDOW_MODAL);
+                    al.initStyle(StageStyle.UNDECORATED);
+                    al.show();
                 }
             } else {
                 Alert al = new Alert(Alert.AlertType.ERROR);

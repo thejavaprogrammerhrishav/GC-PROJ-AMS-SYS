@@ -6,6 +6,7 @@
 package com.attendance.login.signup;
 
 import com.attendance.login.dao.Login;
+import com.attendance.login.user.model.SecurityQuestion;
 import com.attendance.login.user.model.User;
 import com.attendance.main.Start;
 import com.attendance.personal.model.PersonalDetails;
@@ -66,6 +67,7 @@ public class FacultySignUpController extends AnchorPane {
     private User user;
     private Parent parent;
     private PersonalDetails faculty;
+    private SecurityQuestion question;
 
     public FacultySignUpController(Parent parent) {
         this.parent = parent;
@@ -86,6 +88,7 @@ public class FacultySignUpController extends AnchorPane {
     @FXML
     private void initialize() {
         faculty = new PersonalDetails();
+        question=new SecurityQuestion();
         loginbutton.setOnAction(this::loginAction);
         signup.setOnAction(e -> {
             if (login.isUsernameExists(username.getText()) > 0) {
@@ -109,8 +112,17 @@ public class FacultySignUpController extends AnchorPane {
                 faculty.setContact(contact.getText());
                 faculty.setEmailId(email.getText());
                 faculty.setGender("Unknown");
+                
+                question.setQuestion1("");
+                question.setQuestion2("");
+                question.setQuestion3("");
+                question.setAnswer1("");
+                question.setAnswer2("");
+                question.setAnswer3("");
 
                 user.setDetails(faculty);
+                user.setSecurityquestion(question);
+                
                 int id = login.save(user);
 
                 if (id > 0) {

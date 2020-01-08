@@ -119,6 +119,9 @@ public class HODDashboardController extends AnchorPane {
 
     @FXML
     private VBox list;
+    
+    @FXML
+    private JFXButton security;
 
     private FXMLLoader fxml;
     private PersonalDetails details;
@@ -147,8 +150,12 @@ public class HODDashboardController extends AnchorPane {
         dao = (StudentDao) Start.app.getBean("studentregistration");
         department.setText("Department :- " + SystemUtils.getDepartment());
         details = user.getDetails();
+        
+        security.setVisible(false);
+        
         initLoginActivity(null);
         countStudents(null);
+        checkQuestions();
         profilepic.setImage(new Image(new ByteArrayInputStream(user.getImage())));
         List<String> years = dao.findAllYears();
         Collections.sort(years);
@@ -202,6 +209,17 @@ public class HODDashboardController extends AnchorPane {
         Collections.reverse(allLogins);
         List<HODLoginActivityController> activityControllers = allLogins.stream().map(c -> new HODLoginActivityController(c)).collect(Collectors.toList());
         list.getChildren().setAll(activityControllers);
+    }
+    
+    private void checkQuestions(){
+        if(!SystemUtils.getCurrentUser().hasSecurityQuestion()){
+            security.setVisible(true);
+            security.setOnAction(this::updateSecurity);
+        }
+    }
+    
+    private void updateSecurity(ActionEvent evt){
+        SwitchRoot.switchRoot(Start.st, RootFactory.getSecurityQuestionRoot(RootFactory.getHODDashboardRoot(), "New"));
     }
 
 }

@@ -12,7 +12,8 @@ import java.io.Serializable;
  *
  * @author Programmer Hrishav
  */
-public class User implements Serializable{
+public class User implements Serializable {
+
     private int id;
     private String username;
     private String password;
@@ -21,22 +22,11 @@ public class User implements Serializable{
     private String date;
     private String status;
     private byte[] image;
-    
+
     private PersonalDetails details;
+    private SecurityQuestion securityquestion;
 
     public User() {
-    }
-
-    public User(int id, String username, String password, String type, String department, String date, String status, byte[] image, PersonalDetails details) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.type = type;
-        this.department = department;
-        this.date = date;
-        this.status = status;
-        this.image = image;
-        this.details = details;
     }
 
     public int getId() {
@@ -111,5 +101,16 @@ public class User implements Serializable{
         this.details = details;
     }
 
-    
+    public SecurityQuestion getSecurityquestion() {
+        return securityquestion;
+    }
+
+    public void setSecurityquestion(SecurityQuestion securityquestion) {
+        this.securityquestion = securityquestion;
+    }
+
+    public boolean hasSecurityQuestion() {
+        return !(getSecurityquestion().getAnswer1().isEmpty() || getSecurityquestion().getAnswer2().isEmpty() || getSecurityquestion().getAnswer3().isEmpty());
+    }
+
 }

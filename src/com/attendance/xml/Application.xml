@@ -38,6 +38,7 @@
                 <value>/com/attendance/xml/notes.hbm.xml</value>
                 <value>/com/attendance/xml/unittest.hbm.xml</value>
                 <value>/com/attendance/xml/routine.hbm.xml</value>
+                <value>/com/attendance/xml/SecurityQuestions.hbm.xml</value>
             </list>
         </property>
         <property name="hibernateProperties">

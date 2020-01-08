@@ -115,6 +115,9 @@ public class PrincipalDashboardController extends AnchorPane {
     @FXML
     private ImageView profilepic;
 
+    @FXML
+    private JFXButton security;
+
     private User principal;
     private LoginActivity activity;
     private FXMLLoader fxml;
@@ -147,13 +150,16 @@ public class PrincipalDashboardController extends AnchorPane {
         act = (Activity) Start.app.getBean("loginactivity");
         login = (Login) Start.app.getBean("userlogin");
         dao = (StudentDao) Start.app.getBean("studentregistration");
-        
+
         department.getItems().setAll(Arrays.asList(SystemUtils.getDepartments()));
 
         List<String> years = dao.findAllYears();
         Collections.sort(years);
         year.getItems().setAll(years);
 
+        security.setVisible(false);
+
+        checkQuestions();
         buttonActions();
         profilepic.setImage(new Image(new ByteArrayInputStream(principal.getImage())));
         initLoginActivity(null);
@@ -248,9 +254,20 @@ public class PrincipalDashboardController extends AnchorPane {
                 st.getScene().setRoot(RootFactory.getSelectDepartmentRoot("verifyhod", PrincipalDashboardController.this.getScene().getRoot()));
 
             }
-            
+
             st.show();
         }
+    }
+
+    private void checkQuestions() {
+        if (!SystemUtils.getCurrentUser().hasSecurityQuestion()) {
+            security.setVisible(true);
+            security.setOnAction(this::updateSecurity);
+        }
+    }
+
+    private void updateSecurity(ActionEvent evt) {
+        SwitchRoot.switchRoot(Start.st, RootFactory.getSecurityQuestionRoot(RootFactory.getPrincipalDashboardRoot(), "New"));
     }
 
 }

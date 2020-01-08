@@ -115,6 +115,9 @@ public class FacultyDashboardController extends AnchorPane {
 
     @FXML
     private VBox list;
+    
+    @FXML
+    private JFXButton security;
 
     private FXMLLoader fxml;
     private Thread timer;
@@ -147,8 +150,12 @@ public class FacultyDashboardController extends AnchorPane {
         dao = (StudentDao) Start.app.getBean("studentregistration");
         details = user.getDetails();
         profilepic.setImage(new Image(new ByteArrayInputStream(user.getImage())));
+        
+        security.setVisible(false);
+        
         countStudents(null);
         initLoginActivity(null);
+        checkQuestions();
 
         timer = DateTimerThread.newInstance().forLabel(DateTimerThread.TIME, time).init().thread();
         timer.start();
@@ -202,5 +209,16 @@ public class FacultyDashboardController extends AnchorPane {
         Collections.reverse(allLogins);
         List<FacultyLoginActivityController> activityControllers = allLogins.stream().map(c -> new FacultyLoginActivityController(c)).collect(Collectors.toList());
         list.getChildren().setAll(activityControllers);
+    }
+    
+    private void checkQuestions(){
+        if(!SystemUtils.getCurrentUser().hasSecurityQuestion()){
+            security.setVisible(true);
+            security.setOnAction(this::updateSecurity);
+        }
+    }
+    
+    private void updateSecurity(ActionEvent evt){
+        SwitchRoot.switchRoot(Start.st, RootFactory.getSecurityQuestionRoot(RootFactory.getFacultyDashboardRoot(), "New"));
     }
 }

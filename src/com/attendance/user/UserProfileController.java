@@ -262,6 +262,7 @@ public class UserProfileController extends AnchorPane {
             updatedetails.setGender("Unknown");
         }
         updateuser.setDetails(updatedetails);
+        updateuser.setSecurityquestion(user.getSecurityquestion());
         boolean b1 = login.update(updateuser);
         if (b1) {
             result.setText("Profile Updated Successfully");

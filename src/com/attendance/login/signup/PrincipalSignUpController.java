@@ -6,6 +6,7 @@
 package com.attendance.login.signup;
 
 import com.attendance.login.dao.Login;
+import com.attendance.login.user.model.SecurityQuestion;
 import com.attendance.login.user.model.User;
 import com.attendance.main.Start;
 import com.attendance.personal.model.PersonalDetails;
@@ -70,6 +71,7 @@ public class PrincipalSignUpController extends AnchorPane {
     private Parent parent;
 
     private PersonalDetails principal;
+    private SecurityQuestion question;
 
     public PrincipalSignUpController(Parent parent) {
         this.parent = parent;
@@ -88,6 +90,7 @@ public class PrincipalSignUpController extends AnchorPane {
     private void initialize() {
         user = new User();
         principal = new PersonalDetails();
+        question=new SecurityQuestion();
         login = (Login) Start.app.getBean("userlogin");
         signup.setOnAction(E -> {
             if (login.isUsernameExists(username.getText()) > 0) {
@@ -105,8 +108,17 @@ public class PrincipalSignUpController extends AnchorPane {
                 principal.setContact(contact.getText());
                 principal.setEmailId(email.getText());
                 principal.setGender("Unknown");
+                
+                question.setQuestion1("");
+                question.setQuestion2("");
+                question.setQuestion3("");
+                question.setAnswer1("");
+                question.setAnswer2("");
+                question.setAnswer3("");
 
                 user.setDetails(principal);
+                user.setSecurityquestion(question);
+                
                 int id = login.save(user);
 
                 if (id > 0) {

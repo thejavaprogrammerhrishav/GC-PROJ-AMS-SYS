@@ -22,7 +22,10 @@ import com.attendance.login.controller.HODLoginController;
 import com.attendance.login.controller.FacultyLoginController;
 import com.attendance.login.controller.PrincipalLoginController;
 import com.attendance.login.forgot.ChangePasswordController;
-import com.attendance.login.forgot.ForgotPasswordController;
+import com.attendance.login.forgot.ResetPassword1Controller;
+import com.attendance.login.forgot.ResetPassword3Controller;
+import com.attendance.login.forgot.ResetPasswordResultController;
+import com.attendance.login.forgot.SecurityQuestionController;
 import com.attendance.login.request.PendingRequestController;
 import com.attendance.login.signup.HODSignupController;
 import com.attendance.login.signup.FacultySignUpController;
@@ -79,10 +82,6 @@ public class RootFactory {
         return new UserType2Controller();
     }
 
-    public static Parent getForgotPasswordRoot() {
-        return new ForgotPasswordController();
-    }
-
     public static Parent getHODLoginRoot() {
         return new HODLoginController();
     }
@@ -90,7 +89,7 @@ public class RootFactory {
     public static Parent getHODDashboardRoot() {
         return new HODDashboardController();
     }
-    
+
     public static Parent getPrincipalDashboardRoot() {
         return new PrincipalDashboardController();
     }
@@ -111,8 +110,8 @@ public class RootFactory {
         return new FacultySignUpController(parent);
     }
 
-    public static Parent getViewStudentDetailsRoot(String department,Parent parent) {
-        return new ViewStudentDetailsController(department,parent);
+    public static Parent getViewStudentDetailsRoot(String department, Parent parent) {
+        return new ViewStudentDetailsController(department, parent);
     }
 
     public static Parent getStudentUpdateRoot(Parent parent) {
@@ -123,8 +122,8 @@ public class RootFactory {
         return new FacultyLoginController();
     }
 
-    public static Parent getViewFacultyRoot(String department , Parent parent) {
-        return new ViewFacultyController(department,parent);
+    public static Parent getViewFacultyRoot(String department, Parent parent) {
+        return new ViewFacultyController(department, parent);
     }
 
     public static Parent getStudentAttendanceRoot(Parent sc, String faculty) {
@@ -134,9 +133,9 @@ public class RootFactory {
     public static Parent getSelectFacultyRoot(String type) {
         return new SelectFacultyController(type);
     }
-    
-     public static Parent getSelectDepartmentRoot(String type,Parent parent) {
-        return new SelectDepartmentController(type,parent);
+
+    public static Parent getSelectDepartmentRoot(String type, Parent parent) {
+        return new SelectDepartmentController(type, parent);
     }
 
     public static Parent getFacultyDashboardRoot() {
@@ -158,12 +157,13 @@ public class RootFactory {
     public static Parent getSettingsExportRoot(Parent parent) {
         return new ExportSettingsController(parent);
     }
+
     public static Parent getPaperRoot(Parent parent) {
         return new PapersController(parent);
     }
 
-    public static Parent getClassDetailsRoot(Parent parent,String name) {
-        return new ClassDetailsController(parent,name);
+    public static Parent getClassDetailsRoot(Parent parent, String name) {
+        return new ClassDetailsController(parent, name);
     }
 
     public static Parent getUpdateClassDetailsRoot() {
@@ -185,6 +185,7 @@ public class RootFactory {
     public static Parent getMessageRoot(int type, String header, Exception content) {
         return new Message(type, header, content);
     }
+
     public static Parent getDatabaseServerRoot(Parent parent) {
         return new DatabaseServerSettingsController(parent);
     }
@@ -208,100 +209,117 @@ public class RootFactory {
     public static Parent getExportDailyStatsListRoot() {
         return new ExportDailyStatsListController();
     }
-    
+
     public static Parent getUploadMarksRoot(Parent parent) {
         return new UploadUnitTestMarksController(parent);
     }
-    
+
     public static Parent getUserType1Root() {
         return new UserType1Controller();
     }
-    
+
     public static Parent getDepartmentRoot() {
         return new DepartmentPageController();
     }
-    
+
     public static Parent getPrincipalLoginRoot() {
         return new PrincipalLoginController();
     }
-    
+
     public static Parent getPrincipalSignUpRoot(Parent parent) {
         return new PrincipalSignUpController(parent);
     }
-    
+
     public static Parent getPrincipalDashboardStudentNodeRoot() {
         return new PrincipalDashboardStudentNodeController();
     }
-   
-       public static Parent getPrincipalDashboardFacultyNodeRoot() {
+
+    public static Parent getPrincipalDashboardFacultyNodeRoot() {
         return new PrincipalDashboardFacultyNodeController();
     }
-       
-          public static Parent getPrincipalDashboardDepartmentNodeRoot() {
-        return new PrincipalDashboardDepartmentNodeController(); 
+
+    public static Parent getPrincipalDashboardDepartmentNodeRoot() {
+        return new PrincipalDashboardDepartmentNodeController();
     }
-          
-      public static Parent getPrincipalDashboardPrincipalAccountNodeRoot() {
-        return new PrincipalDashboardPrincipalAccountNodeController(); 
-    }  
-      
-      public static Parent getPrincipalDashboardHODAccountNodeRoot() {
-        return new PrincipalDashboardHODAccountNodeController(); 
+
+    public static Parent getPrincipalDashboardPrincipalAccountNodeRoot() {
+        return new PrincipalDashboardPrincipalAccountNodeController();
     }
-      
-      public static Parent getUserProfileRoot(String parent){
-          return new UserProfileController(parent);
-      }
-        
-      public static Parent getChangePasswordRoot(Parent parent){
-          return new ChangePasswordController(parent);
-      }
-      
-      public static Parent getPendingRequestRoot(Parent parent,String department) {
-          return new PendingRequestController(parent, department);
-      }
-      
-       public static Parent getUnitTestReportRoot(Parent parent){
-          return new UnitTestReportController(parent);
-      }
-       
-       public static Parent getNotesDashboardRoot(Parent parent, String facultyname) {
-           return new NotesDashboardController(parent , facultyname);
-       }
-       
-       public static Parent getRoutineDashboardRoot(Parent parent) {
-           return new RoutineDashboardController(parent);
-       }
-       
-       public static Parent getPrincipalRoutineDashboardRoot(Parent parent,String department,String year) {
-           return new PrincipalRoutineDashboardController(parent,department,year);
-       }
-       
-       public static Parent getNotesSettingsRoot(Parent parent) {
-           return new NotesSettingController(parent);
-       }
-       
-       public static Parent getPrincipalSettingsRoot(Parent parent) {
-           return new PrincipalSettingsController(parent);
-       }
-       
-       public static Parent getDeleteLoginUserRoot(Parent parent,String department) {
-           return new DeleteLoginUserController(parent,department);
-       }
-       
-       public static Parent getBlockLoginUserRoot(Parent parent,String department) {
-           return new BlockLoginUserController(parent,department);
-       }
-       
-       public static Parent getModifyUsertypeRoot(Parent parent){
-          return new ModifyUsertypeController(parent);
-      }
-       
-       public static Parent getPrincipalLoginUserActivityRoot(Parent parent){
-          return new PrincipalLoginActivitySettingsController(parent);
-      }
-       
-       public static Parent getHODLoginUserActivityRoot(Parent parent){
-          return new HODLoginActivitySettingsController(parent);
-      }
+
+    public static Parent getPrincipalDashboardHODAccountNodeRoot() {
+        return new PrincipalDashboardHODAccountNodeController();
+    }
+
+    public static Parent getUserProfileRoot(String parent) {
+        return new UserProfileController(parent);
+    }
+
+    public static Parent getChangePasswordRoot(Parent parent) {
+        return new ChangePasswordController(parent);
+    }
+
+    public static Parent getPendingRequestRoot(Parent parent, String department) {
+        return new PendingRequestController(parent, department);
+    }
+
+    public static Parent getUnitTestReportRoot(Parent parent) {
+        return new UnitTestReportController(parent);
+    }
+
+    public static Parent getNotesDashboardRoot(Parent parent, String facultyname) {
+        return new NotesDashboardController(parent, facultyname);
+    }
+
+    public static Parent getRoutineDashboardRoot(Parent parent) {
+        return new RoutineDashboardController(parent);
+    }
+
+    public static Parent getPrincipalRoutineDashboardRoot(Parent parent, String department, String year) {
+        return new PrincipalRoutineDashboardController(parent, department, year);
+    }
+
+    public static Parent getNotesSettingsRoot(Parent parent) {
+        return new NotesSettingController(parent);
+    }
+
+    public static Parent getPrincipalSettingsRoot(Parent parent) {
+        return new PrincipalSettingsController(parent);
+    }
+
+    public static Parent getDeleteLoginUserRoot(Parent parent, String department) {
+        return new DeleteLoginUserController(parent, department);
+    }
+
+    public static Parent getBlockLoginUserRoot(Parent parent, String department) {
+        return new BlockLoginUserController(parent, department);
+    }
+
+    public static Parent getModifyUsertypeRoot(Parent parent) {
+        return new ModifyUsertypeController(parent);
+    }
+
+    public static Parent getPrincipalLoginUserActivityRoot(Parent parent) {
+        return new PrincipalLoginActivitySettingsController(parent);
+    }
+
+    public static Parent getHODLoginUserActivityRoot(Parent parent) {
+        return new HODLoginActivitySettingsController(parent);
+    }
+
+    public static Parent getResetPassword1Root(Parent parent) {
+        return new ResetPassword1Controller(parent);
+    }
+
+    public static Parent getRestPassword3Root(Parent parent) {
+        return new ResetPassword3Controller(parent);
+    }
+
+    public static Parent getSecurityQuestionRoot(Parent parent, String mode) {
+        return new SecurityQuestionController(parent, mode);
+    }
+
+    public static Parent getResetPasswordResultRoot(String mode) {
+        return new ResetPasswordResultController(mode);
+    }
+
 }

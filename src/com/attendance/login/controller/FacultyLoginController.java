@@ -9,7 +9,6 @@ import com.attendance.login.actions.LoginAuthenticator;
 import com.attendance.login.activity.dao.Activity;
 import com.attendance.login.activity.model.LoginActivity;
 import com.attendance.login.dao.Login;
-import com.attendance.login.forgot.ForgotPasswordController;
 import com.attendance.login.user.model.User;
 import com.attendance.main.Start;
 import com.attendance.personal.model.PersonalDetails;
@@ -215,8 +214,10 @@ public class FacultyLoginController extends AnchorPane {
         });
 
         forgotpassword.setOnMouseClicked(e -> {
-            ForgotPasswordController.LoginType = ROLE;
-            SwitchRoot.switchRoot(Start.st, RootFactory.getForgotPasswordRoot());
+            User user = new User();
+            user.setType("Faculty");
+            SystemUtils.setCurrentUser(user);
+            SwitchRoot.switchRoot(Start.st, RootFactory.getResetPassword1Root(Start.st.getScene().getRoot()));
         });
         signup.setOnMouseClicked(this::signupAction);
         close.setOnAction(this::closeAction);

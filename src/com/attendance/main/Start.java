@@ -50,8 +50,8 @@ public class Start extends Application {
     public void start(Stage primaryStage) throws Exception {
         st = StageUtil.initStage(primaryStage).fullScreen(false).fullScreenExitHint("").fullScreenExitKeyCombination(null)
                 .initStyle(StageStyle.UNDECORATED).centerOnScreen().build();
-        SwitchRoot.switchRoot(st, RootFactory.getSplashRoot());
-        //SwitchRoot.switchRoot(st, RootFactory.getUserType1Root());
+        //SwitchRoot.switchRoot(st, RootFactory.getSplashRoot());
+        SwitchRoot.switchRoot(st, RootFactory.getUserType1Root());
         
         st.show();
     }
