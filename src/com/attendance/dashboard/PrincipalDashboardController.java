@@ -212,9 +212,8 @@ public class PrincipalDashboardController extends AnchorPane {
     }
 
     private void init() {
-        List<User> collected = login.findByStatus("Pending");
-        collected = collected.stream().filter(p -> p.getType().equals("HOD")).collect(Collectors.toList());
-        pending.setText("" + collected.size());
+        int collected = login.count("select count(*) from loginuser where type='HOD' and status='Pending'");
+        pending.setText("" + collected);
     }
 
     private void initLoginActivity(ActionEvent e) {
