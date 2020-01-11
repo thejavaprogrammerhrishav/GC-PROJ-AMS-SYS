@@ -139,6 +139,12 @@ public class ExportStudentListController extends AnchorPane {
 
         coursetype.disableProperty().bind(filterbycoursetype.selectedProperty().not());
 
+        filterbygender.selectedProperty().addListener((ol,o,n)->{
+            if(!n) {
+                male.setSelected(false);
+                female.setSelected(false);
+            }
+        });
         coursetype.getItems().setAll("Honours", "Pass");
         male.selectedProperty().addListener((ol, o, n) -> {
             if (n) {

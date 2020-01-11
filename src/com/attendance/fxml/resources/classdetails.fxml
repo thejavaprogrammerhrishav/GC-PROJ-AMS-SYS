@@ -21,24 +21,24 @@
                   <Font size="15.0" />
                </font>
             </JFXCheckBox>
-            <JFXCheckBox fx:id="filterbysemester" layoutX="348.0" layoutY="133.0" text="Filter By Semester " textFill="WHITE" unCheckedColor="WHITE">
+            <JFXCheckBox fx:id="filterbysemester" layoutX="568.0" layoutY="133.0" text="Filter By Semester " textFill="WHITE" unCheckedColor="WHITE">
                <font>
                   <Font size="15.0" />
                </font>
             </JFXCheckBox>
-            <JFXCheckBox fx:id="filterbyyear" layoutX="533.0" layoutY="133.0" text="Filter By Year" textFill="WHITE" unCheckedColor="WHITE">
+            <JFXCheckBox fx:id="filterbyyear" layoutX="762.0" layoutY="133.0" text="Filter By Year" textFill="WHITE" unCheckedColor="WHITE">
                <font>
                   <Font size="15.0" />
                </font>
             </JFXCheckBox>
-            <JFXComboBox fx:id="semester" layoutX="348.0" layoutY="169.0" prefHeight="29.0" prefWidth="158.0" promptText="Select Semester" style="-fx-font-size: 15; -fx-font-family: 'Segoe UI', arial; -fx-prompt-text-fill: #fff;" />
-            <JFXComboBox fx:id="year" layoutX="533.0" layoutY="169.0" prefHeight="29.0" prefWidth="126.0" promptText="Select Year" style="-fx-font-size: 15; -fx-font-family: 'Segoe UI', arial; -fx-prompt-text-fill: #fff;" />
-            <JFXCheckBox fx:id="filterbypaper" layoutX="893.0" layoutY="133.0" text="Filter By Paper" textFill="WHITE" unCheckedColor="WHITE">
+            <JFXComboBox fx:id="semester" layoutX="571.0" layoutY="169.0" prefHeight="29.0" prefWidth="158.0" promptText="Select Semester" style="-fx-font-size: 15; -fx-font-family: 'Segoe UI', arial; -fx-prompt-text-fill: #fff;" />
+            <JFXComboBox fx:id="year" layoutX="756.0" layoutY="169.0" prefHeight="29.0" prefWidth="126.0" promptText="Select Year" style="-fx-font-size: 15; -fx-font-family: 'Segoe UI', arial; -fx-prompt-text-fill: #fff;" />
+            <JFXCheckBox fx:id="filterbypaper" layoutX="927.0" layoutY="133.0" text="Filter By Paper" textFill="WHITE" unCheckedColor="WHITE">
                <font>
                   <Font size="15.0" />
                </font>
             </JFXCheckBox>
-            <JFXComboBox fx:id="paper" layoutX="893.0" layoutY="169.0" prefHeight="29.0" prefWidth="176.0" promptText="Select Paper" style="-fx-font-size: 15; -fx-font-family: 'Segoe UI', arial; -fx-prompt-text-fill: #fff;" />
+            <JFXComboBox fx:id="paper" layoutX="932.0" layoutY="169.0" prefHeight="29.0" prefWidth="176.0" promptText="Select Paper" style="-fx-font-size: 15; -fx-font-family: 'Segoe UI', arial; -fx-prompt-text-fill: #fff;" />
             <Label layoutX="46.0" layoutY="26.0" prefHeight="43.0" prefWidth="264.0" text="Class Details" textFill="WHITE">
                <font>
                   <Font name="Segoe UI" size="36.0" />
@@ -154,12 +154,12 @@
                   <Font name="Segoe UI" size="14.0" />
                </font>
             </TextField>
-            <JFXCheckBox fx:id="filterbyacadamicyear" layoutX="683.0" layoutY="133.0" text="Filter By Acadamic Year" textFill="WHITE" unCheckedColor="WHITE">
+            <JFXCheckBox fx:id="filterbyacadamicyear" layoutX="358.0" layoutY="133.0" text="Filter By Acadamic Year" textFill="WHITE" unCheckedColor="WHITE">
                <font>
                   <Font size="15.0" />
                </font>
             </JFXCheckBox>
-            <JFXComboBox fx:id="acadamicyear" layoutX="683.0" layoutY="169.0" prefHeight="29.0" prefWidth="186.0" promptText="Select Acadamic Year" style="-fx-font-size: 15; -fx-font-family: 'Segoe UI', arial; -fx-prompt-text-fill: #fff;" />
+            <JFXComboBox fx:id="acadamicyear" layoutX="356.0" layoutY="169.0" prefHeight="29.0" prefWidth="186.0" promptText="Select Acadamic Year" style="-fx-font-size: 15; -fx-font-family: 'Segoe UI', arial; -fx-prompt-text-fill: #fff;" />
             <JFXButton fx:id="applyfilters" buttonType="RAISED" layoutX="50.0" layoutY="225.0" prefHeight="33.0" prefWidth="203.0" ripplerFill="BLACK" style="-fx-background-color: forestgreen;" text="Apply Filters" textFill="WHITE">
                <font>
                   <Font name="Tw Cen MT" size="18.0" />
@@ -175,17 +175,17 @@
                   <Font name="Tw Cen MT" size="18.0" />
                </font>
             </JFXButton>
-            <JFXCheckBox fx:id="filterbycourse" layoutX="1099.0" layoutY="133.0" text="Filter By Course Type" textFill="WHITE" unCheckedColor="WHITE">
+            <JFXCheckBox fx:id="filterbycourse" layoutX="1132.0" layoutY="133.0" text="Filter By Course Type" textFill="WHITE" unCheckedColor="WHITE">
                <font>
                   <Font size="15.0" />
                </font>
             </JFXCheckBox>
-            <JFXCheckBox fx:id="honours" layoutX="1099.0" layoutY="173.0" text="Honours" textFill="WHITE" unCheckedColor="WHITE">
+            <JFXCheckBox fx:id="honours" layoutX="1132.0" layoutY="173.0" text="Honours" textFill="WHITE" unCheckedColor="WHITE">
                <font>
                   <Font size="15.0" />
                </font>
             </JFXCheckBox>
-            <JFXCheckBox fx:id="pass" layoutX="1234.0" layoutY="173.0" text="Pass" textFill="WHITE" unCheckedColor="WHITE">
+            <JFXCheckBox fx:id="pass" layoutX="1242.0" layoutY="173.0" text="Pass" textFill="WHITE" unCheckedColor="WHITE">
                <font>
                   <Font size="15.0" />
                </font>

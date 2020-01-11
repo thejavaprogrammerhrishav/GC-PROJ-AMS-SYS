@@ -12,81 +12,78 @@
 
 <fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="616.0" prefWidth="1366.0" style="-fx-background-color: #292222;" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <JFXCheckBox fx:id="filterbyname" layoutX="98.0" layoutY="86.0" text="Filter By Name" textFill="WHITE" unCheckedColor="WHITE">
+      <JFXCheckBox fx:id="filterbyname" layoutX="23.0" layoutY="86.0" text="Filter By Name" textFill="WHITE" unCheckedColor="WHITE">
          <font>
             <Font size="15.0" />
          </font>
       </JFXCheckBox>
-      <JFXCheckBox fx:id="filterbysemester" layoutX="570.0" layoutY="86.0" text="Filter By Semester " textFill="WHITE" unCheckedColor="WHITE">
+      <JFXCheckBox fx:id="filterbysemester" layoutX="495.0" layoutY="86.0" text="Filter By Semester " textFill="WHITE" unCheckedColor="WHITE">
          <font>
             <Font size="15.0" />
          </font>
       </JFXCheckBox>
-      <JFXCheckBox fx:id="filterbyyear" layoutX="776.0" layoutY="85.0" text="Filter By Year" textFill="WHITE" unCheckedColor="WHITE">
+      <JFXCheckBox fx:id="filterbyyear" layoutX="670.0" layoutY="86.0" text="Filter By Year" textFill="WHITE" unCheckedColor="WHITE">
          <font>
             <Font size="15.0" />
          </font>
       </JFXCheckBox>
-      <JFXComboBox fx:id="semester" layoutX="570.0" layoutY="119.0" prefHeight="29.0" prefWidth="176.0" promptText="Select Semester" style="-fx-font-size: 14; -fx-font-family: 'Segoe UI', arial; -fx-prompt-text-fill: #fff;" />
-      <JFXComboBox fx:id="year" layoutX="776.0" layoutY="119.0" prefHeight="29.0" prefWidth="130.0" promptText="Select Year" style="-fx-font-size: 14; -fx-font-family: 'Segoe UI', arial; -fx-prompt-text-fill: #fff;" />
-      <JFXCheckBox fx:id="filterbypaper" layoutX="934.0" layoutY="86.0" text="Filter By Paper" textFill="WHITE" unCheckedColor="WHITE">
+      <JFXComboBox fx:id="semester" layoutX="495.0" layoutY="119.0" prefHeight="29.0" prefWidth="149.0" promptText="Select Semester" style="-fx-font-size: 14; -fx-font-family: 'Segoe UI', arial; -fx-prompt-text-fill: #fff;" />
+      <JFXComboBox fx:id="year" layoutX="670.0" layoutY="119.0" prefHeight="29.0" prefWidth="130.0" promptText="Select Year" style="-fx-font-size: 14; -fx-font-family: 'Segoe UI', arial; -fx-prompt-text-fill: #fff;" />
+      <JFXCheckBox fx:id="filterbypaper" layoutX="825.0" layoutY="86.0" text="Filter By Paper" textFill="WHITE" unCheckedColor="WHITE">
          <font>
             <Font size="15.0" />
          </font>
       </JFXCheckBox>
-      <JFXComboBox fx:id="paper" layoutX="934.0" layoutY="120.0" prefHeight="29.0" prefWidth="130.0" promptText="Select Paper" style="-fx-font-size: 14; -fx-font-family: 'Segoe UI', arial; -fx-prompt-text-fill: #fff;" />
+      <JFXComboBox fx:id="paper" layoutX="825.0" layoutY="119.0" prefHeight="29.0" prefWidth="130.0" promptText="Select Paper" style="-fx-font-size: 14; -fx-font-family: 'Segoe UI', arial; -fx-prompt-text-fill: #fff;" />
       <Label layoutX="56.0" layoutY="23.0" prefHeight="33.0" prefWidth="367.0" text="Export Class Details" textFill="WHITE">
          <font>
             <Font name="Segoe UI" size="24.0" />
          </font>
       </Label>
-      <JFXComboBox fx:id="facultyname" layoutX="98.0" layoutY="120.0" prefHeight="29.0" prefWidth="238.0" promptText="Select Faculty Name" style="-fx-font-size: 14; -fx-font-family: 'Segoe UI', arial; -fx-prompt-text-fill: #fff;" />
-      <TableView fx:id="table" layoutX="21.0" layoutY="174.0" prefHeight="407.0" prefWidth="959.0" styleClass="mytable">
+      <JFXComboBox fx:id="facultyname" layoutX="23.0" layoutY="120.0" prefHeight="29.0" prefWidth="238.0" promptText="Select Faculty Name" style="-fx-font-size: 14; -fx-font-family: 'Segoe UI', arial; -fx-prompt-text-fill: #fff;" />
+      <TableView fx:id="table" layoutX="21.0" layoutY="174.0" prefHeight="341.0" prefWidth="1300.0" styleClass="mytable">
         <columns>
           <TableColumn fx:id="name" editable="false" prefWidth="260.0" resizable="false" sortable="false" text="Faculty Name" />
             <TableColumn fx:id="date" editable="false" prefWidth="246.0" resizable="false" sortable="false" text="Date" />
-            <TableColumn fx:id="time" editable="false" prefWidth="96.0" resizable="false" sortable="false" text="Time" />
-            <TableColumn fx:id="tsemester" editable="false" prefWidth="125.0" resizable="false" sortable="false" text="Semester" />
-            <TableColumn fx:id="tyear" editable="false" prefWidth="73.0" resizable="false" sortable="false" text="Year" />
-            <TableColumn fx:id="tacadamicyear" editable="false" prefWidth="155.0" resizable="false" sortable="false" text="Acadamic Year" />
+            <TableColumn fx:id="time" editable="false" prefWidth="113.0" resizable="false" sortable="false" text="Time" />
+            <TableColumn fx:id="tsemester" editable="false" prefWidth="108.0" resizable="false" sortable="false" text="Semester" />
+            <TableColumn fx:id="tyear" editable="false" prefWidth="82.0" resizable="false" sortable="false" text="Year" />
+            <TableColumn fx:id="tacadamicyear" editable="false" prefWidth="146.0" resizable="false" sortable="false" text="Acadamic Year" />
+            <TableColumn fx:id="tcoursetype" editable="false" prefWidth="167.0" resizable="false" sortable="false" text="Course Type" />
+            <TableColumn fx:id="tpapercode" editable="false" prefWidth="149.0" resizable="false" sortable="false" text="Paper Code" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <JFXCheckBox fx:id="filterbyacadamicyear" layoutX="360.0" layoutY="89.0" text="Filter By Acadamic Year" textFill="WHITE" unCheckedColor="WHITE">
+      <JFXCheckBox fx:id="filterbyacadamicyear" layoutX="285.0" layoutY="86.0" text="Filter By Acadamic Year" textFill="WHITE" unCheckedColor="WHITE">
          <font>
             <Font size="15.0" />
          </font>
       </JFXCheckBox>
-      <JFXComboBox fx:id="acadamicyear" layoutX="360.0" layoutY="122.0" prefHeight="29.0" prefWidth="182.0" promptText="Select Acadamic Year" style="-fx-font-size: 14; -fx-font-family: 'Segoe UI', arial; -fx-prompt-text-fill: #fff;" />
+      <JFXComboBox fx:id="acadamicyear" layoutX="285.0" layoutY="119.0" prefHeight="29.0" prefWidth="176.0" promptText="Select Acadamic Year" style="-fx-font-size: 14; -fx-font-family: 'Segoe UI', arial; -fx-prompt-text-fill: #fff;" />
       <Label fx:id="department" layoutX="973.0" layoutY="23.0" prefHeight="33.0" prefWidth="367.0" text="Department:" textFill="WHITE">
          <font>
             <Font name="Segoe UI" size="18.0" />
          </font>
       </Label>
-      <JFXCheckBox fx:id="filterbycoursetype" layoutX="1103.0" layoutY="85.0" text="Filter By Course Type" textFill="WHITE" unCheckedColor="WHITE">
+      <JFXCheckBox fx:id="filterbycoursetype" layoutX="991.0" layoutY="86.0" text="Filter By Course Type" textFill="WHITE" unCheckedColor="WHITE">
          <font>
             <Font size="15.0" />
          </font>
       </JFXCheckBox>
-      <JFXComboBox fx:id="coursetype" layoutX="1103.0" layoutY="119.0" prefHeight="29.0" prefWidth="166.0" promptText="Select Course Type" style="-fx-font-size: 14; -fx-font-family: 'Segoe UI', arial; -fx-prompt-text-fill: #fff;" />
-      <JFXButton fx:id="applyfilters" buttonType="RAISED" layoutX="1025.0" layoutY="207.0" prefHeight="33.0" prefWidth="149.0" ripplerFill="BLACK" style="-fx-background-color: #652089;" text="Apply Filters" textFill="WHITE">
+      <JFXComboBox fx:id="coursetype" layoutX="991.0" layoutY="119.0" prefHeight="29.0" prefWidth="166.0" promptText="Select Course Type" style="-fx-font-size: 14; -fx-font-family: 'Segoe UI', arial; -fx-prompt-text-fill: #fff;" />
+      <JFXButton fx:id="applyfilters" buttonType="RAISED" layoutX="1193.0" layoutY="80.0" prefHeight="33.0" prefWidth="149.0" ripplerFill="BLACK" style="-fx-background-color: #652089;" text="Apply Filters" textFill="WHITE">
          <font>
             <Font name="Tw Cen MT" size="18.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="refresh" buttonType="RAISED" layoutX="1204.0" layoutY="207.0" prefHeight="33.0" prefWidth="130.0" ripplerFill="BLACK" style="-fx-background-color: blue;" text="Refresh" textFill="WHITE">
+      <JFXButton fx:id="refresh" buttonType="RAISED" layoutX="1193.0" layoutY="128.0" prefHeight="33.0" prefWidth="149.0" ripplerFill="BLACK" style="-fx-background-color: blue;" text="Refresh" textFill="WHITE">
          <font>
             <Font name="Tw Cen MT" size="18.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="export2excel" buttonType="RAISED" layoutX="1025.0" layoutY="488.0" prefHeight="33.0" prefWidth="324.0" ripplerFill="BLACK" style="-fx-background-color: forestgreen;" text="Export To Excel" textFill="WHITE">
-         <font>
-            <Font name="Tw Cen MT" size="18.0" />
-         </font>
-      </JFXButton>
-      <JFXButton fx:id="close" buttonType="RAISED" layoutX="1025.0" layoutY="548.0" prefHeight="33.0" prefWidth="324.0" ripplerFill="WHITE" style="-fx-background-color: red;" text="Close" textFill="WHITE">
+      <JFXButton fx:id="export2excel" buttonType="RAISED" layoutX="29.0" layoutY="548.0" prefHeight="33.0" prefWidth="249.0" ripplerFill="BLACK" style="-fx-background-color: forestgreen;" text="Export To Excel" textFill="WHITE">
          <font>
             <Font name="Tw Cen MT" size="18.0" />
          </font>

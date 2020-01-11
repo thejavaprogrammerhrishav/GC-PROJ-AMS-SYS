@@ -16,12 +16,12 @@
             <Font name="Tw Cen MT" size="16.0" />
          </font>
       </JFXCheckBox>
-      <JFXCheckBox fx:id="male" layoutX="1047.0" layoutY="195.0" text="Male" textFill="WHITE" unCheckedColor="WHITE">
+      <JFXCheckBox fx:id="male" layoutX="1010.0" layoutY="195.0" text="Male" textFill="WHITE" unCheckedColor="WHITE">
          <font>
             <Font name="Tw Cen MT" size="16.0" />
          </font>
       </JFXCheckBox>
-      <JFXCheckBox fx:id="female" layoutX="1142.0" layoutY="195.0" text="Female" textFill="WHITE" unCheckedColor="WHITE">
+      <JFXCheckBox fx:id="female" layoutX="1107.0" layoutY="195.0" text="Female" textFill="WHITE" unCheckedColor="WHITE">
          <font>
             <Font name="Tw Cen MT" size="16.0" />
          </font>
@@ -41,7 +41,7 @@
             <Font name="Tw Cen MT" size="16.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="cancel" buttonType="RAISED" layoutX="1013.0" layoutY="537.0" prefHeight="33.0" prefWidth="308.0" style="-fx-background-color: #a26935;" text="Cancel" textFill="WHITE">
+      <JFXButton fx:id="cancel" buttonType="RAISED" layoutX="1013.0" layoutY="537.0" prefHeight="33.0" prefWidth="308.0" style="-fx-background-color: red;" text="Cancel" textFill="WHITE">
          <font>
             <Font name="Tw Cen MT" size="16.0" />
          </font>

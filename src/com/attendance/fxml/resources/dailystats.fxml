@@ -5,6 +5,7 @@
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import java.net.URL?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -13,21 +14,25 @@
 
 <fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="584.0" prefWidth="1366.0" style="-fx-background-color: #292222;" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TableView fx:id="table" layoutX="39.0" layoutY="236.0" prefHeight="334.0" prefWidth="1296.0" styleClass="mytable">
-        <columns>
-          <TableColumn fx:id="tclassdate" editable="false" prefWidth="146.0" sortable="false" text="Class Date" />
-          <TableColumn fx:id="tclasstime" editable="false" prefWidth="146.0" sortable="false" text="Class Time" />
-            <TableColumn fx:id="tcoursetype" editable="false" prefWidth="111.0" sortable="false" text="Course Type" />
-            <TableColumn fx:id="tsemester" editable="false" prefWidth="153.0" sortable="false" text="Semester" />
-            <TableColumn fx:id="tyear" editable="false" prefWidth="70.0" sortable="false" text="Year" />
-            <TableColumn fx:id="tstudents" editable="false" prefWidth="117.0" sortable="false" text="Total Students" />
-            <TableColumn fx:id="tpresent" editable="false" prefWidth="122.0" sortable="false" text="Total Present" />
-            <TableColumn fx:id="tabsent" editable="false" prefWidth="113.0" sortable="false" text="Total Absent" />
-            <TableColumn fx:id="tpresentper" editable="false" prefWidth="89.0" sortable="false" text="Present (%)" />
-            <TableColumn fx:id="tabsentper" editable="false" prefWidth="88.0" sortable="false" text="Absent (%)" />
-            <TableColumn fx:id="tacadamicyear" editable="false" prefWidth="124.0" sortable="false" text="Acadamic Year" />
-        </columns>
-      </TableView>
+      <ScrollPane layoutX="39.0" layoutY="236.0" prefHeight="329.0" prefWidth="1297.0">
+         <content>
+            <TableView fx:id="table" prefHeight="312.0" prefWidth="1431.0" styleClass="mytable">
+              <columns>
+                <TableColumn fx:id="tclassdate" editable="false" prefWidth="200.00003051757812" sortable="false" text="Class Date" />
+                <TableColumn fx:id="tclasstime" editable="false" prefWidth="116.0" sortable="false" text="Class Time" />
+                  <TableColumn fx:id="tcoursetype" editable="false" prefWidth="130.0" sortable="false" text="Course Type" />
+                  <TableColumn fx:id="tsemester" editable="false" prefWidth="105.0" sortable="false" text="Semester" />
+                  <TableColumn fx:id="tyear" editable="false" prefWidth="71.0" sortable="false" text="Year" />
+                  <TableColumn fx:id="tstudents" editable="false" prefWidth="143.0" sortable="false" text="Total Students" />
+                  <TableColumn fx:id="tpresent" editable="false" prefWidth="132.0" sortable="false" text="Total Present" />
+                  <TableColumn fx:id="tabsent" editable="false" prefWidth="132.0" sortable="false" text="Total Absent" />
+                  <TableColumn fx:id="tpresentper" editable="false" prefWidth="124.0" sortable="false" text="Present (%)" />
+                  <TableColumn fx:id="tabsentper" editable="false" minWidth="2.0" prefWidth="117.0" sortable="false" text="Absent (%)" />
+                  <TableColumn fx:id="tacadamicyear" editable="false" minWidth="0.0" prefWidth="149.0" sortable="false" text="Acadamic Year" />
+              </columns>
+            </TableView>
+         </content>
+      </ScrollPane>
       <JFXCheckBox fx:id="filterbysemester" layoutX="382.0" layoutY="87.0" text="Filter By Semester " textFill="WHITE" unCheckedColor="WHITE">
          <font>
             <Font size="15.0" />
@@ -60,7 +65,7 @@
          </font>
       </JFXCheckBox>
       <JFXComboBox fx:id="year" focusColor="WHITE" layoutX="814.0" layoutY="119.0" prefHeight="29.0" prefWidth="176.0" promptText="Select Year" style="-fx-font-size: 15; -fx-font-family: 'Segoe UI', arial; -fx-prompt-text-fill: #fff;" unFocusColor="WHITE" />
-      <Pane layoutX="1.0" layoutY="165.0" prefHeight="63.0" prefWidth="1366.0" style="-fx-background-color: derive(#292222,30%);">
+      <Pane layoutX="1.0" layoutY="165.0" prefHeight="63.0" prefWidth="1366.0" style="-fx-background-color: #363241;">
          <children>
             <JFXButton fx:id="applyfilters" buttonType="RAISED" layoutX="312.0" layoutY="15.0" prefHeight="33.0" prefWidth="160.0" ripplerFill="BLACK" style="-fx-background-color: forestgreen;" text="Apply Filters" textFill="WHITE">
                <font>

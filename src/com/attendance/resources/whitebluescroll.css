@@ -1,6 +1,6 @@
-@import "scrollpane.css";
+
 .scroll-bar {
-	thumb: 8px; 
+    thumb: 8px; 
 	
     thumb_color: blue;
     thumb_hover_color: derive(blue,60%);
@@ -14,5 +14,5 @@
 
     arrow_color: #eee;
     arrow_pressed_color: white;
-	scroll_pane_background_color: #fff;
+    scroll_pane_background_color: #fff;
 }

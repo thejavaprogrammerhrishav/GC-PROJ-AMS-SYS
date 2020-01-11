@@ -61,6 +61,12 @@ public class ExportClassDetailsListController extends AnchorPane {
 
     @FXML
     private TableColumn<ClassDetails, Integer> tyear;
+    
+    @FXML
+    private TableColumn<ClassDetails, String> tcoursetype;
+    
+    @FXML
+    private TableColumn<ClassDetails, String> tpapercode;
 
     @FXML
     private TableColumn<ClassDetails, String> tacadamicyear;
@@ -85,9 +91,6 @@ public class ExportClassDetailsListController extends AnchorPane {
 
     @FXML
     private JFXButton refresh;
-
-    @FXML
-    private JFXButton close;
 
     @FXML
     private JFXButton export2excel;
@@ -145,7 +148,6 @@ public class ExportClassDetailsListController extends AnchorPane {
         initTable();
         initFilters();
 
-        close.setOnAction(e -> ((BorderPane) this.getParent()).setCenter(null));
         refresh.setOnAction(this::populateTable);
         applyfilters.setOnAction(this::filters);
         export2excel.setOnAction(this::export);
@@ -218,6 +220,8 @@ public class ExportClassDetailsListController extends AnchorPane {
         tsemester.setCellValueFactory(new PropertyValueFactory<ClassDetails, String>("semester"));
         tyear.setCellValueFactory(new PropertyValueFactory<ClassDetails, Integer>("year"));
         tacadamicyear.setCellValueFactory(new PropertyValueFactory<ClassDetails, String>("acadamicyear"));
+        tcoursetype.setCellValueFactory(new PropertyValueFactory<ClassDetails, String>("coursetype"));
+        tpapercode.setCellValueFactory(new PropertyValueFactory<ClassDetails, String>("paper"));
     }
 
     private void populateTable(ActionEvent evt) {

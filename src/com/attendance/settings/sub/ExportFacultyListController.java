@@ -119,6 +119,13 @@ public class ExportFacultyListController extends AnchorPane {
                 male.setSelected(false);
             }
         });
+        
+        filterbygender.selectedProperty().addListener((ol,o,n)->{
+            if(!n) {
+                male.setSelected(false);
+                female.setSelected(false);
+            }
+        });
 
         applyfilters.setOnAction(this::apply);
         refresh.setOnAction(this::populate);

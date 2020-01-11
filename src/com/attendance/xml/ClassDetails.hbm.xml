@@ -22,7 +22,7 @@ and open the template in the editor.
         <property column="coursetype" name="coursetype" not-null="true"/>
         
         <many-to-one name="dailyStats" class="com.attendance.studentattendance.model.DailyStats"
-                     column="dailyStatId" unique="true" not-null="true" 
+                     column="dailyStatId" unique="true" not-null="true" lazy = "false"
                      cascade="all" fetch="select"/>
         
         <list name="attendance" cascade="all" fetch="join" lazy="false" table="attendance" catalog="attendance">
