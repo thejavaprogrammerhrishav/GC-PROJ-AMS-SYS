@@ -19,13 +19,13 @@
          <content>
             <TableView fx:id="table" prefHeight="284.0" prefWidth="1596.0" styleClass="mytable">
               <columns>
-                  <TableColumn fx:id="tstudentid1" editable="false" prefWidth="284.0" sortable="false" text="Student Name" />
-                  <TableColumn fx:id="tstudentid11" editable="false" prefWidth="99.0" sortable="false" text="Roll No." />
+                  <TableColumn fx:id="tstudentname" editable="false" prefWidth="284.0" sortable="false" text="Student Name" />
+                  <TableColumn fx:id="troll" editable="false" prefWidth="99.0" sortable="false" text="Roll No." />
                 <TableColumn fx:id="tclassdate" editable="false" prefWidth="230.0" sortable="false" text="Class Date" />
                 <TableColumn fx:id="tclasstime" editable="false" prefWidth="161.0" sortable="false" text="Class Time" />
                   <TableColumn fx:id="tacadamicyear" editable="false" prefWidth="157.0" sortable="false" text="Acadamic Year" />
-                  <TableColumn fx:id="tsemester" editable="false" prefWidth="111.0" sortable="false" text="Semester" />
-                  <TableColumn fx:id="tyear" editable="false" prefWidth="121.0" sortable="false" text="Year" />
+                  <TableColumn fx:id="tsemester" editable="false" prefWidth="121.0" sortable="false" text="Semester" />
+                  <TableColumn fx:id="tyear" editable="false" prefWidth="111.0" sortable="false" text="Year" />
                   <TableColumn fx:id="tstudentid" editable="false" prefWidth="273.0" sortable="false" text="Student Id" />
                   <TableColumn fx:id="tstatus" editable="false" prefWidth="135.0" sortable="false" text="Status" />
               </columns>
@@ -87,11 +87,6 @@
          </font>
       </JFXButton>
       <JFXButton fx:id="refresh" buttonType="RAISED" layoutX="689.0" layoutY="195.0" prefHeight="33.0" prefWidth="160.0" ripplerFill="BLACK" style="-fx-background-color: blue;" text="Refresh" textFill="WHITE">
-         <font>
-            <Font name="Tw Cen MT" size="18.0" />
-         </font>
-      </JFXButton>
-      <JFXButton fx:id="close" buttonType="RAISED" layoutX="883.0" layoutY="195.0" prefHeight="33.0" prefWidth="160.0" ripplerFill="WHITE" style="-fx-background-color: red;" text="Close" textFill="WHITE">
          <font>
             <Font name="Tw Cen MT" size="18.0" />
          </font>

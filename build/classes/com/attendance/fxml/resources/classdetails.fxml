@@ -170,11 +170,6 @@
                   <Font name="Tw Cen MT" size="18.0" />
                </font>
             </JFXButton>
-            <JFXButton fx:id="close" buttonType="RAISED" layoutX="482.0" layoutY="225.0" prefHeight="33.0" prefWidth="160.0" ripplerFill="WHITE" style="-fx-background-color: red;" text="Close" textFill="WHITE">
-               <font>
-                  <Font name="Tw Cen MT" size="18.0" />
-               </font>
-            </JFXButton>
             <JFXCheckBox fx:id="filterbycourse" layoutX="1132.0" layoutY="133.0" text="Filter By Course Type" textFill="WHITE" unCheckedColor="WHITE">
                <font>
                   <Font size="15.0" />

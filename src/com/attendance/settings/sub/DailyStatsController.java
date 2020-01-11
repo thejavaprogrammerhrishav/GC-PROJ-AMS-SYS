@@ -7,16 +7,18 @@ package com.attendance.settings.sub;
 
 import com.attendance.main.Start;
 import com.attendance.student.dao.StudentDao;
+import com.attendance.studentattendance.dao.ClassDetailsDao;
+import com.attendance.studentattendance.model.ClassDetails;
 import com.attendance.studentattendance.model.DailyStats;
 import com.attendance.util.DailyStatsUtilModel;
 import com.attendance.util.Fxml;
-import com.attendance.util.SwitchRoot;
 import com.attendance.util.SystemUtils;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -29,7 +31,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 
 /**
  *
@@ -98,9 +102,6 @@ public class DailyStatsController extends AnchorPane {
     private JFXButton refresh;
 
     @FXML
-    private JFXButton close;
-
-    @FXML
     private JFXCheckBox filterbyacadamicyear;
 
     @FXML
@@ -118,6 +119,7 @@ public class DailyStatsController extends AnchorPane {
     private FXMLLoader fxml;
 
     private StudentDao sdao;
+    private ClassDetailsDao cdao;
 
     private Parent parent;
 
@@ -137,6 +139,7 @@ public class DailyStatsController extends AnchorPane {
     @FXML
     private void initialize() {
         department.setText(SystemUtils.getDepartment());
+        cdao = (ClassDetailsDao) Start.app.getBean("classdetails");
         sdao = (StudentDao) Start.app.getBean("studentregistration");
         initFilters();
         initTable();
@@ -144,7 +147,6 @@ public class DailyStatsController extends AnchorPane {
 
         applyfilters.setOnAction(this::applyfilters);
         refresh.setOnAction(this::populateTable);
-        close.setOnAction(e -> SwitchRoot.switchRoot(Start.st, parent));
     }
 
     private void initFilters() {
@@ -194,40 +196,40 @@ public class DailyStatsController extends AnchorPane {
     }
 
     private void populateTable(ActionEvent evt) {
-        List<DailyStats> list = null;
-        List<DailyStatsUtilModel> nlist = list.stream().map(a -> {
+        Map<String, DailyStats> list = cdao.findByDepartment(SystemUtils.getDepartment()).stream().collect(Collectors.toMap(ClassDetails::getClassId, ClassDetails::getDailyStats));
+        List<DailyStatsUtilModel> nlist = list.entrySet().stream().map(a -> {
             DailyStatsUtilModel at = new DailyStatsUtilModel();
-            at.setTotalStudent(a.getTotalStudent());
-            at.setTotalPresent(a.getTotalPresent());
-            at.setTotalAbsent(a.getTotalAbsent());
+            at.setTotalStudent(a.getValue().getTotalStudent());
+            at.setTotalPresent(a.getValue().getTotalPresent());
+            at.setTotalAbsent(a.getValue().getTotalAbsent());
 
-            at.setPresentPercentage(a.getPresentPercentage());
-            at.setAbsentPercentage(a.getAbsentPercentage());
+            at.setPresentPercentage(a.getValue().getPresentPercentage());
+            at.setAbsentPercentage(a.getValue().getAbsentPercentage());
 
-//            String s = a.getClassId();
-//            String[] sa = s.split("/");
-//            String[] ss = sa[1].split("@");
-//            at.setDate(ss[0]);
-//
-//            ss = ss[1].split("#");
-//            at.setTime(ss[0]);
-//
-//            ss = ss[1].split("__");
-//            at.setAcadamicyear(ss[0]);
-//
-//            ss = ss[1].split("_");
-//            at.setSemester(ss[0] + " Semester");
-//            System.out.println(ss[1]);
-//            ss = ss[1].split("&");
-//            System.out.println(ss.length);
-//            at.setYear(ss[0]);
-//
-//            if (a.getClassId().charAt(a.getClassId().length() - 1) == 'H') {
-//                at.setCoursetype("Honours");
-//            }
-//            if (a.getClassId().charAt(a.getClassId().length() - 1) == 'P') {
-//                at.setCoursetype("Pass");
-//            }
+            String s = a.getKey();
+            String[] sa = s.split("/");
+            String[] ss = sa[1].split("@");
+            at.setDate(ss[0]);
+
+            ss = ss[1].split("#");
+            at.setTime(ss[0]);
+
+            ss = ss[1].split("__");
+            at.setAcadamicyear(ss[0]);
+
+            ss = ss[1].split("_");
+            at.setSemester(ss[0] + " Semester");
+            System.out.println(ss[1]);
+            ss = ss[1].split("&");
+            System.out.println(ss.length);
+            at.setYear(ss[0]);
+
+            if (a.getKey().charAt(a.getKey().length() - 1) == 'H') {
+                at.setCoursetype("Honours");
+            }
+            if (a.getKey().charAt(a.getKey().length() - 1) == 'P') {
+                at.setCoursetype("Pass");
+            }
 
             return at;
         }).collect(Collectors.toList());
@@ -235,52 +237,17 @@ public class DailyStatsController extends AnchorPane {
     }
 
     private void applyfilters(ActionEvent evt) {
-        List<DailyStats> list = null;
-        List<DailyStatsUtilModel> nlist = list.stream().map(a -> {
-            DailyStatsUtilModel at = new DailyStatsUtilModel();
-            at.setTotalStudent(a.getTotalStudent());
-            at.setTotalPresent(a.getTotalPresent());
-            at.setTotalAbsent(a.getTotalAbsent());
-
-            at.setPresentPercentage(at.getPresentPercentage());
-            at.setAbsentPercentage(a.getAbsentPercentage());
-
-//            String s = a.getClassId();
-//            String[] sa = s.split("/");
-//            String[] ss = sa[1].split("@");
-//            at.setDate(ss[0]);
-//
-//            ss = ss[1].split("#");
-//            at.setTime(ss[0]);
-//
-//            ss = ss[1].split("__");
-//            at.setAcadamicyear(ss[0]);
-//
-//            ss = ss[1].split("_");
-//            at.setSemester(ss[0] + " Semester");
-//            ss = ss[1].split("&");
-//            at.setYear(ss[0]);
-//
-//            if (a.getClassId().charAt(a.getClassId().length() - 1) == 'H') {
-//                at.setCoursetype("Honours");
-//            }
-//            if (a.getClassId().charAt(a.getClassId().length() - 1) == 'P') {
-//                at.setCoursetype("Pass");
-//            }
-
-            return at;
-        }).collect(Collectors.toList());
+         DateTimeFormatter dtf = DateTimeFormat.forPattern("dd-MM-yyyy");
+        populateTable(evt);
+        List<DailyStatsUtilModel> nlist = table.getItems();
 
         if (filterbyacadamicyear.isSelected()) {
             nlist = nlist.stream().filter(s -> s.getAcadamicyear().equals(acadamicyear.getSelectionModel().getSelectedItem())).collect(Collectors.toList());
         }
         if (filterbymonth.isSelected()) {
-            int mm = month.getSelectionModel().getSelectedIndex() + 1;
-            if (mm < 10) {
-                nlist = nlist.stream().filter(s -> s.getDate().contains("/0" + mm + "/")).collect(Collectors.toList());
-            } else {
-                nlist = nlist.stream().filter(s -> s.getDate().contains("/" + mm + "/")).collect(Collectors.toList());
-            }
+           int mm = month.getSelectionModel().getSelectedIndex() + 1;
+
+            nlist = nlist.stream().filter(f -> DateTime.parse(f.getDate(), dtf).getMonthOfYear() == mm).collect(Collectors.toList());
         }
         if (filterbysemester.isSelected()) {
             nlist = nlist.stream().filter(s -> s.getSemester().equals(semester.getSelectionModel().getSelectedItem())).collect(Collectors.toList());

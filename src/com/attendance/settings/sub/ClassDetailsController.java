@@ -89,9 +89,6 @@ public class ClassDetailsController extends ScrollPane {
     private JFXButton refresh;
 
     @FXML
-    private JFXButton close;
-
-    @FXML
     private JFXCheckBox filterbypaper;
 
     @FXML
@@ -185,7 +182,6 @@ public class ClassDetailsController extends ScrollPane {
         initTable();
         initFilters();
 
-        close.setOnAction(e -> SwitchRoot.switchRoot(Start.st, parent));
         refresh.setOnAction(this::populateTable);
         applyfilters.setOnAction(this::filters);
 
@@ -260,10 +256,12 @@ public class ClassDetailsController extends ScrollPane {
                 honours.setSelected(false);
             }
         });
-        semester.getSelectionModel().selectedItemProperty().addListener((ol, o, n) -> {
-            String sem = n.replace(" Semester", "");
-            List<Paper> papers = paperdao.findBySemester(sem);
-            paper.getItems().setAll(papers.stream().map(p -> p.getPaperCode()).collect(Collectors.toList()));
+         semester.getSelectionModel().selectedItemProperty().addListener((ol, o, n) -> {
+            if (n != null || !n.isEmpty()) {
+                List<Paper> paperlist = paperdao.findByDepartment(SystemUtils.getDepartment());
+                List<String> list = paperlist.stream().filter(f->f.getSemester().equals(n.replace(" Semester", ""))).map(p -> p.getPaperCode()).collect(Collectors.toList());
+                paper.getItems().setAll(list);
+            }
         });
     }
 

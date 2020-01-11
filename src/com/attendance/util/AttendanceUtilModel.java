@@ -5,6 +5,8 @@
  */
 package com.attendance.util;
 
+import com.attendance.student.model.Student;
+
 /**
  *
  * @author Programmer Hrishav
@@ -18,11 +20,13 @@ public class AttendanceUtilModel {
     private String status;
     private String acadamicyear;
     private String coursetype;
+    private int roll;
+    private String name;
 
     public AttendanceUtilModel() {
     }
 
-    public AttendanceUtilModel(String date, String time, String semester, String year, String studentId, String status, String acadamicyear, String coursetype) {
+    public AttendanceUtilModel(String date, String time, String semester, String year, String studentId, String status, String acadamicyear, String coursetype, int roll, String name) {
         this.date = date;
         this.time = time;
         this.semester = semester;
@@ -31,6 +35,8 @@ public class AttendanceUtilModel {
         this.status = status;
         this.acadamicyear = acadamicyear;
         this.coursetype = coursetype;
+        this.roll = roll;
+        this.name = name;
     }
 
     public String getDate() {
@@ -95,6 +101,22 @@ public class AttendanceUtilModel {
 
     public String getCoursetype() {
         return coursetype;
+    }
+
+    public void setRoll(int roll) {
+        this.roll = roll;
+    }
+
+    public int getRoll() {
+        return roll;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
     }
     
     

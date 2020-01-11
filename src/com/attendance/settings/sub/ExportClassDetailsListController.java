@@ -61,10 +61,10 @@ public class ExportClassDetailsListController extends AnchorPane {
 
     @FXML
     private TableColumn<ClassDetails, Integer> tyear;
-    
+
     @FXML
     private TableColumn<ClassDetails, String> tcoursetype;
-    
+
     @FXML
     private TableColumn<ClassDetails, String> tpapercode;
 
@@ -180,7 +180,7 @@ public class ExportClassDetailsListController extends AnchorPane {
         List<String> years = studentdao.get("select distinct(year) from student order by year", String.class);
         year.getItems().setAll(years);
 
-          List<String> HODname = Utils.util.getHODUsers(SystemUtils.getDepartment()).stream().map(m -> m.getDetails().getName()).collect(Collectors.toList());
+        List<String> HODname = Utils.util.getHODUsers(SystemUtils.getDepartment()).stream().map(m -> m.getDetails().getName()).collect(Collectors.toList());
         List<String> faculties = Utils.util.getFacultyUsers(SystemUtils.getDepartment()).stream().map(m -> m.getDetails().getName()).collect(Collectors.toList());
 
         List<String> names = Stream.concat(HODname.stream(), faculties.stream()).collect(Collectors.toList());
@@ -207,9 +207,11 @@ public class ExportClassDetailsListController extends AnchorPane {
         });
 
         semester.getSelectionModel().selectedItemProperty().addListener((ol, o, n) -> {
-            String sem = n.replace(" Semester", "");
-            List<Paper> papers = paperdao.findBySemester(sem);
-            paper.getItems().setAll(papers.stream().map(p -> p.getPaperCode()).collect(Collectors.toList()));
+            if (n != null || !n.isEmpty()) {
+                List<Paper> paperlist = paperdao.findByDepartment(SystemUtils.getDepartment());
+                List<String> list = paperlist.stream().filter(f -> f.getSemester().equals(n.replace(" Semester", ""))).map(p -> p.getPaperCode()).collect(Collectors.toList());
+                paper.getItems().setAll(list);
+            }
         });
     }
 

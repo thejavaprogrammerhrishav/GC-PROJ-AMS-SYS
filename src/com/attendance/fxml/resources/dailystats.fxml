@@ -18,15 +18,15 @@
          <content>
             <TableView fx:id="table" prefHeight="312.0" prefWidth="1431.0" styleClass="mytable">
               <columns>
-                <TableColumn fx:id="tclassdate" editable="false" prefWidth="200.00003051757812" sortable="false" text="Class Date" />
-                <TableColumn fx:id="tclasstime" editable="false" prefWidth="116.0" sortable="false" text="Class Time" />
-                  <TableColumn fx:id="tcoursetype" editable="false" prefWidth="130.0" sortable="false" text="Course Type" />
-                  <TableColumn fx:id="tsemester" editable="false" prefWidth="105.0" sortable="false" text="Semester" />
-                  <TableColumn fx:id="tyear" editable="false" prefWidth="71.0" sortable="false" text="Year" />
-                  <TableColumn fx:id="tstudents" editable="false" prefWidth="143.0" sortable="false" text="Total Students" />
-                  <TableColumn fx:id="tpresent" editable="false" prefWidth="132.0" sortable="false" text="Total Present" />
-                  <TableColumn fx:id="tabsent" editable="false" prefWidth="132.0" sortable="false" text="Total Absent" />
-                  <TableColumn fx:id="tpresentper" editable="false" prefWidth="124.0" sortable="false" text="Present (%)" />
+                <TableColumn fx:id="tclassdate" editable="false" prefWidth="185.00003051757812" sortable="false" text="Class Date" />
+                <TableColumn fx:id="tclasstime" editable="false" prefWidth="113.0" sortable="false" text="Class Time" />
+                  <TableColumn fx:id="tcoursetype" editable="false" prefWidth="127.0" sortable="false" text="Course Type" />
+                  <TableColumn fx:id="tsemester" editable="false" prefWidth="135.0" sortable="false" text="Semester" />
+                  <TableColumn fx:id="tyear" editable="false" prefWidth="72.0" sortable="false" text="Year" />
+                  <TableColumn fx:id="tstudents" editable="false" prefWidth="142.0" sortable="false" text="Total Students" />
+                  <TableColumn fx:id="tpresent" editable="false" prefWidth="133.0" sortable="false" text="Total Present" />
+                  <TableColumn fx:id="tabsent" editable="false" prefWidth="128.0" sortable="false" text="Total Absent" />
+                  <TableColumn fx:id="tpresentper" editable="false" prefWidth="119.0" sortable="false" text="Present (%)" />
                   <TableColumn fx:id="tabsentper" editable="false" minWidth="2.0" prefWidth="117.0" sortable="false" text="Absent (%)" />
                   <TableColumn fx:id="tacadamicyear" editable="false" minWidth="0.0" prefWidth="149.0" sortable="false" text="Acadamic Year" />
               </columns>
@@ -73,11 +73,6 @@
                </font>
             </JFXButton>
             <JFXButton fx:id="refresh" buttonType="RAISED" layoutX="594.0" layoutY="15.0" prefHeight="33.0" prefWidth="160.0" ripplerFill="BLACK" style="-fx-background-color: blue;" text="Refresh" textFill="WHITE">
-               <font>
-                  <Font name="Tw Cen MT" size="18.0" />
-               </font>
-            </JFXButton>
-            <JFXButton fx:id="close" buttonType="RAISED" layoutX="895.0" layoutY="15.0" prefHeight="33.0" prefWidth="160.0" ripplerFill="WHITE" style="-fx-background-color: red;" text="Close" textFill="WHITE">
                <font>
                   <Font name="Tw Cen MT" size="18.0" />
                </font>

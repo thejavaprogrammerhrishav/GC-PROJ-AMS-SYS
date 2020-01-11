@@ -7,17 +7,26 @@ package com.attendance.settings.sub;
 
 import com.attendance.main.Start;
 import com.attendance.student.dao.StudentDao;
+import com.attendance.student.model.Student;
+import com.attendance.studentattendance.dao.ClassDetailsDao;
 import com.attendance.studentattendance.model.Attendance;
+import com.attendance.studentattendance.model.ClassDetails;
 import com.attendance.util.AttendanceUtilModel;
 import com.attendance.util.Fxml;
+import com.attendance.util.SystemUtils;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -27,6 +36,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 
 /**
  *
@@ -36,6 +48,12 @@ public class AttendanceController extends AnchorPane {
 
     @FXML
     private TableView<AttendanceUtilModel> table;
+
+    @FXML
+    private TableColumn<AttendanceUtilModel, String> tstudentname;
+
+    @FXML
+    private TableColumn<AttendanceUtilModel, Integer> troll;
 
     @FXML
     private TableColumn<AttendanceUtilModel, String> tclassdate;
@@ -89,9 +107,6 @@ public class AttendanceController extends AnchorPane {
     private JFXButton refresh;
 
     @FXML
-    private JFXButton close;
-
-    @FXML
     private JFXCheckBox filterbyid;
 
     @FXML
@@ -112,6 +127,7 @@ public class AttendanceController extends AnchorPane {
     private StudentDao sdao;
 
     private FXMLLoader fxml;
+    private ClassDetailsDao cdao;
 
     public AttendanceController() {
         fxml = Fxml.getAttendanceFXML();
@@ -128,6 +144,7 @@ public class AttendanceController extends AnchorPane {
     @FXML
     private void initialize() {
         sdao = (StudentDao) Start.app.getBean("studentregistration");
+        cdao = (ClassDetailsDao) Start.app.getBean("classdetails");
 
         initFilters();
         initTable();
@@ -135,7 +152,6 @@ public class AttendanceController extends AnchorPane {
 
         applyfilters.setOnAction(this::applyfilters);
         refresh.setOnAction(this::populateTable);
-        close.setOnAction(e -> ((BorderPane) this.getParent()).setCenter(null));
     }
 
     private void initFilters() {
@@ -180,32 +196,52 @@ public class AttendanceController extends AnchorPane {
         tstudentid.setCellValueFactory(new PropertyValueFactory<AttendanceUtilModel, String>("studentId"));
         tstatus.setCellValueFactory(new PropertyValueFactory<AttendanceUtilModel, String>("status"));
         tacadamicyear.setCellValueFactory(new PropertyValueFactory<AttendanceUtilModel, String>("acadamicyear"));
+        tstudentname.setCellValueFactory(new PropertyValueFactory<AttendanceUtilModel, String>("name"));
+        troll.setCellValueFactory(new PropertyValueFactory<AttendanceUtilModel, Integer>("roll"));
     }
 
     private void populateTable(ActionEvent evt) {
-        List<Attendance> list = null;
+        int count = 0,x=0;
+        List<Data> list = new ArrayList<>();
+        List<ClassDetails> all = cdao.findByDepartment(SystemUtils.getDepartment());
+        for (ClassDetails c : all) {
+            for (Attendance a : c.getAttendance()) {
+                list.add(new Data(c.getClassId(), a));
+            }
+        }
+        List<Student> student = sdao.findByDepartment(SystemUtils.getDepartment());
+        Map<String, Student> students = student.parallelStream().collect(Collectors.toMap(Student::getId, Function.identity()));
         List<AttendanceUtilModel> nlist = list.stream().map(a -> {
             AttendanceUtilModel at = new AttendanceUtilModel();
-            at.setStatus(a.getStatus());
-            at.setStudentId(a.getStudentId());
+            Student sss = students.get(a.getAttendance().getStudentId());
+            at.setStatus(a.getAttendance().getStatus());
+            at.setStudentId(a.getAttendance().getStudentId());
+            at.setName(sss.getName());
+            at.setRoll(sss.getRollno());
 
-//            String s = a.getClassId();
-//            String[] sa = s.split("/");
-//            String[] ss = sa[1].split("@");
-//            at.setDate(ss[0]);
-//
-//            ss = ss[1].split("#");
-//            at.setTime(ss[0]);
-//
-//            ss = ss[1].split("__");
-//            at.setAcadamicyear(ss[0]);
-//
-//            ss = ss[1].split("_");
-//            at.setSemester(ss[0] + " Semester");
-//            System.out.println(ss[1]);
-//            ss = ss[1].split("&");
-//            System.out.println(ss.length);
-//            at.setYear(ss[0]);
+            String s = a.getClassid();
+            String[] ss = s.split("@");
+            at.setDate(ss[0].split("/")[1]);
+
+            ss = ss[1].split("#");
+            at.setTime(ss[0]);
+
+            ss = ss[1].split("__");
+            at.setAcadamicyear(ss[0]);
+   
+            ss = ss[1].split("_");
+            at.setSemester(ss[0] + " Semester");
+
+            ss = ss[1].split("&");
+            at.setYear(ss[0]);
+
+            if (a.getClassid().charAt(a.getClassid().length() - 1) == 'H') {
+                at.setCoursetype("Honours");
+            }
+
+            if (a.getClassid().charAt(a.getClassid().length() - 1) == 'P') {
+                at.setCoursetype("Pass");
+            }
 
             return at;
         }).collect(Collectors.toList());
@@ -213,37 +249,9 @@ public class AttendanceController extends AnchorPane {
     }
 
     private void applyfilters(ActionEvent evt) {
-        List<Attendance> list = null;
-        List<AttendanceUtilModel> nlist = list.stream().map(a -> {
-            AttendanceUtilModel at = new AttendanceUtilModel();
-            at.setStatus(a.getStatus());
-            at.setStudentId(a.getStudentId());
-
-//            String s = a.getClassId();
-//            String[] sa = s.split("/");
-//            String[] ss = sa[1].split("@");
-//            at.setDate(ss[0]);
-//
-//            ss = ss[1].split("#");
-//            at.setTime(ss[0]);
-//
-//            ss = ss[1].split("__");
-//            at.setAcadamicyear(ss[0]);
-//
-//            ss = ss[1].split("_");
-//            at.setSemester(ss[0] + " Semester");
-//            ss = ss[1].split("&");
-//            at.setYear(ss[0]);
-//
-//            if (a.getClassId().charAt(a.getClassId().length() - 1) == 'H') {
-//                at.setCoursetype("Honours");
-//            }
-//            if (a.getClassId().charAt(a.getClassId().length() - 1) == 'P') {
-//                at.setCoursetype("Pass");
-//            }
-
-            return at;
-        }).collect(Collectors.toList());
+        DateTimeFormatter dtf = DateTimeFormat.forPattern("dd-MM-yyyy");
+        populateTable(evt);
+        List<AttendanceUtilModel> nlist = table.getItems();
 
         if (filterbyacadamicyear.isSelected()) {
             nlist = nlist.stream().filter(s -> s.getAcadamicyear().equals(acadamicyear.getSelectionModel().getSelectedItem())).collect(Collectors.toList());
@@ -253,11 +261,8 @@ public class AttendanceController extends AnchorPane {
         }
         if (filterbymonth.isSelected()) {
             int mm = month.getSelectionModel().getSelectedIndex() + 1;
-            if (mm < 10) {
-                nlist = nlist.stream().filter(s -> s.getDate().contains("/0" + mm + "/")).collect(Collectors.toList());
-            } else {
-                nlist = nlist.stream().filter(s -> s.getDate().contains("/" + mm + "/")).collect(Collectors.toList());
-            }
+
+            nlist = nlist.stream().filter(f -> DateTime.parse(f.getDate(), dtf).getMonthOfYear() == mm).collect(Collectors.toList());
         }
         if (filterbysemester.isSelected()) {
             nlist = nlist.stream().filter(s -> s.getSemester().equals(semester.getSelectionModel().getSelectedItem())).collect(Collectors.toList());
@@ -274,5 +279,32 @@ public class AttendanceController extends AnchorPane {
         }
 
         table.getItems().setAll(nlist);
+    }
+    
+    private class Data{
+        private String classid;
+        private Attendance attendance;
+
+        public Data(String classid, Attendance attendance) {
+            this.classid = classid;
+            this.attendance = attendance;
+        }
+
+        public void setAttendance(Attendance attendance) {
+            this.attendance = attendance;
+        }
+
+        public void setClassid(String classid) {
+            this.classid = classid;
+        }
+
+        public Attendance getAttendance() {
+            return attendance;
+        }
+
+        public String getClassid() {
+            return classid;
+        }
+        
     }
 }
