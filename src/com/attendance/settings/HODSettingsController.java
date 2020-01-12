@@ -37,9 +37,6 @@ public class HODSettingsController extends AnchorPane {
     private JFXButton importexport;
 
     @FXML
-    private JFXButton attendance;
-
-    @FXML
     private JFXButton reports;
 
     @FXML
@@ -69,7 +66,6 @@ public class HODSettingsController extends AnchorPane {
 
         classattendance.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getSettingsClassAndDetailsRoot(Start.st.getScene().getRoot())));
         importexport.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getSettingsExportRoot(Start.st.getScene().getRoot())));
-        attendance.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getUserLoginActivitySettingsRoot(Start.st.getScene().getRoot())));
         
         notes.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getNotesSettingsRoot(Start.st.getScene().getRoot())));
         reports.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getDatabaseServerRoot(Start.st.getScene().getRoot())));

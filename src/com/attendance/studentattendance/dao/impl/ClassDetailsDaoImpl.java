@@ -173,4 +173,18 @@ public class ClassDetailsDaoImpl implements ClassDetailsDao {
     public List<ClassDetails> findAll(String department, String acadamicYear, String semester, int year, String papercode, String coursetype) {
         return (List<ClassDetails>) hibernateTemplate.find("from ClassDetails where department=? and acadamicyear=? and semester=? and year=? and paper=? and coursetype=?", department,acadamicYear,semester,year,papercode,coursetype);
     }
+
+    @Override
+    @Transactional
+    public boolean updateClassId(String oldId, String newId) {
+        jdbcTemplate.update("set foreign_key_checks=0");
+        int p =jdbcTemplate.update("update classdetails set classId ='"+newId+"' where classId ='"+oldId+"'");
+        int c =jdbcTemplate.update("update attendance set classId ='"+newId+"' where classId ='"+oldId+"'");
+        jdbcTemplate.update("set foreign_key_checks=1");
+        System.out.println("p="+p);
+        System.out.println("c="+c);
+        return (p==1) && (c>0);
+    }
+    
+    
 }

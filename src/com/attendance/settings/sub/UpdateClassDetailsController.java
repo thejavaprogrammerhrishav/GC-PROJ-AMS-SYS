@@ -304,9 +304,11 @@ public class UpdateClassDetailsController extends ScrollPane {
         });
 
         semester.getSelectionModel().selectedItemProperty().addListener((ol, o, n) -> {
-            String sem = n.replace(" Semester", "");
-            List<Paper> papers = pdao.findBySemester(sem);
-            paper.getItems().setAll(papers.stream().map(p -> p.getPaperCode()).collect(Collectors.toList()));
+            if (n != null || !n.isEmpty()) {
+                List<Paper> paperlist = pdao.findByDepartment(SystemUtils.getDepartment());
+                List<String> list = paperlist.stream().filter(f -> f.getSemester().equals(n.replace(" Semester", ""))).map(p -> p.getPaperCode()).collect(Collectors.toList());
+                paper.getItems().setAll(list);
+            }
         });
 
         cdsemester.getSelectionModel().selectedItemProperty().addListener((ol, o, n) -> {
@@ -414,6 +416,8 @@ public class UpdateClassDetailsController extends ScrollPane {
                 cd.setCoursetype("Pass");
             }
 
+            cd.setDailyStats(details.getDailyStats());
+            cd.setAttendance(details.getAttendance());
             cd.setClassId(details.getClassId());
 
             boolean b1 = cdao.update(cd);
@@ -422,7 +426,7 @@ public class UpdateClassDetailsController extends ScrollPane {
                     + "#" + cdacadamicyear.getSelectionModel().getSelectedItem() + "__" + cdsemester.getSelectionModel().getSelectedItem().replace(" Semester", "") + "_" + cdyear.getSelectionModel().getSelectedItem() + "&" + cd.getCoursetype().charAt(0);
             cd.setClassId(id);
 
-            boolean b2=false;// = cdao.updateClassId(cd.getClassId(), details.getClassId());
+            boolean b2 = cdao.updateClassId(details.getClassId(),cd.getClassId());
             if (b1 && b2) {
                 Alert al = new Alert(AlertType.INFORMATION);
                 al.initModality(Modality.WINDOW_MODAL);

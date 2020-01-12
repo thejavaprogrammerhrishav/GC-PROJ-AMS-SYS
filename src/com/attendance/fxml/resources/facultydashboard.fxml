@@ -107,12 +107,12 @@
                   <FontAwesomeIconView fill="WHITE" glyphName="STICKY_NOTE_ALT" size="1.5em" />
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="settings" graphicTextGap="16.0" layoutX="25.0" layoutY="693.0" prefHeight="40.0" prefWidth="260.0" style="-fx-alignment: left;" text="Settings" textFill="WHITE">
+            <JFXButton fx:id="export" graphicTextGap="16.0" layoutX="25.0" layoutY="693.0" prefHeight="40.0" prefWidth="260.0" style="-fx-alignment: left;" text="Export List" textFill="WHITE">
                <font>
                   <Font name="Tw Cen MT" size="18.0" />
                </font>
                <graphic>
-                  <FontAwesomeIconView fill="WHITE" glyphName="COG" size="1.5em" />
+                  <FontAwesomeIconView fill="WHITE" glyphName="DOWNLOAD" size="1.5em" />
                </graphic>
             </JFXButton>
             <JFXButton fx:id="studentattendance" graphicTextGap="16.0" layoutX="25.0" layoutY="506.0" prefHeight="40.0" prefWidth="260.0" style="-fx-alignment: left;" text="Student Attendance" textFill="WHITE">

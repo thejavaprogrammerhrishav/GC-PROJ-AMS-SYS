@@ -61,4 +61,6 @@ public interface ClassDetailsDao {
     public abstract List<ClassDetails> findByFacultyAndDepartmentAndCourseTypeAndAcadamicAndYear(String faculty, String department, String courseType, String acadamicYear, int year);
 
     public abstract List<ClassDetails> findAll(String department,String acadamicYear,String semester,int year,String papercode,String coursetype);
+
+    public abstract boolean updateClassId(String oldId,String newId);
 }
