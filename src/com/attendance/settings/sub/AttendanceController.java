@@ -13,6 +13,8 @@ import com.attendance.studentattendance.model.Attendance;
 import com.attendance.studentattendance.model.ClassDetails;
 import com.attendance.util.AttendanceUtilModel;
 import com.attendance.util.Fxml;
+import com.attendance.util.RootFactory;
+import com.attendance.util.SwitchRoot;
 import com.attendance.util.SystemUtils;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
@@ -30,6 +32,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -105,6 +108,9 @@ public class AttendanceController extends AnchorPane {
 
     @FXML
     private JFXButton refresh;
+    
+    @FXML
+    private JFXButton close;
 
     @FXML
     private JFXCheckBox filterbyid;
@@ -129,7 +135,10 @@ public class AttendanceController extends AnchorPane {
     private FXMLLoader fxml;
     private ClassDetailsDao cdao;
 
-    public AttendanceController() {
+    private Parent parent;
+
+    public AttendanceController(Parent parent) {
+        this.parent = parent;
         fxml = Fxml.getAttendanceFXML();
         fxml.setRoot(this);
         fxml.setController(this);
@@ -152,6 +161,7 @@ public class AttendanceController extends AnchorPane {
 
         applyfilters.setOnAction(this::applyfilters);
         refresh.setOnAction(this::populateTable);
+        close.setOnAction(e->SwitchRoot.switchRoot(Start.st, parent));
     }
 
     private void initFilters() {

@@ -167,7 +167,7 @@ public class SecurityQuestionController extends AnchorPane {
     }
 
     private List<String> getQuestion3() {
-        return Arrays.asList("Q41) How many number of districts are there in your state?",
+        return Arrays.asList("How many number of districts are there in your state?",
                 " How many number of articles are there in Indian constitution?",
                 " Who is your favourate TV anchor/host?",
                 " Who is your favourate news reporter?",
@@ -202,7 +202,7 @@ public class SecurityQuestionController extends AnchorPane {
     }
     
     private void update(ActionEvent event){
-        SecurityQuestion question=new SecurityQuestion();
+        SecurityQuestion question=SystemUtils.getCurrentUser().getSecurityquestion();
         question.setQuestion1(question1.getSelectionModel().getSelectedItem());
         question.setAnswer1(answer1.getText());
         

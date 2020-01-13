@@ -220,6 +220,11 @@
                   <Font name="Segoe UI" size="14.0" />
                </font>
             </TextField>
+            <JFXButton fx:id="close" buttonType="RAISED" layoutX="972.0" layoutY="225.0" prefHeight="33.0" prefWidth="140.0" ripplerFill="BLACK" style="-fx-background-color: red;" text="Close" textFill="WHITE">
+               <font>
+                  <Font name="Tw Cen MT" size="18.0" />
+               </font>
+            </JFXButton>
          </children>
       </AnchorPane>
    </content>

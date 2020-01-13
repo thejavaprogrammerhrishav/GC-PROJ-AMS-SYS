@@ -170,8 +170,8 @@ public class RootFactory {
         return new UpdateClassDetailsController();
     }
 
-    public static Parent getAttendanceRoot() {
-        return new AttendanceController();
+    public static Parent getAttendanceRoot(Parent parent) {
+        return new AttendanceController(parent);
     }
 
     public static Parent getDailyStatsRoot(Parent parent) {

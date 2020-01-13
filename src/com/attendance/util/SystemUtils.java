@@ -17,6 +17,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.sql.Blob;
 import java.util.HashMap;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.embed.swing.SwingFXUtils;
@@ -41,6 +43,8 @@ public class SystemUtils {
     private static HashMap<String, String> deptcodes;
 
     private static User currentUser;
+    
+    private static ExecutorService service;
 
     private static byte[] accountImage;
 
@@ -99,6 +103,8 @@ public class SystemUtils {
         ICONS.put("pdf", new Image(SystemUtils.class.getResourceAsStream("/com/attendance/resources/pdf.png")));
         ICONS.put("doc", new Image(SystemUtils.class.getResourceAsStream("/com/attendance/resources/doc.png")));
         ICONS.put("noroutine",new Image(SystemUtils.class.getResourceAsStream("/com/attendance/resources/noroutinefound.png")));
+        
+        service = Executors.newSingleThreadExecutor();
     }
 
     public static void setActivity(LoginActivity activity) {
@@ -146,6 +152,10 @@ public class SystemUtils {
             Logger.getLogger(SystemUtils.class.getName()).log(Level.SEVERE, null, ex);
         }
         return bout.toByteArray();
+    }
+    
+    public static ExecutorService getService(){
+        return service;
     }
 
 }

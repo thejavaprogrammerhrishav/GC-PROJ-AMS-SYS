@@ -12,6 +12,7 @@ import com.attendance.studentattendance.model.ClassDetails;
 import com.attendance.studentattendance.model.DailyStats;
 import com.attendance.util.DailyStatsUtilModel;
 import com.attendance.util.Fxml;
+import com.attendance.util.SwitchRoot;
 import com.attendance.util.SystemUtils;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
@@ -100,6 +101,9 @@ public class DailyStatsController extends AnchorPane {
 
     @FXML
     private JFXButton refresh;
+    
+    @FXML
+    private JFXButton close;
 
     @FXML
     private JFXCheckBox filterbyacadamicyear;
@@ -147,6 +151,7 @@ public class DailyStatsController extends AnchorPane {
 
         applyfilters.setOnAction(this::applyfilters);
         refresh.setOnAction(this::populateTable);
+        close.setOnAction(e->SwitchRoot.switchRoot(Start.st, parent));
     }
 
     private void initFilters() {

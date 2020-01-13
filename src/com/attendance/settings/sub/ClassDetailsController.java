@@ -87,6 +87,9 @@ public class ClassDetailsController extends ScrollPane {
 
     @FXML
     private JFXButton refresh;
+    
+    @FXML
+    private JFXButton close;
 
     @FXML
     private JFXCheckBox filterbypaper;
@@ -179,6 +182,7 @@ public class ClassDetailsController extends ScrollPane {
         cdao = (ClassDetailsDao) Start.app.getBean("classdetails");
         studentdao = (StudentDao) Start.app.getBean("studentregistration");
         dao = (Login) Start.app.getBean("userlogin");
+        close.setOnAction(e->SwitchRoot.switchRoot(Start.st, parent));
         initTable();
         initFilters();
 

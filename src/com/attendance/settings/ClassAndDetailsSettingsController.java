@@ -74,7 +74,7 @@ public class ClassAndDetailsSettingsController extends AnchorPane {
         close.setOnAction(e -> SwitchRoot.switchRoot(Start.st, parent));
         classdetails.setOnAction(e->pane.setCenter(new ClassDetailsController(Start.st.getScene().getRoot(),"N/A")));
         updateclassdetails.setOnAction(e->pane.setCenter(new UpdateClassDetailsController()));
-        attendance.setOnAction(e->pane.setCenter(new AttendanceController()));
+        attendance.setOnAction(e->pane.setCenter(new AttendanceController(Start.st.getScene().getRoot())));
         dailyattendancestats.setOnAction(e->pane.setCenter(new DailyStatsController(Start.st.getScene().getRoot())));
     }
 

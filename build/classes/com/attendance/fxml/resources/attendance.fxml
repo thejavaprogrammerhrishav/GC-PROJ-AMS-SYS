@@ -97,6 +97,11 @@
          </font>
       </JFXCheckBox>
       <JFXComboBox fx:id="coursetype" layoutX="685.0" layoutY="123.0" prefHeight="29.0" prefWidth="149.0" promptText="Select Course type" style="-fx-font-size: 15; -fx-font-family: 'Segoe UI', arial; -fx-prompt-text-fill: #fff;" />
+      <JFXButton fx:id="close" buttonType="RAISED" layoutX="1028.0" layoutY="195.0" prefHeight="33.0" prefWidth="140.0" ripplerFill="BLACK" style="-fx-background-color: red;" text="Close" textFill="WHITE">
+         <font>
+            <Font name="Tw Cen MT" size="18.0" />
+         </font>
+      </JFXButton>
    </children>
    <stylesheets>
       <URL value="@../../resources/table.css" />
