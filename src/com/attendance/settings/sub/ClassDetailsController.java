@@ -20,11 +20,16 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -87,7 +92,7 @@ public class ClassDetailsController extends ScrollPane {
 
     @FXML
     private JFXButton refresh;
-    
+
     @FXML
     private JFXButton close;
 
@@ -182,7 +187,7 @@ public class ClassDetailsController extends ScrollPane {
         cdao = (ClassDetailsDao) Start.app.getBean("classdetails");
         studentdao = (StudentDao) Start.app.getBean("studentregistration");
         dao = (Login) Start.app.getBean("userlogin");
-        close.setOnAction(e->SwitchRoot.switchRoot(Start.st, parent));
+        close.setOnAction(e -> SwitchRoot.switchRoot(Start.st, parent));
         initTable();
         initFilters();
 
@@ -260,10 +265,10 @@ public class ClassDetailsController extends ScrollPane {
                 honours.setSelected(false);
             }
         });
-         semester.getSelectionModel().selectedItemProperty().addListener((ol, o, n) -> {
+        semester.getSelectionModel().selectedItemProperty().addListener((ol, o, n) -> {
             if (n != null || !n.isEmpty()) {
                 List<Paper> paperlist = paperdao.findByDepartment(SystemUtils.getDepartment());
-                List<String> list = paperlist.stream().filter(f->f.getSemester().equals(n.replace(" Semester", ""))).map(p -> p.getPaperCode()).collect(Collectors.toList());
+                List<String> list = paperlist.stream().filter(f -> f.getSemester().equals(n.replace(" Semester", ""))).map(p -> p.getPaperCode()).collect(Collectors.toList());
                 paper.getItems().setAll(list);
             }
         });
@@ -280,43 +285,81 @@ public class ClassDetailsController extends ScrollPane {
     }
 
     private void populateTable(ActionEvent evt) {
-        List<ClassDetails> list = cdao.findByDepartment(SystemUtils.getDepartment());
-        if (!currentfaculty.equals("N/A")) {
-            list = list.stream().filter(p -> p.getFacultyName().equals(currentfaculty)).collect(Collectors.toList());
-        }
-        table.getItems().setAll(list);
+        Task<List<ClassDetails>> task = new Task<List<ClassDetails>>() {
+            @Override
+            protected List<ClassDetails> call() throws Exception {
+                List<ClassDetails> list = new ArrayList<>();
+                list = cdao.findByDepartment(SystemUtils.getDepartment());
+                if (!currentfaculty.equals("N/A")) {
+                    list = list.stream().filter(p -> p.getFacultyName().equals(currentfaculty)).collect(Collectors.toList());
+                }
+                return list;
+            }
+        };
+        task.setOnRunning(e -> LoadingController.show(this.getScene()));
+        task.setOnSucceeded(e -> {
+            Platform.runLater(() -> {
+                try {
+                    table.getItems().clear();
+                    table.getItems().setAll(task.get());
+                } catch (InterruptedException | ExecutionException ex) {
+                    table.getItems().clear();
+                }
+            });
+            LoadingController.hide();
+        });
+        SystemUtils.getService().execute(task);
     }
 
     private void filters(ActionEvent evt) {
-        List<ClassDetails> list = cdao.findByDepartment(SystemUtils.getDepartment());
-        if (!currentfaculty.equals("N/A")) {
-            list = list.stream().filter(p -> p.getFacultyName().equals(currentfaculty)).collect(Collectors.toList());
-        }
+        Task<List<ClassDetails>> task = new Task<List<ClassDetails>>() {
+            @Override
+            protected List<ClassDetails> call() throws Exception {
 
-        if (filterbyacadamicyear.isSelected()) {
-            list = list.stream().filter(s -> s.getAcadamicyear().equals(acadamicyear.getSelectionModel().getSelectedItem())).collect(Collectors.toList());
-        }
-        if (filterbyname.isSelected()) {
-            list = list.stream().filter(s -> s.getFacultyName().equals(facultyname.getSelectionModel().getSelectedItem())).collect(Collectors.toList());
-        }
-        if (filterbysemester.isSelected()) {
-            list = list.stream().filter(s -> s.getSemester().equals(semester.getSelectionModel().getSelectedItem().replace(" Semester", ""))).collect(Collectors.toList());
-        }
-        if (filterbyyear.isSelected()) {
-            list = list.stream().filter(s -> s.getYear() == Integer.parseInt(year.getSelectionModel().getSelectedItem())).collect(Collectors.toList());
-        }
-        if (filterbypaper.isSelected()) {
-            list = list.stream().filter(s -> s.getPaper().equals(paper.getSelectionModel().getSelectedItem())).collect(Collectors.toList());
-        }
-        if (filterbycourse.isSelected()) {
-            if (honours.isSelected()) {
-                list = list.stream().filter(s -> s.getCoursetype().equals("Honours")).collect(Collectors.toList());
+                List<ClassDetails> list = cdao.findByDepartment(SystemUtils.getDepartment());
+                if (!currentfaculty.equals("N/A")) {
+                    list = list.stream().filter(p -> p.getFacultyName().equals(currentfaculty)).collect(Collectors.toList());
+                }
+
+                if (filterbyacadamicyear.isSelected()) {
+                    list = list.stream().filter(s -> s.getAcadamicyear().equals(acadamicyear.getSelectionModel().getSelectedItem())).collect(Collectors.toList());
+                }
+                if (filterbyname.isSelected()) {
+                    list = list.stream().filter(s -> s.getFacultyName().equals(facultyname.getSelectionModel().getSelectedItem())).collect(Collectors.toList());
+                }
+                if (filterbysemester.isSelected()) {
+                    list = list.stream().filter(s -> s.getSemester().equals(semester.getSelectionModel().getSelectedItem().replace(" Semester", ""))).collect(Collectors.toList());
+                }
+                if (filterbyyear.isSelected()) {
+                    list = list.stream().filter(s -> s.getYear() == Integer.parseInt(year.getSelectionModel().getSelectedItem())).collect(Collectors.toList());
+                }
+                if (filterbypaper.isSelected()) {
+                    list = list.stream().filter(s -> s.getPaper().equals(paper.getSelectionModel().getSelectedItem())).collect(Collectors.toList());
+                }
+                if (filterbycourse.isSelected()) {
+                    if (honours.isSelected()) {
+                        list = list.stream().filter(s -> s.getCoursetype().equals("Honours")).collect(Collectors.toList());
+                    }
+                    if (pass.isSelected()) {
+                        list = list.stream().filter(s -> s.getCoursetype().equals("Pass")).collect(Collectors.toList());
+                    }
+                }
+                return list;
             }
-            if (pass.isSelected()) {
-                list = list.stream().filter(s -> s.getCoursetype().equals("Pass")).collect(Collectors.toList());
-            }
-        }
-        table.getItems().setAll(list);
+        };
+         task.setOnRunning(e -> LoadingController.show(this.getScene()));
+        task.setOnSucceeded(e -> {
+            Platform.runLater(() -> {
+                try {
+                    table.getItems().clear();
+                    table.getItems().setAll(task.get());
+                } catch (InterruptedException | ExecutionException ex) {
+                    table.getItems().clear();
+                }
+            });
+            LoadingController.hide();
+        });
+        SystemUtils.getService().execute(task);
     }
 
     private void tableClick(MouseEvent evt) {

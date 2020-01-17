@@ -83,7 +83,7 @@
                   <FontAwesomeIconView fill="WHITE" glyphName="EYE" size="1.5em" />
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="viewfacultydetails" graphicTextGap="16.0" layoutX="25.0" layoutY="427.0" prefHeight="40.0" prefWidth="260.0" style="-fx-alignment: left;" text="View Faculty Details" textFill="WHITE">
+            <JFXButton fx:id="viewfacultydetails" graphicTextGap="16.0" layoutX="25.0" layoutY="410.0" prefHeight="40.0" prefWidth="260.0" style="-fx-alignment: left;" text="View Faculty Details" textFill="WHITE">
                <font>
                   <Font name="Tw Cen MT" size="18.0" />
                </font>
@@ -91,7 +91,7 @@
                   <FontAwesomeIconView fill="WHITE" glyphName="EYE" size="1.5em" />
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="classdetails" graphicTextGap="16.0" layoutX="25.0" layoutY="557.0" prefHeight="40.0" prefWidth="260.0" style="-fx-alignment: left;" text="Class Details" textFill="WHITE">
+            <JFXButton fx:id="classdetails" graphicTextGap="16.0" layoutX="25.0" layoutY="531.0" prefHeight="40.0" prefWidth="260.0" style="-fx-alignment: left;" text="Class Details" textFill="WHITE">
                <font>
                   <Font name="Tw Cen MT" size="18.0" />
                </font>
@@ -99,7 +99,7 @@
                   <FontAwesomeIconView fill="WHITE" glyphName="CALENDAR" size="1.5em" />
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="dailystatistics" graphicTextGap="16.0" layoutX="25.0" layoutY="611.0" prefHeight="40.0" prefWidth="260.0" style="-fx-alignment: left;" text="Daily Statistics" textFill="WHITE">
+            <JFXButton fx:id="dailystatistics" graphicTextGap="16.0" layoutX="25.0" layoutY="585.0" prefHeight="40.0" prefWidth="260.0" style="-fx-alignment: left;" text="Daily Statistics" textFill="WHITE">
                <font>
                   <Font name="Tw Cen MT" size="18.0" />
                </font>
@@ -115,12 +115,20 @@
                   <FontAwesomeIconView fill="WHITE" glyphName="DOWNLOAD" size="1.5em" />
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="studentattendance" graphicTextGap="16.0" layoutX="25.0" layoutY="506.0" prefHeight="40.0" prefWidth="260.0" style="-fx-alignment: left;" text="Student Attendance" textFill="WHITE">
+            <JFXButton fx:id="studentattendance" graphicTextGap="16.0" layoutX="25.0" layoutY="478.0" prefHeight="40.0" prefWidth="260.0" style="-fx-alignment: left;" text="Student Attendance" textFill="WHITE">
                <font>
                   <Font name="Tw Cen MT" size="18.0" />
                </font>
                <graphic>
                   <FontAwesomeIconView fill="WHITE" glyphName="CALENDAR" size="1.5em" />
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="attendancedetails" graphicTextGap="16.0" layoutX="25.0" layoutY="637.0" prefHeight="40.0" prefWidth="260.0" style="-fx-alignment: left;" text="Attendance Details" textFill="WHITE">
+               <font>
+                  <Font name="Tw Cen MT" size="18.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="STICKY_NOTE_ALT" size="1.5em" />
                </graphic>
             </JFXButton>
          </children>

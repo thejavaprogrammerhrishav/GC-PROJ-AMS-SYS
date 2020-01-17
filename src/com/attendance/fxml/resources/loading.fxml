@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: rgba(0,0,0,0.5);" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane layoutY="272.0" prefHeight="200.0" prefWidth="1366.0" style="-fx-background-color: #292222;">
+         <children>
+            <Label fx:id="loading" layoutX="564.0" layoutY="74.0" text="LOADING ..." textFill="#ddff00">
+               <font>
+                  <Font name="Tw Cen MT" size="48.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+</fx:root>

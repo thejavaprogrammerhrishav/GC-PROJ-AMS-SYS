@@ -76,6 +76,9 @@ public class FacultyDashboardController extends AnchorPane {
 
     @FXML
     private JFXButton studentattendance;
+    
+    @FXML
+    private JFXButton attendancedetails;
 
     @FXML
     private Label department;
@@ -181,8 +184,9 @@ public class FacultyDashboardController extends AnchorPane {
         studentattendance.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getStudentAttendanceRoot(Start.st.getScene().getRoot(), details.getName())));
         classdetails.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getClassDetailsRoot(Start.st.getScene().getRoot(), details.getName())));
         routine.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getRoutineDashboardRoot(Start.st.getScene().getRoot())));
-        dailystatistics.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getDailyStatsRoot(Start.st.getScene().getRoot())));
+        dailystatistics.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getDailyStatsRoot(Start.st.getScene().getRoot(),details.getName())));
         export.setOnAction(e->SwitchRoot.switchRoot(Start.st, RootFactory.getSettingsExportRoot(Start.st.getScene().getRoot())));
+        attendancedetails.setOnAction(e->SwitchRoot.switchRoot(Start.st, RootFactory.getAttendanceRoot(Start.st.getScene().getRoot(),details.getName())));
     }
 
     private void countStudents(ActionEvent e) {

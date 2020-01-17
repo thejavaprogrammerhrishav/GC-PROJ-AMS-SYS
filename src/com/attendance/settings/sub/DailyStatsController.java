@@ -18,11 +18,15 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
 import java.io.IOException;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -101,7 +105,7 @@ public class DailyStatsController extends AnchorPane {
 
     @FXML
     private JFXButton refresh;
-    
+
     @FXML
     private JFXButton close;
 
@@ -126,9 +130,11 @@ public class DailyStatsController extends AnchorPane {
     private ClassDetailsDao cdao;
 
     private Parent parent;
+    private String faculty;
 
-    public DailyStatsController(Parent parent) {
+    public DailyStatsController(Parent parent, String faculty) {
         this.parent = parent;
+        this.faculty = faculty;
         fxml = Fxml.getDailyStatsFXML();
         fxml.setRoot(this);
         fxml.setController(this);
@@ -151,7 +157,7 @@ public class DailyStatsController extends AnchorPane {
 
         applyfilters.setOnAction(this::applyfilters);
         refresh.setOnAction(this::populateTable);
-        close.setOnAction(e->SwitchRoot.switchRoot(Start.st, parent));
+        close.setOnAction(e -> SwitchRoot.switchRoot(Start.st, parent));
     }
 
     private void initFilters() {
@@ -201,71 +207,112 @@ public class DailyStatsController extends AnchorPane {
     }
 
     private void populateTable(ActionEvent evt) {
-        Map<String, DailyStats> list = cdao.findByDepartment(SystemUtils.getDepartment()).stream().collect(Collectors.toMap(ClassDetails::getClassId, ClassDetails::getDailyStats));
-        List<DailyStatsUtilModel> nlist = list.entrySet().stream().map(a -> {
-            DailyStatsUtilModel at = new DailyStatsUtilModel();
-            at.setTotalStudent(a.getValue().getTotalStudent());
-            at.setTotalPresent(a.getValue().getTotalPresent());
-            at.setTotalAbsent(a.getValue().getTotalAbsent());
+        Task<List<DailyStatsUtilModel>> task = new Task<List<DailyStatsUtilModel>>() {
+            @Override
+            protected List<DailyStatsUtilModel> call() throws Exception {
 
-            at.setPresentPercentage(a.getValue().getPresentPercentage());
-            at.setAbsentPercentage(a.getValue().getAbsentPercentage());
+                Map<String, DailyStats> list = new LinkedHashMap<>();
 
-            String s = a.getKey();
-            String[] sa = s.split("/");
-            String[] ss = sa[1].split("@");
-            at.setDate(ss[0]);
+                if (!faculty.equals("N/A")) {
+                    list = cdao.findByDepartment(SystemUtils.getDepartment()).stream().filter(f -> f.getFacultyName().equals(faculty)).collect(Collectors.toMap(ClassDetails::getClassId, ClassDetails::getDailyStats));
+                } else {
+                    list = cdao.findByDepartment(SystemUtils.getDepartment()).stream().collect(Collectors.toMap(ClassDetails::getClassId, ClassDetails::getDailyStats));
+                }
+                List<DailyStatsUtilModel> nlist = list.entrySet().stream().map(a -> {
+                    DailyStatsUtilModel at = new DailyStatsUtilModel();
+                    at.setTotalStudent(a.getValue().getTotalStudent());
+                    at.setTotalPresent(a.getValue().getTotalPresent());
+                    at.setTotalAbsent(a.getValue().getTotalAbsent());
 
-            ss = ss[1].split("#");
-            at.setTime(ss[0]);
+                    at.setPresentPercentage(a.getValue().getPresentPercentage());
+                    at.setAbsentPercentage(a.getValue().getAbsentPercentage());
 
-            ss = ss[1].split("__");
-            at.setAcadamicyear(ss[0]);
+                    String s = a.getKey();
+                    String[] sa = s.split("/");
+                    String[] ss = sa[1].split("@");
+                    at.setDate(ss[0]);
 
-            ss = ss[1].split("_");
-            at.setSemester(ss[0] + " Semester");
-            System.out.println(ss[1]);
-            ss = ss[1].split("&");
-            System.out.println(ss.length);
-            at.setYear(ss[0]);
+                    ss = ss[1].split("#");
+                    at.setTime(ss[0]);
 
-            if (a.getKey().charAt(a.getKey().length() - 1) == 'H') {
-                at.setCoursetype("Honours");
+                    ss = ss[1].split("__");
+                    at.setAcadamicyear(ss[0]);
+
+                    ss = ss[1].split("_");
+                    at.setSemester(ss[0] + " Semester");
+                    ss = ss[1].split("&");
+                    at.setYear(ss[0]);
+
+                    if (a.getKey().charAt(a.getKey().length() - 1) == 'H') {
+                        at.setCoursetype("Honours");
+                    }
+                    if (a.getKey().charAt(a.getKey().length() - 1) == 'P') {
+                        at.setCoursetype("Pass");
+                    }
+
+                    return at;
+                }).collect(Collectors.toList());
+                return nlist;
             }
-            if (a.getKey().charAt(a.getKey().length() - 1) == 'P') {
-                at.setCoursetype("Pass");
-            }
-
-            return at;
-        }).collect(Collectors.toList());
-        table.getItems().setAll(nlist);
+        };
+        task.setOnRunning(e -> LoadingController.show(this.getScene()));
+        task.setOnSucceeded(e -> {
+            Platform.runLater(() -> {
+                try {
+                    table.getItems().clear();
+                    table.getItems().setAll(task.get());
+                } catch (InterruptedException | ExecutionException ex) {
+                    table.getItems().clear();
+                }
+            });
+            LoadingController.hide();
+        });
+        SystemUtils.getService().execute(task);
     }
 
     private void applyfilters(ActionEvent evt) {
-         DateTimeFormatter dtf = DateTimeFormat.forPattern("dd-MM-yyyy");
-        populateTable(evt);
-        List<DailyStatsUtilModel> nlist = table.getItems();
+        DateTimeFormatter dtf = DateTimeFormat.forPattern("dd-MM-yyyy");
+        Task<List<DailyStatsUtilModel>> task = new Task<List<DailyStatsUtilModel>>() {
+            @Override
+            protected List<DailyStatsUtilModel> call() throws Exception {
 
-        if (filterbyacadamicyear.isSelected()) {
-            nlist = nlist.stream().filter(s -> s.getAcadamicyear().equals(acadamicyear.getSelectionModel().getSelectedItem())).collect(Collectors.toList());
-        }
-        if (filterbymonth.isSelected()) {
-           int mm = month.getSelectionModel().getSelectedIndex() + 1;
+                List<DailyStatsUtilModel> nlist = table.getItems();
 
-            nlist = nlist.stream().filter(f -> DateTime.parse(f.getDate(), dtf).getMonthOfYear() == mm).collect(Collectors.toList());
-        }
-        if (filterbysemester.isSelected()) {
-            nlist = nlist.stream().filter(s -> s.getSemester().equals(semester.getSelectionModel().getSelectedItem())).collect(Collectors.toList());
-        }
+                if (filterbyacadamicyear.isSelected()) {
+                    nlist = nlist.stream().filter(s -> s.getAcadamicyear().equals(acadamicyear.getSelectionModel().getSelectedItem())).collect(Collectors.toList());
+                }
+                if (filterbymonth.isSelected()) {
+                    int mm = month.getSelectionModel().getSelectedIndex() + 1;
 
-        if (filterbyyear.isSelected()) {
-            nlist = nlist.stream().filter(s -> s.getYear().equals(year.getSelectionModel().getSelectedItem())).collect(Collectors.toList());
-        }
+                    nlist = nlist.stream().filter(f -> DateTime.parse(f.getDate(), dtf).getMonthOfYear() == mm).collect(Collectors.toList());
+                }
+                if (filterbysemester.isSelected()) {
+                    nlist = nlist.stream().filter(s -> s.getSemester().equals(semester.getSelectionModel().getSelectedItem())).collect(Collectors.toList());
+                }
 
-        if (filterbycoursetype.isSelected()) {
-            nlist = nlist.stream().filter(s -> s.getCoursetype().equals(coursertype.getSelectionModel().getSelectedItem())).collect(Collectors.toList());
-        }
+                if (filterbyyear.isSelected()) {
+                    nlist = nlist.stream().filter(s -> s.getYear().equals(year.getSelectionModel().getSelectedItem())).collect(Collectors.toList());
+                }
 
-        table.getItems().setAll(nlist);
+                if (filterbycoursetype.isSelected()) {
+                    nlist = nlist.stream().filter(s -> s.getCoursetype().equals(coursertype.getSelectionModel().getSelectedItem())).collect(Collectors.toList());
+                }
+                return nlist;
+            }
+        };
+
+        task.setOnRunning(e -> LoadingController.show(this.getScene()));
+        task.setOnSucceeded(e -> {
+            Platform.runLater(() -> {
+                try {
+                    table.getItems().clear();
+                    table.getItems().setAll(task.get());
+                } catch (InterruptedException | ExecutionException ex) {
+                    table.getItems().clear();
+                }
+            });
+            LoadingController.hide();
+        });
+        SystemUtils.getService().execute(task);
     }
 }

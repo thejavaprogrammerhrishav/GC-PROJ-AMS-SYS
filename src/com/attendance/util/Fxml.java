@@ -331,4 +331,8 @@ public class Fxml {
     public static FXMLLoader getResetPasswordResultFXML() {
         return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/resetpasswordresult.fxml"));
     }
+    
+    public static FXMLLoader getLoadingFXML() {
+        return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/loading.fxml"));
+    }
 }

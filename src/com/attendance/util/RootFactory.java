@@ -54,6 +54,7 @@ import com.attendance.settings.sub.ExportClassDetailsListController;
 import com.attendance.settings.sub.ExportDailyStatsListController;
 import com.attendance.settings.sub.ExportFacultyListController;
 import com.attendance.settings.sub.ExportStudentListController;
+import com.attendance.settings.sub.LoadingController;
 import com.attendance.settings.sub.ModifyUsertypeController;
 import com.attendance.settings.sub.UpdateClassDetailsController;
 import com.attendance.splash.SplashController;
@@ -170,12 +171,12 @@ public class RootFactory {
         return new UpdateClassDetailsController();
     }
 
-    public static Parent getAttendanceRoot(Parent parent) {
-        return new AttendanceController(parent);
+    public static Parent getAttendanceRoot(Parent parent,String faculty) {
+        return new AttendanceController(parent,faculty);
     }
 
-    public static Parent getDailyStatsRoot(Parent parent) {
-        return new DailyStatsController(parent);
+    public static Parent getDailyStatsRoot(Parent parent,String faculty) {
+        return new DailyStatsController(parent,faculty);
     }
 
     public static Parent getMessageRoot(int type, String header, String content) {
@@ -321,5 +322,10 @@ public class RootFactory {
     public static Parent getResetPasswordResultRoot(String mode) {
         return new ResetPasswordResultController(mode);
     }
+    
+    public static Parent getLoadingRoot() {
+        return new LoadingController();
+    }
+
 
 }
