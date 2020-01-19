@@ -125,6 +125,11 @@
                         <Font name="Tw Cen MT" size="16.0" />
                      </font>
                   </JFXButton>
+                  <JFXButton fx:id="loadstudents" buttonType="RAISED" layoutX="1029.0" layoutY="20.0" prefHeight="30.0" prefWidth="198.0" ripplerFill="#1500ff" style="-fx-background-color: #660099;" text="Load Student Details" textFill="WHITE">
+                     <font>
+                        <Font name="Tw Cen MT" size="16.0" />
+                     </font>
+                  </JFXButton>
                </children>
             </AnchorPane>
             <Label layoutX="26.0" layoutY="90.0" prefHeight="34.0" prefWidth="290.0" text="Enter updated details below" textFill="WHITE">

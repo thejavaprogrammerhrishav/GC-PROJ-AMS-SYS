@@ -156,6 +156,7 @@ public class PrincipalDashboardController extends AnchorPane {
         List<String> years = dao.findAllYears();
         Collections.sort(years);
         year.getItems().setAll(years);
+        
 
         security.setVisible(false);
 

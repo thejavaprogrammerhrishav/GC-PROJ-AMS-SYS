@@ -159,6 +159,7 @@ public class ViewStudentDetailsController extends AnchorPane {
         buttonInit();
         filterActions();
         LoadFilterData();
+        genderInit();
     }
 
     private void filterInit() {
@@ -317,4 +318,19 @@ public class ViewStudentDetailsController extends AnchorPane {
         studentTable.setItems(FXCollections.observableArrayList(list));
     }
 
+    private void genderInit() {
+        genMale.selectedProperty().addListener((ol,o,n)->{
+            if(n) {
+                genMale.setSelected(true);
+                genFemale.setSelected(false);
+            }
+        });
+        
+        genFemale.selectedProperty().addListener((ol,o,n)->{
+            if(n) {
+                genMale.setSelected(false);
+                genFemale.setSelected(true);
+            }
+        });
+    }
 }

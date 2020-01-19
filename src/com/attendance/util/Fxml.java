@@ -335,4 +335,8 @@ public class Fxml {
     public static FXMLLoader getLoadingFXML() {
         return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/loading.fxml"));
     }
+    
+    public static FXMLLoader getLoadStudentsFXML() {
+        return new FXMLLoader(Fxml.class.getResource("/com/attendance/fxml/resources/loadstudents.fxml"));
+    }
 }

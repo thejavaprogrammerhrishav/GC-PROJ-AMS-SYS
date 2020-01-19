@@ -49,11 +49,16 @@ public class PrincipalDashboardFacultyNodeController extends AnchorPane {
     @FXML
     private void initialize() {
         dao = (Login) Start.app.getBean("userlogin");
-
-        department.getItems().setAll(SystemUtils.getDepartments());
+        department.getItems().setAll("All");
+        department.getItems().addAll(SystemUtils.getDepartments());
 
         department.getSelectionModel().selectedItemProperty().addListener((ol, o, n) -> {
-            String SQL = "Select count(*) from loginuser where department = '" + department.getSelectionModel().getSelectedItem() + "' and (type='HOD' or type='Faculty')";
+            String SQL = "";
+            if (n.equals("All")) {
+                SQL = "Select count(*) from loginuser where (type='HOD' or type='Faculty')";
+            } else {
+                SQL = "Select count(*) from loginuser where department = '" + department.getSelectionModel().getSelectedItem() + "' and (type='HOD' or type='Faculty')";
+            }
             int get = dao.count(SQL);
             total.setText("" + get);
         });

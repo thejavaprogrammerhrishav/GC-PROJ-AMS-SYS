@@ -72,7 +72,7 @@
          </font>
       </JFXButton>
       <JFXComboBox fx:id="paper" focusColor="WHITE" layoutX="801.0" layoutY="139.0" prefHeight="29.0" prefWidth="152.0" promptText="Select Paper" style="-fx-font-size: 15; -fx-font-family: 'Segoe UI', arial; -fx-prompt-text-fill: #fff;" unFocusColor="WHITE" />
-      <JFXButton fx:id="cancel" buttonType="RAISED" layoutX="1200.0" layoutY="712.0" prefHeight="33.0" prefWidth="139.0" ripplerFill="BLACK" style="-fx-background-color: #685741;" text="Cancel" textFill="WHITE">
+      <JFXButton fx:id="cancel" buttonType="RAISED" layoutX="1200.0" layoutY="712.0" prefHeight="33.0" prefWidth="139.0" ripplerFill="BLACK" style="-fx-background-color: red;" text="Close" textFill="WHITE">
          <font>
             <Font name="Tw Cen MT" size="18.0" />
          </font>

@@ -73,6 +73,8 @@ public class ExportSettingsController extends AnchorPane{
         facultylist.setOnAction(e->pane.setCenter(RootFactory.getExportFacultyListRoot()));
         classdetailslist.setOnAction(e->pane.setCenter(RootFactory.getExportClassDetailsListRoot()));
         dailystatisticslist.setOnAction(e->pane.setCenter(RootFactory.getExportDailyStatsListRoot()));
+        
+        pane.setCenter(RootFactory.getExportStudentListRoot());
     }
     
 } 

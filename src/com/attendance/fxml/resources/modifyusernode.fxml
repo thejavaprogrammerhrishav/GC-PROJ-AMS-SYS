@@ -8,14 +8,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="77.0" prefWidth="1220.0" style="-fx-background-color: #663399; -fx-background-radius: 20;" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="77.0" prefWidth="1220.0" style="-fx-background-color: white; -fx-background-radius: 20;" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fx:id="image" fitHeight="50.0" fitWidth="57.0" layoutX="57.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../resources/52abd3e155fcd67d30cf9693e6ada8af.png" />
          </image>
       </ImageView>
-      <Label fx:id="name" layoutX="146.0" layoutY="30.0" prefHeight="18.0" prefWidth="503.0" text="Name" textFill="WHITE">
+      <Label fx:id="name" layoutX="146.0" layoutY="30.0" prefHeight="18.0" prefWidth="503.0" text="Name">
          <font>
             <Font name="Tw Cen MT" size="16.0" />
          </font>
@@ -32,6 +32,6 @@
       </JFXButton>
    </children>
    <effect>
-      <DropShadow color="#6940ff" height="42.0" radius="20.5" spread="0.3" width="42.0" />
+      <DropShadow color="#6f61a4" height="42.0" radius="20.5" spread="0.3" width="42.0" />
    </effect>
 </fx:root>

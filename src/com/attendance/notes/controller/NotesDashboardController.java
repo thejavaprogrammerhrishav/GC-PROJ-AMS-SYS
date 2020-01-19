@@ -8,7 +8,7 @@ package com.attendance.notes.controller;
 import com.attendance.main.Start;
 import com.attendance.notes.dao.NotesDao;
 import com.attendance.notes.model.Notes;
-import com.attendance.personal.model.PersonalDetails;
+import com.attendance.settings.sub.LoadingController;
 import com.attendance.util.Fxml;
 import com.attendance.util.Message;
 import com.attendance.util.MessageUtil;
@@ -21,20 +21,20 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
-import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -177,7 +177,7 @@ public class NotesDashboardController extends AnchorPane {
         List<String> facultyname = Utils.util.getFacultyUsers(SystemUtils.getDepartment()).stream().map(m -> m.getDetails().getName()).collect(Collectors.toList());
 
         List<String> names = Stream.concat(HODname.stream(), facultyname.stream()).collect(Collectors.toList());
-        selectuploader.getItems().setAll(names); 
+        selectuploader.getItems().setAll(names);
 
         selectuploader.disableProperty().bind(searchbyname.selectedProperty().not());
         enterdate.disableProperty().bind(searchbydate.selectedProperty().not());
@@ -213,32 +213,50 @@ public class NotesDashboardController extends AnchorPane {
     }
 
     private void loadData(ActionEvent evt) {
-        List<Notes> data = dao.findByDepartment(SystemUtils.getDepartment());
-        Long images = data.stream().filter(f -> {
-            try {
-                String name = f.getFileName();
-                String ext = name.substring(name.lastIndexOf(".") + 1);
-                return ext.equals("jpg") || ext.equals("png") || ext.equals("gif");
-            } catch (ArrayIndexOutOfBoundsException e) {
-                return false;
+        Task<List<NotesNodeController>> task = new Task<List<NotesNodeController>>() {
+            @Override
+            protected List<NotesNodeController> call() throws Exception {
+                List<Notes> data = dao.findByDepartment(SystemUtils.getDepartment());
+                Long images = data.stream().filter(f -> {
+                    try {
+                        String name = f.getFileName();
+                        String ext = name.substring(name.lastIndexOf(".") + 1);
+                        return ext.equals("jpg") || ext.equals("png") || ext.equals("gif");
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                        return false;
+                    }
+                }).collect(Collectors.counting());
+
+                Long docs = data.stream().filter(f -> {
+                    try {
+                        String name = f.getFileName();
+                        String ext = name.substring(name.lastIndexOf(".") + 1);
+                        return !(ext.equals("jpg") || ext.equals("png") || ext.equals("gif"));
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                        return false;
+                    }
+                }).collect(Collectors.counting());
+
+                Platform.runLater(()->totalimages.setText("" + images.longValue()));
+                Platform.runLater(()->totaldocument.setText("" + docs.longValue()));
+
+                List<NotesNodeController> collect = data.stream().map(NotesNodeController::new).collect(Collectors.toList());
+                return collect;
             }
-        }).collect(Collectors.counting());
+        };
 
-        Long docs = data.stream().filter(f -> {
+        task.setOnRunning(e -> LoadingController.show(this.getScene()));
+        task.setOnSucceeded(e -> {
             try {
-                String name = f.getFileName();
-                String ext = name.substring(name.lastIndexOf(".") + 1);
-                return !(ext.equals("jpg") || ext.equals("png") || ext.equals("gif"));
-            } catch (ArrayIndexOutOfBoundsException e) {
-                return false;
+                list.getChildren().clear();
+                Thread.sleep(700);
+                list.getChildren().setAll(task.get());
+                LoadingController.hide();
+            } catch (InterruptedException | ExecutionException ex) {
+                Logger.getLogger(NotesDashboardController.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }).collect(Collectors.counting());
-
-        List<NotesNodeController> collect = data.stream().map(NotesNodeController::new).collect(Collectors.toList());
-        list.getChildren().setAll(collect);
-
-        totalimages.setText("" + images.longValue());
-        totaldocument.setText("" + docs.longValue());
+        });
+        SystemUtils.getService().execute(task);
     }
 
     private File browse(String title, String mode) {
@@ -344,18 +362,57 @@ public class NotesDashboardController extends AnchorPane {
     }
 
     private void sortAscending(ActionEvent evt) {
-        List<Notes> data = dao.sortBydate("asc");
-        List<NotesNodeController> collect = data.stream().filter(f -> f.getDepartment().equals(SystemUtils.getDepartment())).map(NotesNodeController::new).collect(Collectors.toList());
-        list.getChildren().setAll(collect);
+        Task<List<NotesNodeController>> task = new Task<List<NotesNodeController>>() {
+            @Override
+            protected List<NotesNodeController> call() throws Exception {
+                List<Notes> data = dao.sortBydate("asc");
+                List<NotesNodeController> collect = data.stream().filter(f -> f.getDepartment().equals(SystemUtils.getDepartment())).map(NotesNodeController::new).collect(Collectors.toList());
+                return collect;
+            }
+        };
+
+        task.setOnRunning(e -> LoadingController.show(this.getScene()));
+        task.setOnSucceeded(e -> {
+            try {
+                list.getChildren().clear();
+                Thread.sleep(700);
+                list.getChildren().setAll(task.get());
+                LoadingController.hide();
+            } catch (InterruptedException | ExecutionException ex) {
+                Logger.getLogger(NotesDashboardController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        SystemUtils.getService().execute(task);
     }
 
     private void sortDescending(ActionEvent evt) {
+        Task<List<NotesNodeController>> task = new Task<List<NotesNodeController>>() {
+            @Override
+            protected List<NotesNodeController> call() throws Exception {
         List<Notes> data = dao.sortBydate("desc");
         List<NotesNodeController> collect = data.stream().filter(f -> f.getDepartment().equals(SystemUtils.getDepartment())).map(NotesNodeController::new).collect(Collectors.toList());
-        list.getChildren().setAll(collect);
+        return collect;
+            }
+        };
+
+        task.setOnRunning(e -> LoadingController.show(this.getScene()));
+        task.setOnSucceeded(e -> {
+            try {
+                list.getChildren().clear();
+                Thread.sleep(700);
+                list.getChildren().setAll(task.get());
+                LoadingController.hide();
+            } catch (InterruptedException | ExecutionException ex) {
+                Logger.getLogger(NotesDashboardController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        SystemUtils.getService().execute(task);
     }
 
     private void search(ActionEvent evt) {
+        Task<List<NotesNodeController>> task = new Task<List<NotesNodeController>>() {
+            @Override
+            protected List<NotesNodeController> call() throws Exception {
         List<Notes> data = dao.findByDepartment(SystemUtils.getDepartment());
 
         if (searchbyname.isSelected()) {
@@ -366,7 +423,22 @@ public class NotesDashboardController extends AnchorPane {
         }
 
         List<NotesNodeController> collect = data.stream().map(NotesNodeController::new).collect(Collectors.toList());
-        list.getChildren().setAll(collect);
+        return collect;
+            }
+        };
+
+        task.setOnRunning(e -> LoadingController.show(this.getScene()));
+        task.setOnSucceeded(e -> {
+            try {
+                list.getChildren().clear();
+                Thread.sleep(700);
+                list.getChildren().setAll(task.get());
+                LoadingController.hide();
+            } catch (InterruptedException | ExecutionException ex) {
+                Logger.getLogger(NotesDashboardController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        SystemUtils.getService().execute(task);
     }
 
     private void fileNameSearch(ActionEvent evt) {

@@ -69,6 +69,9 @@ public class StudentUpdateController extends AnchorPane {
 
     @FXML
     private JFXButton cancel;
+    
+    @FXML
+    private JFXButton loadstudents;
 
     @FXML
     private CheckBox honours;
@@ -105,6 +108,7 @@ public class StudentUpdateController extends AnchorPane {
         dao = (StudentDao) Start.app.getBean("studentregistration");
         buttonInit();
         checkinit();
+        update.setDisable(true);
     }
 
     private void checkinit() {
@@ -140,6 +144,7 @@ public class StudentUpdateController extends AnchorPane {
         clear.setOnAction(this::clearAll);
         search.setOnAction(this::searchStudent);
         update.setOnAction(this::updateStudent);
+        loadstudents.setOnAction(this::loadstudent);
     }
 
     private void clearAll(ActionEvent e) {
@@ -153,6 +158,7 @@ public class StudentUpdateController extends AnchorPane {
         genMale.setSelected(false);
 
         searchid.setText("");
+        update.setDisable(true);
     }
 
     private void searchStudent(ActionEvent e) {
@@ -177,6 +183,7 @@ public class StudentUpdateController extends AnchorPane {
                 honours.setSelected(false);
                 pass.setSelected(true);
             }
+            update.setDisable(false);
         } else {
             //TODO:  add error message dialog ====> Not Belongs To This Department
         }
@@ -212,6 +219,34 @@ public class StudentUpdateController extends AnchorPane {
         boolean updateId = dao.updateStudentId(updateStudent.getId(), searchStudent.getId());
         if (updateDetails && updateId) {
             MessageUtil.showInformation(Message.INFORMATION, "Student Details Updation", "Updated Successfully", ((Node) e.getSource()).getScene().getWindow());
+        }
+    }
+    
+    private void loadstudent(ActionEvent evt) {
+        searchStudent = LoadStudentsController.Show(this.getScene());
+        if (searchStudent.getDepartment().equalsIgnoreCase(department.getText())) {
+            studentContact.setText(searchStudent.getContact());
+            studentName.setText(searchStudent.getName());
+            studentRollNumber.setText("" + searchStudent.getRollno());
+            acadamicyear.getSelectionModel().select(searchStudent.getAcadamicyear());
+            studentYear.setText("" + searchStudent.getYear());
+            if (searchStudent.getGender().equalsIgnoreCase("male")) {
+                genMale.setSelected(true);
+                genFemale.setSelected(false);
+            } else {
+                genMale.setSelected(false);
+                genFemale.setSelected(true);
+            }
+            if (searchStudent.getCourseType().equalsIgnoreCase("Honours")) {
+                honours.setSelected(true);
+                pass.setSelected(false);
+            } else {
+                honours.setSelected(false);
+                pass.setSelected(true);
+            }
+            update.setDisable(false);
+        } else {
+            //TODO:  add error message dialog ====> Not Belongs To This Department
         }
     }
 }

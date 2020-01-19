@@ -6,11 +6,9 @@
 package com.attendance.settings.sub;
 
 import com.attendance.login.dao.Login;
-import com.attendance.login.user.model.User;
 import com.attendance.main.Start;
 import com.attendance.papers.dao.PapersDao;
 import com.attendance.papers.model.Paper;
-import com.attendance.personal.model.PersonalDetails;
 import com.attendance.student.dao.StudentDao;
 import com.attendance.studentattendance.dao.ClassDetailsDao;
 import com.attendance.studentattendance.model.ClassDetails;
@@ -22,12 +20,13 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -36,7 +35,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 
 /**
  *
@@ -227,33 +225,67 @@ public class ExportClassDetailsListController extends AnchorPane {
     }
 
     private void populateTable(ActionEvent evt) {
-        List<ClassDetails> list = cdao.findByDepartment(SystemUtils.getDepartment());
-        table.getItems().setAll(list);
+        Task<List<ClassDetails>> task = new Task<List<ClassDetails>>() {
+            @Override
+            protected List<ClassDetails> call() throws Exception {
+                List<ClassDetails> list = cdao.findByDepartment(SystemUtils.getDepartment());
+                return list;
+            }
+        };
+        task.setOnRunning(e -> LoadingController.show(this.getScene()));
+        task.setOnSucceeded(e -> {
+            try {
+                table.getItems().clear();
+                Thread.sleep(700);
+                table.getItems().setAll(task.get());
+                LoadingController.hide();
+            } catch (InterruptedException | ExecutionException ex) {
+                Logger.getLogger(ExportDailyStatsListController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        SystemUtils.getService().execute(task);
     }
 
     private void filters(ActionEvent evt) {
-        List<ClassDetails> list = cdao.findByDepartment(SystemUtils.getDepartment());
+        Task<List<ClassDetails>> task = new Task<List<ClassDetails>>() {
+            @Override
+            protected List<ClassDetails> call() throws Exception {
+                List<ClassDetails> list = cdao.findByDepartment(SystemUtils.getDepartment());
 
-        if (filterbyacadamicyear.isSelected()) {
-            list = list.stream().filter(s -> s.getAcadamicyear().equals(acadamicyear.getSelectionModel().getSelectedItem())).collect(Collectors.toList());
-        }
-        if (filterbyname.isSelected()) {
-            list = list.stream().filter(s -> s.getFacultyName().equals(facultyname.getSelectionModel().getSelectedItem())).collect(Collectors.toList());
-        }
-        if (filterbysemester.isSelected()) {
-            list = list.stream().filter(s -> s.getSemester().equals(semester.getSelectionModel().getSelectedItem().replace(" Semester", ""))).collect(Collectors.toList());
-        }
-        if (filterbyyear.isSelected()) {
-            list = list.stream().filter(s -> s.getYear() == Integer.parseInt(year.getSelectionModel().getSelectedItem())).collect(Collectors.toList());
-        }
-        if (filterbypaper.isSelected()) {
-            list = list.stream().filter(s -> s.getPaper().equals(paper.getSelectionModel().getSelectedItem())).collect(Collectors.toList());
-        }
+                if (filterbyacadamicyear.isSelected()) {
+                    list = list.stream().filter(s -> s.getAcadamicyear().equals(acadamicyear.getSelectionModel().getSelectedItem())).collect(Collectors.toList());
+                }
+                if (filterbyname.isSelected()) {
+                    list = list.stream().filter(s -> s.getFacultyName().equals(facultyname.getSelectionModel().getSelectedItem())).collect(Collectors.toList());
+                }
+                if (filterbysemester.isSelected()) {
+                    list = list.stream().filter(s -> s.getSemester().equals(semester.getSelectionModel().getSelectedItem().replace(" Semester", ""))).collect(Collectors.toList());
+                }
+                if (filterbyyear.isSelected()) {
+                    list = list.stream().filter(s -> s.getYear() == Integer.parseInt(year.getSelectionModel().getSelectedItem())).collect(Collectors.toList());
+                }
+                if (filterbypaper.isSelected()) {
+                    list = list.stream().filter(s -> s.getPaper().equals(paper.getSelectionModel().getSelectedItem())).collect(Collectors.toList());
+                }
 
-        if (filterbycoursetype.isSelected()) {
-            list = list.stream().filter(s -> s.getCoursetype().equals(coursetype.getSelectionModel().getSelectedItem())).collect(Collectors.toList());
-        }
-        table.getItems().setAll(list);
+                if (filterbycoursetype.isSelected()) {
+                    list = list.stream().filter(s -> s.getCoursetype().equals(coursetype.getSelectionModel().getSelectedItem())).collect(Collectors.toList());
+                }
+                return list;
+            }
+        };
+        task.setOnRunning(e -> LoadingController.show(this.getScene()));
+        task.setOnSucceeded(e -> {
+            try {
+                table.getItems().clear();
+                Thread.sleep(700);
+                table.getItems().setAll(task.get());
+                LoadingController.hide();
+            } catch (InterruptedException | ExecutionException ex) {
+                Logger.getLogger(ExportDailyStatsListController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        SystemUtils.getService().execute(task);
     }
 
     private void export(ActionEvent evt) {

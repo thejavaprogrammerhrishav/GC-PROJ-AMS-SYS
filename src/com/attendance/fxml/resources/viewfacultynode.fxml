@@ -2,33 +2,32 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<fx:root prefHeight="769.0" prefWidth="1366.0" style="-fx-background-color: #7303c0;" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root prefHeight="769.0" prefWidth="1366.0" style="-fx-background-color: linear-gradient( rgba(12,20,69,1) -16.9%, rgba(71,30,84,1) 119.9% );" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <AnchorPane layoutX="185.0" layoutY="97.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="997.0" style="-fx-background-color: #fff; -fx-background-radius: 30;">
+      <AnchorPane layoutX="185.0" layoutY="97.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="997.0" style="-fx-background-color: linear-gradient(rgba(17,151,147,1) , rgba(154,214,212,1) , rgba(255,233,171,1),rgba(17,151,147,1)  ); -fx-background-radius: 30;">
          <children>
-            <AnchorPane prefHeight="576.0" prefWidth="311.0" style="-fx-background-color: #fff; -fx-border-color: #f0f0f0; -fx-border-width: 0 2 0 0; -fx-background-radius: 30 0 0 30;">
+            <AnchorPane prefHeight="576.0" prefWidth="311.0" style="-fx-border-color: #f0f0f0; -fx-border-width: 0 2 0 0; -fx-background-radius: 30 0 0 30;">
                <children>
                   <ImageView fx:id="icon" fitHeight="167.0" fitWidth="170.0" layoutX="71.0" layoutY="109.0" pickOnBounds="true" />
-                  <Label fx:id="type" layoutX="21.0" layoutY="302.0" prefHeight="24.0" prefWidth="270.0" text="User Type: HOD" textAlignment="CENTER" textFill="#838383" wrapText="true">
+                  <Label fx:id="type" layoutX="21.0" layoutY="302.0" prefHeight="24.0" prefWidth="270.0" text="User Type: HOD" textAlignment="CENTER" wrapText="true">
                      <font>
                         <Font name="Tw Cen MT" size="17.0" />
                      </font>
                   </Label>
-                  <Label fx:id="created" layoutX="21.0" layoutY="337.0" prefHeight="24.0" prefWidth="270.0" text="Account Created: 26-09-2019" textAlignment="CENTER" textFill="#838383" wrapText="true">
+                  <Label fx:id="created" layoutX="21.0" layoutY="337.0" prefHeight="24.0" prefWidth="270.0" text="Account Created: 26-09-2019" textAlignment="CENTER" wrapText="true">
                      <font>
                         <Font name="Tw Cen MT" size="17.0" />
                      </font>
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="311.0" layoutY="136.0" prefHeight="154.0" prefWidth="686.0" style="-fx-background-color: #fff; -fx-border-color: #f0f0f0; -fx-border-width: 0 0 2 0;">
+            <AnchorPane layoutX="311.0" layoutY="136.0" prefHeight="154.0" prefWidth="686.0" style="-fx-background-color: trasnparent; -fx-border-color: #f0f0f0; -fx-border-width: 0 0 2 0;">
                <children>
-                  <Label layoutX="31.0" layoutY="28.0" prefHeight="24.0" prefWidth="270.0" text="PERSONAL INFORMATION" textAlignment="CENTER" textFill="#838383" wrapText="true">
+                  <Label layoutX="31.0" layoutY="28.0" prefHeight="24.0" prefWidth="270.0" text="PERSONAL INFORMATION" textAlignment="CENTER" wrapText="true">
                      <font>
                         <Font name="Tw Cen MT" size="17.0" />
                      </font>
@@ -55,9 +54,9 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="311.0" layoutY="294.0" prefHeight="146.0" prefWidth="686.0" style="-fx-background-color: #fff; -fx-border-color: #f0f0f0; -fx-border-width: 0 0 2 0;">
+            <AnchorPane layoutX="311.0" layoutY="294.0" prefHeight="146.0" prefWidth="686.0" style="-fx-background-color: transparent; -fx-border-color: #f0f0f0; -fx-border-width: 0 0 2 0;">
                <children>
-                  <Label layoutX="31.0" layoutY="24.0" prefHeight="24.0" prefWidth="270.0" text="CONTACT INFORMATION" textAlignment="CENTER" textFill="#838383" wrapText="true">
+                  <Label layoutX="31.0" layoutY="24.0" prefHeight="24.0" prefWidth="270.0" text="CONTACT INFORMATION" textAlignment="CENTER" wrapText="true">
                      <font>
                         <Font name="Tw Cen MT" size="17.0" />
                      </font>
@@ -90,9 +89,6 @@
                </font>
             </JFXButton>
          </children>
-         <effect>
-            <DropShadow color="#bfbfbf" height="26.94" radius="21.8625" spread="0.33" width="62.51" />
-         </effect>
       </AnchorPane>
    </children>
 </fx:root>
