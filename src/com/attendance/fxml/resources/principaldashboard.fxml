@@ -69,6 +69,14 @@
                   <FontAwesomeIconView fill="WHITE" glyphName="COG" size="1.4em" />
                </graphic>
             </JFXButton>
+            <JFXButton fx:id="verifyprincipal" buttonType="RAISED" graphicTextGap="17.0" layoutX="28.0" layoutY="534.0" prefHeight="45.0" prefWidth="244.0" style="-fx-alignment: center_left;" text="Verify Principal Accounts" textFill="WHITE">
+               <font>
+                  <Font name="Tw Cen MT" size="18.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="CHECK" size="1.4em" />
+               </graphic>
+            </JFXButton>
          </children>
       </Pane>
       <Pane layoutX="296.0" prefHeight="69.0" prefWidth="1070.0" style="-fx-background-color: white;">

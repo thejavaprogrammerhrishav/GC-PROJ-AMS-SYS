@@ -154,7 +154,7 @@ public class UnitTestReportController extends AnchorPane {
 
     private void populateTable(ActionEvent evt) {
         List<UnitTest> utlist = dao.findBySemesterAndAcademicyearAndYear(semester.getSelectionModel().getSelectedItem(), acadamicyear.getSelectionModel().getSelectedItem(), Integer.parseInt(year.getSelectionModel().getSelectedItem()));
-        utlist = utlist.stream().filter(p -> p.getCoursetype().equals(coursetype.getSelectionModel().getSelectedItem())
+        utlist = utlist.stream().filter(f->f.getDepartment().equals(SystemUtils.getDepartment())).filter(p -> p.getCoursetype().equals(coursetype.getSelectionModel().getSelectedItem())
                 && p.getUnitTest().equals(unittest.getSelectionModel().getSelectedItem())
                 && p.getDepartment().equals(SystemUtils.getDepartment()))
                 .collect(Collectors.toList());

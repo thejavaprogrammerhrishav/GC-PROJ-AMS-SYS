@@ -260,8 +260,8 @@ public class RootFactory {
         return new ChangePasswordController(parent);
     }
 
-    public static Parent getPendingRequestRoot(Parent parent, String department) {
-        return new PendingRequestController(parent, department);
+    public static Parent getPendingRequestRoot(Parent parent, String department,boolean isPrincipal) {
+        return new PendingRequestController(parent, department,isPrincipal);
     }
 
     public static Parent getUnitTestReportRoot(Parent parent) {

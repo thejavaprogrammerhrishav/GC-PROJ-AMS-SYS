@@ -25,6 +25,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -119,12 +120,14 @@ public class HODDashboardController extends AnchorPane {
 
     @FXML
     private VBox list;
-    
+
     @FXML
     private JFXButton security;
 
     private FXMLLoader fxml;
     private PersonalDetails details;
+
+    private Thread blinker;
 
     private User user;
     private LoginActivity activity;
@@ -149,17 +152,20 @@ public class HODDashboardController extends AnchorPane {
         act = (Activity) Start.app.getBean("loginactivity");
         dao = (StudentDao) Start.app.getBean("studentregistration");
         department.setText("Department :- " + SystemUtils.getDepartment());
+        blinker = new Thread(this::blink);
+
         details = user.getDetails();
-        
+
         security.setVisible(false);
-        
+
         initLoginActivity(null);
         countStudents(null);
         checkQuestions();
         profilepic.setImage(new Image(new ByteArrayInputStream(user.getImage())));
         List<String> years = dao.findAllYears();
         Collections.sort(years);
-        year.getItems().setAll(years);
+        year.getItems().setAll("All");
+        year.getItems().addAll(years);
         buttonactions();
     }
 
@@ -178,7 +184,7 @@ public class HODDashboardController extends AnchorPane {
         attendancereport.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getAttendanceReportRoot(Start.st.getScene().getRoot())));
         uploadmarks.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getUploadMarksRoot(Start.st.getScene().getRoot())));
         unittestreport.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getUnitTestReportRoot(Start.st.getScene().getRoot())));
-        verifyfaculty.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getPendingRequestRoot(Start.st.getScene().getRoot(), SystemUtils.getDepartment())));
+        verifyfaculty.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getPendingRequestRoot(Start.st.getScene().getRoot(), SystemUtils.getDepartment(),false)));
         notes.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getNotesDashboardRoot(Start.st.getScene().getRoot(), details.getName())));
         routine.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getRoutineDashboardRoot(Start.st.getScene().getRoot())));
         paper.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getPaperRoot(Start.st.getScene().getRoot())));
@@ -187,7 +193,7 @@ public class HODDashboardController extends AnchorPane {
     private void countStudents(ActionEvent e) {
         int Sem1 = 0, Sem2 = 0, Sem3 = 0;
 
-        if (year.getSelectionModel().getSelectedIndex() < 0) {
+        if (year.getSelectionModel().getSelectedIndex() <= 0) {
             Sem1 = dao.countStudents("1st", SystemUtils.getDepartment());
             Sem2 = dao.countStudents("2nd", SystemUtils.getDepartment());
             Sem3 = dao.countStudents("3rd", SystemUtils.getDepartment());
@@ -210,16 +216,38 @@ public class HODDashboardController extends AnchorPane {
         List<HODLoginActivityController> activityControllers = allLogins.stream().map(c -> new HODLoginActivityController(c)).collect(Collectors.toList());
         list.getChildren().setAll(activityControllers);
     }
-    
-    private void checkQuestions(){
-        if(!SystemUtils.getCurrentUser().hasSecurityQuestion()){
+
+    private void checkQuestions() {
+        if (!SystemUtils.getCurrentUser().hasSecurityQuestion()) {
             security.setVisible(true);
             security.setOnAction(this::updateSecurity);
+            blinker.start();
+
         }
     }
-    
-    private void updateSecurity(ActionEvent evt){
+
+    private void updateSecurity(ActionEvent evt) {
         SwitchRoot.switchRoot(Start.st, RootFactory.getSecurityQuestionRoot(RootFactory.getHODDashboardRoot(), "New"));
+    }
+
+    private void blink() {
+        String c1 = "-fx-background-color: red";
+        String c2 = "-fx-background-color: white";
+        boolean b = true;
+        while (true) {
+            if (b) {
+                b = false;
+                Platform.runLater(() -> security.setStyle(c1));
+            } else {
+                b = true;
+                Platform.runLater(() -> security.setStyle(c2));
+            }
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(PrincipalDashboardController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 
 }

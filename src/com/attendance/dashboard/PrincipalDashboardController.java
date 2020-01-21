@@ -102,6 +102,9 @@ public class PrincipalDashboardController extends AnchorPane {
 
     @FXML
     private JFXButton hodaccounts;
+    
+    @FXML
+    private JFXButton verifyprincipal;
 
     @FXML
     private AnchorPane pane;
@@ -126,6 +129,8 @@ public class PrincipalDashboardController extends AnchorPane {
 
     private Task<Integer> task;
     private Thread thread;
+    
+    private Thread blinker;
 
     private StudentDao dao;
 
@@ -152,11 +157,11 @@ public class PrincipalDashboardController extends AnchorPane {
         dao = (StudentDao) Start.app.getBean("studentregistration");
 
         department.getItems().setAll(Arrays.asList(SystemUtils.getDepartments()));
+        blinker = new Thread(this::blink);
 
         List<String> years = dao.findAllYears();
         Collections.sort(years);
         year.getItems().setAll(years);
-        
 
         security.setVisible(false);
 
@@ -164,9 +169,10 @@ public class PrincipalDashboardController extends AnchorPane {
         buttonActions();
         profilepic.setImage(new Image(new ByteArrayInputStream(principal.getImage())));
         initLoginActivity(null);
+        
         taskInit();
         thread.start();
-
+        
     }
 
     private void taskInit() {
@@ -200,7 +206,7 @@ public class PrincipalDashboardController extends AnchorPane {
         principalaccounts.setOnAction(e -> pane.getChildren().setAll(RootFactory.getPrincipalDashboardPrincipalAccountNodeRoot()));
         hodaccounts.setOnAction(e -> pane.getChildren().setAll(RootFactory.getPrincipalDashboardHODAccountNodeRoot()));
         settings.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getPrincipalSettingsRoot(Start.st.getScene().getRoot())));
-
+        verifyprincipal.setOnAction(e->SwitchRoot.switchRoot(Start.st, RootFactory.getPendingRequestRoot(this.getScene().getRoot(), "N/A",true)));
         open.setOnAction(this::routine);
     }
 
@@ -263,6 +269,7 @@ public class PrincipalDashboardController extends AnchorPane {
         if (!SystemUtils.getCurrentUser().hasSecurityQuestion()) {
             security.setVisible(true);
             security.setOnAction(this::updateSecurity);
+            blinker.start();
         }
     }
 
@@ -270,4 +277,24 @@ public class PrincipalDashboardController extends AnchorPane {
         SwitchRoot.switchRoot(Start.st, RootFactory.getSecurityQuestionRoot(RootFactory.getPrincipalDashboardRoot(), "New"));
     }
 
+    private void blink() {
+        String c1 = "-fx-background-color: red";
+        String c2 = "-fx-background-color: white";
+        boolean b = true;
+        while (true) {
+            if(b) {
+                b=false;
+                Platform.runLater(()->security.setStyle(c1));
+            }
+            else {
+                b=true;
+                Platform.runLater(()->security.setStyle(c2));
+            }
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(PrincipalDashboardController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
 }

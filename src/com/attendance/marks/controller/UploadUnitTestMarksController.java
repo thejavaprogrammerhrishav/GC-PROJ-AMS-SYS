@@ -14,6 +14,7 @@ import com.attendance.util.Fxml;
 import com.attendance.util.Message;
 import com.attendance.util.MessageUtil;
 import com.attendance.util.SwitchRoot;
+import com.attendance.util.SystemUtils;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import java.io.IOException;
@@ -128,7 +129,7 @@ public class UploadUnitTestMarksController extends AnchorPane {
                 yyear = Integer.parseInt(year.getSelectionModel().getSelectedItem());
 
                 List<Student> list = new ArrayList<>(sdao.findByAcadamicYearAndYear(acadamicyear, yyear));
-                list=list.stream().filter(p->p.getCourseType().equals(coursetype.getSelectionModel().getSelectedItem())).collect(Collectors.toList());
+                list=list.stream().filter(f->f.getDepartment().equals(SystemUtils.getDepartment())).filter(p->p.getCourseType().equals(coursetype.getSelectionModel().getSelectedItem())).collect(Collectors.toList());
                 List<UnitTestNode> nodes = list.stream().map(new Function<Student, UnitTestNode>() {
                     int count = 1;
 
@@ -148,7 +149,7 @@ public class UploadUnitTestMarksController extends AnchorPane {
 
     private void sortStudentList(VBox vb) {
         List<UnitTestNode> sorted = vb.getChildren().stream().map(n -> (UnitTestNode) n)
-                .sorted((i1, i2) -> i1.getRollNo().compareTo(i2.getRollNo()))
+                .sorted((i1, i2) -> i1.getSerial().compareTo(i2.getSerial()))
                 .collect(Collectors.toList());
         vb.getChildren().setAll(sorted);
     }
@@ -164,7 +165,7 @@ public class UploadUnitTestMarksController extends AnchorPane {
 
     private void save(ActionEvent evt) {
         List<UnitTestNode> list = studentlist.getChildren().stream().map(n -> (UnitTestNode) n).collect(Collectors.toList());
-        list.stream().map(it -> {
+        List<UnitTest> collect = list.stream().map(it -> {
             UnitTest test = new UnitTest();
             test.setAcadamicYear(acadamicyear);
             test.setMarksObtained(it.getMarksObtained());
@@ -178,7 +179,8 @@ public class UploadUnitTestMarksController extends AnchorPane {
             test.setCoursetype(coursetype.getSelectionModel().getSelectedItem());
             test.setDepartment(it.getStudent().getDepartment());
             return test;
-        }).forEach(dao::save);
+        }).collect(Collectors.toList());
+        dao.saveAll(collect);
         String t = "Marks Uploaded Successfully\nUnit Test:  " + ut.getSelectionModel().getSelectedItem() + "\nSemester:   " + sem.getSelectionModel().getSelectedItem();
         MessageUtil.showInformation(Message.INFORMATION, "Upload Unit Test Marks", t, ((Node) evt.getSource()).getScene().getWindow());
 

@@ -95,11 +95,14 @@ public class PendingRequestController extends AnchorPane {
 
     private Thread thread;
     private Runnable main, run;
+    
+    private boolean isPrincipal;
 
-    public PendingRequestController(Parent parent, String sdepartment) {
+    public PendingRequestController(Parent parent, String sdepartment,boolean isPrincipal) {
 
         this.parent = parent;
         this.sdepartment = sdepartment;
+        this.isPrincipal = isPrincipal;
         fxml = Fxml.getPendingRequestFXML();
         fxml.setController(this);
         fxml.setRoot(this);
@@ -140,6 +143,9 @@ public class PendingRequestController extends AnchorPane {
                 break;
             default:
                 reqtype = "";
+        }
+        if(isPrincipal) {
+            reqtype = "Principal";
         }
         requesttype.setText(reqtype);
 

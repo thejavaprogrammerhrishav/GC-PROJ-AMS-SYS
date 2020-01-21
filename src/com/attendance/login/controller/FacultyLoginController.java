@@ -144,7 +144,7 @@ public class FacultyLoginController extends AnchorPane {
         authenticator.addLoginStatusListener(status -> {
             if (status.equals("Accept")) {
                 Platform.runLater(() -> {
-                    bigmessage.setText("Login Success");
+                    bigmessage.setText("Account Status");
                     smallmessage.setText("Your account is accepted");
                     message.getStyleClass().clear();
                     message.getStyleClass().addAll("alert", "alert-success");
@@ -172,7 +172,7 @@ public class FacultyLoginController extends AnchorPane {
 
             } else if (status.equals("Decline")) {
                 Platform.runLater(() -> {
-                    bigmessage.setText("Login Failed");
+                    bigmessage.setText("Account Status");
                     smallmessage.setText("Your account is declined, please contact your HOD");
                     message.getStyleClass().clear();
                     message.getStyleClass().addAll("alert", "alert-danger");

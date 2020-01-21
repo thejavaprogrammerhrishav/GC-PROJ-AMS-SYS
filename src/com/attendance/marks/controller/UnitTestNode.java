@@ -72,4 +72,8 @@ public class UnitTestNode extends AnchorPane{
         return student;
     }
     
+    public Integer getSerial() {
+        return count;
+    }
+    
 }

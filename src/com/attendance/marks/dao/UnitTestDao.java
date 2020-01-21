@@ -16,6 +16,8 @@ public interface UnitTestDao {
 
     public abstract int save(UnitTest ut);
 
+    public abstract boolean saveAll(List<UnitTest> list);
+
     public abstract boolean update(UnitTest ut);
 
     public abstract boolean delete(UnitTest ut);

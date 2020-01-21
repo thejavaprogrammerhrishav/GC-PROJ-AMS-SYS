@@ -138,7 +138,7 @@ public class PrincipalLoginController extends AnchorPane {
         authenticator.addLoginStatusListener(status -> {
             if (status.equals("Accept")) {
                 Platform.runLater(() -> {
-                    bigmessage.setText("Login Success");
+                    bigmessage.setText("Account Status");
                     smallmessage.setText("Your account is accepted");
                     message.getStyleClass().clear();
                     message.getStyleClass().addAll("alert", "alert-success");
@@ -148,7 +148,7 @@ public class PrincipalLoginController extends AnchorPane {
             } else if (status.equals("Pending")) {
                 Platform.runLater(() -> {
                     bigmessage.setText("Request Pending");
-                    smallmessage.setText("Your account is pending, please contact your Server Administrator");
+                    smallmessage.setText("Your account is pending, please contact your Server Administrator or Existing Principal");
                     message.getStyleClass().clear();
                     message.getStyleClass().addAll("alert", "alert-warning");
                     bigmessage.getStyleClass().addAll("strong", "h4");
@@ -157,7 +157,7 @@ public class PrincipalLoginController extends AnchorPane {
             } else if (status.equals("OnHold")) {
                 Platform.runLater(() -> {
                     bigmessage.setText("Request On - Hold");
-                    smallmessage.setText("Your account is suspended, please contact your Server Administrator");
+                    smallmessage.setText("Your account is suspended, please contact your Server Administrator or Existing Principal");
                     message.getStyleClass().clear();
                     message.getStyleClass().addAll("alert", "alert-warning");
                     bigmessage.getStyleClass().addAll("strong", "h4");
@@ -166,8 +166,8 @@ public class PrincipalLoginController extends AnchorPane {
 
             } else if (status.equals("Decline")) {
                 Platform.runLater(() -> {
-                    bigmessage.setText("Login Failed");
-                    smallmessage.setText("Your account is declined, please contact your Server Administrator");
+                    bigmessage.setText("Account Status");
+                    smallmessage.setText("Your account is declined, please contact your Server Administrator or Existing Principal");
                     message.getStyleClass().clear();
                     message.getStyleClass().addAll("alert", "alert-danger");
                     bigmessage.getStyleClass().addAll("strong", "h4");

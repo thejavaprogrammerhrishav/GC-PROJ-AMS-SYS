@@ -73,4 +73,13 @@ public class UnitTestDaoImpl implements UnitTestDao {
         return jdbcTemplate.queryForList(query, type);
     }
 
+    @Override
+    @Transactional
+    public boolean saveAll(List<UnitTest> list) {
+        for(UnitTest test : list) {
+            hibernateTemplate.save(test);
+        }
+        return true;
+    }
+
 }

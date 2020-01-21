@@ -26,6 +26,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -76,7 +77,7 @@ public class FacultyDashboardController extends AnchorPane {
 
     @FXML
     private JFXButton studentattendance;
-    
+
     @FXML
     private JFXButton attendancedetails;
 
@@ -118,13 +119,15 @@ public class FacultyDashboardController extends AnchorPane {
 
     @FXML
     private VBox list;
-    
+
     @FXML
     private JFXButton security;
 
     private FXMLLoader fxml;
     private Thread timer;
     private Thread dater;
+
+    private Thread blinker;
 
     private User user;
     private LoginActivity activity;
@@ -135,7 +138,7 @@ public class FacultyDashboardController extends AnchorPane {
     public FacultyDashboardController() {
         this.user = SystemUtils.getCurrentUser();
         this.activity = SystemUtils.getActivity();
-        
+
         fxml = Fxml.getFacultyDashboardFXML();
         fxml.setRoot(FacultyDashboardController.this);
         fxml.setController(FacultyDashboardController.this);
@@ -149,13 +152,15 @@ public class FacultyDashboardController extends AnchorPane {
     @FXML
     private void initialize() {
         department.setText(SystemUtils.getDepartment());
+        blinker = new Thread(this::blink);
+
         act = (Activity) Start.app.getBean("loginactivity");
         dao = (StudentDao) Start.app.getBean("studentregistration");
         details = user.getDetails();
         profilepic.setImage(new Image(new ByteArrayInputStream(user.getImage())));
-        
+
         security.setVisible(false);
-        
+
         countStudents(null);
         initLoginActivity(null);
         checkQuestions();
@@ -164,7 +169,7 @@ public class FacultyDashboardController extends AnchorPane {
         timer.start();
         dater = DateTimerThread.newInstance().forLabel(DateTimerThread.DATE, date).init().thread();
         dater.start();
-        
+
         List<String> years = dao.findAllYears();
         Collections.sort(years);
         year.getItems().setAll(years);
@@ -184,9 +189,9 @@ public class FacultyDashboardController extends AnchorPane {
         studentattendance.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getStudentAttendanceRoot(Start.st.getScene().getRoot(), details.getName())));
         classdetails.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getClassDetailsRoot(Start.st.getScene().getRoot(), details.getName())));
         routine.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getRoutineDashboardRoot(Start.st.getScene().getRoot())));
-        dailystatistics.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getDailyStatsRoot(Start.st.getScene().getRoot(),details.getName())));
-        export.setOnAction(e->SwitchRoot.switchRoot(Start.st, RootFactory.getSettingsExportRoot(Start.st.getScene().getRoot())));
-        attendancedetails.setOnAction(e->SwitchRoot.switchRoot(Start.st, RootFactory.getAttendanceRoot(Start.st.getScene().getRoot(),details.getName())));
+        dailystatistics.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getDailyStatsRoot(Start.st.getScene().getRoot(), details.getName())));
+        export.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getSettingsExportRoot(Start.st.getScene().getRoot())));
+        attendancedetails.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getAttendanceRoot(Start.st.getScene().getRoot(), details.getName())));
     }
 
     private void countStudents(ActionEvent e) {
@@ -215,15 +220,37 @@ public class FacultyDashboardController extends AnchorPane {
         List<FacultyLoginActivityController> activityControllers = allLogins.stream().map(c -> new FacultyLoginActivityController(c)).collect(Collectors.toList());
         list.getChildren().setAll(activityControllers);
     }
-    
-    private void checkQuestions(){
-        if(!SystemUtils.getCurrentUser().hasSecurityQuestion()){
+
+    private void checkQuestions() {
+        if (!SystemUtils.getCurrentUser().hasSecurityQuestion()) {
             security.setVisible(true);
             security.setOnAction(this::updateSecurity);
+            blinker.start();
+
         }
     }
-    
-    private void updateSecurity(ActionEvent evt){
+
+    private void updateSecurity(ActionEvent evt) {
         SwitchRoot.switchRoot(Start.st, RootFactory.getSecurityQuestionRoot(RootFactory.getFacultyDashboardRoot(), "New"));
+    }
+
+    private void blink() {
+        String c1 = "-fx-background-color: red";
+        String c2 = "-fx-background-color: white";
+        boolean b = true;
+        while (true) {
+            if (b) {
+                b = false;
+                Platform.runLater(() -> security.setStyle(c1));
+            } else {
+                b = true;
+                Platform.runLater(() -> security.setStyle(c2));
+            }
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(PrincipalDashboardController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 }
