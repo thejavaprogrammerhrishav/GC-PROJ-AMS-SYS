@@ -23,7 +23,7 @@ public class PersonalDetails {
 
     @NotEmpty(message = "{attendance.email}")
     @Size(min=1,max=100,message = "{attendance.email}")
-    @Email(message = "{0} is invalid")
+    @Email(message = "{attendance.email}")
     private String emailId;
 
     @NotEmpty(message = "{attendance.contact}")

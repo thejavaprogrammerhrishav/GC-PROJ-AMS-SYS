@@ -16,22 +16,22 @@ public class SecurityQuestion {
 
     private long id;
 
-    @NotEmpty(message = "{attendance.question}")
+    @NotNull(message = "{attendance.question}")
     private String question1;
 
-    @NotEmpty(message = "{attendance.question}")
+    @NotNull(message = "{attendance.question}")
     private String question2;
 
-    @NotEmpty(message = "{attendance.question}")
+    @NotNull(message = "{attendance.question}")
     private String question3;
 
-    @NotEmpty(message = "{attendance.answer}")
+    @NotNull(message = "{attendance.answer}")
     private String answer1;
 
-    @NotEmpty(message = "{attendance.answer}")
+    @NotNull(message = "{attendance.answer}")
     private String answer2;
 
-    @NotEmpty(message = "{attendance.answer}")
+    @NotNull(message = "{attendance.answer}")
     private String answer3;
 
     public SecurityQuestion() {

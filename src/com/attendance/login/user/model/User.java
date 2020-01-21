@@ -26,7 +26,7 @@ public class User implements Serializable {
     private String username;
 
     @NotEmpty(message = "{attendance.password}")
-    @Size(min = 8, max = 25, message = "attendance.password")
+    @Size(min = 8, max = 25, message = "{attendance.password}")
     @Pattern(regexp = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{8,25})", message = "{attendance.password.pattern}")
     private String password;
 
