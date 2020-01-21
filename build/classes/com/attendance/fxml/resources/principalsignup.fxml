@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: #200122;" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="450.0" layoutY="35.0" prefHeight="50.0" prefWidth="571.0" text="Attendance Managment System" textFill="#e3ff30">
+         <font>
+            <Font name="Tw Cen MT" size="45.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="68.0" fitWidth="63.0" layoutX="366.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../resources/LogoMakr_1wJdNX.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="510.0" layoutY="94.0" prefHeight="33.0" prefWidth="400.0" text="Sign Up For Principal Login User" textFill="#093ceb">
+         <font>
+            <Font name="Tw Cen MT" size="30.0" />
+         </font>
+      </Label>
+      <Label layoutX="941.0" layoutY="163.0" prefHeight="33.0" prefWidth="169.0" text="Fill Up The Details" textFill="#ea6a1c">
+         <font>
+            <Font name="Tw Cen MT" size="23.0" />
+         </font>
+      </Label>
+      <TextField fx:id="fullname" layoutX="745.0" layoutY="262.0" prefHeight="30.0" prefWidth="266.0" promptText="Enter Name " style="-fx-background-color: white;">
+         <font>
+            <Font name="Tw Cen MT" size="16.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="contact" layoutX="1038.0" layoutY="262.0" prefHeight="30.0" prefWidth="266.0" promptText="Enter Contact Number " style="-fx-background-color: white;">
+         <font>
+            <Font name="Tw Cen MT" size="16.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="email" layoutX="745.0" layoutY="303.0" prefHeight="30.0" prefWidth="563.0" promptText="Enter Email Id" style="-fx-background-color: white;">
+         <font>
+            <Font name="Tw Cen MT" size="16.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="username" layoutX="745.0" layoutY="398.0" prefHeight="30.0" prefWidth="266.0" promptText="Enter Username" style="-fx-background-color: white;">
+         <font>
+            <Font name="Tw Cen MT" size="16.0" />
+         </font>
+      </TextField>
+      <Label layoutX="743.0" layoutY="218.0" prefHeight="30.0" prefWidth="146.0" text="Personal Details" textFill="#36f800">
+         <font>
+            <Font name="Tw Cen MT" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="745.0" layoutY="355.0" prefHeight="30.0" prefWidth="241.0" text="Account Credentials" textFill="#2bf700">
+         <font>
+            <Font name="Tw Cen MT" size="20.0" />
+         </font>
+      </Label>
+      <JFXButton fx:id="signup" buttonType="RAISED" layoutX="740.0" layoutY="561.0" prefHeight="33.0" prefWidth="266.0" ripplerFill="BLACK" style="-fx-background-color: darkgreen;" text="Sign Up As Principal User" textFill="WHITE">
+         <font>
+            <Font name="Tw Cen MT" size="18.0" />
+         </font>
+      </JFXButton>
+      <ImageView fitHeight="359.0" fitWidth="530.0" layoutX="92.0" layoutY="234.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../resources/undraw_authentication_fsn5.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="743.0" layoutY="472.0" prefHeight="68.0" prefWidth="556.0" text="Use at least 8 characters. Don’t use a password from another site, or something too obvious like your pet’s name." textFill="WHITE" wrapText="true">
+         <font>
+            <Font name="Century Gothic" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="745.0" layoutY="660.0" prefHeight="30.0" prefWidth="241.0" text="Already a user ?" textFill="#2bf700">
+         <font>
+            <Font name="Tw Cen MT" size="20.0" />
+         </font>
+      </Label>
+      <JFXButton fx:id="loginbutton" buttonType="RAISED" layoutX="895.0" layoutY="659.0" prefHeight="33.0" prefWidth="92.0" ripplerFill="BLACK" style="-fx-background-color: #200122;" text="Login" textFill="#00b2ff">
+         <font>
+            <Font name="Tw Cen MT" size="18.0" />
+         </font>
+      </JFXButton>
+      <PasswordField fx:id="password" layoutX="742.0" layoutY="447.0" prefHeight="25.0" prefWidth="266.0" promptText="Enter Password">
+         <font>
+            <Font name="Tw Cen MT" size="16.0" />
+         </font>
+      </PasswordField>
+      <PasswordField fx:id="confirmpassword" layoutX="1039.0" layoutY="447.0" prefHeight="25.0" prefWidth="266.0" promptText="Confirm Password">
+         <font>
+            <Font name="Tw Cen MT" size="16.0" />
+         </font>
+      </PasswordField>
+   </children>
+</fx:root>

@@ -9,13 +9,9 @@ import com.attendance.login.activity.dao.Activity;
 import com.attendance.login.activity.model.LoginActivity;
 import com.attendance.login.user.model.User;
 import com.attendance.main.Start;
-import com.attendance.notes.controller.NotesNodeController;
 import java.awt.image.BufferedImage;
-import java.awt.image.DataBufferByte;
-import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.sql.Blob;
 import java.util.HashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -24,6 +20,9 @@ import java.util.logging.Logger;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
 import javax.imageio.ImageIO;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 
@@ -49,6 +48,8 @@ public class SystemUtils {
     private static byte[] accountImage;
 
     private static final HashMap<String, Image> ICONS = new HashMap<>();
+    
+    private static ValidatorFactory factory;
 
     public static String getDepartment() {
         return department;
@@ -105,6 +106,8 @@ public class SystemUtils {
         ICONS.put("noroutine",new Image(SystemUtils.class.getResourceAsStream("/com/attendance/resources/noroutinefound.png")));
         
         service = Executors.newSingleThreadExecutor();
+        
+        factory=Validation.buildDefaultValidatorFactory();
     }
 
     public static void setActivity(LoginActivity activity) {
@@ -158,4 +161,7 @@ public class SystemUtils {
         return service;
     }
 
+    public static Validator getValidator(){
+        return factory.getValidator();
+    }
 }

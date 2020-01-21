@@ -5,20 +5,36 @@
  */
 package com.attendance.routines.model;
 
+import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.NotEmpty;
+
 /**
  *
  * @author pc
  */
 public class Routine {
-    
-    
+
     private int id;
+
+    @NotEmpty(message = "{attendance.name}")
     private String name;
+
+    @NotEmpty(message = "{attendance.user.type}")
     private String usertype;
+
+    @NotEmpty(message = "{attendance.date")
     private String date;
+
+    @NotEmpty(message = "{attendance.department}")
     private String department;
+
+    @NotNull(message = "{attendance.null}")
     private byte[] image;
+
+    @NotEmpty(message = "{attendance.name}")
     private String filename;
+
+    @NotEmpty(message = "{attendance.status}")
     private String status;
 
     public Routine() {
@@ -99,6 +115,4 @@ public class Routine {
         this.status = status;
     }
 
-    
-    
 }

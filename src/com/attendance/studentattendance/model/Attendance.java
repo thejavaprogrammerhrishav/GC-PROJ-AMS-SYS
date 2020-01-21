@@ -5,6 +5,9 @@
  */
 package com.attendance.studentattendance.model;
 
+import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.NotEmpty;
+
 /**
  *
  * @author Programmer Hrishav
@@ -12,7 +15,11 @@ package com.attendance.studentattendance.model;
 public class Attendance {
 
     private Long id;
+    
+    @NotEmpty(message="{attendance.student.id}")
     private String studentId;
+    
+    @NotEmpty(message = "{attendance.status}")
     private String status;
 
     public Attendance() {

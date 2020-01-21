@@ -5,15 +5,33 @@
  */
 package com.attendance.personal.model;
 
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
+
 /**
  *
  * @author Programmer Hrishav
  */
 public class PersonalDetails {
+
     private int id;
+
+    @NotEmpty(message = "{attendance.name}")
     private String name;
+
+    @NotEmpty(message = "{attendance.email}")
+    @Size(min=1,max=100,message = "{attendance.email}")
+    @Email(message = "{0} is invalid")
     private String emailId;
+
+    @NotEmpty(message = "{attendance.contact}")
+    @Size(min = 10, max = 10,message = "{attendance.contact}")
+    @Pattern(regexp = "^[6-9]\\d{9}$",message = "{attendance.contact}")
     private String contact;
+
+    @NotEmpty(message = "{attendance.gender}")
     private String gender;
 
     public PersonalDetails() {
@@ -66,6 +84,5 @@ public class PersonalDetails {
     public void setGender(String gender) {
         this.gender = gender;
     }
-    
-    
+
 }

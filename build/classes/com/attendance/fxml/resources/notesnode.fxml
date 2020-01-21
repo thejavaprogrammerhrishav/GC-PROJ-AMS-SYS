@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="282.0" prefWidth="249.0" style="-fx-background-color: #fff; -fx-background-radius: 20;" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fx:id="image" fitHeight="91.0" fitWidth="77.0" layoutX="23.0" layoutY="24.0" pickOnBounds="true">
+         <image>
+            <Image url="@LogoMakr_20RCkh.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="filename" alignment="TOP_LEFT" layoutX="115.0" layoutY="32.0" prefHeight="76.0" prefWidth="111.0" text="File Name" wrapText="true">
+         <font>
+            <Font name="Tw Cen MT" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="23.0" layoutY="156.0" prefHeight="17.0" prefWidth="92.0" text="Uploaded By :- ">
+         <font>
+            <Font name="Tw Cen MT" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="name" layoutX="25.0" layoutY="179.0" prefHeight="41.0" prefWidth="213.0" text="123456778912345678912345678912345678912345678912345" wrapText="true">
+         <font>
+            <Font name="Tw Cen MT" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="size" alignment="CENTER" layoutX="26.0" layoutY="124.0" prefHeight="17.0" prefWidth="85.0" text="Size">
+         <font>
+            <Font name="Tw Cen MT Bold" size="14.0" />
+         </font>
+      </Label>
+      <JFXCheckBox fx:id="select" contentDisplay="GRAPHIC_ONLY" layoutX="112.0" layoutY="233.0" prefHeight="18.0" prefWidth="23.0" />
+      <Label fx:id="date" alignment="CENTER" layoutX="112.0" layoutY="124.0" prefHeight="17.0" prefWidth="118.0" text="Date">
+         <font>
+            <Font name="Tw Cen MT Bold" size="14.0" />
+         </font>
+      </Label>
+   </children>
+   <effect>
+      <DropShadow color="#aeaeae" spread="0.28" />
+   </effect>
+</fx:root>

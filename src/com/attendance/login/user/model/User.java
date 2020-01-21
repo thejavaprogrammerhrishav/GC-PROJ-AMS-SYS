@@ -7,6 +7,12 @@ package com.attendance.login.user.model;
 
 import com.attendance.personal.model.PersonalDetails;
 import java.io.Serializable;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.NotEmpty;
+
 
 /**
  *
@@ -15,15 +21,36 @@ import java.io.Serializable;
 public class User implements Serializable {
 
     private int id;
+
+    @NotEmpty(message = "{attendance.username}")
     private String username;
+
+    @NotEmpty(message = "{attendance.password}")
+    @Size(min = 8, max = 25, message = "attendance.password")
+    @Pattern(regexp = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{8,25})", message = "{attendance.password.pattern}")
     private String password;
+
+    @NotEmpty(message = "{attendance.user.type}")
     private String type;
+
+    @NotEmpty(message = "{attendance.department}")
     private String department;
+
+    @NotEmpty(message = "{attendance.date}")
     private String date;
+
+    @NotEmpty(message = "{attendance.status}")
     private String status;
+
+    @NotNull(message = "{attendance.null}")
     private byte[] image;
 
+    @NotNull(message = "{attendance.null}")
+    @Valid
     private PersonalDetails details;
+
+    @NotNull(message = "{attendance.null}")
+    @Valid
     private SecurityQuestion securityquestion;
 
     public User() {

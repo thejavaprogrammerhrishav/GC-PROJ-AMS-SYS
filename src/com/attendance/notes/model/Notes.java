@@ -5,30 +5,45 @@
  */
 package com.attendance.notes.model;
 
+import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.NotEmpty;
+
 /**
  *
  * @author Programmer Hrishav
  */
 public class Notes {
+
     private int id;
+    
+    @NotEmpty(message = "{attendance.name}")
     private String facultyName;
+
+    @NotEmpty(message = "{attendance.name}")
     private String fileName;
+
     private double fileSize;
+
+    @NotEmpty(message = "{attendance.date}")
     private String uploadDate;
+
+    @NotEmpty(message = "{attendance.null}")
     private byte[] file;
+
+    @NotEmpty(message = "{attendance.department}")
     private String department;
 
     public Notes() {
-        this(-1,"","",-1,"",null,"");
+        this(-1, "", "", -1, "", null, "");
     }
 
-    public Notes(int id, String facultyName, String fileName, double fileSize, String uploadDate,byte[] file,String department) {
-        this.id=id;
+    public Notes(int id, String facultyName, String fileName, double fileSize, String uploadDate, byte[] file, String department) {
+        this.id = id;
         this.facultyName = facultyName;
         this.fileName = fileName;
         this.fileSize = fileSize;
         this.uploadDate = uploadDate;
-        this.file=file;
+        this.file = file;
         this.department = department;
     }
 

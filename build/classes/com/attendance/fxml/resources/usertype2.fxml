@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane prefHeight="129.0" prefWidth="1366.0">
+         <children>
+            <ImageView fitHeight="64.0" fitWidth="60.0" layoutX="326.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../resources/LogoMakr_1wJdNX.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="412.0" layoutY="34.0" text="Attendance Management System">
+               <font>
+                  <Font name="Tw Cen MT" size="48.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Label layoutX="555.0" layoutY="126.0" text="Preferred Login Type">
+         <font>
+            <Font name="Tw Cen MT" size="30.0" />
+         </font>
+      </Label>
+      <Pane layoutX="155.0" layoutY="210.0" prefHeight="474.0" prefWidth="352.0">
+         <children>
+            <ImageView fitHeight="244.0" fitWidth="349.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../resources/img_thumb_home9.jpg" />
+               </image>
+            </ImageView>
+            <Label layoutX="112.0" layoutY="329.0" text="HOD login">
+               <font>
+                  <Font name="Tw Cen MT" size="30.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="hodlogin" buttonType="RAISED" layoutX="74.0" layoutY="392.0" prefHeight="33.0" prefWidth="205.0" style="-fx-background-color: #cfb307;" text="Continue" textFill="WHITE">
+               <font>
+                  <Font name="Tw Cen MT" size="20.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </Pane>
+      <Pane layoutX="812.0" layoutY="210.0" prefHeight="474.0" prefWidth="360.0">
+         <children>
+            <ImageView fitHeight="290.0" fitWidth="373.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../resources/facultylogin.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="111.0" layoutY="334.0" text="Faculty login">
+               <font>
+                  <Font name="Tw Cen MT" size="30.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="facultylogin" buttonType="RAISED" layoutX="89.0" layoutY="392.0" prefHeight="33.0" prefWidth="195.0" style="-fx-background-color: #cfb307;" text="Continue" textFill="WHITE">
+               <font>
+                  <Font name="Tw Cen MT" size="20.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </Pane>
+      <Label layoutX="507.0" layoutY="177.0" text="Department :-">
+         <font>
+            <Font name="Tw Cen MT" size="30.0" />
+         </font>
+      </Label>
+      <Label fx:id="department" layoutX="689.0" layoutY="177.0" text="Department">
+         <font>
+            <Font name="Tw Cen MT" size="30.0" />
+         </font>
+      </Label>
+      <JFXButton fx:id="back" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" layoutX="15.0" layoutY="13.0" text="Back">
+         <graphic>
+            <FontAwesomeIconView glyphName="ARROW_LEFT" size="1.8em" />
+         </graphic>
+      </JFXButton>
+   </children>
+</fx:root>

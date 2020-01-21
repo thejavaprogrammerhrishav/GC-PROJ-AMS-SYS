@@ -6,26 +6,45 @@
 package com.attendance.login.activity.model;
 
 import java.io.Serializable;
+import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  *
  * @author Programmer Hrishav
  */
-public class LoginActivity implements Serializable{
+public class LoginActivity implements Serializable {
+
     private int id;
+
+    @NotEmpty(message = "{attendance.name}")
     private String name;
+
+    @NotEmpty(message = "{attendance.username}")
     private String username;
+
+    @NotEmpty(message = "{attendance.user.type}")
     private String userType;
+
+    @NotEmpty(message = "{attendance.status}")
     private String status;
+
+    @NotEmpty(message = "{attendance.date}")
     private String logindate;
+
+    @NotEmpty(message = "{attendance.time}")
     private String logintime;
+
+    @NotNull(message = "{attendance.null}")
     private String logouttime;
+
+    @NotEmpty(message = "{attendance.department}")
     private String department;
 
     public LoginActivity() {
     }
 
-    public LoginActivity(String name, String username, String userType, String status, String logindate, String logintime, String logouttime,String department) {
+    public LoginActivity(String name, String username, String userType, String status, String logindate, String logintime, String logouttime, String department) {
         this.name = name;
         this.username = username;
         this.userType = userType;

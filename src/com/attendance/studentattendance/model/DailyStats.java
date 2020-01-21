@@ -5,9 +5,6 @@
  */
 package com.attendance.studentattendance.model;
 
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
-
 /**
  *
  * @author Programmer Hrishav
@@ -15,19 +12,18 @@ import javax.validation.constraints.NotNull;
 public class DailyStats {
 
     private Long id;
-    
-    
-    private Integer totalStudent;
-    private Integer totalPresent;
-    private Integer totalAbsent;
-    private Double presentPercentage;
-    private Double absentPercentage;
+    private int totalStudent;
+    private int totalPresent;
+    private int totalAbsent;
+
+    private double presentPercentage;
+    private double absentPercentage;
 
     public DailyStats() {
-        this((long)-1, -1, -1, -1, -1.1, -1.1);
+        this((long) -1, -1, -1, -1, -1.1, -1.1);
     }
 
-    public DailyStats(Long id,int totalStudent, int totalPresent, int totalAbsent, double presentPercentage, double absentPercentage) {
+    public DailyStats(Long id, int totalStudent, int totalPresent, int totalAbsent, double presentPercentage, double absentPercentage) {
         this.id = id;
         this.totalStudent = totalStudent;
         this.totalPresent = totalPresent;

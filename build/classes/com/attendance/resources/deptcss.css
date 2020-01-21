@@ -1,0 +1,9 @@
+.node {
+	-fx-background-color: transparent;
+	-fx-background-radius: 20;
+}
+.node:hover{
+	-fx-background-color: #064670;
+}	
+	
+	

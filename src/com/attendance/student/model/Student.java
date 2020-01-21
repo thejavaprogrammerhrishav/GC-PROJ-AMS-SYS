@@ -6,6 +6,12 @@
 package com.attendance.student.model;
 
 import java.io.Serializable;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.Range;
 
 /**
  *
@@ -13,14 +19,33 @@ import java.io.Serializable;
  */
 public class Student implements Serializable {
 
+    @NotEmpty(message = "{attendance.student.id}")
     private String id;
+
+    @NotEmpty(message = "{attendance.name}")
     private String name;
+
+    @Min(value = 1000,message = "{attendance.roll.number}")
     private int rollno;
+
+    @Range(min = 1800, max = 3000, message = "{attendance.year}")
     private int year;
+
+    @NotEmpty(message = "{attendance.gender}")
     private String gender;
+
+    @NotEmpty(message = "{attendance.contact}")
+    @Size(min = 10, max = 10, message = "{attendance.contact}")
+    @Pattern(regexp = "^[6-9]\\d{9}$", message = "{attendance.contact}")
     private String contact;
+
+    @NotEmpty(message = "{attendance.acadamic.year}")
     private String acadamicyear;
+
+    @NotEmpty(message = "{attendance.course.type}")
     private String courseType;
+
+    @NotEmpty(message = "{attendance.department}")
     private String department;
 
     public Student() {
@@ -35,7 +60,7 @@ public class Student implements Serializable {
         this.contact = contact;
         this.acadamicyear = acadamicyear;
         this.courseType = courseType;
-        this.department =department;
+        this.department = department;
     }
 
     public String getId() {

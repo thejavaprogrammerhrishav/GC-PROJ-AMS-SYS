@@ -7,8 +7,10 @@ package com.attendance.studentattendance.model;
 
 import java.util.List;
 import javax.validation.Valid;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.Range;
+
 
 /**
  *
@@ -16,53 +18,45 @@ import javax.validation.constraints.NotNull;
  */
 public class ClassDetails {
     
-    @NotNull(message="{classid.null}")
-    @NotEmpty(message="{classid.empty}")
+    @NotEmpty(message="{attendance.class.id}")
     private String classId;
     
-    @NotNull(message="{classid.facultyName.null}")
-    @NotEmpty(message="{classid.facultyName.empty}")
+    @NotEmpty(message="{attendance.name}")
     private String facultyName;
     
-    @NotNull(message="{classid.subjectTaught.null}")
-    @NotEmpty(message="{classid.subjectTaught.empty}")
+    @NotEmpty(message="{attendance.subject.taught}")
     private String subjectTaught;
     
-    @NotNull(message="{classid.date.null}")
-    @NotEmpty(message="{classid.date.empty}")
+    @NotEmpty(message="{attendance.date}")
     private String date;
     
-    @NotNull(message="{classid.time.null}")
-    @NotEmpty(message="{classid.time.empty}")
+    @NotEmpty(message="{attendance.time}")
     private String time;
     
-    @NotNull(message="{classid.semester.null}")
-    @NotEmpty(message="{classid.semester.empty}")
+    @NotEmpty(message="{attendance.semester}")
     private String semester;
     
-    @NotNull(message="{classid.year.null}")
-    @NotEmpty(message="{classid.year.empty}")
+    @Range(min=1800, max=3000,message = "{attendance.year}")
     private int year;
     
-    @NotNull(message="{classid.paper.null}")
-    @NotEmpty(message="{classid.paper.empty}")
+    @NotEmpty(message="{attendance.paper.code}")
     private String paper;
     
-    @NotNull(message="{classid.acadamicyear.null}")
-    @NotEmpty(message="{classid.acadamicyear.empty}")
+    @NotEmpty(message="{attendance.acadamic.year}")
     private String acadamicyear;
     
-    @NotNull(message="{classid.department.null}")
-    @NotEmpty(message="{classid.department.empty}")
+    @NotEmpty(message="{attendance.department}")
     private String department;
     
-    @NotNull(message="{classid.coursetype.null}")
-    @NotEmpty(message="{classid.coursetype.empty}")
+    @NotEmpty(message="{attendance.course.type}")
     private String coursetype;
     
+    @NotNull(message = "{attendance.null}")
     @Valid
     private DailyStats dailyStats;
     
+    @NotNull(message = "{attendance.empty}")
+    @Valid
     private List<Attendance> attendance;
 
     public ClassDetails() {

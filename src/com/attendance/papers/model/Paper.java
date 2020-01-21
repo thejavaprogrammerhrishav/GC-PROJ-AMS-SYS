@@ -5,16 +5,29 @@
  */
 package com.attendance.papers.model;
 
+import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.NotEmpty;
+
 /**
  *
  * @author Programmer Hrishav
  */
 public class Paper {
     private long id;
+    
+    @NotEmpty(message = "{attendance.paper.code}")
     private String paperCode;
+    
+    @NotEmpty(message = "{attendance.name}")
     private String paperName;
+    
+    @NotEmpty(message = "{attendance.semester}")
     private String semester;
+    
+    @NotEmpty(message = "{attendance.department}")
     private String department;
+    
+    @NotEmpty(message = "{attendance.course.type}")
     private String coursetype;
 
     public Paper() {

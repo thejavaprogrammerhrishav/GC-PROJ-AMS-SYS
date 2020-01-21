@@ -5,6 +5,11 @@
  */
 package com.attendance.marks.model;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.Range;
+
 /**
  *
  * @author Programmer Hrishav
@@ -12,20 +17,42 @@ package com.attendance.marks.model;
 public class UnitTest {
 
     private int id;
+
+    @NotEmpty(message = "{attendance.name}")
     private String name;
+
+    @Min(value = 1000, message = "{attendance.roll.number}")
     private int rollno;
+
+    @Min(value = 0, message = "{attendance.marks}")
     private int marksObtained;
+
+    @Min(value = 0, message = "{attendance.marks}")
     private int passingMarks;
+
+    @Min(value = 0, message = "{attendance.marks}")
     private int totalMarks;
+
+    @NotEmpty(message = "{attendance.empty}")
     private String unitTest;
+
+    @NotEmpty(message = "{attendance.acadamic.year}")
     private String acadamicYear;
+
+    @NotEmpty(message = "{attendance.semester}")
     private String semester;
+
+    @Range(min = 1800, max = 3000, message = "{attendance.year}")
     private int year;
+
+    @NotEmpty(message = "{attendance.course.type}")
     private String coursetype;
+
+    @NotEmpty(message = "{attendance.department}")
     private String department;
 
     public UnitTest() {
-        this(-1, "", -1, 0, 0, 0, "", "", "", -1,"","");
+        this(-1, "", -1, 0, 0, 0, "", "", "", -1, "", "");
     }
 
     public UnitTest(int id, String name, int rollno, int marksObtained, int passingMarks, int totalMarks, String unitTest, String acadamicYear, String semester, int year, String coursetype, String department) {

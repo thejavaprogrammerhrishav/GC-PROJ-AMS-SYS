@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="351.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="776.0" fitWidth="1366.0" layoutY="-4.0" pickOnBounds="true" smooth="false">
+         <image>
+            <Image url="@../../resources/70-705850_wallpaper-banner-keren-labzada-illustration.jpg" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutX="62.0" layoutY="43.0" prefHeight="684.0" prefWidth="1238.0" style="-fx-background-color: white;">
+         <children>
+            <AnchorPane layoutX="-2.0" layoutY="-1.0" prefHeight="684.0" prefWidth="600.0" style="-fx-background-color: #;">
+               <children>
+                  <ImageView fitHeight="401.0" fitWidth="562.0" layoutX="19.0" layoutY="169.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../resources/2320450.jpg" />
+                     </image>
+                  </ImageView>
+                  <Pane fx:id="pane" layoutX="19.0" layoutY="38.0" prefHeight="74.0" prefWidth="562.0">
+                     <children>
+                        <Label layoutX="35.0" layoutY="20.0" text="Reset Failed ">
+                           <styleClass>
+                              <String fx:value="h3" />
+                              <String fx:value="strong" />
+                           </styleClass>
+                        </Label>
+                        <Label layoutX="193.0" layoutY="20.0" prefHeight="35.0" prefWidth="384.0" styleClass="h4" text="Answers didn't match, please try again" />
+                     </children>
+                     <styleClass>
+                        <String fx:value="alert" />
+                        <String fx:value="alert-danger" />
+                     </styleClass>
+                  </Pane>
+               </children>
+            </AnchorPane>
+            <Label layoutX="613.0" layoutY="60.0" prefHeight="42.0" prefWidth="343.0" text="Security Questions">
+               <font>
+                  <Font name="Tw Cen MT Bold" size="37.0" />
+               </font>
+            </Label>
+            <Label layoutX="614.0" layoutY="102.0" prefHeight="21.0" prefWidth="343.0" text="Please Answer The Security Questions" textFill="#6f6c6c">
+               <font>
+                  <Font name="Calibri" size="16.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="proceed" layoutX="614.0" layoutY="585.0" prefHeight="42.0" prefWidth="150.0" ripplerFill="BLACK" style="-fx-background-color: #8633d6; -fx-background-radius: 10;" text="Continue" textFill="WHITE">
+               <font>
+                  <Font name="Tw Cen MT" size="20.0" />
+               </font>
+            </JFXButton>
+            <Label layoutX="614.0" layoutY="152.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="23.0" prefWidth="125.0" text="Current Usertype" textFill="#222222">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="613.0" layoutY="177.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="23.0" prefWidth="95.0" text="Department" textFill="#222222">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="admin" layoutX="768.0" layoutY="152.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="23.0" prefWidth="125.0" text="Admin" textFill="#222222">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="department" layoutX="767.0" layoutY="177.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="23.0" prefWidth="242.0" text="Ecology &amp; Environmental Science" textFill="#222222">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <TextField fx:id="answer1" layoutX="615.0" layoutY="295.0" prefHeight="32.0" prefWidth="592.0" promptText="Answer To The First Security Question" style="-fx-background-radius: 5;">
+               <font>
+                  <Font name="Arial" size="12.0" />
+               </font></TextField>
+            <ComboBox fx:id="question1" layoutX="615.0" layoutY="246.0" prefHeight="37.0" prefWidth="592.0" promptText="Select Security Question 1" style="-fx-font-size: 16; -fx-font-family: 'Tw Cen MT',sans-serif;" />
+            <TextField fx:id="answer2" layoutX="615.0" layoutY="409.0" prefHeight="32.0" prefWidth="592.0" promptText="Answer To The Second Security Question" style="-fx-background-radius: 5;">
+               <font>
+                  <Font name="Arial" size="12.0" />
+               </font>
+            </TextField>
+            <ComboBox fx:id="question2" layoutX="615.0" layoutY="360.0" prefHeight="37.0" prefWidth="592.0" promptText="Select Security Question 2" style="-fx-font-size: 16; -fx-font-family: 'Tw Cen MT',sans-serif;" />
+            <TextField fx:id="answer3" layoutX="615.0" layoutY="523.0" prefHeight="32.0" prefWidth="592.0" promptText="Answer To The Third Security Question" style="-fx-background-radius: 5;">
+               <font>
+                  <Font name="Arial" size="12.0" />
+               </font>
+            </TextField>
+            <ComboBox fx:id="question3" layoutX="615.0" layoutY="474.0" prefHeight="37.0" prefWidth="592.0" promptText="Select Security Question 3" style="-fx-font-size: 16; -fx-font-family: 'Tw Cen MT',sans-serif;" />
+            <JFXButton fx:id="updateanswer" layoutX="1016.0" layoutY="585.0" prefHeight="42.0" prefWidth="191.0" ripplerFill="BLACK" style="-fx-background-color: #198C09; -fx-background-radius: 10;" text="Update Answers" textFill="WHITE">
+               <font>
+                  <Font name="Tw Cen MT" size="20.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="close" contentDisplay="GRAPHIC_ONLY" layoutX="1200.0" layoutY="6.0" ripplerFill="BLACK" styleClass="close" textFill="WHITE">
+               <graphic>
+                  <FontAwesomeIconView glyphName="CLOSE" size="1.5em" />
+               </graphic>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+   </children>
+   <stylesheets>
+      <URL value="@../../resources/combolist.css" />
+      <URL value="@../../resources/combowhite.css" />
+      <URL value="@../../resources/deepcombo.css" />
+      <URL value="@../../resources/scrollpane.css" />
+      <URL value="@../../resources/normalscroll.css" />
+      <URL value="@../../resources/alert.css" />
+   </stylesheets>
+</fx:root>
