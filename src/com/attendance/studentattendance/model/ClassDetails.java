@@ -6,25 +6,61 @@
 package com.attendance.studentattendance.model;
 
 import java.util.List;
+import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 /**
  *
  * @author Programmer Hrishav
  */
 public class ClassDetails {
-
+    
+    @NotNull(message="{classid.null}")
+    @NotEmpty(message="{classid.empty}")
     private String classId;
+    
+    @NotNull(message="{classid.facultyName.null}")
+    @NotEmpty(message="{classid.facultyName.empty}")
     private String facultyName;
+    
+    @NotNull(message="{classid.subjectTaught.null}")
+    @NotEmpty(message="{classid.subjectTaught.empty}")
     private String subjectTaught;
+    
+    @NotNull(message="{classid.date.null}")
+    @NotEmpty(message="{classid.date.empty}")
     private String date;
+    
+    @NotNull(message="{classid.time.null}")
+    @NotEmpty(message="{classid.time.empty}")
     private String time;
+    
+    @NotNull(message="{classid.semester.null}")
+    @NotEmpty(message="{classid.semester.empty}")
     private String semester;
+    
+    @NotNull(message="{classid.year.null}")
+    @NotEmpty(message="{classid.year.empty}")
     private int year;
+    
+    @NotNull(message="{classid.paper.null}")
+    @NotEmpty(message="{classid.paper.empty}")
     private String paper;
+    
+    @NotNull(message="{classid.acadamicyear.null}")
+    @NotEmpty(message="{classid.acadamicyear.empty}")
     private String acadamicyear;
+    
+    @NotNull(message="{classid.department.null}")
+    @NotEmpty(message="{classid.department.empty}")
     private String department;
+    
+    @NotNull(message="{classid.coursetype.null}")
+    @NotEmpty(message="{classid.coursetype.empty}")
     private String coursetype;
     
+    @Valid
     private DailyStats dailyStats;
     
     private List<Attendance> attendance;

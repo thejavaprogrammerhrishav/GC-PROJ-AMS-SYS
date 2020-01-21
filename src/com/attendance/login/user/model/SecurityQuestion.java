@@ -5,17 +5,35 @@
  */
 package com.attendance.login.user.model;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 /**
  *
  * @author Programmer Hrishav
  */
 public class SecurityQuestion {
     private long id;
+    
+    @NotNull(message = "{security.question.null}")
+    @NotEmpty(message = "{security.question.empty}")
     private String question1;
+    
+    @NotNull(message = "{security.question.null}")
+    @NotEmpty(message = "{security.question.empty}")
     private String question2;
+    
+    @NotNull(message = "{security.question.null}")
+    @NotEmpty(message = "{security.question.empty}")
     private String question3;
+    
+    @NotNull(message = "{security.answer.null}")
     private String answer1;
+    
+    @NotNull(message = "{security.answer.null}")
     private String answer2;
+    
+    @NotNull(message = "{security.answer.null}")
     private String answer3;
 
     public SecurityQuestion() {

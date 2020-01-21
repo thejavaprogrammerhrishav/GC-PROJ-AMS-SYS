@@ -5,6 +5,9 @@
  */
 package com.attendance.studentattendance.model;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+
 /**
  *
  * @author Programmer Hrishav
@@ -12,11 +15,13 @@ package com.attendance.studentattendance.model;
 public class DailyStats {
 
     private Long id;
-    private int totalStudent;
-    private int totalPresent;
-    private int totalAbsent;
-    private double presentPercentage;
-    private double absentPercentage;
+    
+    
+    private Integer totalStudent;
+    private Integer totalPresent;
+    private Integer totalAbsent;
+    private Double presentPercentage;
+    private Double absentPercentage;
 
     public DailyStats() {
         this((long)-1, -1, -1, -1, -1.1, -1.1);
