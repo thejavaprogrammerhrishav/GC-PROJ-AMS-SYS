@@ -21,7 +21,7 @@ public class UnitTest {
     @NotEmpty(message = "{attendance.name}")
     private String name;
 
-    @Min(value = 1000, message = "{attendance.roll.number}")
+    @Range(min = 1000,max=9999, message = "{attendance.roll.number}")
     private int rollno;
 
     @Min(value = 0, message = "{attendance.marks}")

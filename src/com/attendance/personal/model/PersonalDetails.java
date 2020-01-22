@@ -28,7 +28,7 @@ public class PersonalDetails {
 
     @NotEmpty(message = "{attendance.contact}")
     @Size(min = 10, max = 10,message = "{attendance.contact}")
-    @Pattern(regexp = "^[6-9]\\d{9}$",message = "{attendance.contact}")
+    @Pattern(regexp = "^[4-9]\\d{9}$",message = "{attendance.contact}")
     private String contact;
 
     @NotEmpty(message = "{attendance.gender}")

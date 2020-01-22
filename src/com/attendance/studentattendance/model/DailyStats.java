@@ -5,18 +5,31 @@
  */
 package com.attendance.studentattendance.model;
 
+import com.attendance.validator.annotation.Percentage;
+import javax.validation.constraints.Min;
+
 /**
  *
  * @author Programmer Hrishav
  */
 public class DailyStats {
 
+    
     private Long id;
+    
+    @Min(value=0,message = "{attendance.total.student}")
     private int totalStudent;
+        
+    @Min(value=0,message = "{attendance.total.student}")
     private int totalPresent;
+        
+    @Min(value=0,message = "{attendance.total.student}")
     private int totalAbsent;
 
+    @Percentage(message="{attendance.percentage}")
     private double presentPercentage;
+    
+    @Percentage(message="{attendance.percentage}")
     private double absentPercentage;
 
     public DailyStats() {
