@@ -8,6 +8,8 @@ package com.attendance.settings.sub;
 import com.attendance.main.Start;
 import com.attendance.student.dao.StudentDao;
 import com.attendance.student.model.Student;
+import com.attendance.student.service.StudentService;
+import com.attendance.util.ExceptionDialog;
 import com.attendance.util.ExportStudentList;
 import com.attendance.util.Fxml;
 import com.attendance.util.SystemUtils;
@@ -100,8 +102,9 @@ public class ExportStudentListController extends AnchorPane {
 
     private FXMLLoader fxml;
 
-    private StudentDao dao;
+    private StudentService dao;
     private List<Student> list;
+    private ExceptionDialog dialog;
 
     public ExportStudentListController() {
         fxml = Fxml.getExportStudentListFXML();
@@ -118,7 +121,9 @@ public class ExportStudentListController extends AnchorPane {
     @FXML
     private void initialize() {
         department.setText(SystemUtils.getDepartment());
-        dao = (StudentDao) Start.app.getBean("studentregistration");
+        dao = (StudentService) Start.app.getBean("studentservice");
+        dao.setParent(this);
+        dialog = dao.getEx();
 
         semester.getItems().addAll("1st", "2nd", "3rd");
 
@@ -203,8 +208,9 @@ public class ExportStudentListController extends AnchorPane {
         ExportStudentList exp = new ExportStudentList(table);
         try {
             exp.createFile().convertToExcel("Student List").exportToFile();
+            dialog.showSuccess(this, "Export Student List", "Student List Exported Successfully");
         } catch (IOException ex) {
-            Logger.getLogger(ExportStudentListController.class.getName()).log(Level.SEVERE, null, ex);
+            dialog.showError(this, "Export Student List", "Student List Export Failed");
         }
     }
 }

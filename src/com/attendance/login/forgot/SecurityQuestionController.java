@@ -6,8 +6,10 @@
 package com.attendance.login.forgot;
 
 import com.attendance.login.dao.Login;
+import com.attendance.login.service.LoginService;
 import com.attendance.login.user.model.SecurityQuestion;
 import com.attendance.main.Start;
+import com.attendance.util.ExceptionDialog;
 import com.attendance.util.Fxml;
 import com.attendance.util.RootFactory;
 import com.attendance.util.SwitchRoot;
@@ -75,7 +77,8 @@ public class SecurityQuestionController extends AnchorPane {
     private Parent parent;
     private String mode;
     
-    private Login dao;
+    private LoginService dao;
+    private ExceptionDialog dialog;
 
     public SecurityQuestionController(Parent parent, String mode) {
         this.parent = parent;
@@ -92,7 +95,10 @@ public class SecurityQuestionController extends AnchorPane {
 
     @FXML
     private void initialize() {
-        dao=(Login) Start.app.getBean("userlogin");
+        dao=(LoginService) Start.app.getBean("loginservice");
+        dao.setParent(this);
+        dialog = dao.getEx();
+        
         close.setOnAction(e -> SwitchRoot.switchRoot(Start.st, parent));
         admin.setText(SystemUtils.getCurrentUser().getType());
         department.setText(SystemUtils.getDepartment());
@@ -214,7 +220,12 @@ public class SecurityQuestionController extends AnchorPane {
         
         SystemUtils.getCurrentUser().setSecurityquestion(question);
         
-        dao.update(SystemUtils.getCurrentUser());
+        boolean b = dao.updateUser(SystemUtils.getCurrentUser());
+        if(b) {
         SwitchRoot.switchRoot(Start.st, parent);
+        }
+        else{
+            dialog.showError(this, "Security Questions", "Security Question Updation Failed");
+        }
     }
 }

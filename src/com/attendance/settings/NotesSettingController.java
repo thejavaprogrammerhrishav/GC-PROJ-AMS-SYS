@@ -11,6 +11,8 @@ import com.attendance.notes.controller.NotesNodeController;
 import com.attendance.notes.controller.NotesSearchController;
 import com.attendance.notes.dao.NotesDao;
 import com.attendance.notes.model.Notes;
+import com.attendance.notes.service.NotesService;
+import com.attendance.util.ExceptionDialog;
 import com.attendance.util.Fxml;
 import com.attendance.util.Message;
 import com.attendance.util.MessageUtil;
@@ -129,7 +131,8 @@ public class NotesSettingController extends AnchorPane {
 
     private FXMLLoader fxml;
     private Parent parent;
-    private NotesDao dao;
+    private NotesService dao;
+    private ExceptionDialog dialog;
 
     private File file;
     private DecimalFormat dec;
@@ -149,7 +152,9 @@ public class NotesSettingController extends AnchorPane {
 
     @FXML
     private void initialize() {
-        dao = (NotesDao) Start.app.getBean("notes");
+        dao = (NotesService) Start.app.getBean("notesservice");
+        dao.setParent(this);
+        dialog = dao.getEx();
 
         dec = new DecimalFormat("#.##");
         dec.setRoundingMode(RoundingMode.CEILING);
@@ -161,7 +166,7 @@ public class NotesSettingController extends AnchorPane {
         selectuploader.getItems().setAll(names);
 
         loadData(null);
-        
+
         initDetails();
 
         selectuploader.disableProperty().bind(filterbyname.selectedProperty().not());
@@ -180,7 +185,7 @@ public class NotesSettingController extends AnchorPane {
         searchbyfile.setOnAction(this::fileSearch);
         selectall.setOnAction(this::select);
         uncheck.setOnAction(this::deselect);
-        
+
         delete.setOnAction(this::delete);
 
     }
@@ -290,12 +295,13 @@ public class NotesSettingController extends AnchorPane {
         collect.stream().forEach(c -> c.setSelected(false));
         list.getChildren().setAll(collect);
     }
-    
+
     private void delete(ActionEvent evt) {
         List<NotesNodeController> nodes = list.getChildren().stream().map(f -> (NotesNodeController) f).collect(Collectors.toList());
         nodes = nodes.stream().filter(f -> f.isSelected()).collect(Collectors.toList());
-        nodes.stream().forEach(c -> dao.delete(c.getNotes()));
-        MessageUtil.showInformation(Message.INFORMATION, "Delete Notes", "Files Deleted Successfully", this.getScene().getWindow());
+        nodes.stream().forEach(c -> dao.deleteNotes(c.getNotes()));
+
+        dialog.showSuccess(this, "Delete Notes", "Notes Deleted Successfully");
 
     }
 }

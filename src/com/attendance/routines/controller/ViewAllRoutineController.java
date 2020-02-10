@@ -6,6 +6,7 @@
 package com.attendance.routines.controller;
 
 import com.attendance.main.Start;
+import com.attendance.routine.service.RoutineService;
 import com.attendance.routines.dao.RoutineDao;
 import com.attendance.routines.model.Routine;
 import com.attendance.settings.sub.LoadingController;
@@ -56,7 +57,8 @@ public class ViewAllRoutineController extends AnchorPane {
     private VBox list;
 
     private FXMLLoader fxml;
-    private RoutineDao dao;
+    private RoutineService dao;
+
 
     public ViewAllRoutineController() {
         fxml = Fxml.getViewAllRoutineFXML();
@@ -71,7 +73,8 @@ public class ViewAllRoutineController extends AnchorPane {
 
     @FXML
     private void initialize() {
-        dao = (RoutineDao) Start.app.getBean("routine");
+        dao = (RoutineService) Start.app.getBean("routineservice");
+        dao.setParent(this);
 
         date.disableProperty().bind(filterbydate.selectedProperty().not());
 

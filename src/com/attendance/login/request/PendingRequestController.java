@@ -6,8 +6,10 @@
 package com.attendance.login.request;
 
 import com.attendance.login.dao.Login;
+import com.attendance.login.service.LoginService;
 import com.attendance.login.user.model.User;
 import com.attendance.main.Start;
+import com.attendance.util.ExceptionDialog;
 import com.attendance.util.Fxml;
 import com.attendance.util.SwitchRoot;
 import com.attendance.util.SystemUtils;
@@ -89,7 +91,9 @@ public class PendingRequestController extends AnchorPane {
     private Parent parent;
     private String sdepartment;
 
-    private Login login;
+    private LoginService login;
+    
+    private ExceptionDialog dialog;
 
     private String reqtype;
 
@@ -99,7 +103,6 @@ public class PendingRequestController extends AnchorPane {
     private boolean isPrincipal;
 
     public PendingRequestController(Parent parent, String sdepartment,boolean isPrincipal) {
-
         this.parent = parent;
         this.sdepartment = sdepartment;
         this.isPrincipal = isPrincipal;
@@ -131,7 +134,10 @@ public class PendingRequestController extends AnchorPane {
             }
         };
 
-        login = (Login) Start.app.getBean("userlogin");
+        login = (LoginService) Start.app.getBean("loginservice");
+        login.getEx();
+        dialog = login.getEx();
+        
         department.setText(sdepartment);
         usertype.setText(SystemUtils.getCurrentUser().getType());
         switch (SystemUtils.getCurrentUser().getType()) {
@@ -175,7 +181,6 @@ public class PendingRequestController extends AnchorPane {
 
             @Override
             public PendingRequestNodeController apply(User t) {
-
                 return new PendingRequestNodeController(i++, t);
             }
         }).collect(Collectors.toList());
@@ -189,7 +194,6 @@ public class PendingRequestController extends AnchorPane {
 
             @Override
             public PendingRequestNodeController apply(User t) {
-
                 return new PendingRequestNodeController(i++, t);
             }
         }).collect(Collectors.toList());
@@ -203,7 +207,6 @@ public class PendingRequestController extends AnchorPane {
 
             @Override
             public PendingRequestNodeController apply(User t) {
-
                 return new PendingRequestNodeController(i++, t);
             }
         }).collect(Collectors.toList());
@@ -217,7 +220,6 @@ public class PendingRequestController extends AnchorPane {
 
             @Override
             public PendingRequestNodeController apply(User t) {
-
                 return new PendingRequestNodeController(i++, t);
             }
         }).collect(Collectors.toList());
@@ -238,7 +240,6 @@ public class PendingRequestController extends AnchorPane {
 
             @Override
             public PendingRequestNodeController apply(User t) {
-
                 return new PendingRequestNodeController(i++, t);
             }
         }).collect(Collectors.toList());
@@ -257,7 +258,6 @@ public class PendingRequestController extends AnchorPane {
 
             @Override
             public PendingRequestNodeController apply(User t) {
-
                 return new PendingRequestNodeController(i++, t);
             }
         }).collect(Collectors.toList());
@@ -277,7 +277,6 @@ public class PendingRequestController extends AnchorPane {
 
             @Override
             public PendingRequestNodeController apply(User t) {
-
                 return new PendingRequestNodeController(i++, t);
             }
         }).collect(Collectors.toList());

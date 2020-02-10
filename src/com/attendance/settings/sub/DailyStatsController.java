@@ -7,10 +7,13 @@ package com.attendance.settings.sub;
 
 import com.attendance.main.Start;
 import com.attendance.student.dao.StudentDao;
+import com.attendance.student.service.StudentService;
 import com.attendance.studentattendance.dao.ClassDetailsDao;
 import com.attendance.studentattendance.model.ClassDetails;
 import com.attendance.studentattendance.model.DailyStats;
+import com.attendance.studentattendance.service.AttendanceService;
 import com.attendance.util.DailyStatsUtilModel;
+import com.attendance.util.ExceptionDialog;
 import com.attendance.util.Fxml;
 import com.attendance.util.SwitchRoot;
 import com.attendance.util.SystemUtils;
@@ -126,8 +129,9 @@ public class DailyStatsController extends AnchorPane {
 
     private FXMLLoader fxml;
 
-    private StudentDao sdao;
-    private ClassDetailsDao cdao;
+    private StudentService sdao;
+    private AttendanceService cdao;
+    private ExceptionDialog dialog;
 
     private Parent parent;
     private String faculty;
@@ -149,8 +153,12 @@ public class DailyStatsController extends AnchorPane {
     @FXML
     private void initialize() {
         department.setText(SystemUtils.getDepartment());
-        cdao = (ClassDetailsDao) Start.app.getBean("classdetails");
-        sdao = (StudentDao) Start.app.getBean("studentregistration");
+        cdao = (AttendanceService) Start.app.getBean("attendanceservice");
+        sdao = (StudentService) Start.app.getBean("studentservice");
+        
+        cdao.setParent(this);
+        dialog = cdao.getEx();
+        
         initFilters();
         initTable();
         populateTable(null);

@@ -6,8 +6,10 @@
 package com.attendance.settings.sub;
 
 import com.attendance.login.dao.Login;
+import com.attendance.login.service.LoginService;
 import com.attendance.login.user.model.User;
 import com.attendance.main.Start;
+import com.attendance.util.ExceptionDialog;
 import com.attendance.util.Fxml;
 import com.attendance.util.SwitchRoot;
 import com.jfoenix.controls.JFXButton;
@@ -77,8 +79,9 @@ public class DeleteLoginUserController extends AnchorPane {
     private Parent parent;
     private String currentdepartment;
 
-    private Login dao;
+    private LoginService dao;
     private User user;
+    private ExceptionDialog dialog;
 
     public DeleteLoginUserController(Parent parent, String currentdepartment) {
         this.parent = parent;
@@ -95,7 +98,10 @@ public class DeleteLoginUserController extends AnchorPane {
 
     @FXML
     private void initialize() {
-        dao = (Login) Start.app.getBean("userlogin");
+        dao = (LoginService) Start.app.getBean("loginservice");
+        dao.setParent(this);
+        dialog = dao.getEx();
+        
         close.setOnAction(eh -> SwitchRoot.switchRoot(Start.st, parent));
         department.setText(currentdepartment);
 
@@ -131,7 +137,13 @@ public class DeleteLoginUserController extends AnchorPane {
     }
 
     private void delete(ActionEvent evt) {
-        dao.delete(user);
+        boolean b = dao.deleteUser(user);
+        if(b){
+            dialog.showSuccess(this, "Delete Login User", "Login User Deleted Successfully");
+        }else {
+            dialog.showError(this, "Delete Login User", "Login User Deletion Failed");
+        }
+                
     }
 
     private void search(ActionEvent evt) {

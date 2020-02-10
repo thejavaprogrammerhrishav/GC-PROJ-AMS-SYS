@@ -6,7 +6,9 @@
 package com.attendance.papers.service;
 
 import com.attendance.papers.model.Paper;
+import com.attendance.util.ExceptionDialog;
 import java.util.List;
+import javafx.scene.Parent;
 
 /**
  *
@@ -26,7 +28,7 @@ public interface PapersService {
 
     public abstract List<Paper> findBySemester(String sem);
 
-    public abstract List<Paper> findByPaperId(String newID, String oldID);
+    public abstract boolean updatePaperId(String newID, String oldID);
 
     public abstract List<Paper> findByDepartment(String Department);
 
@@ -35,5 +37,9 @@ public interface PapersService {
     public abstract List<Paper> findByDepartmentAndCourseType(String department, String courseType);
 
     public abstract boolean exists(String code);
+
+    public abstract void setParent(Parent parent);
+
+    public abstract ExceptionDialog getEx();
 
 }

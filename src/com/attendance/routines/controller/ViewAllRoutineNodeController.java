@@ -6,8 +6,10 @@
 package com.attendance.routines.controller;
 
 import com.attendance.main.Start;
+import com.attendance.routine.service.RoutineService;
 import com.attendance.routines.dao.RoutineDao;
 import com.attendance.routines.model.Routine;
+import com.attendance.util.ExceptionDialog;
 import com.attendance.util.Fxml;
 import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
@@ -42,7 +44,8 @@ public class ViewAllRoutineNodeController extends AnchorPane{
     
     private Routine routine;
     
-    private RoutineDao dao;
+    private RoutineService dao;
+    private ExceptionDialog dialog;
 
     public ViewAllRoutineNodeController(Routine routine) {
         this.routine = routine;
@@ -59,7 +62,10 @@ public class ViewAllRoutineNodeController extends AnchorPane{
     @FXML
     private void initialize() {
         
-        dao = (RoutineDao) Start.app.getBean("routine");
+        dao = (RoutineService) Start.app.getBean("routineservice");
+        dao.setParent(name);
+        dialog = dao.getEx();
+        
         name.setText(routine.getFilename());
         date.setText(routine.getDate());
         
@@ -69,7 +75,12 @@ public class ViewAllRoutineNodeController extends AnchorPane{
     
     
     private void delete(ActionEvent evt) {
-        dao.delete(routine);
+        boolean b = dao.deleteRoutine(routine);
+        if(b) {
+            dialog.showSuccess(this, "Delete Routine", "Routine Deleted Successfully");
+        }else {
+            dialog.showError(this, "Delete Routine", "Routine Deletion Failed");
+        }
     }
     
 }

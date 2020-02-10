@@ -20,8 +20,8 @@ import javafx.scene.layout.AnchorPane;
  * @author pc
  */
 public class PrincipalLoginActivityController extends AnchorPane {
-    
-        @FXML
+
+    @FXML
     private Label name;
 
     @FXML
@@ -39,7 +39,6 @@ public class PrincipalLoginActivityController extends AnchorPane {
     @FXML
     private Label logintime;
 
-    
     private FXMLLoader fxml;
     private LoginActivity activity;
 
@@ -70,8 +69,8 @@ public class PrincipalLoginActivityController extends AnchorPane {
                     + "-fx-font-size: 16; -fx-background-radius: 50;");
         } else {
             status.setStyle("-fx-background-color: red; -fx-text-fill: #fff;"
-                     + "-fx-font-size: 16; -fx-background-radius: 50;");
+                    + "-fx-font-size: 16; -fx-background-radius: 50;");
         }
     }
-    
+
 }

@@ -6,8 +6,10 @@
 package com.attendance.login.forgot;
 
 import com.attendance.login.dao.Login;
+import com.attendance.login.service.LoginService;
 import com.attendance.login.user.model.User;
 import com.attendance.main.Start;
+import com.attendance.util.ExceptionDialog;
 import com.attendance.util.Fxml;
 import com.attendance.util.RootFactory;
 import com.attendance.util.SwitchRoot;
@@ -56,7 +58,8 @@ public class ResetPassword3Controller extends AnchorPane {
 
     private FXMLLoader fxml;
     private Parent parent;
-    private Login dao;
+    private LoginService dao;
+    private ExceptionDialog dialog;
 
     public ResetPassword3Controller(Parent parent) {
         this.parent = parent;
@@ -72,7 +75,10 @@ public class ResetPassword3Controller extends AnchorPane {
 
     @FXML
     private void initialize() {
-        dao  = (Login) Start.app.getBean("userlogin");
+        dao  = (LoginService) Start.app.getBean("loginservice");
+        dao.setParent(this);
+        dialog = dao.getEx();
+        
         close.setOnAction(e -> SwitchRoot.switchRoot(Start.st, parent));
         usertype.setText(SystemUtils.getCurrentUser().getType());
         department.setText(SystemUtils.getDepartment());
@@ -105,12 +111,17 @@ public class ResetPassword3Controller extends AnchorPane {
     private void password(ActionEvent evt) {
         if (newpassword.getText().equals(confirmpassword.getText())) {
             SystemUtils.getCurrentUser().setPassword(newpassword.getText());
-            dao.update(SystemUtils.getCurrentUser());
+            boolean b =dao.updateUser(SystemUtils.getCurrentUser());
+            if(b) {
             User user = dao.findById(SystemUtils.getCurrentUser().getId());
             if(user.getPassword().equals(newpassword.getText())) {
                 SwitchRoot.switchRoot(Start.st, RootFactory.getResetPasswordResultRoot("Success"));
             }else{
                 SwitchRoot.switchRoot(Start.st, RootFactory.getResetPasswordResultRoot("Failed"));
+            }
+            }
+            else{
+                dialog.showError(this, "Reset Password", "Password Reset Failed");
             }
         }
     }

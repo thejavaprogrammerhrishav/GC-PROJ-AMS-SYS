@@ -6,11 +6,13 @@
 package com.attendance.dashboard.principal;
 
 import com.attendance.main.Start;
+import com.attendance.routine.service.RoutineService;
 import com.attendance.routines.controller.ViewAllRoutineController;
 import com.attendance.routines.controller.ViewAllRoutineNodeController;
 import com.attendance.routines.dao.RoutineDao;
 import com.attendance.routines.model.Routine;
 import com.attendance.settings.sub.LoadingController;
+import com.attendance.util.ExceptionDialog;
 import com.attendance.util.Fxml;
 import com.attendance.util.SystemUtils;
 import com.jfoenix.controls.JFXButton;
@@ -58,7 +60,9 @@ public class PrincipalViewAllRoutineController extends AnchorPane {
     private VBox list;
 
     private FXMLLoader fxml;
-    private RoutineDao dao;
+    private RoutineService dao;
+    private ExceptionDialog dialog;
+    
 
     private String department;
     private String year;
@@ -78,8 +82,10 @@ public class PrincipalViewAllRoutineController extends AnchorPane {
 
     @FXML
     private void initialize() {
-        dao = (RoutineDao) Start.app.getBean("routine");
-
+        dao = (RoutineService) Start.app.getBean("routineservice");
+        dao.setParent(this);
+        dialog = dao.getEx();
+        
         date.disableProperty().bind(filterbydate.selectedProperty().not());
 
         loadData(null);
@@ -94,7 +100,7 @@ public class PrincipalViewAllRoutineController extends AnchorPane {
         Task<List<PrincipalViewAllRoutineNodeController>> task = new Task<List<PrincipalViewAllRoutineNodeController>>() {
             @Override
             protected List<PrincipalViewAllRoutineNodeController> call() throws Exception {
-                List<Routine> nodes = dao.findByDepartmentAndYear(department, year);
+                List<Routine> nodes = dao.findByDepartmentAndYear(department, Integer.parseInt(year));
                 List<PrincipalViewAllRoutineNodeController> collect = nodes.stream().map(PrincipalViewAllRoutineNodeController::new).collect(Collectors.toList());
                 return collect;
             }
@@ -117,7 +123,7 @@ public class PrincipalViewAllRoutineController extends AnchorPane {
         Task<List<PrincipalViewAllRoutineNodeController>> task = new Task<List<PrincipalViewAllRoutineNodeController>>() {
             @Override
             protected List<PrincipalViewAllRoutineNodeController> call() throws Exception {
-                List<Routine> nodes = dao.findByDepartmentAndYear(department, year);
+                List<Routine> nodes = dao.findByDepartmentAndYear(department, Integer.parseInt(year));
                 nodes = nodes.stream().filter(f -> f.getDate().equals(DateTimeFormatter.ofPattern("dd-MM-yyyy").format(date.getValue()))).collect(Collectors.toList());
                 List<PrincipalViewAllRoutineNodeController> collect = nodes.stream().map(PrincipalViewAllRoutineNodeController::new).collect(Collectors.toList());
                 return collect;

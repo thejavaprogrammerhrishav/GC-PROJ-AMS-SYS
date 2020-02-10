@@ -8,18 +8,23 @@ package com.attendance.studentattendance.controller;
 import com.attendance.main.Start;
 import com.attendance.papers.dao.PapersDao;
 import com.attendance.papers.model.Paper;
+import com.attendance.papers.service.PapersService;
 import com.attendance.student.dao.StudentDao;
 import com.attendance.student.model.Student;
+import com.attendance.student.service.StudentService;
 import com.attendance.studentattendance.dao.ClassDetailsDao;
 import com.attendance.studentattendance.model.Attendance;
 import com.attendance.studentattendance.model.ClassDetails;
 import com.attendance.studentattendance.model.DailyStats;
+import com.attendance.studentattendance.service.AttendanceService;
 import com.attendance.util.DateTimerThread;
+import com.attendance.util.ExceptionDialog;
 import com.attendance.util.Fxml;
 import com.attendance.util.Message;
 import com.attendance.util.MessageUtil;
 import com.attendance.util.SwitchRoot;
 import com.attendance.util.SystemUtils;
+import com.attendance.util.ValidationUtils;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTimePicker;
@@ -27,6 +32,7 @@ import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -42,6 +48,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javax.validation.ConstraintViolation;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 
@@ -133,9 +140,10 @@ public class StudentAttendanceController extends BorderPane {
     private Thread thread;
     private Thread dt;
 
-    private StudentDao dao;
-    private ClassDetailsDao classdao;
-    private PapersDao papersdao;
+    private StudentService dao;
+    private AttendanceService classdao;
+    private PapersService papersdao;
+    private ExceptionDialog dialog;
 
     private DailyStats daily;
     private ClassDetails classDetails;
@@ -160,9 +168,14 @@ public class StudentAttendanceController extends BorderPane {
         dt = DateTimerThread.newInstance().forLabel(DateTimerThread.DATE, date).init().thread();
         dt.start();
         refresh.setDisable(true);
-        dao = (StudentDao) Start.app.getBean("studentregistration");
-        classdao = (ClassDetailsDao) Start.app.getBean("classdetails");
-        papersdao = (PapersDao) Start.app.getBean("papers");
+        dao = (StudentService) Start.app.getBean("studentservice");
+        classdao = (AttendanceService) Start.app.getBean("attendanceservice");
+        papersdao = (PapersService) Start.app.getBean("papersservice");
+        dao.setParent(this);
+        classdao.setParent(this);
+        papersdao.setParent(this);
+        dialog = classdao.getEx();
+
         facultyName.setText(faculty);
         totalStudents.setText("");
         totalPresent.setText("");
@@ -182,14 +195,14 @@ public class StudentAttendanceController extends BorderPane {
 
         semester.getSelectionModel().selectedItemProperty().addListener((ol, o, n) -> {
             if (n != null || !n.isEmpty()) {
-                List<Paper> paperlist = papersdao.findByDepartmentAndCourseType(SystemUtils.getDepartment(),coursetype.getSelectionModel().getSelectedItem());
-                List<String> list = paperlist.stream().filter(f->f.getSemester().equals(n)).map(p -> p.getPaperCode()).collect(Collectors.toList());
+                List<Paper> paperlist = papersdao.findByDepartmentAndCourseType(SystemUtils.getDepartment(), coursetype.getSelectionModel().getSelectedItem());
+                List<String> list = paperlist.stream().filter(f -> f.getSemester().equals(n)).map(p -> p.getPaperCode()).collect(Collectors.toList());
                 papers.getItems().setAll(list);
             }
         });
 
         acayear.getItems().setAll("1st", "2nd", "3rd");
-        List<String> years = dao.findAllYears();
+        List<String> years = dao.findAllYear();
         year.getItems().setAll(years);
         coursetype.getItems().setAll("Honours", "Pass");
 
@@ -197,11 +210,11 @@ public class StudentAttendanceController extends BorderPane {
 
     private void updateAttendance(ActionEvent evt) {
         if (time.getEditor().getText().isEmpty()) {
-            MessageUtil.showError(Message.ERROR, "Attendance Load Students", "Please Select Class Time", ((Node) evt.getSource()).getScene().getWindow());
+            dialog.showError(this, "Attendance Load Students", "Please Select Class Time");
         } else if (subjectTaught.getText().isEmpty()) {
-            MessageUtil.showError(Message.ERROR, "Attendance Load Students", "Please Enter Subject Taught In The Class", ((Node) evt.getSource()).getScene().getWindow());
+            dialog.showError(this, "Attendance Load Students", "Please Enter Subject Taught In The Class");
         } else if (papers.getSelectionModel().getSelectedItem().isEmpty()) {
-            MessageUtil.showError(Message.ERROR, "Attendance Load Students", "Please Select Paper", ((Node) evt.getSource()).getScene().getWindow());
+            dialog.showError(this, "Attendance Load Students", "Please Select Paper");
         } else {
             String t = time.getEditor().getText();
             if (t.contains("AM")) {
@@ -241,12 +254,24 @@ public class StudentAttendanceController extends BorderPane {
             classDetails.setDailyStats(daily);
             classDetails.setAttendance(attendance);
 
-            String cid = classdao.save(classDetails);
-            if (cid == null || cid.isEmpty()) {
-                MessageUtil.showError(Message.ERROR, "Attendance Load Students", "Class Details Not Saved", ((Node) evt.getSource()).getScene().getWindow());
-            } else {
-                MessageUtil.showError(Message.INFORMATION, "Attendance Load Students", "Class Details Saved Successfully\nDaily Stats Saved Successfully\nDaily Attendance Saved Successfully", ((Node) evt.getSource()).getScene().getWindow());
-                thread.stop();
+            Set<ConstraintViolation<DailyStats>> validate = ValidationUtils.getValidator().validate(daily);
+            if (validate.isEmpty()) {
+                Set<ConstraintViolation<ClassDetails>> validate1 = ValidationUtils.getValidator().validate(classDetails);
+                if (validate1.isEmpty()) {
+                    String cid = classdao.saveAttendance(classDetails);
+                    if (cid == null || cid.isEmpty()) {
+                        dialog.showSuccess(this, "Attendance Load Students", "Class Details Not Saved");
+                        updateAttendance.setDisable(true);
+                    } else {
+                        dialog.showError(this, "Attendance Load Students", "Class Details Saved Successfully\nDaily Stats Saved Successfully\nDaily Attendance Saved Successfully");
+                        thread.stop();
+                    }
+                }else{
+                  validate1.stream().forEach(c-> dialog.showError(this, "Update Student Attendance", c.getMessage()));
+                }
+            }
+            else{
+                validate.stream().forEach(c-> dialog.showError(this, "Update Student Attendance", c.getMessage()));
             }
         }
     }
@@ -269,15 +294,16 @@ public class StudentAttendanceController extends BorderPane {
                 }
                 yyear = Integer.parseInt(year.getSelectionModel().getSelectedItem());
                 ccoursetype = coursetype.getSelectionModel().getSelectedItem();
-                List<Student> list = new ArrayList<>(dao.findByAcadamicYearAndYear(acadamicyear, yyear));
+                List<Student> list = new ArrayList<>(dao.findByAcadamicYearAndyear(acadamicyear, yyear));
                 list = list.stream().filter(p -> p.getCourseType().equals(ccoursetype)).filter(p -> p.getDepartment().equals(SystemUtils.getDepartment())).collect(Collectors.toList());
                 List<StudentAttendanceNodeController> nodes = list.stream().map(StudentAttendanceNodeController::new).collect(Collectors.toList());
                 vb.getChildren().setAll(nodes);
                 sortStudentList(vb);
+                updateAttendance.setDisable(false);
                 thread.start();
             }
         } catch (NullPointerException e) {
-            MessageUtil.showError(Message.ERROR, "Attendance Load Students", "Fill The Missing Ones", ((Node) evt.getSource()).getScene().getWindow());
+            dialog.showError(this, "Attendance Load Students", "Fill The Missing Ones");
         }
     }
 
@@ -298,7 +324,7 @@ public class StudentAttendanceController extends BorderPane {
         acayear.getSelectionModel().clearSelection();
         coursetype.getSelectionModel().clearSelection();
         year.getSelectionModel().clearSelection();
-        
+
         semester.getSelectionModel().clearSelection();
         papers.getSelectionModel().clearSelection();
     }

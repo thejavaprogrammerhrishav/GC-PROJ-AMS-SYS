@@ -6,6 +6,7 @@
 package com.attendance.dashboard.node;
 
 import com.attendance.login.dao.Login;
+import com.attendance.login.service.LoginService;
 import com.attendance.main.Start;
 import com.attendance.util.Fxml;
 import com.attendance.util.SystemUtils;
@@ -32,7 +33,7 @@ public class PrincipalDashboardFacultyNodeController extends AnchorPane {
 
     private FXMLLoader fxml;
 
-    private Login dao;
+    private LoginService dao;
 
     public PrincipalDashboardFacultyNodeController() {
         fxml = Fxml.getPrincipalDashboardFacultyNodeFXML();
@@ -48,7 +49,8 @@ public class PrincipalDashboardFacultyNodeController extends AnchorPane {
 
     @FXML
     private void initialize() {
-        dao = (Login) Start.app.getBean("userlogin");
+        dao = (LoginService) Start.app.getBean("loginservice");
+        dao.setParent(this);
         department.getItems().setAll("All");
         department.getItems().addAll(SystemUtils.getDepartments());
 

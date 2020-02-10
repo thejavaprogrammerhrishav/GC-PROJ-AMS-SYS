@@ -8,6 +8,8 @@ package com.attendance.student.controller;
 import com.attendance.main.Start;
 import com.attendance.student.dao.StudentDao;
 import com.attendance.student.model.Student;
+import com.attendance.student.service.StudentService;
+import com.attendance.util.ExceptionDialog;
 import com.attendance.util.Fxml;
 import com.attendance.util.StageUtil;
 import com.attendance.util.SystemUtils;
@@ -82,9 +84,10 @@ public class LoadStudentsController extends AnchorPane {
     private TableColumn<Student, Integer> studentrollno;
 
     private FXMLLoader fxml;
-    private StudentDao dao;
+    private StudentService dao;
     private static Student student;
     private static Stage stage;
+    private ExceptionDialog dialog;
 
     protected LoadStudentsController() {
         fxml = Fxml.getLoadStudentsFXML();
@@ -99,12 +102,15 @@ public class LoadStudentsController extends AnchorPane {
 
     @FXML
     private void initialize() {
-        dao = (StudentDao) Start.app.getBean("studentregistration");
+        dao = (StudentService) Start.app.getBean("studentservice");
+        dao.setParent(this);
+        dialog = dao.getEx();
+        
         inittable();
         load(null);
 
         facadamicyear.getItems().setAll("1st", "2nd", "3rd");
-        fyear.getItems().setAll(dao.findAllYears());
+        fyear.getItems().setAll(dao.findAllYear());
 
         facadamicyear.disableProperty().bind(filterbyacademicyear.selectedProperty().not());
         fyear.disableProperty().bind(filterbyyear.selectedProperty().not());

@@ -6,7 +6,9 @@
 package com.attendance.login.service;
 
 import com.attendance.login.user.model.User;
+import com.attendance.util.ExceptionDialog;
 import java.util.List;
+import javafx.scene.Parent;
 
 /**
  *
@@ -38,5 +40,11 @@ public interface LoginService {
 
     public abstract int count(String sql);
 
-    public abstract boolean login(String username, String password);
+    public abstract boolean login(String username, String password, String type);
+
+    public abstract void setParent(Parent parent);
+
+    public abstract ExceptionDialog getEx();
+    
+    public abstract boolean isUsernameExists(String username);
 }

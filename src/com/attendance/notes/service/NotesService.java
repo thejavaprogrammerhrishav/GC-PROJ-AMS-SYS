@@ -6,7 +6,9 @@
 package com.attendance.notes.service;
 
 import com.attendance.notes.model.Notes;
+import com.attendance.util.ExceptionDialog;
 import java.util.List;
+import javafx.scene.Parent;
 
 /**
  *
@@ -30,9 +32,13 @@ public interface NotesService {
 
     public abstract List<Notes> findByDateSorted(String uploadDate, String order);
 
-    public abstract List<Notes> findBydate(String order);
+    public abstract List<Notes> sortBydate(String order);
 
-    public abstract List<Notes> findByFileSize(String order);
+    public abstract List<Notes> sortByFileSize(String order);
 
     public abstract List<Notes> findByDepartment(String Department);
+    
+    public abstract void setParent(Parent parent);
+    
+    public abstract ExceptionDialog getEx();
 }

@@ -8,11 +8,13 @@ package com.attendance.dashboard.principal;
 import com.attendance.login.user.model.User;
 import com.attendance.main.Start;
 import com.attendance.personal.model.PersonalDetails;
+import com.attendance.routine.service.RoutineService;
 import com.attendance.routines.controller.ViewActiveRoutineController;
 import com.attendance.routines.controller.ViewAllRoutineController;
 import com.attendance.routines.dao.RoutineDao;
 import com.attendance.routines.model.Routine;
 import com.attendance.settings.sub.LoadingController;
+import com.attendance.util.ExceptionDialog;
 import com.attendance.util.Fxml;
 import com.attendance.util.SwitchRoot;
 import com.attendance.util.SystemUtils;
@@ -82,7 +84,8 @@ public class PrincipalRoutineDashboardController extends AnchorPane {
 
     private User currentUser;
 
-    private RoutineDao rdao;
+    private RoutineService rdao;
+    private ExceptionDialog dialog;
 
     private String currentdepartment;
     private String year;
@@ -103,7 +106,10 @@ public class PrincipalRoutineDashboardController extends AnchorPane {
 
     @FXML
     private void initialize() {
-        rdao = (RoutineDao) Start.app.getBean("routine");
+        rdao = (RoutineService) Start.app.getBean("routineservice");
+        rdao.setParent(this);
+        dialog = rdao.getEx();
+        
         currentUser = SystemUtils.getCurrentUser();
         PersonalDetails personalDetails = currentUser.getDetails();
 
@@ -126,7 +132,7 @@ public class PrincipalRoutineDashboardController extends AnchorPane {
         Task<List<ViewActiveRoutineController>> task = new Task<List<ViewActiveRoutineController>>() {
             @Override
             protected List<ViewActiveRoutineController> call() throws Exception {
-                if (rdao.hasActiveRoutine(currentdepartment, year) == 1) {
+                if (rdao.hasActiveRoutine(currentdepartment, Integer.parseInt(year)) == 1) {
                     Routine r = rdao.findByDepartmentAndDateAndStatus(currentdepartment, year, "Active");
                     return Arrays.asList(new ViewActiveRoutineController(r));
                 } else {

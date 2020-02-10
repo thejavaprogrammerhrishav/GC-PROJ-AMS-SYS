@@ -8,17 +8,21 @@ package com.attendance.routines.controller;
 import com.attendance.login.user.model.User;
 import com.attendance.main.Start;
 import com.attendance.personal.model.PersonalDetails;
+import com.attendance.routine.service.RoutineService;
 import com.attendance.routines.dao.RoutineDao;
 import com.attendance.routines.model.Routine;
+import com.attendance.util.ExceptionDialog;
 import com.attendance.util.Fxml;
 import com.attendance.util.Message;
 import com.attendance.util.MessageUtil;
 import com.attendance.util.SystemUtils;
+import com.attendance.util.ValidationUtils;
 import com.jfoenix.controls.JFXButton;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
@@ -30,6 +34,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
+import javax.validation.ConstraintViolation;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 
@@ -65,8 +70,9 @@ public class AddNewRoutineController extends AnchorPane {
 
     private FXMLLoader fxml;
     private Routine routine;
-    private RoutineDao dao;
+    private RoutineService dao;
 
+    private ExceptionDialog dialog;
     private File file;
 
     public AddNewRoutineController() {
@@ -79,10 +85,13 @@ public class AddNewRoutineController extends AnchorPane {
             Logger.getLogger(AddNewRoutineController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     @FXML
     private void initialize() {
-        dao = (RoutineDao) Start.app.getBean("routine");
+        dao = (RoutineService) Start.app.getBean("routineservice");
+        dao.setParent(this);
+        dialog = dao.getEx();
+
         User currentUser = SystemUtils.getCurrentUser();
         PersonalDetails personalDetails = currentUser.getDetails();
 
@@ -130,24 +139,33 @@ public class AddNewRoutineController extends AnchorPane {
                 routine.setImage(data);
                 routine.setFilename(file.getName());
                 routine.setStatus("Not Active");
-                Integer save = dao.save(routine);
-                if (save > 0) {
-                    MessageUtil.showInformation(Message.INFORMATION, "Add New Routine ", "Routine Added Successfully ", this.getScene().getWindow());
+
+                Set<ConstraintViolation<Routine>> validate = ValidationUtils.getValidator().validate(routine);
+                if (validate.isEmpty()) {
+                    Integer save = dao.saveRoutine(routine);
+                    if (save > 0) {
+                        dialog.showSuccess(this, "Add New Routine", "Routine Added Successfully");
+                    } else {
+                        dialog.showError(this, "Add New Routine", "Routine Addition Failed");
+                    }
                 } else {
-                    MessageUtil.showError(Message.ERROR, "Add New Routine ", "Routine Addition Failed ", this.getScene().getWindow());
+                    validate.stream().forEach(c -> {
+                        dialog.showError(this, "Add New Paper", c.getMessage());
+                    });
                 }
+
             } catch (IOException ex) {
-                Logger.getLogger(AddNewRoutineController.class.getName()).log(Level.SEVERE, null, ex);
+                dialog.showError(this, "Add New Routine", ex.getLocalizedMessage());
             } finally {
                 try {
                     fin.close();
                 } catch (IOException ex) {
-                    Logger.getLogger(AddNewRoutineController.class.getName()).log(Level.SEVERE, null, ex);
+                    dialog.showError(this, "Add New Routine", ex.getLocalizedMessage());
                 }
             }
 
         } else {
-            MessageUtil.showError(Message.ERROR, "Add New Routine ", "No Routine Image File Selected ", this.getScene().getWindow());
+            dialog.showError(this, "Add New Routine", "No Image Selected");
         }
     }
 }

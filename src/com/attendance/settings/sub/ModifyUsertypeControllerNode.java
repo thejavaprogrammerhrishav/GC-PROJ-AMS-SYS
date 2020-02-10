@@ -5,12 +5,11 @@
  */
 package com.attendance.settings.sub;
 
-import com.attendance.login.dao.Login;
+import com.attendance.login.service.LoginService;
 import com.attendance.login.user.model.User;
 import com.attendance.main.Start;
+import com.attendance.util.ExceptionDialog;
 import com.attendance.util.Fxml;
-import com.attendance.util.Message;
-import com.attendance.util.MessageUtil;
 import com.jfoenix.controls.JFXButton;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -46,7 +45,8 @@ public class ModifyUsertypeControllerNode extends AnchorPane {
     private FXMLLoader fxml;
     private User user;
 
-    private Login dao;
+    private LoginService dao;
+    private ExceptionDialog dialog;
 
     public ModifyUsertypeControllerNode(User user) {
         this.user = user;
@@ -62,7 +62,10 @@ public class ModifyUsertypeControllerNode extends AnchorPane {
 
     @FXML
     private void initialize() {
-        dao = (Login) Start.app.getBean("userlogin");
+        dao = (LoginService) Start.app.getBean("loginservice");
+        dao.setParent(this);
+        dialog = dao.getEx();
+
         name.setText(user.getDetails().getName());
         image.setImage(new Image(new ByteArrayInputStream(user.getImage())));
 
@@ -73,7 +76,7 @@ public class ModifyUsertypeControllerNode extends AnchorPane {
         if (user.getType().equals("Faculty")) {
             faculty.setDisable(true);
         }
-        
+
         hod.setOnAction(this::hod);
         faculty.setOnAction(this::faculty);
     }
@@ -84,20 +87,28 @@ public class ModifyUsertypeControllerNode extends AnchorPane {
 
     private void faculty(ActionEvent evt) {
         user.setType("Faculty");
-        dao.update(user);
-        MessageUtil.showInformation(Message.INFORMATION, "Modify User Type", "User Type Changes Successfully", Start.st);
-        
+        boolean b = dao.updateUser(user);
+        if (b) {
+            dialog.showSuccess(this, "Modify User Type", "User Type Changed Successfully");
+        } else {
+            dialog.showError(this, "Modify User Type", "User Type Changing Failed");
+        }
+
     }
 
     private void hod(ActionEvent evt) {
         List<User> users = dao.findByDepartment(user.getDepartment());
-        users.stream().forEach(c->{
+        users.stream().forEach(c -> {
             c.setType("Faculty");
-            dao.update(c);
+            dao.updateUser(c);
         });
 
         user.setType("HOD");
-        dao.update(user);
-        MessageUtil.showInformation(Message.INFORMATION, "Modify User Type", "User Type Changes Successfully", Start.st);
+        boolean b = dao.updateUser(user);
+        if (b) {
+            dialog.showSuccess(this, "Modify User Type", "User Type Changed Successfully");
+        } else {
+            dialog.showError(this, "Modify User Type", "User Type Changing Failed");
+        }
     }
 }

@@ -7,10 +7,14 @@ package com.attendance.dashboard;
 
 import com.attendance.login.activity.dao.Activity;
 import com.attendance.login.activity.model.LoginActivity;
+import com.attendance.login.activity.service.LoginActivityService;
 import com.attendance.login.dao.Login;
+import com.attendance.login.service.LoginService;
 import com.attendance.login.user.model.User;
 import com.attendance.main.Start;
 import com.attendance.student.dao.StudentDao;
+import com.attendance.student.service.StudentService;
+import com.attendance.util.ExceptionDialog;
 import com.attendance.util.Fxml;
 import com.attendance.util.RootFactory;
 import com.attendance.util.StageUtil;
@@ -124,15 +128,16 @@ public class PrincipalDashboardController extends AnchorPane {
     private User principal;
     private LoginActivity activity;
     private FXMLLoader fxml;
-    private Activity act;
-    private Login login;
+    private LoginActivityService act;
+    private LoginService login;
 
     private Task<Integer> task;
     private Thread thread;
     
     private Thread blinker;
 
-    private StudentDao dao;
+    private StudentService dao;
+    private ExceptionDialog dialog;
 
     public PrincipalDashboardController() {
         this.principal = SystemUtils.getCurrentUser();
@@ -152,14 +157,18 @@ public class PrincipalDashboardController extends AnchorPane {
 
     @FXML
     private void initialize() {
-        act = (Activity) Start.app.getBean("loginactivity");
-        login = (Login) Start.app.getBean("userlogin");
-        dao = (StudentDao) Start.app.getBean("studentregistration");
+        act = (LoginActivityService) Start.app.getBean("loginactivityservice");
+        login = (LoginService) Start.app.getBean("loginservice");
+        dao = (StudentService) Start.app.getBean("studentservice");
+        dao.setParent(this);
+        login.setParent(this);
+        act.setParent(this);
+        
 
         department.getItems().setAll(Arrays.asList(SystemUtils.getDepartments()));
         blinker = new Thread(this::blink);
 
-        List<String> years = dao.findAllYears();
+        List<String> years = dao.findAllYear();
         Collections.sort(years);
         year.getItems().setAll(years);
 

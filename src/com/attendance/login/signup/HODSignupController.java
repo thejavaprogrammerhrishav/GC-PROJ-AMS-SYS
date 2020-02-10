@@ -6,14 +6,17 @@
 package com.attendance.login.signup;
 
 import com.attendance.login.dao.Login;
+import com.attendance.login.service.LoginService;
 import com.attendance.login.user.model.SecurityQuestion;
 import com.attendance.login.user.model.User;
 import com.attendance.main.Start;
 import com.attendance.personal.model.PersonalDetails;
+import com.attendance.util.ExceptionDialog;
 import com.attendance.util.Fxml;
 import com.attendance.util.RootFactory;
 import com.attendance.util.SwitchRoot;
 import com.attendance.util.SystemUtils;
+import com.attendance.util.ValidationUtils;
 import java.io.IOException;
 import java.util.Set;
 import java.util.logging.Level;
@@ -66,7 +69,8 @@ public class HODSignupController extends AnchorPane {
 
     private FXMLLoader fxml;
     private User user;
-    private Login login;
+    private LoginService login;
+    private ExceptionDialog dialog;
     private Parent parent;
 
     private PersonalDetails hod;
@@ -89,19 +93,17 @@ public class HODSignupController extends AnchorPane {
     @FXML
     private void initialize() {
         user = new User();
-        login = (Login) Start.app.getBean("userlogin");
+        login = (LoginService) Start.app.getBean("loginservice");
+        login.setParent(this);
+        dialog = login.getEx();
+
         hod = new PersonalDetails();
         question = new SecurityQuestion();
         loginbutton.setOnAction(this::loginaction);
         signup.setOnAction(e -> {
-            if (login.isUsernameExists(username.getText()) > 0) {
-                Alert al = new Alert(Alert.AlertType.ERROR);
-                al.setHeaderText("Administrator Sign Up");
-                al.setContentText("Username already taken");
-                al.initOwner(((Node) e.getSource()).getScene().getWindow());
-                al.initModality(Modality.WINDOW_MODAL);
-                al.initStyle(StageStyle.UNDECORATED);
-                al.show();
+            if (login.isUsernameExists(username.getText())) {
+                dialog.showError(this, "HOD Signup", "Username Already Taken");
+
             } else if (password.getText().equals(confirmpassword.getText())) {
                 user.setPassword(password.getText());
                 user.setType("HOD");
@@ -126,33 +128,22 @@ public class HODSignupController extends AnchorPane {
                 user.setDetails(hod);
                 user.setSecurityquestion(question);
 
-                int id = login.save(user);
+                Set<ConstraintViolation<User>> validate = ValidationUtils.getValidator().validate(user);
+                if (validate.isEmpty()) {
+                    int id = login.saveUser(user);
 
-                if (id > 0) {
-                    Alert al = new Alert(Alert.AlertType.INFORMATION);
-                    al.setHeaderText("HOD Sign Up");
-                    al.setContentText("Sign Up Successful\nHOD account created successfully\nCurrent Account Status :" + user.getStatus());
-                    al.initOwner(((Node) e.getSource()).getScene().getWindow());
-                    al.initModality(Modality.WINDOW_MODAL);
-                    al.initStyle(StageStyle.UNDECORATED);
-                    al.show();
+                    if (id > 0) {
+                        dialog.showSuccess(this, "HOD Signup", "HOD Signup Successfully");
+                    } else {
+                        dialog.showError(this, "HOD Signup", "HOD Signup Failed ");
+                    }
                 } else {
-                    Alert al = new Alert(Alert.AlertType.ERROR);
-                    al.setHeaderText("HOD Sign Up");
-                    al.setContentText("HOD SignUp Failed");
-                    al.initOwner(((Node) e.getSource()).getScene().getWindow());
-                    al.initModality(Modality.WINDOW_MODAL);
-                    al.initStyle(StageStyle.UNDECORATED);
-                    al.show();
+                    validate.stream().forEach(c -> dialog.showWarning(this, "HOD Signup", c.getMessage()));
+
                 }
             } else {
-                Alert al = new Alert(Alert.AlertType.ERROR);
-                al.setHeaderText("HOD Sign Up");
-                al.setContentText("Passwords don't match\nCheck passwords again");
-                al.initOwner(((Node) e.getSource()).getScene().getWindow());
-                al.initModality(Modality.WINDOW_MODAL);
-                al.initStyle(StageStyle.UNDECORATED);
-                al.show();
+                dialog.showError(this, "HOD Signup", "Password Doesn't Match ");
+
             }
         });
     }

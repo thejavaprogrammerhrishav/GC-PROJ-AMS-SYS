@@ -8,16 +8,20 @@ package com.attendance.papers.controller;
 import com.attendance.main.Start;
 import com.attendance.papers.dao.PapersDao;
 import com.attendance.papers.model.Paper;
+import com.attendance.papers.service.PapersService;
+import com.attendance.util.ExceptionDialog;
 import com.attendance.util.Fxml;
 import com.attendance.util.Message;
 import com.attendance.util.MessageUtil;
 import com.attendance.util.SwitchRoot;
 import com.attendance.util.SystemUtils;
+import com.attendance.util.ValidationUtils;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
 import java.io.IOException;
 import java.util.List;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -32,6 +36,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javax.validation.ConstraintViolation;
 
 /**
  *
@@ -113,11 +118,13 @@ public class PapersController extends AnchorPane {
 
     private FXMLLoader fxml;
 
-    private PapersDao dao;
+    private PapersService dao;
 
     private Paper paper;
 
     private Parent parent;
+
+    private ExceptionDialog dialog;
 
     private long id;
 
@@ -135,7 +142,9 @@ public class PapersController extends AnchorPane {
 
     @FXML
     private void initialize() {
-        dao = (PapersDao) Start.app.getBean("papers");
+        dao = (PapersService) Start.app.getBean("papersservice");
+        dao.setParent(this);
+        dialog = dao.getEx();
 
         selecttype.disableProperty().bind(filterbycoursetype.selectedProperty().not());
         selectsemester.disableProperty().bind(filterbysemester.selectedProperty().not());
@@ -218,13 +227,20 @@ public class PapersController extends AnchorPane {
             paper.setDepartment(department.getText());
             paper.setCoursetype(coursetype.getSelectionModel().getSelectedItem());
 
-            long id = dao.save(paper);
-            if (id > 0) {
-                MessageUtil.showInformation(Message.INFORMATION, "ADD NEW PAPER", "New Paper Added Successfully", Start.st);
-                refreshtable(evt);
+            Set<ConstraintViolation<Paper>> validate = ValidationUtils.getValidator().validate(paper);
+            if (validate.size() == 0) {
+                long id = dao.savePaper(paper);
+                if (id > 0) {
+                    dialog.showSuccess(this, "Add New Paper", "New Paper Added Successfully");
+                    refreshtable(evt);
+                }
+            } else {
+                validate.stream().forEach(c -> {
+                    dialog.showError(this, "Add New Paper", c.getMessage());
+                });
             }
         } else {
-            MessageUtil.showInformation(Message.ERROR, "ADD NEW PAPER", "Paper Code Already Exists", Start.st);
+            dialog.showError(this, "Add New Paper", "Paper Code Already Exists");
         }
     }
 
@@ -237,13 +253,21 @@ public class PapersController extends AnchorPane {
         paper.setDepartment(department.getText());
         paper.setCoursetype(coursetype.getSelectionModel().getSelectedItem());
 
-        boolean id = dao.update(paper);
-        if (id) {
-            MessageUtil.showInformation(Message.INFORMATION, "UPDATE PAPER", "Updated Paper Successfully", Start.st);
-            refreshtable(evt);
+        Set<ConstraintViolation<Paper>> validate = ValidationUtils.getValidator().validate(paper);
+        if (validate.size() == 0) {
+            boolean id = dao.updatePaper(paper);
+            if (id) {
+                dialog.showSuccess(this, "Update Paper Details", "Paper Details Updated Successfully");
+                refreshtable(evt);
+            } else {
+                dialog.showError(this, "Update Paper Details", "Paper Details Updation Failed");
+            }
         } else {
-            MessageUtil.showInformation(Message.ERROR, "UPDATE PAPER", "Updation Paper Failed", Start.st);
+            validate.stream().forEach(c -> {
+                dialog.showError(this, "Add New Paper", c.getMessage());
+            });
         }
+
     }
 
     private void deletepaper(ActionEvent evt) {
@@ -255,12 +279,12 @@ public class PapersController extends AnchorPane {
         paper.setDepartment(department.getText());
         paper.setCoursetype(coursetype.getSelectionModel().getSelectedItem());
 
-        boolean id = dao.delete(paper);
+        boolean id = dao.deletePaper(paper);
         if (id) {
-            MessageUtil.showInformation(Message.INFORMATION, "DELETE PAPER", "Deleted Paper Successfully", Start.st);
+            dialog.showSuccess(this, "Delete Paper Details", "Paper Details Deleted Successfully");
             refreshtable(evt);
         } else {
-            MessageUtil.showInformation(Message.ERROR, "Delete PAPER", "Delete Paper Failed", Start.st);
+            dialog.showError(this, "Delete Paper Details", "Paper Details Deletion Failed");
         }
     }
 

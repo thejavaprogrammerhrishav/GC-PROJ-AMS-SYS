@@ -6,9 +6,11 @@
 package com.attendance.settings.sub;
 
 import com.attendance.login.dao.Login;
+import com.attendance.login.service.LoginService;
 import com.attendance.login.user.model.User;
 import com.attendance.main.Start;
 import com.attendance.personal.model.PersonalDetails;
+import com.attendance.util.ExceptionDialog;
 import com.attendance.util.ExportFacultyList;
 import com.attendance.util.Fxml;
 import com.attendance.util.SystemUtils;
@@ -78,8 +80,9 @@ public class ExportFacultyListController extends AnchorPane {
     private FXMLLoader fxml;
 
     private List<PersonalDetails> list;
+    private ExceptionDialog dialog;
 
-    private Login user;
+    private LoginService user;
 
     public ExportFacultyListController() {
         fxml = Fxml.getExportFacultyListFXML();
@@ -96,7 +99,9 @@ public class ExportFacultyListController extends AnchorPane {
     @FXML
     private void initialize() {
         department.setText(SystemUtils.getDepartment());
-        user=(Login) Start.app.getBean("userlogin");
+        user=(LoginService) Start.app.getBean("loginservice");
+        user.setParent(this);
+        dialog = user.getEx();;
 
         name.setCellValueFactory(new PropertyValueFactory<>("name"));
         contact.setCellValueFactory(new PropertyValueFactory<>("contact"));
@@ -162,8 +167,9 @@ public class ExportFacultyListController extends AnchorPane {
         ExportFacultyList exp = new ExportFacultyList(table);
         try {
             exp.createFile().convertToExcel("Faculty List").exportToFile();
+            dialog.showSuccess(this, "Export Faculty List", "Faculty List Exported Successfully");
         } catch (IOException ex) {
-            Logger.getLogger(ExportFacultyListController.class.getName()).log(Level.SEVERE, null, ex);
+            dialog.showError(this, "Export Faculty List", "Faculty List Export Failed");
         }
     }
 }

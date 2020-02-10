@@ -7,8 +7,9 @@ package com.attendance.dashboard.principal;
 
 import com.attendance.routines.controller.*;
 import com.attendance.main.Start;
-import com.attendance.routines.dao.RoutineDao;
+import com.attendance.routine.service.RoutineService;
 import com.attendance.routines.model.Routine;
+import com.attendance.util.ExceptionDialog;
 import com.attendance.util.Fxml;
 import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
@@ -40,7 +41,8 @@ public class PrincipalViewAllRoutineNodeController extends AnchorPane{
     private FXMLLoader fxml;
     
     private Routine routine;    
-    private RoutineDao dao;
+    private RoutineService dao;
+    private ExceptionDialog dialog;
 
     public PrincipalViewAllRoutineNodeController(Routine routine) {
         this.routine = routine;
@@ -56,7 +58,10 @@ public class PrincipalViewAllRoutineNodeController extends AnchorPane{
     
     @FXML
     private void initialize() {
-        dao = (RoutineDao) Start.app.getBean("routine");
+        dao = (RoutineService) Start.app.getBean("routineservice");
+        dao.setParent(this);
+        dialog = dao.getEx();
+        
         name.setText(routine.getFilename());
         date.setText(routine.getDate());
         

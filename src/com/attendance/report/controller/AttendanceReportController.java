@@ -6,15 +6,20 @@
 package com.attendance.report.controller;
 
 import com.attendance.login.dao.Login;
+import com.attendance.login.service.LoginService;
 import com.attendance.main.Start;
 import com.attendance.papers.dao.PapersDao;
 import com.attendance.papers.model.Paper;
+import com.attendance.papers.service.PapersService;
 import com.attendance.report.model.AttendanceDetails;
 import com.attendance.student.dao.StudentDao;
 import com.attendance.student.model.Student;
+import com.attendance.student.service.StudentService;
 import com.attendance.studentattendance.dao.ClassDetailsDao;
 import com.attendance.studentattendance.model.Attendance;
 import com.attendance.studentattendance.model.ClassDetails;
+import com.attendance.studentattendance.service.AttendanceService;
+import com.attendance.util.ExceptionDialog;
 import com.attendance.util.ExportAttendancereport;
 import com.attendance.util.Fxml;
 import com.attendance.util.SwitchRoot;
@@ -134,11 +139,13 @@ public class AttendanceReportController extends AnchorPane {
 
     private ExportAttendancereport export;
 
-    private StudentDao studentdao;
-    private PapersDao paperdao;
-    private ClassDetailsDao classdao;
-    private Login dao;
-
+    private StudentService studentdao;
+    private PapersService paperdao;
+    private AttendanceService classdao;
+    private LoginService dao;
+    
+    private ExceptionDialog dialog;
+    
     public AttendanceReportController(Parent parent) {
         this.parent = parent;
         loader = Fxml.getAttendanceReportFXML();
@@ -157,10 +164,13 @@ public class AttendanceReportController extends AnchorPane {
     @FXML
     private void initialize() {
         department.setText(SystemUtils.getDepartment());
-        studentdao = (StudentDao) Start.app.getBean("studentregistration");
-        paperdao = (PapersDao) Start.app.getBean("papers");
-        classdao = (ClassDetailsDao) Start.app.getBean("classdetails");
-        dao = (Login) Start.app.getBean("userlogin");
+        studentdao = (StudentService) Start.app.getBean("studentservice");
+        paperdao = (PapersService) Start.app.getBean("papersservice");
+        classdao = (AttendanceService) Start.app.getBean("attendanceservice");
+        dao = (LoginService) Start.app.getBean("loginservice");
+        classdao.setParent(this);
+        dialog = classdao.getEx();
+        
         cancel.setOnAction(this::proceed);
         initFilters();
         initTable();
@@ -227,7 +237,7 @@ public class AttendanceReportController extends AnchorPane {
         String papercode = paper.getSelectionModel().getSelectedItem();
         String course = coursetype.getSelectionModel().getSelectedItem();
 
-        List<Student> student=studentdao.findByAcadamicYearAndYear(acayear, yr).stream().filter(f->f.getDepartment().equals(SystemUtils.getDepartment()) && f.getCourseType().equals(course)).collect(Collectors.toList());
+        List<Student> student=studentdao.findByAcadamicYearAndyear(acayear, yr).stream().filter(f->f.getDepartment().equals(SystemUtils.getDepartment()) && f.getCourseType().equals(course)).collect(Collectors.toList());
         Map<String, Student> students = student.parallelStream().collect(Collectors.toMap(Student::getId, Function.identity()));
         
         List<ClassDetails> list = classdao.findAll(SystemUtils.getDepartment(), acayear, sem, yr, papercode, course);
@@ -283,8 +293,9 @@ public class AttendanceReportController extends AnchorPane {
         export = new ExportAttendancereport(table);
         try {
             export.createFile().convertToExcel(filename.getText()).exportToFile();
+            dialog.showSuccess(this,"Export To Excel", "Exported Successfully");
         } catch (SQLException | IOException ex) {
-            Logger.getLogger(AttendanceReportController.class.getName()).log(Level.SEVERE, null, ex);
+            dialog.showError(this,"Export To Excel", "Export Failed\n"+ex.getLocalizedMessage());
         }
     }
 
@@ -292,8 +303,9 @@ public class AttendanceReportController extends AnchorPane {
         export = new ExportAttendancereport(table);
         try {
             export.createFile().generateReport(filename.getText()).exportToFile();
+            dialog.showSuccess(this,"Export To Excel", "Report Exported Successfully");
         } catch (SQLException | IOException ex) {
-            Logger.getLogger(AttendanceReportController.class.getName()).log(Level.SEVERE, null, ex);
+            dialog.showError(this,"Export To Excel", "Report Export Failed\n"+ex.getLocalizedMessage());
         }
     }
 }

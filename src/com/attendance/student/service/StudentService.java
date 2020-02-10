@@ -6,7 +6,9 @@
 package com.attendance.student.service;
 
 import com.attendance.student.model.Student;
+import com.attendance.util.ExceptionDialog;
 import java.util.List;
+import javafx.scene.Parent;
 
 /**
  *
@@ -16,25 +18,25 @@ public interface StudentService {
 
     public abstract String saveStudent(Student s);
 
-    public abstract boolean updateStudent(Student s);
+    public abstract boolean updateStudent(Student s,String ns);
 
     public abstract boolean deleteStudent(Student s);
 
-    public abstract List<Student> findById(String id);
+    public abstract Student findById(String id);
 
-    public abstract List<Student> findByYear(String year);
+    public abstract List<Student> findByYear(int year);
 
     public abstract List<Student> findByAcadamicyear(String acadamicyear);
 
     public abstract List<Student> findByGender(String gender);
 
-    public abstract List<Student> findByAll();
+    public abstract List<Student> findAll();
 
     public abstract List<Student> findByRollNumber(int rollno);
 
     public abstract List<Student> findByName(String name);
 
-    public abstract List<Student> findByAcadamicYearAndyear(String acadamicyear, String year);
+    public abstract List<Student> findByAcadamicYearAndyear(String acadamicyear, int year);
 
     public abstract boolean updateStudentId(String newId, String oldId);
 
@@ -42,11 +44,15 @@ public interface StudentService {
 
     public abstract int countStudents(String acadamicyear, String department);
 
-    public abstract int countStudents(String acadamicyear, String year, String department);
+    public abstract int countStudents(String acadamicyear, int year, String department);
 
     public abstract List<Student> findByCourseType(String courseType);
 
     public abstract List<Student> findByDepartment(String department);
 
     public abstract List<String> findAllYear();
+
+    public abstract void setParent(Parent parent);
+
+    public abstract ExceptionDialog getEx();
 }

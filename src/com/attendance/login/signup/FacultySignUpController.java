@@ -6,16 +6,20 @@
 package com.attendance.login.signup;
 
 import com.attendance.login.dao.Login;
+import com.attendance.login.service.LoginService;
 import com.attendance.login.user.model.SecurityQuestion;
 import com.attendance.login.user.model.User;
 import com.attendance.main.Start;
 import com.attendance.personal.model.PersonalDetails;
+import com.attendance.util.ExceptionDialog;
 import com.attendance.util.Fxml;
 import com.attendance.util.RootFactory;
 import com.attendance.util.SwitchRoot;
 import com.attendance.util.SystemUtils;
+import com.attendance.util.ValidationUtils;
 import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
@@ -29,6 +33,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.StageStyle;
+import javax.validation.ConstraintViolation;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 
@@ -63,11 +68,12 @@ public class FacultySignUpController extends AnchorPane {
     private JFXButton loginbutton;
 
     private FXMLLoader fxml;
-    private Login login;
+    private LoginService login;
     private User user;
     private Parent parent;
     private PersonalDetails faculty;
     private SecurityQuestion question;
+    private ExceptionDialog dialog;
 
     public FacultySignUpController(Parent parent) {
         this.parent = parent;
@@ -81,24 +87,21 @@ public class FacultySignUpController extends AnchorPane {
             Logger.getLogger(FacultySignUpController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        login = (Login) Start.app.getBean("userlogin");
+        login = (LoginService) Start.app.getBean("loginservice");
+        login.setParent(this);
+        dialog = login.getEx();
         user = new User();
     }
 
     @FXML
     private void initialize() {
         faculty = new PersonalDetails();
-        question=new SecurityQuestion();
+        question = new SecurityQuestion();
         loginbutton.setOnAction(this::loginAction);
         signup.setOnAction(e -> {
-            if (login.isUsernameExists(username.getText()) > 0) {
-                Alert al = new Alert(Alert.AlertType.ERROR);
-                al.setHeaderText("Faculty Sign Up");
-                al.setContentText("Username already taken");
-                al.initOwner(((Node) e.getSource()).getScene().getWindow());
-                al.initModality(Modality.WINDOW_MODAL);
-                al.initStyle(StageStyle.UNDECORATED);
-                al.show();
+            if (login.isUsernameExists(username.getText())) {
+                dialog.showError(this, "Faculty Signup", "Username Already Taken ");
+
             } else if (password.getText().equals(confirmpassword.getText())) {
                 user.setPassword(password.getText());
                 user.setType("Faculty");
@@ -112,7 +115,7 @@ public class FacultySignUpController extends AnchorPane {
                 faculty.setContact(contact.getText());
                 faculty.setEmailId(email.getText());
                 faculty.setGender("Unknown");
-                
+
                 question.setQuestion1("");
                 question.setQuestion2("");
                 question.setQuestion3("");
@@ -122,34 +125,25 @@ public class FacultySignUpController extends AnchorPane {
 
                 user.setDetails(faculty);
                 user.setSecurityquestion(question);
-                
-                int id = login.save(user);
 
-                if (id > 0) {
-                    Alert al = new Alert(Alert.AlertType.INFORMATION);
-                    al.setHeaderText("Faculty Sign Up");
-                    al.setContentText("Sign Up Successful\nFaculty account created successfully with faculty details\nCurrent Account Status :" + user.getStatus());
-                    al.initOwner(((Node) e.getSource()).getScene().getWindow());
-                    al.initModality(Modality.WINDOW_MODAL);
-                    al.initStyle(StageStyle.UNDECORATED);
-                    al.show();
+                Set<ConstraintViolation<User>> validate = ValidationUtils.getValidator().validate(user);
+                if (validate.isEmpty()) {
+                    int id = login.saveUser(user);
+
+                    if (id > 0) {
+                        dialog.showSuccess(this, "Faculty Signup", "Faculty Signup Successfully ");
+
+                    } else {
+                        dialog.showError(this, "Faculty Signup", "Faculty Signup Failed ");
+
+                    }
                 } else {
-                    Alert al = new Alert(Alert.AlertType.ERROR);
-                    al.setHeaderText("Faculty Sign Up");
-                    al.setContentText("Faculty Signup Failed");
-                    al.initOwner(((Node) e.getSource()).getScene().getWindow());
-                    al.initModality(Modality.WINDOW_MODAL);
-                    al.initStyle(StageStyle.UNDECORATED);
-                    al.show();
+                    validate.stream().forEach(c -> dialog.showWarning(this, "Faculty Signup", c.getMessage()));
+
                 }
             } else {
-                Alert al = new Alert(Alert.AlertType.ERROR);
-                al.setHeaderText("Faculty Sign Up");
-                al.setContentText("Passwords don't match\nCheck passwords again");
-                al.initOwner(((Node) e.getSource()).getScene().getWindow());
-                al.initModality(Modality.WINDOW_MODAL);
-                al.initStyle(StageStyle.UNDECORATED);
-                al.show();
+                dialog.showError(this, "Faculty Signup", "Password Doesn't Match ");
+
             }
         });
     }

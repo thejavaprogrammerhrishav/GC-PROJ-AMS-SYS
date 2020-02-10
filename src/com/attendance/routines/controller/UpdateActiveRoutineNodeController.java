@@ -6,8 +6,10 @@
 package com.attendance.routines.controller;
 
 import com.attendance.main.Start;
+import com.attendance.routine.service.RoutineService;
 import com.attendance.routines.dao.RoutineDao;
 import com.attendance.routines.model.Routine;
+import com.attendance.util.ExceptionDialog;
 import com.attendance.util.Fxml;
 import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
@@ -47,7 +49,8 @@ public class UpdateActiveRoutineNodeController extends AnchorPane {
 
     private Routine routine;
     
-    private RoutineDao dao;
+    private RoutineService dao;
+    private ExceptionDialog dialog;
 
     public UpdateActiveRoutineNodeController(Routine routine) {
         this.routine = routine;
@@ -63,7 +66,10 @@ public class UpdateActiveRoutineNodeController extends AnchorPane {
 
     @FXML
     private void initialize() {
-        dao =  (RoutineDao) Start.app.getBean("routine");
+        dao =  (RoutineService) Start.app.getBean("routineservice");
+        dao.setParent(this);
+        dialog = dao.getEx();
+                
         name.setText(routine.getFilename());
         date.setText(routine.getDate());
         
@@ -87,16 +93,21 @@ public class UpdateActiveRoutineNodeController extends AnchorPane {
     
     private void activate(ActionEvent evt) {
         routine.setStatus("Active");
-        dao.update(routine);
+        boolean b = dao.updateRoutine(routine);
+        if(b) {
+            dialog.showSuccess(this, "Update Routine Status", "Routine Status Updated Successfully");
         active.setDisable(true);
         deactive.setDisable(false);
+        }else {
+            dialog.showError(this ,"Update Routine Status", "Routine Status Updation Failed");
+        }
     }
     
     private void deactivate(ActionEvent evt) {
-        List<Routine> list = dao.findByDepartmentAndYear(routine.getDepartment(), DateTime.now().toString(DateTimeFormat.forPattern("yyyy")));
+        List<Routine> list = dao.findByDepartmentAndYear(routine.getDepartment(), Integer.parseInt(DateTime.now().toString(DateTimeFormat.forPattern("yyyy"))));
         list.stream().forEach(c-> {
             c.setStatus("Not Active");
-            dao.update(c);
+            dao.updateRoutine(c);
         });
         active.setDisable(false);
         deactive.setDisable(true);

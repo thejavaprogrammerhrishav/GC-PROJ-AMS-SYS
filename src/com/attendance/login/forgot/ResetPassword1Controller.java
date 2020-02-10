@@ -6,8 +6,10 @@
 package com.attendance.login.forgot;
 
 import com.attendance.login.dao.Login;
+import com.attendance.login.service.LoginService;
 import com.attendance.login.user.model.User;
 import com.attendance.main.Start;
+import com.attendance.util.ExceptionDialog;
 import com.attendance.util.Fxml;
 import com.attendance.util.RootFactory;
 import com.attendance.util.SwitchRoot;
@@ -51,7 +53,8 @@ public class ResetPassword1Controller extends AnchorPane {
     private FXMLLoader fxml;
     private Parent parent;
     
-    private Login dao;
+    private LoginService dao;
+    private ExceptionDialog dialog;
     
     public ResetPassword1Controller(Parent parent) {
         this.parent = parent;
@@ -67,7 +70,10 @@ public class ResetPassword1Controller extends AnchorPane {
     
     @FXML
     private void initialize() {
-        dao = (Login) Start.app.getBean("userlogin");
+        dao = (LoginService) Start.app.getBean("loginservice");
+        dao.setParent(this);
+        dialog = dao.getEx();
+        
         close.setOnAction(e -> SwitchRoot.switchRoot(Start.st, parent));
         usertype.setText(SystemUtils.getCurrentUser().getType());
         department.setText(SystemUtils.getDepartment());

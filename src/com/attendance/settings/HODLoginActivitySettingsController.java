@@ -7,7 +7,9 @@ package com.attendance.settings;
 
 import com.attendance.login.activity.dao.Activity;
 import com.attendance.login.activity.model.LoginActivity;
+import com.attendance.login.activity.service.LoginActivityService;
 import com.attendance.main.Start;
+import com.attendance.util.ExceptionDialog;
 import com.attendance.util.ExportUserLoginActivity;
 import com.attendance.util.Fxml;
 import com.attendance.util.SwitchRoot;
@@ -111,7 +113,8 @@ public class HODLoginActivitySettingsController extends AnchorPane {
 
     private FXMLLoader fxml;
 
-    private Activity dao;
+    private LoginActivityService dao;
+    private ExceptionDialog dialog;
     private List<LoginActivity> list;
 
     public HODLoginActivitySettingsController(Parent parent) {
@@ -129,7 +132,10 @@ public class HODLoginActivitySettingsController extends AnchorPane {
 
     @FXML
     private void initialize() {
-        dao = (Activity) Start.app.getBean("loginactivity");
+        dao = (LoginActivityService) Start.app.getBean("loginactivityservice");
+        dao.setParent(this);
+        dialog = dao.getEx();
+
         searchname.disableProperty().bind(filterbyname.selectedProperty().not());
         searchdate.disableProperty().bind(filterbydate.selectedProperty().not());
         searchdepartment.disableProperty().bind(filterbydepartment.selectedProperty().not());
@@ -138,16 +144,16 @@ public class HODLoginActivitySettingsController extends AnchorPane {
 
         ascending.disableProperty().bind(sortbydate.selectedProperty().not());
         descending.disableProperty().bind(sortbydate.selectedProperty().not());
-        
-         ascending.selectedProperty().addListener((ol,o,n)->{
-            if(n) {
+
+        ascending.selectedProperty().addListener((ol, o, n) -> {
+            if (n) {
                 ascending.setSelected(true);
                 descending.setSelected(false);
             }
         });
-        
-        descending.selectedProperty().addListener((ol,o,n)->{
-            if(n) {
+
+        descending.selectedProperty().addListener((ol, o, n) -> {
+            if (n) {
                 descending.setSelected(true);
                 ascending.setSelected(false);
             }
@@ -200,8 +206,10 @@ public class HODLoginActivitySettingsController extends AnchorPane {
         ExportUserLoginActivity exp = new ExportUserLoginActivity(table);
         try {
             exp.createFile().convertToExcel("User Login Activity").exportToFile();
+            dialog.showSuccess(this, "HOD Login Activity", "Login Activity Exported Successfully");
+
         } catch (IOException ex) {
-            Logger.getLogger(HODLoginActivitySettingsController.class.getName()).log(Level.SEVERE, null, ex);
+            dialog.showError(this, "HOD Login Activity", "Login Activity Export Failed");
         }
     }
 

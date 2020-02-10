@@ -8,10 +8,13 @@ package com.attendance.settings.sub;
 import com.attendance.main.Start;
 import com.attendance.student.dao.StudentDao;
 import com.attendance.student.model.Student;
+import com.attendance.student.service.StudentService;
 import com.attendance.studentattendance.dao.ClassDetailsDao;
 import com.attendance.studentattendance.model.Attendance;
 import com.attendance.studentattendance.model.ClassDetails;
+import com.attendance.studentattendance.service.AttendanceService;
 import com.attendance.util.AttendanceUtilModel;
+import com.attendance.util.ExceptionDialog;
 import com.attendance.util.Fxml;
 import com.attendance.util.RootFactory;
 import com.attendance.util.SwitchRoot;
@@ -134,10 +137,12 @@ public class AttendanceController extends AnchorPane {
     @FXML
     private JFXComboBox<String> coursetype;
 
-    private StudentDao sdao;
+    private StudentService sdao;
 
     private FXMLLoader fxml;
-    private ClassDetailsDao cdao;
+    private AttendanceService cdao;
+    
+    private ExceptionDialog dialog;
 
     private Parent parent;
     private String faculty;
@@ -158,8 +163,10 @@ public class AttendanceController extends AnchorPane {
 
     @FXML
     private void initialize() {
-        sdao = (StudentDao) Start.app.getBean("studentregistration");
-        cdao = (ClassDetailsDao) Start.app.getBean("classdetails");
+        sdao = (StudentService) Start.app.getBean("studentservice");
+        cdao = (AttendanceService) Start.app.getBean("attendanceservice");
+        cdao.setParent(this);
+        dialog = cdao.getEx();
 
         initFilters();
         initTable();

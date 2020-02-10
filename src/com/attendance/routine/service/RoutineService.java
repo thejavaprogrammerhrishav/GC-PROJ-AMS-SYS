@@ -6,7 +6,9 @@
 package com.attendance.routine.service;
 
 import com.attendance.routines.model.Routine;
+import com.attendance.util.ExceptionDialog;
 import java.util.List;
+import javafx.scene.Parent;
 
 /**
  *
@@ -24,13 +26,13 @@ public interface RoutineService {
 
     public abstract Routine findById(Integer id);
 
-    public abstract List<Routine> findAllepartment(String department);
+    public abstract List<Routine> findByDepartment(String department);
 
     public abstract List<Routine> findByDate(String date);
 
     public abstract List<Routine> findBydepartmentAndDate(String department, String date);
 
-    public abstract List<Routine> findByDepartmentAndYear(String department, String year);
+    public abstract List<Routine> findByDepartmentAndYear(String department, int year);
 
     public abstract List<Routine> sortByDepartment(String department, String order);
 
@@ -38,7 +40,11 @@ public interface RoutineService {
 
     public abstract List<Routine> findByDepartmentAndStatus(String department, String status);
 
-    public abstract Integer hasActiveRoutine(String department, String year);
+    public abstract Integer hasActiveRoutine(String department, int year);
 
     public abstract <T> List<T> get(String sql, Class<T> type);
+    
+    public abstract void setParent(Parent parent);
+    
+    public abstract ExceptionDialog getEx();
 }

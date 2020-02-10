@@ -6,8 +6,9 @@
 package com.attendance.student.controller;
 
 import com.attendance.main.Start;
-import com.attendance.student.dao.StudentDao;
 import com.attendance.student.model.Student;
+import com.attendance.student.service.StudentService;
+import com.attendance.util.ExceptionDialog;
 import com.attendance.util.Fxml;
 import com.attendance.util.Message;
 import com.attendance.util.MessageUtil;
@@ -24,6 +25,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -69,7 +71,7 @@ public class StudentUpdateController extends AnchorPane {
 
     @FXML
     private JFXButton cancel;
-    
+
     @FXML
     private JFXButton loadstudents;
 
@@ -83,7 +85,8 @@ public class StudentUpdateController extends AnchorPane {
     private Label department;
 
     private FXMLLoader fxml;
-    private StudentDao dao;
+    private StudentService dao;
+    private ExceptionDialog dialog;
     private Student searchStudent;
     private Student updateStudent;
     private Parent parent;
@@ -105,7 +108,10 @@ public class StudentUpdateController extends AnchorPane {
     private void initialize() {
         department.setText(SystemUtils.getDepartment());
         acadamicyear.getItems().addAll("1st", "2nd", "3rd");
-        dao = (StudentDao) Start.app.getBean("studentregistration");
+        dao = (StudentService) Start.app.getBean("studentservice");
+        dao.setParent(this);
+        dialog = dao.getEx();
+
         buttonInit();
         checkinit();
         update.setDisable(true);
@@ -185,7 +191,7 @@ public class StudentUpdateController extends AnchorPane {
             }
             update.setDisable(false);
         } else {
-            //TODO:  add error message dialog ====> Not Belongs To This Department
+            dialog.showError(this, "Update Student Details", "Student Found \nDepartment doesn't match");
         }
     }
 
@@ -212,16 +218,19 @@ public class StudentUpdateController extends AnchorPane {
             updateStudent.setCourseType("UNKNOWN");
         }
 
-        boolean updateDetails = dao.updateStudent(updateStudent);
-        updateStudent.setId("GC" + acadamicyear.getSelectionModel().getSelectedItem().charAt(0) + "_" + studentYear.getText() + "_" + studentRollNumber.getText() + updateStudent.getCourseType().charAt(0) + "_" + SystemUtils.getDepartmentCode());
+        
+        String newId="GC" + acadamicyear.getSelectionModel().getSelectedItem().charAt(0) + "_" + studentYear.getText() + "_" + studentRollNumber.getText() + updateStudent.getCourseType().charAt(0) + "_" + SystemUtils.getDepartmentCode();
 
         // updateStudent.setId(studentRollNumber.getText() + "_" + acadamicyear.getSelectionModel().getSelectedItem() + "@" + studentYear.getText() + "#" + updateStudent.getCourseType().charAt(0));
-        boolean updateId = dao.updateStudentId(updateStudent.getId(), searchStudent.getId());
-        if (updateDetails && updateId) {
-            MessageUtil.showInformation(Message.INFORMATION, "Student Details Updation", "Updated Successfully", ((Node) e.getSource()).getScene().getWindow());
+        boolean updateId = dao.updateStudent(updateStudent,newId);
+        if (updateId) {
+            dialog.showSuccess(this, "Update Student Details", "Student Details Updated Successfully");
+        }
+        else{
+            dialog.showError(this, "Update Student Details", "Student Details Update Failed");
         }
     }
-    
+
     private void loadstudent(ActionEvent evt) {
         searchStudent = LoadStudentsController.Show(this.getScene());
         if (searchStudent.getDepartment().equalsIgnoreCase(department.getText())) {
@@ -246,7 +255,7 @@ public class StudentUpdateController extends AnchorPane {
             }
             update.setDisable(false);
         } else {
-            //TODO:  add error message dialog ====> Not Belongs To This Department
+            dialog.showError(this, "Update Student Details", "Student Found \nDepartment doesn't match");
         }
     }
 }

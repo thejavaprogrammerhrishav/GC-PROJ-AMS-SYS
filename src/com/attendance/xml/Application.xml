@@ -12,6 +12,8 @@
 
     <context:property-placeholder location="file:db.properties"/> 
     
+   <bean id = "dialog" class = "com.validator.utils.ExceptionDialog"/>
+    
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
         <property name="url" value="${db.url}"/>
@@ -99,4 +101,46 @@
         <property name="hibernateTemplate" ref="hibernateTemplate"/>   
         <property name="jdbcTemplate" ref="jdbcTemplate"/>  
     </bean>
+    
+    <!-- services  -->
+    <bean id="loginservice" class="com.attendance.services.impl.LoginServiceImpl">
+        <property name="dao" ref="userlogin"/>   
+        <property name="ex" ref="dialog"/>
+    </bean>
+       
+    <bean id="loginactivityservice" class="com.attendance.services.impl.LoginActivityServiceImpl">
+        <property name="dao" ref="loginactivity"/>   
+        <property name="ex" ref="dialog"/>        
+    </bean>
+    
+    <bean id="studentservice" class="com.attendance.services.impl.StudentServiceImpl">
+        <property name="dao" ref="studentregistraton"/>   
+        <property name="ex" ref="dialog"/>       
+    </bean>
+    
+    <bean id="attendanceservice" class="com.attendance.services.impl.AttendanceServiceImpl">
+        <property name="dao" ref="classdetails"/>   
+        <property name="ex" ref="dialog"/>        
+    </bean>
+    
+    <bean id="papersservice" class="com.attendance.services.impl.PapaersServiceImpl">
+        <property name="dao" ref="papers"/>   
+        <property name="ex" ref="dialog"/> 
+    </bean>
+    
+    <bean id="notesservice" class="com.attendance.services.impl.NotesServiceImpl">
+        <property name="dao" ref="notes"/>   
+        <property name="ex" ref="dialog"/> 
+    </bean>
+    
+    <bean id="unittestservice" class="com.attendance.services.impl.MarksServiceImpl">
+        <property name="dao" ref="unittest"/>   
+        <property name="ex" ref="dialog"/> 
+    </bean>
+    
+    <bean id="routineservice" class="com.attendance.services.impl.RoutineServiceImpl">
+        <property name="dao" ref="routine"/>   
+        <property name="ex" ref="dialog"/>  
+    </bean>
+    
 </beans>

@@ -5,12 +5,11 @@
  */
 package com.attendance.settings.sub;
 
-import com.attendance.login.dao.Login;
+import com.attendance.login.service.LoginService;
 import com.attendance.login.user.model.User;
 import com.attendance.main.Start;
+import com.attendance.util.ExceptionDialog;
 import com.attendance.util.Fxml;
-import com.attendance.util.Message;
-import com.attendance.util.MessageUtil;
 import com.attendance.util.SwitchRoot;
 import com.jfoenix.controls.JFXButton;
 import java.io.ByteArrayInputStream;
@@ -35,8 +34,8 @@ import javafx.scene.layout.VBox;
  * @author Programmer Hrishav
  */
 public class BlockLoginUserController extends AnchorPane {
-    
-      @FXML
+
+    @FXML
     private Label department;
 
     @FXML
@@ -77,29 +76,32 @@ public class BlockLoginUserController extends AnchorPane {
 
     @FXML
     private JFXButton refresh;
-    
+
     private FXMLLoader fxml;
     private String currentdepartment;
     private Parent parent;
-    private Login dao;
+    private LoginService dao;
+    private ExceptionDialog dialog;
     private User user;
 
-    public BlockLoginUserController(Parent parent,String currentdepartment) {
+    public BlockLoginUserController(Parent parent, String currentdepartment) {
         this.parent = parent;
         this.currentdepartment = currentdepartment;
         fxml = Fxml.getBlockLoginUserFXML();
         fxml.setController(this);
         fxml.setRoot(this);
-          try {
-              fxml.load();
-          } catch (IOException ex) {
-              Logger.getLogger(BlockLoginUserController.class.getName()).log(Level.SEVERE, null, ex);
-          }
+        try {
+            fxml.load();
+        } catch (IOException ex) {
+            Logger.getLogger(BlockLoginUserController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
-    
-     @FXML
+
+    @FXML
     private void initialize() {
-        dao = (Login) Start.app.getBean("userlogin");
+        dao = (LoginService) Start.app.getBean("loginservice");
+        dao.setParent(this);
+        dialog = dao.getEx();
         close.setOnAction(eh -> SwitchRoot.switchRoot(Start.st, parent));
         department.setText(currentdepartment);
 
@@ -137,14 +139,26 @@ public class BlockLoginUserController extends AnchorPane {
 
     private void onhold(ActionEvent evt) {
         user.setStatus("OnHold");
-        dao.update(user);
-        MessageUtil.showInformation(Message.INFORMATION, "BLOCK LOGIN USER", "User status set to Onhold Successfully", Start.st);
+        boolean b = dao.updateUser(user);
+        if (b) {
+            dialog.showSuccess(this, "Block Login User", "User On Hold");
+
+        } else {
+            dialog.showError(this, "Block Login User", "User Block Failed");
+
+        }
     }
-    
+
     private void decline(ActionEvent evt) {
         user.setStatus("Decline");
-        dao.update(user);
-        MessageUtil.showInformation(Message.INFORMATION, "BLOCK LOGIN USER", "User status set to Decline Successfully", Start.st);
+        boolean b = dao.updateUser(user);
+        if (b) {
+            dialog.showSuccess(this, "Block Login User", "User Declined Successfully");
+
+        } else {
+            dialog.showError(this, "Block Login User", "User Block Failed");
+
+        }
     }
 
     private void search(ActionEvent evt) {

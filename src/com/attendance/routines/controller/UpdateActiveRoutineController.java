@@ -6,6 +6,7 @@
 package com.attendance.routines.controller;
 
 import com.attendance.main.Start;
+import com.attendance.routine.service.RoutineService;
 import com.attendance.routines.dao.RoutineDao;
 import com.attendance.routines.model.Routine;
 import com.attendance.util.Fxml;
@@ -55,7 +56,7 @@ public class UpdateActiveRoutineController extends AnchorPane{
     private VBox list;
     
     private FXMLLoader fxml;
-    private RoutineDao dao;
+    private RoutineService dao;
 
     public UpdateActiveRoutineController() {
         fxml = Fxml.getUpdateActiveRoutineFXML();
@@ -70,7 +71,8 @@ public class UpdateActiveRoutineController extends AnchorPane{
     
     @FXML
     private void initialize() {
-        dao = (RoutineDao) Start.app.getBean("routine");
+        dao = (RoutineService) Start.app.getBean("routineservice");
+        dao.setParent(this);
         
         date.disableProperty().bind(filterbydate.selectedProperty().not());
         
@@ -83,7 +85,7 @@ public class UpdateActiveRoutineController extends AnchorPane{
     }
     
     private void loadData(ActionEvent evt) {
-        List<Routine> nodes = dao.findByDepartmentAndYear(SystemUtils.getCurrentUser().getDepartment(),DateTime.now().toString(DateTimeFormat.forPattern("yyyy")));
+        List<Routine> nodes = dao.findByDepartmentAndYear(SystemUtils.getCurrentUser().getDepartment(),Integer.parseInt(DateTime.now().toString(DateTimeFormat.forPattern("yyyy"))));
         List<UpdateActiveRoutineNodeController> collect = nodes.stream().map(UpdateActiveRoutineNodeController::new ).collect(Collectors.toList());
         list.getChildren().setAll(collect);
     }

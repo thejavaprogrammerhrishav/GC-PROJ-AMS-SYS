@@ -7,11 +7,14 @@ package com.attendance.dashboard;
 
 import com.attendance.login.activity.dao.Activity;
 import com.attendance.login.activity.model.LoginActivity;
+import com.attendance.login.activity.service.LoginActivityService;
 import com.attendance.login.user.model.User;
 import com.attendance.main.Start;
 import com.attendance.personal.model.PersonalDetails;
 import com.attendance.student.dao.StudentDao;
+import com.attendance.student.service.StudentService;
 import com.attendance.util.DateTimerThread;
+import com.attendance.util.ExceptionDialog;
 import com.attendance.util.Fxml;
 import com.attendance.util.RootFactory;
 import com.attendance.util.SwitchRoot;
@@ -131,9 +134,10 @@ public class FacultyDashboardController extends AnchorPane {
 
     private User user;
     private LoginActivity activity;
-    private StudentDao dao;
-    private Activity act;
+    private StudentService dao;
+    private LoginActivityService act;
     private PersonalDetails details;
+    private ExceptionDialog dialog;
 
     public FacultyDashboardController() {
         this.user = SystemUtils.getCurrentUser();
@@ -154,8 +158,10 @@ public class FacultyDashboardController extends AnchorPane {
         department.setText(SystemUtils.getDepartment());
         blinker = new Thread(this::blink);
 
-        act = (Activity) Start.app.getBean("loginactivity");
-        dao = (StudentDao) Start.app.getBean("studentregistration");
+        act = (LoginActivityService) Start.app.getBean("loginactivityservice");
+        dao = (StudentService) Start.app.getBean("studentservice");
+        dao.setParent(this);
+        act.setParent(this);
         details = user.getDetails();
         profilepic.setImage(new Image(new ByteArrayInputStream(user.getImage())));
 
@@ -170,7 +176,7 @@ public class FacultyDashboardController extends AnchorPane {
         dater = DateTimerThread.newInstance().forLabel(DateTimerThread.DATE, date).init().thread();
         dater.start();
 
-        List<String> years = dao.findAllYears();
+        List<String> years = dao.findAllYear();
         Collections.sort(years);
         year.getItems().setAll(years);
 
@@ -203,9 +209,9 @@ public class FacultyDashboardController extends AnchorPane {
             Sem3 = dao.countStudents("3rd", SystemUtils.getDepartment());
         } else {
             String yyear = year.getSelectionModel().getSelectedItem();
-            Sem1 = dao.countStudents("1st", yyear, SystemUtils.getDepartment());
-            Sem2 = dao.countStudents("2nd", yyear, SystemUtils.getDepartment());
-            Sem3 = dao.countStudents("3rd", yyear, SystemUtils.getDepartment());
+            Sem1 = dao.countStudents("1st", Integer.parseInt(yyear), SystemUtils.getDepartment());
+            Sem2 = dao.countStudents("2nd", Integer.parseInt(yyear), SystemUtils.getDepartment());
+            Sem3 = dao.countStudents("3rd", Integer.parseInt(yyear), SystemUtils.getDepartment());
         }
 
         aca1stcount.setText("" + Sem1);

@@ -6,8 +6,10 @@
 package com.attendance.settings.sub;
 
 import com.attendance.login.dao.Login;
+import com.attendance.login.service.LoginService;
 import com.attendance.login.user.model.User;
 import com.attendance.main.Start;
+import com.attendance.util.ExceptionDialog;
 import com.attendance.util.Fxml;
 import com.attendance.util.SwitchRoot;
 import com.attendance.util.SystemUtils;
@@ -58,7 +60,8 @@ public class ModifyUsertypeController extends AnchorPane {
     private FXMLLoader fxml;
     private Parent parent;
 
-    private Login dao;
+    private LoginService dao;
+    private ExceptionDialog dialog;
 
     public ModifyUsertypeController(Parent parent) {
         this.parent = parent;
@@ -74,7 +77,10 @@ public class ModifyUsertypeController extends AnchorPane {
 
     @FXML
     private void initialize() {
-        dao = (Login) Start.app.getBean("userlogin");
+        dao = (LoginService) Start.app.getBean("loginservice");
+        dao.setParent(this);
+        dialog = dao.getEx();
+        
         close.setOnAction(e -> SwitchRoot.switchRoot(Start.st, parent));
         selectdepartment.getItems().setAll(Arrays.asList(SystemUtils.getDepartments()));
         load(null);

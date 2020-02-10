@@ -6,9 +6,11 @@
 package com.attendance.login.request;
 
 import com.attendance.login.dao.Login;
+import com.attendance.login.service.LoginService;
 import com.attendance.login.user.model.User;
 import com.attendance.main.Start;
 import com.attendance.personal.model.PersonalDetails;
+import com.attendance.util.ExceptionDialog;
 import com.attendance.util.Fxml;
 import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
@@ -53,7 +55,8 @@ public class PendingRequestNodeController extends AnchorPane {
 
     private FXMLLoader fxml;
 
-    private Login login;
+    private LoginService login;
+    private ExceptionDialog dialog;
     private User user;
     private int no;
 
@@ -75,7 +78,10 @@ public class PendingRequestNodeController extends AnchorPane {
 
     @FXML
     private void initialize() {
-        login = (Login) Start.app.getBean("userlogin");
+        login = (LoginService) Start.app.getBean("loginservice");
+        login.setParent(this);
+        dialog = login.getEx();
+
         details = user.getDetails();
         disableButtons();
         slno.setText("" + no);
@@ -92,43 +98,55 @@ public class PendingRequestNodeController extends AnchorPane {
     private void accept(ActionEvent evt) {
         user.setStatus("Accept");
         hide();
-        login.update(user);
-        result.setText("Accepted");
-        result.setStyle("-fx-background-color : green;"
-                + "-fx-text-fill : white;"
-                + "-fx-font-family : 'Tw Cen MT',arial;"
-                + "-fx-font-size : 20;"
-                + "-fx-alignment : center;"
-                + "-fx-background-radius : 20;");
-        result.setVisible(true);
+        boolean b = login.updateUser(user);
+        if (b) {
+            result.setText("Accepted");
+            result.setStyle("-fx-background-color : green;"
+                    + "-fx-text-fill : white;"
+                    + "-fx-font-family : 'Tw Cen MT',arial;"
+                    + "-fx-font-size : 20;"
+                    + "-fx-alignment : center;"
+                    + "-fx-background-radius : 20;");
+            result.setVisible(true);
+        } else {
+            dialog.showError(this, "Pending Request", "User Status Update Failed");
+        }
     }
 
     private void hold(ActionEvent evt) {
         user.setStatus("OnHold");
         hide();
-        login.update(user);
-        result.setText("On Hold");
-        result.setStyle("-fx-background-color : yellow;"
-                + "-fx-text-fill : black;"
-                + "-fx-font-family : 'Tw Cen MT',arial;"
-                + "-fx-font-size : 20;"
-                + "-fx-alignment : center;"
-                + "-fx-background-radius : 20;");
-        result.setVisible(true);
+        boolean b = login.updateUser(user);
+        if (b) {
+            result.setText("On Hold");
+            result.setStyle("-fx-background-color : yellow;"
+                    + "-fx-text-fill : black;"
+                    + "-fx-font-family : 'Tw Cen MT',arial;"
+                    + "-fx-font-size : 20;"
+                    + "-fx-alignment : center;"
+                    + "-fx-background-radius : 20;");
+            result.setVisible(true);
+        } else {
+            dialog.showError(this, "Pending Request", "User Status Update Failed");
+        }
     }
 
     private void decline(ActionEvent evt) {
         user.setStatus("Decline");
         hide();
-        login.update(user);
-        result.setText("Declined");
-        result.setStyle("-fx-background-color : red;"
-                + "-fx-text-fill : white;"
-                + "-fx-font-family : 'Tw Cen MT',arial;"
-                + "-fx-font-size : 20;"
-                + "-fx-alignment : center;"
-                + "-fx-background-radius : 20;");
-        result.setVisible(true);
+        boolean b = login.updateUser(user);
+        if (b) {
+            result.setText("Declined");
+            result.setStyle("-fx-background-color : red;"
+                    + "-fx-text-fill : white;"
+                    + "-fx-font-family : 'Tw Cen MT',arial;"
+                    + "-fx-font-size : 20;"
+                    + "-fx-alignment : center;"
+                    + "-fx-background-radius : 20;");
+            result.setVisible(true);
+        } else {
+            dialog.showError(this, "Pending Request", "User Status Update Failed");
+        }
     }
 
     private void hide() {

@@ -6,12 +6,17 @@
 package com.attendance.settings.sub;
 
 import com.attendance.login.dao.Login;
+import com.attendance.login.service.LoginService;
 import com.attendance.main.Start;
 import com.attendance.papers.dao.PapersDao;
 import com.attendance.papers.model.Paper;
+import com.attendance.papers.service.PapersService;
 import com.attendance.student.dao.StudentDao;
+import com.attendance.student.service.StudentService;
 import com.attendance.studentattendance.dao.ClassDetailsDao;
 import com.attendance.studentattendance.model.ClassDetails;
+import com.attendance.studentattendance.service.AttendanceService;
+import com.attendance.util.ExceptionDialog;
 import com.attendance.util.ExportClassDetails;
 import com.attendance.util.Fxml;
 import com.attendance.util.SystemUtils;
@@ -117,10 +122,11 @@ public class ExportClassDetailsListController extends AnchorPane {
     @FXML
     private JFXComboBox<String> coursetype;
 
-    private ClassDetailsDao cdao;
-    private Login dao;
-    private PapersDao paperdao;
-    private StudentDao studentdao;
+    private AttendanceService cdao;
+    private LoginService dao;
+    private PapersService paperdao;
+    private StudentService studentdao;
+    private ExceptionDialog dialog;
 
     private FXMLLoader fxml;
 
@@ -139,10 +145,14 @@ public class ExportClassDetailsListController extends AnchorPane {
     @FXML
     private void initialize() {
         department.setText(SystemUtils.getDepartment());
-        paperdao = (PapersDao) Start.app.getBean("papers");
-        cdao = (ClassDetailsDao) Start.app.getBean("classdetails");
-        studentdao = (StudentDao) Start.app.getBean("studentregistration");
-        dao = (Login) Start.app.getBean("userlogin");
+        paperdao = (PapersService) Start.app.getBean("papersservice");
+        cdao = (AttendanceService) Start.app.getBean("attendanceservice");
+        studentdao = (StudentService) Start.app.getBean("studentservice");
+        dao = (LoginService) Start.app.getBean("loginservice");
+        
+        cdao.setParent(this);
+        dialog = cdao.getEx();
+        
         initTable();
         initFilters();
 
@@ -292,8 +302,9 @@ public class ExportClassDetailsListController extends AnchorPane {
         ExportClassDetails exp = new ExportClassDetails(table);
         try {
             exp.createFile().convertToExcel("Class Details List").exportToFile();
+            dialog.showSuccess(this, "Export Class Details List", "Class Details List Exported Successfully");
         } catch (IOException ex) {
-            Logger.getLogger(ExportClassDetailsListController.class.getName()).log(Level.SEVERE, null, ex);
+            dialog.showError(this, "Export Class Details List", "Class Details List Export Failed");
         }
     }
 

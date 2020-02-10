@@ -7,10 +7,13 @@ package com.attendance.settings.sub;
 
 import com.attendance.main.Start;
 import com.attendance.student.dao.StudentDao;
+import com.attendance.student.service.StudentService;
 import com.attendance.studentattendance.dao.ClassDetailsDao;
 import com.attendance.studentattendance.model.ClassDetails;
 import com.attendance.studentattendance.model.DailyStats;
+import com.attendance.studentattendance.service.AttendanceService;
 import com.attendance.util.DailyStatsUtilModel;
+import com.attendance.util.ExceptionDialog;
 import com.attendance.util.ExportDailyStats;
 import com.attendance.util.Fxml;
 import com.attendance.util.SystemUtils;
@@ -18,7 +21,6 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
 import java.io.IOException;
-import static java.util.Collections.list;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
@@ -121,8 +123,9 @@ public class ExportDailyStatsListController extends AnchorPane {
 
     private FXMLLoader fxml;
 
-    private StudentDao sdao;
-    private ClassDetailsDao cdao;
+    private StudentService sdao;
+    private AttendanceService cdao;
+    private ExceptionDialog dialog;
 
     public ExportDailyStatsListController() {
         fxml = Fxml.getExportDailtStatsListFXML();
@@ -139,8 +142,11 @@ public class ExportDailyStatsListController extends AnchorPane {
     @FXML
     private void initialize() {
         department.setText(SystemUtils.getDepartment());
-        sdao = (StudentDao) Start.app.getBean("studentregistration");
-        cdao = (ClassDetailsDao) Start.app.getBean("classdetails");
+        sdao = (StudentService) Start.app.getBean("studentservice");
+        cdao = (AttendanceService) Start.app.getBean("attendanceservice");
+        cdao.setParent(this);
+        dialog = cdao.getEx();
+        
         initFilters();
         initTable();
         populateTable(null);
@@ -297,8 +303,9 @@ public class ExportDailyStatsListController extends AnchorPane {
         ExportDailyStats exp = new ExportDailyStats(table);
         try {
             exp.createFile().convertToExcel("Daily Class Statistics List").exportToFile();
+            dialog.showSuccess(this, "Export Class Daily Stats List", "Daily Stats List Exported Successfully");
         } catch (IOException ex) {
-            Logger.getLogger(ExportDailyStatsListController.class.getName()).log(Level.SEVERE, null, ex);
+            dialog.showError(this, "Export Class Daily Stats List", "Daily Stats List Export Failed");
         }
     }
 }

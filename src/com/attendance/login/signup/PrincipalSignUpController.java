@@ -6,19 +6,23 @@
 package com.attendance.login.signup;
 
 import com.attendance.login.dao.Login;
+import com.attendance.login.service.LoginService;
 import com.attendance.login.user.model.SecurityQuestion;
 import com.attendance.login.user.model.User;
 import com.attendance.main.Start;
 import com.attendance.personal.model.PersonalDetails;
+import com.attendance.util.ExceptionDialog;
 import com.attendance.util.Fxml;
 import com.attendance.util.Message;
 import com.attendance.util.MessageUtil;
 import com.attendance.util.RootFactory;
 import com.attendance.util.SwitchRoot;
 import com.attendance.util.SystemUtils;
+import com.attendance.util.ValidationUtils;
 import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import java.security.Principal;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
@@ -32,6 +36,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.StageStyle;
+import javax.validation.ConstraintViolation;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 
@@ -67,7 +72,8 @@ public class PrincipalSignUpController extends AnchorPane {
 
     private FXMLLoader fxml;
     private User user;
-    private Login login;
+    private LoginService login;
+    private ExceptionDialog dialog;
     private Parent parent;
 
     private PersonalDetails principal;
@@ -90,11 +96,13 @@ public class PrincipalSignUpController extends AnchorPane {
     private void initialize() {
         user = new User();
         principal = new PersonalDetails();
-        question=new SecurityQuestion();
-        login = (Login) Start.app.getBean("userlogin");
+        question = new SecurityQuestion();
+        login = (LoginService) Start.app.getBean("loginservice");
+        login.setParent(this);
+        dialog = login.getEx();
         signup.setOnAction(E -> {
-            if (login.isUsernameExists(username.getText()) > 0) {
-                MessageUtil.showError(Message.ERROR, "Principal SignUp", "Username already taken", ((Node) E.getSource()).getScene().getWindow());
+            if (login.isUsernameExists(username.getText())) {
+                dialog.showError(this, "Principal Signup", "User Already Taken");
             } else if (password.getText().equals(confirmpassword.getText())) {
                 user.setType("Principal");
                 user.setUsername(username.getText());
@@ -108,7 +116,7 @@ public class PrincipalSignUpController extends AnchorPane {
                 principal.setContact(contact.getText());
                 principal.setEmailId(email.getText());
                 principal.setGender("Unknown");
-                
+
                 question.setQuestion1("");
                 question.setQuestion2("");
                 question.setQuestion3("");
@@ -118,35 +126,21 @@ public class PrincipalSignUpController extends AnchorPane {
 
                 user.setDetails(principal);
                 user.setSecurityquestion(question);
-                
-                int id = login.save(user);
 
-                if (id > 0) {
-                    Alert al = new Alert(Alert.AlertType.INFORMATION);
-                    al.setHeaderText("HOD Sign Up");
-                    al.setContentText("Sign Up Successful\nPrincipal account created successfully\nCurrent Account Status :" + user.getStatus());
-                    al.initOwner(((Node) E.getSource()).getScene().getWindow());
-                    al.initModality(Modality.WINDOW_MODAL);
-                    al.initStyle(StageStyle.UNDECORATED);
-                    al.show();
+                Set<ConstraintViolation<User>> validate = ValidationUtils.getValidator().validate(user);
+                if (validate.isEmpty()) {
+                    int id = login.saveUser(user);
+                    if (id > 0) {
+                        dialog.showSuccess(this, "Principal Signup", "Principal Signup Successfully");
+
+                    } else {
+                        dialog.showError(this, "Principal Signup", "Principal Signup Failed");
+                    }
                 } else {
-                    Alert al = new Alert(Alert.AlertType.ERROR);
-                    al.setHeaderText("HOD Sign Up");
-                    al.setContentText("Principal SignUp failed");
-                    al.initOwner(((Node) E.getSource()).getScene().getWindow());
-                    al.initModality(Modality.WINDOW_MODAL);
-                    al.initStyle(StageStyle.UNDECORATED);
-                    al.show();
+                    validate.stream().forEach(c -> dialog.showWarning(this, "Principal Signup", c.getMessage()));
                 }
-
             } else {
-                Alert al = new Alert(Alert.AlertType.ERROR);
-                al.setHeaderText("HOD Sign Up");
-                al.setContentText("Password doesn't match");
-                al.initOwner(((Node) E.getSource()).getScene().getWindow());
-                al.initModality(Modality.WINDOW_MODAL);
-                al.initStyle(StageStyle.UNDECORATED);
-                al.show();
+                dialog.showError(this, "Principal Signup", "Password Doesn't Match");
             }
         });
         loginbutton.setOnAction(this::LoginAction);

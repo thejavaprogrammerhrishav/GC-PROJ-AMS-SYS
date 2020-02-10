@@ -8,6 +8,8 @@ package com.attendance.student.controller;
 import com.attendance.main.Start;
 import com.attendance.student.dao.StudentDao;
 import com.attendance.student.model.Student;
+import com.attendance.student.service.StudentService;
+import com.attendance.util.ExceptionDialog;
 import com.attendance.util.Fxml;
 import com.attendance.util.Message;
 import com.attendance.util.MessageUtil;
@@ -71,8 +73,10 @@ public class RegisterStudentController extends AnchorPane {
 
     private FXMLLoader fxml;
     private Student student;
-    private StudentDao dao;
+    private StudentService dao;
     private Parent parent;
+
+    private ExceptionDialog dialog;
 
     public RegisterStudentController(Parent parent) {
         this.parent = parent;
@@ -91,7 +95,10 @@ public class RegisterStudentController extends AnchorPane {
     private void initialize() {
         department.setText(SystemUtils.getDepartment());
         acadamicyear.getItems().addAll("1st", "2nd", "3rd");
-        dao = (StudentDao) Start.app.getBean("studentregistration");
+        dao = (StudentService) Start.app.getBean("studentservice");
+        dao.setParent(this);
+        dialog = dao.getEx();
+
         student = new Student();
         male.setOnMouseClicked(e -> {
             if (!male.isSelected()) {
@@ -140,10 +147,14 @@ public class RegisterStudentController extends AnchorPane {
             } else {
                 student.setCourseType("UNKNOWN");
             }
-            student.setId("GC"+acadamicyear.getSelectionModel().getSelectedItem().charAt(0)+"_"+year.getText()+"_"+rollno.getText()+student.getCourseType().charAt(0)+"_"+SystemUtils.getDepartmentCode());
+            student.setId("GC" + acadamicyear.getSelectionModel().getSelectedItem().charAt(0) + "_" + year.getText() + "_" + rollno.getText() + student.getCourseType().charAt(0) + "_" + SystemUtils.getDepartmentCode());
             student.setDepartment(department.getText());
             String id = dao.saveStudent(student);
-            MessageUtil.showInformation(Message.INFORMATION, "Student Registration", "Student Registered Successfully\nStudent Id: " + id, ((Node) evt.getSource()).getScene().getWindow());
+            if (id.isEmpty()) {
+                dialog.showError(this, "Register New Student", "Student Registration Failed");
+            } else {
+                dialog.showSuccess(this, "Register New Student", "Student Registered Successfully");
+            }
         });
     }
 

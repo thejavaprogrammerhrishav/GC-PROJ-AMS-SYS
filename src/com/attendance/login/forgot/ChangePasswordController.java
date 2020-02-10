@@ -6,8 +6,10 @@
 package com.attendance.login.forgot;
 
 import com.attendance.login.dao.Login;
+import com.attendance.login.service.LoginService;
 import com.attendance.login.user.model.User;
 import com.attendance.main.Start;
+import com.attendance.util.ExceptionDialog;
 import com.attendance.util.Fxml;
 import com.attendance.util.Message;
 import com.attendance.util.MessageUtil;
@@ -48,7 +50,8 @@ public class ChangePasswordController extends AnchorPane {
 
     private User user;
 
-    private Login login;
+    private LoginService login;
+    private ExceptionDialog dialog;
 
     private Parent parent;
 
@@ -69,7 +72,10 @@ public class ChangePasswordController extends AnchorPane {
 
     @FXML
     private void initialize() {
-        login = (Login) Start.app.getBean("userlogin");
+        login = (LoginService) Start.app.getBean("loginservice");
+        login.setParent(this);
+        dialog = login.getEx();
+        
         user = SystemUtils.getCurrentUser();
         change.setOnAction(this::changePassword);
         back.setOnAction(e-> SwitchRoot.switchRoot(Start.st, parent));
@@ -80,14 +86,19 @@ public class ChangePasswordController extends AnchorPane {
         if (user.getPassword().equals(oldpassword.getText())) {
             if (newpassword.getText().equals(confirmpassword.getText())) {
                 user.setPassword(newpassword.getText());
-                login.update(user);
+                boolean b = login.updateUser(user);
+                if(b) {
                 SystemUtils.setCurrentUser(user);
-                MessageUtil.showError(Message.INFORMATION, "Update User Password", "Password Updated Successfully", ((Node) evt.getSource()).getScene().getWindow());
-            } else {
-                MessageUtil.showError(Message.ERROR, "Update User Password", "Password Didn't Match", ((Node) evt.getSource()).getScene().getWindow());
+                dialog.showSuccess(this, "Update User Password", "Password Updated Successfully");
+            } 
+                else{
+                    dialog.showError(this, "Update User Password", "Password Updation Failed");
+                }
+            }else {
+                dialog.showError(this, "Update User Password", "Password Didn't Match");
             }
         } else {
-            MessageUtil.showError(Message.ERROR, "Update User Password", "Old Password Mismatch", ((Node) evt.getSource()).getScene().getWindow());
+            dialog.showError(this, "Update User Password", "Old Password Mismatch");
         }
     }
 

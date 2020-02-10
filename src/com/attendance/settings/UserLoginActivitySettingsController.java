@@ -7,7 +7,9 @@ package com.attendance.settings;
 
 import com.attendance.login.activity.dao.Activity;
 import com.attendance.login.activity.model.LoginActivity;
+import com.attendance.login.activity.service.LoginActivityService;
 import com.attendance.main.Start;
+import com.attendance.util.ExceptionDialog;
 import com.attendance.util.ExportUserLoginActivity;
 import com.attendance.util.Fxml;
 import com.attendance.util.SwitchRoot;
@@ -107,8 +109,10 @@ public class UserLoginActivitySettingsController extends AnchorPane {
     private Parent parent;
 
     private FXMLLoader fxml;
+    
+    private ExceptionDialog dialog;
 
-    private Activity dao;
+    private LoginActivityService dao;
     private List<LoginActivity> list;
 
     public UserLoginActivitySettingsController(Parent parent) {
@@ -126,7 +130,10 @@ public class UserLoginActivitySettingsController extends AnchorPane {
 
     @FXML
     private void initialize() {
-        dao = (Activity) Start.app.getBean("loginactivity");
+        dao = (LoginActivityService) Start.app.getBean("loginactivityservice");
+        dao.setParent(this);
+        dialog = dao.getEx();
+        
         searchname.disableProperty().bind(filterbyname.selectedProperty().not());
         searchdate.disableProperty().bind(filterbydate.selectedProperty().not());
         searchusertype.disableProperty().bind(filterbyusertype.selectedProperty().not());
@@ -197,8 +204,9 @@ public class UserLoginActivitySettingsController extends AnchorPane {
         ExportUserLoginActivity exp = new ExportUserLoginActivity(table);
         try {
             exp.createFile().convertToExcel("User Login Activity").exportToFile();
+            dialog.showSuccess(this, "Login Activity User", "Login Activity Exported Successfully");
         } catch (IOException ex) {
-            Logger.getLogger(UserLoginActivitySettingsController.class.getName()).log(Level.SEVERE, null, ex);
+            dialog.showError(this, "Login Activity User", "Login Activity Export Failed");
         }
     }
 

@@ -7,6 +7,7 @@ package com.attendance.dashboard.node;
 
 import com.attendance.main.Start;
 import com.attendance.student.dao.StudentDao;
+import com.attendance.student.service.StudentService;
 import com.attendance.util.Fxml;
 import com.attendance.util.SystemUtils;
 import com.jfoenix.controls.JFXButton;
@@ -41,7 +42,7 @@ public class PrincipalDashboardStudentNodeController extends AnchorPane {
 
     private FXMLLoader fxml;
 
-    private StudentDao dao;
+    private StudentService dao;
 
     public PrincipalDashboardStudentNodeController() {
         fxml = Fxml.getPrincipalDashboardStudentNodeFXML();
@@ -58,11 +59,12 @@ public class PrincipalDashboardStudentNodeController extends AnchorPane {
 
     @FXML
     private void initialize() {
-        dao = (StudentDao) Start.app.getBean("studentregistration");
+        dao = (StudentService) Start.app.getBean("studentservice");
+        dao.setParent(this);
         department.getItems().setAll("All");
         department.getItems().addAll(SystemUtils.getDepartments());
 
-        List<String> years = dao.get("select distinct(year) from student order by year", String.class);
+        List<String> years = dao.findAllYear();
         year.getItems().setAll("All");
         year.getItems().addAll(years);
         refresh.setOnAction(this::load);

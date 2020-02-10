@@ -8,6 +8,7 @@ package com.attendance.student.controller;
 import com.attendance.main.Start;
 import com.attendance.student.dao.StudentDao;
 import com.attendance.student.model.Student;
+import com.attendance.student.service.StudentService;
 import com.attendance.util.Fxml;
 import com.attendance.util.Message;
 import com.attendance.util.MessageUtil;
@@ -128,7 +129,7 @@ public class ViewStudentDetailsController extends AnchorPane {
     private TextField curcoursetype;
 
     private FXMLLoader fxml;
-    private StudentDao dao;
+    private StudentService dao;
     private String cdepartment;
     private Parent parent ;
 
@@ -149,7 +150,8 @@ public class ViewStudentDetailsController extends AnchorPane {
 
     @FXML
     private void initialize() {
-        dao = (StudentDao) Start.app.getBean("studentregistration");
+        dao = (StudentService) Start.app.getBean("studentservice");
+        dao.setParent(this);
         department.setText("Department:   " + cdepartment);
         studentColumnName.setCellValueFactory(new PropertyValueFactory<Student, String>("name"));
         studentColumnYear.setCellValueFactory(new PropertyValueFactory<Student, Integer>("year"));
