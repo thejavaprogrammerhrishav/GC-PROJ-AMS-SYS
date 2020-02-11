@@ -8,10 +8,13 @@ package com.attendance.login.controller;
 import com.attendance.login.actions.LoginAuthenticator;
 import com.attendance.login.activity.dao.Activity;
 import com.attendance.login.activity.model.LoginActivity;
+import com.attendance.login.activity.service.LoginActivityService;
 import com.attendance.login.dao.Login;
+import com.attendance.login.service.LoginService;
 import com.attendance.login.user.model.User;
 import com.attendance.main.Start;
 import com.attendance.personal.model.PersonalDetails;
+import com.attendance.util.ExceptionDialog;
 import com.attendance.util.Fxml;
 import com.attendance.util.RootFactory;
 import com.attendance.util.SwitchRoot;
@@ -73,8 +76,9 @@ public class PrincipalLoginController extends AnchorPane {
     private Thread thread;
     private Task<Void> blink;
 
-    private Login principal;
-    private Activity loginActivity;
+    private LoginService principal;
+    private LoginActivityService loginActivity;
+    private ExceptionDialog dialog;
     private LoginAuthenticator authenticator;
     private User user;
     private LoginActivity activity;
@@ -93,8 +97,11 @@ public class PrincipalLoginController extends AnchorPane {
 
     @FXML
     private void initialize() {
-        principal = (Login) Start.app.getBean("userlogin");
-        loginActivity = (Activity) Start.app.getBean("loginactivity");
+        principal = (LoginService) Start.app.getBean("loginservice");
+        principal.setParent(this);
+        dialog = principal.getEx();
+        
+        loginActivity = (LoginActivityService) Start.app.getBean("loginactivityservice");
         result.setText("");
         blink = new Task<Void>() {
             @Override
@@ -191,7 +198,7 @@ public class PrincipalLoginController extends AnchorPane {
                         Thread.sleep(500);
                         search = user.getDetails();
                         activity = new LoginActivity(search.getName(), user.getUsername(), "Principal", "ACTIVE", DateTime.now().toString(DateTimeFormat.forPattern("dd-MM-yyyy")), DateTime.now().toString(DateTimeFormat.forPattern("hh:mm:ss a")), "", "N/A");
-                        loginActivity.save(activity);
+                        loginActivity.saveactivity(activity);
                         SystemUtils.setActivity(activity);
                         for (int i = 3; i >= 0; i--) {
                             final int x = i;

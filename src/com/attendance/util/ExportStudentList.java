@@ -10,10 +10,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.sql.SQLException;
+import javafx.scene.Parent;
 import javafx.scene.control.TableView;
 import javafx.stage.FileChooser;
-import javax.swing.JOptionPane;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Font;
@@ -26,6 +25,9 @@ import org.apache.poi.ss.usermodel.Workbook;
  * @author Programmer Hrishav
  */
 public class ExportStudentList {
+
+    private final ExceptionDialog dialog = new ExceptionDialog();
+
     private final String[] columnNames = {"Student Name", "Student Roll No.", "Student Acadamic Year", "Year Of Admission", "Gender",
         "Contact", "Student Id"};
 
@@ -90,12 +92,12 @@ public class ExportStudentList {
         list.getItems().stream().forEach(at -> {
             r = Excel.createRow(sheet, RowCount++, 25);
             c = Excel.createCell(r, 0, at.getName(), body);
-            c = Excel.createCell(r, 1, ""+at.getRollno(), body);
-            c = Excel.createCell(r, 2, ""+at.getAcadamicyear(), body);
-            c = Excel.createCell(r, 3, ""+at.getYear(), body);
-            c = Excel.createCell(r, 4, ""+at.getGender(), body);
-            c = Excel.createCell(r, 5, ""+at.getContact(), body);
-            c = Excel.createCell(r, 6, ""+at.getId(), body);
+            c = Excel.createCell(r, 1, "" + at.getRollno(), body);
+            c = Excel.createCell(r, 2, "" + at.getAcadamicyear(), body);
+            c = Excel.createCell(r, 3, "" + at.getYear(), body);
+            c = Excel.createCell(r, 4, "" + at.getGender(), body);
+            c = Excel.createCell(r, 5, "" + at.getContact(), body);
+            c = Excel.createCell(r, 6, "" + at.getId(), body);
         });
         for (int i = 0; i < columnNames.length; i++) {
             sheet.autoSizeColumn(i);
@@ -103,11 +105,11 @@ public class ExportStudentList {
         return this;
     }
 
-    public void exportToFile() throws FileNotFoundException, IOException {
+    public void exportToFile(Parent parent) throws FileNotFoundException, IOException {
         fout = new FileOutputStream(path);
         wb.write(fout);
         wb.close();
         fout.close();
-        MessageUtil.showInformation(Message.INFORMATION, "Export Student List", "List Exported Successfully", list.getScene().getWindow());
+        dialog.showSuccess(parent, "Export Student List", "Exported Successfully");
     }
 }

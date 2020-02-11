@@ -302,7 +302,7 @@ public class ExportDailyStatsListController extends AnchorPane {
     private void export(ActionEvent evt) {
         ExportDailyStats exp = new ExportDailyStats(table);
         try {
-            exp.createFile().convertToExcel("Daily Class Statistics List").exportToFile();
+            exp.createFile().convertToExcel("Daily Class Statistics List").exportToFile(this);
             dialog.showSuccess(this, "Export Class Daily Stats List", "Daily Stats List Exported Successfully");
         } catch (IOException ex) {
             dialog.showError(this, "Export Class Daily Stats List", "Daily Stats List Export Failed");

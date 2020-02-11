@@ -6,6 +6,7 @@
 package com.attendance.user;
 
 import com.attendance.login.dao.Login;
+import com.attendance.login.service.LoginService;
 import com.attendance.login.user.model.User;
 import com.attendance.main.Start;
 import com.attendance.personal.model.PersonalDetails;
@@ -115,7 +116,7 @@ public class UserProfileController extends AnchorPane {
 
     private User user;
     private PersonalDetails details;
-    private Login login;
+    private LoginService login;
     private String parent;
 
     private File file;
@@ -141,7 +142,8 @@ public class UserProfileController extends AnchorPane {
 
     @FXML
     private void initialize() {
-        login = (Login) Start.app.getBean("userlogin");
+        login = (LoginService) Start.app.getBean("loginservice");
+        login.setParent(this);
         loadDetails();
         init();
         initGender();
@@ -263,7 +265,7 @@ public class UserProfileController extends AnchorPane {
         }
         updateuser.setDetails(updatedetails);
         updateuser.setSecurityquestion(user.getSecurityquestion());
-        boolean b1 = login.update(updateuser);
+        boolean b1 = login.updateUser(updateuser);
         if (b1) {
             result.setText("Profile Updated Successfully");
             SystemUtils.setCurrentUser(updateuser);

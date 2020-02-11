@@ -292,7 +292,7 @@ public class AttendanceReportController extends AnchorPane {
     private void export2Excel(ActionEvent evt) {
         export = new ExportAttendancereport(table);
         try {
-            export.createFile().convertToExcel(filename.getText()).exportToFile();
+            export.createFile().convertToExcel(filename.getText()).exportToFile(this);
             dialog.showSuccess(this,"Export To Excel", "Exported Successfully");
         } catch (SQLException | IOException ex) {
             dialog.showError(this,"Export To Excel", "Export Failed\n"+ex.getLocalizedMessage());
@@ -302,7 +302,7 @@ public class AttendanceReportController extends AnchorPane {
     private void generateExcel(ActionEvent evt) {
         export = new ExportAttendancereport(table);
         try {
-            export.createFile().generateReport(filename.getText()).exportToFile();
+            export.createFile().generateReport(filename.getText()).exportToFile(this);
             dialog.showSuccess(this,"Export To Excel", "Report Exported Successfully");
         } catch (SQLException | IOException ex) {
             dialog.showError(this,"Export To Excel", "Report Export Failed\n"+ex.getLocalizedMessage());

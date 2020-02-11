@@ -8,6 +8,8 @@ package com.attendance.marks.controller;
 import com.attendance.main.Start;
 import com.attendance.marks.dao.UnitTestDao;
 import com.attendance.marks.model.UnitTest;
+import com.attendance.marks.service.MarksService;
+import com.attendance.util.ExceptionDialog;
 import com.attendance.util.ExportUTReport;
 import com.attendance.util.ExportUTReportTable;
 import com.attendance.util.Fxml;
@@ -94,7 +96,8 @@ public class UnitTestReportController extends AnchorPane {
     private Parent parent;
     private FXMLLoader fxml;
 
-    private UnitTestDao dao;
+    private MarksService dao;
+    private ExceptionDialog dialog;
 
     public UnitTestReportController(Parent parent) {
         this.parent = parent;
@@ -111,7 +114,10 @@ public class UnitTestReportController extends AnchorPane {
 
     @FXML
     private void initialize() {
-        dao = (UnitTestDao) Start.app.getBean("unittest");
+        dao = (MarksService) Start.app.getBean("marksservice");
+        dao.setParent(this);
+        dialog = dao.getEx();
+        
         initFilter();
         initializeTable();
         load.setOnAction(this::populateTable);
@@ -175,17 +181,19 @@ public class UnitTestReportController extends AnchorPane {
     private void exportReport(ActionEvent evt) {
         ExportUTReport exp = new ExportUTReport(list);
         try {
-            exp.createFile().convertToExcel("Unit Test Report").exportToFile();
+            exp.createFile().convertToExcel("Unit Test Report").exportToFile(this);
+            dialog.showSuccess(this, "Export Unit Test Report", "Report Exported Successfully");
         } catch (IOException ex) {
-            Logger.getLogger(UnitTestReportController.class.getName()).log(Level.SEVERE, null, ex);
+            dialog.showError(this, "Export Unit Test Report", "Report Export Failed\n"+ex.getLocalizedMessage());
         }
     }
     private void exportTable(ActionEvent evt) {
         ExportUTReportTable exp = new ExportUTReportTable(list);
         try {
-            exp.createFile().convertToExcel("Unit Test Report Table").exportToFile();
+            exp.createFile().convertToExcel("Unit Test Report Table").exportToFile(this);
+            dialog.showSuccess(this, "Export Unit Test ", "Exported Successfully");
         } catch (IOException ex) {
-            Logger.getLogger(UnitTestReportController.class.getName()).log(Level.SEVERE, null, ex);
+            dialog.showError(this, "Export Unit Test ", "Export Failed\n"+ex.getLocalizedMessage());
         }
     }
 }

@@ -13,8 +13,6 @@ import com.attendance.routines.dao.RoutineDao;
 import com.attendance.routines.model.Routine;
 import com.attendance.util.ExceptionDialog;
 import com.attendance.util.Fxml;
-import com.attendance.util.Message;
-import com.attendance.util.MessageUtil;
 import com.attendance.util.SystemUtils;
 import com.attendance.util.ValidationUtils;
 import com.jfoenix.controls.JFXButton;

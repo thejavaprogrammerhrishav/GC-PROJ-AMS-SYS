@@ -58,7 +58,6 @@ import com.attendance.settings.sub.LoadingController;
 import com.attendance.settings.sub.ModifyUsertypeController;
 import com.attendance.settings.sub.UpdateClassDetailsController;
 import com.attendance.splash.SplashController;
-import com.attendance.student.controller.LoadStudentsController;
 import com.attendance.student.controller.RegisterStudentController;
 import com.attendance.student.controller.StudentUpdateController;
 import com.attendance.student.controller.ViewStudentDetailsController;
@@ -178,14 +177,6 @@ public class RootFactory {
 
     public static Parent getDailyStatsRoot(Parent parent,String faculty) {
         return new DailyStatsController(parent,faculty);
-    }
-
-    public static Parent getMessageRoot(int type, String header, String content) {
-        return new Message(type, header, content);
-    }
-
-    public static Parent getMessageRoot(int type, String header, Exception content) {
-        return new Message(type, header, content);
     }
 
     public static Parent getDatabaseServerRoot(Parent parent) {

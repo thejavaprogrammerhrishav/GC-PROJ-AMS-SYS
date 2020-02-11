@@ -6,6 +6,7 @@
 package com.attendance.faculty.controller;
 
 import com.attendance.login.dao.Login;
+import com.attendance.login.service.LoginService;
 import com.attendance.login.user.model.User;
 import com.attendance.main.Start;
 import com.attendance.util.Fxml;
@@ -51,7 +52,7 @@ public class ViewFacultyController extends AnchorPane {
     private Label department;
 
     private FXMLLoader fxml;
-    private Login dao;
+    private LoginService dao;
     private String cdepartment;
     private Parent parent;
 
@@ -71,7 +72,8 @@ public class ViewFacultyController extends AnchorPane {
 
     @FXML
     private void initialize() {
-        dao = (Login) Start.app.getBean("userlogin");
+        dao = (LoginService) Start.app.getBean("loginservice");
+        dao.setParent(this);
         department.setText("Department: " + cdepartment);
 
         loadAllFaculty(null);

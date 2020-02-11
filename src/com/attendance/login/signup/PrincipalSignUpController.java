@@ -13,8 +13,6 @@ import com.attendance.main.Start;
 import com.attendance.personal.model.PersonalDetails;
 import com.attendance.util.ExceptionDialog;
 import com.attendance.util.Fxml;
-import com.attendance.util.Message;
-import com.attendance.util.MessageUtil;
 import com.attendance.util.RootFactory;
 import com.attendance.util.SwitchRoot;
 import com.attendance.util.SystemUtils;

@@ -6,17 +6,14 @@
 package com.attendance.util;
 
 import com.attendance.login.activity.model.LoginActivity;
-import com.attendance.report.model.AttendanceDetails;
-import com.attendance.util.Excel;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.sql.SQLException;
+import javafx.scene.Parent;
 import javafx.scene.control.TableView;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
-import javax.swing.JOptionPane;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Font;
@@ -29,6 +26,8 @@ import org.apache.poi.ss.usermodel.Workbook;
  * @author Programmer Hrishav
  */
 public class ExportUserLoginActivity {
+    
+    private final ExceptionDialog dialog = new ExceptionDialog();
 
     private final String[] columnNames = {"Name", "Username", "User Type", "Status", "Login Date", "Login Time", "Logout Time"};
 
@@ -106,11 +105,11 @@ public class ExportUserLoginActivity {
         return this;
     }
 
-    public void exportToFile() throws FileNotFoundException, IOException {
+    public void exportToFile(Parent parent) throws FileNotFoundException, IOException {
         fout = new FileOutputStream(path);
         wb.write(fout);
         wb.close();
         fout.close();
-        MessageUtil.showInformation(Message.INFORMATION, "Export Student List", "List Exported Successfully", list.getScene().getWindow());
+        dialog.showSuccess(parent, "Export User Login Activity", "User Login Activity Exported Successfully");
     }
 }

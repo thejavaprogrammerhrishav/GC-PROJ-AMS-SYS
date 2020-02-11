@@ -6,28 +6,27 @@
 package com.attendance.student.controller;
 
 import com.attendance.main.Start;
-import com.attendance.student.dao.StudentDao;
 import com.attendance.student.model.Student;
 import com.attendance.student.service.StudentService;
 import com.attendance.util.ExceptionDialog;
 import com.attendance.util.Fxml;
-import com.attendance.util.Message;
-import com.attendance.util.MessageUtil;
 import com.attendance.util.SwitchRoot;
 import com.attendance.util.SystemUtils;
+import com.attendance.util.ValidationUtils;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import java.io.IOException;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javax.validation.ConstraintViolation;
 
 /**
  *
@@ -149,11 +148,19 @@ public class RegisterStudentController extends AnchorPane {
             }
             student.setId("GC" + acadamicyear.getSelectionModel().getSelectedItem().charAt(0) + "_" + year.getText() + "_" + rollno.getText() + student.getCourseType().charAt(0) + "_" + SystemUtils.getDepartmentCode());
             student.setDepartment(department.getText());
-            String id = dao.saveStudent(student);
-            if (id.isEmpty()) {
-                dialog.showError(this, "Register New Student", "Student Registration Failed");
-            } else {
-                dialog.showSuccess(this, "Register New Student", "Student Registered Successfully");
+
+            Set<ConstraintViolation<Student>> validate = ValidationUtils.getValidator().validate(student);
+            if (validate.isEmpty()) {
+                String id = dao.saveStudent(student);
+                if (id.isEmpty()) {
+                    dialog.showError(this, "Register New Student", "Student Registration Failed");
+                } else {
+                    dialog.showSuccess(this, "Register New Student", "Student Registered Successfully");
+                }
+            }else {
+                validate.stream().forEach(c->{
+                    dialog.showError(this, "Register Student Details", c.getMessage());
+                });
             }
         });
     }

@@ -6,11 +6,11 @@
 package com.attendance.util;
 
 import com.attendance.marks.controller.UTReportModel;
-import com.attendance.studentattendance.model.ClassDetails;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import javafx.scene.Parent;
 import javafx.scene.control.TableView;
 import javafx.stage.FileChooser;
 import org.apache.poi.ss.usermodel.Cell;
@@ -25,6 +25,8 @@ import org.apache.poi.ss.usermodel.Workbook;
  * @author Programmer Hrishav
  */
 public class ExportUTReportTable {
+    
+    private final ExceptionDialog dialog = new ExceptionDialog();
 
     private final String[] columnNames = {"Roll Number" ,"Name" ,  "Marks Obtained" , "Passing Marks" , "Total Marks"};
 
@@ -101,11 +103,11 @@ public class ExportUTReportTable {
         return this;
     }
 
-    public void exportToFile() throws FileNotFoundException, IOException {
+    public void exportToFile(Parent parent) throws FileNotFoundException, IOException {
         fout = new FileOutputStream(path);
         wb.write(fout);
         wb.close();
         fout.close();
-        MessageUtil.showInformation(Message.INFORMATION, "Export Unit Test Report Table", "Report Table Exported Successfully", list.getScene().getWindow());
+        dialog.showSuccess(parent, "Export Unit Test", "Exported Successfully");
     }
 }

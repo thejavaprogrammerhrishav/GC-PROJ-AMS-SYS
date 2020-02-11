@@ -8,7 +8,9 @@ package com.attendance.login.controller;
 import com.attendance.login.actions.LoginAuthenticator;
 import com.attendance.login.activity.dao.Activity;
 import com.attendance.login.activity.model.LoginActivity;
+import com.attendance.login.activity.service.LoginActivityService;
 import com.attendance.login.dao.Login;
+import com.attendance.login.service.LoginService;
 import com.attendance.login.user.model.User;
 import com.attendance.main.Start;
 import com.attendance.personal.model.PersonalDetails;
@@ -78,8 +80,8 @@ public class FacultyLoginController extends AnchorPane {
     private Task<Void> blink;
     private final String ROLE = "Faculty";
 
-    private Login faculty;
-    private Activity loginActivity;
+    private LoginService faculty;
+    private LoginActivityService loginActivity;
     private LoginAuthenticator authenticator;
     private User user;
     private LoginActivity activity;
@@ -99,8 +101,9 @@ public class FacultyLoginController extends AnchorPane {
 
     @FXML
     private void initialize() {
-        faculty = (Login) Start.app.getBean("userlogin");
-        loginActivity = (Activity) Start.app.getBean("loginactivity");
+        faculty = (LoginService) Start.app.getBean("loginservice");
+        faculty.setParent(this);
+        loginActivity = (LoginActivityService) Start.app.getBean("loginactivityservice");
         result.setText("");
         department.setText("Department:  " + SystemUtils.getDepartment());
         blink = new Task<Void>() {
@@ -202,7 +205,7 @@ public class FacultyLoginController extends AnchorPane {
                         }
                         search = user.getDetails();
                         activity = new LoginActivity(search.getName(), user.getUsername(), "Faculty", "Active", DateTime.now().toString(DateTimeFormat.forPattern("dd-MM-yyyy")), DateTime.now().toString(DateTimeFormat.forPattern("hh:mm:ss a")), "", SystemUtils.getDepartment());
-                        loginActivity.save(activity);
+                        loginActivity.saveactivity(activity);
                         SystemUtils.setActivity(activity);
                         SystemUtils.setCurrentUser(user);
                         Platform.runLater(() -> SwitchRoot.switchRoot(Start.st, RootFactory.getFacultyDashboardRoot()));

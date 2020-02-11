@@ -6,7 +6,9 @@
 package com.attendance.marks.service;
 
 import com.attendance.marks.model.UnitTest;
+import com.attendance.util.ExceptionDialog;
 import java.util.List;
+import javafx.scene.Parent;
 
 /**
  *
@@ -29,4 +31,8 @@ public interface MarksService {
     public abstract List<UnitTest> findBySemesterAndAcademicyearAndYear(String semester, String academicyesr, int year);
 
     public abstract <T> List<T> get(String query, Class<T> type);
+    
+    public abstract void setParent(Parent parent);
+    
+    public abstract ExceptionDialog getEx();
 }

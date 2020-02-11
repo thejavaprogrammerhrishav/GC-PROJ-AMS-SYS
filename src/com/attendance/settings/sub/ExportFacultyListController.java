@@ -166,7 +166,7 @@ public class ExportFacultyListController extends AnchorPane {
     private void export(ActionEvent evt) {
         ExportFacultyList exp = new ExportFacultyList(table);
         try {
-            exp.createFile().convertToExcel("Faculty List").exportToFile();
+            exp.createFile().convertToExcel("Faculty List").exportToFile(this);
             dialog.showSuccess(this, "Export Faculty List", "Faculty List Exported Successfully");
         } catch (IOException ex) {
             dialog.showError(this, "Export Faculty List", "Faculty List Export Failed");

@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import javafx.scene.Parent;
 import javafx.scene.control.TableView;
 import javafx.stage.FileChooser;
 import org.apache.poi.ss.usermodel.Cell;
@@ -24,7 +25,10 @@ import org.apache.poi.ss.usermodel.Workbook;
  * @author Programmer Hrishav
  */
 public class ExportFacultyList {
-    private final String[] columnNames = {"Faculty Name","Gender", "Contact", "Email Id"};
+
+    private final ExceptionDialog dialog = new ExceptionDialog();
+
+    private final String[] columnNames = {"Faculty Name", "Gender", "Contact", "Email Id"};
 
     private String path;
     private FileOutputStream fout;
@@ -87,9 +91,9 @@ public class ExportFacultyList {
         list.getItems().stream().forEach(at -> {
             r = Excel.createRow(sheet, RowCount++, 25);
             c = Excel.createCell(r, 0, at.getName(), body);
-            c = Excel.createCell(r, 1, ""+at.getGender(), body);
-            c = Excel.createCell(r, 2, ""+at.getContact(), body);
-            c = Excel.createCell(r, 3, ""+at.getEmailId(), body);
+            c = Excel.createCell(r, 1, "" + at.getGender(), body);
+            c = Excel.createCell(r, 2, "" + at.getContact(), body);
+            c = Excel.createCell(r, 3, "" + at.getEmailId(), body);
         });
         for (int i = 0; i < columnNames.length; i++) {
             sheet.autoSizeColumn(i);
@@ -97,11 +101,11 @@ public class ExportFacultyList {
         return this;
     }
 
-    public void exportToFile() throws FileNotFoundException, IOException {
+    public void exportToFile(Parent parent) throws FileNotFoundException, IOException {
         fout = new FileOutputStream(path);
         wb.write(fout);
         wb.close();
         fout.close();
-        MessageUtil.showInformation(Message.INFORMATION, "Export Faculty List", "List Exported Successfully", list.getScene().getWindow());
+        dialog.showSuccess(parent , "Export Faculty List", "Exported Successfully");
     }
 }

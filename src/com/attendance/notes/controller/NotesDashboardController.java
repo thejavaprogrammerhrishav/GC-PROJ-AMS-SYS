@@ -8,10 +8,10 @@ package com.attendance.notes.controller;
 import com.attendance.main.Start;
 import com.attendance.notes.dao.NotesDao;
 import com.attendance.notes.model.Notes;
+import com.attendance.notes.service.NotesService;
 import com.attendance.settings.sub.LoadingController;
+import com.attendance.util.ExceptionDialog;
 import com.attendance.util.Fxml;
-import com.attendance.util.Message;
-import com.attendance.util.MessageUtil;
 import com.attendance.util.SwitchRoot;
 import com.attendance.util.SystemUtils;
 import com.attendance.util.Utils;
@@ -139,9 +139,10 @@ public class NotesDashboardController extends AnchorPane {
 
     private Parent parent;
     private String facultyName;
+    private ExceptionDialog dialog;
 
     private FXMLLoader fxml;
-    private NotesDao dao;
+    private NotesService dao;
 
     private File file;
 
@@ -164,7 +165,9 @@ public class NotesDashboardController extends AnchorPane {
 
     @FXML
     private void initialize() {
-        dao = (NotesDao) Start.app.getBean("notes");
+        dao = (NotesService) Start.app.getBean("notesservice");
+        dao.setParent(this);
+        dialog = dao.getEx();
 
         dec = new DecimalFormat("#.##");
         dec.setRoundingMode(RoundingMode.CEILING);
@@ -307,14 +310,14 @@ public class NotesDashboardController extends AnchorPane {
                 double d = (double) file.length() / (1024 * 1024);
                 upload.setFileSize(Double.parseDouble(dec.format(d)));
                 upload.setUploadDate(DateTime.now().toString(DateTimeFormat.forPattern("dd-MM-yyyy")));
-                Integer save = dao.save(upload);
+                Integer save = dao.saveNotes(upload);
                 if (save == null) {
-                    MessageUtil.showError(Message.ERROR, "Upload File", "File Uploading Failed", this.getScene().getWindow());
+                    dialog.showError(this, "Upload File", "File Upload Failed");
                 } else {
-                    MessageUtil.showError(Message.INFORMATION, "Upload File", "File Uploaded Successfully", this.getScene().getWindow());
+                    dialog.showSuccess(this, "Upload File", "File Uploadation Failed");
                 }
             } else {
-                MessageUtil.showError(Message.ERROR, "Upload File", "No File Selected", this.getScene().getWindow());
+                dialog.showError(this, "Upload File", "No File Selected");
             }
 
         } catch (IOException ex) {
@@ -341,8 +344,7 @@ public class NotesDashboardController extends AnchorPane {
                 Logger.getLogger(NotesDashboardController.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
-        MessageUtil.showInformation(Message.INFORMATION, "Download Files", "File Successfully Downloaded\nFile directory:  " + downloadpath.getText(), this.getScene().getWindow());
-
+        dialog.showSuccess(this, "Download File", "File Successfully Downloaded\nFile directory:  " + downloadpath.getText());
     }
 
     private void backup(ActionEvent evt) {
@@ -358,7 +360,7 @@ public class NotesDashboardController extends AnchorPane {
                 Logger.getLogger(NotesDashboardController.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
-        MessageUtil.showInformation(Message.INFORMATION, "Backup Files", "Backup Completed Successfully\nFile directory:  " + downloadpath.getText(), this.getScene().getWindow());
+        dialog.showSuccess(this,  "Backup Files", "Backup Completed Successfully\nFile directory:  " + downloadpath.getText());
     }
 
     private void sortAscending(ActionEvent evt) {

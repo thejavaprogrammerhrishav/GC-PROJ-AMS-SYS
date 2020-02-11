@@ -11,8 +11,6 @@ import com.attendance.login.user.model.User;
 import com.attendance.main.Start;
 import com.attendance.util.ExceptionDialog;
 import com.attendance.util.Fxml;
-import com.attendance.util.Message;
-import com.attendance.util.MessageUtil;
 import com.attendance.util.SwitchRoot;
 import com.attendance.util.SystemUtils;
 import com.jfoenix.controls.JFXButton;

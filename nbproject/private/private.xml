@@ -2,33 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/D:/JAVA/GC-PROJ-AMS-SYS/src/com/attendance/routines/controller/UpdateActiveRoutineController.java</file>
-            <file>file:/D:/JAVA/GC-PROJ-AMS-SYS/src/com/attendance/login/controller/HODLoginController.java</file>
-            <file>file:/D:/JAVA/GC-PROJ-AMS-SYS/src/com/attendance/routines/controller/RoutineDashboardController.java</file>
-            <file>file:/D:/JAVA/GC-PROJ-AMS-SYS/src/com/attendance/notes/controller/NotesDashboardController.java</file>
-            <file>file:/D:/JAVA/GC-PROJ-AMS-SYS/src/com/attendance/marks/controller/UploadUnitTestMarksController.java</file>
-            <file>file:/D:/JAVA/GC-PROJ-AMS-SYS/src/com/attendance/login/controller/PrincipalLoginController.java</file>
-            <file>file:/D:/JAVA/GC-PROJ-AMS-SYS/src/com/attendance/marks/controller/UTReportModel.java</file>
-            <file>file:/D:/JAVA/GC-PROJ-AMS-SYS/src/com/attendance/notes/controller/NotesNodeController.java</file>
-            <file>file:/D:/JAVA/GC-PROJ-AMS-SYS/src/com/attendance/student/controller/LoadStudentsController.java</file>
-            <file>file:/D:/JAVA/GC-PROJ-AMS-SYS/src/com/attendance/marks/controller/UnitTestReportController.java</file>
-            <file>file:/D:/JAVA/GC-PROJ-AMS-SYS/src/com/attendance/notes/controller/NotesSearchController.java</file>
-            <file>file:/D:/JAVA/GC-PROJ-AMS-SYS/src/com/attendance/routines/controller/AddNewRoutineController.java</file>
-            <file>file:/D:/JAVA/GC-PROJ-AMS-SYS/src/com/attendance/student/controller/StudentUpdateController.java</file>
-            <file>file:/D:/JAVA/GC-PROJ-AMS-SYS/src/com/attendance/routines/controller/ViewAllRoutineController.java</file>
-            <file>file:/D:/JAVA/GC-PROJ-AMS-SYS/src/com/attendance/routines/controller/ViewAllRoutineNodeController.java</file>
-            <file>file:/D:/JAVA/GC-PROJ-AMS-SYS/src/com/attendance/faculty/controller/ViewFacultyDetailsController.java</file>
-            <file>file:/D:/JAVA/GC-PROJ-AMS-SYS/src/com/attendance/marks/controller/UnitTestNode.java</file>
-            <file>file:/D:/JAVA/GC-PROJ-AMS-SYS/src/com/attendance/report/controller/AttendanceReportController.java</file>
-            <file>file:/D:/JAVA/GC-PROJ-AMS-SYS/src/com/attendance/routines/controller/ViewActiveRoutineController.java</file>
-            <file>file:/D:/JAVA/GC-PROJ-AMS-SYS/src/com/attendance/routines/controller/UpdateActiveRoutineNodeController.java</file>
-            <file>file:/D:/JAVA/GC-PROJ-AMS-SYS/src/com/attendance/student/controller/RegisterStudentController.java</file>
-            <file>file:/D:/JAVA/GC-PROJ-AMS-SYS/src/com/attendance/faculty/controller/ViewFacultyController.java</file>
-            <file>file:/D:/JAVA/GC-PROJ-AMS-SYS/src/com/attendance/faculty/controller/ViewFacultyNodeController.java</file>
-            <file>file:/D:/JAVA/GC-PROJ-AMS-SYS/src/com/attendance/login/controller/FacultyLoginController.java</file>
-            <file>file:/D:/JAVA/GC-PROJ-AMS-SYS/src/com/attendance/papers/controller/PapersController.java</file>
-            <file>file:/D:/JAVA/GC-PROJ-AMS-SYS/src/com/attendance/routines/controller/ViewRoutineController.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

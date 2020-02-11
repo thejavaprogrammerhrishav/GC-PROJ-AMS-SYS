@@ -6,16 +6,15 @@
 package com.attendance.util;
 
 import com.attendance.report.model.AttendanceDetails;
-import com.attendance.util.Excel;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.SQLException;
+import javafx.scene.Parent;
 import javafx.scene.control.TableView;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
-import javax.swing.JOptionPane;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Font;
@@ -28,6 +27,8 @@ import org.apache.poi.ss.usermodel.Workbook;
  * @author Programmer Hrishav
  */
 public class ExportAttendancereport {
+
+    private final ExceptionDialog dialog = new ExceptionDialog();
 
     private final String[] columnNames = {"Student Name", "Student Roll No.", "Student Semester", "Student Year", "Faculty Name",
         "Total Classes", "Total Present", "Total Absent", "Present Percentage", "Absent Percentage"};
@@ -93,15 +94,15 @@ public class ExportAttendancereport {
         list.getItems().stream().forEach(at -> {
             r = Excel.createRow(sheet, RowCount++, 25);
             c = Excel.createCell(r, 0, at.getStudentname(), body);
-            c = Excel.createCell(r, 1, ""+at.getRollno(), body);
-            c = Excel.createCell(r, 2, ""+at.getSemester(), body);
-            c = Excel.createCell(r, 3, ""+at.getYear(), body);
-            c = Excel.createCell(r, 4, ""+at.getFacultyname(), body);
-            c = Excel.createCell(r, 5, ""+at.getTotalclasses(), body);
-            c = Excel.createCell(r, 6, ""+at.getTotalpresent(), body);
-            c = Excel.createCell(r, 7, ""+at.getTotalabsent(), body);
-            c = Excel.createCell(r, 8, ""+at.getPresentpercentage(), body);
-            c = Excel.createCell(r, 9, ""+at.getAbsentpercentage(), body);
+            c = Excel.createCell(r, 1, "" + at.getRollno(), body);
+            c = Excel.createCell(r, 2, "" + at.getSemester(), body);
+            c = Excel.createCell(r, 3, "" + at.getYear(), body);
+            c = Excel.createCell(r, 4, "" + at.getFacultyname(), body);
+            c = Excel.createCell(r, 5, "" + at.getTotalclasses(), body);
+            c = Excel.createCell(r, 6, "" + at.getTotalpresent(), body);
+            c = Excel.createCell(r, 7, "" + at.getTotalabsent(), body);
+            c = Excel.createCell(r, 8, "" + at.getPresentpercentage(), body);
+            c = Excel.createCell(r, 9, "" + at.getAbsentpercentage(), body);
         });
         for (int i = 0; i < columnNames.length; i++) {
             sheet.autoSizeColumn(i);
@@ -109,7 +110,6 @@ public class ExportAttendancereport {
         return this;
     }
 
-    
     public ExportAttendancereport generateReport(String sheetName) throws SQLException {
         String[] cols = {"Student Roll No.", "Total Classes", "Total Present", "Present Percentage"};
         if (path.contains(".xls")) {
@@ -131,10 +131,10 @@ public class ExportAttendancereport {
 
         list.getItems().stream().forEach(at -> {
             r = Excel.createRow(sheet, RowCount++, 25);
-            c = Excel.createCell(r, 0, ""+at.getRollno(), body);
-            c = Excel.createCell(r, 1, ""+at.getTotalclasses(), body);
-            c = Excel.createCell(r, 2, ""+at.getTotalpresent(), body);
-            c = Excel.createCell(r, 3, ""+at.getPresentpercentage(), body);
+            c = Excel.createCell(r, 0, "" + at.getRollno(), body);
+            c = Excel.createCell(r, 1, "" + at.getTotalclasses(), body);
+            c = Excel.createCell(r, 2, "" + at.getTotalpresent(), body);
+            c = Excel.createCell(r, 3, "" + at.getPresentpercentage(), body);
         });
         for (int i = 0; i < columnNames.length; i++) {
             sheet.autoSizeColumn(i);
@@ -142,12 +142,11 @@ public class ExportAttendancereport {
         return this;
     }
 
-    
-    public void exportToFile() throws FileNotFoundException, IOException {
+    public void exportToFile(Parent parent) throws FileNotFoundException, IOException {
         fout = new FileOutputStream(path);
         wb.write(fout);
         wb.close();
         fout.close();
-        MessageUtil.showInformation(Message.INFORMATION, "Export Student List", "List Exported Successfully", list.getScene().getWindow());
+        dialog.showSuccess(parent, "Export Attendance Report ", "Export Successfully");
     }
 }

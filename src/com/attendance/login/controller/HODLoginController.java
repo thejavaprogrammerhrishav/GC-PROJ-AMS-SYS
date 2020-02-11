@@ -11,7 +11,9 @@ import com.jfoenix.controls.JFXTextField;
 import com.attendance.login.actions.LoginAuthenticator;
 import com.attendance.login.activity.dao.Activity;
 import com.attendance.login.activity.model.LoginActivity;
+import com.attendance.login.activity.service.LoginActivityService;
 import com.attendance.login.dao.Login;
+import com.attendance.login.service.LoginService;
 import com.attendance.main.Start;
 import com.attendance.login.user.model.User;
 import com.attendance.personal.model.PersonalDetails;
@@ -38,53 +40,53 @@ import org.joda.time.format.DateTimeFormat;
  * @author Programmer Hrishav
  */
 public class HODLoginController extends AnchorPane {
-
+    
     @FXML
     private JFXTextField username;
-
+    
     @FXML
     private JFXPasswordField password;
-
+    
     @FXML
     private JFXButton login;
-
+    
     @FXML
     private Label forgotpassword;
-
+    
     @FXML
     private Label result;
-
+    
     @FXML
     private Label department;
-
+    
     @FXML
     private Label signup;
-
+    
     @FXML
     private JFXButton close;
-
+    
     @FXML
     private AnchorPane message;
-
+    
     @FXML
     private Label bigmessage;
-
+    
     @FXML
     private Label smallmessage;
-
+    
     private FXMLLoader fxml;
-
+    
     private final String userRole = "HOD";
     private Thread thread;
     private Task<Void> blink;
-
-    private Login admin;
-    private Activity loginActivity;
+    
+    private LoginService admin;
+    private LoginActivityService loginActivity;
     private LoginAuthenticator authenticator;
     private User user;
     private LoginActivity activity;
     private PersonalDetails search;
-
+    
     public HODLoginController() {
         fxml = Fxml.getHODLoginFXML();
         fxml.setRoot(HODLoginController.this);
@@ -94,13 +96,14 @@ public class HODLoginController extends AnchorPane {
         } catch (IOException ex) {
             Logger.getLogger(HODLoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
     }
-
+    
     @FXML
     private void initialize() {
-        admin = (Login) Start.app.getBean("userlogin");
-        loginActivity = (Activity) Start.app.getBean("loginactivity");
+        admin = (LoginService) Start.app.getBean("loginservice");
+        admin.setParent(this);
+        loginActivity = (LoginActivityService) Start.app.getBean("loginactivityservice");
         result.setText("");
         department.setText("Department: " + SystemUtils.getDepartment());
         blink = new Task<Void>() {
@@ -121,7 +124,7 @@ public class HODLoginController extends AnchorPane {
         };
         thread = new Thread(blink);
         thread.start();
-
+        
         Platform.runLater(() -> {
             bigmessage.setText("");
             smallmessage.setText("");
@@ -129,7 +132,7 @@ public class HODLoginController extends AnchorPane {
             bigmessage.getStyleClass().addAll("strong", "h4");
             smallmessage.getStyleClass().add("h5");
         });
-
+        
         authenticator = new LoginAuthenticator() {
             @Override
             protected boolean authenticate(String username, String password) {
@@ -169,7 +172,7 @@ public class HODLoginController extends AnchorPane {
                     bigmessage.getStyleClass().addAll("strong", "h4");
                     smallmessage.getStyleClass().add("h5");
                 });
-
+                
             } else if (status.equals("Decline")) {
                 Platform.runLater(() -> {
                     bigmessage.setText("Account Status");
@@ -189,7 +192,7 @@ public class HODLoginController extends AnchorPane {
                 });
             }
         });
-
+        
         login.setOnAction(evt -> {
             if (authenticator.authenticateUser(username.getText(), password.getText())) {
                 new Thread(() -> {
@@ -197,7 +200,7 @@ public class HODLoginController extends AnchorPane {
                         Thread.sleep(500);
                         search = user.getDetails();
                         activity = new LoginActivity(search.getName(), user.getUsername(), "HOD", "Active", DateTime.now().toString(DateTimeFormat.forPattern("dd-MM-yyyy")), DateTime.now().toString(DateTimeFormat.forPattern("hh:mm:ss a")), "", SystemUtils.getDepartment());
-                        loginActivity.save(activity);
+                        loginActivity.saveactivity(activity);
                         SystemUtils.setActivity(activity);
                         for (int i = 3; i >= 0; i--) {
                             final int x = i;
@@ -212,7 +215,7 @@ public class HODLoginController extends AnchorPane {
                 }).start();
             }
         });
-
+        
         forgotpassword.setOnMouseClicked(e -> {
             User user = new User();
             user.setType("HOD");
@@ -222,11 +225,11 @@ public class HODLoginController extends AnchorPane {
         signup.setOnMouseClicked(this::signupAction);
         close.setOnAction(this::closeAction);
     }
-
+    
     private void signupAction(MouseEvent evt) {
         SwitchRoot.switchRoot(Start.st, RootFactory.getHODSignupRoot(Start.st.getScene().getRoot()));
     }
-
+    
     private void closeAction(ActionEvent evt) {
         SystemUtils.setDepartment("");
         SystemUtils.logout();

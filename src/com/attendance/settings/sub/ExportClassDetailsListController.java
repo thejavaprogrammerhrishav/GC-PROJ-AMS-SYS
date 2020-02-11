@@ -301,7 +301,7 @@ public class ExportClassDetailsListController extends AnchorPane {
     private void export(ActionEvent evt) {
         ExportClassDetails exp = new ExportClassDetails(table);
         try {
-            exp.createFile().convertToExcel("Class Details List").exportToFile();
+            exp.createFile().convertToExcel("Class Details List").exportToFile(this);
             dialog.showSuccess(this, "Export Class Details List", "Class Details List Exported Successfully");
         } catch (IOException ex) {
             dialog.showError(this, "Export Class Details List", "Class Details List Export Failed");

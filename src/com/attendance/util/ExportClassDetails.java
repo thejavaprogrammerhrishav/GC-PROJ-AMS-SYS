@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import javafx.scene.Parent;
 import javafx.scene.control.TableView;
 import javafx.stage.FileChooser;
 import org.apache.poi.ss.usermodel.Cell;
@@ -25,8 +26,10 @@ import org.apache.poi.ss.usermodel.Workbook;
  */
 public class ExportClassDetails {
 
+    private final ExceptionDialog dialog = new ExceptionDialog();
+
     private final String[] columnNames = {"Class Id", "Faculty Name", "Subject Taught", "Class Date", "Class Time",
-        "Paper", "Semester", "Year","Acadamic Year","Course Type"};
+        "Paper", "Semester", "Year", "Acadamic Year", "Course Type"};
 
     private String path;
     private FileOutputStream fout;
@@ -89,15 +92,15 @@ public class ExportClassDetails {
         list.getItems().stream().forEach(at -> {
             r = Excel.createRow(sheet, RowCount++, 25);
             c = Excel.createCell(r, 0, at.getClassId(), body);
-            c = Excel.createCell(r, 1, ""+at.getFacultyName(), body);
-            c = Excel.createCell(r, 2, ""+at.getSubjectTaught(), body);
-            c = Excel.createCell(r, 3, ""+at.getDate(), body);
-            c = Excel.createCell(r, 4, ""+at.getTime(), body);
-            c = Excel.createCell(r, 5, ""+at.getPaper(), body);
-            c = Excel.createCell(r, 6, ""+at.getSemester(), body);
-            c = Excel.createCell(r, 7, ""+at.getYear(), body);
-            c = Excel.createCell(r, 8, ""+at.getAcadamicyear(), body);
-            c = Excel.createCell(r, 9, ""+at.getCoursetype(), body);
+            c = Excel.createCell(r, 1, "" + at.getFacultyName(), body);
+            c = Excel.createCell(r, 2, "" + at.getSubjectTaught(), body);
+            c = Excel.createCell(r, 3, "" + at.getDate(), body);
+            c = Excel.createCell(r, 4, "" + at.getTime(), body);
+            c = Excel.createCell(r, 5, "" + at.getPaper(), body);
+            c = Excel.createCell(r, 6, "" + at.getSemester(), body);
+            c = Excel.createCell(r, 7, "" + at.getYear(), body);
+            c = Excel.createCell(r, 8, "" + at.getAcadamicyear(), body);
+            c = Excel.createCell(r, 9, "" + at.getCoursetype(), body);
         });
         for (int i = 0; i < columnNames.length; i++) {
             sheet.autoSizeColumn(i);
@@ -105,11 +108,11 @@ public class ExportClassDetails {
         return this;
     }
 
-    public void exportToFile() throws FileNotFoundException, IOException {
+    public void exportToFile(Parent parent) throws FileNotFoundException, IOException {
         fout = new FileOutputStream(path);
         wb.write(fout);
         wb.close();
         fout.close();
-        MessageUtil.showInformation(Message.INFORMATION, "Export Class Details List", "List Exported Successfully", list.getScene().getWindow());
+        dialog.showSuccess(parent, "Export Class Details", "Exported Successfully");
     }
 }

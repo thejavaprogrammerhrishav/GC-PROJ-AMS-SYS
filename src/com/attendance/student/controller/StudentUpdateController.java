@@ -10,25 +10,24 @@ import com.attendance.student.model.Student;
 import com.attendance.student.service.StudentService;
 import com.attendance.util.ExceptionDialog;
 import com.attendance.util.Fxml;
-import com.attendance.util.Message;
-import com.attendance.util.MessageUtil;
 import com.attendance.util.SwitchRoot;
 import com.attendance.util.SystemUtils;
+import com.attendance.util.ValidationUtils;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import java.io.IOException;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.CheckBox;
-import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javax.validation.ConstraintViolation;
 
 /**
  *
@@ -218,16 +217,21 @@ public class StudentUpdateController extends AnchorPane {
             updateStudent.setCourseType("UNKNOWN");
         }
 
-        
-        String newId="GC" + acadamicyear.getSelectionModel().getSelectedItem().charAt(0) + "_" + studentYear.getText() + "_" + studentRollNumber.getText() + updateStudent.getCourseType().charAt(0) + "_" + SystemUtils.getDepartmentCode();
+        String newId = "GC" + acadamicyear.getSelectionModel().getSelectedItem().charAt(0) + "_" + studentYear.getText() + "_" + studentRollNumber.getText() + updateStudent.getCourseType().charAt(0) + "_" + SystemUtils.getDepartmentCode();
 
         // updateStudent.setId(studentRollNumber.getText() + "_" + acadamicyear.getSelectionModel().getSelectedItem() + "@" + studentYear.getText() + "#" + updateStudent.getCourseType().charAt(0));
-        boolean updateId = dao.updateStudent(updateStudent,newId);
-        if (updateId) {
-            dialog.showSuccess(this, "Update Student Details", "Student Details Updated Successfully");
-        }
-        else{
-            dialog.showError(this, "Update Student Details", "Student Details Update Failed");
+        Set<ConstraintViolation<Student>> validate = ValidationUtils.getValidator().validate(updateStudent);
+        if (validate.isEmpty()) {
+            boolean updateId = dao.updateStudent(updateStudent, newId);
+            if (updateId) {
+                dialog.showSuccess(this, "Update Student Details", "Student Details Updated Successfully");
+            } else {
+                dialog.showError(this, "Update Student Details", "Student Details Update Failed");
+            }
+        }else {
+            validate.stream().forEach(c->{
+                dialog.showError(this, "Update Student Details", c.getMessage());
+            });
         }
     }
 

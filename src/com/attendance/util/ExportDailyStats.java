@@ -5,15 +5,13 @@
  */
 package com.attendance.util;
 
-import com.attendance.student.model.Student;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.sql.SQLException;
+import javafx.scene.Parent;
 import javafx.scene.control.TableView;
 import javafx.stage.FileChooser;
-import javax.swing.JOptionPane;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Font;
@@ -26,9 +24,11 @@ import org.apache.poi.ss.usermodel.Workbook;
  * @author Programmer Hrishav
  */
 public class ExportDailyStats {
-    
+
+    private final ExceptionDialog dialog = new ExceptionDialog();
+
     private final String[] columnNames = {"Class Date", "Class Time", "Semester", "Year", "Total Student",
-        "Total Present", "Total Absent","Present Percentage","Absent Percentage","Acadamic Year","Course Type"};
+        "Total Present", "Total Absent", "Present Percentage", "Absent Percentage", "Acadamic Year", "Course Type"};
 
     private String path;
     private FileOutputStream fout;
@@ -88,19 +88,19 @@ public class ExportDailyStats {
             c = Excel.createCell(r, i, columnNames[i], head);
         }
 
-        list.getItems().stream().forEach(at -> { 
+        list.getItems().stream().forEach(at -> {
             r = Excel.createRow(sheet, RowCount++, 25);
             c = Excel.createCell(r, 0, at.getDate(), body);
-            c = Excel.createCell(r, 1, ""+at.getTime(), body);
-            c = Excel.createCell(r, 2, ""+at.getSemester(), body);
-            c = Excel.createCell(r, 3, ""+at.getYear(), body);
-            c = Excel.createCell(r, 4, ""+at.getTotalStudent(), body);
-            c = Excel.createCell(r, 5, ""+at.getTotalPresent(), body);
-            c = Excel.createCell(r, 6, ""+at.getTotalAbsent(), body);
-            c = Excel.createCell(r, 7, ""+at.getPresentPercentage(), body);
-            c = Excel.createCell(r, 8, ""+at.getAbsentPercentage(), body);
-            c = Excel.createCell(r, 9, ""+at.getAcadamicyear(), body);
-            c = Excel.createCell(r, 10, ""+at.getCoursetype(), body);
+            c = Excel.createCell(r, 1, "" + at.getTime(), body);
+            c = Excel.createCell(r, 2, "" + at.getSemester(), body);
+            c = Excel.createCell(r, 3, "" + at.getYear(), body);
+            c = Excel.createCell(r, 4, "" + at.getTotalStudent(), body);
+            c = Excel.createCell(r, 5, "" + at.getTotalPresent(), body);
+            c = Excel.createCell(r, 6, "" + at.getTotalAbsent(), body);
+            c = Excel.createCell(r, 7, "" + at.getPresentPercentage(), body);
+            c = Excel.createCell(r, 8, "" + at.getAbsentPercentage(), body);
+            c = Excel.createCell(r, 9, "" + at.getAcadamicyear(), body);
+            c = Excel.createCell(r, 10, "" + at.getCoursetype(), body);
         });
         for (int i = 0; i < columnNames.length; i++) {
             sheet.autoSizeColumn(i);
@@ -108,11 +108,11 @@ public class ExportDailyStats {
         return this;
     }
 
-    public void exportToFile() throws FileNotFoundException, IOException {
+    public void exportToFile(Parent parent) throws FileNotFoundException, IOException {
         fout = new FileOutputStream(path);
         wb.write(fout);
         wb.close();
         fout.close();
-        MessageUtil.showInformation(Message.INFORMATION, "Export Daily Class Statistics List", "List Exported Successfully", list.getScene().getWindow());
+        dialog.showSuccess(parent, "Export Daily Statistics", "Exported Successfully");
     }
 }

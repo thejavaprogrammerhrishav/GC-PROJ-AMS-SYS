@@ -8,11 +8,12 @@ package com.attendance.marks.controller;
 import com.attendance.main.Start;
 import com.attendance.marks.dao.UnitTestDao;
 import com.attendance.marks.model.UnitTest;
+import com.attendance.marks.service.MarksService;
 import com.attendance.student.dao.StudentDao;
 import com.attendance.student.model.Student;
+import com.attendance.student.service.StudentService;
+import com.attendance.util.ExceptionDialog;
 import com.attendance.util.Fxml;
-import com.attendance.util.Message;
-import com.attendance.util.MessageUtil;
 import com.attendance.util.SwitchRoot;
 import com.attendance.util.SystemUtils;
 import com.jfoenix.controls.JFXButton;
@@ -76,8 +77,9 @@ public class UploadUnitTestMarksController extends AnchorPane {
     private JFXComboBox<String> coursetype;
 
     private FXMLLoader fxml;
-    private UnitTestDao dao;
-    private StudentDao sdao;
+    private MarksService dao;
+    private StudentService sdao;
+    private ExceptionDialog dialog;
 
     private String acadamicyear;
     private int yyear;
@@ -98,8 +100,8 @@ public class UploadUnitTestMarksController extends AnchorPane {
 
     @FXML
     private void initialize() {
-        dao = (UnitTestDao) Start.app.getBean("unittest");
-        sdao = (StudentDao) Start.app.getBean("studentregistration");
+        dao = (MarksService) Start.app.getBean("marksservice");
+        sdao = (StudentService) Start.app.getBean("studentservice");
         ut.getItems().setAll("Unit Test 1", "Unit Test 2");
         acayear.getItems().setAll("1st","2nd","3rd");
         coursetype.getItems().setAll("Honours","Pass");
@@ -128,7 +130,7 @@ public class UploadUnitTestMarksController extends AnchorPane {
                 }
                 yyear = Integer.parseInt(year.getSelectionModel().getSelectedItem());
 
-                List<Student> list = new ArrayList<>(sdao.findByAcadamicYearAndYear(acadamicyear, yyear));
+                List<Student> list = new ArrayList<>(sdao.findByAcadamicYearAndyear(acadamicyear, yyear));
                 list=list.stream().filter(f->f.getDepartment().equals(SystemUtils.getDepartment())).filter(p->p.getCourseType().equals(coursetype.getSelectionModel().getSelectedItem())).collect(Collectors.toList());
                 List<UnitTestNode> nodes = list.stream().map(new Function<Student, UnitTestNode>() {
                     int count = 1;
@@ -143,7 +145,7 @@ public class UploadUnitTestMarksController extends AnchorPane {
 
             }
         } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
-            MessageUtil.showError(Message.ERROR, "Unit Test ------> Load Student", "Please fill the empty loading fields", ((Node) evt.getSource()).getScene().getWindow());
+            dialog.showError(this,"Unit Test ------> Load Student", "Please fill the empty loading fields");
         }
     }
 
@@ -180,9 +182,13 @@ public class UploadUnitTestMarksController extends AnchorPane {
             test.setDepartment(it.getStudent().getDepartment());
             return test;
         }).collect(Collectors.toList());
-        dao.saveAll(collect);
+        boolean s = dao.saveAllMarks(collect);
         String t = "Marks Uploaded Successfully\nUnit Test:  " + ut.getSelectionModel().getSelectedItem() + "\nSemester:   " + sem.getSelectionModel().getSelectedItem();
-        MessageUtil.showInformation(Message.INFORMATION, "Upload Unit Test Marks", t, ((Node) evt.getSource()).getScene().getWindow());
+        if(s){
+                dialog.showSuccess(this, "Upload Unit Test Marks", t);
+        }else{
+                dialog.showError(this, "Upload Unit Test Marks", "Marks Upload Failed");
+        }
 
     }
 

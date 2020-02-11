@@ -9,9 +9,8 @@ import com.attendance.main.Start;
 import com.attendance.student.dao.StudentDao;
 import com.attendance.student.model.Student;
 import com.attendance.student.service.StudentService;
+import com.attendance.util.ExceptionDialog;
 import com.attendance.util.Fxml;
-import com.attendance.util.Message;
-import com.attendance.util.MessageUtil;
 import com.attendance.util.SwitchRoot;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
@@ -130,6 +129,7 @@ public class ViewStudentDetailsController extends AnchorPane {
 
     private FXMLLoader fxml;
     private StudentService dao;
+    private ExceptionDialog dialog;
     private String cdepartment;
     private Parent parent ;
 
@@ -292,7 +292,7 @@ public class ViewStudentDetailsController extends AnchorPane {
         }
         if (filterbyyear.isSelected()) {
             if (fyear.getSelectionModel().getSelectedIndex() == -1) {
-                MessageUtil.showError(Message.ERROR, "View Student Details", "Invalid Acadamic Year Or Year Of Admission", ((Node) e.getSource()).getScene().getWindow());
+                dialog.showError(this, "View Student Details", "Invalid Academic Year or Year of Admission");
             } else {
                 list = list.stream().filter(s -> s.getYear() == Integer.parseInt(fyear.getSelectionModel().getSelectedItem())).collect(Collectors.toList());
             }
@@ -300,7 +300,7 @@ public class ViewStudentDetailsController extends AnchorPane {
 
         if (filterbycoursetype.isSelected()) {
             if (coursetype.getSelectionModel().getSelectedIndex() == -1) {
-                MessageUtil.showError(Message.ERROR, "View Student Details", "Invalid Course Type", ((Node) e.getSource()).getScene().getWindow());
+                dialog.showError(this, "View Student Details", "Invalid CourseType");
             } else {
                 list = list.stream().filter(s -> s.getCourseType().equals(coursetype.getSelectionModel().getSelectedItem())).collect(Collectors.toList());
             }

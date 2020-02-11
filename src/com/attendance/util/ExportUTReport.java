@@ -6,11 +6,11 @@
 package com.attendance.util;
 
 import com.attendance.marks.controller.UTReportModel;
-import com.attendance.studentattendance.model.ClassDetails;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import javafx.scene.Parent;
 import javafx.scene.control.TableView;
 import javafx.stage.FileChooser;
 import org.apache.poi.ss.usermodel.Cell;
@@ -26,7 +26,9 @@ import org.apache.poi.ss.usermodel.Workbook;
  */
 public class ExportUTReport {
 
-    private final String[] columnNames = {"Roll Number" , "Marks Obtained" , "Passing Marks" , "Total Marks"};
+    private final ExceptionDialog dialog = new ExceptionDialog();
+
+    private final String[] columnNames = {"Roll Number", "Marks Obtained", "Passing Marks", "Total Marks"};
 
     private String path;
     private FileOutputStream fout;
@@ -88,10 +90,10 @@ public class ExportUTReport {
 
         list.getItems().stream().forEach(at -> {
             r = Excel.createRow(sheet, RowCount++, 25);
-            c = Excel.createCell(r, 0, ""+at.getRollno(), body);
-            c = Excel.createCell(r, 1, ""+at.getMarks(), body);
-            c = Excel.createCell(r, 2, ""+at.getPassing(), body);
-            c = Excel.createCell(r, 3, ""+at.getTotal(), body);
+            c = Excel.createCell(r, 0, "" + at.getRollno(), body);
+            c = Excel.createCell(r, 1, "" + at.getMarks(), body);
+            c = Excel.createCell(r, 2, "" + at.getPassing(), body);
+            c = Excel.createCell(r, 3, "" + at.getTotal(), body);
 
         });
         for (int i = 0; i < columnNames.length; i++) {
@@ -100,11 +102,11 @@ public class ExportUTReport {
         return this;
     }
 
-    public void exportToFile() throws FileNotFoundException, IOException {
+    public void exportToFile(Parent parent) throws FileNotFoundException, IOException {
         fout = new FileOutputStream(path);
         wb.write(fout);
         wb.close();
         fout.close();
-        MessageUtil.showInformation(Message.INFORMATION, "Export Unit Test Report ", "Report Exported Successfully", list.getScene().getWindow());
+        dialog.showSuccess(parent, "Export Unit Test Report", "Exported Successfully");
     }
 }

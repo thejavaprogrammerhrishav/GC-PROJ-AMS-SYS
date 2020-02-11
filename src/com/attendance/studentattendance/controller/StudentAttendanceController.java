@@ -20,8 +20,6 @@ import com.attendance.studentattendance.service.AttendanceService;
 import com.attendance.util.DateTimerThread;
 import com.attendance.util.ExceptionDialog;
 import com.attendance.util.Fxml;
-import com.attendance.util.Message;
-import com.attendance.util.MessageUtil;
 import com.attendance.util.SwitchRoot;
 import com.attendance.util.SystemUtils;
 import com.attendance.util.ValidationUtils;

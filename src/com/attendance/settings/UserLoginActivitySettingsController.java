@@ -203,7 +203,7 @@ public class UserLoginActivitySettingsController extends AnchorPane {
     private void export(ActionEvent evt) {
         ExportUserLoginActivity exp = new ExportUserLoginActivity(table);
         try {
-            exp.createFile().convertToExcel("User Login Activity").exportToFile();
+            exp.createFile().convertToExcel("User Login Activity").exportToFile(this);
             dialog.showSuccess(this, "Login Activity User", "Login Activity Exported Successfully");
         } catch (IOException ex) {
             dialog.showError(this, "Login Activity User", "Login Activity Export Failed");
