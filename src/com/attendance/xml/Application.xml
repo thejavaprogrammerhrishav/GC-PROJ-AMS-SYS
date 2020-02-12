@@ -12,7 +12,7 @@
 
     <context:property-placeholder location="file:db.properties"/> 
     
-   <bean id = "dialog" class = "com.validator.utils.ExceptionDialog"/>
+   <bean id = "dialog" class = "com.attendance.util.ExceptionDialog"/>
     
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
@@ -114,7 +114,7 @@
     </bean>
     
     <bean id="studentservice" class="com.attendance.services.impl.StudentServiceImpl">
-        <property name="dao" ref="studentregistraton"/>   
+        <property name="dao" ref="studentregistration"/>   
         <property name="ex" ref="dialog"/>       
     </bean>
     
@@ -123,7 +123,7 @@
         <property name="ex" ref="dialog"/>        
     </bean>
     
-    <bean id="papersservice" class="com.attendance.services.impl.PapaersServiceImpl">
+    <bean id="papersservice" class="com.attendance.services.impl.PapersServiceImpl">
         <property name="dao" ref="papers"/>   
         <property name="ex" ref="dialog"/> 
     </bean>
