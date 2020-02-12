@@ -131,7 +131,7 @@ public class RoutineServiceImpl implements RoutineService {
     @Override
     public List<Routine> findByDepartmentAndYear(String department, int year) {
         try {
-            return dao.findByDepartmentAndYear(department, department);
+            return dao.findByDepartmentAndYear(department, ""+year);
         } catch (Exception e) {
             ex.showError(parent, header, ExceptionConverter.getException(e));
             return new ArrayList<>();

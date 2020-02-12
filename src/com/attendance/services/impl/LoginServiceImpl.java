@@ -63,6 +63,7 @@ public class LoginServiceImpl implements LoginService {
         try {
             return dao.update(user);
         } catch (Exception e) {
+            e.printStackTrace();
             ex.showError(parent, header, ExceptionConverter.getException(e));
 
         }
