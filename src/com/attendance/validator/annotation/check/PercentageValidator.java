@@ -23,6 +23,6 @@ public class PercentageValidator implements ConstraintValidator<Percentage, Doub
 
     @Override
     public boolean isValid(Double t, ConstraintValidatorContext cvc) {
-        return (t.doubleValue() > 0.0 && t.doubleValue() < 100.0);
+        return (t.doubleValue() >= 0.0 && t.doubleValue() <= 100.0);
     }
 }

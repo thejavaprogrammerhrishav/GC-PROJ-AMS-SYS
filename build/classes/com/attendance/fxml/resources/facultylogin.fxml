@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import java.lang.String?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<fx:root prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: #7a97ff;" stylesheets="@../../resources/alert.css" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane layoutX="93.0" layoutY="74.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="620.0" prefWidth="1180.0" style="-fx-background-color: #fff;">
+         <children>
+            <Label layoutX="690.0" layoutY="145.0" prefHeight="42.0" prefWidth="423.0" text="Attendance Managment System">
+               <font>
+                  <Font name="Tw Cen MT" size="33.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="689.0" layoutY="188.0" prefHeight="32.0" prefWidth="423.0" text="Faculty Login">
+               <font>
+                  <Font name="Tw Cen MT" size="25.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="username" focusColor="#3e62d0" labelFloat="true" layoutX="710.0" layoutY="296.0" prefHeight="32.0" prefWidth="370.0" promptText="Enter username " style="-fx-prompt-text-fill: #4d4d4d; -fx-text-fill: #3e62d0;">
+               <font>
+                  <Font name="Segoe UI" size="17.0" />
+               </font>
+            </JFXTextField>
+            <JFXPasswordField fx:id="password" focusColor="#3e62d0" labelFloat="true" layoutX="710.0" layoutY="384.0" prefHeight="31.0" prefWidth="370.0" promptText="Enter Password" style="-fx-prompt-text-fill: #4d4d4d; -fx-text-fill: #3e62d0;">
+               <font>
+                  <Font name="Segoe UI" size="17.0" />
+               </font>
+            </JFXPasswordField>
+            <JFXButton fx:id="login" buttonType="RAISED" layoutX="710.0" layoutY="454.0" prefHeight="37.0" prefWidth="167.0" ripplerFill="#63b1ff" style="-fx-background-color: #1521c9;" text="Login" textFill="WHITE">
+               <font>
+                  <Font name="Tw Cen MT" size="20.0" />
+               </font>
+            </JFXButton>
+            <Label fx:id="forgotpassword" layoutX="966.0" layoutY="464.0" text="Forget Password ?">
+               <font>
+                  <Font name="Tw Cen MT" size="16.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="114.0" fitWidth="101.0" layoutX="851.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../resources/LogoMakr_1wJdNX.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="result" alignment="CENTER" layoutX="710.0" layoutY="539.0" prefHeight="18.0" prefWidth="370.0" text="Redirecting To Dashboard in 2 sec.">
+               <font>
+                  <Font name="Tw Cen MT" size="20.0" />
+               </font>
+            </Label>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="620.0" prefWidth="636.0" style="-fx-background-color: #eaeefa;">
+               <children>
+                  <ImageView fitHeight="396.0" fitWidth="447.0" layoutX="92.0" layoutY="153.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../resources/teacher.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="result1" layoutX="185.0" layoutY="546.0" prefHeight="36.0" prefWidth="179.0" text="New to the system?">
+                     <font>
+                        <Font name="Tw Cen MT" size="22.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="signup" alignment="CENTER" layoutX="364.0" layoutY="546.0" prefHeight="36.0" prefWidth="94.0" text="Sign Up" textFill="#1a00ff">
+                     <font>
+                        <Font name="Tw Cen MT Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <AnchorPane fx:id="message" layoutX="21.0" layoutY="22.0" prefHeight="85.0" prefWidth="597.0" style="-fx-padding: 8;">
+                     <children>
+                        <Label fx:id="bigmessage" layoutX="25.0" layoutY="17.0" prefHeight="27.0" prefWidth="162.0" text="Message">
+                           <styleClass>
+                              <String fx:value="h4" />
+                              <String fx:value="strong" />
+                           </styleClass>
+                        </Label>
+                        <Label fx:id="smallmessage" layoutX="26.0" layoutY="48.0" prefHeight="21.0" prefWidth="488.0" styleClass="h5" text="Message" />
+                     </children>
+                     <styleClass>
+                        <String fx:value="alert" />
+                        <String fx:value="alert-danger" />
+                     </styleClass>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+            <Label fx:id="department" alignment="CENTER" layoutX="690.0" layoutY="220.0" prefHeight="32.0" prefWidth="423.0" text="Department:">
+               <font>
+                  <Font name="Tw Cen MT" size="25.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="close" contentDisplay="GRAPHIC_ONLY" layoutX="1140.0" layoutY="8.0" ripplerFill="BLACK" styleClass="close">
+               <graphic>
+                  <FontAwesomeIconView glyphName="CLOSE" size="1.5em" />
+               </graphic>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+   </children>
+</fx:root>

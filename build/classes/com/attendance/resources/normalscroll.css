@@ -1,0 +1,19 @@
+@import "scrollpane.css";
+.scroll-bar,
+.scroll-pane {
+	thumb: 8px; 
+	
+    thumb_color: #c2c7ca;
+    thumb_hover_color: #838689;
+    thumb_pressed_color: #585a5c;
+
+    track_color: #fff;
+
+    inc_dec_button_color: #fff;
+    inc_dec_button_hover_color: #c6cacf;
+    inc_dec_button_pressed_color: #585a5c;
+
+    arrow_color: #5a5a59;
+    arrow_pressed_color: white;
+	scroll_pane_background_color: #fff;
+}

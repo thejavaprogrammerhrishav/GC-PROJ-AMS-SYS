@@ -6,7 +6,6 @@
 package com.attendance.util;
 
 import com.attendance.message.type.MessageUtils;
-import com.attendance.util.Message;
 import javafx.scene.Parent;
 
 /**

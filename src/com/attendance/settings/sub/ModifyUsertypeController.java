@@ -109,7 +109,7 @@ public class ModifyUsertypeController extends AnchorPane {
     
     private void search(ActionEvent evt) {
         List<ModifyUsertypeControllerNode> nodes = list.getChildren().stream().map(m->(ModifyUsertypeControllerNode)m).collect(Collectors.toList());
-        List<ModifyUsertypeControllerNode> filtered = nodes.stream().filter(f->f.getUser().getDetails().getName().contains(entername.getText())).collect(Collectors.toList());
+        List<ModifyUsertypeControllerNode> filtered = nodes.stream().filter(f->f.getUser().getDetails().getName().toLowerCase().contains(entername.getText().toLowerCase())).collect(Collectors.toList());
         list.getChildren().setAll(filtered);
     }
 

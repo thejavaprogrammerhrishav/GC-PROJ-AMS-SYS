@@ -10,6 +10,7 @@ import com.attendance.student.model.Student;
 import com.attendance.student.service.StudentService;
 import com.attendance.util.ExceptionDialog;
 import com.attendance.util.Fxml;
+import com.attendance.util.InputValidator;
 import com.attendance.util.SwitchRoot;
 import com.attendance.util.SystemUtils;
 import com.attendance.util.ValidationUtils;
@@ -195,43 +196,55 @@ public class StudentUpdateController extends AnchorPane {
     }
 
     private void updateStudent(ActionEvent e) {
-        updateStudent = new Student();
-        updateStudent.setName(studentName.getText());
-        updateStudent.setContact(studentContact.getText());
-        updateStudent.setRollno(Integer.parseInt(studentRollNumber.getText()));
-        updateStudent.setAcadamicyear(acadamicyear.getSelectionModel().getSelectedItem());
-        updateStudent.setYear(Integer.parseInt(studentYear.getText()));
-        updateStudent.setDepartment(searchStudent.getDepartment());
-        if (genMale.isSelected()) {
-            updateStudent.setGender("Male");
-        } else {
-            updateStudent.setGender("Female");
-        }
-        updateStudent.setId(searchStudent.getId());
+        try {
+            updateStudent = new Student();
+            updateStudent.setName(studentName.getText());
+            updateStudent.setContact(studentContact.getText());
+            updateStudent.setRollno(Integer.parseInt(studentRollNumber.getText()));
+            updateStudent.setAcadamicyear(InputValidator.getValue(acadamicyear));
+            updateStudent.setYear(Integer.parseInt(studentYear.getText()));
+            updateStudent.setDepartment(searchStudent.getDepartment());
 
-        if (honours.isSelected()) {
-            updateStudent.setCourseType("Honours");
-        } else if (pass.isSelected()) {
-            updateStudent.setCourseType("Pass");
-        } else {
-            updateStudent.setCourseType("UNKNOWN");
-        }
-
-        String newId = "GC" + acadamicyear.getSelectionModel().getSelectedItem().charAt(0) + "_" + studentYear.getText() + "_" + studentRollNumber.getText() + updateStudent.getCourseType().charAt(0) + "_" + SystemUtils.getDepartmentCode();
-
-        // updateStudent.setId(studentRollNumber.getText() + "_" + acadamicyear.getSelectionModel().getSelectedItem() + "@" + studentYear.getText() + "#" + updateStudent.getCourseType().charAt(0));
-        Set<ConstraintViolation<Student>> validate = ValidationUtils.getValidator().validate(updateStudent);
-        if (validate.isEmpty()) {
-            boolean updateId = dao.updateStudent(updateStudent, newId);
-            if (updateId) {
-                dialog.showSuccess(this, "Update Student Details", "Student Details Updated Successfully");
+            if (InputValidator.getValue(genFemale, genMale)) {
+                if (genMale.isSelected()) {
+                    updateStudent.setGender("Male");
+                } else {
+                    updateStudent.setGender("Female");
+                }
             } else {
-                dialog.showError(this, "Update Student Details", "Student Details Update Failed");
+                throw new Exception("Please Select Gender");
             }
-        }else {
-            validate.stream().forEach(c->{
-                dialog.showError(this, "Update Student Details", c.getMessage());
-            });
+            updateStudent.setId(searchStudent.getId());
+
+            if (InputValidator.getValue(honours, pass)) {
+                if (honours.isSelected()) {
+                    updateStudent.setCourseType("Honours");
+                }
+                if (pass.isSelected()) {
+                    updateStudent.setCourseType("Pass");
+                }
+            } else {
+                throw new Exception("Please Select Course Type");
+            }
+
+            String newId = "GC" + acadamicyear.getSelectionModel().getSelectedItem().charAt(0) + "_" + studentYear.getText() + "_" + studentRollNumber.getText() + updateStudent.getCourseType().charAt(0) + "_" + SystemUtils.getDepartmentCode();
+
+            // updateStudent.setId(studentRollNumber.getText() + "_" + acadamicyear.getSelectionModel().getSelectedItem() + "@" + studentYear.getText() + "#" + updateStudent.getCourseType().charAt(0));
+            Set<ConstraintViolation<Student>> validate = ValidationUtils.getValidator().validate(updateStudent);
+            if (validate.isEmpty()) {
+                boolean updateId = dao.updateStudent(updateStudent, newId);
+                if (updateId) {
+                    dialog.showSuccess(this, "Update Student Details", "Student Details Updated Successfully");
+                } else {
+                    dialog.showError(this, "Update Student Details", "Student Details Update Failed");
+                }
+            } else {
+                validate.stream().forEach(c -> {
+                    dialog.showError(this, "Update Student Details", c.getMessage());
+                });
+            }
+        } catch (Exception ex) {
+            dialog.showError(this, "Update Student Details", ex.getMessage());
         }
     }
 

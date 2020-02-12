@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.text.Font?>
+
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: linear-gradient(#141e30,#243b55);" stylesheets="@../../resources/setting.css" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane layoutX="24.0" layoutY="44.0" prefHeight="135.0" prefWidth="1360.0">
+         <children>
+            <Label alignment="CENTER_RIGHT" layoutX="431.0" layoutY="20.0" prefHeight="51.0" prefWidth="589.0" text="Attendance Managment System" textFill="WHITE">
+               <font>
+                  <Font name="Segoe UI" size="36.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="432.0" layoutY="72.0" prefHeight="51.0" prefWidth="589.0" text="Miscellaneous Operations" textFill="WHITE">
+               <font>
+                  <Font name="Segoe UI" size="25.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="101.0" fitWidth="87.0" layoutX="333.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../resources/LogoMakr_1wJdNX.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <FlowPane alignment="TOP_CENTER" hgap="52.0" layoutY="239.0" prefHeight="508.0" prefWidth="1366.0" vgap="60.0">
+         <children>
+            <JFXButton fx:id="loginactivity" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" prefHeight="110.0" prefWidth="260.0" ripplerFill="#83019a" styleClass="node" text="Button" textFill="WHITE">
+               <graphic>
+                  <AnchorPane prefHeight="110.0" prefWidth="260.0">
+                     <children>
+                        <Label layoutX="90.0" layoutY="22.0" prefHeight="30.0" prefWidth="170.0" text="Login Activity" textFill="#63c8ff">
+                           <font>
+                              <Font name="Century Gothic Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="12.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../resources/presentation.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="90.0" layoutY="46.0" prefHeight="30.0" prefWidth="160.0" text="Track User Login Activity" textFill="#63c9ff60" wrapText="true">
+                           <font>
+                              <Font name="Century Gothic" size="13.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="notes" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" prefHeight="110.0" prefWidth="260.0" ripplerFill="#83019a" styleClass="node" textFill="WHITE">
+               <graphic>
+                  <AnchorPane layoutY="250.0" prefHeight="110.0" prefWidth="260.0">
+                     <children>
+                        <Label layoutX="90.0" layoutY="22.0" prefHeight="30.0" prefWidth="170.0" text="Notes" textFill="#63c8ff">
+                           <font>
+                              <Font name="Century Gothic Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="12.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../resources/LogoMakr_2zcRAe.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="90.0" layoutY="46.0" prefHeight="30.0" prefWidth="160.0" text="Delete Notes" textFill="#63c9ff60">
+                           <font>
+                              <Font name="Century Gothic" size="13.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="classattendance" alignment="CENTER" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" prefHeight="110.0" prefWidth="260.0" ripplerFill="#83019a" styleClass="node" text="Button" textFill="WHITE">
+               <graphic>
+                  <AnchorPane prefHeight="110.0" prefWidth="260.0">
+                     <children>
+                        <Label layoutX="90.0" layoutY="22.0" prefHeight="30.0" prefWidth="170.0" text="Class " textFill="#63c8ff">
+                           <font>
+                              <Font name="Century Gothic Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="12.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../resources/classroom.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="90.0" layoutY="51.0" prefHeight="40.0" prefWidth="160.0" text="Update/View details of class taken" textFill="#63c9ff60" wrapText="true">
+                           <font>
+                              <Font name="Century Gothic" size="13.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="importexport" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" prefHeight="110.0" prefWidth="260.0" ripplerFill="#83019a" styleClass="node" textFill="WHITE">
+               <graphic>
+                  <AnchorPane prefHeight="110.0" prefWidth="260.0">
+                     <children>
+                        <Label layoutX="90.0" layoutY="22.0" prefHeight="30.0" prefWidth="170.0" text="Export To Excel" textFill="#63c8ff">
+                           <font>
+                              <Font name="Century Gothic Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="12.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../resources/upload.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="90.0" layoutY="51.0" prefHeight="40.0" prefWidth="160.0" text="Import &amp; Export Various List" textFill="#63c9ff60" wrapText="true">
+                           <font>
+                              <Font name="Century Gothic" size="13.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="reports" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" layoutX="62.0" layoutY="200.0" prefHeight="110.0" prefWidth="260.0" ripplerFill="#83019a" styleClass="node" textFill="WHITE">
+               <graphic>
+                  <AnchorPane prefHeight="110.0" prefWidth="260.0">
+                     <children>
+                        <Label layoutX="90.0" layoutY="22.0" prefHeight="30.0" prefWidth="170.0" text="Reports" textFill="#63c8ff">
+                           <font>
+                              <Font name="Century Gothic Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="12.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../resources/LogoMakr_8dscRK.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="90.0" layoutY="46.0" prefHeight="30.0" prefWidth="160.0" text="Generate Reports" textFill="#63c9ff60">
+                           <font>
+                              <Font name="Century Gothic" size="13.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </graphic>
+            </JFXButton>
+         </children>
+         <padding>
+            <Insets left="60.0" right="60.0" top="20.0" />
+         </padding>
+      </FlowPane>
+      <JFXButton fx:id="back" contentDisplay="GRAPHIC_ONLY" layoutX="1.0" layoutY="4.0" prefHeight="33.0" prefWidth="64.0" textFill="WHITE">
+         <graphic>
+            <FontAwesomeIconView fill="WHITE" glyphName="ARROW_LEFT" size="1.5em" />
+         </graphic>
+         <padding>
+            <Insets bottom="5.0" top="5.0" />
+         </padding>
+      </JFXButton>
+   </children>
+</fx:root>

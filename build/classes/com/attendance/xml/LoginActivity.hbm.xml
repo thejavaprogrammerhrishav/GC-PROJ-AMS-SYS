@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+                            "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+    <class name="com.attendance.login.activity.model.LoginActivity" table="loginactivity" catalog="attendance">
+        <id name="id" column="id">
+            <generator class="identity"/>
+        </id>
+        <property name="name" column="name" not-null="true"/>
+        <property name="username" column="username" not-null="true"/>
+        <property name="userType" column="usertype" not-null="true"/>
+        <property name="status" column="status" not-null="true"/>
+        <property name="logindate" column="logindate" not-null="true"/>
+        <property name="logintime" column="logintime" not-null="true"/>
+        <property name="logouttime" column="logouttime" not-null="true"/>
+        <property name="department" column="department" not-null="true"/>
+    </class>
+
+</hibernate-mapping>
+
+

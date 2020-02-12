@@ -10,6 +10,7 @@ import com.attendance.student.model.Student;
 import com.attendance.student.service.StudentService;
 import com.attendance.util.ExceptionDialog;
 import com.attendance.util.Fxml;
+import com.attendance.util.InputValidator;
 import com.attendance.util.SwitchRoot;
 import com.attendance.util.SystemUtils;
 import com.attendance.util.ValidationUtils;
@@ -98,7 +99,6 @@ public class RegisterStudentController extends AnchorPane {
         dao.setParent(this);
         dialog = dao.getEx();
 
-        student = new Student();
         male.setOnMouseClicked(e -> {
             if (!male.isSelected()) {
                 male.setSelected(true);
@@ -127,42 +127,64 @@ public class RegisterStudentController extends AnchorPane {
 
         cancel.setOnAction(evt -> SwitchRoot.switchRoot(Start.st, parent));
         register.setOnAction(evt -> {
-            student.setName(name.getText());
-            student.setRollno(Integer.parseInt(rollno.getText()));
-            student.setYear(Integer.parseInt(year.getText()));
-            if (male.isSelected()) {
-                student.setGender("MALE");
-            } else if (female.isSelected()) {
-                student.setGender("FEMALE");
-            } else {
-                student.setGender("UNKNOWN");
-            }
-            student.setContact(contact.getText());
-            student.setAcadamicyear(acadamicyear.getSelectionModel().getSelectedItem());
-            if (honours.isSelected()) {
-                student.setCourseType("Honours");
-            } else if (pass.isSelected()) {
-                student.setCourseType("Pass");
-            } else {
-                student.setCourseType("UNKNOWN");
-            }
-            student.setId("GC" + acadamicyear.getSelectionModel().getSelectedItem().charAt(0) + "_" + year.getText() + "_" + rollno.getText() + student.getCourseType().charAt(0) + "_" + SystemUtils.getDepartmentCode());
-            student.setDepartment(department.getText());
-
-            Set<ConstraintViolation<Student>> validate = ValidationUtils.getValidator().validate(student);
-            if (validate.isEmpty()) {
-                String id = dao.saveStudent(student);
-                if (id.isEmpty()) {
-                    dialog.showError(this, "Register New Student", "Student Registration Failed");
-                } else {
-                    dialog.showSuccess(this, "Register New Student", "Student Registered Successfully");
+            try {
+                student = new Student();
+                student.setName(name.getText());
+                try {
+                    student.setRollno(Integer.parseInt(rollno.getText()));
+                } catch (Exception e) {
+                    throw new Exception("Invalid Roll Number");
                 }
-            }else {
-                validate.stream().forEach(c->{
-                    dialog.showError(this, "Register Student Details", c.getMessage());
-                });
+                try {
+                    student.setYear(Integer.parseInt(year.getText()));
+                } catch (Exception e) {
+                    throw new Exception("Invalid Admission Year");
+                }
+
+                if (InputValidator.getValue(male, female)) {
+                    if (male.isSelected()) {
+                        student.setGender("MALE");
+                    }
+                    if (female.isSelected()) {
+                        student.setGender("FEMALE");
+                    }
+                } else {
+                    throw new Exception("Please Select Gender");
+                }
+                student.setContact(contact.getText());
+                student.setAcadamicyear(InputValidator.getValue(acadamicyear));
+
+                if (InputValidator.getValue(honours, pass)) {
+                    if (honours.isSelected()) {
+                        student.setCourseType("Honours");
+                    }
+                    if (pass.isSelected()) {
+                        student.setCourseType("Pass");
+                    }
+                } else {
+                    throw new Exception("Please Select Course Type");
+                }
+                student.setId("GC" + acadamicyear.getSelectionModel().getSelectedItem().charAt(0) + "_" + year.getText() + "_" + rollno.getText() + student.getCourseType().charAt(0) + "_" + SystemUtils.getDepartmentCode());
+                student.setDepartment(department.getText());
+
+                Set<ConstraintViolation<Student>> validate = ValidationUtils.getValidator().validate(student);
+                if (validate.isEmpty()) {
+                    String id = dao.saveStudent(student);
+                    if (id.isEmpty()) {
+                        dialog.showError(this, "Register New Student", "Student Registration Failed");
+                    } else {
+                        dialog.showSuccess(this, "Register New Student", "Student Registered Successfully");
+                    }
+                } else {
+                    validate.stream().forEach(c -> {
+                        dialog.showError(this, "Register New Student", c.getMessage());
+                    });
+                }
+            } catch (Exception e) {
+                dialog.showError(this, "Register New Student ", e.getMessage());
             }
         });
+
     }
 
 }

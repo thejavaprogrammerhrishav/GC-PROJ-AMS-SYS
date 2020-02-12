@@ -47,9 +47,9 @@ public class StudentServiceImpl implements StudentService {
     public void setDao(StudentDao dao) {
         this.dao = dao;
     }
-    
+
     @Transactional
-    private boolean update(Student s,String ns){
+    private boolean update(Student s, String ns) {
         boolean u = dao.updateStudent(s);
         boolean p = dao.updateStudentId(ns, s.getId());
         return u && p;
@@ -66,7 +66,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public boolean updateStudent(Student s,String ns) {
+    public boolean updateStudent(Student s, String ns) {
         try {
             return update(s, ns);
         } catch (Exception e) {
@@ -127,7 +127,7 @@ public class StudentServiceImpl implements StudentService {
         try {
             return dao.findByGender(gender);
         } catch (Exception e) {
-             ex.showError(parent, header, ExceptionConverter.getException(e));
+            ex.showError(parent, header, ExceptionConverter.getException(e));
             return new ArrayList<>();
         }
     }
@@ -137,7 +137,7 @@ public class StudentServiceImpl implements StudentService {
         try {
             return dao.findAll();
         } catch (Exception e) {
-             ex.showError(parent, header, ExceptionConverter.getException(e));
+            ex.showError(parent, header, ExceptionConverter.getException(e));
             return new ArrayList<>();
         }
     }
@@ -148,7 +148,7 @@ public class StudentServiceImpl implements StudentService {
         try {
             return dao.findByRollNumber(rollno);
         } catch (Exception e) {
-             ex.showError(parent, header, ExceptionConverter.getException(e));
+            ex.showError(parent, header, ExceptionConverter.getException(e));
             return new ArrayList<>();
         }
     }
@@ -159,7 +159,7 @@ public class StudentServiceImpl implements StudentService {
         try {
             return dao.findByName(name);
         } catch (Exception e) {
-             ex.showError(parent, header, ExceptionConverter.getException(e));
+            ex.showError(parent, header, ExceptionConverter.getException(e));
             return new ArrayList<>();
         }
     }
@@ -170,7 +170,7 @@ public class StudentServiceImpl implements StudentService {
         try {
             return dao.findByAcadamicYearAndYear(acadamicyear, year);
         } catch (Exception e) {
-             ex.showError(parent, header, ExceptionConverter.getException(e));
+            ex.showError(parent, header, ExceptionConverter.getException(e));
             return new ArrayList<>();
         }
     }
@@ -181,63 +181,57 @@ public class StudentServiceImpl implements StudentService {
         try {
             return dao.updateStudentId(newId, oldId);
         } catch (Exception e) {
-             ex.showError(parent, header, ExceptionConverter.getException(e));
+            ex.showError(parent, header, ExceptionConverter.getException(e));
         }
         return false;
     }
 
     @Override
-    public <T> List<T> get(String query,
-             Class<T> t
-    ) {
+    public <T> List<T> get(String query, Class<T> t) {
         try {
             return dao.get(query, t);
         } catch (Exception e) {
-             ex.showError(parent, header, ExceptionConverter.getException(e));
+            ex.showError(parent, header, ExceptionConverter.getException(e));
             return new ArrayList<T>();
         }
     }
 
     @Override
-    public int countStudents(String acadamicyear, String department
-    ) {
+    public int countStudents(String acadamicyear, String department) {
         try {
             return dao.countStudents(acadamicyear, department);
         } catch (Exception e) {
-             ex.showError(parent, header, ExceptionConverter.getException(e));
+            ex.showError(parent, header, ExceptionConverter.getException(e));
         }
-        return -1;
+        return 0;
     }
 
     @Override
-    public int countStudents(String acadamicyear, int year, String department
-    ) {
+    public int countStudents(String acadamicyear, int year, String department) {
         try {
-            return dao.countStudents(acadamicyear, department);
+            return dao.countStudents(acadamicyear, "" + year, department);
         } catch (Exception e) {
-             ex.showError(parent, header, ExceptionConverter.getException(e));
+            ex.showError(parent, header, ExceptionConverter.getException(e));
         }
-        return -1;
+        return 0;
     }
 
     @Override
-    public List<Student> findByCourseType(String courseType
-    ) {
+    public List<Student> findByCourseType(String courseType) {
         try {
             return dao.findByCourseType(courseType);
         } catch (Exception e) {
-             ex.showError(parent, header, ExceptionConverter.getException(e));
+            ex.showError(parent, header, ExceptionConverter.getException(e));
             return new ArrayList<>();
         }
     }
 
     @Override
-    public List<Student> findByDepartment(String department
-    ) {
+    public List<Student> findByDepartment(String department) {
         try {
             return dao.findByDepartment(department);
         } catch (Exception e) {
-             ex.showError(parent, header, ExceptionConverter.getException(e));
+            ex.showError(parent, header, ExceptionConverter.getException(e));
             return new ArrayList<>();
         }
     }
@@ -247,7 +241,7 @@ public class StudentServiceImpl implements StudentService {
         try {
             return dao.findAllYears();
         } catch (Exception e) {
-             ex.showError(parent, header, ExceptionConverter.getException(e));
+            ex.showError(parent, header, ExceptionConverter.getException(e));
             return new ArrayList<>();
         }
     }

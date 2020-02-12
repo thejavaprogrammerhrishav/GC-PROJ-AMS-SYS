@@ -38,9 +38,12 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Scene;
+import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
@@ -106,7 +109,7 @@ public class PrincipalDashboardController extends AnchorPane {
 
     @FXML
     private JFXButton hodaccounts;
-    
+
     @FXML
     private JFXButton verifyprincipal;
 
@@ -133,7 +136,7 @@ public class PrincipalDashboardController extends AnchorPane {
 
     private Task<Integer> task;
     private Thread thread;
-    
+
     private Thread blinker;
 
     private StudentService dao;
@@ -163,7 +166,6 @@ public class PrincipalDashboardController extends AnchorPane {
         dao.setParent(this);
         login.setParent(this);
         act.setParent(this);
-        
 
         department.getItems().setAll(Arrays.asList(SystemUtils.getDepartments()));
         blinker = new Thread(this::blink);
@@ -178,10 +180,10 @@ public class PrincipalDashboardController extends AnchorPane {
         buttonActions();
         profilepic.setImage(new Image(new ByteArrayInputStream(principal.getImage())));
         initLoginActivity(null);
-        
+
         taskInit();
         thread.start();
-        
+
     }
 
     private void taskInit() {
@@ -215,7 +217,7 @@ public class PrincipalDashboardController extends AnchorPane {
         principalaccounts.setOnAction(e -> pane.getChildren().setAll(RootFactory.getPrincipalDashboardPrincipalAccountNodeRoot()));
         hodaccounts.setOnAction(e -> pane.getChildren().setAll(RootFactory.getPrincipalDashboardHODAccountNodeRoot()));
         settings.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getPrincipalSettingsRoot(Start.st.getScene().getRoot())));
-        verifyprincipal.setOnAction(e->SwitchRoot.switchRoot(Start.st, RootFactory.getPendingRequestRoot(this.getScene().getRoot(), "N/A",true)));
+        verifyprincipal.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getPendingRequestRoot(this.getScene().getRoot(), "N/A", true)));
         open.setOnAction(this::routine);
     }
 
@@ -276,14 +278,29 @@ public class PrincipalDashboardController extends AnchorPane {
 
     private void checkQuestions() {
         if (!SystemUtils.getCurrentUser().hasSecurityQuestion()) {
+            security.setStyle("");
             security.setVisible(true);
             security.setOnAction(this::updateSecurity);
+            security.setContentDisplay(ContentDisplay.LEFT);
             blinker.start();
+        } else {
+            if(blinker.isAlive()){
+                blinker.stop();
+            }
+            security.setVisible(true);
+            security.setText("Security Answers");
+            security.setStyle("-fx-text-fill: black;");
+            security.setOnAction(this::updateSecurity);
+            security.setContentDisplay(ContentDisplay.TEXT_ONLY);
         }
     }
 
     private void updateSecurity(ActionEvent evt) {
-        SwitchRoot.switchRoot(Start.st, RootFactory.getSecurityQuestionRoot(RootFactory.getPrincipalDashboardRoot(), "New"));
+        Stage st = StageUtil.newStage().fullScreen(true).fullScreenExitHint("").fullScreenExitKeyCombination(KeyCombination.NO_MATCH)
+                .initStyle(StageStyle.UNDECORATED).initModality(Modality.WINDOW_MODAL).initOwner(Start.st).centerOnScreen().build();
+        st.setScene(new Scene(RootFactory.getSecurityQuestionRoot(RootFactory.getPrincipalDashboardRoot(), "New")));
+        st.showAndWait();
+        checkQuestions();
     }
 
     private void blink() {
@@ -291,13 +308,12 @@ public class PrincipalDashboardController extends AnchorPane {
         String c2 = "-fx-background-color: white";
         boolean b = true;
         while (true) {
-            if(b) {
-                b=false;
-                Platform.runLater(()->security.setStyle(c1));
-            }
-            else {
-                b=true;
-                Platform.runLater(()->security.setStyle(c2));
+            if (b) {
+                b = false;
+                Platform.runLater(() -> security.setStyle(c1));
+            } else {
+                b = true;
+                Platform.runLater(() -> security.setStyle(c2));
             }
             try {
                 Thread.sleep(500);

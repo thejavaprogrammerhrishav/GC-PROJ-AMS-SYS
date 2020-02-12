@@ -5,18 +5,17 @@
  */
 package com.attendance.dashboard;
 
-import com.attendance.login.activity.dao.Activity;
 import com.attendance.login.activity.model.LoginActivity;
 import com.attendance.login.activity.service.LoginActivityService;
 import com.attendance.login.user.model.User;
 import com.attendance.main.Start;
 import com.attendance.personal.model.PersonalDetails;
-import com.attendance.student.dao.StudentDao;
 import com.attendance.student.service.StudentService;
 import com.attendance.util.DateTimerThread;
 import com.attendance.util.ExceptionDialog;
 import com.attendance.util.Fxml;
 import com.attendance.util.RootFactory;
+import com.attendance.util.StageUtil;
 import com.attendance.util.SwitchRoot;
 import com.attendance.util.SystemUtils;
 import com.jfoenix.controls.JFXButton;
@@ -33,11 +32,17 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  *
@@ -163,6 +168,7 @@ public class FacultyDashboardController extends AnchorPane {
         dao.setParent(this);
         act.setParent(this);
         details = user.getDetails();
+        
         profilepic.setImage(new Image(new ByteArrayInputStream(user.getImage())));
 
         security.setVisible(false);
@@ -229,20 +235,34 @@ public class FacultyDashboardController extends AnchorPane {
 
     private void checkQuestions() {
         if (!SystemUtils.getCurrentUser().hasSecurityQuestion()) {
+            security.setStyle("");
             security.setVisible(true);
             security.setOnAction(this::updateSecurity);
+            security.setContentDisplay(ContentDisplay.LEFT);
             blinker.start();
-
+        }else{
+            if(blinker.isAlive()){
+                blinker.stop();
+            }
+            security.setVisible(true);
+            security.setText("Security Answers");
+            security.setStyle("-fx-text-fill: black;");
+            security.setOnAction(this::updateSecurity);
+            security.setContentDisplay(ContentDisplay.TEXT_ONLY);
         }
     }
 
     private void updateSecurity(ActionEvent evt) {
-        SwitchRoot.switchRoot(Start.st, RootFactory.getSecurityQuestionRoot(RootFactory.getFacultyDashboardRoot(), "New"));
+         Stage st = StageUtil.newStage().fullScreen(true).fullScreenExitHint("").fullScreenExitKeyCombination(KeyCombination.NO_MATCH)
+                .initStyle(StageStyle.UNDECORATED).initModality(Modality.WINDOW_MODAL).initOwner(Start.st).centerOnScreen().build();
+      st.setScene(new Scene(RootFactory.getSecurityQuestionRoot(RootFactory.getFacultyDashboardRoot(), "New")));
+      st.showAndWait();
+      checkQuestions();
     }
-
+    
     private void blink() {
-        String c1 = "-fx-background-color: red";
-        String c2 = "-fx-background-color: white";
+        String c1 = "-fx-background-color: red;-fx-text-fill: #fff;";
+        String c2 = "-fx-background-color: white;-fx-text-fill: #fff;";
         boolean b = true;
         while (true) {
             if (b) {

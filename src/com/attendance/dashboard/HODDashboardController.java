@@ -16,6 +16,7 @@ import com.attendance.student.service.StudentService;
 import com.attendance.util.ExceptionDialog;
 import com.attendance.util.Fxml;
 import com.attendance.util.RootFactory;
+import com.attendance.util.StageUtil;
 import com.attendance.util.SwitchRoot;
 import com.attendance.util.SystemUtils;
 import com.jfoenix.controls.JFXButton;
@@ -32,11 +33,17 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import org.apache.poi.hslf.record.ExAviMovie;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
@@ -158,7 +165,7 @@ public class HODDashboardController extends AnchorPane {
         dao = (StudentService) Start.app.getBean("studentservice");
         dao.setParent(this);
         act.setParent(this);
-        
+
         department.setText("Department :- " + SystemUtils.getDepartment());
         blinker = new Thread(this::blink);
 
@@ -169,6 +176,7 @@ public class HODDashboardController extends AnchorPane {
         initLoginActivity(null);
         countStudents(null);
         checkQuestions();
+
         profilepic.setImage(new Image(new ByteArrayInputStream(user.getImage())));
         List<String> years = dao.findAllYear();
         Collections.sort(years);
@@ -192,7 +200,7 @@ public class HODDashboardController extends AnchorPane {
         attendancereport.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getAttendanceReportRoot(Start.st.getScene().getRoot())));
         uploadmarks.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getUploadMarksRoot(Start.st.getScene().getRoot())));
         unittestreport.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getUnitTestReportRoot(Start.st.getScene().getRoot())));
-        verifyfaculty.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getPendingRequestRoot(Start.st.getScene().getRoot(), SystemUtils.getDepartment(),false)));
+        verifyfaculty.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getPendingRequestRoot(Start.st.getScene().getRoot(), SystemUtils.getDepartment(), false)));
         notes.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getNotesDashboardRoot(Start.st.getScene().getRoot(), details.getName())));
         routine.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getRoutineDashboardRoot(Start.st.getScene().getRoot())));
         paper.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getPaperRoot(Start.st.getScene().getRoot())));
@@ -227,15 +235,29 @@ public class HODDashboardController extends AnchorPane {
 
     private void checkQuestions() {
         if (!SystemUtils.getCurrentUser().hasSecurityQuestion()) {
+            security.setStyle("");
             security.setVisible(true);
             security.setOnAction(this::updateSecurity);
+            security.setContentDisplay(ContentDisplay.LEFT);
             blinker.start();
-
+        } else {
+            if(blinker.isAlive()){
+                blinker.stop();
+            }
+            security.setVisible(true);
+            security.setText("Security Answers");
+            security.setStyle("-fx-text-fill: black;");
+            security.setOnAction(this::updateSecurity);
+            security.setContentDisplay(ContentDisplay.TEXT_ONLY);
         }
     }
 
     private void updateSecurity(ActionEvent evt) {
-        SwitchRoot.switchRoot(Start.st, RootFactory.getSecurityQuestionRoot(RootFactory.getHODDashboardRoot(), "New"));
+         Stage st = StageUtil.newStage().fullScreen(true).fullScreenExitHint("").fullScreenExitKeyCombination(KeyCombination.NO_MATCH)
+                .initStyle(StageStyle.UNDECORATED).initModality(Modality.WINDOW_MODAL).initOwner(Start.st).centerOnScreen().build();
+      st.setScene(new Scene(RootFactory.getSecurityQuestionRoot(RootFactory.getHODDashboardRoot(), "New")));
+      st.showAndWait();
+      checkQuestions();
     }
 
     private void blink() {

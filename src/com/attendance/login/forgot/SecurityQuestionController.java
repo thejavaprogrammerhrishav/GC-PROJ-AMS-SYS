@@ -14,10 +14,12 @@ import com.attendance.util.Fxml;
 import com.attendance.util.RootFactory;
 import com.attendance.util.SwitchRoot;
 import com.attendance.util.SystemUtils;
+import com.attendance.util.ValidationUtils;
 import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
@@ -29,14 +31,14 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javax.validation.ConstraintViolation;
 
 /**
  *
  * @author Programmer Hrishav
  */
 public class SecurityQuestionController extends AnchorPane {
-    
-    
+
     @FXML
     private Pane pane;
 
@@ -76,7 +78,7 @@ public class SecurityQuestionController extends AnchorPane {
     private FXMLLoader fxml;
     private Parent parent;
     private String mode;
-    
+
     private LoginService dao;
     private ExceptionDialog dialog;
 
@@ -95,11 +97,11 @@ public class SecurityQuestionController extends AnchorPane {
 
     @FXML
     private void initialize() {
-        dao=(LoginService) Start.app.getBean("loginservice");
+        dao = (LoginService) Start.app.getBean("loginservice");
         dao.setParent(this);
         dialog = dao.getEx();
-        
-        close.setOnAction(e -> SwitchRoot.switchRoot(Start.st, parent));
+
+        close.setOnAction(e -> this.getScene().getWindow().hide());
         admin.setText(SystemUtils.getCurrentUser().getType());
         department.setText(SystemUtils.getDepartment());
         question1.getItems().setAll(getQuestions1());
@@ -120,6 +122,11 @@ public class SecurityQuestionController extends AnchorPane {
             proceed.setOnAction(this::proceed);
         }
         if (mode.equals("New")) {
+            if (SystemUtils.getCurrentUser().hasSecurityQuestion()) {
+                question1.getSelectionModel().select(SystemUtils.getCurrentUser().getSecurityquestion().getQuestion1());
+                question2.getSelectionModel().select(SystemUtils.getCurrentUser().getSecurityquestion().getQuestion2());
+                question3.getSelectionModel().select(SystemUtils.getCurrentUser().getSecurityquestion().getQuestion3());
+            }
             proceed.setVisible(false);
             updateanswer.setVisible(true);
             updateanswer.setOnAction(this::update);
@@ -198,34 +205,33 @@ public class SecurityQuestionController extends AnchorPane {
     private void proceed(ActionEvent evt) {
         if (answer1.getText().equals(SystemUtils.getCurrentUser().getSecurityquestion().getAnswer1())
                 && answer2.getText().equals(SystemUtils.getCurrentUser().getSecurityquestion().getAnswer2())
-                        && answer3.getText().equals(SystemUtils.getCurrentUser().getSecurityquestion().getAnswer3()))  {
+                && answer3.getText().equals(SystemUtils.getCurrentUser().getSecurityquestion().getAnswer3())) {
             SwitchRoot.switchRoot(Start.st, RootFactory.getRestPassword3Root(Start.st.getScene().getRoot()));
             pane.setVisible(false);
-        }
-        else{
+        } else {
             pane.setVisible(true);
         }
     }
-    
-    private void update(ActionEvent event){
-        SecurityQuestion question=SystemUtils.getCurrentUser().getSecurityquestion();
+
+    private void update(ActionEvent event) {
+        SecurityQuestion question = SystemUtils.getCurrentUser().getSecurityquestion();
         question.setQuestion1(question1.getSelectionModel().getSelectedItem());
         question.setAnswer1(answer1.getText());
-        
+
         question.setQuestion2(question2.getSelectionModel().getSelectedItem());
         question.setAnswer2(answer2.getText());
-        
+
         question.setQuestion3(question3.getSelectionModel().getSelectedItem());
         question.setAnswer3(answer3.getText());
-        
-        SystemUtils.getCurrentUser().setSecurityquestion(question);
-        
-        boolean b = dao.updateUser(SystemUtils.getCurrentUser());
-        if(b) {
-        SwitchRoot.switchRoot(Start.st, parent);
-        }
-        else{
-            dialog.showError(this, "Security Questions", "Security Question Updation Failed");
+
+
+        Set<ConstraintViolation<SecurityQuestion>> validate = ValidationUtils.getValidator().validate(question);
+        if (validate.isEmpty()) {
+            dao.updateUser(SystemUtils.getCurrentUser());
+            SystemUtils.getCurrentUser().setSecurityquestion(question);
+            this.getScene().getWindow().hide();
+        } else {
+            validate.stream().forEach(c -> dialog.showError(this, "Security Questions", c.getMessage()));
         }
     }
 }

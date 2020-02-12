@@ -1,0 +1,22 @@
+@import "table.css";
+
+.table-view {
+    table_background_color: navy;
+    table_view_border_color: derive(navy,90%);
+
+    text_color: #fff;
+    hover_text_color: #fff;
+    selected_text_color: #fff;
+    selected_unfocused_text_color: #fff;
+
+    sort_arrow_color: #444;
+    show_hide_image_color: sort_arrow_color;
+	
+	cell_hover_color: blue;
+    cell_pressed_color: navy;
+
+    cell_selected_unfocused_color: cell_hover_color;
+    cell_selected_color:green;
+    cell_selected_hover_color: green;
+    cell_selected_pressed_color: green;
+}

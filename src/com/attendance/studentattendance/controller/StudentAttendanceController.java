@@ -6,13 +6,10 @@
 package com.attendance.studentattendance.controller;
 
 import com.attendance.main.Start;
-import com.attendance.papers.dao.PapersDao;
 import com.attendance.papers.model.Paper;
 import com.attendance.papers.service.PapersService;
-import com.attendance.student.dao.StudentDao;
 import com.attendance.student.model.Student;
 import com.attendance.student.service.StudentService;
-import com.attendance.studentattendance.dao.ClassDetailsDao;
 import com.attendance.studentattendance.model.Attendance;
 import com.attendance.studentattendance.model.ClassDetails;
 import com.attendance.studentattendance.model.DailyStats;
@@ -20,6 +17,7 @@ import com.attendance.studentattendance.service.AttendanceService;
 import com.attendance.util.DateTimerThread;
 import com.attendance.util.ExceptionDialog;
 import com.attendance.util.Fxml;
+import com.attendance.util.InputValidator;
 import com.attendance.util.SwitchRoot;
 import com.attendance.util.SystemUtils;
 import com.attendance.util.ValidationUtils;
@@ -45,6 +43,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import javax.validation.ConstraintViolation;
 import org.joda.time.DateTime;
@@ -123,7 +122,7 @@ public class StudentAttendanceController extends BorderPane {
     private JFXComboBox<String> semester;
 
     @FXML
-    private VBox vb;
+    private FlowPane vb;
 
     private FXMLLoader loader;
     private final Parent parentScene;
@@ -207,13 +206,16 @@ public class StudentAttendanceController extends BorderPane {
     }
 
     private void updateAttendance(ActionEvent evt) {
-        if (time.getEditor().getText().isEmpty()) {
-            dialog.showError(this, "Attendance Load Students", "Please Select Class Time");
-        } else if (subjectTaught.getText().isEmpty()) {
-            dialog.showError(this, "Attendance Load Students", "Please Enter Subject Taught In The Class");
-        } else if (papers.getSelectionModel().getSelectedItem().isEmpty()) {
-            dialog.showError(this, "Attendance Load Students", "Please Select Paper");
-        } else {
+        try {
+            if (time.getEditor().getText().isEmpty()) {
+                throw new Exception("Please Select Class Time");
+            }
+            if (subjectTaught.getText().isEmpty()) {
+                throw new Exception("Please Enter Subject Taught In The Class");
+            }
+            if (papers.getSelectionModel().getSelectedItem().isEmpty()) {
+                throw new Exception("Please Select Paper");
+            }
             String t = time.getEditor().getText();
             if (t.contains("AM")) {
                 t = t.replace(" AM", "");
@@ -226,12 +228,12 @@ public class StudentAttendanceController extends BorderPane {
             classDetails.setClassId(classId);
             classDetails.setDate(date.getText());
             classDetails.setFacultyName(faculty);
-            classDetails.setSemester(semester.getSelectionModel().getSelectedItem());
+            classDetails.setSemester(InputValidator.getValue(semester));
             classDetails.setAcadamicyear(acadamicyear);
             classDetails.setSubjectTaught(subjectTaught.getText());
             classDetails.setTime(time.getEditor().getText());
             classDetails.setYear(yyear);
-            classDetails.setPaper(papers.getSelectionModel().getSelectedItem());
+            classDetails.setPaper(InputValidator.getValue(papers));
             classDetails.setDepartment(SystemUtils.getDepartment());
             classDetails.setCoursetype(ccoursetype);
 
@@ -258,19 +260,21 @@ public class StudentAttendanceController extends BorderPane {
                 if (validate1.isEmpty()) {
                     String cid = classdao.saveAttendance(classDetails);
                     if (cid == null || cid.isEmpty()) {
-                        dialog.showSuccess(this, "Attendance Load Students", "Class Details Not Saved");
-                        updateAttendance.setDisable(true);
+                        dialog.showError(this, "Attendance Load Students", "Class Details Not Saved");
+
                     } else {
-                        dialog.showError(this, "Attendance Load Students", "Class Details Saved Successfully\nDaily Stats Saved Successfully\nDaily Attendance Saved Successfully");
+                        dialog.showSuccess(this, "Attendance Load Students", "Class Details Saved Successfully\nDaily Stats Saved Successfully\nDaily Attendance Saved Successfully");
                         thread.stop();
+                        updateAttendance.setDisable(true);
                     }
-                }else{
-                  validate1.stream().forEach(c-> dialog.showError(this, "Update Student Attendance", c.getMessage()));
+                } else {
+                    validate1.stream().forEach(c -> dialog.showError(this, "Update Student Attendance", c.getMessage()));
                 }
+            } else {
+                validate.stream().forEach(c -> dialog.showError(this, "Update Student Attendance", c.getMessage()));
             }
-            else{
-                validate.stream().forEach(c-> dialog.showError(this, "Update Student Attendance", c.getMessage()));
-            }
+        } catch (Exception e) {
+            dialog.showError(this, "Update Student Attendance", e.getMessage());
         }
     }
 
@@ -346,7 +350,7 @@ public class StudentAttendanceController extends BorderPane {
         refresh.setDisable(true);
     }
 
-    private void sortStudentList(VBox vb) {
+    private void sortStudentList(FlowPane vb) {
         List<StudentAttendanceNodeController> sorted = vb.getChildren().stream().map(n -> (StudentAttendanceNodeController) n)
                 .sorted((i1, i2) -> i1.getRollNo().compareTo(i2.getRollNo()))
                 .collect(Collectors.toList());

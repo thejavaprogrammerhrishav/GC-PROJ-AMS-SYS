@@ -100,13 +100,17 @@ public class UploadUnitTestMarksController extends AnchorPane {
 
     @FXML
     private void initialize() {
-        dao = (MarksService) Start.app.getBean("marksservice");
+        dao = (MarksService) Start.app.getBean("unittestservice");
         sdao = (StudentService) Start.app.getBean("studentservice");
+        
+        dao.setParent(this);
+        dialog=dao.getEx();
+        
         ut.getItems().setAll("Unit Test 1", "Unit Test 2");
         acayear.getItems().setAll("1st","2nd","3rd");
         coursetype.getItems().setAll("Honours","Pass");
 
-        List<String> years = sdao.get("select distinct (year) from student",String.class);
+        List<String> years = sdao.findAllYear();
         year.getItems().setAll(years);
         
         load.setOnAction(this::loadStudents);
@@ -145,7 +149,7 @@ public class UploadUnitTestMarksController extends AnchorPane {
 
             }
         } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
-            dialog.showError(this,"Unit Test ------> Load Student", "Please fill the empty loading fields");
+            dialog.showError(this,"Unit Test Load Student", "Please fill the empty loading fields");
         }
     }
 
@@ -166,6 +170,7 @@ public class UploadUnitTestMarksController extends AnchorPane {
     }
 
     private void save(ActionEvent evt) {
+        try{
         List<UnitTestNode> list = studentlist.getChildren().stream().map(n -> (UnitTestNode) n).collect(Collectors.toList());
         List<UnitTest> collect = list.stream().map(it -> {
             UnitTest test = new UnitTest();
@@ -182,14 +187,26 @@ public class UploadUnitTestMarksController extends AnchorPane {
             test.setDepartment(it.getStudent().getDepartment());
             return test;
         }).collect(Collectors.toList());
-        boolean s = dao.saveAllMarks(collect);
+        boolean s = validate(collect);
         String t = "Marks Uploaded Successfully\nUnit Test:  " + ut.getSelectionModel().getSelectedItem() + "\nSemester:   " + sem.getSelectionModel().getSelectedItem();
         if(s){
                 dialog.showSuccess(this, "Upload Unit Test Marks", t);
         }else{
                 dialog.showError(this, "Upload Unit Test Marks", "Marks Upload Failed");
         }
-
+        }catch(Exception e){
+            dialog.showError(this, "Upload Unit Test Marks", e.getMessage());
+        }
+    }
+    
+    private boolean validate(List<UnitTest> list) throws Exception{
+        for(UnitTest unit:list){
+            boolean exp1=unit.getMarksObtained()<=unit.getTotalMarks() && unit.getPassingMarks()>0 && unit.getPassingMarks()<=unit.getTotalMarks();
+            if(!exp1){
+                throw new Exception("Marks Mismatch Of Student\nRonn No: "+unit.getRollno());
+            }
+        }
+        return dao.saveAllMarks(list);
     }
 
 }

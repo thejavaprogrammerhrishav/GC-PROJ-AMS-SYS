@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.util.Date;
 import javafx.application.Application;
+import javafx.scene.input.KeyCombination;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -48,7 +49,7 @@ public class Start extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        st = StageUtil.initStage(primaryStage).fullScreen(false).fullScreenExitHint("").fullScreenExitKeyCombination(null)
+        st = StageUtil.initStage(primaryStage).fullScreen(true).fullScreenExitHint("").fullScreenExitKeyCombination(KeyCombination.NO_MATCH)
                 .initStyle(StageStyle.UNDECORATED).centerOnScreen().build();
         //SwitchRoot.switchRoot(st, RootFactory.getSplashRoot());
         SwitchRoot.switchRoot(st, RootFactory.getUserType1Root());

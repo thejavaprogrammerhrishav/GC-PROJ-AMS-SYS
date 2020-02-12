@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="com.attendance.student.model.Student" table="student" catalog="attendance">
+    <id column="id" name="id"/>
+    <property column="rollno" name="rollno" not-null="true"/>
+    <property column="name" name="name" not-null="true"/>
+    <property column="year" name="year" not-null="true"/>
+    <property column="contact" name="contact" not-null="true"/>
+    <property column="acadamicyear" name="acadamicyear" not-null="true"/>
+    <property column="gender" name="gender" not-null="true"/>
+    <property column="coursetype" name="courseType" not-null="true"/>
+    <property column="department" name="department" not-null="true"/>
+  </class>
+</hibernate-mapping>

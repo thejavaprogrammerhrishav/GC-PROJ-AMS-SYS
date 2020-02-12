@@ -1,0 +1,18 @@
+
+.scroll-bar {
+    thumb: 8px; 
+	
+    thumb_color: blue;
+    thumb_hover_color: derive(blue,60%);
+    thumb_pressed_color: derive(blue,80%);
+
+    track_color: #fff;
+
+    inc_dec_button_color: #fff;
+    inc_dec_button_hover_color: thumb_hover_color;
+    inc_dec_button_pressed_color: thumb_pressed_color;
+
+    arrow_color: #eee;
+    arrow_pressed_color: white;
+    scroll_pane_background_color: #fff;
+}

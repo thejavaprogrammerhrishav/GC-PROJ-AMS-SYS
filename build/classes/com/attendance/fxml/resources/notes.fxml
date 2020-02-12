@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: #f0f0f0;" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane prefHeight="73.0" prefWidth="1366.0" style="-fx-background-color: #2d2d2d;">
+         <children>
+            <ImageView fitHeight="49.0" fitWidth="54.0" layoutX="62.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../resources/LogoMakr_1wJdNX.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="130.0" layoutY="16.0" text="Attendance Management System" textFill="WHITE">
+               <font>
+                  <Font name="Tw Cen MT" size="36.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="close" contentDisplay="GRAPHIC_ONLY" layoutX="1317.0" layoutY="23.0" ripplerFill="BLACK" styleClass="close" textFill="WHITE">
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="CLOSE" size="1.5em" />
+               </graphic>
+            </JFXButton>
+         </children>
+      </Pane>
+      <Pane layoutX="23.0" layoutY="95.0" prefHeight="214.0" prefWidth="858.0" style="-fx-background-color: linear-gradient(to right,#8A2387,#E94057,#F27121);">
+         <children>
+            <Label layoutX="37.0" layoutY="26.0" prefHeight="28.0" prefWidth="163.0" text="Search Here" textFill="WHITE">
+               <font>
+                  <Font name="Tw Cen MT Bold" size="25.0" />
+               </font>
+            </Label>
+            <JFXCheckBox fx:id="searchbyname" layoutX="37.0" layoutY="77.0" text="Search By Name" textFill="WHITE" unCheckedColor="WHITE">
+               <font>
+                  <Font name="Tw Cen MT" size="16.0" />
+               </font>
+            </JFXCheckBox>
+            <JFXComboBox fx:id="selectuploader" focusColor="WHITE" layoutX="37.0" layoutY="105.0" prefHeight="25.0" prefWidth="291.0" promptText="Select Uploader's Name" style="-fx-prompt-text-fill: white; -fx-font-family: 'Tw Cen MT',arial; -fx-font-size: 16;" unFocusColor="WHITE" />
+            <JFXCheckBox fx:id="searchbydate" layoutX="409.0" layoutY="77.0" text="Search By Date" textFill="WHITE" unCheckedColor="WHITE">
+               <font>
+                  <Font name="Tw Cen MT" size="16.0" />
+               </font>
+            </JFXCheckBox>
+            <JFXDatePicker fx:id="enterdate" layoutX="409.0" layoutY="108.0" prefHeight="25.0" prefWidth="181.0" promptText="Enter Date" styleClass="time" />
+            <JFXButton fx:id="search" layoutX="635.0" layoutY="104.0" prefHeight="33.0" prefWidth="181.0" style="-fx-background-color: white; -fx-background-radius: 20;" text="Search">
+               <font>
+                  <Font name="Tw Cen MT" size="18.0" />
+               </font>
+            </JFXButton>
+            <Label layoutX="37.0" layoutY="163.0" prefHeight="28.0" prefWidth="94.0" text="Sort By Date" textFill="WHITE">
+               <font>
+                  <Font name="Tw Cen MT" size="16.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="ascending" contentDisplay="GRAPHIC_ONLY" layoutX="146.0" layoutY="162.0" prefHeight="33.0" prefWidth="54.0" style="-fx-background-color: white; -fx-background-radius: 20;" text="Ascending">
+               <font>
+                  <Font name="Tw Cen MT" size="16.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView glyphName="ARROW_UP" size="1.6em" />
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="descending" contentDisplay="GRAPHIC_ONLY" layoutX="212.0" layoutY="162.0" prefHeight="33.0" prefWidth="54.0" style="-fx-background-color: white; -fx-background-radius: 20;" text="Descending">
+               <font>
+                  <Font name="Tw Cen MT" size="16.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView glyphName="ARROW_DOWN" size="1.6em" />
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="refresh" contentDisplay="GRAPHIC_ONLY" layoutX="301.0" layoutY="162.0" prefHeight="33.0" prefWidth="54.0" style="-fx-background-color: white; -fx-background-radius: 20;" text="Ascending">
+               <font>
+                  <Font name="Tw Cen MT" size="16.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView glyphName="REFRESH" size="1.6em" />
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="searchbyfile" contentDisplay="GRAPHIC_ONLY" layoutX="514.0" layoutY="162.0" prefHeight="33.0" prefWidth="54.0" style="-fx-background-color: white; -fx-background-radius: 20;" text="Ascending">
+               <font>
+                  <Font name="Tw Cen MT" size="16.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView glyphName="FILE" size="1.6em" />
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="selectall" contentDisplay="GRAPHIC_ONLY" layoutX="635.0" layoutY="162.0" prefHeight="33.0" prefWidth="54.0" style="-fx-background-color: white; -fx-background-radius: 20;" text="Ascending">
+               <font>
+                  <Font name="Tw Cen MT" size="16.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView glyphName="CHECK_SQUARE_ALT" size="1.6em" />
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="searchbyfilename" contentDisplay="GRAPHIC_ONLY" layoutX="764.0" layoutY="162.0" prefHeight="33.0" prefWidth="54.0" style="-fx-background-color: white; -fx-background-radius: 20;" text="Ascending">
+               <font>
+                  <Font name="Tw Cen MT" size="16.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView glyphName="SEARCH" size="1.6em" />
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="searchbyimage" contentDisplay="GRAPHIC_ONLY" layoutX="442.0" layoutY="162.0" prefHeight="33.0" prefWidth="54.0" style="-fx-background-color: white; -fx-background-radius: 20;" text="Ascending">
+               <font>
+                  <Font name="Tw Cen MT" size="16.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView glyphName="IMAGE" size="1.6em" />
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="uncheck" contentDisplay="GRAPHIC_ONLY" layoutX="699.0" layoutY="162.0" prefHeight="33.0" prefWidth="54.0" style="-fx-background-color: white; -fx-background-radius: 20;" text="Ascending">
+               <font>
+                  <Font name="Tw Cen MT" size="16.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView glyphName="SQUARE_ALT" size="1.6em" />
+               </graphic>
+            </JFXButton>
+         </children>
+      </Pane>
+      <Pane layoutX="23.0" layoutY="649.0" prefHeight="110.0" prefWidth="858.0" style="-fx-background-color: linear-gradient(to right,#8A2387,#E94057,#F27121);">
+         <children>
+            <Label layoutX="25.0" layoutY="14.0" prefHeight="28.0" prefWidth="291.0" text="Download Notes/Materials" textFill="WHITE">
+               <font>
+                  <Font name="Tw Cen MT Bold" size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="downloadpath" editable="false" layoutX="23.0" layoutY="52.0" prefHeight="25.0" prefWidth="506.0" promptText="Enter Download Path..." style="-fx-background-radius: 12;">
+               <font>
+                  <Font name="Tw Cen MT" size="16.0" />
+               </font>
+               <padding>
+                  <Insets bottom="9.0" left="15.0" top="9.0" />
+               </padding>
+            </TextField>
+            <JFXButton fx:id="dbrowse" layoutX="543.0" layoutY="55.0" prefHeight="30.0" prefWidth="118.0" style="-fx-background-color: white; -fx-background-radius: 20;" text="Browse">
+               <font>
+                  <Font name="Tw Cen MT" size="16.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="download" layoutX="679.0" layoutY="55.0" prefHeight="30.0" prefWidth="157.0" style="-fx-background-color: white; -fx-background-radius: 20;" text="Download">
+               <font>
+                  <Font name="Tw Cen MT" size="16.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </Pane>
+      <Pane layoutX="907.0" layoutY="95.0" prefHeight="390.0" prefWidth="407.0" style="-fx-background-color: white;">
+         <children>
+            <Label layoutX="31.0" layoutY="75.0" prefHeight="18.0" prefWidth="101.0" text="Faculty Name :-">
+               <font>
+                  <Font name="Tw Cen MT" size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="31.0" layoutY="107.0" prefHeight="18.0" prefWidth="94.0" text="Department :-">
+               <font>
+                  <Font name="Tw Cen MT" size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="31.0" layoutY="141.0" prefHeight="18.0" prefWidth="54.0" text="Date :-">
+               <font>
+                  <Font name="Tw Cen MT" size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="date" layoutX="98.0" layoutY="141.0" prefHeight="18.0" prefWidth="291.0">
+               <font>
+                  <Font name="Tw Cen MT" size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="department" layoutX="132.0" layoutY="107.0" prefHeight="18.0" prefWidth="266.0">
+               <font>
+                  <Font name="Tw Cen MT" size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="facultyname" layoutX="144.0" layoutY="75.0" prefHeight="18.0" prefWidth="252.0">
+               <font>
+                  <Font name="Tw Cen MT" size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="102.0" layoutY="22.0" prefHeight="33.0" prefWidth="203.0" text="Notes/Materials">
+               <font>
+                  <Font name="Tw Cen MT Bold" size="30.0" />
+               </font>
+            </Label>
+            <Pane layoutX="31.0" layoutY="219.0" prefHeight="134.0" prefWidth="157.0" style="-fx-background-color: #fafafa;">
+               <children>
+                  <Label alignment="CENTER" layoutY="102.0" prefHeight="18.0" prefWidth="157.0" text="Total Documents">
+                     <font>
+                        <Font name="Tw Cen MT" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="totaldocument" alignment="CENTER" layoutY="6.0" prefHeight="89.0" prefWidth="157.0" text="3692">
+                     <font>
+                        <Font name="Tw Cen MT" size="36.0" />
+                     </font>
+                  </Label>
+               </children>
+               <effect>
+                  <DropShadow color="#b9b9b9" spread="0.2" />
+               </effect>
+            </Pane>
+            <Pane layoutX="218.0" layoutY="219.0" prefHeight="134.0" prefWidth="157.0" style="-fx-background-color: #fafafa;">
+               <children>
+                  <Label alignment="CENTER" layoutY="102.0" prefHeight="18.0" prefWidth="157.0" text="Total Images">
+                     <font>
+                        <Font name="Tw Cen MT" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="totalimages" alignment="CENTER" layoutY="6.0" prefHeight="89.0" prefWidth="157.0" text="3692">
+                     <font>
+                        <Font name="Tw Cen MT" size="36.0" />
+                     </font>
+                  </Label>
+               </children>
+               <effect>
+                  <DropShadow color="#b9b9b9" spread="0.2" />
+               </effect>
+            </Pane>
+         </children>
+      </Pane>
+      <Pane layoutX="907.0" layoutY="499.0" prefHeight="156.0" prefWidth="407.0" style="-fx-background-color: linear-gradient(to right,#8A2387,#E94057,#F27121);">
+         <children>
+            <Label alignment="CENTER" layoutX="59.0" layoutY="12.0" prefHeight="28.0" prefWidth="291.0" text="Upload Notes/Materials" textFill="WHITE">
+               <font>
+                  <Font name="Tw Cen MT Bold" size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="uploadpath" editable="false" layoutX="21.0" layoutY="51.0" prefHeight="30.0" prefWidth="368.0" promptText="Enter File Path..." style="-fx-background-radius: 12;">
+               <font>
+                  <Font name="Tw Cen MT" size="16.0" />
+               </font>
+               <padding>
+                  <Insets bottom="9.0" left="15.0" top="9.0" />
+               </padding>
+            </TextField>
+            <JFXButton fx:id="ubrowse" layoutX="21.0" layoutY="108.0" prefHeight="25.0" prefWidth="111.0" style="-fx-background-color: white; -fx-background-radius: 20;" text="Browse">
+               <font>
+                  <Font name="Tw Cen MT" size="16.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="upload" layoutX="226.0" layoutY="108.0" prefHeight="25.0" prefWidth="163.0" style="-fx-background-color: white; -fx-background-radius: 20;" text="Upload">
+               <font>
+                  <Font name="Tw Cen MT" size="16.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </Pane>
+      <ScrollPane layoutX="23.0" layoutY="323.0" prefHeight="319.0" prefWidth="858.0" vbarPolicy="NEVER">
+         <content>
+            <HBox fx:id="list" alignment="CENTER_LEFT" prefHeight="302.0" prefWidth="857.0" spacing="15.0" style="-fx-background-color: white;">
+               <padding>
+                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+               </padding>
+            </HBox>
+         </content>
+      </ScrollPane>
+      <Pane layoutX="907.0" layoutY="665.0" prefHeight="89.0" prefWidth="407.0" style="-fx-background-color: linear-gradient(to right,#8A2387,#E94057,#F27121);">
+         <children>
+            <JFXButton fx:id="backup" layoutX="226.0" layoutY="30.0" prefHeight="25.0" prefWidth="163.0" style="-fx-background-color: white; -fx-background-radius: 20;" text="Backup">
+               <font>
+                  <Font name="Tw Cen MT" size="16.0" />
+               </font>
+            </JFXButton>
+            <Label alignment="CENTER" layoutX="14.0" layoutY="31.0" prefHeight="28.0" prefWidth="133.0" text="Date Backup" textFill="WHITE">
+               <font>
+                  <Font name="Tw Cen MT Bold" size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+   <stylesheets>
+      <URL value="@../../resources/scrollpane.css" />
+      <URL value="@../../resources/normalscroll.css" />
+      <URL value="@../../resources/combolist.css" />
+      <URL value="@../../resources/combowhite.css" />
+      <URL value="@../../resources/whitecombo.css" />
+   </stylesheets>
+</fx:root>

@@ -13,6 +13,7 @@ import com.attendance.util.ExceptionDialog;
 import com.attendance.util.ExportUTReport;
 import com.attendance.util.ExportUTReportTable;
 import com.attendance.util.Fxml;
+import com.attendance.util.InputValidator;
 import com.attendance.util.SwitchRoot;
 import com.attendance.util.SystemUtils;
 import com.jfoenix.controls.JFXButton;
@@ -114,10 +115,10 @@ public class UnitTestReportController extends AnchorPane {
 
     @FXML
     private void initialize() {
-        dao = (MarksService) Start.app.getBean("marksservice");
+        dao = (MarksService) Start.app.getBean("unittestservice");
         dao.setParent(this);
         dialog = dao.getEx();
-        
+
         initFilter();
         initializeTable();
         load.setOnAction(this::populateTable);
@@ -159,23 +160,31 @@ public class UnitTestReportController extends AnchorPane {
     }
 
     private void populateTable(ActionEvent evt) {
-        List<UnitTest> utlist = dao.findBySemesterAndAcademicyearAndYear(semester.getSelectionModel().getSelectedItem(), acadamicyear.getSelectionModel().getSelectedItem(), Integer.parseInt(year.getSelectionModel().getSelectedItem()));
-        utlist = utlist.stream().filter(f->f.getDepartment().equals(SystemUtils.getDepartment())).filter(p -> p.getCoursetype().equals(coursetype.getSelectionModel().getSelectedItem())
-                && p.getUnitTest().equals(unittest.getSelectionModel().getSelectedItem())
-                && p.getDepartment().equals(SystemUtils.getDepartment()))
-                .collect(Collectors.toList());
+        try {
+            String sem = InputValidator.getValue(semester);
+            String aca = InputValidator.getValue(acadamicyear);
+            String yr = InputValidator.getValue(year);
+            String ct = InputValidator.getValue(coursetype);
+            String ut = InputValidator.getValue(unittest);
+            
+            List<UnitTest> utlist = dao.findBySemesterAndAcademicyearAndYear(sem, aca, Integer.parseInt(yr));
+            utlist = utlist.stream().filter(f -> f.getDepartment().equals(SystemUtils.getDepartment())).filter(p -> p.getCoursetype().equals(ct)
+                    && p.getUnitTest().equals(ut) && p.getDepartment().equals(SystemUtils.getDepartment())).collect(Collectors.toList());
 
-        List<UTReportModel> collect = utlist.stream().map(new Function<UnitTest, UTReportModel>() {
+            List<UTReportModel> collect = utlist.stream().map(new Function<UnitTest, UTReportModel>() {
 
-            private int i = 1;
+                private int i = 1;
 
-            @Override
-            public UTReportModel apply(UnitTest t) {
-                return new UTReportModel(i++, t.getRollno(), t.getName(), t.getTotalMarks(), t.getPassingMarks(), t.getMarksObtained());
-            }
-        }).collect(Collectors.toList());
+                @Override
+                public UTReportModel apply(UnitTest t) {
+                    return new UTReportModel(i++, t.getRollno(), t.getName(), t.getTotalMarks(), t.getPassingMarks(), t.getMarksObtained());
+                }
+            }).collect(Collectors.toList());
 
-        list.getItems().setAll(collect);
+            list.getItems().setAll(collect);
+        } catch (Exception e) {
+            dialog.showError(this, "Load Unit Test Marks", e.getMessage());
+        }
     }
 
     private void exportReport(ActionEvent evt) {
@@ -184,16 +193,17 @@ public class UnitTestReportController extends AnchorPane {
             exp.createFile().convertToExcel("Unit Test Report").exportToFile(this);
             dialog.showSuccess(this, "Export Unit Test Report", "Report Exported Successfully");
         } catch (IOException ex) {
-            dialog.showError(this, "Export Unit Test Report", "Report Export Failed\n"+ex.getLocalizedMessage());
+            dialog.showError(this, "Export Unit Test Report", "Report Export Failed\n" + ex.getLocalizedMessage());
         }
     }
+
     private void exportTable(ActionEvent evt) {
         ExportUTReportTable exp = new ExportUTReportTable(list);
         try {
             exp.createFile().convertToExcel("Unit Test Report Table").exportToFile(this);
             dialog.showSuccess(this, "Export Unit Test ", "Exported Successfully");
         } catch (IOException ex) {
-            dialog.showError(this, "Export Unit Test ", "Export Failed\n"+ex.getLocalizedMessage());
+            dialog.showError(this, "Export Unit Test ", "Export Failed\n" + ex.getLocalizedMessage());
         }
     }
 }
