@@ -12,6 +12,7 @@ import com.attendance.papers.dao.PapersDao;
 import com.attendance.papers.model.Paper;
 import com.attendance.papers.service.PapersService;
 import com.attendance.report.model.AttendanceDetails;
+import com.attendance.settings.sub.LoadingController;
 import com.attendance.student.dao.StudentDao;
 import com.attendance.student.model.Student;
 import com.attendance.student.service.StudentService;
@@ -35,11 +36,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
 import java.util.function.Function;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -143,9 +146,9 @@ public class AttendanceReportController extends AnchorPane {
     private PapersService paperdao;
     private AttendanceService classdao;
     private LoginService dao;
-    
+
     private ExceptionDialog dialog;
-    
+
     public AttendanceReportController(Parent parent) {
         this.parent = parent;
         loader = Fxml.getAttendanceReportFXML();
@@ -170,7 +173,7 @@ public class AttendanceReportController extends AnchorPane {
         dao = (LoginService) Start.app.getBean("loginservice");
         classdao.setParent(this);
         dialog = classdao.getEx();
-        
+
         cancel.setOnAction(this::proceed);
         initFilters();
         initTable();
@@ -202,7 +205,7 @@ public class AttendanceReportController extends AnchorPane {
             }
 
         });
-        List<String> years = studentdao.get("select distinct(year) from student order by year", String.class);
+        List<String> years = studentdao.findAllYear();
         year.getItems().setAll(years);
 
         List<String> HODname = Utils.util.getHODUsers(SystemUtils.getDepartment()).stream().map(m -> m.getDetails().getName()).collect(Collectors.toList());
@@ -213,7 +216,7 @@ public class AttendanceReportController extends AnchorPane {
         semester.getSelectionModel().selectedItemProperty().addListener((ol, o, n) -> {
             String sem = n.replace(" Semester", "");
             List<Paper> papers = paperdao.findBySemester(sem);
-            paper.getItems().setAll(papers.stream().map(p -> p.getPaperCode()).collect(Collectors.toList()));
+            paper.getItems().setAll(papers.stream().filter(f -> f.getDepartment().equals(SystemUtils.getDepartment())).map(p -> p.getPaperCode()).collect(Collectors.toList()));
         });
     }
 
@@ -231,57 +234,77 @@ public class AttendanceReportController extends AnchorPane {
     }
 
     private void generate(ActionEvent evt) {
-        String acayear = acadamicyear.getSelectionModel().getSelectedItem();
-        String sem = semester.getSelectionModel().getSelectedItem().replace(" Semester", "");
-        int yr = Integer.parseInt(year.getSelectionModel().getSelectedItem());
-        String papercode = paper.getSelectionModel().getSelectedItem();
-        String course = coursetype.getSelectionModel().getSelectedItem();
+        Task<List<AttendanceDetails>> task = new Task<List<AttendanceDetails>>() {
+            @Override
+            protected List<AttendanceDetails> call() throws Exception {
 
-        List<Student> student=studentdao.findByAcadamicYearAndyear(acayear, yr).stream().filter(f->f.getDepartment().equals(SystemUtils.getDepartment()) && f.getCourseType().equals(course)).collect(Collectors.toList());
-        Map<String, Student> students = student.parallelStream().collect(Collectors.toMap(Student::getId, Function.identity()));
+                String acayear = acadamicyear.getSelectionModel().getSelectedItem();
+                String sem = semester.getSelectionModel().getSelectedItem().replace(" Semester", "");
+                int yr = Integer.parseInt(year.getSelectionModel().getSelectedItem());
+                String papercode = paper.getSelectionModel().getSelectedItem();
+                String course = coursetype.getSelectionModel().getSelectedItem();
+
+                List<Student> student = studentdao.findByAcadamicYearAndyear(acayear, yr).stream().filter(f -> f.getDepartment().equals(SystemUtils.getDepartment()) && f.getCourseType().equals(course)).collect(Collectors.toList());
+                Map<String, Student> students = student.parallelStream().collect(Collectors.toMap(Student::getId, Function.identity()));
+
+                List<ClassDetails> list = classdao.findAll(SystemUtils.getDepartment(), acayear, sem, yr, papercode, course);
+                if (filterbyname.isSelected()) {
+                    list = list.stream().filter(f -> f.getFacultyName().equals(name.getSelectionModel().getSelectedItem())).collect(Collectors.toList());
+                }
+                List<Attendance> attendanceList = new ArrayList<>();
+                for (ClassDetails details : list) {
+                    attendanceList.addAll(details.getAttendance());
+                }
+                Map<String, List<String>> attendance = attendanceList.parallelStream().collect(Collectors.groupingBy(Attendance::getStudentId, Collectors.mapping(Attendance::getStatus, Collectors.toList())));
+
+                String facultyName = list.stream().map(ClassDetails::getFacultyName).collect(Collectors.toSet()).stream().collect(Collectors.joining(", "));
+
+                List<AttendanceDetails> reportList = attendance.entrySet().stream().map(entry -> {
+                    AttendanceDetails details = new AttendanceDetails();
+                    Student currentstudent = students.get(entry.getKey());
+                    details.setStudentname(currentstudent.getName());
+                    details.setRollno(currentstudent.getRollno());
+                    details.setSemester(sem);
+                    details.setYear(currentstudent.getYear());
+                    details.setFacultyname(facultyName);
+
+                    int totpre = entry.getValue().stream().filter(f -> f.equals("Present")).collect(Collectors.counting()).intValue();
+                    int totabs = entry.getValue().stream().filter(f -> f.equals("Absent")).collect(Collectors.counting()).intValue();
+
+                    int total = entry.getValue().size();
+
+                    details.setTotalabsent(totabs);
+                    details.setTotalclasses(total);
+                    details.setTotalpresent(totpre);
+
+                    double preper = (double) totpre / total;
+                    double absper = (double) totabs / total;
+
+                    details.setAbsentpercentage(Double.parseDouble(dec.format(absper)));
+                    details.setPresentpercentage(Double.parseDouble(dec.format(preper)));
+
+                    return details;
+                }).collect(Collectors.toList());
+
+                Collections.sort(reportList, (r1, r2) -> Integer.compare(r1.getRollno(), r2.getRollno()));
+
+                return reportList;
+
+            }
+        };
+
+        task.setOnSucceeded(e -> {
+            try {
+                LoadingController.hide();
+                table.getItems().setAll(task.get());
+            } catch (InterruptedException | ExecutionException ex) {
+                Logger.getLogger(AttendanceReportController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+
+        task.setOnRunning(e -> LoadingController.show(this.getScene()));
         
-        List<ClassDetails> list = classdao.findAll(SystemUtils.getDepartment(), acayear, sem, yr, papercode, course);
-        if(filterbyname.isSelected()){
-            list=list.stream().filter(f->f.getFacultyName().equals(name.getSelectionModel().getSelectedItem())).collect(Collectors.toList());
-        }
-        List<Attendance> attendanceList = new ArrayList<>();
-        for (ClassDetails details : list) {
-            attendanceList.addAll(details.getAttendance());
-        }
-        Map<String, List<String>> attendance = attendanceList.parallelStream().collect(Collectors.groupingBy(Attendance::getStudentId,Collectors.mapping(Attendance::getStatus, Collectors.toList())));
-        
-        String facultyName = list.stream().map(ClassDetails::getFacultyName).collect(Collectors.toSet()).stream().collect(Collectors.joining(", "));
-        
-        List<AttendanceDetails> reportList = attendance.entrySet().stream().map(entry->{
-            AttendanceDetails details=new AttendanceDetails();
-            Student currentstudent=students.get(entry.getKey());
-            details.setStudentname(currentstudent.getName());
-            details.setRollno(currentstudent.getRollno());
-            details.setSemester(sem);
-            details.setYear(currentstudent.getYear());
-            details.setFacultyname(facultyName);
-            
-            int totpre = entry.getValue().stream().filter(f->f.equals("Present")).collect(Collectors.counting()).intValue();
-            int totabs = entry.getValue().stream().filter(f->f.equals("Absent")).collect(Collectors.counting()).intValue();
-            
-            int total=entry.getValue().size();
-            
-            details.setTotalabsent(totabs);
-            details.setTotalclasses(total);
-            details.setTotalpresent(totpre);
-            
-            double preper=(double)totpre/total;
-            double absper=(double)totabs/total;
-            
-            details.setAbsentpercentage(Double.parseDouble(dec.format(absper)));
-            details.setPresentpercentage(Double.parseDouble(dec.format(preper)));
-            
-            return details;
-        }).collect(Collectors.toList());
-        
-        Collections.sort(reportList, (r1,r2)->Integer.compare(r1.getRollno(), r2.getRollno()));
-        
-        table.getItems().setAll(reportList);
+        SystemUtils.getService().execute(task);
     }
 
     private void clear(ActionEvent evt) {
@@ -293,9 +316,9 @@ public class AttendanceReportController extends AnchorPane {
         export = new ExportAttendancereport(table);
         try {
             export.createFile().convertToExcel(filename.getText()).exportToFile(this);
-            dialog.showSuccess(this,"Export To Excel", "Exported Successfully");
+            dialog.showSuccess(this, "Export To Excel", "Exported Successfully");
         } catch (SQLException | IOException ex) {
-            dialog.showError(this,"Export To Excel", "Export Failed\n"+ex.getLocalizedMessage());
+            dialog.showError(this, "Export To Excel", "Export Failed\n" + ex.getLocalizedMessage());
         }
     }
 
@@ -303,9 +326,9 @@ public class AttendanceReportController extends AnchorPane {
         export = new ExportAttendancereport(table);
         try {
             export.createFile().generateReport(filename.getText()).exportToFile(this);
-            dialog.showSuccess(this,"Export To Excel", "Report Exported Successfully");
+            dialog.showSuccess(this, "Export To Excel", "Report Exported Successfully");
         } catch (SQLException | IOException ex) {
-            dialog.showError(this,"Export To Excel", "Report Export Failed\n"+ex.getLocalizedMessage());
+            dialog.showError(this, "Export To Excel", "Report Export Failed\n" + ex.getLocalizedMessage());
         }
     }
 }
