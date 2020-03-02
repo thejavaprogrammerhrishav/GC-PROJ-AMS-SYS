@@ -302,7 +302,7 @@ public class AttendanceServiceImpl implements AttendanceService {
     @Override
     public List<ClassDetails> findAll(String department, String acadamicYear, String semester, int year, String papercode, String coursetype) {
         try {
-            return dao.findAll();
+            return dao.findAll(department, acadamicYear, semester, year, papercode, coursetype);
         } catch (Exception e) {
             ex.showError(parent, header, ExceptionConverter.getException(e));
 
