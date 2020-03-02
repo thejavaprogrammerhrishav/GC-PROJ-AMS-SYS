@@ -14,7 +14,7 @@
             <Image url="@../../resources/52abd3e155fcd67d30cf9693e6ada8af.png" />
          </image>
       </ImageView>
-      <Label fx:id="name" layoutX="146.0" layoutY="30.0" prefHeight="18.0" prefWidth="503.0" text="Name">
+      <Label fx:id="name" layoutX="146.0" layoutY="30.0" prefHeight="18.0" prefWidth="503.0" text="Name" textFill="WHITE">
          <font>
             <Font name="Tw Cen MT" size="16.0" />
          </font>

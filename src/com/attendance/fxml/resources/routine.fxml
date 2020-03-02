@@ -20,7 +20,7 @@
                   <Image url="@../../resources/LogoMakr_1wJdNX.png" />
                </image>
             </ImageView>
-            <Label layoutX="98.0" layoutY="17.0" text="Attendance Management System" textFill="WHITE">
+            <Label layoutX="98.0" layoutY="17.0" text="Modern Attendance System" textFill="WHITE">
                <font>
                   <Font name="Tw Cen MT" size="28.0" />
                </font>
@@ -49,7 +49,7 @@
                   <Font name="Tw Cen MT" size="20.0" />
                </font>
             </Label>
-            <Label layoutX="303.0" layoutY="72.0" text="USER TYPE" textFill="#b2b2b2">
+            <Label layoutX="303.0" layoutY="72.0" text="USER TYPE" textFill="#656060">
                <font>
                   <Font name="Tw Cen MT" size="17.0" />
                </font>
@@ -62,7 +62,7 @@
                   <Insets bottom="7.0" top="7.0" />
                </padding>
             </Label>
-            <Label layoutX="303.0" layoutY="147.0" text="DEPARTMENT" textFill="#b2b2b2">
+            <Label layoutX="303.0" layoutY="147.0" text="DEPARTMENT" textFill="#656060">
                <font>
                   <Font name="Tw Cen MT" size="17.0" />
                </font>
@@ -75,7 +75,7 @@
                   <Insets bottom="7.0" top="7.0" />
                </padding>
             </Label>
-            <Label layoutX="303.0" layoutY="224.0" text="ACCOUNT CREATION DATE" textFill="#b2b2b2">
+            <Label layoutX="303.0" layoutY="224.0" text="ACCOUNT CREATION DATE" textFill="#656060">
                <font>
                   <Font name="Tw Cen MT" size="17.0" />
                </font>
@@ -88,7 +88,7 @@
                   <Insets bottom="7.0" top="7.0" />
                </padding>
             </Label>
-            <Label fx:id="contact" alignment="CENTER" layoutX="22.0" layoutY="237.0" prefHeight="19.0" prefWidth="247.0" text="8811935123" textAlignment="CENTER" textFill="#838383" wrapText="true">
+            <Label fx:id="contact" alignment="CENTER" layoutX="22.0" layoutY="237.0" prefHeight="19.0" prefWidth="247.0" text="8811935123" textAlignment="CENTER" textFill="#656060" wrapText="true">
                <font>
                   <Font name="Tw Cen MT" size="15.0" />
                </font>

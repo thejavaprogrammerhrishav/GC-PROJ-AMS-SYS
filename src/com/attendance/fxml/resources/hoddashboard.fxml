@@ -119,7 +119,7 @@
                   <Image url="@../../resources/LogoMakr_1wJdNX.png" />
                </image>
             </ImageView>
-            <Label layoutX="86.0" layoutY="15.0" prefHeight="68.0" prefWidth="185.0" text="Attendance Management System" wrapText="true">
+            <Label layoutX="86.0" layoutY="15.0" prefHeight="68.0" prefWidth="185.0" text="Modern Attendance System" wrapText="true">
                <font>
                   <Font name="Tw Cen MT" size="22.0" />
                </font>

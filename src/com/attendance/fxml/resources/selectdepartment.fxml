@@ -15,7 +15,7 @@
 
 <fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="406.0" prefWidth="600.0" style="-fx-background-color: linear-gradient(to bottom right, rgba(3,126,243,1) -0.3%, rgba(48,195,158,1) 100.2% ); -fx-background-radius: 15;" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutX="133.0" layoutY="37.0" text="Attendance Management System" textFill="WHITE">
+      <Label layoutX="133.0" layoutY="37.0" text="Modern Attendance System" textFill="WHITE">
          <font>
             <Font name="Tw Cen MT" size="28.0" />
          </font>

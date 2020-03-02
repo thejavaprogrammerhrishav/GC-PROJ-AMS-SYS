@@ -101,7 +101,7 @@
                   <Font name="Century Gothic" size="20.0" />
                </font>
             </Label>
-            <Label layoutX="336.0" layoutY="26.0" prefHeight="38.0" prefWidth="484.0" text="Attendance Managment System" textFill="WHITE">
+            <Label layoutX="336.0" layoutY="26.0" prefHeight="38.0" prefWidth="484.0" text="Modern Attendance System" textFill="WHITE">
                <font>
                   <Font name="Century Gothic" size="30.0" />
                </font>

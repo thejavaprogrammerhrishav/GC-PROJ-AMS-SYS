@@ -24,7 +24,7 @@
                   <Image url="@../../resources/LogoMakr_1wJdNX.png" />
                </image>
             </ImageView>
-            <Label layoutX="162.0" layoutY="17.0" text="Attendance Management System" textFill="WHITE">
+            <Label layoutX="162.0" layoutY="17.0" text="Modern Attendance System" textFill="WHITE">
                <font>
                   <Font name="Tw Cen MT" size="36.0" />
                </font>
@@ -125,7 +125,7 @@
             </JFXButton>
          </children>
          <effect>
-            <DropShadow color="#3df011" height="42.0" radius="20.5" spread="0.3" width="42.0" />
+            <DropShadow color="#d0d0d0" height="42.0" radius="20.5" spread="0.3" width="42.0" />
          </effect>
       </Pane>
       <ScrollPane layoutX="35.0" layoutY="195.0" prefHeight="523.0" prefWidth="508.0">

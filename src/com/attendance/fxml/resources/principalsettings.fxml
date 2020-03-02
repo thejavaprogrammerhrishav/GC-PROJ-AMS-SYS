@@ -14,7 +14,7 @@
    <children>
       <AnchorPane prefHeight="86.0" prefWidth="1366.0">
          <children>
-            <Label layoutX="86.0" layoutY="27.0" prefHeight="38.0" prefWidth="370.0" text="Attendance Managment System" textFill="WHITE">
+            <Label layoutX="86.0" layoutY="27.0" prefHeight="38.0" prefWidth="370.0" text="Modern Attendance System" textFill="WHITE">
                <font>
                   <Font name="Tw Cen MT" size="28.0" />
                </font>
@@ -38,7 +38,7 @@
       </Label>
       <FlowPane alignment="TOP_CENTER" hgap="60.0" layoutX="14.0" layoutY="192.0" prefHeight="605.0" prefWidth="1350.0" vgap="50.0">
          <children>
-            <JFXButton fx:id="deletefacultyuser" contentDisplay="GRAPHIC_ONLY" prefHeight="121.0" prefWidth="329.0">
+            <JFXButton fx:id="deletefacultyuser" contentDisplay="GRAPHIC_ONLY" prefHeight="121.0" prefWidth="329.0" ripplerFill="BLACK">
                <graphic>
                   <AnchorPane prefHeight="75.0" prefWidth="165.0">
                      <children>
@@ -47,21 +47,21 @@
                               <Image url="@../../resources/icons8-denied-100.png" />
                            </image>
                         </ImageView>
-                        <Label layoutX="94.0" layoutY="40.0" prefHeight="21.0" prefWidth="199.0" text="Delete HOD/Facuilty User" textFill="WHITE">
+                        <Label layoutX="94.0" layoutY="40.0" prefHeight="21.0" prefWidth="200.0" text="Delete HOD/Facuilty User" textFill="WHITE">
                            <font>
-                              <Font name="Tw Cen MT" size="18.0" />
+                              <Font name="Tw Cen MT" size="19.0" />
                            </font>
                         </Label>
-                        <Label layoutX="94.0" layoutY="63.0" prefHeight="21.0" prefWidth="145.0" text="Remove A Faculty User" textFill="#ab9e9e">
+                        <Label layoutX="94.0" layoutY="63.0" prefHeight="21.0" prefWidth="192.0" text="Remove A Faculty User" textFill="#d7d7d7">
                            <font>
-                              <Font name="Tw Cen MT" size="14.0" />
+                              <Font name="Tw Cen MT" size="16.0" />
                            </font>
                         </Label>
                      </children>
                   </AnchorPane>
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="modifyusertype" contentDisplay="GRAPHIC_ONLY" prefHeight="121.0" prefWidth="281.0">
+            <JFXButton fx:id="modifyusertype" contentDisplay="GRAPHIC_ONLY" prefHeight="121.0" prefWidth="281.0" ripplerFill="BLACK">
                <graphic>
                   <AnchorPane prefHeight="75.0" prefWidth="165.0">
                      <children>
@@ -70,44 +70,21 @@
                               <Image url="@../../resources/icons8-registration-100.png" />
                            </image>
                         </ImageView>
-                        <Label layoutX="94.0" layoutY="40.0" prefHeight="21.0" prefWidth="131.0" text="Modify Usertype" textFill="WHITE">
+                        <Label layoutX="94.0" layoutY="40.0" prefHeight="21.0" prefWidth="200.0" text="Modify Usertype" textFill="WHITE">
                            <font>
-                              <Font name="Tw Cen MT" size="18.0" />
+                              <Font name="Tw Cen MT" size="19.0" />
                            </font>
                         </Label>
-                        <Label layoutX="94.0" layoutY="63.0" prefHeight="21.0" prefWidth="145.0" text="Change Type Of User" textFill="#ab9e9e">
+                        <Label layoutX="94.0" layoutY="63.0" prefHeight="21.0" prefWidth="145.0" text="Change Type Of User" textFill="#d7d7d7">
                            <font>
-                              <Font name="Tw Cen MT" size="14.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </AnchorPane>
-               </graphic>
-            </JFXButton>
-            <JFXButton fx:id="blockfacultylogin" contentDisplay="GRAPHIC_ONLY" prefHeight="121.0" prefWidth="317.0">
-               <graphic>
-                  <AnchorPane layoutY="31.0" prefHeight="113.0" prefWidth="333.0">
-                     <children>
-                        <ImageView fitHeight="60.0" fitWidth="83.0" layoutX="16.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../resources/icons8-unfriend-100.png" />
-                           </image>
-                        </ImageView>
-                        <Label layoutX="94.0" layoutY="40.0" prefHeight="21.0" prefWidth="192.0" text="Block HOD/Faculty Login " textFill="WHITE">
-                           <font>
-                              <Font name="Tw Cen MT" size="18.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="94.0" layoutY="63.0" prefHeight="21.0" prefWidth="145.0" text="Restrict User Login" textFill="#ab9e9e">
-                           <font>
-                              <Font name="Tw Cen MT" size="14.0" />
+                              <Font name="Tw Cen MT" size="16.0" />
                            </font>
                         </Label>
                      </children>
                   </AnchorPane>
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="principalloginactivity" contentDisplay="GRAPHIC_ONLY" prefHeight="121.0" prefWidth="281.0">
+            <JFXButton fx:id="principalloginactivity" contentDisplay="GRAPHIC_ONLY" prefHeight="121.0" prefWidth="281.0" ripplerFill="BLACK">
                <graphic>
                   <AnchorPane prefHeight="75.0" prefWidth="165.0">
                      <children>
@@ -116,21 +93,21 @@
                               <Image url="@../../resources/icons8-activity-history-100.png" />
                            </image>
                         </ImageView>
-                        <Label layoutX="94.0" layoutY="40.0" prefHeight="21.0" prefWidth="167.0" text="Principal Login Activity" textFill="WHITE">
+                        <Label layoutX="94.0" layoutY="40.0" prefHeight="21.0" prefWidth="200.0" text="Principal Login Activity" textFill="WHITE">
                            <font>
-                              <Font name="Tw Cen MT" size="18.0" />
+                              <Font name="Tw Cen MT" size="19.0" />
                            </font>
                         </Label>
-                        <Label layoutX="94.0" layoutY="63.0" prefHeight="21.0" prefWidth="145.0" text="Track Principal Activity" textFill="#ab9e9e">
+                        <Label layoutX="94.0" layoutY="63.0" prefHeight="21.0" prefWidth="145.0" text="Track Principal Activity" textFill="#d7d7d7">
                            <font>
-                              <Font name="Tw Cen MT" size="14.0" />
+                              <Font name="Tw Cen MT" size="16.0" />
                            </font>
                         </Label>
                      </children>
                   </AnchorPane>
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="hodloginactivity" contentDisplay="GRAPHIC_ONLY" prefHeight="121.0" prefWidth="281.0">
+            <JFXButton fx:id="hodloginactivity" contentDisplay="GRAPHIC_ONLY" prefHeight="121.0" prefWidth="281.0" ripplerFill="BLACK">
                <graphic>
                   <AnchorPane prefHeight="75.0" prefWidth="165.0">
                      <children>
@@ -139,14 +116,37 @@
                               <Image url="@../../resources/icons8-application-shield-100.png" />
                            </image>
                         </ImageView>
-                        <Label layoutX="94.0" layoutY="40.0" prefHeight="21.0" prefWidth="140.0" text="HOD Login Activity" textFill="WHITE">
+                        <Label layoutX="94.0" layoutY="40.0" prefHeight="21.0" prefWidth="200.0" text="HOD Login Activity" textFill="WHITE">
                            <font>
-                              <Font name="Tw Cen MT" size="18.0" />
+                              <Font name="Tw Cen MT" size="19.0" />
                            </font>
                         </Label>
-                        <Label layoutX="94.0" layoutY="63.0" prefHeight="21.0" prefWidth="145.0" text="Track HOD Activity" textFill="#ab9e9e">
+                        <Label layoutX="94.0" layoutY="63.0" prefHeight="21.0" prefWidth="145.0" text="Track HOD Activity" textFill="#d7d7d7">
                            <font>
-                              <Font name="Tw Cen MT" size="14.0" />
+                              <Font name="Tw Cen MT" size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="blockfacultylogin" contentDisplay="GRAPHIC_ONLY" prefHeight="121.0" prefWidth="317.0" ripplerFill="BLACK">
+               <graphic>
+                  <AnchorPane layoutY="31.0" prefHeight="113.0" prefWidth="333.0">
+                     <children>
+                        <ImageView fitHeight="60.0" fitWidth="83.0" layoutX="16.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../resources/icons8-unfriend-100.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="94.0" layoutY="40.0" prefHeight="21.0" prefWidth="200.0" text="Block HOD/Faculty Login " textFill="WHITE">
+                           <font>
+                              <Font name="Tw Cen MT" size="19.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="94.0" layoutY="63.0" prefHeight="21.0" prefWidth="145.0" text="Restrict User Login" textFill="#d7d7d7">
+                           <font>
+                              <Font name="Tw Cen MT" size="16.0" />
                            </font>
                         </Label>
                      </children>

@@ -29,7 +29,7 @@
                   <Image url="@../../resources/LogoMakr_1wJdNX.png" />
                </image>
             </ImageView>
-            <Label layoutX="86.0" prefHeight="65.0" prefWidth="467.0" text="Attendance Management System" textAlignment="CENTER" textFill="WHITE">
+            <Label layoutX="86.0" prefHeight="65.0" prefWidth="467.0" text="Modern Attendance System" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Century Gothic" size="26.0" />
                </font>

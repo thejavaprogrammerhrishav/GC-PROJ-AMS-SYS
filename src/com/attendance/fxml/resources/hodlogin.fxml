@@ -30,7 +30,7 @@
                         <Image url="@../../resources/LogoMakr_1wJdNX.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="25.0" layoutY="122.0" text="Attendance Management System">
+                  <Label layoutX="53.0" layoutY="119.0" prefHeight="31.0" prefWidth="304.0" text="Modern Attendance System">
                      <font>
                         <Font name="Calibri Bold" size="26.0" />
                      </font>

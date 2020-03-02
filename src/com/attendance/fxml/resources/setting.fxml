@@ -14,7 +14,7 @@
    <children>
       <AnchorPane layoutX="24.0" layoutY="44.0" prefHeight="135.0" prefWidth="1360.0">
          <children>
-            <Label alignment="CENTER_RIGHT" layoutX="431.0" layoutY="20.0" prefHeight="51.0" prefWidth="589.0" text="Attendance Managment System" textFill="WHITE">
+            <Label alignment="CENTER" layoutX="431.0" layoutY="20.0" prefHeight="51.0" prefWidth="589.0" text="Modern Attendance System" textFill="WHITE">
                <font>
                   <Font name="Segoe UI" size="36.0" />
                </font>
@@ -24,7 +24,7 @@
                   <Font name="Segoe UI" size="25.0" />
                </font>
             </Label>
-            <ImageView fitHeight="101.0" fitWidth="87.0" layoutX="333.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="101.0" fitWidth="87.0" layoutX="366.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../resources/LogoMakr_1wJdNX.png" />
                </image>

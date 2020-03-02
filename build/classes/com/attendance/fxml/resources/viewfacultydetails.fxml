@@ -23,7 +23,7 @@
                   <Image url="@../../resources/LogoMakr_1wJdNX.png" />
                </image>
             </ImageView>
-            <Label layoutX="146.0" layoutY="22.0" text="Attendance Management System" textFill="WHITE">
+            <Label layoutX="146.0" layoutY="22.0" text="Modern Attendance System" textFill="WHITE">
                <font>
                   <Font name="Tw Cen MT" size="30.0" />
                </font>

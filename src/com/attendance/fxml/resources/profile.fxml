@@ -17,7 +17,7 @@
 <fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: rgb(69, 77, 175);" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Circle fill="YELLOW" layoutX="1267.0" layoutY="699.0" radius="174.0" stroke="#454daf" strokeLineJoin="ROUND" strokeType="INSIDE" />
-      <Label layoutX="352.0" layoutY="41.0" text="Attendance Management System" textFill="YELLOW">
+      <Label layoutX="352.0" layoutY="41.0" text="Modern Attendance System" textFill="YELLOW">
          <font>
             <Font name="Century Gothic Bold" size="36.0" />
          </font>

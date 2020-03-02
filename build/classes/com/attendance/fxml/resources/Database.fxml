@@ -13,7 +13,7 @@
 
 <fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: linear-gradient(to right bottom, #302739, #49375B,#302739);" stylesheets="@../../resources/combo.css" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutX="468.0" layoutY="39.0" prefHeight="52.0" prefWidth="547.0" text="Attendance Managment System" textFill="WHITE">
+      <Label layoutX="468.0" layoutY="39.0" prefHeight="52.0" prefWidth="547.0" text="Modern Attendance System" textFill="WHITE">
          <font>
             <Font name="Segoe UI" size="38.0" />
          </font>

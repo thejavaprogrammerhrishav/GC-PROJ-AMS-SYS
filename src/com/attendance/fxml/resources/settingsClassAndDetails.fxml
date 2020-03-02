@@ -19,7 +19,7 @@
                   <Image url="@../../resources/LogoMakr_1wJdNX.png" />
                </image>
             </ImageView>
-            <Label alignment="CENTER" layoutX="76.0" layoutY="13.0" prefHeight="63.0" prefWidth="257.0" text="Attendance Management System" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+            <Label alignment="CENTER" layoutX="76.0" layoutY="13.0" prefHeight="63.0" prefWidth="257.0" text="Modern Attendance System" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                <font>
                   <Font name="Segoe UI" size="23.0" />
                </font>

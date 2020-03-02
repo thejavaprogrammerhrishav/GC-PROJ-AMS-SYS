@@ -19,7 +19,7 @@
    <children>
       <Pane prefHeight="72.0" prefWidth="1366.0" style="-fx-background-color: purple;">
          <children>
-            <Label layoutX="448.0" layoutY="16.0" text="Attendance Management System" textFill="WHITE">
+            <Label layoutX="448.0" layoutY="16.0" text="Modern Attendance System" textFill="WHITE">
                <font>
                   <Font name="Tw Cen MT" size="36.0" />
                </font>

@@ -15,67 +15,85 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: #f5f5f5;" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: #f9f9f9;" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Pane prefHeight="768.0" prefWidth="296.0" style="-fx-background-color: #202520;">
+      <Pane prefHeight="768.0" prefWidth="296.0" style="-fx-background-color: #202525;">
          <children>
             <ImageView fitHeight="84.0" fitWidth="88.0" layoutX="106.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../resources/LogoMakr_1wJdNX.png" />
                </image>
             </ImageView>
-            <JFXButton buttonType="RAISED" layoutX="7.0" layoutY="108.0" prefHeight="91.0" prefWidth="282.0" ripplerFill="#fffefe" text="Attendance Management System" textAlignment="CENTER" textFill="#fcfcfc" wrapText="true">
+            <JFXButton buttonType="RAISED" layoutX="7.0" layoutY="108.0" prefHeight="91.0" prefWidth="282.0" ripplerFill="#fffefe" text="Modern Attendance System" textAlignment="CENTER" textFill="#fcfcfc" wrapText="true">
                <font>
                   <Font name="Tw Cen MT" size="25.0" />
                </font>
             </JFXButton>
-            <JFXButton fx:id="student" buttonType="RAISED" graphicTextGap="17.0" layoutX="28.0" layoutY="236.0" prefHeight="45.0" prefWidth="220.0" style="-fx-alignment: center_left;" text="Student " textFill="WHITE">
+            <JFXButton fx:id="student" buttonType="RAISED" graphicTextGap="15.0" layoutX="28.0" layoutY="236.0" prefHeight="45.0" prefWidth="250.0" style="-fx-alignment: center_left;" text="Student " textFill="WHITE">
                <font>
                   <Font name="Tw Cen MT" size="18.0" />
                </font>
                <graphic>
                   <FontAwesomeIconView fill="WHITE" glyphName="GRADUATION_CAP" size="1.4em" />
                </graphic>
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
             </JFXButton>
-            <JFXButton fx:id="faculty" buttonType="RAISED" graphicTextGap="17.0" layoutX="28.0" layoutY="296.0" prefHeight="45.0" prefWidth="220.0" style="-fx-alignment: center_left;" text="Faculty" textFill="WHITE">
+            <JFXButton fx:id="faculty" buttonType="RAISED" graphicTextGap="15.0" layoutX="28.0" layoutY="296.0" prefHeight="45.0" prefWidth="250.0" style="-fx-alignment: center_left;" text="Faculty" textFill="WHITE">
                <font>
                   <Font name="Tw Cen MT" size="18.0" />
                </font>
                <graphic>
                   <FontAwesomeIconView fill="WHITE" glyphName="BOOK" size="1.4em" />
                </graphic>
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
             </JFXButton>
-            <JFXButton fx:id="classdetails" buttonType="RAISED" graphicTextGap="17.0" layoutX="28.0" layoutY="354.0" prefHeight="45.0" prefWidth="220.0" style="-fx-alignment: center_left;" text="Class Details" textFill="WHITE">
+            <JFXButton fx:id="classdetails" buttonType="RAISED" graphicTextGap="15.0" layoutX="28.0" layoutY="354.0" prefHeight="45.0" prefWidth="250.0" style="-fx-alignment: center_left;" text="Class Details" textFill="WHITE">
                <font>
                   <Font name="Tw Cen MT" size="18.0" />
                </font>
                <graphic>
                   <FontAwesomeIconView fill="WHITE" glyphName="INFO_CIRCLE" size="1.4em" />
                </graphic>
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
             </JFXButton>
-            <JFXButton fx:id="dailyclassreport" buttonType="RAISED" graphicTextGap="17.0" layoutX="28.0" layoutY="413.0" prefHeight="45.0" prefWidth="220.0" style="-fx-alignment: center_left;" text="Daily Class Report" textFill="WHITE">
+            <JFXButton fx:id="dailyclassreport" buttonType="RAISED" graphicTextGap="15.0" layoutX="28.0" layoutY="413.0" prefHeight="45.0" prefWidth="250.0" style="-fx-alignment: center_left;" text="Daily Class Report" textFill="WHITE">
                <font>
                   <Font name="Tw Cen MT" size="18.0" />
                </font>
                <graphic>
                   <FontAwesomeIconView fill="WHITE" glyphName="LIST_UL" size="1.4em" />
                </graphic>
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
             </JFXButton>
-            <JFXButton fx:id="settings" buttonType="RAISED" graphicTextGap="17.0" layoutX="28.0" layoutY="474.0" prefHeight="45.0" prefWidth="220.0" style="-fx-alignment: center_left;" text="Settings" textFill="WHITE">
+            <JFXButton fx:id="settings" buttonType="RAISED" graphicTextGap="15.0" layoutX="28.0" layoutY="474.0" prefHeight="45.0" prefWidth="250.0" style="-fx-alignment: center_left;" text="Settings" textFill="WHITE">
                <font>
                   <Font name="Tw Cen MT" size="18.0" />
                </font>
                <graphic>
                   <FontAwesomeIconView fill="WHITE" glyphName="COG" size="1.4em" />
                </graphic>
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
             </JFXButton>
-            <JFXButton fx:id="verifyprincipal" buttonType="RAISED" graphicTextGap="17.0" layoutX="28.0" layoutY="534.0" prefHeight="45.0" prefWidth="244.0" style="-fx-alignment: center_left;" text="Verify Principal Accounts" textFill="WHITE">
+            <JFXButton fx:id="verifyprincipal" buttonType="RAISED" graphicTextGap="15.0" layoutX="28.0" layoutY="534.0" prefHeight="45.0" prefWidth="250.0" style="-fx-alignment: center_left;" text="Verify Principal Accounts" textFill="WHITE">
                <font>
                   <Font name="Tw Cen MT" size="18.0" />
                </font>
                <graphic>
-                  <FontAwesomeIconView fill="WHITE" glyphName="CHECK" size="1.4em" />
+                  <FontAwesomeIconView fill="WHITE" glyphName="SHIELD" size="1.4em" />
                </graphic>
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
             </JFXButton>
          </children>
       </Pane>
@@ -115,7 +133,7 @@
             </JFXButton>
          </children>
       </Pane>
-      <Pane layoutX="314.0" layoutY="501.0" prefHeight="245.0" prefWidth="686.0" style="-fx-background-color: linear-gradient( to bottom right,  rgba(240,19,77,1) 22.2%, rgba(228,0,124,1) 88.7% );">
+      <Pane layoutX="314.0" layoutY="501.0" prefHeight="245.0" prefWidth="686.0" style="-fx-background-color: linear-gradient(to right bottom, rgba(51,102,255,1) 4.8%, rgba(51,204,255,1) 85.5% );">
          <children>
             <Label alignment="CENTER" layoutX="170.0" layoutY="14.0" prefHeight="52.0" prefWidth="346.0" text="Departmental Routine" textFill="WHITE">
                <font>
@@ -132,14 +150,17 @@
                   <Font name="Tw Cen MT" size="18.0" />
                </font>
             </Label>
-            <JFXComboBox fx:id="department" layoutX="172.0" layoutY="86.0" prefHeight="30.0" prefWidth="244.0" promptText="Select Department" style="-fx-font-family: 'Tw Cen MT',arial; -fx-font-size: 16; -fx-prompt-text-fill: white;" unFocusColor="WHITE" />
+            <JFXComboBox fx:id="department" layoutX="172.0" layoutY="86.0" prefHeight="30.0" prefWidth="354.0" promptText="Select Department" style="-fx-font-family: 'Tw Cen MT',arial; -fx-font-size: 16; -fx-prompt-text-fill: white;" unFocusColor="WHITE" />
             <JFXComboBox fx:id="year" layoutX="172.0" layoutY="141.0" prefHeight="30.0" prefWidth="129.0" promptText="Year" style="-fx-font-family: 'Tw Cen MT',arial; -fx-font-size: 16; -fx-prompt-text-fill: white;" unFocusColor="WHITE" />
-            <JFXButton fx:id="open" layoutX="459.0" layoutY="189.0" prefHeight="33.0" prefWidth="190.0" style="-fx-background-color: #fff;" text="View Routine">
+            <JFXButton fx:id="open" buttonType="RAISED" layoutX="459.0" layoutY="189.0" prefHeight="33.0" prefWidth="190.0" ripplerFill="BLACK" style="-fx-background-color: #fff;" text="View Routine">
                <font>
-                  <Font name="Tw Cen MT" size="18.0" />
+                  <Font name="Tw Cen MT Bold" size="17.0" />
                </font>
             </JFXButton>
          </children>
+         <effect>
+            <DropShadow color="#b2b2b2" height="32.86" radius="15.93" width="32.86" />
+         </effect>
       </Pane>
       <Pane layoutX="1022.0" layoutY="104.0" prefHeight="640.0" prefWidth="320.0" style="-fx-background-color: white;">
          <children>
@@ -171,11 +192,8 @@
          </children>
       </Pane>
       <Pane layoutX="314.0" layoutY="104.0" prefHeight="377.0" prefWidth="244.0" style="-fx-background-color: white; -fx-background-radius: 20;">
-         <effect>
-            <DropShadow blurType="ONE_PASS_BOX" color="#dadada" height="100.93" radius="49.1925" spread="0.32" width="97.84" />
-         </effect>
          <children>
-            <Label layoutX="96.0" layoutY="25.0" text="Select">
+            <Label layoutX="71.0" layoutY="25.0" text="Select Action">
                <font>
                   <Font name="Tw Cen MT" size="20.0" />
                </font>
@@ -209,42 +227,45 @@
                   </JFXButton>
                </children>
                <padding>
-                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                  <Insets bottom="15.0" top="15.0" />
                </padding>
             </VBox>
          </children>
+         <effect>
+            <DropShadow color="#b2b2b2" height="32.86" radius="15.93" width="32.86" />
+         </effect>
       </Pane>
       <AnchorPane fx:id="pane" layoutX="589.0" layoutY="104.0" prefHeight="200.0" prefWidth="403.0" style="-fx-background-color: white; -fx-background-radius: 20;">
          <effect>
-            <DropShadow blurType="ONE_PASS_BOX" color="#dadada" height="100.93" radius="49.1925" spread="0.32" width="97.84" />
+            <DropShadow color="#b2b2b2" height="32.86" radius="15.93" width="32.86" />
          </effect>
       </AnchorPane>
       <AnchorPane layoutX="589.0" layoutY="334.0" prefHeight="137.0" prefWidth="403.0" style="-fx-background-color: white; -fx-background-radius: 20;">
-         <effect>
-            <DropShadow blurType="ONE_PASS_BOX" color="#dadada" height="100.93" radius="49.1925" spread="0.32" width="97.84" />
-         </effect>
          <children>
             <Label layoutX="21.0" layoutY="17.0" prefHeight="30.0" prefWidth="210.0" text="HOD Verification" wrapText="true">
                <font>
                   <Font name="Tw Cen MT" size="22.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="21.0" layoutY="44.0" prefHeight="68.0" prefWidth="162.0" text="Verify pending request for HOD accounts of your department" textFill="#907a7a" wrapText="true">
+            <Label alignment="CENTER" layoutX="21.0" layoutY="44.0" prefHeight="68.0" prefWidth="162.0" text="Verify pending request for HOD accounts of your department" textFill="#6f6767" wrapText="true">
                <font>
                   <Font name="Tw Cen MT" size="15.0" />
                </font>
             </Label>
-            <JFXButton fx:id="verifyhod" layoutX="216.0" layoutY="80.0" prefHeight="30.0" prefWidth="162.0" ripplerFill="#49baea" style="-fx-background-color: #e8f26e;" text="Verify HOD">
+            <JFXButton fx:id="verifyhod" buttonType="RAISED" layoutX="216.0" layoutY="80.0" prefHeight="30.0" prefWidth="162.0" ripplerFill="BLACK" style="-fx-background-color: #7e0cf5;" text="Verify HOD" textFill="WHITE">
                <font>
-                  <Font name="Tw Cen MT" size="15.0" />
+                  <Font name="Tw Cen MT Bold" size="15.0" />
                </font>
             </JFXButton>
-            <Label fx:id="pending" alignment="CENTER" layoutX="216.0" layoutY="29.0" prefHeight="30.0" prefWidth="162.0" style="-fx-background-color: rgba(58,129,18,0.95);" text="23 pending" textFill="WHITE" wrapText="true">
+            <Label fx:id="pending" alignment="CENTER" layoutX="216.0" layoutY="29.0" prefHeight="30.0" prefWidth="162.0" style="-fx-background-color: #527318;" text="23 pending" textFill="WHITE" wrapText="true">
                <font>
                   <Font name="Tw Cen MT Bold" size="16.0" />
                </font>
             </Label>
          </children>
+         <effect>
+            <DropShadow color="#b2b2b2" height="32.86" radius="15.93" width="32.86" />
+         </effect>
       </AnchorPane>
    </children>
    <stylesheets>

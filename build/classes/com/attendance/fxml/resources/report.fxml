@@ -37,7 +37,7 @@
       </JFXCheckBox>
       <Pane prefHeight="73.0" prefWidth="1366.0" style="-fx-background-color: rgba(0,0,0,0.15);">
          <children>
-            <Label layoutX="116.0" layoutY="21.0" text="Attendance management System" textFill="WHITE">
+            <Label layoutX="116.0" layoutY="21.0" text="Modern Attendance System" textFill="WHITE">
                <font>
                   <Font name="Century Gothic" size="24.0" />
                </font>
