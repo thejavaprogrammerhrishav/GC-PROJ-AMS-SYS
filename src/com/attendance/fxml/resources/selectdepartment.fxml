@@ -1,76 +1,494 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import java.net.URL?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.text.Font?>
 
-<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="406.0" prefWidth="600.0" style="-fx-background-color: linear-gradient(to bottom right, rgba(3,126,243,1) -0.3%, rgba(48,195,158,1) 100.2% ); -fx-background-radius: 15;" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: linear-gradient(rgba(62,9,27,1)  ,  rgba(122,35,52,1), rgba(62,9,27,1) );" stylesheets="@../../resources/seldept.css" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutX="133.0" layoutY="37.0" text="Modern Attendance System" textFill="WHITE">
+      <Label contentDisplay="CENTER" layoutX="140.0" layoutY="35.0" text="Modern Attendance System" textFill="WHITE">
          <font>
-            <Font name="Tw Cen MT" size="28.0" />
+            <Font name="Tw Cen MT" size="36.0" />
          </font>
       </Label>
-      <ImageView fitHeight="52.0" fitWidth="50.0" layoutX="51.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="78.0" fitWidth="68.0" layoutX="56.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../resources/LogoMakr_1wJdNX.png" />
          </image>
       </ImageView>
-      <JFXButton fx:id="department" contentDisplay="GRAPHIC_ONLY" layoutX="86.0" layoutY="127.0" prefHeight="50.0" prefWidth="429.0" style="-fx-background-color: green; -fx-background-radius: 20;" text="Search" textFill="WHITE">
+      <Label contentDisplay="CENTER" layoutX="140.0" layoutY="80.0" prefHeight="27.0" prefWidth="486.0" text="Select Your Department" textFill="WHITE">
          <font>
-            <Font name="Tw Cen MT" size="18.0" />
+            <Font name="Tw Cen MT" size="22.0" />
          </font>
+      </Label>
+      <FlowPane alignment="TOP_CENTER" hgap="20.0" layoutX="-3.0" layoutY="145.0" prefHeight="450.0" prefWidth="1000.0" vgap="20.0">
+         <children>
+            <JFXButton fx:id="anthropology" alignment="CENTER" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" prefHeight="85.0" prefWidth="120.0" ripplerFill="GREEN" styleClass="style" text="Button">
+               <graphic>
+                  <AnchorPane prefHeight="80.0" prefWidth="90.0">
+                     <children>
+                        <ImageView fitHeight="49.0" fitWidth="66.0" layoutX="28.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../resources/icons8-book-shelf-100.png" />
+                           </image>
+                        </ImageView>
+                        <Label alignment="CENTER" layoutY="53.0" text="Anthropology" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                           <font>
+                              <Font name="Tw Cen MT" size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="biotechnology" alignment="CENTER" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" prefHeight="85.0" prefWidth="120.0" ripplerFill="GREEN" styleClass="style" text="Button">
+               <graphic>
+                  <AnchorPane prefHeight="80.0" prefWidth="90.0">
+                     <children>
+                        <ImageView fitHeight="49.0" fitWidth="66.0" layoutX="28.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../resources/icons8-book-shelf-100.png" />
+                           </image>
+                        </ImageView>
+                        <Label alignment="CENTER" layoutY="53.0" text="Biotechnology" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                           <font>
+                              <Font name="Tw Cen MT" size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="botany" alignment="CENTER" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" prefHeight="85.0" prefWidth="120.0" ripplerFill="GREEN" styleClass="style" text="Button">
+               <graphic>
+                  <AnchorPane prefHeight="80.0" prefWidth="90.0">
+                     <children>
+                        <ImageView fitHeight="49.0" fitWidth="66.0" layoutX="28.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../resources/icons8-book-shelf-100.png" />
+                           </image>
+                        </ImageView>
+                        <Label alignment="CENTER" layoutY="53.0" text="Botany" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                           <font>
+                              <Font name="Tw Cen MT" size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="assamese" alignment="CENTER" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" prefHeight="85.0" prefWidth="120.0" ripplerFill="GREEN" styleClass="style" text="Button">
+               <graphic>
+                  <AnchorPane prefHeight="80.0" prefWidth="90.0">
+                     <children>
+                        <ImageView fitHeight="49.0" fitWidth="66.0" layoutX="28.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../resources/icons8-book-shelf-100.png" />
+                           </image>
+                        </ImageView>
+                        <Label alignment="CENTER" layoutY="53.0" text="Assamese" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                           <font>
+                              <Font name="Tw Cen MT" size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="bengali" alignment="CENTER" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" prefHeight="85.0" prefWidth="120.0" ripplerFill="GREEN" styleClass="style" text="Button">
+               <graphic>
+                  <AnchorPane prefHeight="80.0" prefWidth="90.0">
+                     <children>
+                        <ImageView fitHeight="49.0" fitWidth="66.0" layoutX="28.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../resources/icons8-book-shelf-100.png" />
+                           </image>
+                        </ImageView>
+                        <Label alignment="CENTER" layoutY="53.0" text="Bengali" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                           <font>
+                              <Font name="Tw Cen MT" size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="hindi" alignment="CENTER" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" prefHeight="85.0" prefWidth="120.0" ripplerFill="GREEN" styleClass="style" text="Button">
+               <graphic>
+                  <AnchorPane prefHeight="80.0" prefWidth="90.0">
+                     <children>
+                        <ImageView fitHeight="49.0" fitWidth="66.0" layoutX="28.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../resources/icons8-book-shelf-100.png" />
+                           </image>
+                        </ImageView>
+                        <Label alignment="CENTER" layoutY="53.0" text="Hindi" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                           <font>
+                              <Font name="Tw Cen MT" size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="history" alignment="CENTER" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" prefHeight="85.0" prefWidth="120.0" ripplerFill="GREEN" styleClass="style" text="Button">
+               <graphic>
+                  <AnchorPane prefHeight="80.0" prefWidth="90.0">
+                     <children>
+                        <ImageView fitHeight="49.0" fitWidth="66.0" layoutX="28.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../resources/icons8-book-shelf-100.png" />
+                           </image>
+                        </ImageView>
+                        <Label alignment="CENTER" layoutY="53.0" text="History" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                           <font>
+                              <Font name="Tw Cen MT" size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="chemistry" alignment="CENTER" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" prefHeight="85.0" prefWidth="120.0" ripplerFill="GREEN" styleClass="style" text="Button">
+               <graphic>
+                  <AnchorPane prefHeight="80.0" prefWidth="90.0">
+                     <children>
+                        <ImageView fitHeight="49.0" fitWidth="66.0" layoutX="28.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../resources/icons8-book-shelf-100.png" />
+                           </image>
+                        </ImageView>
+                        <Label alignment="CENTER" layoutY="53.0" text="Chemistry" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                           <font>
+                              <Font name="Tw Cen MT" size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="mathematics" alignment="CENTER" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" prefHeight="85.0" prefWidth="120.0" ripplerFill="GREEN" styleClass="style" text="Button">
+               <graphic>
+                  <AnchorPane prefHeight="80.0" prefWidth="90.0">
+                     <children>
+                        <ImageView fitHeight="49.0" fitWidth="66.0" layoutX="28.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../resources/icons8-book-shelf-100.png" />
+                           </image>
+                        </ImageView>
+                        <Label alignment="CENTER" layoutY="53.0" text="Mathematics" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                           <font>
+                              <Font name="Tw Cen MT" size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="zoology" alignment="CENTER" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" prefHeight="85.0" prefWidth="120.0" ripplerFill="GREEN" styleClass="style" text="Button">
+               <graphic>
+                  <AnchorPane prefHeight="80.0" prefWidth="90.0">
+                     <children>
+                        <ImageView fitHeight="49.0" fitWidth="66.0" layoutX="28.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../resources/icons8-book-shelf-100.png" />
+                           </image>
+                        </ImageView>
+                        <Label alignment="CENTER" layoutY="53.0" text="Zoology" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                           <font>
+                              <Font name="Tw Cen MT" size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="persian" alignment="CENTER" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" prefHeight="85.0" prefWidth="120.0" ripplerFill="GREEN" styleClass="style" text="Button">
+               <graphic>
+                  <AnchorPane prefHeight="80.0" prefWidth="90.0">
+                     <children>
+                        <ImageView fitHeight="49.0" fitWidth="66.0" layoutX="28.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../resources/icons8-book-shelf-100.png" />
+                           </image>
+                        </ImageView>
+                        <Label alignment="CENTER" layoutY="53.0" text="Persian" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                           <font>
+                              <Font name="Tw Cen MT" size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="manipuri" alignment="CENTER" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" prefHeight="85.0" prefWidth="120.0" ripplerFill="GREEN" styleClass="style" text="Button">
+               <graphic>
+                  <AnchorPane prefHeight="80.0" prefWidth="90.0">
+                     <children>
+                        <ImageView fitHeight="49.0" fitWidth="66.0" layoutX="28.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../resources/icons8-book-shelf-100.png" />
+                           </image>
+                        </ImageView>
+                        <Label alignment="CENTER" layoutY="53.0" text="Manipuri" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                           <font>
+                              <Font name="Tw Cen MT" size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="geology" alignment="CENTER" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" prefHeight="85.0" prefWidth="120.0" ripplerFill="GREEN" styleClass="style" text="Button">
+               <graphic>
+                  <AnchorPane prefHeight="80.0" prefWidth="90.0">
+                     <children>
+                        <ImageView fitHeight="49.0" fitWidth="66.0" layoutX="28.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../resources/icons8-book-shelf-100.png" />
+                           </image>
+                        </ImageView>
+                        <Label alignment="CENTER" layoutY="53.0" text="Geology" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                           <font>
+                              <Font name="Tw Cen MT" size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="politicalscience" alignment="CENTER" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" prefHeight="85.0" prefWidth="120.0" ripplerFill="GREEN" styleClass="style" text="Button">
+               <graphic>
+                  <AnchorPane prefHeight="80.0" prefWidth="90.0">
+                     <children>
+                        <ImageView fitHeight="49.0" fitWidth="66.0" layoutX="28.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../resources/icons8-book-shelf-100.png" />
+                           </image>
+                        </ImageView>
+                        <Label alignment="CENTER" layoutY="53.0" text="Political Science" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                           <font>
+                              <Font name="Tw Cen MT" size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="philosophy" alignment="CENTER" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" prefHeight="85.0" prefWidth="120.0" ripplerFill="GREEN" styleClass="style" text="Button">
+               <graphic>
+                  <AnchorPane prefHeight="80.0" prefWidth="90.0">
+                     <children>
+                        <ImageView fitHeight="49.0" fitWidth="66.0" layoutX="28.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../resources/icons8-book-shelf-100.png" />
+                           </image>
+                        </ImageView>
+                        <Label alignment="CENTER" layoutY="53.0" text="Philosophy" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                           <font>
+                              <Font name="Tw Cen MT" size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="economics" alignment="CENTER" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" prefHeight="85.0" prefWidth="120.0" ripplerFill="GREEN" styleClass="style" text="Button">
+               <graphic>
+                  <AnchorPane prefHeight="80.0" prefWidth="90.0">
+                     <children>
+                        <ImageView fitHeight="49.0" fitWidth="66.0" layoutX="28.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../resources/icons8-book-shelf-100.png" />
+                           </image>
+                        </ImageView>
+                        <Label alignment="CENTER" layoutY="53.0" text="Economics" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                           <font>
+                              <Font name="Tw Cen MT" size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="statistics" alignment="CENTER" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" prefHeight="85.0" prefWidth="120.0" ripplerFill="GREEN" styleClass="style" text="Button">
+               <graphic>
+                  <AnchorPane prefHeight="80.0" prefWidth="90.0">
+                     <children>
+                        <ImageView fitHeight="49.0" fitWidth="66.0" layoutX="28.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../resources/icons8-book-shelf-100.png" />
+                           </image>
+                        </ImageView>
+                        <Label alignment="CENTER" layoutY="53.0" text="Statistics" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                           <font>
+                              <Font name="Tw Cen MT" size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="physics" alignment="CENTER" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" prefHeight="85.0" prefWidth="120.0" ripplerFill="GREEN" styleClass="style" text="Button">
+               <graphic>
+                  <AnchorPane prefHeight="80.0" prefWidth="90.0">
+                     <children>
+                        <ImageView fitHeight="49.0" fitWidth="66.0" layoutX="28.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../resources/icons8-book-shelf-100.png" />
+                           </image>
+                        </ImageView>
+                        <Label alignment="CENTER" layoutY="53.0" text="Physics" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                           <font>
+                              <Font name="Tw Cen MT" size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="commerce" alignment="CENTER" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" prefHeight="85.0" prefWidth="120.0" ripplerFill="GREEN" styleClass="style" text="Button">
+               <graphic>
+                  <AnchorPane prefHeight="80.0" prefWidth="90.0">
+                     <children>
+                        <ImageView fitHeight="49.0" fitWidth="66.0" layoutX="28.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../resources/icons8-book-shelf-100.png" />
+                           </image>
+                        </ImageView>
+                        <Label alignment="CENTER" layoutY="53.0" text="Commerce" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                           <font>
+                              <Font name="Tw Cen MT" size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="english" alignment="CENTER" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" prefHeight="85.0" prefWidth="120.0" ripplerFill="GREEN" styleClass="style" text="Button">
+               <graphic>
+                  <AnchorPane prefHeight="80.0" prefWidth="90.0">
+                     <children>
+                        <ImageView fitHeight="49.0" fitWidth="66.0" layoutX="28.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../resources/icons8-book-shelf-100.png" />
+                           </image>
+                        </ImageView>
+                        <Label alignment="CENTER" layoutY="53.0" text="English" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                           <font>
+                              <Font name="Tw Cen MT" size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="sanskrit" alignment="CENTER" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" prefHeight="85.0" prefWidth="120.0" ripplerFill="GREEN" styleClass="style" text="Button">
+               <graphic>
+                  <AnchorPane prefHeight="80.0" prefWidth="90.0">
+                     <children>
+                        <ImageView fitHeight="49.0" fitWidth="66.0" layoutX="28.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../resources/icons8-book-shelf-100.png" />
+                           </image>
+                        </ImageView>
+                        <Label alignment="CENTER" layoutY="53.0" text="Sanskrit" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                           <font>
+                              <Font name="Tw Cen MT" size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="computerscience" alignment="CENTER" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" prefHeight="85.0" prefWidth="210.0" ripplerFill="GREEN" styleClass="style" text="Button">
+               <graphic>
+                  <AnchorPane prefHeight="80.0" prefWidth="90.0">
+                     <children>
+                        <ImageView fitHeight="49.0" fitWidth="66.0" layoutX="73.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../resources/icons8-book-shelf-100.png" />
+                           </image>
+                        </ImageView>
+                        <Label alignment="CENTER" layoutY="53.0" text="Computer Science" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                           <font>
+                              <Font name="Tw Cen MT" size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="ecologyenvironmentalscience" alignment="CENTER" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" prefHeight="85.0" prefWidth="240.0" ripplerFill="GREEN" styleClass="style" text="Button">
+               <graphic>
+                  <AnchorPane prefHeight="80.0" prefWidth="90.0">
+                     <children>
+                        <ImageView fitHeight="49.0" fitWidth="66.0" layoutX="88.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../resources/icons8-book-shelf-100.png" />
+                           </image>
+                        </ImageView>
+                        <Label alignment="CENTER" layoutY="53.0" text="Ecology &amp; Environmental Science" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                           <font>
+                              <Font name="Tw Cen MT" size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="bba" alignment="CENTER" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" prefHeight="85.0" prefWidth="210.0" ripplerFill="GREEN" styleClass="style" text="Button">
+               <graphic>
+                  <AnchorPane prefHeight="80.0" prefWidth="90.0">
+                     <children>
+                        <ImageView fitHeight="49.0" fitWidth="66.0" layoutX="73.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../resources/icons8-book-shelf-100.png" />
+                           </image>
+                        </ImageView>
+                        <Label alignment="CENTER" layoutY="53.0" text="Business Administration" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                           <font>
+                              <Font name="Tw Cen MT" size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="masscomm" alignment="CENTER" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" prefHeight="85.0" prefWidth="210.0" ripplerFill="GREEN" styleClass="style" text="Button">
+               <graphic>
+                  <AnchorPane prefHeight="80.0" prefWidth="90.0">
+                     <children>
+                        <ImageView fitHeight="49.0" fitWidth="66.0" layoutX="73.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../resources/icons8-book-shelf-100.png" />
+                           </image>
+                        </ImageView>
+                        <Label alignment="CENTER" layoutY="53.0" text="Mass Communication" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                           <font>
+                              <Font name="Tw Cen MT" size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </graphic>
+            </JFXButton>
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="15.0" right="10.0" top="10.0" />
+         </padding>
+      </FlowPane>
+      <JFXButton fx:id="close" contentDisplay="GRAPHIC_ONLY" layoutX="959.0" layoutY="12.0">
          <graphic>
-            <HBox alignment="CENTER_LEFT" prefHeight="21.0" prefWidth="413.0">
-               <children>
-                  <Label fx:id="selected" prefHeight="23.0" prefWidth="343.0" text="Select Department" textFill="WHITE">
-                     <font>
-                        <Font name="Tw Cen MT" size="20.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="20.0" fitWidth="19.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../resources/LogoMakr_4QhXdT.png" />
-                     </image>
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                  </ImageView>
-               </children>
-               <padding>
-                  <Insets left="25.0" right="25.0" />
-               </padding>
-            </HBox>
+            <FontAwesomeIconView fill="WHITE" glyphName="CLOSE" size="1.6em" />
          </graphic>
       </JFXButton>
-      <Pane fx:id="pane" layoutX="100.0" layoutY="177.0" prefHeight="197.0" prefWidth="401.0" style="-fx-background-color: white;" visible="false">
-         <children>
-            <TextField fx:id="search" layoutX="18.0" layoutY="14.0" prefHeight="28.0" prefWidth="367.0" promptText="Search" style="-fx-font-family: 'Tw Cen MT',arial; -fx-font-size: 15; -fx-background-color: transparent;" />
-            <ListView fx:id="list" layoutX="-1.0" layoutY="48.0" prefHeight="135.0" prefWidth="401.0" style="-fx-background-color: transparent; -fx-font-size: 14; -fx-font-family: 'Tw Cen MT',arial;" />
-         </children>
-      </Pane>
-      <JFXButton fx:id="proceed" layoutX="159.0" layoutY="296.0" prefHeight="33.0" prefWidth="132.0" style="-fx-background-color: blue;" text="Continue " textFill="WHITE">
-         <font>
-            <Font name="Tw Cen MT" size="18.0" />
-         </font>
-      </JFXButton>
-      <JFXButton fx:id="cancel" layoutX="316.0" layoutY="296.0" prefHeight="33.0" prefWidth="132.0" style="-fx-background-color: #993399;" text="Cancel" textFill="WHITE">
-         <font>
-            <Font name="Tw Cen MT" size="18.0" />
-         </font>
-      </JFXButton>
    </children>
-   <stylesheets>
-      <URL value="@../../resources/scrollpane.css" />
-      <URL value="@../../resources/normalscroll.css" />
-   </stylesheets>
 </fx:root>

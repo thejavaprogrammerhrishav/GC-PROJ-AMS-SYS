@@ -52,6 +52,9 @@ public class ViewFacultyDetailsController extends AnchorPane {
     private Label email;
     
     @FXML
+    private Label department;
+    
+    @FXML
     private ImageView icon;
     
     private FXMLLoader fxml;
@@ -79,12 +82,13 @@ public class ViewFacultyDetailsController extends AnchorPane {
         details = user.getDetails();
                 
         icon.setImage(new Image(new ByteArrayInputStream(user.getImage())));
-        type.setText("User Type: "+user.getType());
-        created.setText("Account Created: "+user.getDate());
+        type.setText(user.getType());
+        created.setText(user.getDate());
         name.setText(details.getName());       
         gender.setText(details.getGender());     
         number.setText(details.getContact());     
         email.setText(details.getEmailId());
+        department.setText(user.getDepartment());
         
         close.setOnAction(e->SwitchRoot.switchRoot(Start.st, parent));
     }

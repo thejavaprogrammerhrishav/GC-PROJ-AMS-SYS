@@ -12,57 +12,111 @@ import com.attendance.util.SwitchRoot;
 import com.attendance.util.SystemUtils;
 import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  *
  * @author Programmer Hrishav
  */
 public class SelectDepartmentController extends AnchorPane {
-    
-    @FXML
-    private Pane pane;
-
-     @FXML
-    private JFXButton department;
 
     @FXML
-    private Label selected;
+    private JFXButton anthropology;
 
     @FXML
-    private TextField search;
+    private JFXButton biotechnology;
 
     @FXML
-    private ListView<String> list;
+    private JFXButton botany;
 
     @FXML
-    private JFXButton proceed;
+    private JFXButton assamese;
 
     @FXML
-    private JFXButton cancel;
+    private JFXButton bengali;
+
+    @FXML
+    private JFXButton hindi;
+
+    @FXML
+    private JFXButton history;
+
+    @FXML
+    private JFXButton chemistry;
+
+    @FXML
+    private JFXButton mathematics;
+
+    @FXML
+    private JFXButton zoology;
+
+    @FXML
+    private JFXButton persian;
+
+    @FXML
+    private JFXButton manipuri;
+
+    @FXML
+    private JFXButton geology;
+
+    @FXML
+    private JFXButton politicalscience;
+
+    @FXML
+    private JFXButton philosophy;
+
+    @FXML
+    private JFXButton economics;
+
+    @FXML
+    private JFXButton statistics;
+
+    @FXML
+    private JFXButton physics;
+
+    @FXML
+    private JFXButton commerce;
+
+    @FXML
+    private JFXButton english;
+
+    @FXML
+    private JFXButton sanskrit;
+
+    @FXML
+    private JFXButton computerscience;
+
+    @FXML
+    private JFXButton ecologyenvironmentalscience;
+
+    @FXML
+    private JFXButton bba;
+
+    @FXML
+    private JFXButton masscomm;
+
+    @FXML
+    private JFXButton close;
 
     private FXMLLoader fxml;
 
     private String type;
     private Parent parent;
+    private String selectedDepartment;
 
-    public SelectDepartmentController(String type,Parent parent) {
+    public SelectDepartmentController(String type, Parent parent) {
         this.type = type;
-        this.parent =parent;
+        this.parent = parent;
         fxml = Fxml.getSelectDepartmentFXML();
         fxml.setRoot(this);
         fxml.setController(this);
@@ -76,48 +130,114 @@ public class SelectDepartmentController extends AnchorPane {
 
     @FXML
     private void initialize() {
-        list.getItems().setAll(Arrays.asList(SystemUtils.getDepartments()));
-        
-        list.getSelectionModel().selectedItemProperty().addListener((ol,o,n)->{
-            if(n!=null || !n.isEmpty()) {
-                selected.setText(n);
-            }
-            pane.setVisible(false);
-             proceed.setVisible(true);
-            cancel.setVisible(true);
-        });
-        
-        pane.setVisible(false);
-        
-        search.textProperty().addListener((ol,o,n)->{
-            if(n.isEmpty()) {
-                list.getItems().setAll(Arrays.asList(SystemUtils.getDepartments()));
-            }
-            else {
-                List<String> filtered = Arrays.asList(SystemUtils.getDepartments()).stream().filter(f->f.toLowerCase().contains(n.toLowerCase())).collect(Collectors.toList());
-                list.getItems().setAll(filtered);
-            }
-        });
-        
-        department.setOnAction(e->{
-            proceed.setVisible(false);
-            cancel.setVisible(false);
-            pane.setVisible(true);
-        });
+        close.setOnAction(this::close);
 
-        proceed.setOnAction(this::proceed);
-        cancel.setOnAction(this::close);
+        selectedDepartment = "";
+
+        btnActions();
     }
-    
-    private String getSelectedDepartment() {
-        if(selected.getText().equals("Select Department") && list.getSelectionModel().getSelectedIndex()<0) {
-            return "";
-        }else{
-            if(selected.getText().equals(list.getSelectionModel().getSelectedItem())){
-                return selected.getText();
-            }
-        }
-        return String.valueOf(null);
+
+    private void btnActions() {
+        anthropology.setOnAction(evt -> {
+            selectedDepartment = "Anthropology";
+            proceed(evt);
+        });
+        biotechnology.setOnAction(evt -> {
+            selectedDepartment = "Biotechnology";
+            proceed(evt);
+        });
+        botany.setOnAction(evt -> {
+            selectedDepartment = "Botany";
+            proceed(evt);
+        });
+        assamese.setOnAction(evt -> {
+            selectedDepartment = "Assamese";
+            proceed(evt);
+        });
+        bengali.setOnAction(evt -> {
+            selectedDepartment = "Bengali";
+            proceed(evt);
+        });
+        hindi.setOnAction(evt -> {
+            selectedDepartment = "Hindi";
+            proceed(evt);
+        });
+        history.setOnAction(evt -> {
+            selectedDepartment = "History";
+            proceed(evt);
+        });
+        chemistry.setOnAction(evt -> {
+            selectedDepartment = "Chemistry";
+            proceed(evt);
+        });
+        mathematics.setOnAction(evt -> {
+            selectedDepartment = "Mathematics";
+            proceed(evt);
+        });
+        zoology.setOnAction(evt -> {
+            selectedDepartment = "Zoology";
+            proceed(evt);
+        });
+        persian.setOnAction(evt -> {
+            selectedDepartment = "Persian";
+            proceed(evt);
+        });
+        manipuri.setOnAction(evt -> {
+            selectedDepartment = "Manipuri";
+            proceed(evt);
+        });
+        geology.setOnAction(evt -> {
+            selectedDepartment = "Geology";
+            proceed(evt);
+        });
+        politicalscience.setOnAction(evt -> {
+            selectedDepartment = "Political Science";
+            proceed(evt);
+        });
+        philosophy.setOnAction(evt -> {
+            selectedDepartment = "Philosophy";
+            proceed(evt);
+        });
+        economics.setOnAction(evt -> {
+            selectedDepartment = "Economics";
+            proceed(evt);
+        });
+        statistics.setOnAction(evt -> {
+            selectedDepartment = "Statistics";
+            proceed(evt);
+        });
+        physics.setOnAction(evt -> {
+            selectedDepartment = "Physics";
+            proceed(evt);
+        });
+        commerce.setOnAction(evt -> {
+            selectedDepartment = "Commerce";
+            proceed(evt);
+        });
+        english.setOnAction(evt -> {
+            selectedDepartment = "English";
+            proceed(evt);
+        });
+        sanskrit.setOnAction(evt -> {
+            selectedDepartment = "Sanskrit";
+            proceed(evt);
+        });
+        computerscience.setOnAction(evt -> {
+            selectedDepartment = "Computer Science";
+            proceed(evt);
+        });
+        ecologyenvironmentalscience.setOnAction(evt -> {
+            selectedDepartment = "Ecology & Environmental Science";
+            proceed(evt);
+        });
+        bba.setOnAction(evt -> {
+            selectedDepartment = "Business Administration";
+            proceed(evt);
+        });
+        masscomm.setOnAction(evt -> {
+            selectedDepartment = "Mass Communication";
+            proceed(evt);
+        });
     }
 
     private void close(ActionEvent evt) {
@@ -126,30 +246,23 @@ public class SelectDepartmentController extends AnchorPane {
 
     private void proceed(ActionEvent evt) {
         close(evt);
-        if (getSelectedDepartment()!=null && !getSelectedDepartment().isEmpty() && type.equals("Student")) {
-            SwitchRoot.switchRoot(Start.st, RootFactory.getViewStudentDetailsRoot(getSelectedDepartment(),parent));
-        } 
-        else if (getSelectedDepartment()!=null && !getSelectedDepartment().isEmpty() && type.equals("Faculty")) {
-            SwitchRoot.switchRoot(Start.st, RootFactory.getViewFacultyRoot(getSelectedDepartment(),parent));
-        } 
-        else if (getSelectedDepartment()!=null && !getSelectedDepartment().isEmpty() && type.equals("Class Details")) {
-            SystemUtils.setDepartment(getSelectedDepartment());
-            SwitchRoot.switchRoot(Start.st, RootFactory.getClassDetailsRoot(parent,"N/A"));
-        } 
-        else if (getSelectedDepartment()!=null && !getSelectedDepartment().isEmpty() && type.equals("Daily Class Details")) {
-            SystemUtils.setDepartment(getSelectedDepartment());
-            SwitchRoot.switchRoot(Start.st, RootFactory.getDailyStatsRoot(parent,"N/A"));
-        } 
-        else if (getSelectedDepartment()!=null && !getSelectedDepartment().isEmpty() && type.equals("verifyhod")) {
-            SystemUtils.setDepartment(getSelectedDepartment());
-            SwitchRoot.switchRoot(Start.st, RootFactory.getPendingRequestRoot(parent, SystemUtils.getDepartment(),false));
-        }
-        else if (getSelectedDepartment()!=null && !getSelectedDepartment().isEmpty() && type.equals("settings")) {
-            SwitchRoot.switchRoot(Start.st, RootFactory.getDeleteLoginUserRoot(parent, getSelectedDepartment()));
-        }
-        
-        else if (getSelectedDepartment()!=null && !getSelectedDepartment().isEmpty() && type.equals("BlockLogin")) {
-            SwitchRoot.switchRoot(Start.st, RootFactory.getBlockLoginUserRoot(parent, getSelectedDepartment()));
+        if (selectedDepartment != null && !selectedDepartment.isEmpty() && type.equals("Student")) {
+            SwitchRoot.switchRoot(Start.st, RootFactory.getViewStudentDetailsRoot(selectedDepartment, parent));
+        } else if (selectedDepartment != null && !selectedDepartment.isEmpty() && type.equals("Faculty")) {
+            SwitchRoot.switchRoot(Start.st, RootFactory.getViewFacultyRoot(selectedDepartment, parent));
+        } else if (selectedDepartment != null && !selectedDepartment.isEmpty() && type.equals("Class Details")) {
+            SystemUtils.setDepartment(selectedDepartment);
+            SwitchRoot.switchRoot(Start.st, RootFactory.getClassDetailsRoot(parent, "N/A"));
+        } else if (selectedDepartment != null && !selectedDepartment.isEmpty() && type.equals("Daily Class Details")) {
+            SystemUtils.setDepartment(selectedDepartment);
+            SwitchRoot.switchRoot(Start.st, RootFactory.getDailyStatsRoot(parent, "N/A"));
+        } else if (selectedDepartment != null && !selectedDepartment.isEmpty() && type.equals("verifyhod")) {
+            SystemUtils.setDepartment(selectedDepartment);
+            SwitchRoot.switchRoot(Start.st, RootFactory.getPendingRequestRoot(parent, SystemUtils.getDepartment(), false));
+        } else if (selectedDepartment != null && !selectedDepartment.isEmpty() && type.equals("settings")) {
+            SwitchRoot.switchRoot(Start.st, RootFactory.getDeleteLoginUserRoot(parent, selectedDepartment));
+        } else if (selectedDepartment != null && !selectedDepartment.isEmpty() && type.equals("BlockLogin")) {
+            SwitchRoot.switchRoot(Start.st, RootFactory.getBlockLoginUserRoot(parent, selectedDepartment));
         }
     }
 }

@@ -1,0 +1,3 @@
+.style:hover{
+	-fx-background-color: linear-gradient(to bottom, rgba(62,9,27,1),  rgba(122,35,52,1), rgba(62,9,27,1));
+}

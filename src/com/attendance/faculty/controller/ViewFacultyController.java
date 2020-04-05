@@ -5,7 +5,6 @@
  */
 package com.attendance.faculty.controller;
 
-import com.attendance.login.dao.Login;
 import com.attendance.login.service.LoginService;
 import com.attendance.login.user.model.User;
 import com.attendance.main.Start;
@@ -22,10 +21,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.FlowPane;
 
 /**
  *
@@ -46,10 +44,7 @@ public class ViewFacultyController extends AnchorPane {
     private JFXButton search;
 
     @FXML
-    private VBox list;
-
-    @FXML
-    private Label department;
+    private FlowPane list;
 
     private FXMLLoader fxml;
     private LoginService dao;
@@ -74,7 +69,6 @@ public class ViewFacultyController extends AnchorPane {
     private void initialize() {
         dao = (LoginService) Start.app.getBean("loginservice");
         dao.setParent(this);
-        department.setText("Department: " + cdepartment);
 
         loadAllFaculty(null);
         allfaculties.setOnAction(this::loadAllFaculty);
