@@ -31,7 +31,7 @@
       </AnchorPane>
       <BorderPane fx:id="pane" layoutY="90.0" prefHeight="679.0" prefWidth="1366.0" style="-fx-background-color: #0F0F0F;">
          <top>
-            <AnchorPane prefHeight="65.0" prefWidth="1366.0" style="-fx-background-color: #01013B;" BorderPane.alignment="CENTER">
+            <AnchorPane prefHeight="65.0" prefWidth="1366.0" style="-fx-background-color: #262627;" BorderPane.alignment="CENTER">
                <children>
                   <JFXButton fx:id="studentlist" buttonType="RAISED" graphicTextGap="20.0" layoutX="37.0" layoutY="15.0" prefHeight="35.0" prefWidth="183.0" ripplerFill="BLACK" style="-fx-alignment: center_left;" styleClass="node" text="Student List" textFill="WHITE">
                      <font>
@@ -92,7 +92,7 @@
             </AnchorPane>
          </top>
       </BorderPane>
-      <AnchorPane layoutX="367.0" prefHeight="90.0" prefWidth="1000.0" style="-fx-background-color: #01013B;">
+      <AnchorPane layoutX="367.0" prefHeight="90.0" prefWidth="1000.0" style="-fx-background-color: #262627;">
          <children>
             <ImageView fitHeight="50.0" fitWidth="80.0" layoutX="23.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
                <image>

@@ -29,7 +29,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <BorderPane fx:id="pane" layoutY="88.0" prefHeight="680.0" prefWidth="1366.0" style="-fx-background-color: #0F0F0F;">
+      <BorderPane fx:id="pane" layoutY="88.0" prefHeight="680.0" prefWidth="1366.0" style="-fx-background-color: #262627;">
          <top>
             <AnchorPane prefHeight="97.0" prefWidth="1366.0" style="-fx-background-color: #1f1f1f;" BorderPane.alignment="CENTER">
                <children>
@@ -110,7 +110,7 @@
             </AnchorPane>
          </top>
       </BorderPane>
-      <AnchorPane layoutX="349.0" prefHeight="90.0" prefWidth="1018.0" style="-fx-background-color: #01013B;">
+      <AnchorPane layoutX="349.0" prefHeight="90.0" prefWidth="1018.0" style="-fx-background-color: #262627;">
          <children>
             <ImageView fitHeight="50.0" fitWidth="80.0" layoutX="38.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
                <image>

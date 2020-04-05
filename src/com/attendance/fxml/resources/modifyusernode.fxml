@@ -9,22 +9,22 @@
 
 <fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="77.0" prefWidth="1220.0" style="-fx-background-color: transparent; -fx-background-radius: 20;" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView fx:id="image" fitHeight="50.0" fitWidth="57.0" layoutX="57.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="image" fitHeight="50.0" fitWidth="57.0" layoutX="37.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../resources/52abd3e155fcd67d30cf9693e6ada8af.png" />
          </image>
       </ImageView>
-      <Label fx:id="name" layoutX="146.0" layoutY="30.0" prefHeight="18.0" prefWidth="503.0" text="Name" textFill="WHITE">
+      <Label fx:id="name" layoutX="101.0" layoutY="20.0" prefHeight="38.0" prefWidth="578.0" text="Name" textFill="WHITE">
          <font>
-            <Font name="Tw Cen MT" size="16.0" />
+            <Font name="Tw Cen MT" size="18.0" />
          </font>
       </Label>
-      <JFXButton fx:id="hod" layoutX="739.0" layoutY="20.0" prefHeight="38.0" prefWidth="182.0" style="-fx-background-color: red;" text="Head of Department" textFill="WHITE">
+      <JFXButton fx:id="hod" layoutX="748.0" layoutY="20.0" prefHeight="38.0" prefWidth="182.0" style="-fx-background-color: red;" text="Head of Department" textFill="WHITE">
          <font>
             <Font name="Tw Cen MT" size="16.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="faculty" layoutX="957.0" layoutY="20.0" prefHeight="38.0" prefWidth="182.0" style="-fx-background-color: green;" text="Faculty" textFill="WHITE">
+      <JFXButton fx:id="faculty" layoutX="966.0" layoutY="20.0" prefHeight="38.0" prefWidth="182.0" style="-fx-background-color: green;" text="Faculty" textFill="WHITE">
          <font>
             <Font name="Tw Cen MT" size="16.0" />
          </font>

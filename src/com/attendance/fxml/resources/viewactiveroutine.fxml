@@ -8,9 +8,9 @@
 
 <fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="599.0" prefWidth="674.0" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Pane prefHeight="58.0" prefWidth="674.0" style="-fx-background-color: #4e67c8;">
+      <Pane prefHeight="58.0" prefWidth="674.0" style="-fx-background-color: #0013FF;">
          <children>
-            <Label layoutX="253.0" layoutY="16.0" text="Current Active Routine" textFill="WHITE">
+            <Label layoutX="232.0" layoutY="16.0" text="Current Active Routine" textFill="WHITE">
                <font>
                   <Font name="Tw Cen MT" size="24.0" />
                </font>

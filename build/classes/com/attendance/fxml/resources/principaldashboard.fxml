@@ -232,12 +232,12 @@
             </VBox>
          </children>
          <effect>
-            <DropShadow color="#b2b2b2" height="32.86" radius="15.93" width="32.86" />
+            <DropShadow color="#bcb8b8" height="32.86" radius="15.93" width="32.86" />
          </effect>
       </Pane>
       <AnchorPane fx:id="pane" layoutX="589.0" layoutY="104.0" prefHeight="200.0" prefWidth="403.0" style="-fx-background-color: white; -fx-background-radius: 20;">
          <effect>
-            <DropShadow color="#b2b2b2" height="32.86" radius="15.93" width="32.86" />
+            <DropShadow color="#bcb8b8" height="32.86" radius="15.93" width="32.86" />
          </effect>
       </AnchorPane>
       <AnchorPane layoutX="589.0" layoutY="334.0" prefHeight="137.0" prefWidth="403.0" style="-fx-background-color: white; -fx-background-radius: 20;">
@@ -264,7 +264,7 @@
             </Label>
          </children>
          <effect>
-            <DropShadow color="#b2b2b2" height="32.86" radius="15.93" width="32.86" />
+            <DropShadow color="#bcb8b8" height="32.86" radius="15.93" width="32.86" />
          </effect>
       </AnchorPane>
    </children>

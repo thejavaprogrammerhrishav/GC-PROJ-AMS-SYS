@@ -13,7 +13,7 @@
             <Font name="Arial" size="20.0" />
          </font>
       </Label>
-      <Label fx:id="username" layoutX="23.0" layoutY="39.0" prefHeight="17.0" prefWidth="230.0" text="\@hrishav" textFill="GREY">
+      <Label fx:id="username" layoutX="23.0" layoutY="41.0" prefHeight="17.0" prefWidth="230.0" text="\@hrishav" textFill="GREY">
          <font>
             <Font name="Arial" size="15.0" />
          </font>

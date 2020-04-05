@@ -86,12 +86,12 @@
             <Font name="Tw Cen MT" size="18.0" />
          </font>
       </JFXButton>
-      <PasswordField fx:id="password" layoutX="742.0" layoutY="447.0" prefHeight="25.0" prefWidth="266.0" promptText="Enter Password">
+      <PasswordField fx:id="password" layoutX="745.0" layoutY="447.0" prefHeight="25.0" prefWidth="266.0" promptText="Enter Password">
          <font>
             <Font name="Tw Cen MT" size="16.0" />
          </font>
       </PasswordField>
-      <PasswordField fx:id="confirmpassword" layoutX="1039.0" layoutY="447.0" prefHeight="25.0" prefWidth="266.0" promptText="Confirm Password">
+      <PasswordField fx:id="confirmpassword" layoutX="1027.0" layoutY="447.0" prefHeight="25.0" prefWidth="266.0" promptText="Confirm Password">
          <font>
             <Font name="Tw Cen MT" size="16.0" />
          </font>

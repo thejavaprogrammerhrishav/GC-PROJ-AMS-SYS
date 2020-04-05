@@ -52,7 +52,7 @@
                               <Font name="Tw Cen MT" size="19.0" />
                            </font>
                         </Label>
-                        <Label layoutX="94.0" layoutY="63.0" prefHeight="21.0" prefWidth="192.0" text="Remove A Faculty User" textFill="#d7d7d7">
+                        <Label layoutX="94.0" layoutY="63.0" prefHeight="21.0" prefWidth="192.0" text="Remove A Faculty User" textFill="#ebe8e8">
                            <font>
                               <Font name="Tw Cen MT" size="16.0" />
                            </font>
@@ -75,7 +75,7 @@
                               <Font name="Tw Cen MT" size="19.0" />
                            </font>
                         </Label>
-                        <Label layoutX="94.0" layoutY="63.0" prefHeight="21.0" prefWidth="145.0" text="Change Type Of User" textFill="#d7d7d7">
+                        <Label layoutX="94.0" layoutY="63.0" prefHeight="21.0" prefWidth="145.0" text="Change Type Of User" textFill="#ebe8e8">
                            <font>
                               <Font name="Tw Cen MT" size="16.0" />
                            </font>
@@ -98,7 +98,7 @@
                               <Font name="Tw Cen MT" size="19.0" />
                            </font>
                         </Label>
-                        <Label layoutX="94.0" layoutY="63.0" prefHeight="21.0" prefWidth="145.0" text="Track Principal Activity" textFill="#d7d7d7">
+                        <Label layoutX="94.0" layoutY="63.0" prefHeight="21.0" prefWidth="145.0" text="Track Principal Activity" textFill="#ebe8e8">
                            <font>
                               <Font name="Tw Cen MT" size="16.0" />
                            </font>
@@ -121,7 +121,7 @@
                               <Font name="Tw Cen MT" size="19.0" />
                            </font>
                         </Label>
-                        <Label layoutX="94.0" layoutY="63.0" prefHeight="21.0" prefWidth="145.0" text="Track HOD Activity" textFill="#d7d7d7">
+                        <Label layoutX="94.0" layoutY="63.0" prefHeight="21.0" prefWidth="145.0" text="Track HOD Activity" textFill="#ebe8e8">
                            <font>
                               <Font name="Tw Cen MT" size="16.0" />
                            </font>
@@ -144,7 +144,7 @@
                               <Font name="Tw Cen MT" size="19.0" />
                            </font>
                         </Label>
-                        <Label layoutX="94.0" layoutY="63.0" prefHeight="21.0" prefWidth="145.0" text="Restrict User Login" textFill="#d7d7d7">
+                        <Label layoutX="94.0" layoutY="63.0" prefHeight="21.0" prefWidth="145.0" text="Restrict User Login" textFill="#ebe8e8">
                            <font>
                               <Font name="Tw Cen MT" size="16.0" />
                            </font>

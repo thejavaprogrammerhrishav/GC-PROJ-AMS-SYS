@@ -48,30 +48,36 @@
                   <Font name="Tw Cen MT" size="18.0" />
                </font>
             </Label>
-            <Label layoutX="22.0" layoutY="189.0" text="Paper Name">
+            <Label layoutX="22.0" layoutY="175.0" text="Paper Name">
                <font>
                   <Font name="Tw Cen MT" size="18.0" />
                </font>
             </Label>
-            <TextField fx:id="papercode" layoutX="144.0" layoutY="124.0" prefHeight="25.0" prefWidth="192.0" promptText="Enter Code" />
-            <TextField fx:id="papername" layoutX="144.0" layoutY="190.0" prefHeight="25.0" prefWidth="287.0" promptText="Enter Paper Name" />
-            <Label layoutX="22.0" layoutY="260.0" text="Semester">
+            <TextField fx:id="papercode" layoutX="144.0" layoutY="122.0" prefHeight="25.0" prefWidth="192.0" promptText="Enter Code">
+               <font>
+                  <Font name="Tw Cen MT" size="16.0" />
+               </font></TextField>
+            <TextField fx:id="papername" layoutX="144.0" layoutY="173.0" prefHeight="25.0" prefWidth="287.0" promptText="Enter Paper Name">
+               <font>
+                  <Font name="Tw Cen MT" size="16.0" />
+               </font></TextField>
+            <Label layoutX="22.0" layoutY="235.0" text="Semester">
                <font>
                   <Font name="Tw Cen MT" size="18.0" />
                </font>
             </Label>
-            <JFXComboBox fx:id="semester" layoutX="144.0" layoutY="249.0" prefHeight="25.0" prefWidth="192.0" promptText="Select Semester" style="-fx-font-family: 'Tw Cen MT',san-serif; -fx-font-size: 16;" />
-            <Label layoutX="22.0" layoutY="328.0" text="Department">
+            <JFXComboBox fx:id="semester" layoutX="144.0" layoutY="228.0" prefHeight="25.0" prefWidth="192.0" promptText="Select Semester" style="-fx-font-family: 'Tw Cen MT',san-serif; -fx-font-size: 16;" />
+            <Label layoutX="22.0" layoutY="291.0" text="Department">
                <font>
                   <Font name="Tw Cen MT" size="18.0" />
                </font>
             </Label>
-            <Label layoutX="22.0" layoutY="397.0" text="Course Type">
+            <Label layoutX="22.0" layoutY="343.0" text="Course Type">
                <font>
                   <Font name="Tw Cen MT" size="18.0" />
                </font>
             </Label>
-            <JFXComboBox fx:id="coursetype" layoutX="144.0" layoutY="388.0" prefHeight="25.0" prefWidth="287.0" promptText="Select Course Type" style="-fx-font-family: 'Tw Cen MT',san-serif; -fx-font-size: 16;" />
+            <JFXComboBox fx:id="coursetype" layoutX="144.0" layoutY="334.0" prefHeight="25.0" prefWidth="287.0" promptText="Select Course Type" style="-fx-font-family: 'Tw Cen MT',san-serif; -fx-font-size: 16;" />
             <JFXButton fx:id="addpaper" layoutX="14.0" layoutY="470.0" prefHeight="33.0" prefWidth="136.0" style="-fx-background-color: #161699;" text="Add Paper" textFill="WHITE">
                <font>
                   <Font name="Tw Cen MT" size="18.0" />
@@ -87,7 +93,7 @@
                   <Font name="Tw Cen MT" size="18.0" />
                </font>
             </JFXButton>
-            <Label fx:id="department" layoutX="144.0" layoutY="328.0" prefHeight="21.0" prefWidth="287.0" text="Department">
+            <Label fx:id="department" layoutX="144.0" layoutY="291.0" prefHeight="21.0" prefWidth="287.0" text="Department">
                <font>
                   <Font name="Tw Cen MT" size="18.0" />
                </font>
@@ -98,7 +104,7 @@
          <children>
             <TextField fx:id="searchbar" layoutX="26.0" layoutY="28.0" prefHeight="33.0" prefWidth="435.0" promptText="Enter Paper Code">
                <font>
-                  <Font name="Tw Cen MT" size="18.0" />
+                  <Font name="Tw Cen MT" size="16.0" />
                </font>
             </TextField>
             <JFXButton fx:id="search" layoutX="26.0" layoutY="74.0" prefHeight="33.0" prefWidth="162.0" style="-fx-background-color: #fd910a;" text="Search" textFill="WHITE">
@@ -137,7 +143,7 @@
       </Pane>
       <Pane layoutX="494.0" layoutY="194.0" prefHeight="572.0" prefWidth="873.0" style="-fx-background-color: #f0f0f0;">
          <children>
-            <TableView fx:id="list" layoutX="7.0" layoutY="14.0" prefHeight="541.0" prefWidth="855.0" style="-fx-font-size: 14;">
+            <TableView fx:id="list" layoutX="7.0" layoutY="14.0" prefHeight="541.0" prefWidth="855.0" style="-fx-background-color: white;">
               <columns>
                 <TableColumn fx:id="lpapercode" editable="false" prefWidth="124.0" resizable="false" sortable="false" style="-fx-font-size: 10;" text="Paper Code" />
                 <TableColumn fx:id="lpapername" editable="false" prefWidth="257.0" resizable="false" sortable="false" style="-fx-font-size: 10;" text="Paper Name" />

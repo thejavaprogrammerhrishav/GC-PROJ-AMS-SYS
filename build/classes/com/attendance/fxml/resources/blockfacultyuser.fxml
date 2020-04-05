@@ -7,7 +7,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -15,9 +14,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: white;" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: #eee;" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Pane prefHeight="75.0" prefWidth="1366.0" style="-fx-background-color: #330033;">
+      <Pane prefHeight="75.0" prefWidth="1366.0" style="-fx-background-color: #000EB8;">
          <children>
             <ImageView fitHeight="57.0" fitWidth="49.0" layoutX="96.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -29,7 +28,7 @@
                   <Font name="Tw Cen MT" size="36.0" />
                </font>
             </Label>
-            <Label fx:id="department" layoutX="1007.0" layoutY="24.0" prefHeight="27.0" prefWidth="321.0" text="Department" textFill="WHITE">
+            <Label fx:id="department" alignment="CENTER_RIGHT" layoutX="994.0" layoutY="24.0" prefHeight="27.0" prefWidth="345.0" text="Department" textFill="WHITE">
                <font>
                   <Font name="Tw Cen MT" size="24.0" />
                </font>
@@ -41,102 +40,99 @@
             </JFXButton>
          </children>
       </Pane>
-      <TextField fx:id="entername" layoutX="35.0" layoutY="119.0" prefHeight="33.0" prefWidth="332.0" promptText="Enter Name">
+      <TextField fx:id="entername" layoutX="27.0" layoutY="103.0" prefHeight="33.0" prefWidth="332.0" promptText="Enter Name">
          <font>
             <Font name="Tw Cen MT" size="15.0" />
          </font>
       </TextField>
-      <JFXButton fx:id="search" layoutX="376.0" layoutY="119.0" prefHeight="28.0" prefWidth="97.0" style="-fx-background-color: green;" text="Search" textFill="WHITE">
+      <JFXButton fx:id="search" layoutX="373.0" layoutY="103.0" prefHeight="28.0" prefWidth="97.0" style="-fx-background-color: green;" text="Search" textFill="WHITE">
          <font>
             <Font name="Tw Cen MT" size="18.0" />
          </font>
       </JFXButton>
-      <Pane layoutX="611.0" layoutY="119.0" prefHeight="601.0" prefWidth="699.0" style="-fx-background-color: white; -fx-background-radius: 20;">
+      <Pane layoutX="581.0" layoutY="100.0" prefHeight="645.0" prefWidth="752.0" style="-fx-background-color: white; -fx-background-radius: 20;">
          <children>
-            <Label layoutX="236.0" layoutY="23.0" text="Block HOD/Faculty">
+            <Label layoutX="254.0" layoutY="22.0" text="Block HOD/Faculty">
                <font>
                   <Font name="Tw Cen MT" size="30.0" />
                </font>
             </Label>
-            <Label layoutX="25.0" layoutY="359.0" prefHeight="24.0" prefWidth="86.0" text="Name :-">
+            <Label layoutX="48.0" layoutY="359.0" prefHeight="24.0" prefWidth="130.0" text="Name :-">
                <font>
                   <Font name="Tw Cen MT" size="17.0" />
                </font>
             </Label>
-            <Label fx:id="name" layoutX="169.0" layoutY="360.0" prefHeight="23.0" prefWidth="486.0" text="Name :-">
+            <Label fx:id="name" layoutX="192.0" layoutY="360.0" prefHeight="23.0" prefWidth="486.0" text="Name :-">
                <font>
                   <Font name="Tw Cen MT" size="17.0" />
                </font>
             </Label>
-            <Label layoutX="25.0" layoutY="395.0" prefHeight="24.0" prefWidth="124.0" text="Username :-">
+            <Label layoutX="48.0" layoutY="392.0" prefHeight="24.0" prefWidth="130.0" text="Username :-">
                <font>
                   <Font name="Tw Cen MT" size="17.0" />
                </font>
             </Label>
-            <Label fx:id="username" layoutX="169.0" layoutY="395.0" prefHeight="24.0" prefWidth="478.0" text="Username :-">
+            <Label fx:id="username" layoutX="192.0" layoutY="392.0" prefHeight="24.0" prefWidth="478.0" text="Username :-">
                <font>
                   <Font name="Tw Cen MT" size="17.0" />
                </font>
             </Label>
-            <Label layoutX="25.0" layoutY="425.0" prefHeight="24.0" prefWidth="76.0" text="Email :-">
+            <Label layoutX="48.0" layoutY="425.0" prefHeight="24.0" prefWidth="130.0" text="Email :-">
                <font>
                   <Font name="Tw Cen MT" size="17.0" />
                </font>
             </Label>
-            <Label fx:id="email" layoutX="169.0" layoutY="425.0" prefHeight="24.0" prefWidth="486.0" text="Email :-">
+            <Label fx:id="email" layoutX="192.0" layoutY="425.0" prefHeight="24.0" prefWidth="486.0" text="Email :-">
                <font>
                   <Font name="Tw Cen MT" size="17.0" />
                </font>
             </Label>
-            <Label layoutX="25.0" layoutY="455.0" prefHeight="24.0" prefWidth="106.0" text="Contact :-">
+            <Label layoutX="48.0" layoutY="458.0" prefHeight="24.0" prefWidth="130.0" text="Contact :-">
                <font>
                   <Font name="Tw Cen MT" size="17.0" />
                </font>
             </Label>
-            <Label fx:id="contact" layoutX="169.0" layoutY="455.0" prefHeight="24.0" prefWidth="312.0" text="Contact :-">
+            <Label fx:id="contact" layoutX="192.0" layoutY="458.0" prefHeight="24.0" prefWidth="312.0" text="Contact :-">
                <font>
                   <Font name="Tw Cen MT" size="17.0" />
                </font>
             </Label>
-            <ImageView fx:id="image" fitHeight="239.0" fitWidth="280.0" layoutX="210.0" layoutY="79.0" pickOnBounds="true">
+            <ImageView fx:id="image" fitHeight="239.0" fitWidth="280.0" layoutX="227.0" layoutY="84.0" pickOnBounds="true">
                <image>
                   <Image url="@../../resources/52abd3e155fcd67d30cf9693e6ada8af.png" />
                </image>
             </ImageView>
-            <JFXButton fx:id="onhold" layoutX="188.0" layoutY="536.0" prefHeight="33.0" prefWidth="137.0" style="-fx-background-color: #FFFF33;" text="On Hold">
+            <JFXButton fx:id="onhold" layoutX="230.0" layoutY="578.0" prefHeight="33.0" prefWidth="137.0" style="-fx-background-color: #FFFF33;" text="On Hold">
                <font>
                   <Font name="Tw Cen MT" size="18.0" />
                </font>
             </JFXButton>
-            <Label layoutX="25.0" layoutY="482.0" prefHeight="24.0" prefWidth="86.0" text="Usertype :-">
+            <Label layoutX="48.0" layoutY="489.0" prefHeight="24.0" prefWidth="130.0" text="Usertype :-">
                <font>
                   <Font name="Tw Cen MT" size="17.0" />
                </font>
             </Label>
-            <Label fx:id="usertype" layoutX="169.0" layoutY="482.0" prefHeight="24.0" prefWidth="352.0" text="Usertype :-">
+            <Label fx:id="usertype" layoutX="192.0" layoutY="489.0" prefHeight="24.0" prefWidth="352.0" text="Usertype :-">
                <font>
                   <Font name="Tw Cen MT" size="17.0" />
                </font>
             </Label>
-            <JFXButton fx:id="decline" layoutX="350.0" layoutY="536.0" prefHeight="33.0" prefWidth="137.0" style="-fx-background-color: red;" text="Decline" textFill="WHITE">
+            <JFXButton fx:id="decline" layoutX="392.0" layoutY="578.0" prefHeight="33.0" prefWidth="137.0" style="-fx-background-color: red;" text="Decline" textFill="WHITE">
                <font>
                   <Font name="Tw Cen MT" size="18.0" />
                </font>
             </JFXButton>
          </children>
-         <effect>
-            <DropShadow color="#d0d0d0" height="42.0" radius="20.5" spread="0.3" width="42.0" />
-         </effect>
       </Pane>
-      <ScrollPane layoutX="35.0" layoutY="195.0" prefHeight="523.0" prefWidth="508.0">
+      <ScrollPane layoutX="22.0" layoutY="151.0" prefHeight="601.0" prefWidth="508.0">
          <content>
-            <VBox fx:id="list" alignment="TOP_CENTER" prefHeight="507.0" prefWidth="491.0" spacing="25.0" style="-fx-background-color: white;">
+            <VBox fx:id="list" alignment="TOP_CENTER" prefHeight="595.0" prefWidth="491.0" spacing="25.0" style="-fx-background-color: white;">
                <padding>
                   <Insets bottom="25.0" top="25.0" />
                </padding></VBox>
          </content>
       </ScrollPane>
-      <JFXButton fx:id="refresh" contentDisplay="GRAPHIC_ONLY" layoutX="486.0" layoutY="119.0" prefHeight="33.0" prefWidth="49.0" ripplerFill="BLACK" style="-fx-background-color: Blue;" styleClass="close" text="Button" textFill="WHITE">
+      <JFXButton fx:id="refresh" contentDisplay="GRAPHIC_ONLY" layoutX="478.0" layoutY="103.0" prefHeight="33.0" prefWidth="49.0" ripplerFill="BLACK" style="-fx-background-color: Blue;" styleClass="close" text="Button" textFill="WHITE">
          <graphic>
             <FontAwesomeIconView fill="WHITE" glyphName="REFRESH" size="1.5em" />
          </graphic>

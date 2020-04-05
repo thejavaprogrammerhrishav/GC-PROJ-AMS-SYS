@@ -8,21 +8,21 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: linear-gradient(rgba(76,79,106,1), rgba(118,124,163,1),rgba(76,79,106,1) );;" stylesheets="@../../resources/deptcss.css" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: linear-gradient(  rgba(6,2,2,1) , rgba(137,30,47,1) ,rgba(6,2,2,1)  );" stylesheets="@../../resources/deptcss.css" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutX="441.0" layoutY="54.0" text="Modern Attendance System" textFill="WHITE">
+      <Label layoutX="482.0" layoutY="54.0" text="Modern Attendance System" textFill="WHITE">
          <font>
-            <Font name="Tw Cen MT" size="40.0" />
+            <Font name="Tw Cen MT" size="50.0" />
          </font>
       </Label>
-      <ImageView fitHeight="55.0" fitWidth="64.0" layoutX="362.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="77.0" fitWidth="92.0" layoutX="380.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../resources/LogoMakr_1wJdNX.png" />
          </image>
       </ImageView>
-      <Label alignment="CENTER" layoutX="437.0" layoutY="121.0" prefHeight="41.0" prefWidth="486.0" text="Select Your Department" textFill="WHITE">
+      <Label alignment="CENTER" layoutX="478.0" layoutY="121.0" prefHeight="41.0" prefWidth="486.0" text="Select Your Department" textFill="WHITE">
          <font>
-            <Font name="Tw Cen MT" size="24.0" />
+            <Font name="Tw Cen MT" size="28.0" />
          </font>
       </Label>
       <JFXButton fx:id="back" contentDisplay="GRAPHIC_ONLY" layoutX="14.0" layoutY="20.0" text="Back" textFill="WHITE">

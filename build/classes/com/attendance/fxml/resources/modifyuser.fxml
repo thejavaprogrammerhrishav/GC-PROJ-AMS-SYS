@@ -38,7 +38,7 @@
       </Pane>
       <TextField fx:id="entername" layoutX="770.0" layoutY="125.0" prefHeight="33.0" prefWidth="391.0" promptText="Enter Name">
          <font>
-            <Font name="Tw Cen MT" size="18.0" />
+            <Font name="Tw Cen MT" size="15.0" />
          </font>
       </TextField>
       <JFXButton fx:id="search" layoutX="1188.0" layoutY="125.0" prefHeight="33.0" prefWidth="131.0" style="-fx-background-color: #009900;" text="Search" textFill="WHITE">
@@ -46,7 +46,7 @@
             <Font name="Tw Cen MT" size="18.0" />
          </font>
       </JFXButton>
-      <JFXComboBox fx:id="selectdepartment" layoutX="45.0" layoutY="127.0" prefHeight="30.0" prefWidth="342.0" promptText="Select Department" style="-fx-font-size: 16; -fx-font-family: 'Tw Cen MT',arial;" unFocusColor="WHITE">
+      <JFXComboBox fx:id="selectdepartment" layoutX="48.0" layoutY="127.0" prefHeight="30.0" prefWidth="342.0" promptText="Select Department" style="-fx-font-size: 16; -fx-font-family: 'Tw Cen MT',arial;" unFocusColor="WHITE">
          <stylesheets>
             <URL value="@../../resources/scrollpane.css" />
             <URL value="@../../resources/normalscroll.css" />

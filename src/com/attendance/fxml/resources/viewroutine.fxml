@@ -11,20 +11,20 @@
 
 <fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: #fff;" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Pane prefHeight="67.0" prefWidth="1366.0" style="-fx-background-color: #381460;">
+      <Pane prefHeight="67.0" prefWidth="1366.0" style="-fx-background-color: navy;">
          <children>
-            <JFXButton fx:id="close" contentDisplay="GRAPHIC_ONLY" layoutX="1311.0" layoutY="19.0" prefHeight="29.0" prefWidth="31.0" style="-fx-background-color: RED;">
+            <JFXButton fx:id="close" contentDisplay="GRAPHIC_ONLY" layoutX="1311.0" layoutY="19.0" prefHeight="29.0" prefWidth="31.0">
                <graphic>
                   <FontAwesomeIconView fill="WHITE" glyphName="CLOSE" size="1.5em" />
                </graphic>
             </JFXButton>
-            <JFXSlider fx:id="zoom" blockIncrement="1.0" indicatorPosition="RIGHT" layoutX="843.0" layoutY="28.0" prefHeight="14.0" prefWidth="374.0" />
-            <Label layoutX="765.0" layoutY="22.0" text="Zoom" textFill="WHITE">
+            <JFXSlider fx:id="zoom" blockIncrement="1.0" indicatorPosition="RIGHT" layoutX="871.0" layoutY="29.0" prefHeight="14.0" prefWidth="374.0" />
+            <Label layoutX="765.0" layoutY="22.0" prefHeight="27.0" prefWidth="71.0" text="Zoom" textFill="WHITE">
                <font>
                   <Font name="Tw Cen MT" size="24.0" />
                </font>
             </Label>
-            <Label layoutX="39.0" layoutY="19.0" text="View Routine" textFill="WHITE">
+            <Label layoutX="28.0" layoutY="17.0" text="View Routine" textFill="WHITE">
                <font>
                   <Font name="Tw Cen MT" size="30.0" />
                </font>

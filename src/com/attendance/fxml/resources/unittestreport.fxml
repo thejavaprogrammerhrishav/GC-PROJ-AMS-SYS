@@ -66,12 +66,12 @@
             <Font name="Tw Cen MT" size="16.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="table" layoutX="1159.0" layoutY="87.0" prefHeight="30.0" prefWidth="151.0" style="-fx-background-color: #e5cc9c;" text="Export Table" textFill="#1e1e1e">
+      <JFXButton fx:id="table" layoutX="1159.0" layoutY="87.0" prefHeight="30.0" prefWidth="151.0" style="-fx-background-color: #e5cc9c;" text="Export Table">
          <font>
             <Font name="Tw Cen MT" size="16.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="report" layoutX="984.0" layoutY="87.0" prefHeight="30.0" prefWidth="151.0" style="-fx-background-color: #c5ad80;" text="Export Report" textFill="#252525">
+      <JFXButton fx:id="report" layoutX="984.0" layoutY="87.0" prefHeight="30.0" prefWidth="151.0" style="-fx-background-color: #c5ad80;" text="Export Report">
          <font>
             <Font name="Tw Cen MT" size="16.0" />
          </font>

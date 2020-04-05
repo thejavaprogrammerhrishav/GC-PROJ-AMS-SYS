@@ -22,17 +22,17 @@
             <Font name="Tw Cen MT" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="23.0" layoutY="93.0" text="Total Student">
+      <Label layoutX="23.0" layoutY="98.0" text="Total Student">
          <font>
             <Font name="Tw Cen MT" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="total" alignment="CENTER" layoutX="23.0" layoutY="121.0" prefHeight="59.0" prefWidth="356.0" text="Total Student">
+      <Label fx:id="total" alignment="CENTER" layoutX="23.0" layoutY="126.0" prefHeight="59.0" prefWidth="356.0" text="Total Student">
          <font>
             <Font name="Tw Cen MT" size="36.0" />
          </font>
       </Label>
-      <JFXButton fx:id="refresh" contentDisplay="GRAPHIC_ONLY" layoutX="351.0" layoutY="34.0" prefHeight="30.0" prefWidth="35.0">
+      <JFXButton fx:id="refresh" contentDisplay="GRAPHIC_ONLY" layoutX="354.0" layoutY="39.0" prefHeight="30.0" prefWidth="35.0">
          <graphic>
             <FontAwesomeIconView glyphName="REFRESH" size="1.6em" />
          </graphic>

@@ -52,12 +52,12 @@
             </JFXCheckBox>
             <JFXButton fx:id="applyfilters" buttonType="RAISED" layoutX="28.0" layoutY="102.0" prefHeight="35.0" prefWidth="139.0" ripplerFill="BLACK" style="-fx-background-color: #5830a2;" text="Apply Filter" textFill="WHITE">
                <font>
-                  <Font name="Tw Cen MT" size="18.0" />
+                  <Font name="Tw Cen MT" size="17.0" />
                </font>
             </JFXButton>
             <JFXButton fx:id="refresh" buttonType="RAISED" layoutX="197.0" layoutY="102.0" prefHeight="35.0" prefWidth="113.0" ripplerFill="BLACK" style="-fx-background-color: green;" text="Refresh" textFill="WHITE">
                <font>
-                  <Font name="Tw Cen MT" size="18.0" />
+                  <Font name="Tw Cen MT" size="17.0" />
                </font>
             </JFXButton>
             <JFXButton fx:id="sort" buttonType="RAISED" layoutX="1206.0" layoutY="35.0" prefHeight="35.0" prefWidth="113.0" ripplerFill="BLACK" style="-fx-background-color: blue;" text="Sort" textFill="WHITE">
@@ -73,7 +73,7 @@
             <JFXComboBox fx:id="searchdepartment" focusColor="WHITE" layoutX="608.0" layoutY="54.0" prefHeight="30.0" prefWidth="235.0" promptText="Select Department" style="-fx-font-family: Segoe UI; -fx-font-size: 14;" unFocusColor="WHITE" />
          </children>
       </Pane>
-      <TableView fx:id="table" layoutX="12.0" layoutY="267.0" prefHeight="412.0" prefWidth="1348.0">
+      <TableView fx:id="table" layoutX="12.0" layoutY="267.0" prefHeight="412.0" prefWidth="1348.0" style="-fx-background-color: white;">
         <columns>
           <TableColumn fx:id="name" editable="false" prefWidth="291.0" resizable="false" sortable="false" text="Name" />
           <TableColumn fx:id="username" editable="false" prefWidth="167.0" sortable="false" text="Username" />
@@ -86,12 +86,12 @@
       </TableView>
       <JFXButton fx:id="export2excel" buttonType="RAISED" layoutX="943.0" layoutY="708.0" prefHeight="35.0" prefWidth="226.0" ripplerFill="BLACK" style="-fx-background-color: forestgreen;" text="Export to Excel" textFill="WHITE">
          <font>
-            <Font name="Tw Cen MT" size="18.0" />
+            <Font name="Tw Cen MT" size="17.0" />
          </font>
       </JFXButton>
       <JFXButton fx:id="cancel" buttonType="RAISED" layoutX="1211.0" layoutY="708.0" prefHeight="35.0" prefWidth="113.0" ripplerFill="BLACK" style="-fx-background-color: #501050;" text="Close" textFill="WHITE">
          <font>
-            <Font name="Tw Cen MT" size="18.0" />
+            <Font name="Tw Cen MT" size="17.0" />
          </font>
       </JFXButton>
       <Pane layoutX="-9.0" prefHeight="81.0" prefWidth="1375.0">

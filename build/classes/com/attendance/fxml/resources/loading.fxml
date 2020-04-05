@@ -5,9 +5,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: rgba(0,0,0,0.5);" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: rgba(0,0,0,0.3);" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Pane layoutY="272.0" prefHeight="200.0" prefWidth="1366.0" style="-fx-background-color: #292222;">
+      <Pane layoutY="272.0" prefHeight="200.0" prefWidth="1366.0" style="-fx-background-color: #393333;">
          <children>
             <Label fx:id="loading" layoutX="564.0" layoutY="74.0" text="LOADING ..." textFill="#ddff00">
                <font>

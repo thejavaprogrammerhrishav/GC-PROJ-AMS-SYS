@@ -11,6 +11,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -170,201 +171,215 @@
       </Pane>
       <ScrollPane focusTraversable="false" hbarPolicy="NEVER" layoutX="291.0" layoutY="79.0" prefHeight="689.0" prefWidth="1076.0" styleClass="main-scroll">
          <content>
-            <AnchorPane prefHeight="934.0" prefWidth="1063.0" style="-fx-background-color: #f5f5f5;">
+            <AnchorPane prefHeight="934.0" prefWidth="1063.0" style="-fx-background-color: #f8f8f8;">
                <children>
-                  <Pane layoutX="64.0" layoutY="53.0" prefHeight="117.0" prefWidth="210.0" style="-fx-background-color: #fff; -fx-border-color: #dadada; -fx-background-radius: 20; -fx-border-radius: 20;">
-                     <effect>
-                        <DropShadow blurType="ONE_PASS_BOX" color="#dadada" height="94.39" radius="46.879999999999995" spread="0.4" width="95.13" />
-                     </effect>
+                  <HBox layoutX="30.0" layoutY="50.0" prefHeight="117.0" prefWidth="1019.0" spacing="50.0">
                      <children>
-                        <Label alignment="CENTER" layoutY="18.0" prefHeight="30.0" prefWidth="210.0" text="1st Year" textFill="#907a7a" wrapText="true">
-                           <font>
-                              <Font name="Tw Cen MT" size="18.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="aca1stcount" alignment="CENTER" layoutY="65.0" prefHeight="30.0" prefWidth="210.0" text="3620" wrapText="true">
-                           <font>
-                              <Font name="Tw Cen MT" size="22.0" />
-                           </font>
-                        </Label>
+                        <Pane prefHeight="117.0" prefWidth="210.0" style="-fx-background-color: #fff; -fx-border-color: #ededed; -fx-background-radius: 20; -fx-border-radius: 20;">
+                           <children>
+                              <Label alignment="CENTER" layoutY="18.0" prefHeight="30.0" prefWidth="210.0" text="1st Year" textFill="#5e5e5e" wrapText="true">
+                                 <font>
+                                    <Font name="Tw Cen MT" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="aca1stcount" alignment="CENTER" layoutY="65.0" prefHeight="30.0" prefWidth="210.0" text="3620" wrapText="true">
+                                 <font>
+                                    <Font name="Tw Cen MT" size="22.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <effect>
+                              <DropShadow color="#dadada" height="50.0" radius="24.5" spread="0.5" width="50.0" />
+                           </effect>
+                        </Pane>
+                        <Pane prefHeight="117.0" prefWidth="210.0" style="-fx-background-color: #fff; -fx-border-color: #ededed; -fx-background-radius: 20; -fx-border-radius: 20;">
+                           <children>
+                              <Label alignment="CENTER" layoutY="18.0" prefHeight="30.0" prefWidth="210.0" text="2nd Year" textFill="#5e5e5e" wrapText="true">
+                                 <font>
+                                    <Font name="Tw Cen MT" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="aca2ndcount" alignment="CENTER" layoutY="65.0" prefHeight="30.0" prefWidth="210.0" text="3620" wrapText="true">
+                                 <font>
+                                    <Font name="Tw Cen MT" size="22.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <effect>
+                              <DropShadow color="#dadada" height="50.0" radius="24.5" spread="0.5" width="50.0" />
+                           </effect>
+                        </Pane>
+                        <Pane prefHeight="117.0" prefWidth="210.0" style="-fx-background-color: #fff; -fx-border-color: #ededed; -fx-background-radius: 20; -fx-border-radius: 20;">
+                           <children>
+                              <Label alignment="CENTER" layoutY="18.0" prefHeight="30.0" prefWidth="210.0" text="3rd Year" textFill="#5e5e5e" wrapText="true">
+                                 <font>
+                                    <Font name="Tw Cen MT" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="aca3rdcount" alignment="CENTER" layoutY="65.0" prefHeight="30.0" prefWidth="210.0" text="3620" wrapText="true">
+                                 <font>
+                                    <Font name="Tw Cen MT" size="22.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <effect>
+                              <DropShadow color="#dadada" height="50.0" radius="24.5" spread="0.5" width="50.0" />
+                           </effect>
+                        </Pane>
+                        <Pane prefHeight="117.0" prefWidth="210.0" style="-fx-background-color: #fff; -fx-border-color: #ededed; -fx-background-radius: 20; -fx-border-radius: 20;">
+                           <children>
+                              <Label alignment="CENTER" layoutY="18.0" prefHeight="30.0" prefWidth="210.0" text="Select Year" textFill="#5e5e5e" wrapText="true">
+                                 <font>
+                                    <Font name="Tw Cen MT" size="18.0" />
+                                 </font>
+                              </Label>
+                              <JFXComboBox fx:id="year" layoutX="21.0" layoutY="59.0" prefHeight="30.0" prefWidth="120.0" promptText="Year" style="-fx-font-family: 'Tw Cen MT',arial; -fx-font-size: 16;" />
+                              <JFXButton fx:id="refresh" contentDisplay="GRAPHIC_ONLY" layoutX="154.0" layoutY="60.0" prefHeight="33.0" prefWidth="42.0" ripplerFill="#fffefe">
+                                 <font>
+                                    <Font name="Tw Cen MT" size="15.0" />
+                                 </font>
+                                 <graphic>
+                                    <FontAwesomeIconView glyphName="REFRESH" size="1.5em" />
+                                 </graphic>
+                              </JFXButton>
+                           </children>
+                           <effect>
+                              <DropShadow color="#dadada" height="50.0" radius="24.5" spread="0.5" width="50.0" />
+                           </effect>
+                        </Pane>
                      </children>
-                  </Pane>
-                  <Pane layoutX="308.0" layoutY="53.0" prefHeight="117.0" prefWidth="210.0" style="-fx-background-color: #fff; -fx-border-color: #dadada; -fx-background-radius: 20; -fx-border-radius: 20;">
-                     <effect>
-                        <DropShadow blurType="ONE_PASS_BOX" color="#dadada" height="94.39" radius="46.879999999999995" spread="0.4" width="95.13" />
-                     </effect>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </HBox>
+                  <HBox layoutX="30.0" layoutY="220.0" prefHeight="302.0" prefWidth="1019.0" spacing="50.0">
                      <children>
-                        <Label alignment="CENTER" layoutY="18.0" prefHeight="30.0" prefWidth="210.0" text="2nd Year" textFill="#907a7a" wrapText="true">
-                           <font>
-                              <Font name="Tw Cen MT" size="18.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="aca2ndcount" alignment="CENTER" layoutY="65.0" prefHeight="30.0" prefWidth="210.0" text="3620" wrapText="true">
-                           <font>
-                              <Font name="Tw Cen MT" size="22.0" />
-                           </font>
-                        </Label>
+                        <Pane prefHeight="302.0" prefWidth="210.0" style="-fx-background-color: #fff; -fx-border-color: #dadada;">
+                           <effect>
+                              <DropShadow color="#d3d3d3" height="50.0" radius="24.5" spread="0.4" width="50.0" />
+                           </effect>
+                           <children>
+                              <Label alignment="CENTER" layoutX="15.0" layoutY="135.0" prefHeight="45.0" prefWidth="185.0" text="Take daily student Attendance and generate a report here " textFill="#545454" wrapText="true">
+                                 <font>
+                                    <Font name="Tw Cen MT" size="15.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutY="103.0" prefHeight="30.0" prefWidth="210.0" text="Student Attendance " wrapText="true">
+                                 <font>
+                                    <Font name="Tw Cen MT" size="20.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fitHeight="79.0" fitWidth="74.0" layoutX="68.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../resources/35778-200.png" />
+                                 </image>
+                              </ImageView>
+                              <JFXButton fx:id="dailyattendance" buttonType="RAISED" layoutX="24.0" layoutY="198.0" prefHeight="30.0" prefWidth="162.0" ripplerFill="WHITE" style="-fx-border-color: #eee; -fx-background-color: white;" text="Daily Attendance ">
+                                 <font>
+                                    <Font name="Tw Cen MT" size="15.0" />
+                                 </font>
+                              </JFXButton>
+                              <JFXButton fx:id="attendancereport" buttonType="RAISED" layoutX="24.0" layoutY="247.0" prefHeight="33.0" prefWidth="162.0" ripplerFill="WHITE" style="-fx-border-color: #eee; -fx-background-color: white;" text="Report">
+                                 <font>
+                                    <Font name="Tw Cen MT" size="15.0" />
+                                 </font>
+                              </JFXButton>
+                           </children>
+                        </Pane>
+                        <Pane prefHeight="302.0" prefWidth="210.0" style="-fx-background-color: #fff; -fx-border-color: #dadada;">
+                           <effect>
+                              <DropShadow color="#d3d3d3" height="50.0" radius="24.5" spread="0.4" width="50.0" />
+                           </effect>
+                           <children>
+                              <Label alignment="CENTER" layoutY="103.0" prefHeight="30.0" prefWidth="210.0" text="Unit Test" wrapText="true">
+                                 <font>
+                                    <Font name="Tw Cen MT" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="15.0" layoutY="135.0" prefHeight="45.0" prefWidth="185.0" text="Upload unit test marks and generate report here" textFill="#545454" wrapText="true">
+                                 <font>
+                                    <Font name="Tw Cen MT" size="15.0" />
+                                 </font>
+                              </Label>
+                              <JFXButton fx:id="uploadmarks" buttonType="RAISED" layoutX="21.0" layoutY="201.0" prefHeight="30.0" prefWidth="162.0" ripplerFill="WHITE" style="-fx-border-color: #eee; -fx-background-color: white;" text="Upload Marks">
+                                 <font>
+                                    <Font name="Tw Cen MT" size="15.0" />
+                                 </font>
+                              </JFXButton>
+                              <JFXButton fx:id="unittestreport" buttonType="RAISED" layoutX="21.0" layoutY="246.0" prefHeight="33.0" prefWidth="162.0" ripplerFill="WHITE" style="-fx-border-color: #eee; -fx-background-color: white;" text="Report">
+                                 <font>
+                                    <Font name="Tw Cen MT" size="15.0" />
+                                 </font>
+                              </JFXButton>
+                              <ImageView fitHeight="79.0" fitWidth="74.0" layoutX="69.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../resources/Exam-PNG-Photos.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </Pane>
+                        <Pane prefHeight="302.0" prefWidth="210.0" style="-fx-background-color: #fff; -fx-border-color: #dadada;">
+                           <effect>
+                              <DropShadow color="#d3d3d3" height="50.0" radius="24.5" spread="0.4" width="50.0" />
+                           </effect>
+                           <children>
+                              <Label alignment="CENTER" layoutY="103.0" prefHeight="30.0" prefWidth="210.0" text="Notes" wrapText="true">
+                                 <font>
+                                    <Font name="Tw Cen MT" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="15.0" layoutY="135.0" prefHeight="45.0" prefWidth="185.0" text="Upload and download notes here" textFill="#545454" wrapText="true">
+                                 <font>
+                                    <Font name="Tw Cen MT" size="15.0" />
+                                 </font>
+                              </Label>
+                              <JFXButton fx:id="notes" buttonType="RAISED" layoutX="24.0" layoutY="246.0" prefHeight="33.0" prefWidth="162.0" ripplerFill="WHITE" style="-fx-border-color: #eee; -fx-background-color: white;" text="Notes Dashboard">
+                                 <font>
+                                    <Font name="Tw Cen MT" size="15.0" />
+                                 </font>
+                              </JFXButton>
+                              <ImageView fitHeight="79.0" fitWidth="93.0" layoutX="59.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../resources/140-1404461_free-icons-png-homework-transparent-png.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </Pane>
+                        <Pane prefHeight="302.0" prefWidth="210.0" style="-fx-background-color: #fff; -fx-border-color: #dadada;">
+                           <effect>
+                              <DropShadow color="#d3d3d3" height="50.0" radius="24.5" spread="0.4" width="50.0" />
+                           </effect>
+                           <children>
+                              <Label alignment="CENTER" layoutY="103.0" prefHeight="30.0" prefWidth="210.0" text="Faculty Verification" wrapText="true">
+                                 <font>
+                                    <Font name="Tw Cen MT" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="15.0" layoutY="135.0" prefHeight="68.0" prefWidth="185.0" text="Verify pending request for faulty accounts of your department" textFill="#545454" wrapText="true">
+                                 <font>
+                                    <Font name="Tw Cen MT" size="15.0" />
+                                 </font>
+                              </Label>
+                              <JFXButton fx:id="verifyfaculty" buttonType="RAISED" layoutX="27.0" layoutY="246.0" prefHeight="30.0" prefWidth="162.0" ripplerFill="WHITE" style="-fx-border-color: #eee; -fx-background-color: white;" text="Verify Faculty ">
+                                 <font>
+                                    <Font name="Tw Cen MT" size="15.0" />
+                                 </font>
+                              </JFXButton>
+                              <ImageView fitHeight="68.0" fitWidth="65.0" layoutX="79.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../resources/Web-Security-Shield-PNG.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </Pane>
                      </children>
-                  </Pane>
-                  <Pane layoutX="553.0" layoutY="53.0" prefHeight="117.0" prefWidth="210.0" style="-fx-background-color: #fff; -fx-border-color: #dadada; -fx-background-radius: 20; -fx-border-radius: 20;">
-                     <effect>
-                        <DropShadow blurType="ONE_PASS_BOX" color="#dadada" height="94.39" radius="46.879999999999995" spread="0.4" width="95.13" />
-                     </effect>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </HBox>
+                  <AnchorPane layoutX="30.0" layoutY="564.0" prefHeight="335.0" prefWidth="988.0" style="-fx-border-color: #008aa2;" stylesheets="@../../resources/whitebluescroll.css">
                      <children>
-                        <Label alignment="CENTER" layoutY="18.0" prefHeight="30.0" prefWidth="210.0" text="3rd Year" textFill="#907a7a" wrapText="true">
-                           <font>
-                              <Font name="Tw Cen MT" size="18.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="aca3rdcount" alignment="CENTER" layoutY="65.0" prefHeight="30.0" prefWidth="210.0" text="3620" wrapText="true">
-                           <font>
-                              <Font name="Tw Cen MT" size="22.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </Pane>
-                  <Pane layoutX="794.0" layoutY="53.0" prefHeight="117.0" prefWidth="210.0" style="-fx-background-color: #fff; -fx-border-color: #dadada; -fx-background-radius: 20; -fx-border-radius: 20;">
-                     <effect>
-                        <DropShadow blurType="ONE_PASS_BOX" color="#dadada" height="94.39" radius="46.879999999999995" spread="0.4" width="95.13" />
-                     </effect>
-                     <children>
-                        <Label alignment="CENTER" layoutY="18.0" prefHeight="30.0" prefWidth="210.0" text="Select Year" textFill="#907a7a" wrapText="true">
-                           <font>
-                              <Font name="Tw Cen MT" size="18.0" />
-                           </font>
-                        </Label>
-                        <JFXComboBox fx:id="year" layoutX="21.0" layoutY="59.0" prefHeight="30.0" prefWidth="120.0" promptText="Year" style="-fx-font-family: 'Tw Cen MT',arial; -fx-font-size: 16;" />
-                        <JFXButton fx:id="refresh" contentDisplay="GRAPHIC_ONLY" layoutX="154.0" layoutY="60.0" prefHeight="33.0" prefWidth="42.0" ripplerFill="#fffefe">
-                           <font>
-                              <Font name="Tw Cen MT" size="15.0" />
-                           </font>
-                           <graphic>
-                              <FontAwesomeIconView glyphName="REFRESH" size="1.5em" />
-                           </graphic>
-                        </JFXButton>
-                     </children>
-                  </Pane>
-                  <Pane layoutX="64.0" layoutY="223.0" prefHeight="302.0" prefWidth="210.0" style="-fx-background-color: #fff; -fx-border-color: #dadada;">
-                     <effect>
-                        <DropShadow blurType="ONE_PASS_BOX" color="#dadada" height="94.39" radius="46.879999999999995" spread="0.4" width="95.13" />
-                     </effect>
-                     <children>
-                        <Label alignment="CENTER" layoutX="15.0" layoutY="135.0" prefHeight="45.0" prefWidth="185.0" text="Take daily student Attendance and generate a report here " textFill="#907a7a" wrapText="true">
-                           <font>
-                              <Font name="Tw Cen MT" size="15.0" />
-                           </font>
-                        </Label>
-                        <Label alignment="CENTER" layoutY="103.0" prefHeight="30.0" prefWidth="210.0" text="Student Attendance " wrapText="true">
-                           <font>
-                              <Font name="Tw Cen MT" size="20.0" />
-                           </font>
-                        </Label>
-                        <ImageView fitHeight="79.0" fitWidth="74.0" layoutX="68.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../resources/35778-200.png" />
-                           </image>
-                        </ImageView>
-                        <JFXButton fx:id="dailyattendance" buttonType="RAISED" layoutX="24.0" layoutY="198.0" prefHeight="30.0" prefWidth="162.0" ripplerFill="WHITE" style="-fx-border-color: #eee; -fx-background-color: white;" text="Daily Attendance ">
-                           <font>
-                              <Font name="Tw Cen MT" size="15.0" />
-                           </font>
-                        </JFXButton>
-                        <JFXButton fx:id="attendancereport" buttonType="RAISED" layoutX="24.0" layoutY="247.0" prefHeight="33.0" prefWidth="162.0" ripplerFill="WHITE" style="-fx-border-color: #eee; -fx-background-color: white;" text="Report">
-                           <font>
-                              <Font name="Tw Cen MT" size="15.0" />
-                           </font>
-                        </JFXButton>
-                     </children>
-                  </Pane>
-                  <Pane layoutX="308.0" layoutY="223.0" prefHeight="302.0" prefWidth="210.0" style="-fx-background-color: #fff; -fx-border-color: #dadada;">
-                     <effect>
-                        <DropShadow blurType="ONE_PASS_BOX" color="#dadada" height="94.39" radius="46.879999999999995" spread="0.4" width="95.13" />
-                     </effect>
-                     <children>
-                        <Label alignment="CENTER" layoutY="103.0" prefHeight="30.0" prefWidth="210.0" text="Unit Test" wrapText="true">
-                           <font>
-                              <Font name="Tw Cen MT" size="20.0" />
-                           </font>
-                        </Label>
-                        <Label alignment="CENTER" layoutX="15.0" layoutY="135.0" prefHeight="45.0" prefWidth="185.0" text="Upload unit test marks and generate report here" textFill="#907a7a" wrapText="true">
-                           <font>
-                              <Font name="Tw Cen MT" size="15.0" />
-                           </font>
-                        </Label>
-                        <JFXButton fx:id="uploadmarks" buttonType="RAISED" layoutX="21.0" layoutY="201.0" prefHeight="30.0" prefWidth="162.0" ripplerFill="WHITE" style="-fx-border-color: #eee; -fx-background-color: white;" text="Upload Marks">
-                           <font>
-                              <Font name="Tw Cen MT" size="15.0" />
-                           </font>
-                        </JFXButton>
-                        <JFXButton fx:id="unittestreport" buttonType="RAISED" layoutX="21.0" layoutY="246.0" prefHeight="33.0" prefWidth="162.0" ripplerFill="WHITE" style="-fx-border-color: #eee; -fx-background-color: white;" text="Report">
-                           <font>
-                              <Font name="Tw Cen MT" size="15.0" />
-                           </font>
-                        </JFXButton>
-                        <ImageView fitHeight="79.0" fitWidth="74.0" layoutX="69.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../resources/Exam-PNG-Photos.png" />
-                           </image>
-                        </ImageView>
-                     </children>
-                  </Pane>
-                  <Pane layoutX="553.0" layoutY="223.0" prefHeight="302.0" prefWidth="210.0" style="-fx-background-color: #fff; -fx-border-color: #dadada;">
-                     <effect>
-                        <DropShadow blurType="ONE_PASS_BOX" color="#dadada" height="94.39" radius="46.879999999999995" spread="0.4" width="95.13" />
-                     </effect>
-                     <children>
-                        <Label alignment="CENTER" layoutY="103.0" prefHeight="30.0" prefWidth="210.0" text="Notes" wrapText="true">
-                           <font>
-                              <Font name="Tw Cen MT" size="20.0" />
-                           </font>
-                        </Label>
-                        <Label alignment="CENTER" layoutX="15.0" layoutY="135.0" prefHeight="45.0" prefWidth="185.0" text="Upload and download notes here" textFill="#907a7a" wrapText="true">
-                           <font>
-                              <Font name="Tw Cen MT" size="15.0" />
-                           </font>
-                        </Label>
-                        <JFXButton fx:id="notes" buttonType="RAISED" layoutX="24.0" layoutY="246.0" prefHeight="33.0" prefWidth="162.0" ripplerFill="WHITE" style="-fx-border-color: #eee; -fx-background-color: white;" text="Notes Dashboard">
-                           <font>
-                              <Font name="Tw Cen MT" size="15.0" />
-                           </font>
-                        </JFXButton>
-                        <ImageView fitHeight="79.0" fitWidth="93.0" layoutX="59.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../resources/140-1404461_free-icons-png-homework-transparent-png.png" />
-                           </image>
-                        </ImageView>
-                     </children>
-                  </Pane>
-                  <Pane layoutX="794.0" layoutY="223.0" prefHeight="302.0" prefWidth="210.0" style="-fx-background-color: #fff; -fx-border-color: #dadada;">
-                     <effect>
-                        <DropShadow blurType="ONE_PASS_BOX" color="#dadada" height="94.39" radius="46.879999999999995" spread="0.4" width="95.13" />
-                     </effect>
-                     <children>
-                        <Label alignment="CENTER" layoutY="103.0" prefHeight="30.0" prefWidth="210.0" text="Faculty Verification" wrapText="true">
-                           <font>
-                              <Font name="Tw Cen MT" size="20.0" />
-                           </font>
-                        </Label>
-                        <Label alignment="CENTER" layoutX="15.0" layoutY="135.0" prefHeight="68.0" prefWidth="185.0" text="Verify pending request for faulty accounts of your department" textFill="#907a7a" wrapText="true">
-                           <font>
-                              <Font name="Tw Cen MT" size="15.0" />
-                           </font>
-                        </Label>
-                        <JFXButton fx:id="verifyfaculty" buttonType="RAISED" layoutX="27.0" layoutY="246.0" prefHeight="30.0" prefWidth="162.0" ripplerFill="WHITE" style="-fx-border-color: #eee; -fx-background-color: white;" text="Verify Faculty ">
-                           <font>
-                              <Font name="Tw Cen MT" size="15.0" />
-                           </font>
-                        </JFXButton>
-                        <ImageView fitHeight="68.0" fitWidth="65.0" layoutX="79.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../resources/Web-Security-Shield-PNG.png" />
-                           </image>
-                        </ImageView>
-                     </children>
-                  </Pane>
-                  <AnchorPane layoutX="64.0" layoutY="564.0" prefHeight="334.0" prefWidth="942.0" style="-fx-border-color: #008aa2;" stylesheets="@../../resources/whitebluescroll.css">
-                     <children>
-                        <Pane prefHeight="53.0" prefWidth="944.0" style="-fx-background-color: #2b4eff;">
+                        <Pane prefHeight="53.0" prefWidth="986.0" style="-fx-background-color: #2b4eff;">
                            <children>
                               <Label layoutX="33.0" layoutY="-7.0" prefHeight="68.0" prefWidth="112.0" text="Login Activity" textFill="WHITE" wrapText="true">
                                  <font>
@@ -386,9 +401,9 @@
                               </Label>
                            </children>
                         </Pane>
-                        <ScrollPane layoutY="53.0" prefHeight="280.0" prefWidth="944.0" styleClass="user-log-scroll">
+                        <ScrollPane layoutY="53.0" prefHeight="280.0" prefWidth="985.0" styleClass="user-log-scroll">
                            <content>
-                              <VBox fx:id="list" prefHeight="280.0" prefWidth="928.0" spacing="20.0" style="-fx-background-color: white;">
+                              <VBox fx:id="list" alignment="TOP_CENTER" prefHeight="276.0" prefWidth="969.0" spacing="20.0" style="-fx-background-color: white;">
                                  <padding>
                                     <Insets bottom="15.0" left="7.0" right="7.0" top="15.0" />
                                  </padding>

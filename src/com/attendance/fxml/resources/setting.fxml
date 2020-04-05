@@ -12,19 +12,19 @@
 
 <fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: linear-gradient(#141e30,#243b55);" stylesheets="@../../resources/setting.css" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <AnchorPane layoutX="24.0" layoutY="44.0" prefHeight="135.0" prefWidth="1360.0">
+      <AnchorPane layoutX="24.0" layoutY="44.0" prefHeight="148.0" prefWidth="1335.0">
          <children>
-            <Label alignment="CENTER" layoutX="431.0" layoutY="20.0" prefHeight="51.0" prefWidth="589.0" text="Modern Attendance System" textFill="WHITE">
+            <Label alignment="CENTER" layoutX="476.0" layoutY="28.0" prefHeight="51.0" prefWidth="501.0" text="Modern Attendance System" textFill="WHITE">
                <font>
                   <Font name="Segoe UI" size="36.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="432.0" layoutY="72.0" prefHeight="51.0" prefWidth="589.0" text="Miscellaneous Operations" textFill="WHITE">
+            <Label alignment="CENTER" layoutX="491.0" layoutY="79.0" prefHeight="44.0" prefWidth="472.0" text="Miscellaneous Operations" textFill="WHITE">
                <font>
                   <Font name="Segoe UI" size="25.0" />
                </font>
             </Label>
-            <ImageView fitHeight="101.0" fitWidth="87.0" layoutX="366.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="101.0" fitWidth="87.0" layoutX="379.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../resources/LogoMakr_1wJdNX.png" />
                </image>

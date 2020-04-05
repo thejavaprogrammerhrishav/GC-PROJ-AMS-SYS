@@ -13,19 +13,19 @@
    <children>
       <Pane prefHeight="129.0" prefWidth="1366.0">
          <children>
-            <ImageView fitHeight="64.0" fitWidth="60.0" layoutX="326.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="66.0" fitWidth="66.0" layoutX="379.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../resources/LogoMakr_1wJdNX.png" />
                </image>
             </ImageView>
-            <Label layoutX="412.0" layoutY="34.0" text="Modern Attendance System">
+            <Label layoutX="463.0" layoutY="39.0" text="Modern Attendance System">
                <font>
                   <Font name="Tw Cen MT" size="48.0" />
                </font>
             </Label>
          </children>
       </Pane>
-      <Label layoutX="555.0" layoutY="126.0" text="Preferred Login Type">
+      <Label layoutX="555.0" layoutY="109.0" text="Preferred Login Type">
          <font>
             <Font name="Tw Cen MT" size="30.0" />
          </font>
@@ -42,7 +42,7 @@
                   <Font name="Tw Cen MT" size="30.0" />
                </font>
             </Label>
-            <JFXButton fx:id="hodlogin" buttonType="RAISED" layoutX="74.0" layoutY="392.0" prefHeight="33.0" prefWidth="205.0" style="-fx-background-color: #cfb307;" text="Continue" textFill="WHITE">
+            <JFXButton fx:id="hodlogin" buttonType="RAISED" layoutX="74.0" layoutY="392.0" prefHeight="33.0" prefWidth="205.0" style="-fx-background-color: #0013FF;" text="Continue" textFill="WHITE">
                <font>
                   <Font name="Tw Cen MT" size="20.0" />
                </font>
@@ -61,19 +61,19 @@
                   <Font name="Tw Cen MT" size="30.0" />
                </font>
             </Label>
-            <JFXButton fx:id="facultylogin" buttonType="RAISED" layoutX="89.0" layoutY="392.0" prefHeight="33.0" prefWidth="195.0" style="-fx-background-color: #cfb307;" text="Continue" textFill="WHITE">
+            <JFXButton fx:id="facultylogin" buttonType="RAISED" layoutX="89.0" layoutY="392.0" prefHeight="33.0" prefWidth="195.0" style="-fx-background-color: #0013FF;" text="Continue" textFill="WHITE">
                <font>
                   <Font name="Tw Cen MT" size="20.0" />
                </font>
             </JFXButton>
          </children>
       </Pane>
-      <Label layoutX="507.0" layoutY="177.0" text="Department :-">
+      <Label layoutX="526.0" layoutY="158.0" text="Department :-">
          <font>
             <Font name="Tw Cen MT" size="30.0" />
          </font>
       </Label>
-      <Label fx:id="department" layoutX="689.0" layoutY="177.0" text="Department">
+      <Label fx:id="department" layoutX="694.0" layoutY="160.0" text="Department">
          <font>
             <Font name="Tw Cen MT" size="30.0" />
          </font>

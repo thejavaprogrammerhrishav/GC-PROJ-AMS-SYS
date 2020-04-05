@@ -46,7 +46,7 @@
                   </TableView>
                </content>
             </ScrollPane>
-            <JFXButton fx:id="refresh" buttonType="RAISED" layoutX="1048.0" layoutY="220.0" prefHeight="40.0" prefWidth="222.0" style="-fx-background-color: blue; -fx-background-radius: 10;" text="Refresh " textFill="WHITE">
+            <JFXButton fx:id="refresh" buttonType="RAISED" layoutX="1048.0" layoutY="220.0" prefHeight="45.0" prefWidth="222.0" style="-fx-background-color: blue; -fx-background-radius: 10;" text="Refresh " textFill="WHITE">
                <font>
                   <Font name="Tw Cen MT" size="18.0" />
                </font>

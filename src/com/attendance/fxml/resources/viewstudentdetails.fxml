@@ -19,7 +19,7 @@
    <children>
       <Pane prefHeight="65.0" prefWidth="1366.0" style="-fx-background-color: #3329b2;">
          <children>
-            <Label alignment="CENTER" layoutX="1001.0" layoutY="12.0" prefHeight="26.0" prefWidth="352.0" text="View Student Details" textFill="WHITE">
+            <Label alignment="CENTER" layoutX="1001.0" layoutY="10.0" prefHeight="26.0" prefWidth="352.0" text="View Student Details" textFill="WHITE">
                <font>
                   <Font name="Century Gothic" size="20.0" />
                </font>
@@ -37,7 +37,7 @@
                   <Insets bottom="7.0" left="15.0" right="15.0" top="7.0" />
                </padding>
             </Label>
-            <Label fx:id="department" layoutX="1001.0" layoutY="33.0" prefHeight="26.0" prefWidth="352.0" text="Department: " textFill="WHITE">
+            <Label fx:id="department" layoutX="1001.0" layoutY="35.0" prefHeight="26.0" prefWidth="352.0" text="Department: " textFill="WHITE">
                <font>
                   <Font name="Tw Cen MT" size="16.0" />
                </font>
@@ -78,7 +78,7 @@
             </JFXCheckBox>
             <TextField fx:id="fstudentname" layoutX="701.0" layoutY="58.0" prefHeight="33.0" prefWidth="216.0" promptText="Enter Student Name" style="-fx-background-color: transparent; -fx-border-color: rgb(220,220,220); -fx-border-style: solid; -fx-text-fill: #000;">
                <font>
-                  <Font name="Tw Cen MT" size="18.0" />
+                  <Font name="Tw Cen MT" size="15.0" />
                </font>
                <padding>
                   <Insets bottom="5.0" left="12.0" top="5.0" />
@@ -102,67 +102,67 @@
             <JFXComboBox fx:id="coursetype" focusColor="#0f9d58" layoutX="942.0" layoutY="62.0" prefHeight="26.0" prefWidth="184.0" promptText="Select Course Type" style="-fx-font-family: 'Century Gothic',Arial; -fx-font-size: 13;" styleClass="combox" unFocusColor="GAINSBORO" />
          </children>
       </Pane>
-      <TextField fx:id="studentName" editable="false" layoutX="28.0" layoutY="279.0" prefHeight="40.0" prefWidth="560.0" promptText="Student's Name" style="-fx-text-fill: #000; -fx-background-color: transparent; -fx-background-radius: 10; -fx-border-width: 1px; -fx-border-radius: 10; -fx-border-style: solid; -fx-border-color: rgb(220,220,220);">
+      <TextField fx:id="studentName" editable="false" layoutX="28.0" layoutY="279.0" prefHeight="40.0" prefWidth="560.0" promptText="Student's Name" style="-fx-text-fill: #000; -fx-background-color: transparent; -fx-background-radius: 7; -fx-border-width: 1px; -fx-border-radius: 7; -fx-border-style: solid; -fx-border-color: rgb(220,220,220);">
          <font>
-            <Font name="Century Gothic" size="15.0" />
+            <Font name="Century Gothic" size="13.0" />
          </font>
          <padding>
-            <Insets bottom="7.0" left="15.0" right="10.0" top="7.0" />
+            <Insets bottom="7.0" left="13.0" right="10.0" top="7.0" />
          </padding>
       </TextField>
-      <TextField fx:id="studentRollNumber" editable="false" layoutX="28.0" layoutY="466.0" prefHeight="40.0" prefWidth="250.0" promptText="Current Roll Number" style="-fx-text-fill: #000; -fx-background-color: transparent; -fx-background-radius: 10; -fx-border-width: 1px; -fx-border-radius: 10; -fx-border-style: solid; -fx-border-color: rgb(220,220,220);">
+      <TextField fx:id="studentRollNumber" editable="false" layoutX="28.0" layoutY="466.0" prefHeight="40.0" prefWidth="250.0" promptText="Current Roll Number" style="-fx-text-fill: #000; -fx-background-color: transparent; -fx-background-radius: 7; -fx-border-width: 1px; -fx-border-radius: 7; -fx-border-style: solid; -fx-border-color: rgb(220,220,220);">
          <font>
-            <Font name="Century Gothic" size="15.0" />
+            <Font name="Century Gothic" size="13.0" />
          </font>
          <padding>
-            <Insets bottom="7.0" left="15.0" right="10.0" top="7.0" />
+            <Insets bottom="7.0" left="13.0" right="10.0" top="7.0" />
          </padding>
       </TextField>
-      <TextField fx:id="studentYear" editable="false" layoutX="28.0" layoutY="370.0" prefHeight="40.0" prefWidth="250.0" promptText="Year Of Admission" style="-fx-text-fill: #000; -fx-background-color: transparent; -fx-background-radius: 10; -fx-border-width: 1px; -fx-border-radius: 10; -fx-border-style: solid; -fx-border-color: rgb(220,220,220);">
+      <TextField fx:id="studentYear" editable="false" layoutX="28.0" layoutY="370.0" prefHeight="40.0" prefWidth="250.0" promptText="Year Of Admission" style="-fx-text-fill: #000; -fx-background-color: transparent; -fx-background-radius: 7; -fx-border-width: 1px; -fx-border-radius: 7; -fx-border-style: solid; -fx-border-color: rgb(220,220,220);">
          <font>
-            <Font name="Century Gothic" size="15.0" />
+            <Font name="Century Gothic" size="13.0" />
          </font>
          <padding>
-            <Insets bottom="7.0" left="15.0" right="10.0" top="7.0" />
+            <Insets bottom="7.0" left="13.0" right="10.0" top="7.0" />
          </padding>
       </TextField>
-      <TextField fx:id="studentContact" editable="false" layoutX="329.0" layoutY="370.0" prefHeight="40.0" prefWidth="258.0" promptText="Contact Number" style="-fx-text-fill: #000; -fx-background-color: transparent; -fx-background-radius: 10; -fx-border-width: 1px; -fx-border-radius: 10; -fx-border-style: solid; -fx-border-color: rgb(220,220,220);">
+      <TextField fx:id="studentContact" editable="false" layoutX="329.0" layoutY="370.0" prefHeight="40.0" prefWidth="258.0" promptText="Contact Number" style="-fx-text-fill: #000; -fx-background-color: transparent; -fx-background-radius: 7; -fx-border-width: 1px; -fx-border-radius: 7; -fx-border-style: solid; -fx-border-color: rgb(220,220,220);">
          <font>
-            <Font name="Century Gothic" size="15.0" />
+            <Font name="Century Gothic" size="13.0" />
          </font>
          <padding>
-            <Insets bottom="7.0" left="15.0" right="10.0" top="7.0" />
+            <Insets bottom="7.0" left="13.0" right="10.0" top="7.0" />
          </padding>
       </TextField>
-      <Label layoutX="42.0" layoutY="251.0" text="Student Name">
+      <Label layoutX="32.0" layoutY="251.0" text="Student Name">
          <font>
             <Font name="Century Gothic" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="34.0" layoutY="438.0" text="Current Roll Number">
+      <Label layoutX="32.0" layoutY="438.0" text="Current Roll Number">
          <font>
             <Font name="Century Gothic" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="40.0" layoutY="342.0" text="Year Of Admission">
+      <Label layoutX="32.0" layoutY="342.0" text="Year Of Admission">
          <font>
             <Font name="Century Gothic" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="348.0" layoutY="342.0" text="Contact Number">
+      <Label layoutX="334.0" layoutY="342.0" text="Contact Number">
          <font>
             <Font name="Century Gothic" size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="studentSemester" editable="false" layoutX="330.0" layoutY="466.0" prefHeight="40.0" prefWidth="258.0" promptText="Current Acadamic Year" style="-fx-text-fill: #000; -fx-background-color: transparent; -fx-background-radius: 10; -fx-border-width: 1px; -fx-border-radius: 10; -fx-border-style: solid; -fx-border-color: rgb(220,220,220);">
+      <TextField fx:id="studentSemester" editable="false" layoutX="330.0" layoutY="466.0" prefHeight="40.0" prefWidth="258.0" promptText="Current Acadamic Year" style="-fx-text-fill: #000; -fx-background-color: transparent; -fx-background-radius: 7; -fx-border-width: 1px; -fx-border-radius: 7; -fx-border-style: solid; -fx-border-color: rgb(220,220,220);">
          <font>
-            <Font name="Century Gothic" size="15.0" />
+            <Font name="Century Gothic" size="13.0" />
          </font>
          <padding>
-            <Insets bottom="7.0" left="15.0" right="10.0" top="7.0" />
+            <Insets bottom="7.0" left="13.0" right="10.0" top="7.0" />
          </padding>
       </TextField>
-      <Label layoutX="348.0" layoutY="438.0" text="Current Acadamic Year">
+      <Label layoutX="334.0" layoutY="438.0" text="Current Acadamic Year">
          <font>
             <Font name="Century Gothic" size="15.0" />
          </font>
@@ -182,17 +182,17 @@
             <Font name="Century Gothic" size="15.0" />
          </font>
       </JFXCheckBox>
-      <Label alignment="CENTER" layoutX="23.0" layoutY="196.0" prefHeight="41.0" prefWidth="680.0" text="Student Details">
+      <Label alignment="CENTER" layoutX="23.0" layoutY="196.0" prefHeight="41.0" prefWidth="573.0" text="Student Details">
          <font>
             <Font name="Tw Cen MT" size="36.0" />
          </font>
       </Label>
-      <JFXButton fx:id="refresh" layoutX="232.0" layoutY="690.0" prefHeight="30.0" prefWidth="161.0" ripplerFill="BLACK" style="-fx-background-color: #906;" text="Refresh" textFill="WHITE">
+      <JFXButton fx:id="refresh" layoutX="247.0" layoutY="701.0" prefHeight="30.0" prefWidth="161.0" ripplerFill="BLACK" style="-fx-background-color: #906;" text="Refresh" textFill="WHITE">
          <font>
             <Font name="Tw Cen MT" size="18.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="close" layoutX="448.0" layoutY="690.0" prefHeight="30.0" prefWidth="125.0" ripplerFill="BLACK" style="-fx-background-color: #400d42;" text="Close" textFill="WHITE">
+      <JFXButton fx:id="close" layoutX="453.0" layoutY="701.0" prefHeight="30.0" prefWidth="125.0" ripplerFill="BLACK" style="-fx-background-color: #400d42;" text="Close" textFill="WHITE">
          <font>
             <Font name="Tw Cen MT" size="18.0" />
          </font>
@@ -204,20 +204,20 @@
             <TableColumn fx:id="studentacadamicyear" editable="false" prefWidth="143.0" resizable="false" sortable="false" text="Acadamic Year" />
         </columns>
       </TableView>
-      <JFXButton fx:id="allstudents" layoutX="36.0" layoutY="690.0" prefHeight="30.0" prefWidth="161.0" ripplerFill="BLACK" style="-fx-background-color: green;" text="All Students" textFill="WHITE">
+      <JFXButton fx:id="allstudents" layoutX="36.0" layoutY="701.0" prefHeight="30.0" prefWidth="161.0" ripplerFill="BLACK" style="-fx-background-color: green;" text="All Students" textFill="WHITE">
          <font>
             <Font name="Tw Cen MT" size="18.0" />
          </font>
       </JFXButton>
-      <TextField fx:id="curcoursetype" editable="false" layoutX="28.0" layoutY="607.0" prefHeight="40.0" prefWidth="250.0" promptText="Current Course Type" style="-fx-text-fill: #000; -fx-background-color: transparent; -fx-background-radius: 10; -fx-border-width: 1px; -fx-border-radius: 10; -fx-border-style: solid; -fx-border-color: rgb(220,220,220);">
+      <TextField fx:id="curcoursetype" editable="false" layoutX="28.0" layoutY="607.0" prefHeight="40.0" prefWidth="250.0" promptText="Current Course Type" style="-fx-text-fill: #000; -fx-background-color: transparent; -fx-background-radius: 7; -fx-border-width: 1px; -fx-border-radius: 7; -fx-border-style: solid; -fx-border-color: rgb(220,220,220);">
          <font>
-            <Font name="Century Gothic" size="15.0" />
+            <Font name="Century Gothic" size="13.0" />
          </font>
          <padding>
-            <Insets bottom="7.0" left="15.0" right="10.0" top="7.0" />
+            <Insets bottom="7.0" left="13.0" right="10.0" top="7.0" />
          </padding>
       </TextField>
-      <Label layoutX="34.0" layoutY="579.0" text="Current Course Type">
+      <Label layoutX="32.0" layoutY="579.0" text="Current Course Type">
          <font>
             <Font name="Century Gothic" size="15.0" />
          </font>

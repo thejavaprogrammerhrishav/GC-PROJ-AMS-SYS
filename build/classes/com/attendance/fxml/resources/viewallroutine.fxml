@@ -14,7 +14,7 @@
 
 <fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="599.0" prefWidth="674.0" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Pane prefHeight="58.0" prefWidth="674.0" style="-fx-background-color: #4e67c8;">
+      <Pane prefHeight="58.0" prefWidth="674.0" style="-fx-background-color: #0013FF;">
          <children>
             <Label layoutX="231.0" layoutY="16.0" text="Update Active Routine" textFill="WHITE">
                <font>
@@ -23,13 +23,13 @@
             </Label>
          </children>
       </Pane>
-      <JFXCheckBox fx:id="filterbydate" layoutX="63.0" layoutY="507.0" prefHeight="18.0" prefWidth="141.0" text="Filter By Date">
+      <JFXCheckBox fx:id="filterbydate" layoutX="35.0" layoutY="507.0" prefHeight="18.0" prefWidth="141.0" text="Filter By Date">
          <font>
             <Font name="Tw Cen MT" size="16.0" />
          </font>
       </JFXCheckBox>
-      <JFXDatePicker fx:id="date" layoutX="63.0" layoutY="535.0" prefHeight="25.0" prefWidth="185.0" />
-      <JFXButton fx:id="apply" layoutX="269.0" layoutY="533.0" prefHeight="30.0" prefWidth="141.0" style="-fx-background-color: #e5b900;" text="Apply Filter" textFill="WHITE">
+      <JFXDatePicker fx:id="date" layoutX="35.0" layoutY="535.0" prefHeight="25.0" prefWidth="185.0" />
+      <JFXButton fx:id="apply" layoutX="254.0" layoutY="533.0" prefHeight="30.0" prefWidth="141.0" style="-fx-background-color: #c59900;" text="Apply Filter" textFill="WHITE">
          <font>
             <Font name="Tw Cen MT" size="16.0" />
          </font>

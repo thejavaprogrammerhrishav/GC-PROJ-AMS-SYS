@@ -49,7 +49,7 @@ public class Start extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        st = StageUtil.initStage(primaryStage).fullScreen(true).fullScreenExitHint("").fullScreenExitKeyCombination(KeyCombination.NO_MATCH)
+        st = StageUtil.initStage(primaryStage).fullScreen(false).fullScreenExitHint("").fullScreenExitKeyCombination(KeyCombination.NO_MATCH)
                 .initStyle(StageStyle.UNDECORATED).centerOnScreen().build();
         //SwitchRoot.switchRoot(st, RootFactory.getSplashRoot());
         SwitchRoot.switchRoot(st, RootFactory.getUserType1Root());
