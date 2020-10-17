@@ -206,6 +206,7 @@ public class AttendanceReportController extends AnchorPane {
 
         });
         List<String> years = studentdao.findAllYear();
+        years = years.parallelStream().map(Integer::valueOf).sorted().map(String::valueOf).collect(Collectors.toList());
         year.getItems().setAll(years);
 
         List<String> HODname = Utils.util.getHODUsers(SystemUtils.getDepartment()).stream().map(m -> m.getDetails().getName()).collect(Collectors.toList());
@@ -303,7 +304,7 @@ public class AttendanceReportController extends AnchorPane {
         });
 
         task.setOnRunning(e -> LoadingController.show(this.getScene()));
-        
+
         SystemUtils.getService().execute(task);
     }
 

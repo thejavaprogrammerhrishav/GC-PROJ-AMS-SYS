@@ -231,6 +231,8 @@ public class PapersController extends AnchorPane {
                 if (id > 0) {
                     dialog.showSuccess(this, "Add New Paper", "New Paper Added Successfully");
                     refreshtable(evt);
+                    paper=null;
+                    clear(null);
                 }
             } else {
                 validate.stream().forEach(c -> {
@@ -257,6 +259,8 @@ public class PapersController extends AnchorPane {
             if (id) {
                 dialog.showSuccess(this, "Update Paper Details", "Paper Details Updated Successfully");
                 refreshtable(evt);
+                paper=null;
+                clear(null);
             } else {
                 dialog.showError(this, "Update Paper Details", "Paper Details Updation Failed");
             }
@@ -281,6 +285,8 @@ public class PapersController extends AnchorPane {
         if (id) {
             dialog.showSuccess(this, "Delete Paper Details", "Paper Details Deleted Successfully");
             refreshtable(evt);
+            paper=null;
+            clear(null);
         } else {
             dialog.showError(this, "Delete Paper Details", "Paper Details Deletion Failed");
         }

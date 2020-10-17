@@ -199,7 +199,7 @@ public class LoginServiceImpl implements LoginService {
     @Override
     public boolean isUsernameExists(String username) {
         try {
-            return dao.isUsernameExists(username)==0;
+            return dao.isUsernameExists(username)!=0;
         } catch (Exception e) {
             ex.showError(parent, header, ExceptionConverter.getException(e));
 

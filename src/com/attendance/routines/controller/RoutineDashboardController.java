@@ -139,7 +139,9 @@ public class RoutineDashboardController extends AnchorPane {
         Task<List<ViewActiveRoutineController>> task = new Task<List<ViewActiveRoutineController>>() {
             @Override
             protected List<ViewActiveRoutineController> call() throws Exception {
-                if (rdao.hasActiveRoutine(currentUser.getDepartment(), Integer.parseInt(DateTime.now().toString(DateTimeFormat.forPattern("yyyy")))) == 1)  {
+                int x=rdao.hasActiveRoutine(currentUser.getDepartment(), Integer.parseInt(DateTime.now().toString(DateTimeFormat.forPattern("yyyy"))));
+                System.out.println("X= : "+x);
+                if (x == 1)  {
                     Routine r = rdao.findByDepartmentAndDateAndStatus(currentUser.getDepartment(), DateTime.now().toString(DateTimeFormat.forPattern("yyyy")), "Active");
                     return Arrays.asList(new ViewActiveRoutineController(r));
                 } else {

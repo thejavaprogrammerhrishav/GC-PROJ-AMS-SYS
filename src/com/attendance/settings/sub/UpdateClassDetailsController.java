@@ -28,10 +28,13 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.ExecutionException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -49,151 +52,151 @@ import javax.validation.ConstraintViolation;
  * @author Programmer Hrishav
  */
 public class UpdateClassDetailsController extends ScrollPane {
-    
+
     @FXML
     private JFXButton applyfilter;
-    
+
     @FXML
     private TableView<ClassDetails> table;
-    
+
     @FXML
     private TableColumn<ClassDetails, String> tclassid;
-    
+
     @FXML
     private TableColumn<ClassDetails, String> tfacultyname;
-    
+
     @FXML
     private TableColumn<ClassDetails, String> tsubjecttaught;
-    
+
     @FXML
     private TableColumn<ClassDetails, String> tdate;
-    
+
     @FXML
     private TableColumn<ClassDetails, String> ttime;
-    
+
     @FXML
     private TableColumn<ClassDetails, String> tsemester;
-    
+
     @FXML
     private TableColumn<ClassDetails, Integer> tyear;
-    
+
     @FXML
     private TableColumn<ClassDetails, String> tpapercode;
-    
+
     @FXML
     private TableColumn<ClassDetails, String> tacadamicyear;
-    
+
     @FXML
     private TableColumn<ClassDetails, String> tcoursetype;
-    
+
     @FXML
     private JFXButton refresh;
-    
+
     @FXML
     private JFXCheckBox filterbyfaculty;
-    
+
     @FXML
     private JFXComboBox<String> facultyname;
-    
+
     @FXML
     private JFXCheckBox filterbydate;
-    
+
     @FXML
     private JFXCheckBox filterbyyear;
-    
+
     @FXML
     private JFXCheckBox filterbysemester;
-    
+
     @FXML
     private JFXComboBox<String> year;
-    
+
     @FXML
     private JFXComboBox<String> semester;
-    
+
     @FXML
     private JFXCheckBox filterbypaper;
-    
+
     @FXML
     private JFXComboBox<String> paper;
-    
+
     @FXML
     private TextField cdsubjecttaught;
-    
+
     @FXML
     private JFXComboBox<String> cdfaculty;
-    
+
     @FXML
     private JFXDatePicker cdclassdate;
-    
+
     @FXML
     private JFXTimePicker cdclasstime;
-    
+
     @FXML
     private JFXComboBox<String> cdsemester;
-    
+
     @FXML
     private JFXComboBox<String> cdpapercode;
-    
+
     @FXML
     private JFXComboBox<String> cdyear;
-    
+
     @FXML
     private JFXButton close;
-    
+
     @FXML
     private JFXButton update;
-    
+
     @FXML
     private JFXDatePicker date;
-    
+
     @FXML
     private JFXCheckBox filterbyacadamicyear;
-    
+
     @FXML
     private JFXComboBox<String> acadamicyear;
-    
+
     @FXML
     private JFXComboBox<String> cdacadamicyear;
-    
+
     @FXML
     private JFXCheckBox filterbycoursetype;
-    
+
     @FXML
     private JFXCheckBox honours;
-    
+
     @FXML
     private JFXCheckBox pass;
-    
+
     @FXML
     private TextField department;
-    
+
     @FXML
     private JFXCheckBox uhonours;
-    
+
     @FXML
     private JFXCheckBox upass;
-    
+
     private ClassDetails details;
     private AttendanceService cdao;
     private StudentService sdao;
     private PapersService pdao;
     private LoginService dao;
     private ExceptionDialog dialog;
-    
+
     private FXMLLoader fxml;
-    
+
     public UpdateClassDetailsController() {
         fxml = Fxml.getUpdateClassDetailsFXML();
         fxml.setRoot(this);
         fxml.setController(this);
-        
+
         try {
             fxml.load();
         } catch (IOException ex) {
             Logger.getLogger(UpdateClassDetailsController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     @FXML
     private void initialize() {
         department.setText(SystemUtils.getDepartment());
@@ -201,37 +204,37 @@ public class UpdateClassDetailsController extends ScrollPane {
         sdao = (StudentService) Start.app.getBean("studentservice");
         pdao = (PapersService) Start.app.getBean("papersservice");
         dao = (LoginService) Start.app.getBean("loginservice");
-        
+
         cdao.setParent(this);
         dialog = cdao.getEx();
-        
+
         initFilters();
         initTable();
-        
+
         populateTable(null);
-        
+
         close.setOnAction(e -> ((BorderPane) this.getParent()).setCenter(null));
         applyfilter.setOnAction(this::filters);
         refresh.setOnAction(this::populateTable);
         table.setOnMouseClicked(this::tableClick);
         update.setOnAction(this::update);
     }
-    
+
     private void initFilters() {
         facultyname.disableProperty().bind(filterbyfaculty.selectedProperty().not());
         semester.disableProperty().bind(filterbysemester.selectedProperty().not());
         year.disableProperty().bind(filterbyyear.selectedProperty().not());
         paper.disableProperty().bind(filterbypaper.selectedProperty().not());
         date.disableProperty().bind(filterbydate.selectedProperty().not());
-        
+
         honours.disableProperty().bind(filterbycoursetype.selectedProperty().not());
         pass.disableProperty().bind(filterbycoursetype.selectedProperty().not());
-        
+
         acadamicyear.disableProperty().bind(filterbyacadamicyear.selectedProperty().not());
-        
+
         acadamicyear.getItems().setAll("1st", "2nd", "3rd");
         cdacadamicyear.getItems().setAll("1st", "2nd", "3rd");
-        
+
         acadamicyear.getSelectionModel().selectedItemProperty().addListener((ol, o, n) -> {
             if (n.equals("1st")) {
                 semester.getItems().setAll("1st Semester", "2nd Semester");
@@ -250,13 +253,13 @@ public class UpdateClassDetailsController extends ScrollPane {
                 cdsemester.getItems().setAll("5th Semester", "6th Semester");
             }
         });
-        
+
         List<String> years = sdao.get("select distinct(year) from student order by year", String.class);
         year.getItems().setAll(years);
-        
+
         List<String> HODname = Utils.util.getHODUsers(SystemUtils.getDepartment()).stream().map(m -> m.getDetails().getName()).collect(Collectors.toList());
         List<String> fname = Utils.util.getFacultyUsers(SystemUtils.getDepartment()).stream().map(m -> m.getDetails().getName()).collect(Collectors.toList());
-        
+
         List<String> names = Stream.concat(HODname.stream(), fname.stream()).collect(Collectors.toList());
         facultyname.getItems().setAll(names);
         filterbypaper.selectedProperty().addListener((ol, o, n) -> {
@@ -266,47 +269,47 @@ public class UpdateClassDetailsController extends ScrollPane {
                 filterbypaper.setSelected(false);
             }
         });
-        
+
         filterbysemester.selectedProperty().addListener((ol, o, n) -> {
             if (!n) {
                 filterbypaper.setSelected(false);
             }
         });
-        
+
         filterbyacadamicyear.selectedProperty().addListener((ol, o, n) -> {
             if (!n) {
                 filterbysemester.setSelected(false);
             }
         });
-        
+
         honours.selectedProperty().addListener((ol, o, n) -> {
             if (n) {
                 honours.setSelected(true);
                 pass.setSelected(false);
             }
         });
-        
+
         pass.selectedProperty().addListener((ol, o, n) -> {
             if (n) {
                 pass.setSelected(true);
                 honours.setSelected(false);
             }
         });
-        
+
         uhonours.selectedProperty().addListener((ol, o, n) -> {
             if (uhonours.isSelected()) {
                 uhonours.setSelected(true);
                 upass.setSelected(false);
             }
         });
-        
+
         upass.selectedProperty().addListener((ol, o, n) -> {
             if (upass.isSelected()) {
                 upass.setSelected(true);
                 uhonours.setSelected(false);
             }
         });
-        
+
         semester.getSelectionModel().selectedItemProperty().addListener((ol, o, n) -> {
             if (n != null || !n.isEmpty()) {
                 List<Paper> paperlist = pdao.findByDepartment(SystemUtils.getDepartment());
@@ -314,14 +317,14 @@ public class UpdateClassDetailsController extends ScrollPane {
                 paper.getItems().setAll(list);
             }
         });
-        
+
         cdsemester.getSelectionModel().selectedItemProperty().addListener((ol, o, n) -> {
             String sem = n.replace(" Semester", "");
             List<Paper> papers = pdao.findBySemester(sem);
             cdpapercode.getItems().setAll(papers.stream().map(p -> p.getPaperCode()).collect(Collectors.toList()));
         });
     }
-    
+
     private void initTable() {
         tfacultyname.setCellValueFactory(new PropertyValueFactory<ClassDetails, String>("facultyName"));
         tsubjecttaught.setCellValueFactory(new PropertyValueFactory<ClassDetails, String>("subjectTaught"));
@@ -334,15 +337,33 @@ public class UpdateClassDetailsController extends ScrollPane {
         tacadamicyear.setCellValueFactory(new PropertyValueFactory<>("acadamicyear"));
         tcoursetype.setCellValueFactory(new PropertyValueFactory<>("coursetype"));
     }
-    
+
     private void populateTable(ActionEvent evt) {
-        List<ClassDetails> list = cdao.findByDepartment(SystemUtils.getDepartment());
-        table.getItems().setAll(list);
+        Task<List<ClassDetails>> task = new Task<List<ClassDetails>>() {
+            @Override
+            protected List<ClassDetails> call() throws Exception {
+                return cdao.findByDepartment(SystemUtils.getDepartment());
+            }
+
+        };
+        task.setOnRunning(e -> LoadingController.show(this.getScene()));
+        task.setOnFailed(e -> LoadingController.hide());
+        task.setOnSucceeded(e -> {
+            LoadingController.hide();
+            Platform.runLater(() -> {
+                try {
+                    table.getItems().setAll(task.get());
+                } catch (InterruptedException | ExecutionException ex) {
+                    table.getItems().clear();
+                }
+            });
+        });
+        SystemUtils.getService().execute(task);
     }
-    
+
     private void filters(ActionEvent evt) {
         List<ClassDetails> list = cdao.findByDepartment(department.getText());
-        
+
         if (filterbyacadamicyear.isSelected()) {
             list = list.stream().filter(s -> s.getAcadamicyear().equals(acadamicyear.getSelectionModel().getSelectedItem())).collect(Collectors.toList());
         }
@@ -372,18 +393,18 @@ public class UpdateClassDetailsController extends ScrollPane {
         }
         table.getItems().setAll(list);
     }
-    
+
     private void tableClick(MouseEvent evt) {
         details = table.getSelectionModel().getSelectedItem();
         List<String> HODname = Utils.util.getHODUsers(SystemUtils.getDepartment()).stream().map(m -> m.getDetails().getName()).collect(Collectors.toList());
         List<String> fname = Utils.util.getFacultyUsers(SystemUtils.getDepartment()).stream().map(m -> m.getDetails().getName()).collect(Collectors.toList());
-        
+
         List<String> names = Stream.concat(HODname.stream(), fname.stream()).collect(Collectors.toList());
         cdfaculty.getItems().setAll(names);
-        
+
         List<String> years = sdao.get("select distinct(year) from student order by year", String.class);
         cdyear.getItems().setAll(years);
-        
+
         cdfaculty.getSelectionModel().select(details.getFacultyName());
         cdsubjecttaught.setText(details.getSubjectTaught());
         cdacadamicyear.getSelectionModel().select(details.getAcadamicyear());
@@ -399,12 +420,12 @@ public class UpdateClassDetailsController extends ScrollPane {
             upass.setSelected(true);
         }
     }
-    
+
     private void update(ActionEvent evt) {
         try {
             if (details != null) {
                 ClassDetails cd = new ClassDetails();
-                
+
                 if (cdfaculty.getSelectionModel().getSelectedIndex() >= 0) {
                     cd.setFacultyName(cdfaculty.getSelectionModel().getSelectedItem());
                 } else {
@@ -413,7 +434,7 @@ public class UpdateClassDetailsController extends ScrollPane {
                 cd.setSubjectTaught(cdsubjecttaught.getText());
                 cd.setDate(cdclassdate.getValue().format(DateTimeFormatter.ofPattern("EEEE, dd MMMM yyyy")));
                 cd.setTime(cdclasstime.getValue().format(DateTimeFormatter.ofPattern("hh:mm a")));
-                
+
                 if (cdsemester.getSelectionModel().getSelectedIndex() >= 0) {
                     cd.setSemester(cdsemester.getSelectionModel().getSelectedItem().replace(" Semester", ""));
                 } else {
@@ -445,19 +466,19 @@ public class UpdateClassDetailsController extends ScrollPane {
                 } else {
                     throw new Exception("Please Select CourseType");
                 }
-                
+
                 cd.setDailyStats(details.getDailyStats());
                 cd.setAttendance(details.getAttendance());
                 cd.setClassId(details.getClassId());
-                
+
                 Set<ConstraintViolation<ClassDetails>> validate = ValidationUtils.getValidator().validate(cd);
                 if (validate.isEmpty()) {
                     boolean b1 = cdao.updateAttendance(cd);
-                    
+
                     String id = SystemUtils.getDepartmentCode() + "/" + cdclassdate.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")) + "@" + cdclasstime.getValue().format(DateTimeFormatter.ofPattern("hh:mm"))
                             + "#" + cdacadamicyear.getSelectionModel().getSelectedItem() + "__" + cdsemester.getSelectionModel().getSelectedItem().replace(" Semester", "") + "_" + cdyear.getSelectionModel().getSelectedItem() + "&" + cd.getCoursetype().charAt(0);
                     cd.setClassId(id);
-                    
+
                     boolean b2 = cdao.updateClassId(details.getClassId(), cd.getClassId());
                     if (b1 && b2) {
                         dialog.showSuccess(this, "Class Details Update", "Class Details Updated Successfully");
@@ -467,11 +488,11 @@ public class UpdateClassDetailsController extends ScrollPane {
                 } else {
                     validate.stream().forEach(c -> dialog.showError(this, "Class Details Update", c.getMessage()));
                 }
-            }            
-            
+            }
+
         } catch (Exception e) {
             dialog.showError(this, "Class Details Update", e.getLocalizedMessage());
         }
     }
-    
+
 }

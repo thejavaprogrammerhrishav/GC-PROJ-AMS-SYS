@@ -63,6 +63,8 @@ public class PrincipalDashboardStudentNodeController extends AnchorPane {
         dao.setParent(this);
         department.getItems().setAll("All");
         department.getItems().addAll(SystemUtils.getDepartments());
+        
+        total.setText("");
 
         List<String> years = dao.findAllYear();
         year.getItems().setAll("All");

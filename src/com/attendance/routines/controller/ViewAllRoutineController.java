@@ -59,7 +59,6 @@ public class ViewAllRoutineController extends AnchorPane {
     private FXMLLoader fxml;
     private RoutineService dao;
 
-
     public ViewAllRoutineController() {
         fxml = Fxml.getViewAllRoutineFXML();
         fxml.setController(this);
@@ -140,11 +139,15 @@ public class ViewAllRoutineController extends AnchorPane {
             protected List<ViewAllRoutineNodeController> call() throws Exception {
                 List<Routine> nodes = dao.sortByDepartment(SystemUtils.getCurrentUser().getDepartment(), "asc");
                 List<ViewAllRoutineNodeController> collect = nodes.stream().map(ViewAllRoutineNodeController::new).collect(Collectors.toList());
+                System.out.println(nodes.size() + "    " + collect.size());
                 return collect;
             }
         };
         task.setOnRunning(e -> LoadingController.show(this.getScene()));
+        task.setOnFailed(e -> LoadingController.hide());
         task.setOnSucceeded(e -> {
+            LoadingController.hide();
+
             try {
                 list.getChildren().clear();
                 Thread.sleep(700);
@@ -152,7 +155,6 @@ public class ViewAllRoutineController extends AnchorPane {
             } catch (InterruptedException | ExecutionException ex) {
                 Logger.getLogger(ViewAllRoutineController.class.getName()).log(Level.SEVERE, null, ex);
             }
-            LoadingController.hide();
         });
         SystemUtils.getService().execute(task);
     }

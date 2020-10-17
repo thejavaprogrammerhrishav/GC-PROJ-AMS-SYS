@@ -250,7 +250,7 @@ public class StudentUpdateController extends AnchorPane {
 
     private void loadstudent(ActionEvent evt) {
         searchStudent = LoadStudentsController.Show(this.getScene());
-        if (searchStudent.getDepartment().equalsIgnoreCase(department.getText())) {
+        if (searchStudent !=null && searchStudent.getDepartment().equalsIgnoreCase(department.getText())) {
             studentContact.setText(searchStudent.getContact());
             studentName.setText(searchStudent.getName());
             studentRollNumber.setText("" + searchStudent.getRollno());

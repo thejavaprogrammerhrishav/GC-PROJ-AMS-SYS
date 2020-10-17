@@ -5,7 +5,6 @@
  */
 package com.attendance.settings;
 
-import com.attendance.login.activity.dao.Activity;
 import com.attendance.login.activity.model.LoginActivity;
 import com.attendance.login.activity.service.LoginActivityService;
 import com.attendance.main.Start;
@@ -14,14 +13,15 @@ import com.attendance.util.ExportUserLoginActivity;
 import com.attendance.util.Fxml;
 import com.attendance.util.SwitchRoot;
 import com.attendance.util.SystemUtils;
+import com.attendance.util.Utils;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 import java.io.IOException;
-import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -35,7 +35,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import org.joda.time.DateTimeComparator;
 
 /**
  *
@@ -218,9 +217,12 @@ public class HODLoginActivitySettingsController extends AnchorPane {
 
         if (sortbydate.isSelected()) {
             if (ascending.isSelected()) {
-                list = dao.get(" select * from loginactivity where usertype = 'HOD' order by str_to_date(logindate, '%d-%m-%y') asc");
+                list = dao.findByUserType("HOD");
+                list = list.parallelStream().sorted(Utils::compareDate).collect(Collectors.toList());
             } else if (descending.isSelected()) {
-                list = dao.get(" select * from loginactivity where usertype = 'HOD' order by str_to_date(logindate, '%d-%m-%y') desc");
+                list = dao.findByUserType("HOD");
+                list = list.parallelStream().sorted(Utils::compareDate).collect(Collectors.toList());
+                Collections.reverse(list);
             } else {
                 list = dao.findByUserType("HOD");
             }
@@ -229,4 +231,5 @@ public class HODLoginActivitySettingsController extends AnchorPane {
         }
         table.getItems().setAll(list);
     }
+
 }

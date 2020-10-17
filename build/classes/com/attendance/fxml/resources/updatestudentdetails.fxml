@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: linear-gradient(#0f0c29 0%, #302b63 50%, #24243e 100%);" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: linear-gradient(#0f0c29 0%, #302b63 50%, #24243e 100%);" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="160.0" layoutY="30.0" text="Modern Attendance System" textFill="WHITE">
          <font>
@@ -120,7 +120,7 @@
                         <Font name="Tw Cen MT" size="16.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton fx:id="search" buttonType="RAISED" layoutX="637.0" layoutY="20.0" prefHeight="30.0" prefWidth="198.0" ripplerFill="#1500ff" style="-fx-background-color: #ff8700;" text="Search Student" textFill="WHITE">
+                  <JFXButton fx:id="search" buttonType="RAISED" layoutX="637.0" layoutY="20.0" prefHeight="30.0" prefWidth="198.0" ripplerFill="#1500ff" style="-fx-background-color: #ff8700;" text="Search Student By ID" textFill="WHITE">
                      <font>
                         <Font name="Tw Cen MT" size="16.0" />
                      </font>

@@ -5,10 +5,12 @@
  */
 package com.attendance.routines.dao.impl;
 
-import com.attendance.notes.model.Notes;
 import com.attendance.routines.dao.RoutineDao;
 import com.attendance.routines.model.Routine;
+import com.attendance.util.Utils;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.orm.hibernate4.HibernateTemplate;
@@ -88,8 +90,16 @@ public class RoutineDaoImpl implements RoutineDao {
     }
 
     @Override
+    @Transactional
     public List<Routine> sortByDepartment(String department, String order) {
-        return jdbcTemplate.query("select * from routine where department = '" + department + "' order by str_to_date(date,'%d-%m-%Y') " + order, new BeanPropertyRowMapper<Routine>(Routine.class));
+        List<Routine> list=(List<Routine>) hibernateTemplate.findByNamedParam("from Routine where department=:dept", "dept", department);
+        list=list.parallelStream().sorted(Utils::compareRoutineDate).collect(Collectors.toList());
+        if(order.equalsIgnoreCase("asc")){
+            return list;
+        }else{
+            Collections.reverse(list);
+            return list;
+        }
     }
 
     @Override
@@ -111,7 +121,7 @@ public class RoutineDaoImpl implements RoutineDao {
     }
 
     @Override
-    public Integer hasActiveRoutine(String department, String year) {
+    public Integer hasActiveRoutine(String department, int year) {
         return jdbcTemplate.queryForObject("select count(*) from routine where department = '" + department + "' and date like '%" + year + "' and status = 'Active'", Integer.class);
     }
 

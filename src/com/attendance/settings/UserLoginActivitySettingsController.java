@@ -5,7 +5,6 @@
  */
 package com.attendance.settings;
 
-import com.attendance.login.activity.dao.Activity;
 import com.attendance.login.activity.model.LoginActivity;
 import com.attendance.login.activity.service.LoginActivityService;
 import com.attendance.main.Start;
@@ -14,12 +13,14 @@ import com.attendance.util.ExportUserLoginActivity;
 import com.attendance.util.Fxml;
 import com.attendance.util.SwitchRoot;
 import com.attendance.util.SystemUtils;
+import com.attendance.util.Utils;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
+import java.util.Collections;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -39,95 +40,95 @@ import javafx.scene.layout.AnchorPane;
  * @author Programmer Hrishav
  */
 public class UserLoginActivitySettingsController extends AnchorPane {
-
+    
     @FXML
     private JFXCheckBox filterbyname;
-
+    
     @FXML
     private JFXCheckBox filterbydate;
-
+    
     @FXML
     private JFXCheckBox filterbyusertype;
-
+    
     @FXML
     private JFXCheckBox ascending;
-
+    
     @FXML
     private JFXCheckBox descending;
-
+    
     @FXML
     private TableView<LoginActivity> table;
-
+    
     @FXML
     private TableColumn<LoginActivity, String> name;
-
+    
     @FXML
     private TableColumn<LoginActivity, String> username;
-
+    
     @FXML
     private TableColumn<LoginActivity, String> usertype;
-
+    
     @FXML
     private TableColumn<LoginActivity, String> status;
-
+    
     @FXML
     private TableColumn<LoginActivity, String> date;
-
+    
     @FXML
     private TableColumn<LoginActivity, String> logintime;
-
+    
     @FXML
     private TableColumn<LoginActivity, String> logouttime;
-
+    
     @FXML
     private TextField searchname;
-
+    
     @FXML
     private JFXDatePicker searchdate;
-
+    
     @FXML
     private JFXComboBox<String> searchusertype;
-
+    
     @FXML
     private JFXCheckBox sortbydate;
-
+    
     @FXML
     private JFXButton applyfilters;
-
+    
     @FXML
     private JFXButton refresh;
-
+    
     @FXML
     private JFXButton export2excel;
-
+    
     @FXML
     private JFXButton cancel;
-
+    
     @FXML
     private JFXButton sort;
-
+    
     private Parent parent;
-
+    
     private FXMLLoader fxml;
     
     private ExceptionDialog dialog;
-
+    
     private LoginActivityService dao;
     private List<LoginActivity> list;
-
+    
     public UserLoginActivitySettingsController(Parent parent) {
         this.parent = parent;
         fxml = Fxml.getUserLoginActivityTrackingFXML();
         fxml.setRoot(this);
         fxml.setController(this);
-
+        
         try {
             fxml.load();
         } catch (IOException ex) {
             Logger.getLogger(UserLoginActivitySettingsController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
     @FXML
     private void initialize() {
         dao = (LoginActivityService) Start.app.getBean("loginactivityservice");
@@ -137,36 +138,36 @@ public class UserLoginActivitySettingsController extends AnchorPane {
         searchname.disableProperty().bind(filterbyname.selectedProperty().not());
         searchdate.disableProperty().bind(filterbydate.selectedProperty().not());
         searchusertype.disableProperty().bind(filterbyusertype.selectedProperty().not());
-
+        
         searchusertype.getItems().setAll("HOD", "Faculty");
-
+        
         ascending.disableProperty().bind(sortbydate.selectedProperty().not());
         descending.disableProperty().bind(sortbydate.selectedProperty().not());
-
+        
         ascending.selectedProperty().addListener((ol, o, n) -> {
             if (n) {
                 ascending.setSelected(true);
                 descending.setSelected(false);
             }
         });
-
+        
         descending.selectedProperty().addListener((ol, o, n) -> {
             if (n) {
                 descending.setSelected(true);
                 ascending.setSelected(false);
             }
         });
-
+        
         initTable();
         populateTable(null);
-
+        
         cancel.setOnAction(e -> SwitchRoot.switchRoot(Start.st, parent));
         refresh.setOnAction(this::populateTable);
         applyfilters.setOnAction(this::filters);
         export2excel.setOnAction(this::export);
         sort.setOnAction(this::sorted);
     }
-
+    
     private void initTable() {
         name.setCellValueFactory(new PropertyValueFactory<>("name"));
         username.setCellValueFactory(new PropertyValueFactory<>("username"));
@@ -176,16 +177,16 @@ public class UserLoginActivitySettingsController extends AnchorPane {
         logintime.setCellValueFactory(new PropertyValueFactory<>("logintime"));
         logouttime.setCellValueFactory(new PropertyValueFactory<>("logouttime"));
     }
-
+    
     private void populateTable(ActionEvent evt) {
         reinit();
         table.getItems().setAll(list);
     }
-
+    
     private void reinit() {
         list = dao.findByDepartment(SystemUtils.getDepartment());
     }
-
+    
     private void filters(ActionEvent evt) {
         List<LoginActivity> filterdList = table.getItems();
         if (filterbydate.isSelected()) {
@@ -199,7 +200,7 @@ public class UserLoginActivitySettingsController extends AnchorPane {
         }
         table.getItems().setAll(filterdList);
     }
-
+    
     private void export(ActionEvent evt) {
         ExportUserLoginActivity exp = new ExportUserLoginActivity(table);
         try {
@@ -209,15 +210,18 @@ public class UserLoginActivitySettingsController extends AnchorPane {
             dialog.showError(this, "Login Activity User", "Login Activity Export Failed");
         }
     }
-
+    
     private void sorted(ActionEvent evt) {
         List<LoginActivity> list;
-
+        
         if (sortbydate.isSelected()) {
             if (ascending.isSelected()) {
-                list = dao.get(" select * from loginactivity where department = '" + SystemUtils.getDepartment() + "' order by str_to_date(logindate, '%d-%m-%y') asc");
+                list = dao.findByDepartment(SystemUtils.getDepartment());
+                list = list.parallelStream().sorted(Utils::compareDate).collect(Collectors.toList());
             } else if (descending.isSelected()) {
-                list = dao.get(" select * from loginactivity where department = '" + SystemUtils.getDepartment() + "' order by str_to_date(logindate, '%d-%m-%y') desc");
+                list = dao.findByDepartment(SystemUtils.getDepartment());
+                list = list.parallelStream().sorted(Utils::compareDate).collect(Collectors.toList());
+                Collections.reverse(list);
             } else {
                 list = dao.findByDepartment(SystemUtils.getDepartment());
             }

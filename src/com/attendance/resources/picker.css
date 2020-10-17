@@ -1,0 +1,24 @@
+.date-picker,
+.time-picker{
+	-fx-prompt-text-fill: #fff;
+}
+
+.date-picker .date-picker-display-node,
+.time-picker .time-picker-display-node{
+	-fx-prompt-text-fill: #fff;
+	-fx-text-fill: #fff;
+}
+
+.date-picker .date-picker-display-node .input-line,
+.date-picker .date-picker-display-node .input-focused-line,
+.time-picker .time-picker-display-node .input-line,
+.time-picker .time-picker-display-node .input-focused-line{
+	-fx-fill: #fff;
+	-fx-background-color: #fff;
+}
+
+.time-picker .arrow-button .jfx-svg-glyph,
+.date-picker .arrow-button .jfx-svg-glyph{
+	-fx-fill: #fff;
+	-fx-background-color: #fff;
+}

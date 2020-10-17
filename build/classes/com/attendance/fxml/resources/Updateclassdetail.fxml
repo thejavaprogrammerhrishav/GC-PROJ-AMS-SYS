@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<fx:root hbarPolicy="NEVER" prefHeight="584.0" prefWidth="1366.0" style="-fx-background-color: #292222;" type="ScrollPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root hbarPolicy="NEVER" prefHeight="584.0" prefWidth="1366.0" style="-fx-background-color: #292222;" type="ScrollPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <content>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="933.0" prefWidth="1366.0" style="-fx-background-color: #3a3535;">
          <children>
@@ -122,7 +122,7 @@
             </TextField>
             <JFXComboBox fx:id="cdfaculty" layoutX="184.0" layoutY="689.0" prefHeight="25.0" prefWidth="216.0" promptText="Select Faculty Name" style="-fx-prompt-text-fill: #fff; -fx-font-family: 'Segoe UI',arial; -fx-font-size: 14;" unFocusColor="WHITE" />
             <JFXDatePicker fx:id="cdclassdate" layoutX="182.0" layoutY="786.0" promptText="Select Date" style="-fx-font-family: 'Segoe UI',arial; -fx-font-size: 14;" styleClass="time" />
-            <JFXTimePicker fx:id="cdclasstime" layoutX="540.0" layoutY="785.0" prefHeight="25.0" prefWidth="200.0" promptText="Select Time" style="-fx-font-family: 'Segoe UI',arial; -fx-font-size: 14;" styleClass="time" />
+            <JFXTimePicker fx:id="cdclasstime" layoutX="540.0" layoutY="785.0" prefHeight="25.0" prefWidth="200.0" promptText="Select Time" style="-fx-font-family: 'Segoe UI',arial; -fx-font-size: 14;" styleClass="time-picker" />
             <JFXComboBox fx:id="cdsemester" layoutX="903.0" layoutY="785.0" prefHeight="28.0" prefWidth="193.0" promptText="Select Semester" style="-fx-prompt-text-fill: #fff; -fx-font-family: 'Segoe UI',arial; -fx-font-size: 14;" unFocusColor="WHITE" />
             <JFXComboBox fx:id="cdpapercode" layoutX="184.0" layoutY="834.0" prefHeight="25.0" prefWidth="230.0" promptText="Select Paper Code" style="-fx-prompt-text-fill: #fff; -fx-font-family: 'Segoe UI',arial; -fx-font-size: 14;" unFocusColor="WHITE" />
             <JFXComboBox fx:id="cdyear" layoutX="1218.0" layoutY="785.0" prefHeight="28.0" prefWidth="120.0" promptText="Select Year" style="-fx-prompt-text-fill: #fff; -fx-font-family: 'Segoe UI',arial; -fx-font-size: 14;" unFocusColor="WHITE" />
@@ -210,5 +210,6 @@
       <URL value="@../../resources/combolist.css" />
       <URL value="@../../resources/darkcombo.css" />
       <URL value="@../../resources/whitecombo.css" />
+      <URL value="@../../resources/picker.css" />
    </stylesheets>
 </fx:root>

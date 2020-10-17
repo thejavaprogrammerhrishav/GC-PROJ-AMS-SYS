@@ -230,6 +230,7 @@ public class AttendanceController extends AnchorPane {
 
                 List<Data> list = new ArrayList<>();
                 List<ClassDetails> all = cdao.findByDepartment(SystemUtils.getDepartment());
+                System.out.println("List Class Details : "+all.size());
                 if (!faculty.equals("N/A")) {
                     all = all.stream().filter(p -> p.getFacultyName().equals(faculty)).collect(Collectors.toList());
                 }
@@ -238,11 +239,17 @@ public class AttendanceController extends AnchorPane {
                         list.add(new Data(c.getClassId(), a));
                     }
                 }
+                System.out.println("Attendance Size: "+list.size());
                 List<Student> student = sdao.findByDepartment(SystemUtils.getDepartment());
+                System.out.println("Student Size: "+student.size());
                 Map<String, Student> students = student.parallelStream().collect(Collectors.toMap(Student::getId, Function.identity()));
+                System.out.println("List Size: "+list.size());
+                System.out.println("Students Map Size: "+students.size());
                 List<AttendanceUtilModel> nlist = list.stream().map(a -> {
                     AttendanceUtilModel at = new AttendanceUtilModel();
+                    System.out.println(a.getAttendance().getStudentId());
                     Student sss = students.get(a.getAttendance().getStudentId());
+                    System.out.println(sss==null);
                     at.setStatus(a.getAttendance().getStatus());
                     at.setStudentId(a.getAttendance().getStudentId());
                     at.setName(sss.getName());
@@ -271,14 +278,18 @@ public class AttendanceController extends AnchorPane {
                     if (a.getClassid().charAt(a.getClassid().length() - 1) == 'P') {
                         at.setCoursetype("Pass");
                     }
+                    System.out.println("Done....");
 
                     return at;
                 }).collect(Collectors.toList());
+                System.out.println("Size=: "+nlist.size());
                 return nlist;
             }
         };
         task.setOnRunning(e -> LoadingController.show(this.getScene()));
+        task.setOnFailed(e->LoadingController.hide());
         task.setOnSucceeded(e -> {
+            LoadingController.hide();
             Platform.runLater(() -> {
                 try {
                     table.getItems().setAll(task.get());
@@ -286,7 +297,6 @@ public class AttendanceController extends AnchorPane {
                     table.getItems().clear();
                 }
             });
-            LoadingController.hide();
         });
         SystemUtils.getService().execute(task);
     }

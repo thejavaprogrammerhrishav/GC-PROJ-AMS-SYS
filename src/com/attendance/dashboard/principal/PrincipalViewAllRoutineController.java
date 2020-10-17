@@ -150,12 +150,12 @@ public class PrincipalViewAllRoutineController extends AnchorPane {
                 List<Routine> nodes = dao.sortByDepartment(department, "asc");
                 nodes = nodes.stream().filter(p -> p.getDate().endsWith(year)).collect(Collectors.toList());
                 List<PrincipalViewAllRoutineNodeController> collect = nodes.stream().map(PrincipalViewAllRoutineNodeController::new).collect(Collectors.toList());
-                list.getChildren().setAll(collect);
                 return collect;
             }
         };
         task.setOnRunning(e -> LoadingController.show(this.getScene()));
         task.setOnSucceeded(e -> {
+            System.out.println("Success");
             try {
                 list.getChildren().clear();
                 Thread.sleep(700);

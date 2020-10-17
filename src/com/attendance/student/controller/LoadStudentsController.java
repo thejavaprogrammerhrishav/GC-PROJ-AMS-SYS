@@ -82,6 +82,9 @@ public class LoadStudentsController extends AnchorPane {
 
     @FXML
     private TableColumn<Student, Integer> studentrollno;
+    
+    @FXML
+    private JFXButton close;
 
     private FXMLLoader fxml;
     private StudentService dao;
@@ -102,12 +105,15 @@ public class LoadStudentsController extends AnchorPane {
 
     @FXML
     private void initialize() {
+        close.setOnAction(e->stage.close());
         dao = (StudentService) Start.app.getBean("studentservice");
         dao.setParent(this);
         dialog = dao.getEx();
         
         inittable();
         load(null);
+        
+        student=null;
 
         facadamicyear.getItems().setAll("1st", "2nd", "3rd");
         fyear.getItems().setAll(dao.findAllYear());

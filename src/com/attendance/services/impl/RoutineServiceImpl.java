@@ -172,7 +172,7 @@ public class RoutineServiceImpl implements RoutineService {
     @Override
     public Integer hasActiveRoutine(String department, int year) {
         try {
-            return dao.hasActiveRoutine(department, department);
+            return dao.hasActiveRoutine(department, year);
         } catch (Exception e) {
             ex.showError(parent, header, ExceptionConverter.getException(e));
             return -1;

@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: linear-gradient(to bottom, #3c1053, #ad5389);" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: linear-gradient(to bottom, #3c1053, #ad5389);" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Pane layoutX="-1.0" layoutY="89.0" prefHeight="160.0" prefWidth="1366.0">
          <children>
@@ -123,5 +123,6 @@
       <URL value="@../../resources/combowhite.css" />
       <URL value="@../../resources/deepcombo.css" />
       <URL value="@../../resources/whitecombo.css" />
+      <URL value="@../../resources/picker.css" />
    </stylesheets>
 </fx:root>

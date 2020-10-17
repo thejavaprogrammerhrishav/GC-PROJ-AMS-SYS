@@ -188,13 +188,16 @@ public class UploadUnitTestMarksController extends AnchorPane {
             return test;
         }).collect(Collectors.toList());
         boolean s = validate(collect);
-        String t = "Marks Uploaded Successfully\nUnit Test:  " + ut.getSelectionModel().getSelectedItem() + "\nSemester:   " + sem.getSelectionModel().getSelectedItem();
+        String t = "Marks Uploaded Successfully";
         if(s){
                 dialog.showSuccess(this, "Upload Unit Test Marks", t);
         }else{
                 dialog.showError(this, "Upload Unit Test Marks", "Marks Upload Failed");
         }
-        }catch(Exception e){
+        }catch(NumberFormatException ex){
+             dialog.showError(this, "Upload Unit Test Marks", "Invalid Marks Detected.");
+        }
+        catch(Exception e){
             dialog.showError(this, "Upload Unit Test Marks", e.getMessage());
         }
     }

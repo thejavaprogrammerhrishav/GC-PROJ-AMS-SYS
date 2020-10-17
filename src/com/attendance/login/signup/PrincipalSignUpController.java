@@ -115,12 +115,12 @@ public class PrincipalSignUpController extends AnchorPane {
                 principal.setEmailId(email.getText());
                 principal.setGender("Unknown");
 
-                question.setQuestion1("");
-                question.setQuestion2("");
-                question.setQuestion3("");
-                question.setAnswer1("");
-                question.setAnswer2("");
-                question.setAnswer3("");
+                question.setQuestion1("Unknown");
+                question.setQuestion2("Unknown");
+                question.setQuestion3("Unknown");
+                question.setAnswer1("Unknown");
+                question.setAnswer2("Unknown");
+                question.setAnswer3("Unknown");
 
                 user.setDetails(principal);
                 user.setSecurityquestion(question);

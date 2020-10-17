@@ -28,7 +28,7 @@ public interface RoutineDao {
     public abstract Routine findByDepartmentAndDateAndStatus(String department, String date, String status);
     public abstract List<Routine> findByDepartmentAndStatus(String department, String status);
     
-    public abstract Integer hasActiveRoutine(String department,String year);
+    public abstract Integer hasActiveRoutine(String department,int year);
     
     public abstract <T> List<T> get(String sql, Class<T> type);
 }

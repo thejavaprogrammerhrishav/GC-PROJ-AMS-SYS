@@ -118,16 +118,17 @@ public class HODSignupController extends AnchorPane {
                 hod.setEmailId(email.getText());
                 hod.setGender("Unknown");
 
-                question.setQuestion1("");
-                question.setQuestion2("");
-                question.setQuestion3("");
-                question.setAnswer1("");
-                question.setAnswer2("");
-                question.setAnswer3("");
+                question.setQuestion1("Unknown");
+                question.setQuestion2("Unknown");
+                question.setQuestion3("Unknown");
+                question.setAnswer1("Unknown");
+                question.setAnswer2("Unknown");
+                question.setAnswer3("Unknown");
 
                 user.setDetails(hod);
                 user.setSecurityquestion(question);
-
+                System.out.println("Username From Object: "+user.getUsername());
+                System.out.println("Username: "+username.getText());
                 Set<ConstraintViolation<User>> validate = ValidationUtils.getValidator().validate(user);
                 if (validate.isEmpty()) {
                     int id = login.saveUser(user);
