@@ -25,8 +25,9 @@ import javafx.scene.layout.AnchorPane;
  *
  * @author pc
  */
-public class UserType1Controller extends AnchorPane{
-    @FXML 
+public class UserType1Controller extends AnchorPane {
+
+    @FXML    
     private JFXButton principal;
     
     @FXML
@@ -35,9 +36,11 @@ public class UserType1Controller extends AnchorPane{
     @FXML
     private JFXButton exit;
     
+    @FXML
+    private JFXButton settings;
     
-    private FXMLLoader fxml ;
-
+    private FXMLLoader fxml;
+    
     public UserType1Controller() {
         fxml = Fxml.getUserType1FXML();
         fxml.setController(this);
@@ -51,22 +54,27 @@ public class UserType1Controller extends AnchorPane{
     }
     
     @FXML
-    private void initialize(){
-        this.addEventHandler(KeyEvent.KEY_PRESSED, e->{
-            if(e.getCode().equals(KeyCode.ESCAPE)){
+    private void initialize() {
+        this.addEventHandler(KeyEvent.KEY_PRESSED, e -> {
+            if (e.getCode().equals(KeyCode.ESCAPE)) {
                 System.exit(0);
             }
         });
         principal.setOnAction(this::principalAction);
         department.setOnAction(this::departmentAction);
-        exit.setOnAction(e->System.exit(0));
+        settings.setOnAction(this::settings);
+        exit.setOnAction(e -> System.exit(0));
     }
     
-    private void principalAction(ActionEvent evt){
+    private void principalAction(ActionEvent evt) {
         SwitchRoot.switchRoot(Start.st, RootFactory.getPrincipalLoginRoot());
     }
     
-    private void departmentAction(ActionEvent evt){
+    private void departmentAction(ActionEvent evt) {
         SwitchRoot.switchRoot(Start.st, RootFactory.getDepartmentRoot());
+    }
+    
+    private void settings(ActionEvent evt) {
+        SwitchRoot.switchRoot(Start.st, RootFactory.getDatabaseServerRoot(Start.st.getScene().getRoot()));
     }
 }

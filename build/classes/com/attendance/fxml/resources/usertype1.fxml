@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Pane prefHeight="140.0" prefWidth="1366.0">
          <children>
@@ -73,7 +73,7 @@
             <FontAwesomeIconView glyphName="POWER_OFF" size="1.8em" />
          </graphic>
       </JFXButton>
-      <JFXButton fx:id="exit1" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" layoutX="1273.0" layoutY="727.0">
+      <JFXButton fx:id="settings" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" layoutX="1273.0" layoutY="727.0">
          <graphic>
             <FontAwesomeIconView glyphName="COG" size="1.8em" />
          </graphic>

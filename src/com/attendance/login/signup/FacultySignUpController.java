@@ -19,6 +19,7 @@ import com.attendance.util.SystemUtils;
 import com.attendance.util.ValidationUtils;
 import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
+import java.util.Base64;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -128,6 +129,8 @@ public class FacultySignUpController extends AnchorPane {
 
                 Set<ConstraintViolation<User>> validate = ValidationUtils.getValidator().validate(user);
                 if (validate.isEmpty()) {
+                    user.setPassword(Base64.getEncoder().encodeToString(password.getText().getBytes()));
+
                     int id = login.saveUser(user);
 
                     if (id > 0) {

@@ -68,6 +68,5 @@ public class HODSettingsController extends AnchorPane {
         importexport.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getSettingsExportRoot(Start.st.getScene().getRoot())));
         
         notes.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getNotesSettingsRoot(Start.st.getScene().getRoot())));
-        reports.setOnAction(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getDatabaseServerRoot(Start.st.getScene().getRoot())));
     }
 }

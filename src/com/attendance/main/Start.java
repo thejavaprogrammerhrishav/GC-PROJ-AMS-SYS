@@ -5,6 +5,7 @@
  */
 package com.attendance.main;
 
+import com.attendance.config.SysConfig;
 import com.attendance.util.RootFactory;
 import com.attendance.util.StageUtil;
 import com.attendance.util.SwitchRoot;
@@ -31,11 +32,23 @@ public class Start extends Application {
 
     public static void main(String[] args) throws Exception {
         //initApp();
-
+        SysConfig.load();
+        sysload();
         initContext();
         SystemUtils.init();
         launch(args);
 
+    }
+    
+    public static void sysload(){
+        System.setProperty("driver",SysConfig.get("sys.driver"));
+       System.setProperty("host",SysConfig.get("sys.host"));
+        System.setProperty("port",SysConfig.get("sys.port"));
+        System.setProperty("dbname",SysConfig.get("sys.database.name"));
+        System.setProperty("dialect",SysConfig.get("sys.database.dialect"));
+        System.setProperty("url",SysConfig.get("sys.url"));
+        System.setProperty("username",SysConfig.get("sys.username"));
+        System.setProperty("password",SysConfig.get("sys.password"));
     }
 
     private static void initApp() throws FileNotFoundException, IOException {

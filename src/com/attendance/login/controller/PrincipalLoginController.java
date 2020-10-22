@@ -21,6 +21,7 @@ import com.attendance.util.SwitchRoot;
 import com.attendance.util.SystemUtils;
 import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
+import java.util.Base64;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
@@ -136,7 +137,7 @@ public class PrincipalLoginController extends AnchorPane {
                 user = principal.findByUsernameDepartmentType(username, "N/A", userRole);
                 setAccstatus(user.getStatus());
                 boolean b = user.getStatus().equals("Accept");
-                return username.equals(user.getUsername()) && password.equals(user.getPassword()) && b;
+                return username.equals(user.getUsername()) && Base64.getEncoder().encodeToString(password.getBytes()).equals(user.getPassword()) && b;
             }
         };
 

@@ -22,6 +22,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
+import java.util.Base64;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
@@ -139,7 +140,7 @@ public class FacultyLoginController extends AnchorPane {
                 user = faculty.findByUsernameDepartmentType(username, SystemUtils.getDepartment(), ROLE);
                 setAccstatus(user.getStatus());
                 boolean b = user.getStatus().equals("Accept");
-                return username.equals(user.getUsername()) && password.equals(user.getPassword()) && b;
+                return username.equals(user.getUsername()) && Base64.getEncoder().encodeToString(password.getBytes()).equals(user.getPassword()) && b;
             }
         };
         authenticator.addLoginFailedListener(() -> Platform.runLater(() -> result.setText("Login Failed")));

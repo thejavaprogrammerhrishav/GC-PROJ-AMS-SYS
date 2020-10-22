@@ -9,16 +9,14 @@
        xmlns:context="http://www.springframework.org/schema/context">
     
     <tx:annotation-driven/>
-
-    <context:property-placeholder location="file:db.properties"/> 
     
     <bean id = "dialog" class = "com.attendance.util.ExceptionDialog"/>
     
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
-        <property name="url" value="${db.url}"/>
-        <property name="username" value="hrishav"/>
-        <property name="password" value="hrishav"/>
+        <property name="driverClassName" value="#{systemProperties['driver']}"/>
+        <property name="url" value="#{systemProperties['url']}"/>
+        <property name="username" value="#{systemProperties['username']}"/>
+        <property name="password" value="#{systemProperties['password']}"/>
     </bean>
 
     <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
@@ -45,11 +43,12 @@
         </property>
         <property name="hibernateProperties">
             <props>
-                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+                <prop key="hibernate.dialect">#{systemProperties['dialect']}</prop>
                 <prop key="hibernate.hbm2ddl.auto">update</prop>
                 <prop key="hibernate.show_sql">false</prop>
                 <prop key="hibernate.format_sql">true</prop>
                 <prop key="javax.persistence.validation.mode">none</prop>
+                <prop key="hibernate.default_catelog">#{systemProperties['dialect']}</prop>
             </props>
         </property>
     </bean>
