@@ -25,6 +25,7 @@ public class SysConfig {
                 new File(Crypter.path).createNewFile();
                 initial();
                 save();
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -59,6 +60,17 @@ public class SysConfig {
 
     public static Crypter crypt() {
         return crypt;
+    }
+
+    public static boolean validate() {
+        return prop.getProperty("sys.driver").isEmpty()
+                || prop.getProperty("sys.host").isEmpty()
+                || prop.getProperty("sys.port").isEmpty()
+                || prop.getProperty("sys.database.name").isEmpty()
+                || prop.getProperty("sys.database.dialect").isEmpty()
+                || prop.getProperty("sys.url").isEmpty()
+                || prop.getProperty("sys.username").isEmpty()
+                || prop.getProperty("sys.password").isEmpty();
     }
 
 }

@@ -99,7 +99,7 @@ public class DatabaseServerSettingsController extends AnchorPane {
     private void initialize() {
         cancel.setOnAction(e -> SwitchRoot.switchRoot(Start.st, parent));
 
-        dialog=(ExceptionDialog) Start.app.getBean("dialog");
+        dialog=new ExceptionDialog();
         
         loadDefaults();
 

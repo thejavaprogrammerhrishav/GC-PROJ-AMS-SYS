@@ -6,6 +6,7 @@
 package com.attendance.main;
 
 import com.attendance.config.SysConfig;
+import com.attendance.settings.DatabaseServerSettingsController;
 import com.attendance.splash.SplashController;
 import com.attendance.util.RootFactory;
 import com.attendance.util.StageUtil;
@@ -78,6 +79,10 @@ public class Start extends Application {
             }
         };
         
+        task.setOnFailed(e->{
+            SwitchRoot.switchRoot(Start.st, RootFactory.getUserType1Root());
+        });
+        
         task.setOnRunning(e->{
             PlatformImpl.runAndWait(()->{
                 SwitchRoot.switchRoot(st, RootFactory.getSplashRoot());
@@ -93,9 +98,13 @@ public class Start extends Application {
         new Thread(task).start();
     }
 
-    public static void initContext() {
+    public static void initContext() throws Exception{
         app = new ClassPathXmlApplicationContext();
         app.setConfigLocation("/com/attendance/xml/Application.xml");
+        if(SysConfig.validate()){
+            throw  new Exception("Invalid Config");
+        }
         app.refresh();
+        
     }
 }
