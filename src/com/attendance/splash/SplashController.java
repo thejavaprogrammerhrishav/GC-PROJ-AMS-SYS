@@ -10,26 +10,45 @@ import com.jfoenix.controls.JFXProgressBar;
 import com.attendance.util.Fxml;
 import com.attendance.util.RootFactory;
 import com.attendance.util.SwitchRoot;
+import com.sun.javafx.application.PlatformImpl;
 import java.io.IOException;
+import java.util.concurrent.CompletableFuture;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.animation.FadeTransition;
+import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
+import javafx.util.Duration;
 
 /**
  *
  * @author Programmer Hrishav
  */
-public class SplashController extends AnchorPane {
+public class SplashController extends VBox {
 
     @FXML
-    private JFXProgressBar progress;
+    private Label t1;
+
+    @FXML
+    private Label t2;
+
+    @FXML
+    private Label t3;
+    
+    @FXML
+    private ImageView image;
 
     private FXMLLoader fxml;
-    private Task<Integer> worker;
-    private Thread thread;
+    private FadeTransition tt1;
+    private FadeTransition tt2;
+    private static FadeTransition tt3;
+    private FadeTransition tt;
 
     public SplashController() {
         fxml = Fxml.getSplashFXML();
@@ -44,33 +63,63 @@ public class SplashController extends AnchorPane {
 
     @FXML
     public void initialize() {
-        worker = new Task<Integer>() {
-            @Override
-            protected Integer call() throws Exception {
-                Thread.sleep(3000);
-                updateProgress(0, 1);
-                Thread.sleep(1689);
-                updateProgress(0.2, 1);
-                Thread.sleep(1851);
-                updateProgress(0.5, 1);
-                Thread.sleep(2058);
-                updateProgress(0.6, 1);
-                Thread.sleep(1000);
-                updateProgress(0.7, 1);
-                Thread.sleep(1200);
-                updateProgress(0.8, 1);
-                Thread.sleep(1200);
-                updateProgress(0.9, 1);
-                Thread.sleep(1400);
-                updateProgress(1, 1);
-                Thread.sleep(1300);
-                return 0;
+        t1.setOpacity(0.0);
+        t2.setOpacity(0.0);
+        t3.setOpacity(0.0);
+        image.setOpacity(0.0);
+        
+        tt3=new FadeTransition(Duration.seconds(1));
+        tt3.setNode(t3);
+        tt3.setFromValue(0);
+        tt3.setToValue(1);
+        
+        
+        tt2=new FadeTransition(Duration.seconds(2));
+        tt2.setNode(t2);
+        tt2.setFromValue(0);
+        tt2.setToValue(1);
+        tt2.setOnFinished(e->{
+            tt3.play();
+        });
+        
+        
+        tt1=new FadeTransition(Duration.seconds(2));
+        tt1.setNode(t1);
+        tt1.setFromValue(0);
+        tt1.setToValue(1);
+        tt1.setOnFinished(e->{
+            tt2.play();
+        });
+        
+        tt=new FadeTransition(Duration.seconds(2));
+        tt.setNode(image);
+        tt.setFromValue(0);
+        tt.setToValue(1);
+        tt.setOnFinished(e->{
+            tt1.play();
+        });
+        
+        CompletableFuture.runAsync(()->{
+            try {
+                Thread.sleep(500);
+                Platform.runLater(()->tt.play());
+            } catch (InterruptedException ex) {
+                Logger.getLogger(SplashController.class.getName()).log(Level.SEVERE, null, ex);
             }
-        };
-        worker.setOnSucceeded(e -> SwitchRoot.switchRoot(Start.st, RootFactory.getUserType1Root()));
-        progress.progressProperty().bind(worker.progressProperty());
-        thread = new Thread(worker);
-        thread.start();
+           
+        });
+        
+    }
+    
+    public static void close(){
+       tt3.setOnFinished(e->{
+           try {
+               Thread.sleep(4000);
+               SwitchRoot.switchRoot(Start.st, RootFactory.getUserType1Root());
+           } catch (InterruptedException ex) {
+               Logger.getLogger(SplashController.class.getName()).log(Level.SEVERE, null, ex);
+           }
+       });
     }
 
 }
