@@ -1,10 +1,10 @@
 #
-#Fri Oct 23 01:08:21 IST 2020
+#Thu Oct 29 12:23:31 IST 2020
 sys.port=3306
 sys.database.name=attendance
-sys.url=jdbc\:mysql\://localhost\:3306/attendance?createDatabaseIfNotExist\=true
+sys.url=jdbc\:mysql\://192.168.29.41\:3306/attendance?createDatabaseIfNotExist\=true
 sys.username=hrishav
-sys.host=localhost
+sys.host=192.168.29.41
 sys.driver=com.mysql.cj.jdbc.Driver
 sys.password=hrishav
 sys.database.dialect=org.hibernate.dialect.MySQLDialect

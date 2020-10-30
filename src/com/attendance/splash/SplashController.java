@@ -71,8 +71,7 @@ public class SplashController extends VBox {
         tt3=new FadeTransition(Duration.seconds(1));
         tt3.setNode(t3);
         tt3.setFromValue(0);
-        tt3.setToValue(1);
-        
+        tt3.setToValue(1);        
         
         tt2=new FadeTransition(Duration.seconds(2));
         tt2.setNode(t2);
@@ -110,16 +109,4 @@ public class SplashController extends VBox {
         });
         
     }
-    
-    public static void close(){
-       tt3.setOnFinished(e->{
-           try {
-               Thread.sleep(4000);
-               SwitchRoot.switchRoot(Start.st, RootFactory.getUserType1Root());
-           } catch (InterruptedException ex) {
-               Logger.getLogger(SplashController.class.getName()).log(Level.SEVERE, null, ex);
-           }
-       });
-    }
-
 }

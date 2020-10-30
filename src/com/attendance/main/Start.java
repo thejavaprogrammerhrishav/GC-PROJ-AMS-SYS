@@ -73,8 +73,10 @@ public class Start extends Application {
         task = new Task<Void>() {
             @Override
             protected Void call() throws Exception {
+                Thread.sleep(3000);
                 initContext();
                 SystemUtils.init();
+                Thread.sleep(3000);
                 return null;
             }
         };
@@ -91,8 +93,12 @@ public class Start extends Application {
         });
 
         task.setOnSucceeded(e->{
-            
-            SplashController.close();
+           try {
+               Thread.sleep(1000);
+               SwitchRoot.switchRoot(Start.st, RootFactory.getUserType1Root());
+           } catch (InterruptedException ex) {
+               Logger.getLogger(SplashController.class.getName()).log(Level.SEVERE, null, ex);
+           }
         });
         
         new Thread(task).start();
